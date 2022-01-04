@@ -1,7 +1,9 @@
 module.exports =   class NodeProcessor{
-    constructor(source_ast, target_ast) {
-          this.old_dict = source_ast.getFunctionsDict();
-          this.new_dict = target_ast.getFunctionsDict(); 
+    constructor(old_main_dict, new_main_dict, old_location_dict, new_location_dict) {
+          this.old_dict = old_main_dict;
+          this.new_dict = new_main_dict; 
+          this.old_location_dict = old_location_dict;
+          this.new_location_dict = new_location_dict;
           this.parameter_breaks = [];
           this.parameter_warnings = [];
           this.getParameterChanges();
@@ -37,7 +39,7 @@ module.exports =   class NodeProcessor{
           }
           param_issue+="){...}"
           
-          this.parameter_breaks.push(param_issue);
+          this.parameter_breaks.push(param_issue+" FILE : "+this.old_location_dict[key]);
           continue;
         }
         for(let i =0; i<old_params.length; i++){
@@ -86,7 +88,7 @@ module.exports =   class NodeProcessor{
               
             }
             param_issue+="){...}"
-            this.parameter_breaks.push(param_issue);
+            this.parameter_breaks.push(param_issue+" FILE : "+this.old_location_dict[key]);
             break;
           }
         }
@@ -140,7 +142,7 @@ module.exports =   class NodeProcessor{
           if(i<params.length-1) param_names+=", "
         }
         param_names += "){...}"
-        console.log(index+1+". "+param_names)
+        console.log(index+1+". "+param_names+" FILE : "+ this.old_location_dict[functionName])
       });
     }
 
@@ -161,12 +163,15 @@ module.exports =   class NodeProcessor{
       this.added_functions.forEach((functionName,index) =>{
         let params = this.new_dict[functionName].parameters
         let param_names = functionName+"( ";
-        for(let i=0; i<params.length; i++){
-          param_names+=params[i].name.escapedText;
-          if(i<params.length-1) param_names+=", "
+        if(params!= undefined && params.length!=undefined){
+          for(let i=0; i<params.length; i++){
+            param_names+=params[i].name.escapedText;
+            if(i<params.length-1) param_names+=", "
+          }
         }
+
         param_names += "){...}"
-        console.log(index+1+". "+param_names)
+        console.log(index+1+". "+param_names+" FILE : "+ this.new_location_dict[functionName])
       });
     }
 
