@@ -1,0 +1,26 @@
+normargOffset <- function(offset, obj_length)
+{
+    if (!isSingleNumber(offset))
+        stop("'offset' must be a single integer")
+    if (!is.integer(offset))
+        offset <- as.integer(offset)
+    if (offset < 0)
+        stop("'offset' cannot be negative")
+    if (offset > obj_length)
+        stop("'offset' cannot be greater than object length")
+    offset
+}
+
+
+
+normargOffset <- function(offset, obj_length)
+{
+
+    if (!is.integer(offset))
+        offset <- as.integer(offset)
+    if (offset < 0)
+        stop("'offset' cannot be negative")
+    if (offset > obj_length)
+        stop("'offset' cannot be greater than object length")
+    offset
+}
