@@ -3,6 +3,9 @@ const util = require('util');
 const ts = require("typescript");
 var NodeProcessor = require('./NodeProcessor');
 var TreeAnalyser  = require('./TreeAnalyser');
+const readline = require('readline');
+const Ns_Parser = require('./Ns_Parser');
+const { collapseTextChangeRangesAcrossMultipleVersions } = require('typescript');
 
 
 //DICTS
@@ -33,6 +36,7 @@ function disp_function_names(main_dict, version){
         for(key in main_dict){
           console.log(key);
         }
+  console.log(Object.keys(main_dict).length)
 }
 
 function display_old_location(name){
@@ -130,16 +134,64 @@ async function myF() {
 //   disp_function_names(old_main_dict, "OLD");
 //   disp_function_names(new_main_dict, "NEW");
 
-  let myNodeProcessor = new NodeProcessor(old_main_dict, new_main_dict, old_location_dict, new_location_dict);
+//   let myNodeProcessor = new NodeProcessor(old_main_dict, new_main_dict, old_location_dict, new_location_dict);
+//   myNodeProcessor.printFunctionRemovals();
+//   myNodeProcessor.printFunctionsAdded();
+
+//   myNodeProcessor.printParameterChanges();
+//   myNodeProcessor.printParameterWarnings();
+
+
+
+const fileStream = fs.createReadStream('./old_NS/NAMESPACE');
+
+const rl = readline.createInterface({
+  input: fileStream,
+  crlfDelay: Infinity
+});
+
+let old_ns_parser = new Ns_Parser(old_main_dict);
+for await (const line of rl) {
+
+  
+  old_ns_parser.parseLine(line);
+}
+console.log('\n\nOld Namespace')
+old_filtered_dict = old_ns_parser.getFilteredDict();
+old_ns_parser.getMissingItemDifference();
+
+console.log(old_ns_parser.getMissingItems());
+
+
+const fileStream_new = fs.createReadStream('./new_NS/NAMESPACE');
+
+const rl_new = readline.createInterface({
+  input: fileStream_new,
+  crlfDelay: Infinity
+});
+
+let new_ns_parser = new Ns_Parser(new_main_dict);
+for await (const line of rl_new) {
+
+  
+  new_ns_parser.parseLine(line);
+}
+
+console.log('\n\nNew Namespace')
+
+new_filtered_dict = new_ns_parser.getFilteredDict();
+new_ns_parser.getMissingItemDifference();
+
+console.log(new_ns_parser.getMissingItems());
+
+console.log("\n\n")
+
+  let myNodeProcessor = new NodeProcessor(old_filtered_dict, new_filtered_dict, old_location_dict, new_location_dict);
   myNodeProcessor.printFunctionRemovals();
   myNodeProcessor.printFunctionsAdded();
 
   myNodeProcessor.printParameterChanges();
-//   myNodeProcessor.printParameterWarnings();
-
-
-  console.log('\n\nLocations : ')
-//   display_old_location('Function Name : availablePSets(...) | Function Declaration Type : S3')
+  myNodeProcessor.printParameterWarnings();
 
   
 }
