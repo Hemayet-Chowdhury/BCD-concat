@@ -5,6 +5,7 @@ var NodeProcessor = require("./NodeProcessor");
 var TreeAnalyser = require("./TreeAnalyser");
 const readline = require("readline");
 const Ns_Parser = require("./Ns_Parser");
+const path = require("path");
 const {
   collapseTextChangeRangesAcrossMultipleVersions,
 } = require("typescript");
@@ -58,9 +59,17 @@ function display_new_location(name) {
 const readFile = util.promisify(fs.readFile);
 
 const readdir = util.promisify(fs.readdir);
+// prettier-ignore
+absolute_base =
+  "C:\\Users\\hemay\\Desktop\\research_workbench\\RECENT\\";
+raw_old_root = absolute_base + "case 11\\isoformswitchanalyzer_release_3_9";
+base_old_root = path.normalize(raw_old_root);
+// prettier-ignore
+raw_new_root = absolute_base + "case 11\\isoformswitchanalyzer_release_3_11";
+base_new_root = path.normalize(raw_new_root);
 
-old_root_dir = "./old_lib/R";
-new_root_dir = "./new_lib/R";
+old_root_dir = base_old_root + "/R";
+new_root_dir = base_new_root + "/R";
 
 async function myF() {
   let old_names;
@@ -85,7 +94,10 @@ async function myF() {
     const ts_source_ast = ts.createSourceFile("temp1.ts", filename1);
 
     let old_version_tree = new TreeAnalyser(ts_source_ast);
+
     // console.log("old functions collected")
+    //EDITS to be backtracked
+
     transfer_dicts(old_main_dict, old_version_tree.getFunctionsDict());
     transfer_locations(
       old_location_dict,
@@ -135,7 +147,7 @@ async function myF() {
   //   myNodeProcessor.printParameterChanges();
   //   myNodeProcessor.printParameterWarnings();
 
-  const fileStream = fs.createReadStream("./old_lib/NAMESPACE");
+  const fileStream = fs.createReadStream(base_old_root + "/NAMESPACE");
 
   const rl = readline.createInterface({
     input: fileStream,
@@ -152,7 +164,7 @@ async function myF() {
 
   console.log(old_ns_parser.getMissingItems());
 
-  const fileStream_new = fs.createReadStream("./new_lib/NAMESPACE");
+  const fileStream_new = fs.createReadStream(base_new_root + "/NAMESPACE");
 
   const rl_new = readline.createInterface({
     input: fileStream_new,

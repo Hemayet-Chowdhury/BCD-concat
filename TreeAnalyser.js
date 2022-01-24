@@ -17,13 +17,23 @@ module.exports = class TreeAnalyser {
         ] = statement.expression.left.right.operand;
         return;
       }
+
       if (statement?.expression?.left?.escapedText) {
         //remove decor here
-        this.functionsDict[
-          "Function Name : " +
-            statement.expression.left.escapedText +
-            "(...) | Function Declaration Type : S3"
-        ] = statement.expression.right.operand;
+        if (!statement.expression.right.operand) {
+          this.functionsDict[
+            "Function Name : " +
+              statement.expression.left.escapedText +
+              "(...) | Function Declaration Type : S3"
+          ] = statement.expression.right;
+        } else {
+          this.functionsDict[
+            "Function Name : " +
+              statement.expression.left.escapedText +
+              "(...) | Function Declaration Type : S3"
+          ] = statement.expression.right.operand;
+        }
+
         return;
       }
       //for S4 functions
@@ -68,7 +78,9 @@ module.exports = class TreeAnalyser {
 
   refineFunctionsList() {
     for (let key in this.functionsDict) {
-      if (this.functionsDict[key] == undefined) delete this.functionsDict[key];
+      if (this.functionsDict[key] == undefined) {
+        delete this.functionsDict[key];
+      }
     }
   }
 };
