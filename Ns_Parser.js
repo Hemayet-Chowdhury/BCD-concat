@@ -1,4 +1,4 @@
-module.exports = class Ns_Parser {
+export class Ns_Parser {
   constructor(mainDict) {
     this.mainDict = mainDict;
     this.functions_list = [];
@@ -37,7 +37,7 @@ module.exports = class Ns_Parser {
   }
 
   getFilteredDict() {
-    for (key in this.mainDict) {
+    for (let key in this.mainDict) {
       let temp = key.split("(")[0];
       temp = temp.substring(16, temp.length);
       if (this.functions_list.includes(temp)) {
@@ -52,7 +52,7 @@ module.exports = class Ns_Parser {
     //run getFilteredDict first.
     let filtered_functions = [];
     let missingList = [];
-    for (key in this.filteredDict) {
+    for (let key in this.filteredDict) {
       let temp = key.split("(")[0];
       temp = temp.substring(16, temp.length);
       filtered_functions.push(temp);
@@ -74,4 +74,4 @@ module.exports = class Ns_Parser {
       Object.keys(this.filteredDict).length
     );
   }
-};
+}

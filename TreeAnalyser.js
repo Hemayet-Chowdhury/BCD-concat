@@ -1,4 +1,4 @@
-module.exports = class TreeAnalyser {
+export class TreeAnalyser {
   constructor(ts_ast) {
     this.ts_ast = ts_ast;
     this.functionsDict = {};
@@ -83,4 +83,4 @@ module.exports = class TreeAnalyser {
       }
     }
   }
-};
+}

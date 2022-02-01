@@ -1,29 +1,32 @@
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
 const fs = require("fs");
 const util = require("util");
 const ts = require("typescript");
-var NodeProcessor = require("./NodeProcessor");
-var TreeAnalyser = require("./TreeAnalyser");
+// var NodeProcessor = require("./NodeProcessor");
+// var TreeAnalyser = require("./TreeAnalyser");
+// const Ns_Parser = require("./Ns_Parser");
+import { NodeProcessor } from "./NodeProcessor.js";
+import { TreeAnalyser } from "./TreeAnalyser.js";
+import { Ns_Parser } from "./Ns_Parser.js";
+
 const readline = require("readline");
-const Ns_Parser = require("./Ns_Parser");
 const path = require("path");
-const {
-  collapseTextChangeRangesAcrossMultipleVersions,
-} = require("typescript");
 
 //DICTS
-old_location_dict = {};
-new_location_dict = {};
-old_main_dict = {};
-new_main_dict = {};
+const old_location_dict = {};
+const new_location_dict = {};
+const old_main_dict = {};
+const new_main_dict = {};
 
 function transfer_dicts(main_dict, small_dict) {
-  for (key in small_dict) {
+  for (let key in small_dict) {
     main_dict[key] = small_dict[key];
   }
 }
 
 function transfer_locations(locations_dict, small_dict, filename) {
-  for (key in small_dict) {
+  for (let key in small_dict) {
     locations_dict[key] = filename;
   }
 }
@@ -60,16 +63,15 @@ const readFile = util.promisify(fs.readFile);
 
 const readdir = util.promisify(fs.readdir);
 // prettier-ignore
-absolute_base =
-  "C:\\Users\\hemay\\Desktop\\research_workbench\\RECENT\\";
-raw_old_root = absolute_base + "case 11\\isoformswitchanalyzer_release_3_9";
-base_old_root = path.normalize(raw_old_root);
+const absolute_base = "C:\\Users\\hemay\\Desktop\\research_workbench\\RECENT\\";
+const raw_old_root = absolute_base + "case 8\\nanomethviz_release_3_12";
+const base_old_root = path.normalize(raw_old_root);
 // prettier-ignore
-raw_new_root = absolute_base + "case 11\\isoformswitchanalyzer_release_3_11";
-base_new_root = path.normalize(raw_new_root);
+const raw_new_root = absolute_base + "case 8\\nanomethviz_release_3_14";
+const base_new_root = path.normalize(raw_new_root);
 
-old_root_dir = base_old_root + "/R";
-new_root_dir = base_new_root + "/R";
+const old_root_dir = base_old_root + "/R";
+const new_root_dir = base_new_root + "/R";
 
 async function myF() {
   let old_names;
@@ -84,7 +86,7 @@ async function myF() {
     // console.log(old_names);
   }
 
-  for (file of old_names) {
+  for (let file of old_names) {
     let filename1 = await readFile(old_root_dir + "/" + file, "utf8");
     filename1 = "##\n" + filename1;
     filename1 = replaceAll(filename1, "#", "//");
@@ -118,7 +120,7 @@ async function myF() {
     // console.log(new_names);
   }
 
-  for (file of new_names) {
+  for (let file of new_names) {
     let filename2 = await readFile(new_root_dir + "/" + file, "utf8");
     filename2 = "##\n" + filename2;
     filename2 = replaceAll(filename2, "#", "//");
@@ -159,7 +161,7 @@ async function myF() {
     old_ns_parser.parseLine(line);
   }
   console.log("\n\nOld Namespace");
-  old_filtered_dict = old_ns_parser.getFilteredDict();
+  const old_filtered_dict = old_ns_parser.getFilteredDict();
   old_ns_parser.getMissingItemDifference();
 
   console.log(old_ns_parser.getMissingItems());
@@ -178,7 +180,7 @@ async function myF() {
 
   console.log("\n\nNew Namespace");
 
-  new_filtered_dict = new_ns_parser.getFilteredDict();
+  const new_filtered_dict = new_ns_parser.getFilteredDict();
   new_ns_parser.getMissingItemDifference();
 
   console.log(new_ns_parser.getMissingItems());

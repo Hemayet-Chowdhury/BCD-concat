@@ -1,4 +1,4 @@
-module.exports = class NodeProcessor {
+export class NodeProcessor {
   constructor(
     old_main_dict,
     new_main_dict,
@@ -206,4 +206,4 @@ module.exports = class NodeProcessor {
       );
     });
   }
-};
+}
