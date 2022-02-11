@@ -48,6 +48,17 @@ export class Ns_Parser {
     return this.filteredDict;
   }
 
+  getRenameFilteredDict() {
+    for (let key in this.mainDict) {
+      let temp = key;
+      if (this.functions_list.includes(temp)) {
+        this.filteredDict[key] = this.mainDict[key];
+      }
+    }
+
+    return this.filteredDict;
+  }
+
   getMissingItems() {
     //run getFilteredDict first.
     let filtered_functions = [];

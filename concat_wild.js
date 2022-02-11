@@ -64,10 +64,27 @@ const readFile = util.promisify(fs.readFile);
 const readdir = util.promisify(fs.readdir);
 // prettier-ignore
 const absolute_base = "C:\\Users\\hemay\\Desktop\\research_workbench\\RECENT\\";
+
+// const raw_old_root = absolute_base + "case 7\\ctrap_release_3_9";
+// const raw_new_root = absolute_base + "case 7\\ctrap_release_3_13";
+
 const raw_old_root = absolute_base + "case 8\\nanomethviz_release_3_12";
+const raw_new_root = absolute_base + "case 8\\nanomethviz_release_3_14";
+
+// const raw_old_root = absolute_base + "case 9\\metabosignal_release_3_5";
+// const raw_new_root = absolute_base + "case 9\\metabosignal_release_3_6";
+
+// const raw_old_root = absolute_base + "case 10\\cocoa_release_3_9";
+// const raw_new_root = absolute_base + "case 10\\cocoa_release_3_11";
+
+// const raw_old_root =
+//   absolute_base + "case 11\\isoformswitchanalyzer_release_3_9";
+// const raw_new_root =
+//   absolute_base + "case 11\\isoformswitchanalyzer_release_3_11";
+
 const base_old_root = path.normalize(raw_old_root);
 // prettier-ignore
-const raw_new_root = absolute_base + "case 8\\nanomethviz_release_3_14";
+
 const base_new_root = path.normalize(raw_new_root);
 
 const old_root_dir = base_old_root + "/R";
