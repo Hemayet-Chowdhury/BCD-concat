@@ -156,16 +156,6 @@ async function myF() {
     );
   }
 
-  //   disp_function_names(old_main_dict, "OLD");
-  //   disp_function_names(new_main_dict, "NEW");
-
-  //   let myNodeProcessor = new NodeProcessor(old_main_dict, new_main_dict, old_location_dict, new_location_dict);
-  //   myNodeProcessor.printFunctionRemovals();
-  //   myNodeProcessor.printFunctionsAdded();
-
-  //   myNodeProcessor.printParameterChanges();
-  //   myNodeProcessor.printParameterWarnings();
-
   const fileStream = fs.createReadStream(base_old_root + "/NAMESPACE");
 
   const rl = readline.createInterface({
@@ -215,10 +205,6 @@ async function myF() {
 
   myNodeProcessor.printParameterChanges();
   myNodeProcessor.printParameterWarnings();
-
-  // display_old_location(
-  //   "Function Name : CIS_grubbs(...) | Function Declaration Type : S3"
-  // );
 }
 
 myF();
