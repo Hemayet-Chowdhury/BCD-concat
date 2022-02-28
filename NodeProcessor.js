@@ -122,9 +122,16 @@ export class NodeProcessor {
     console.log("\n\n--------------------------------------");
     console.log("BREAKING CHANGES FROM PARAMETER MODIFICATIONS");
     console.log("--------------------------------------");
+    var param_change_array =
+      "\n\n--------------------------------------" +
+      "BREAKING CHANGES FROM PARAMETER MODIFICATIONS" +
+      "--------------------------------------\n";
     this.parameter_breaks.forEach((param_issue, index) => {
       console.log(index + 1 + ". " + param_issue + "\n");
+      param_change_array += index + 1 + ". " + param_issue + "\n";
     });
+
+    return param_change_array;
   }
 
   printParameterWarnings() {
@@ -133,9 +140,15 @@ export class NodeProcessor {
       "WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS"
     );
     console.log("--------------------------------------");
+    var param_warn_array =
+      "\n\n--------------------------------------" +
+      "WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS" +
+      "--------------------------------------\n";
     this.parameter_warnings.forEach((param_issue, index) => {
       console.log(index + 1 + ". " + param_issue + "\n");
+      param_warn_array += index + 1 + ". " + param_issue + "\n";
     });
+    return param_warn_array;
   }
 
   getFunctionRemovals() {
@@ -150,6 +163,10 @@ export class NodeProcessor {
     console.log("\n\n--------------------------------------");
     console.log("FUNCTIONS REMOVED IN NEWER VERSION :");
     console.log("--------------------------------------");
+    var function_removal_string =
+      "\n\n--------------------------------------" +
+      "FUNCTIONS REMOVED IN NEWER VERSION :" +
+      "--------------------------------------\n";
 
     this.removed_functions.forEach((functionName, index) => {
       let params = this.old_dict[functionName].parameters;
@@ -170,7 +187,16 @@ export class NodeProcessor {
           " FILE : " +
           this.old_location_dict[functionName]
       );
+      function_removal_string +=
+        index +
+        1 +
+        ". " +
+        param_names +
+        " FILE : " +
+        this.old_location_dict[functionName] +
+        "\n";
     });
+    return function_removal_string;
   }
 
   getFunctionsAdded() {
@@ -185,6 +211,10 @@ export class NodeProcessor {
     console.log("\n\n--------------------------------------");
     console.log("FUNCTIONS ADDED IN NEWER VERSION :");
     console.log("--------------------------------------");
+    var function_added_string =
+      "\n\n--------------------------------------" +
+      "FUNCTIONS ADDED IN NEWER VERSION :" +
+      "--------------------------------------\n";
     this.added_functions.forEach((functionName, index) => {
       let params = this.new_dict[functionName].parameters;
       let param_names = functionName + "( ";
@@ -204,6 +234,15 @@ export class NodeProcessor {
           " FILE : " +
           this.new_location_dict[functionName]
       );
+      function_added_string +=
+        index +
+        1 +
+        ". " +
+        param_names +
+        " FILE : " +
+        this.new_location_dict[functionName] +
+        "\n";
     });
+    return function_added_string;
   }
 }

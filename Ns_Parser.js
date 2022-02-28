@@ -79,10 +79,16 @@ export class Ns_Parser {
   }
 
   getMissingItemDifference() {
-    console.log("Functions in namespace : ", this.functions_list.length);
+    var missing_result_string =
+      "\nFunctions in namespace : " +
+      this.functions_list.length +
+      "\nFunctions in parsed : " +
+      Object.keys(this.filteredDict).length;
+    console.log("\nFunctions in namespace : ", this.functions_list.length);
     console.log(
-      "Functions in parsed : ",
+      "\nFunctions in parsed : ",
       Object.keys(this.filteredDict).length
     );
+    return missing_result_string;
   }
 }

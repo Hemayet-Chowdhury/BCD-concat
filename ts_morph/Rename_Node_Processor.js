@@ -63,11 +63,13 @@ export class Rename_Node_Processor {
   printRemovedFunctions() {
     console.log("Functions Removed : ");
     console.log(Object.keys(this.functions_removed_dict));
+    return "\n" + Object.keys(this.functions_removed_dict).join("\n");
   }
 
   printAddedFunctions() {
     console.log("Functions Added : ");
     console.log(Object.keys(this.functions_added_dict));
+    return "\n" + Object.keys(this.functions_added_dict).join("\n");
   }
 
   printRenamedFunctions() {
@@ -99,7 +101,7 @@ export class Rename_Node_Processor {
           );
           delete this.functions_removed_dict[removed_key];
           delete this.functions_added_dict[added_key];
-          console.log("breaking body");
+
           break;
         }
 
@@ -110,7 +112,7 @@ export class Rename_Node_Processor {
           );
           delete this.functions_removed_dict[removed_key];
           delete this.functions_added_dict[added_key];
-          console.log("breaking name");
+
           break;
         }
       }
@@ -151,30 +153,17 @@ export class Rename_Node_Processor {
           overall_similarity > max
         ) {
           // prettier-ignore
-          console.log(
-            "Match",
-            removed_key,
-            added_key,"|",
-            "name :", similarity_name, "param :",similarity_parameter,
-            "body :",similarity_body,
-            "",overall_similarity
-          );
+          // console.log(
+          //   "Match",
+          //   removed_key,
+          //   added_key,"|",
+          //   "name :", similarity_name, "param :",similarity_parameter,
+          //   "body :",similarity_body,
+          //   "",overall_similarity
+          // );
           max = Math.max(overall_similarity, max);
           matched_function = added_key;
         } else {
-          console.log(
-            removed_key,
-            added_key,
-            "|",
-            "name :",
-            similarity_name,
-            "param :",
-            similarity_parameter,
-            "body :",
-            similarity_body,
-            "",
-            overall_similarity
-          );
         }
       }
       if (matched_function) {
@@ -184,6 +173,21 @@ export class Rename_Node_Processor {
         );
       }
     }
+
+    var total_renames =
+      this.functions_definite_body_renamed_list.length +
+      this.functions_definite_name_renamed_list.length +
+      this.functions_renamed_list.length;
+    var renamed_output_string =
+      "\nDefinite Rename : Body Match\n" +
+      this.functions_definite_body_renamed_list.join("\n") +
+      "\nDefinite Rename : Name Match\n" +
+      this.functions_definite_name_renamed_list.join("\n") +
+      "\nPotential Renames\n" +
+      this.functions_renamed_list.join("\n") +
+      "\nTotal renames\n" +
+      total_renames;
+
     console.log("Definite Rename : Body Match");
     console.log(this.functions_definite_body_renamed_list);
     console.log("Definite Rename : Name Match");
@@ -196,5 +200,6 @@ export class Rename_Node_Processor {
         this.functions_definite_name_renamed_list.length +
         this.functions_renamed_list.length
     );
+    return renamed_output_string;
   }
 }

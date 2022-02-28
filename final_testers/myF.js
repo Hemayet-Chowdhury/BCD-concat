@@ -1,15 +1,17 @@
+//combine both online files here.
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 const fs = require("fs");
 const util = require("util");
 const ts = require("typescript");
 var Readable = require("stream").Readable;
-// var NodeProcessor = require("./NodeProcessor");
-// var TreeAnalyser = require("./TreeAnalyser");
-// const Ns_Parser = require("./Ns_Parser");
 import { NodeProcessor } from "../NodeProcessor.js";
 import { TreeAnalyser } from "../TreeAnalyser.js";
 import { Ns_Parser } from "../Ns_Parser.js";
+import { Project } from "ts-morph";
+import { Rename_Tree_Analyser } from "../ts_morph/Rename_Tree_Analyser.js";
+import { Rename_Node_Processor } from "../ts_morph/Rename_Node_Processor.js";
+var stringSimilarity = require("string-similarity");
 
 const scrapy = require("node-scrapy");
 import fetch from "../../node_modules/node-fetch/src/index.js";
@@ -32,10 +34,25 @@ const new_location_dict = {};
 const old_main_dict = {};
 const new_main_dict = {};
 
-async function myF() {
+//RENAME STUFF
+var project_old = new Project();
+var project_new = new Project();
+
+const rename_old_main_dict = {};
+const rename_new_main_dict = {};
+
+const message = fs.createWriteStream("./logs/output_log.txt");
+
+export default async function myF(package_name, old_version, new_version) {
+  console.log("##################################");
+  console.log("##################################");
+  console.log("##################################");
+  console.log("##################################");
+  console.log("##################################\n\n");
+  console.log("checking versions", old_version, new_version);
   //edits begin
-  const old_package_name = "NanoMethViz";
-  const old_package_version = "RELEASE_3_12";
+  const old_package_name = package_name;
+  const old_package_version = old_version;
   let old_namespace_url =
     "https://code.bioconductor.org/browse/" +
     old_package_name +
@@ -79,9 +96,10 @@ async function myF() {
       .catch((err) => console.log("fetch error", err));
     //edits_end
     filename1 = "##\n" + filename1;
-    filename1 = replaceAll(filename1, "#", "//");
     filename1 = replaceAll(filename1, "@", ".");
     filename1 = replaceAll(filename1, "\n.", "\n_");
+    let rename_filename1 = filename1;
+    filename1 = replaceAll(filename1, "#", "//");
 
     const ts_source_ast = ts.createSourceFile("temp1.ts", filename1);
 
@@ -96,11 +114,23 @@ async function myF() {
       old_version_tree.getFunctionsDict(),
       file
     );
+    //RENAME STUFF
+    const source_ast = project_old.createSourceFile(
+      old_version + new_version + file.name + "temp_morph_1.ts",
+      rename_filename1
+    );
+    var rename_tree_analyser_old = new Rename_Tree_Analyser(source_ast);
+
+    transfer_dicts(
+      rename_old_main_dict,
+      rename_tree_analyser_old.getFunctionsDict()
+    );
+    //RENAME STUFF
   }
 
   //edits begin
-  const new_package_name = "NanoMethViz";
-  const new_package_version = "RELEASE_3_14";
+  const new_package_name = package_name;
+  const new_package_version = new_version;
   let new_namespace_url =
     "https://code.bioconductor.org/browse/" +
     new_package_name +
@@ -145,9 +175,11 @@ async function myF() {
       .catch((err) => console.log("fetch error", err));
     //edits_end
     filename2 = "##\n" + filename2;
-    filename2 = replaceAll(filename2, "#", "//");
+
     filename2 = replaceAll(filename2, "@", ".");
     filename2 = replaceAll(filename2, "\n.", "\n_");
+    let rename_filename2 = filename2;
+    filename2 = replaceAll(filename2, "#", "//");
 
     const ts_target_ast = ts.createSourceFile("temp2.ts", filename2);
 
@@ -159,6 +191,19 @@ async function myF() {
       new_version_tree.getFunctionsDict(),
       file
     );
+
+    //RENAME STUFF
+    const target_ast = project_new.createSourceFile(
+      old_version + new_version + file.name + "temp_morph_2.ts",
+      rename_filename2
+    );
+    var rename_tree_analyser_new = new Rename_Tree_Analyser(target_ast);
+    transfer_dicts(
+      rename_new_main_dict,
+      rename_tree_analyser_new.getFunctionsDict()
+    );
+
+    //RENAME STUFF ENDS
   }
   //OLD namespace stream work
   let fileStream_old = "";
@@ -181,11 +226,19 @@ async function myF() {
   //Old namespace stream work ends
 
   let old_ns_parser = new Ns_Parser(old_main_dict);
+
+  //rename stuff
+  let rename_old_ns_parser = new Ns_Parser(rename_old_main_dict);
+  //rename stuff
   for await (const line of rl) {
     old_ns_parser.parseLine(line);
+    //rename_stuff
+    rename_old_ns_parser.parseLine(line);
+    //rename_stuff
   }
   console.log("\n\nOld Namespace");
   const old_filtered_dict = old_ns_parser.getFilteredDict();
+  const rename_old_filtered_dict = rename_old_ns_parser.getRenameFilteredDict();
   old_ns_parser.getMissingItemDifference();
 
   console.log(old_ns_parser.getMissingItems());
@@ -211,13 +264,18 @@ async function myF() {
   //NEW namespace stream work ends
 
   let new_ns_parser = new Ns_Parser(new_main_dict);
+  //rename stuff
+  let rename_new_ns_parser = new Ns_Parser(rename_new_main_dict);
+  //rename stuff
   for await (const line of rl_new) {
     new_ns_parser.parseLine(line);
+    rename_new_ns_parser.parseLine(line);
   }
 
   console.log("\n\nNew Namespace");
 
   const new_filtered_dict = new_ns_parser.getFilteredDict();
+  const rename_new_filtered_dict = rename_new_ns_parser.getRenameFilteredDict();
   new_ns_parser.getMissingItemDifference();
 
   console.log(new_ns_parser.getMissingItems());
@@ -230,11 +288,33 @@ async function myF() {
     old_location_dict,
     new_location_dict
   );
-  myNodeProcessor.printFunctionRemovals();
-  myNodeProcessor.printFunctionsAdded();
 
-  myNodeProcessor.printParameterChanges();
-  myNodeProcessor.printParameterWarnings();
+  //rename stuff
+  var rename_node_processor = new Rename_Node_Processor(
+    rename_old_filtered_dict,
+    rename_new_filtered_dict
+  );
+
+  //rename stuff ends
+  var log_output =
+    "\n###############################\n###############################\n###############################\n###############################\n";
+  log_output += "Checking Versions" + " " + old_version + " " + new_version;
+
+  log_output += myNodeProcessor.printFunctionRemovals();
+  log_output += myNodeProcessor.printFunctionsAdded();
+
+  log_output += myNodeProcessor.printParameterChanges();
+  log_output += myNodeProcessor.printParameterWarnings();
+
+  //rename stuff
+  log_output +=
+    "\nRemoved Functions\n" + rename_node_processor.printRemovedFunctions();
+  log_output +=
+    "\nAdded Functions\n" + rename_node_processor.printAddedFunctions();
+  log_output += "\n" + rename_node_processor.printRenamedFunctions();
+
+  //rename stuff ends
+  log_output += rename_new_ns_parser.getMissingItemDifference();
+  log_output += rename_old_ns_parser.getMissingItemDifference();
+  message.write(log_output);
 }
-
-myF();
