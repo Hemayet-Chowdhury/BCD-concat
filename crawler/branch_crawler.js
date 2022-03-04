@@ -2,7 +2,7 @@ import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 const scrapy = require("node-scrapy");
 import fetch from "../../node_modules/node-fetch/src/index.js";
-const url = "https://code.bioconductor.org/browse/scater/";
+const url = "https://code.bioconductor.org/browse/MetaboSignal/";
 const model = {
   branch: [
     ".dropdown-menu li a ",

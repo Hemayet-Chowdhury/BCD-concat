@@ -1,0 +1,297 @@
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions RELEASE_3_8 RELEASE_3_9
+
+--------------------------------------FUNCTIONS REMOVED IN NEWER VERSION :--------------------------------------
+
+
+--------------------------------------FUNCTIONS ADDED IN NEWER VERSION :--------------------------------------
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+Removed Functions
+
+
+Added Functions
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 11
+Functions in parsed : 11
+Functions in namespace : 11
+Functions in parsed : 11
+###############################
+###############################
+###############################
+###############################
+Checking Versions RELEASE_3_9 RELEASE_3_11
+
+--------------------------------------FUNCTIONS REMOVED IN NEWER VERSION :--------------------------------------
+1. Function Name : downloadENCODEsamples(...) | Function Declaration Type : S3( metadata){...} FILE : [object Object]
+2. Function Name : downloadL1000data(...) | Function Declaration Type : S3( file, type, zscoresId){...} FILE : [object Object]
+3. Function Name : getL1000conditions(...) | Function Declaration Type : S3( metadata, control){...} FILE : [object Object]
+4. Function Name : compareAgainstL1000(...) | Function Declaration Type : S3( diffExprGenes, perturbations, cellLine, method, geneSize, pAdjustMethod){...} FILE : [object Object]
+5. Function Name : filterL1000metadata(...) | Function Declaration Type : S3( metadata, cellLine, timepoint, dosage, perturbationType){...} FILE : [object Object]
+6. Function Name : loadL1000perturbations(...) | Function Declaration Type : S3( metadata, zscores, geneInfo, sanitizeCompoundNames){...} FILE : [object Object]
+7. Function Name : getL1000perturbationTypes(...) | Function Declaration Type : S3( ){...} FILE : [object Object]
+8. Function Name : plotL1000comparison(...) | Function Declaration Type : S3( object, perturbationID, topGenes){...} FILE : [object Object]
+
+
+--------------------------------------FUNCTIONS ADDED IN NEWER VERSION :--------------------------------------
+1. Function Name : parseCMapID(...) | Function Declaration Type : S3( id, cellLine){...} FILE : [object Object]
+2. Function Name : getCMapPerturbationTypes(...) | Function Declaration Type : S3( control){...} FILE : [object Object]
+3. Function Name : loadCMapZscores(...) | Function Declaration Type : S3( data, inheritAttrs, verbose){...} FILE : [object Object]
+4. Function Name : loadCMapData(...) | Function Declaration Type : S3( file, type, zscoresID){...} FILE : [object Object]
+5. Function Name : getCMapConditions(...) | Function Declaration Type : S3( metadata, cellLine, timepoint, dosage, perturbationType, control){...} FILE : [object Object]
+6. Function Name : filterCMapMetadata(...) | Function Declaration Type : S3( metadata, cellLine, timepoint, dosage, perturbationType){...} FILE : [object Object]
+7. Function Name : prepareCMapPerturbations(...) | Function Declaration Type : S3( metadata, zscores, geneInfo, compoundInfo, loadZscores){...} FILE : [object Object]
+8. Function Name : rankSimilarPerturbations(...) | Function Declaration Type : S3( input, perturbations, method, geneSize, cellLineMean, rankPerCellLine){...} FILE : [object Object]
+9. Function Name : loadENCODEsamples(...) | Function Declaration Type : S3( metadata){...} FILE : [object Object]
+10. Function Name : listExpressionDrugSensitivityAssociation(...) | Function Declaration Type : S3( url){...} FILE : [object Object]
+11. Function Name : loadExpressionDrugSensitivityAssociation(...) | Function Declaration Type : S3( source, file){...} FILE : [object Object]
+12. Function Name : predictTargetingDrugs(...) | Function Declaration Type : S3( input, expressionDrugSensitivityCor, method, geneSize, isDrugActivityDirectlyProportionalToSensitivity){...} FILE : [object Object]
+13. Function Name : loadDrugDescriptors(...) | Function Declaration Type : S3( source, type, file){...} FILE : [object Object]
+14. Function Name : prepareDrugSets(...) | Function Declaration Type : S3( table, id, maxUniqueElems){...} FILE : [object Object]
+15. Function Name : analyseDrugSetEnrichment(...) | Function Declaration Type : S3( sets, stats, col, nperm, maxSize, ){...} FILE : [object Object]
+16. Function Name : plotDrugSetEnrichment(...) | Function Declaration Type : S3( sets, stats, col, selectedSets){...} FILE : [object Object]
+17. Function Name : plotTargetingDrugsVSsimilarPerturbations(...) | Function Declaration Type : S3( targetingDrugs, similarPerturbations, column, labelBy, quantileThreshold, showAllScores){...} FILE : [object Object]
+18. Function Name : convertENSEMBLtoGeneSymbols(...) | Function Declaration Type : S3( genes, dataset, mart){...} FILE : [object Object]
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+Removed Functions
+
+downloadENCODEsamples
+downloadL1000data
+getL1000conditions
+compareAgainstL1000
+filterL1000metadata
+loadL1000perturbations
+getL1000perturbationTypes
+plotL1000comparison
+Added Functions
+
+parseCMapID
+getCMapPerturbationTypes
+loadCMapZscores
+loadCMapData
+getCMapConditions
+filterCMapMetadata
+prepareCMapPerturbations
+rankSimilarPerturbations
+plot.perturbationChanges
+dim.perturbationChanges
+dimnames.perturbationChanges
+print.similarPerturbations
+loadENCODEsamples
+as.table.referenceComparison
+listExpressionDrugSensitivityAssociation
+loadExpressionDrugSensitivityAssociation
+predictTargetingDrugs
+loadDrugDescriptors
+prepareDrugSets
+analyseDrugSetEnrichment
+plotDrugSetEnrichment
+plot.referenceComparison
+plotTargetingDrugsVSsimilarPerturbations
+convertENSEMBLtoGeneSymbols
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+1. downloadENCODEsamples -> loadENCODEsamples
+2. downloadL1000data -> loadCMapData
+3. getL1000conditions -> getCMapConditions
+4. compareAgainstL1000 -> rankSimilarPerturbations
+5. filterL1000metadata -> filterCMapMetadata
+6. loadL1000perturbations -> prepareCMapPerturbations
+7. getL1000perturbationTypes -> getCMapPerturbationTypes
+Total renames
+7
+Functions in namespace : 28
+Functions in parsed : 27
+Functions in namespace : 11
+Functions in parsed : 11
+###############################
+###############################
+###############################
+###############################
+Checking Versions RELEASE_3_11 RELEASE_3_12
+
+--------------------------------------FUNCTIONS REMOVED IN NEWER VERSION :--------------------------------------
+
+
+--------------------------------------FUNCTIONS ADDED IN NEWER VERSION :--------------------------------------
+1. Function Name : launchDiffExprLoader(...) | Function Declaration Type : S3( cellLine, gene){...} FILE : [object Object]
+2. Function Name : launchCMapDataLoader(...) | Function Declaration Type : S3( metadata, zscores, geneInfo, compoundInfo, cellLine, timepoint, dosage, perturbationType){...} FILE : [object Object]
+3. Function Name : launchMetadataViewer(...) | Function Declaration Type : S3( ){...} FILE : [object Object]
+4. Function Name : launchResultPlotter(...) | Function Declaration Type : S3( ){...} FILE : [object Object]
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+Removed Functions
+
+
+Added Functions
+
+launchDiffExprLoader
+launchCMapDataLoader
+launchMetadataViewer
+launchResultPlotter
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 32
+Functions in parsed : 31
+Functions in namespace : 28
+Functions in parsed : 27
+###############################
+###############################
+###############################
+###############################
+Checking Versions RELEASE_3_12 RELEASE_3_13
+
+--------------------------------------FUNCTIONS REMOVED IN NEWER VERSION :--------------------------------------
+
+
+--------------------------------------FUNCTIONS ADDED IN NEWER VERSION :--------------------------------------
+1. Function Name : launchDrugSetEnrichmentAnalyser(...) | Function Declaration Type : S3( sets, ){...} FILE : [object Object]
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : prepareCMapPerturbations(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (metadata, zscores, geneInfo, compoundInfo = NULLloadZscores = FALSE){...}
+New Parameters : (metadata, zscores, geneInfo, compoundInfo = NULL, loadZscores = FALSE){...}
+
+Removed Functions
+
+
+Added Functions
+
+dimnames.expressionDrugSensitivityAssociation
+dim.expressionDrugSensitivityAssociation
+launchDrugSetEnrichmentAnalyser
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 36
+Functions in parsed : 34
+Functions in namespace : 32
+Functions in parsed : 31
+###############################
+###############################
+###############################
+###############################
+Checking Versions RELEASE_3_13 RELEASE_3_14
+
+--------------------------------------FUNCTIONS REMOVED IN NEWER VERSION :--------------------------------------
+
+
+--------------------------------------FUNCTIONS ADDED IN NEWER VERSION :--------------------------------------
+1. Function Name : cTRAP(...) | Function Declaration Type : S3( , commonPath, expire, fileSizeLimitMiB, flowerURL, port, host){...} FILE : [object Object]
+2. Function Name : convertGeneIdentifiers(...) | Function Declaration Type : S3( genes, annotation, key, target, ignoreDuplicatedTargets){...} FILE : [object Object]
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : loadExpressionDrugSensitivityAssociation(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (source, file = NULL, rows = NULL, cols = NULLloadValues = FALSE){...}
+New Parameters : (source, file = NULL, path = NULL, rows = NULL, cols = NULLloadValues = FALSE){...}
+
+Removed Functions
+
+
+Added Functions
+
+convertGeneIdentifiers
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 38
+Functions in parsed : 35
+Functions in namespace : 36
+Functions in parsed : 34
+###############################
+###############################
+###############################
+###############################
+Checking Versions RELEASE_3_14 master
+
+--------------------------------------FUNCTIONS REMOVED IN NEWER VERSION :--------------------------------------
+
+
+--------------------------------------FUNCTIONS ADDED IN NEWER VERSION :--------------------------------------
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+Removed Functions
+
+
+Added Functions
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 38
+Functions in parsed : 35
+Functions in namespace : 38
+Functions in parsed : 35

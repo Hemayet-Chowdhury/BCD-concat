@@ -41,9 +41,12 @@ var project_new = new Project();
 const rename_old_main_dict = {};
 const rename_new_main_dict = {};
 
-const message = fs.createWriteStream("./logs/output_log.txt");
-
-export default async function myF(package_name, old_version, new_version) {
+export default async function myF(
+  package_name,
+  old_version,
+  new_version,
+  message
+) {
   console.log("##################################");
   console.log("##################################");
   console.log("##################################");
