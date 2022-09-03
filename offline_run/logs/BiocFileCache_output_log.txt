@@ -1,0 +1,524 @@
+{
+    "package": "BiocFileCache",
+    "versions": "release_3_5  release_3_6",
+    "param_changes": 1,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 1
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : BiocFileCache
+Checking Versions biocfilecache_release_3_5
+biocfilecache_release_3_6
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : bfcquery(...) | Function Declaration Type : setMethod |  Signature: BiocFileCacheBase had non-default parameters added in newer version.
+Original Parameters : Function Name : bfcquery(...) | Function Declaration Type : setMethod |  Signature: BiocFileCacheBase(xquery){...}
+New Parameters : Function Name : bfcquery(...) | Function Declaration Type : setMethod |  Signature: BiocFileCacheBase(x, query, field = undefined, ){...} FILE : BiocFileCache-class.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+bfcmeta
+bfcmetaremove
+bfcmetalist
+bfcquerycols
+bfcneedsupdate
+bfcsync
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 48
+Functions in parsed : 19
+Functions in namespace : 38
+Functions in parsed : 13{
+    "package": "BiocFileCache",
+    "versions": "release_3_6  release_3_7",
+    "param_changes": 5,
+    "param_warnings": 2,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 7
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : BiocFileCache
+Checking Versions biocfilecache_release_3_6
+biocfilecache_release_3_7
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : bfcadd(...) | Function Declaration Type : setMethod |  Signature: missing had non-default parameters added in newer version.
+Original Parameters : Function Name : bfcadd(...) | Function Declaration Type : setMethod |  Signature: missing(x, rname, fpath = rname, rtype = undefined, action = undefined, proxy = undefined){...}
+New Parameters : Function Name : bfcadd(...) | Function Declaration Type : setMethod |  Signature: missing(x, rname, fpath = rname, rtype = undefined, action = undefined, proxy = undefined, download = TRUE, config = undefined, ext = NA_character_, ){...} FILE : BiocFileCache-class.R
+2. Function Name : bfcadd(...) | Function Declaration Type : setMethod |  Signature: BiocFileCache had non-default parameters added in newer version.
+Original Parameters : Function Name : bfcadd(...) | Function Declaration Type : setMethod |  Signature: BiocFileCache(x, rname, fpath = rname, rtype = undefined, action = undefined, proxy = undefined){...}
+New Parameters : Function Name : bfcadd(...) | Function Declaration Type : setMethod |  Signature: BiocFileCache(x, rname, fpath = rname, rtype = undefined, action = undefined, proxy = undefined, download = TRUE, config = undefined, ext = NA_character_, ){...} FILE : BiocFileCache-class.R
+3. Function Name : bfcupdate(...) | Function Declaration Type : setMethod |  Signature: BiocFileCache had non-default parameters added in newer version.
+Original Parameters : Function Name : bfcupdate(...) | Function Declaration Type : setMethod |  Signature: BiocFileCache(x, rids, rname = NULL, rpath = NULL, fpath = NULLproxy = undefined){...}
+New Parameters : Function Name : bfcupdate(...) | Function Declaration Type : setMethod |  Signature: BiocFileCache(x, rids, rname = NULL, rpath = NULL, fpath = NULL, proxy = undefined, config = undefined, ask = TRUE, ){...} FILE : BiocFileCache-class.R
+4. Function Name : bfcdownload(...) | Function Declaration Type : setMethod |  Signature: missing had non-default parameters added in newer version.
+Original Parameters : Function Name : bfcdownload(...) | Function Declaration Type : setMethod |  Signature: missing(x, ridproxy = undefined){...}
+New Parameters : Function Name : bfcdownload(...) | Function Declaration Type : setMethod |  Signature: missing(x, rid, proxy = undefined, config = undefined, ask = TRUE, FUN, ){...} FILE : BiocFileCache-class.R
+5. Function Name : bfcdownload(...) | Function Declaration Type : setMethod |  Signature: BiocFileCache had non-default parameters added in newer version.
+Original Parameters : Function Name : bfcdownload(...) | Function Declaration Type : setMethod |  Signature: BiocFileCache(x, ridproxy = undefined){...}
+New Parameters : Function Name : bfcdownload(...) | Function Declaration Type : setMethod |  Signature: BiocFileCache(x, rid, proxy = undefined, config = undefined, ask = TRUE, FUN, ){...} FILE : BiocFileCache-class.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : bfcadd(...) | Function Declaration Type : setMethod |  Signature: missing had parameters modified in newer version.
+Original Parameters : (x, rname, fpath = rname, rtype = undefined, action = undefined, proxy = undefined){...}
+New Parameters : (x, rname, fpath = rname, rtype = undefined, action = undefined, proxy = undefined, download = TRUE, config = undefined, ext = NA_character_){...}
+2. Function Name : bfcadd(...) | Function Declaration Type : setMethod |  Signature: BiocFileCache had parameters modified in newer version.
+Original Parameters : (x, rname, fpath = rname, rtype = undefined, action = undefined, proxy = undefined){...}
+New Parameters : (x, rname, fpath = rname, rtype = undefined, action = undefined, proxy = undefined, download = TRUE, config = undefined, ext = NA_character_){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+bfcnew
+bfcadd
+bfcinfo
+bfcpath
+bfcrpath
+exportbfc
+importbfc
+makeBiocFileCacheFromDataFrame
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 54
+Functions in parsed : 27
+Functions in namespace : 48
+Functions in parsed : 19{
+    "package": "BiocFileCache",
+    "versions": "release_3_7  release_3_8",
+    "param_changes": 0,
+    "param_warnings": 2,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 2
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : BiocFileCache
+Checking Versions biocfilecache_release_3_7
+biocfilecache_release_3_8
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : bfcpath(...) | Function Declaration Type : setMethod |  Signature: missing had parameters modified in newer version.
+Original Parameters : (xrid){...}
+New Parameters : (xrids){...}
+2. Function Name : bfcpath(...) | Function Declaration Type : setMethod |  Signature: BiocFileCacheBase had parameters modified in newer version.
+Original Parameters : (xrid){...}
+New Parameters : (xrids){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 54
+Functions in parsed : 27
+Functions in namespace : 54
+Functions in parsed : 27{
+    "package": "BiocFileCache",
+    "versions": "release_3_8  release_3_9",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : BiocFileCache
+Checking Versions biocfilecache_release_3_8
+biocfilecache_release_3_9
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 54
+Functions in parsed : 27
+Functions in namespace : 54
+Functions in parsed : 27{
+    "package": "BiocFileCache",
+    "versions": "release_3_9  release_3_11",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : BiocFileCache
+Checking Versions biocfilecache_release_3_9
+biocfilecache_release_3_11
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+makeCachedActiveBinding
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 55
+Functions in parsed : 28
+Functions in namespace : 54
+Functions in parsed : 27{
+    "package": "BiocFileCache",
+    "versions": "release_3_11  release_3_12",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : BiocFileCache
+Checking Versions biocfilecache_release_3_11
+biocfilecache_release_3_12
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 55
+Functions in parsed : 28
+Functions in namespace : 55
+Functions in parsed : 28{
+    "package": "BiocFileCache",
+    "versions": "release_3_12  release_3_13",
+    "param_changes": 0,
+    "param_warnings": 1,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 1
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : BiocFileCache
+Checking Versions biocfilecache_release_3_12
+biocfilecache_release_3_13
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : BiocFileCache(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (cache = undefinedask = TRUE){...}
+New Parameters : (cache = undefinedask = undefined){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+setBFCOption
+getBFCOption
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 57
+Functions in parsed : 30
+Functions in namespace : 55
+Functions in parsed : 28{
+    "package": "BiocFileCache",
+    "versions": "release_3_13  release_3_14",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : BiocFileCache
+Checking Versions biocfilecache_release_3_13
+biocfilecache_release_3_14
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 57
+Functions in parsed : 30
+Functions in namespace : 57
+Functions in parsed : 30{
+    "package": "BiocFileCache",
+    "versions": "release_3_14  master",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : BiocFileCache
+Checking Versions biocfilecache_release_3_14
+biocfilecache_master
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 57
+Functions in parsed : 30
+Functions in namespace : 57
+Functions in parsed : 30

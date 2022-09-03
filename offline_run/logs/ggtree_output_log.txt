@@ -1,0 +1,1181 @@
+{
+    "package": "ggtree",
+    "versions": "release_3_1  release_3_2",
+    "param_changes": 5,
+    "param_warnings": 12,
+    "function_removals": 8,
+    "function_renames": 2,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 2,
+    "total_count": 25
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : ggtree
+Checking Versions ggtree_release_3_1
+ggtree_release_3_2
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : geom_tippoint(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : geom_tippoint(...) | Function Declaration Type : S3(mapping = NULL){...}
+New Parameters : Function Name : geom_tippoint(...) | Function Declaration Type : S3(mapping = NULL, data = NULL, stat = undefined, position = undefined, na, rm = FALSE, show, legend = NA, inherit, aes = TRUE, ){...} FILE : geom_point.R
+2. Function Name : geom_nodepoint(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : geom_nodepoint(...) | Function Declaration Type : S3(mapping = NULL){...}
+New Parameters : Function Name : geom_nodepoint(...) | Function Declaration Type : S3(mapping = NULL, data = NULL, stat = undefined, position = undefined, na, rm = FALSE, show, legend = NA, inherit, aes = TRUE, ){...} FILE : geom_point.R
+3. Function Name : geom_rootpoint(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : geom_rootpoint(...) | Function Declaration Type : S3(mapping = NULL){...}
+New Parameters : Function Name : geom_rootpoint(...) | Function Declaration Type : S3(mapping = NULL, data = NULL, stat = undefined, position = undefined, na, rm = FALSE, show, legend = NA, inherit, aes = TRUE, ){...} FILE : geom_point.R
+4. Function Name : ggtree(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (tr, mapping, showDistance, layout, mrsd, as, Date, yscale, yscale_mapping, ladderize, right, branch, length, ndigits){...}
+New Parameters : (tr, mapping, layout, mrsd, as, Date, yscale, yscale_mapping, ladderize, right, branch, length, ndigits){...} FILE : ggtree.R
+5. Function Name : geom_tree(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : geom_tree(...) | Function Declaration Type : S3(layout = undefined){...}
+New Parameters : Function Name : geom_tree(...) | Function Declaration Type : S3(mapping = NULL, data = NULL, layout = undefined, multiPhylo = FALSE, ){...} FILE : ggtree.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : geom_tippoint(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (mapping = NULL){...}
+New Parameters : (mapping = NULL, data = NULL, stat = undefined, position = undefined, na, rm = FALSE, show, legend = NA, inherit, aes = TRUE){...}
+2. Function Name : geom_nodepoint(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (mapping = NULL){...}
+New Parameters : (mapping = NULL, data = NULL, stat = undefined, position = undefined, na, rm = FALSE, show, legend = NA, inherit, aes = TRUE){...}
+3. Function Name : geom_rootpoint(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (mapping = NULL){...}
+New Parameters : (mapping = NULL, data = NULL, stat = undefined, position = undefined, na, rm = FALSE, show, legend = NA, inherit, aes = TRUE){...}
+4. Function Name : geom_tree(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (layout = undefined){...}
+New Parameters : (mapping = NULL, data = NULL, layout = undefined, multiPhylo = FALSE){...}
+5. Function Name : scaleClade(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (tree_view, node, scale = undefinedvertical_only = TRUE){...}
+New Parameters : (tree_view = NULL, node, scale = undefinedvertical_only = TRUE){...}
+6. Function Name : flip(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (tree_view, node1node2){...}
+New Parameters : (tree_view = NULL, node1node2){...}
+7. Function Name : rotate(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (tree_viewnode){...}
+New Parameters : (tree_view = NULLnode){...}
+8. Function Name : collapse(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (tree_viewnode){...}
+New Parameters : (tree_view = NULLnode){...}
+9. Function Name : expand(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (tree_viewnode){...}
+New Parameters : (tree_view = NULLnode){...}
+10. Function Name : get_taxa_name(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (tree_viewnode){...}
+New Parameters : (tree_view = NULLnode){...}
+11. Function Name : gheatmap(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (p, data, offset = undefined, width = undefined, low = undefined, high = undefined, color = undefined, colnames = TRUE, colnames_position = undefined, fontsize = undefined){...}
+New Parameters : (p, data, offset = undefined, width = undefined, low = undefined, high = undefined, color = undefined, colnames = TRUE, colnames_position = undefined, colnames_level = NULL, fontsize = undefined){...}
+12. Function Name : scale_x_ggtree(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (p, breaks = NULLlabels = NULL){...}
+New Parameters : (tree_view, breaks = NULLlabels = NULL){...}
+
+-----------------------Removed Functions------------
+
+add_legend
+aes
+annotation_clade
+annotation_clade2
+geom_text
+ggplotGrob
+gplot
+hilight
+
+
+---------------------Added Functions---------------
+
+
+apeBoot
+viewClade
+geom_cladelabel
+geom_hilight
+stat_hilight
+get_clade_position
+geom_point2
+geom_segment2
+geom_text2
+geom_tree2
+geom_treescale
+get_heatmap_column_position
+inset
+nodebar
+nodepie
+fortify.nhx
+fortify.phylip
+fortify.obkData
+fortify.phyloseq
+MRCA
+multiplot
+phyPML
+pmlToSeq
+raxml2nwk
+rescale_tree
+theme_inset
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+1. hilight -> geom_hilight
+2. add_legend -> geom_treescale
+Total renames
+2
+Functions in namespace : 133
+Functions in parsed : 75
+Functions in namespace : 106
+Functions in parsed : 54{
+    "package": "ggtree",
+    "versions": "release_3_2  release_3_3",
+    "param_changes": 10,
+    "param_warnings": 4,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 14
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : ggtree
+Checking Versions ggtree_release_3_2
+ggtree_release_3_3
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : geom_cladelabel(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : geom_cladelabel(...) | Function Declaration Type : S3(node, label, offset = undefined, offset, text = undefined, align = FALSE, barsize = undefined, fontsize = undefined, angle = undefined, geom = undefined, hjust = undefined, fill = NA){...}
+New Parameters : Function Name : geom_cladelabel(...) | Function Declaration Type : S3(node, label, offset = undefined, offset, text = undefined, align = FALSE, barsize = undefined, fontsize = undefined, angle = undefined, geom = undefined, hjust = undefined, fill = NA, family = undefined, ){...} FILE : geom_cladelabel.R
+2. Function Name : stat_hilight(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : stat_hilight(...) | Function Declaration Type : S3(mapping = NULL, data = NULL, geom = undefined, position = undefined, node, show, legend = NA, inherit, aes = FALSE, fill, alpha){...}
+New Parameters : Function Name : stat_hilight(...) | Function Declaration Type : S3(mapping = NULL, data = NULL, geom = undefined, position = undefined, node, show, legend = NA, inherit, aes = FALSE, fill, alpha, extend = undefined, extendto = NULL, ){...} FILE : geom_hilight.R
+3. Function Name : geom_tippoint(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (mapping, data, stat, position, na, rm, show, legend, inherit, aes){...}
+New Parameters : (mapping, data, position, na, rm, show, legend, inherit, aes){...} FILE : geom_point.R
+4. Function Name : geom_nodepoint(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (mapping, data, stat, position, na, rm, show, legend, inherit, aes){...}
+New Parameters : (mapping, data, position, na, rm, show, legend, inherit, aes){...} FILE : geom_point.R
+5. Function Name : geom_rootpoint(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (mapping, data, stat, position, na, rm, show, legend, inherit, aes){...}
+New Parameters : (mapping, data, position, na, rm, show, legend, inherit, aes){...} FILE : geom_point.R
+6. Function Name : geom_point2(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (mapping, data, stat, position, na, rm, show, legend, inherit, aes){...}
+New Parameters : (mapping, data, position, na, rm, show, legend, inherit, aes){...} FILE : geom_point.R
+7. Function Name : geom_segment2(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (mapping, data, stat, position, arrow, lineend, na, rm, show, legend, inherit, aes){...}
+New Parameters : (mapping, data, position, arrow, lineend, na, rm, show, legend, inherit, aes){...} FILE : geom_segment.R
+8. Function Name : geom_text2(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (mapping, data, stat, position, parse, na, rm, show, legend, inherit, aes, , nudge_x, nudge_ycheck_overlap){...}
+New Parameters : (mapping, data, position, parse, na, rm, show, legend, inherit, aes, , nudge_x, nudge_ycheck_overlap){...} FILE : geom_text.R
+9. Function Name : geom_tiplab(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : geom_tiplab(...) | Function Declaration Type : S3(mapping = NULL, hjust = undefined, align = FALSE, linetype = undefined, linesize = undefined){...}
+New Parameters : Function Name : geom_tiplab(...) | Function Declaration Type : S3(mapping = NULL, hjust = undefined, align = FALSE, linetype = undefined, linesize = undefined, geom = undefined, ){...} FILE : geom_tiplab.R
+10. Function Name : ggtree(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : ggtree(...) | Function Declaration Type : S3(tr, mapping = NULL, layout = undefined, mrsd = NULL, as, Date = FALSE, yscale = undefined, yscale_mapping = NULL, ladderize = TRUE, right = FALSE, branch, length = undefined, ndigits = NULL){...}
+New Parameters : Function Name : ggtree(...) | Function Declaration Type : S3(tr, mapping = NULL, layout = undefined, open, angle = undefined, mrsd = NULL, as, Date = FALSE, yscale = undefined, yscale_mapping = NULL, ladderize = TRUE, right = FALSE, branch, length = undefined, ndigits = NULL, ){...} FILE : ggtree.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : geom_cladelabel(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (node, label, offset = undefined, offset, text = undefined, align = FALSE, barsize = undefined, fontsize = undefined, angle = undefined, geom = undefined, hjust = undefined, fill = NA){...}
+New Parameters : (node, label, offset = undefined, offset, text = undefined, align = FALSE, barsize = undefined, fontsize = undefined, angle = undefined, geom = undefined, hjust = undefined, fill = NA, family = undefined){...}
+2. Function Name : stat_hilight(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (mapping = NULL, data = NULL, geom = undefined, position = undefined, node, show, legend = NA, inherit, aes = FALSE, fill, alpha){...}
+New Parameters : (mapping = NULL, data = NULL, geom = undefined, position = undefined, node, show, legend = NA, inherit, aes = FALSE, fill, alpha, extend = undefined, extendto = NULL){...}
+3. Function Name : geom_tiplab(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (mapping = NULL, hjust = undefined, align = FALSE, linetype = undefined, linesize = undefined){...}
+New Parameters : (mapping = NULL, hjust = undefined, align = FALSE, linetype = undefined, linesize = undefined, geom = undefined){...}
+4. Function Name : ggtree(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (tr, mapping = NULL, layout = undefined, mrsd = NULL, as, Date = FALSE, yscale = undefined, yscale_mapping = NULL, ladderize = TRUE, right = FALSE, branch, length = undefined, ndigits = NULL){...}
+New Parameters : (tr, mapping = NULL, layout = undefined, open, angle = undefined, mrsd = NULL, as, Date = FALSE, yscale = undefined, yscale_mapping = NULL, ladderize = TRUE, right = FALSE, branch, length = undefined, ndigits = NULL){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+geom_balance
+stat_balance
+get_balance_position
+geom_label2
+geom_range
+geom_strip
+geom_taxalink
+geom_tiplab2
+rotate_tree
+open_tree
+fortify.phylo4d
+identify.gg
+print.beastList
+nodeid
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 148
+Functions in parsed : 89
+Functions in namespace : 133
+Functions in parsed : 75{
+    "package": "ggtree",
+    "versions": "release_3_3  release_3_4",
+    "param_changes": 4,
+    "param_warnings": 4,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 8
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : ggtree
+Checking Versions ggtree_release_3_3
+ggtree_release_3_4
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : geom_cladelabel(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : geom_cladelabel(...) | Function Declaration Type : S3(node, label, offset = undefined, offset, text = undefined, align = FALSE, barsize = undefined, fontsize = undefined, angle = undefined, geom = undefined, hjust = undefined, fill = NA, family = undefined){...}
+New Parameters : Function Name : geom_cladelabel(...) | Function Declaration Type : S3(node, label, offset = undefined, offset, text = undefined, align = FALSE, barsize = undefined, fontsize = undefined, angle = undefined, geom = undefined, hjust = undefined, color = NULL, fill = NA, family = undefined, parse = FALSE, ){...} FILE : geom_cladelabel.R
+2. Function Name : geom_strip(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : geom_strip(...) | Function Declaration Type : S3(taxa1, taxa2, label = NA, offset = undefined, offset, text = undefined, align = TRUE, barsize = undefined, barextend = undefined, fontsize = undefined, angle = undefined, geom = undefined, hjust = undefined, fill = NA, family = undefined){...}
+New Parameters : Function Name : geom_strip(...) | Function Declaration Type : S3(taxa1, taxa2, label = NA, offset = undefined, offset, text = undefined, align = TRUE, barsize = undefined, barextend = undefined, fontsize = undefined, angle = undefined, geom = undefined, hjust = undefined, fill = NA, family = undefined, parse = FALSE, ){...} FILE : geom_strip.R
+3. Function Name : geom_tiplab(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : geom_tiplab(...) | Function Declaration Type : S3(mapping = NULL, hjust = undefined, align = FALSE, linetype = undefined, linesize = undefined, geom = undefined){...}
+New Parameters : Function Name : geom_tiplab(...) | Function Declaration Type : S3(mapping = NULL, hjust = undefined, align = FALSE, linetype = undefined, linesize = undefined, geom = undefined, offset = undefined, ){...} FILE : geom_tiplab.R
+4. Function Name : gheatmap(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : gheatmap(...) | Function Declaration Type : S3(p, data, offset = undefined, width = undefined, low = undefined, high = undefined, color = undefined, colnames = TRUE, colnames_position = undefined, colnames_level = NULL, fontsize = undefined){...}
+New Parameters : Function Name : gheatmap(...) | Function Declaration Type : S3(p, data, offset = undefined, width = undefined, low = undefined, high = undefined, color = undefined, colnames = TRUE, colnames_position = undefined, colnames_angle = undefined, colnames_level = NULL, colnames_offset_x = undefined, colnames_offset_y = undefined, font, size = undefined, hjust = undefined){...} FILE : gheatmap.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : geom_cladelabel(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (node, label, offset = undefined, offset, text = undefined, align = FALSE, barsize = undefined, fontsize = undefined, angle = undefined, geom = undefined, hjust = undefined, fill = NA, family = undefined){...}
+New Parameters : (node, label, offset = undefined, offset, text = undefined, align = FALSE, barsize = undefined, fontsize = undefined, angle = undefined, geom = undefined, hjust = undefined, color = NULL, fill = NA, family = undefined, parse = FALSE){...}
+2. Function Name : geom_strip(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (taxa1, taxa2, label = NA, offset = undefined, offset, text = undefined, align = TRUE, barsize = undefined, barextend = undefined, fontsize = undefined, angle = undefined, geom = undefined, hjust = undefined, fill = NA, family = undefined){...}
+New Parameters : (taxa1, taxa2, label = NA, offset = undefined, offset, text = undefined, align = TRUE, barsize = undefined, barextend = undefined, fontsize = undefined, angle = undefined, geom = undefined, hjust = undefined, fill = NA, family = undefined, parse = FALSE){...}
+3. Function Name : geom_tiplab(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (mapping = NULL, hjust = undefined, align = FALSE, linetype = undefined, linesize = undefined, geom = undefined){...}
+New Parameters : (mapping = NULL, hjust = undefined, align = FALSE, linetype = undefined, linesize = undefined, geom = undefined, offset = undefined){...}
+4. Function Name : gheatmap(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (p, data, offset = undefined, width = undefined, low = undefined, high = undefined, color = undefined, colnames = TRUE, colnames_position = undefined, colnames_level = NULL, fontsize = undefined){...}
+New Parameters : (p, data, offset = undefined, width = undefined, low = undefined, high = undefined, color = undefined, colnames = TRUE, colnames_position = undefined, colnames_angle = undefined, colnames_level = NULL, colnames_offset_x = undefined, colnames_offset_y = undefined, font, size = undefinedhjust = undefined){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+facet_plot
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 152
+Functions in parsed : 90
+Functions in namespace : 148
+Functions in parsed : 89{
+    "package": "ggtree",
+    "versions": "release_3_4  release_3_5",
+    "param_changes": 2,
+    "param_warnings": 3,
+    "function_removals": 54,
+    "function_renames": 3,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 3,
+    "total_count": 59
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : ggtree
+Checking Versions ggtree_release_3_4
+ggtree_release_3_5
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : geom_label2(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : geom_label2(...) | Function Declaration Type : S3(mapping = NULL, data = NULL, , parse = FALSE, nudge_x = undefined, nudge_y = undefined, label, padding = undefined, label, r = undefined, label, size = undefined, na, rm = TRUE, show, legend = NA, inheritaes = TRUE){...}
+New Parameters : Function Name : geom_label2(...) | Function Declaration Type : S3(mapping = NULL, data = NULL, , position = undefined, family = undefined, parse = FALSE, nudge_x = undefined, nudge_y = undefined, label, padding = undefined, label, r = undefined, label, size = undefined, na, rm = TRUE, show, legend = NA, inherit, aes = TRUE){...} FILE : geom_label.R
+2. Function Name : groupOTU(...) | Function Declaration Type : setMethod |  Signature: undefined had non-default parameters added in newer version.
+Original Parameters : Function Name : groupOTU(...) | Function Declaration Type : setMethod |  Signature: undefined(object, focusgroup_name = undefined){...}
+New Parameters : Function Name : groupOTU(...) | Function Declaration Type : setMethod |  Signature: undefined(object, focus, group_name = undefined, ){...} FILE : RAxML.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : get_taxa_name(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (tree_view = NULLnode){...}
+New Parameters : (tree_view = NULLnode = NULL){...}
+2. Function Name : geom_label2(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (mapping = NULL, data = NULL, , parse = FALSE, nudge_x = undefined, nudge_y = undefined, label, padding = undefined, label, r = undefined, label, size = undefined, na, rm = TRUE, show, legend = NA, inheritaes = TRUE){...}
+New Parameters : (mapping = NULL, data = NULL, , position = undefined, family = undefined, parse = FALSE, nudge_x = undefined, nudge_y = undefined, label, padding = undefined, label, r = undefined, label, size = undefined, na, rm = TRUE, show, legend = NA, inheritaes = TRUE){...}
+3. Function Name : geom_text2(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (mapping = NULL, data = NULL, position = undefined, parse = FALSE, na, rm = TRUE, show, legend = NA, inherit, aes = TRUE, , nudge_x = undefined, nudge_y = undefinedcheck_overlap = FALSE){...}
+New Parameters : (mapping = NULL, data = NULL, , position = undefined, family = undefined, parse = FALSE, na, rm = TRUE, show, legend = NA, inherit, aes = TRUE, nudge_x = undefined, nudge_y = undefinedcheck_overlap = FALSE){...}
+
+-----------------------Removed Functions------------
+
+fortify.apeBootstrap
+fortify.nhx
+fortify.raxml
+get_fields
+get_placements
+get_subs
+get_tipseq
+get_tree
+get_treeinfo
+get_treetext
+getNodeNum
+getRoot
+mask
+merge_tree
+phyPML
+plot
+pmlToSeq
+raxml2nwk
+read_baseml
+read_beast
+read_codeml
+read_codeml_mlc
+read_hyphy
+read_jplace
+read_nhx
+read_paml_rst
+read_phylip
+read_phyloT
+read_r8s
+read_raxml
+read_tree
+rtree
+write_jplace
+lasses(apeBootstrap
+lasses(beast
+lasses(codeml
+lasses(codeml_mlc
+lasses(hyphy
+lasses(jplace
+lasses(nhx
+lasses(paml_rst
+lasses(phangorn
+lasses(phylip
+lasses(r8s
+lasses(raxml
+get_fields
+get_placements
+get_subs
+get_tipseq
+get_tree
+get_treeinfo
+get_treetext
+plot
+show
+
+
+---------------------Added Functions---------------
+
+
+fortify.treedata
+as.data.frame.treedata
+xlim_tree
+xlim_expand
+revts
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+1. fortify.nhx -> fortify.treedata
+2. fortify.raxml -> fortify.treedata
+3. plot -> fortify.treedata
+Total renames
+3
+Functions in namespace : 101
+Functions in parsed : 84
+Functions in namespace : 152
+Functions in parsed : 90{
+    "package": "ggtree",
+    "versions": "release_3_5  release_3_6",
+    "param_changes": 3,
+    "param_warnings": 5,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 8
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : ggtree
+Checking Versions ggtree_release_3_5
+ggtree_release_3_6
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : geom_cladelabel(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : geom_cladelabel(...) | Function Declaration Type : S3(node, label, offset = undefined, offset, text = undefined, align = FALSE, barsize = undefined, fontsize = undefined, angle = undefined, geom = undefined, hjust = undefined, color = NULL, fill = NA, family = undefined, parse = FALSE){...}
+New Parameters : Function Name : geom_cladelabel(...) | Function Declaration Type : S3(node, label, offset = undefined, offset, text = undefined, extend = undefined, align = FALSE, barsize = undefined, fontsize = undefined, angle = undefined, geom = undefined, hjust = undefined, color = NULL, fill = NA, family = undefined, parse = FALSE, ){...} FILE : geom_cladelabel.R
+2. Function Name : geom_point2(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : geom_point2(...) | Function Declaration Type : S3(mapping = NULL, data = NULL, position = undefined, na, rm = FALSE, show, legend = NA, inherit, aes = TRUE){...}
+New Parameters : Function Name : geom_point2(...) | Function Declaration Type : S3(mapping = NULL, data = NULL, stat = undefined, position = undefined, na, rm = FALSE, show, legend = NA, inherit, aes = TRUE, ){...} FILE : geom_point.R
+3. Function Name : geom_segment2(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : geom_segment2(...) | Function Declaration Type : S3(mapping = NULL, data = NULL, position = undefined, arrow = NULL, lineend = undefined, na, rm = FALSE, show, legend = NA, inherit, aes = TRUE){...}
+New Parameters : Function Name : geom_segment2(...) | Function Declaration Type : S3(mapping = NULL, data = NULL, stat = undefined, position = undefined, arrow = NULL, lineend = undefined, na, rm = FALSE, show, legend = NA, inherit, aes = TRUE, nudge_x = undefined, ){...} FILE : geom_segment.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : geom_cladelabel(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (node, label, offset = undefined, offset, text = undefined, align = FALSE, barsize = undefined, fontsize = undefined, angle = undefined, geom = undefined, hjust = undefined, color = NULL, fill = NA, family = undefined, parse = FALSE){...}
+New Parameters : (node, label, offset = undefined, offset, text = undefined, extend = undefined, align = FALSE, barsize = undefined, fontsize = undefined, angle = undefined, geom = undefined, hjust = undefined, color = NULL, fill = NA, family = undefined, parse = FALSE){...}
+2. Function Name : geom_label2(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (mapping = NULL, data = NULL, , position = undefined, family = undefined, parse = FALSE, nudge_x = undefined, nudge_y = undefined, label, padding = undefined, label, r = undefined, label, size = undefined, na, rm = TRUE, show, legend = NA, inheritaes = TRUE){...}
+New Parameters : (mapping = NULL, data = NULL, , stat = undefined, position = undefined, family = undefined, parse = FALSE, nudge_x = undefined, nudge_y = undefined, label, padding = undefined, label, r = undefined, label, size = undefined, na, rm = TRUE, show, legend = NA, inheritaes = TRUE){...}
+3. Function Name : geom_point2(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (mapping = NULL, data = NULL, position = undefined, na, rm = FALSE, show, legend = NA, inherit, aes = TRUE){...}
+New Parameters : (mapping = NULL, data = NULL, stat = undefined, position = undefined, na, rm = FALSE, show, legend = NA, inherit, aes = TRUE){...}
+4. Function Name : geom_segment2(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (mapping = NULL, data = NULL, position = undefined, arrow = NULL, lineend = undefined, na, rm = FALSE, show, legend = NA, inherit, aes = TRUE){...}
+New Parameters : (mapping = NULL, data = NULL, stat = undefined, position = undefined, arrow = NULL, lineend = undefined, na, rm = FALSE, show, legend = NA, inherit, aes = TRUE, nudge_x = undefined){...}
+5. Function Name : geom_text2(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (mapping = NULL, data = NULL, , position = undefined, family = undefined, parse = FALSE, na, rm = TRUE, show, legend = NA, inherit, aes = TRUE, nudge_x = undefined, nudge_y = undefinedcheck_overlap = FALSE){...}
+New Parameters : (mapping = NULL, data = NULL, , stat = undefined, position = undefined, family = undefined, parse = FALSE, na, rm = TRUE, show, legend = NA, inherit, aes = TRUE, nudge_x = undefined, nudge_y = undefinedcheck_overlap = FALSE){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+geom_motif
+set_hilight_legend
+geom_nodelab
+geom_cladelabel2
+geom_hilight_encircle
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 107
+Functions in parsed : 89
+Functions in namespace : 101
+Functions in parsed : 84{
+    "package": "ggtree",
+    "versions": "release_3_6  release_3_7",
+    "param_changes": 4,
+    "param_warnings": 4,
+    "function_removals": 18,
+    "function_renames": 3,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 3,
+    "total_count": 26
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : ggtree
+Checking Versions ggtree_release_3_6
+ggtree_release_3_7
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : geom_range(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : geom_range(...) | Function Declaration Type : S3(range = undefined){...}
+New Parameters : Function Name : geom_range(...) | Function Declaration Type : S3(range = undefined, branch, length = undefined, ){...} FILE : geom_range.R
+2. Function Name : geom_segment2(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : geom_segment2(...) | Function Declaration Type : S3(mapping = NULL, data = NULL, stat = undefined, position = undefined, arrow = NULL, lineend = undefined, na, rm = FALSE, show, legend = NA, inherit, aes = TRUE, nudge_x = undefined){...}
+New Parameters : Function Name : geom_segment2(...) | Function Declaration Type : S3(mapping = NULL, data = NULL, stat = undefined, position = undefined, arrow = NULL, arrow, fill = NULL, lineend = undefined, na, rm = FALSE, show, legend = NA, inherit, aes = TRUE, nudge_x = undefined, ){...} FILE : geom_segment.R
+3. Function Name : geom_taxalink(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : geom_taxalink(...) | Function Declaration Type : S3(taxa1, taxa2, curvature = undefined){...}
+New Parameters : Function Name : geom_taxalink(...) | Function Declaration Type : S3(taxa1, taxa2, curvature = undefined, arrow = NULL, arrow, fill = NULL, ){...} FILE : geom_taxalink.R
+4. Function Name : ggtree(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (tr, mapping, layout, open, angle, mrsd, as, Date, yscale, yscale_mapping, ladderize, right, branch, length, ndigits){...}
+New Parameters : (tr, mapping, layout, open, angle, mrsd, as, Date, yscale, yscale_mapping, ladderize, right, branch, length){...} FILE : ggtree.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : geom_range(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (range = undefined){...}
+New Parameters : (range = undefined, branch, length = undefined){...}
+2. Function Name : geom_segment2(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (mapping = NULL, data = NULL, stat = undefined, position = undefined, arrow = NULL, lineend = undefined, na, rm = FALSE, show, legend = NA, inherit, aes = TRUE, nudge_x = undefined){...}
+New Parameters : (mapping = NULL, data = NULL, stat = undefined, position = undefined, arrow = NULL, arrow, fill = NULL, lineend = undefined, na, rm = FALSE, show, legend = NA, inherit, aes = TRUE, nudge_x = undefined){...}
+3. Function Name : geom_strip(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (taxa1, taxa2, label = NA, offset = undefined, offset, text = undefined, align = TRUE, barsize = undefined, barextend = undefined, fontsize = undefined, angle = undefined, geom = undefined, hjust = undefined, fill = NA, family = undefined, parse = FALSE){...}
+New Parameters : (taxa1, taxa2, label = NA, offset = undefined, offset, text = undefined, align = TRUE, barsize = undefined, extend = undefined, fontsize = undefined, angle = undefined, geom = undefined, hjust = undefined, fill = NA, family = undefined, parse = FALSE){...}
+4. Function Name : geom_taxalink(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (taxa1, taxa2, curvature = undefined){...}
+New Parameters : (taxa1, taxa2, curvature = undefined, arrow = NULL, arrow, fill = NULL){...}
+
+-----------------------Removed Functions------------
+
+as.binary.phylo
+as.data.frame.phylo
+as.data.frame.treedata
+fortify.beast
+fortify.codeml
+fortify.codeml_mlc
+fortify.hyphy
+fortify.jplace
+fortify.paml_rst
+fortify.phangorn
+fortify.phylip
+fortify.r8s
+print.beastList
+apeBoot
+as_binary
+download_phylopic
+get_phylopic
+theme_transparent
+
+
+---------------------Added Functions---------------
+
+
+collapse.ggtree
+range_format
+groupClade.ggtree
+groupOTU.ggtree
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+1. collapse -> collapse.ggtree
+2. groupClade -> groupClade.ggtree
+3. groupOTU -> groupOTU.ggtree
+Total renames
+3
+Functions in namespace : 121
+Functions in parsed : 77
+Functions in namespace : 107
+Functions in parsed : 89{
+    "package": "ggtree",
+    "versions": "release_3_7  release_3_8",
+    "param_changes": 0,
+    "param_warnings": 1,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 1
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : ggtree
+Checking Versions ggtree_release_3_7
+ggtree_release_3_8
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : geom_segment2(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (mapping = NULL, data = NULL, stat = undefined, position = undefined, arrow = NULL, arrow, fill = NULL, lineend = undefined, na, rm = FALSE, show, legend = NA, inherit, aes = TRUE, nudge_x = undefined){...}
+New Parameters : (mapping = NULL, data = NULL, stat = undefined, position = undefined, lineend = undefined, na, rm = FALSE, show, legend = NA, inherit, aes = TRUE, nudge_x = undefined, arrow = NULL, arrow, fill = NULL){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+facet_labeller
+geom_nodelab2
+geom_rootedge
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 124
+Functions in parsed : 80
+Functions in namespace : 121
+Functions in parsed : 77{
+    "package": "ggtree",
+    "versions": "release_3_8  release_3_9",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 5,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 5
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : ggtree
+Checking Versions ggtree_release_3_8
+ggtree_release_3_9
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+MRCA
+get_offspring.tip
+reroot
+rescale_tree
+reroot
+
+
+---------------------Added Functions---------------
+
+
+facet_widths
+MRCA.gg
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 122
+Functions in parsed : 79
+Functions in namespace : 124
+Functions in parsed : 80{
+    "package": "ggtree",
+    "versions": "release_3_9  release_3_11",
+    "param_changes": 7,
+    "param_warnings": 8,
+    "function_removals": 21,
+    "function_renames": 2,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 2,
+    "total_count": 36
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : ggtree
+Checking Versions ggtree_release_3_9
+ggtree_release_3_11
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : geom_motif(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : geom_motif(...) | Function Declaration Type : S3(mapping, data, on){...}
+New Parameters : Function Name : geom_motif(...) | Function Declaration Type : S3(mapping, data, on, label, align = undefined, ){...} FILE : experimental_function.R
+2. Function Name : scale_x_ggtree(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (tree_view, breakslabels){...}
+New Parameters : (breakslabels){...} FILE : experimental_function.R
+3. Function Name : geom_range(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (range, branch, length){...}
+New Parameters : (range, center){...} FILE : geom_range.R
+4. Function Name : geom_strip(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : geom_strip(...) | Function Declaration Type : S3(taxa1, taxa2, label = NA, offset = undefined, offset, text = undefined, align = TRUE, barsize = undefined, extend = undefined, fontsize = undefined, angle = undefined, geom = undefined, hjust = undefined, fill = NA, family = undefined, parse = FALSE){...}
+New Parameters : Function Name : geom_strip(...) | Function Declaration Type : S3(taxa1, taxa2, label, offset = undefined, offset, text = undefined, align = TRUE, barsize = undefined, extend = undefined, fontsize = undefined, angle = undefined, geom = undefined, hjust = undefined, color = undefined, fill = NA, family = undefined, parse = FALSE, ){...} FILE : geom_strip.R
+5. Function Name : ggtree(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : ggtree(...) | Function Declaration Type : S3(tr, mapping = NULL, layout = undefined, open, angle = undefined, mrsd = NULL, as, Date = FALSE, yscale = undefined, yscale_mapping = NULL, ladderize = TRUE, right = FALSE, branch, length = undefined){...}
+New Parameters : Function Name : ggtree(...) | Function Declaration Type : S3(tr, mapping = NULL, layout = undefined, open, angle = undefined, mrsd = NULL, as, Date = FALSE, yscale = undefined, yscale_mapping = NULL, ladderize = TRUE, right = FALSE, branch, length = undefined, root, position = undefined, ){...} FILE : ggtree.R
+6. Function Name : theme_tree(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (bgcolor, fgcolor){...}
+New Parameters : (bgcolor){...} FILE : theme.R
+7. Function Name : theme_inset(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : theme_inset(...) | Function Declaration Type : S3(){...}
+New Parameters : Function Name : theme_inset(...) | Function Declaration Type : S3(legend, position = undefined, ){...} FILE : theme.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : geom_motif(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (mapping, data, on){...}
+New Parameters : (mapping, data, on, label, align = undefined){...}
+2. Function Name : facet_plot(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (p, panel, data, geom, mapping = NULL){...}
+New Parameters : (p, mapping = NULL, data, geom, panel){...}
+3. Function Name : geom_hilight(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (node, fill = undefined, alpha = undefined, extend = undefinedextendto = NULL){...}
+New Parameters : (node, fill = undefined, alpha = undefined, extend = undefined){...}
+4. Function Name : geom_hilight_encircle(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (data = NULL, node, mapping = NULL, fill = undefined, alpha = undefined, expand = undefined){...}
+New Parameters : (data = NULL, node, mapping = NULL, fill = undefined, alpha = undefined, extend = undefined){...}
+5. Function Name : geom_strip(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (taxa1, taxa2, label = NA, offset = undefined, offset, text = undefined, align = TRUE, barsize = undefined, extend = undefined, fontsize = undefined, angle = undefined, geom = undefined, hjust = undefined, fill = NA, family = undefined, parse = FALSE){...}
+New Parameters : (taxa1, taxa2, label, offset = undefined, offset, text = undefined, align = TRUE, barsize = undefined, extend = undefined, fontsize = undefined, angle = undefined, geom = undefined, hjust = undefined, color = undefined, fill = NA, family = undefined, parse = FALSE){...}
+6. Function Name : ggtree(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (tr, mapping = NULL, layout = undefined, open, angle = undefined, mrsd = NULL, as, Date = FALSE, yscale = undefined, yscale_mapping = NULL, ladderize = TRUE, right = FALSE, branch, length = undefined){...}
+New Parameters : (tr, mapping = NULL, layout = undefined, open, angle = undefined, mrsd = NULL, as, Date = FALSE, yscale = undefined, yscale_mapping = NULL, ladderize = TRUE, right = FALSE, branch, length = undefined, root, position = undefined){...}
+7. Function Name : gheatmap(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (p, data, offset = undefined, width = undefined, low = undefined, high = undefined, color = undefined, colnames = TRUE, colnames_position = undefined, colnames_angle = undefined, colnames_level = NULL, colnames_offset_x = undefined, colnames_offset_y = undefined, font, size = undefinedhjust = undefined){...}
+New Parameters : (p, data, offset = undefined, width = undefined, low = undefined, high = undefined, color = undefined, colnames = TRUE, colnames_position = undefined, colnames_angle = undefined, colnames_level = NULL, colnames_offset_x = undefined, colnames_offset_y = undefined, font, size = undefined, family = undefined, hjust = undefinedlegend_title = undefined){...}
+8. Function Name : theme_inset(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (){...}
+New Parameters : (legend, position = undefined){...}
+
+-----------------------Removed Functions------------
+
+MRCA.gg
+_
+get_balance_position
+read_astral
+read_beast
+read_codeml
+read_codeml_mlc
+read_hyphy
+read_iqtree
+read_jplace
+read_jtree
+read_mrbayes
+read_newick
+read_nexus
+read_nhx
+read_paml_rst
+read_phylip
+read_phyloT
+read_r8s
+read_raxml
+stat_balance
+
+
+---------------------Added Functions---------------
+
+
+scale_x_range
+geom_facet
+facet_data
+ggdensitree
+geom_inset
+layout_rectangular
+layout_circular
+layout_fan
+layout_dendrogram
+ggplot_add.facet_xlim
+ggplot_add.geom_range
+ggplot_add.layout_ggtree
+ggplot_add.range_xaxis
+ggplot_add.tree_inset
+ggplot_add.facet_plot
+ggplot_add.tiplab
+ggplot_add.cladelabel
+ggplot_add.hilight
+ggplot_add.striplabel
+ggplot_add.scale_ggtree
+MRCA.ggtree
+MRCA
+nodeid.ggtree
+nodelab.ggtree
+offspring.ggtree
+theme_dendrogram
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+1. MRCA.gg -> MRCA.ggtree
+2. nodeid -> nodeid.ggtree
+Total renames
+2
+Functions in namespace : 142
+Functions in parsed : 100
+Functions in namespace : 122
+Functions in parsed : 79{
+    "package": "ggtree",
+    "versions": "release_3_11  release_3_12",
+    "param_changes": 5,
+    "param_warnings": 8,
+    "function_removals": 7,
+    "function_renames": 3,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 3,
+    "total_count": 20
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : ggtree
+Checking Versions ggtree_release_3_11
+ggtree_release_3_12
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : geom_cladelabel(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : geom_cladelabel(...) | Function Declaration Type : S3(node, label, offset = undefined, offset, text = undefined, extend = undefined, align = FALSE, barsize = undefined, fontsize = undefined, angle = undefined, geom = undefined, hjust = undefined, color = NULL, fill = NA, family = undefined, parse = FALSE){...}
+New Parameters : Function Name : geom_cladelabel(...) | Function Declaration Type : S3(node, label, offset = undefined, offset, text = undefined, extend = undefined, align = FALSE, barsize = undefined, fontsize = undefined, angle = undefined, geom = undefined, hjust = undefined, color = NULL, fill = NA, family = undefined, parse = FALSE, horizontal = TRUE, ){...} FILE : geom_cladelabel.R
+2. Function Name : geom_cladelabel2(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : geom_cladelabel2(...) | Function Declaration Type : S3(node, label, offset = undefined, offset, text = undefined, offset, bar = undefined, align = FALSE, barsize = undefined, fontsize = undefined, hjust = undefined, geom = undefined, color = NULL, family = undefined, parse = FALSE){...}
+New Parameters : Function Name : geom_cladelabel2(...) | Function Declaration Type : S3(node, label, offset = undefined, offset, text = undefined, offset, bar = undefined, align = FALSE, barsize = undefined, fontsize = undefined, hjust = undefined, geom = undefined, color = NULL, family = undefined, parse = FALSE, horizontal = TRUE, ){...} FILE : geom_cladelabel2.R
+3. Function Name : geom_tiplab(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : geom_tiplab(...) | Function Declaration Type : S3(mapping = NULL, hjust = undefined, align = FALSE, linetype = undefined, linesize = undefined, geom = undefined, offset = undefined){...}
+New Parameters : Function Name : geom_tiplab(...) | Function Declaration Type : S3(mapping = NULL, hjust = undefined, align = FALSE, linetype = undefined, linesize = undefined, geom = undefined, offset = undefined, as_ylab = FALSE, ){...} FILE : geom_tiplab.R
+4. Function Name : geom_tree(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : geom_tree(...) | Function Declaration Type : S3(mapping = NULL, data = NULL, layout = undefined, multiPhylo = FALSE){...}
+New Parameters : Function Name : geom_tree(...) | Function Declaration Type : S3(mapping = NULL, data = NULL, layout = undefined, multiPhylo = FALSE, continuous = undefined, ){...} FILE : geom_tree.R
+5. Function Name : ggtree(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : ggtree(...) | Function Declaration Type : S3(tr, mapping = NULL, layout = undefined, open, angle = undefined, mrsd = NULL, as, Date = FALSE, yscale = undefined, yscale_mapping = NULL, ladderize = TRUE, right = FALSE, branch, length = undefined, root, position = undefined){...}
+New Parameters : Function Name : ggtree(...) | Function Declaration Type : S3(tr, mapping = NULL, layout = undefined, open, angle = undefined, mrsd = NULL, as, Date = FALSE, yscale = undefined, yscale_mapping = NULL, ladderize = TRUE, right = FALSE, branch, length = undefined, root, position = undefined, xlim = NULL, ){...} FILE : ggtree.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : geom_cladelabel(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (node, label, offset = undefined, offset, text = undefined, extend = undefined, align = FALSE, barsize = undefined, fontsize = undefined, angle = undefined, geom = undefined, hjust = undefined, color = NULL, fill = NA, family = undefined, parse = FALSE){...}
+New Parameters : (node, label, offset = undefined, offset, text = undefined, extend = undefined, align = FALSE, barsize = undefined, fontsize = undefined, angle = undefined, geom = undefined, hjust = undefined, color = NULL, fill = NA, family = undefined, parse = FALSE, horizontal = TRUE){...}
+2. Function Name : geom_cladelabel2(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (node, label, offset = undefined, offset, text = undefined, offset, bar = undefined, align = FALSE, barsize = undefined, fontsize = undefined, hjust = undefined, geom = undefined, color = NULL, family = undefined, parse = FALSE){...}
+New Parameters : (node, label, offset = undefined, offset, text = undefined, offset, bar = undefined, align = FALSE, barsize = undefined, fontsize = undefined, hjust = undefined, geom = undefined, color = NULL, family = undefined, parse = FALSE, horizontal = TRUE){...}
+3. Function Name : geom_hilight(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (node, fill = undefined, alpha = undefined, extend = undefined){...}
+New Parameters : (data = NULL, mapping = NULL, node = NULL, type = undefined){...}
+4. Function Name : geom_taxalink(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (taxa1, taxa2, curvature = undefined, arrow = NULL, arrow, fill = NULL){...}
+New Parameters : (data = NULL, mapping = NULL, taxa1 = NULL, taxa2 = NULL, offset = NULL, outward = undefined){...}
+5. Function Name : geom_tiplab(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (mapping = NULL, hjust = undefined, align = FALSE, linetype = undefined, linesize = undefined, geom = undefined, offset = undefined){...}
+New Parameters : (mapping = NULL, hjust = undefined, align = FALSE, linetype = undefined, linesize = undefined, geom = undefined, offset = undefined, as_ylab = FALSE){...}
+6. Function Name : geom_tree(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (mapping = NULL, data = NULL, layout = undefined, multiPhylo = FALSE){...}
+New Parameters : (mapping = NULL, data = NULL, layout = undefined, multiPhylo = FALSE, continuous = undefined){...}
+7. Function Name : geom_treescale(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (x = NULL, y = NULL, width = NULL, offset = NULL, color = undefined, linesize = undefined, fontsize = undefinedfamily = undefined){...}
+New Parameters : (x = NULL, y = NULL, width = NULL, offset = NULL, offset, label = NULL, label = NULL, color = undefined, linesize = undefined, fontsize = undefinedfamily = undefined){...}
+8. Function Name : ggtree(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (tr, mapping = NULL, layout = undefined, open, angle = undefined, mrsd = NULL, as, Date = FALSE, yscale = undefined, yscale_mapping = NULL, ladderize = TRUE, right = FALSE, branch, length = undefined, root, position = undefined){...}
+New Parameters : (tr, mapping = NULL, layout = undefined, open, angle = undefined, mrsd = NULL, as, Date = FALSE, yscale = undefined, yscale_mapping = NULL, ladderize = TRUE, right = FALSE, branch, length = undefined, root, position = undefined, xlim = NULL){...}
+
+-----------------------Removed Functions------------
+
+GeomHilight
+StatHilight
+annotation_image
+geom_hilight_encircle
+phylopic
+stat_hilight
+subview
+
+
+---------------------Added Functions---------------
+
+
+hexpand
+vexpand
+ggexpand
+zoomClade
+geom_zoom_clade
+geom_cladelab
+label_pad
+layout_inward_circular
+ggplot_add.zoom_clade
+ggplot_add.ggexpand
+ggplot_add.tiplab_ylab
+ggplot_add.cladelab
+td_filter
+td_unnest
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+1. stat_hilight -> geom_cladelab
+2. ggplot_add.striplabel -> ggplot_add.tiplab_ylab
+3. ggplot_add.scale_ggtree -> ggplot_add.tiplab_ylab
+Total renames
+3
+Functions in namespace : 152
+Functions in parsed : 107
+Functions in namespace : 142
+Functions in parsed : 100{
+    "package": "ggtree",
+    "versions": "release_3_12  release_3_13",
+    "param_changes": 1,
+    "param_warnings": 1,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 2
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : ggtree
+Checking Versions ggtree_release_3_12
+ggtree_release_3_13
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : geom_tree(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : geom_tree(...) | Function Declaration Type : S3(mapping = NULL, data = NULL, layout = undefined, multiPhylo = FALSE, continuous = undefined){...}
+New Parameters : Function Name : geom_tree(...) | Function Declaration Type : S3(mapping = NULL, data = NULL, layout = undefined, multiPhylo = FALSE, continuous = undefined, position = undefined, ){...} FILE : geom_tree.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : geom_tree(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (mapping = NULL, data = NULL, layout = undefined, multiPhylo = FALSE, continuous = undefined){...}
+New Parameters : (mapping = NULL, data = NULL, layout = undefined, multiPhylo = FALSE, continuous = undefined, position = undefined){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 152
+Functions in parsed : 107
+Functions in namespace : 152
+Functions in parsed : 107{
+    "package": "ggtree",
+    "versions": "release_3_13  release_3_14",
+    "param_changes": 1,
+    "param_warnings": 1,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 2
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : ggtree
+Checking Versions ggtree_release_3_13
+ggtree_release_3_14
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : geom_nodelab(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : geom_nodelab(...) | Function Declaration Type : S3(mapping = NULL, nudge_x = undefined, nudge_y = undefined, geom = undefined, hjust = undefined){...}
+New Parameters : Function Name : geom_nodelab(...) | Function Declaration Type : S3(mapping = NULL, nudge_x = undefined, nudge_y = undefined, geom = undefined, hjust = undefined, node = undefined, ){...} FILE : geom_nodelab.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : geom_nodelab(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (mapping = NULL, nudge_x = undefined, nudge_y = undefined, geom = undefined, hjust = undefined){...}
+New Parameters : (mapping = NULL, nudge_x = undefined, nudge_y = undefined, geom = undefined, hjust = undefined, node = undefined){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+td_mutate
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 153
+Functions in parsed : 108
+Functions in namespace : 152
+Functions in parsed : 107{
+    "package": "ggtree",
+    "versions": "release_3_14  master",
+    "param_changes": 1,
+    "param_warnings": 1,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 2
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : ggtree
+Checking Versions ggtree_release_3_14
+ggtree_master
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : ggtree(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : ggtree(...) | Function Declaration Type : S3(tr, mapping = NULL, layout = undefined, open, angle = undefined, mrsd = NULL, as, Date = FALSE, yscale = undefined, yscale_mapping = NULL, ladderize = TRUE, right = FALSE, branch, length = undefined, root, position = undefined, xlim = NULL){...}
+New Parameters : Function Name : ggtree(...) | Function Declaration Type : S3(tr, mapping = NULL, layout = undefined, open, angle = undefined, mrsd = NULL, as, Date = FALSE, yscale = undefined, yscale_mapping = NULL, ladderize = TRUE, right = FALSE, branch, length = undefined, root, position = undefined, xlim = NULL, layout, params = undefined, ){...} FILE : ggtree.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : ggtree(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (tr, mapping = NULL, layout = undefined, open, angle = undefined, mrsd = NULL, as, Date = FALSE, yscale = undefined, yscale_mapping = NULL, ladderize = TRUE, right = FALSE, branch, length = undefined, root, position = undefined, xlim = NULL){...}
+New Parameters : (tr, mapping = NULL, layout = undefined, open, angle = undefined, mrsd = NULL, as, Date = FALSE, yscale = undefined, yscale_mapping = NULL, ladderize = TRUE, right = FALSE, branch, length = undefined, root, position = undefined, xlim = NULL, layout, params = undefined){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+ggplot_add.color_subtree
+scale_color_subtree
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 156
+Functions in parsed : 110
+Functions in namespace : 153
+Functions in parsed : 108

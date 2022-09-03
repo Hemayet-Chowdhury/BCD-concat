@@ -1,0 +1,805 @@
+{
+    "package": "scran",
+    "versions": "release_3_3  release_3_4",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : scran
+Checking Versions scran_release_3_3
+scran_release_3_4
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 2
+Functions in parsed : 0
+Functions in namespace : 2
+Functions in parsed : 0{
+    "package": "scran",
+    "versions": "release_3_4  release_3_5",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : scran
+Checking Versions scran_release_3_4
+scran_release_3_5
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 2
+Functions in parsed : 0
+Functions in namespace : 2
+Functions in parsed : 0{
+    "package": "scran",
+    "versions": "release_3_5  release_3_6",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : scran
+Checking Versions scran_release_3_5
+scran_release_3_6
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 2
+Functions in parsed : 0
+Functions in namespace : 2
+Functions in parsed : 0{
+    "package": "scran",
+    "versions": "release_3_6  release_3_7",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 2,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 2
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : scran
+Checking Versions scran_release_3_6
+scran_release_3_7
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+(
+(
+
+
+---------------------Added Functions---------------
+
+
+buildSNNGraph
+buildKNNGraph
+clusterModularity
+combineVar
+computeSpikeFactors
+computeSumFactors
+correlateNull
+correlatePairs
+cyclone
+decomposeVar
+denoisePCA
+DM
+exploreData
+findMarkers
+improvedCV2
+makeTechTrend
+multiBlockVar
+overlapExprs
+parallelPCA
+quickCluster
+sandbag
+selectorPlot
+technicalCV2
+testVar
+trendVar
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 44
+Functions in parsed : 25
+Functions in namespace : 2
+Functions in parsed : 0{
+    "package": "scran",
+    "versions": "release_3_7  release_3_8",
+    "param_changes": 4,
+    "param_warnings": 2,
+    "function_removals": 2,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 8
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : scran
+Checking Versions scran_release_3_7
+scran_release_3_8
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : computeSumFactors(...) | Function Declaration Type : setMethod |  Signature: SingleCellExperiment had parameters removed in newer version.
+Original Parameters : (x, , min, mean, subset, row, assay, type, get, spikes, sfout){...}
+New Parameters : (x, , subset, row, assay, type, get, spikes, sfout){...} FILE : computeSumFactors.R
+2. Function Name : correlateNull(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (ncells, iters, block, designresiduals){...}
+New Parameters : (ncells, iters, blockdesign){...} FILE : correlateNull.R
+3. Function Name : multiBlockVar(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : multiBlockVar(...) | Function Declaration Type : S3(x, block, trend, args = undefined, dec, args = undefined){...}
+New Parameters : Function Name : multiBlockVar(...) | Function Declaration Type : S3(x, block, trend, args = undefined, dec, args = undefined, assay, type = undefined, ){...} FILE : multiBlockVar.R
+4. Function Name : overlapExprs(...) | Function Declaration Type : setMethod |  Signature: SingleCellExperiment had parameters removed in newer version.
+Original Parameters : (x, , subset, row, lower, bound, assay, type, getspikes){...}
+New Parameters : (x, , subset, row, assay, type, getspikes){...} FILE : overlapExprs.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : makeTechTrend(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (means, size, factors = undefined, tol = undefined, dispersion = undefined, pseudo, count = undefinedx = NULL){...}
+New Parameters : (means, size, factors = undefined, tol = undefined, dispersion = undefined, pseudo, count = undefined, approx, npts = Inf, x = NULLBPPARAM = undefined){...}
+2. Function Name : multiBlockVar(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (x, block, trend, args = undefined, dec, args = undefined){...}
+New Parameters : (x, block, trend, args = undefined, dec, args = undefined, assay, type = undefined){...}
+
+-----------------------Removed Functions------------
+
+exploreData
+selectorPlot
+
+
+---------------------Added Functions---------------
+
+
+cleanSizeFactors
+combinePValues
+cosineNorm
+doubletCells
+doubletCluster
+fastMNN
+multiBatchNorm
+multiBatchPCA
+multiBlockNorm
+pairwiseTTests
+pairwiseWilcox
+scaledColRanks
+simpleSumFactors
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 59
+Functions in parsed : 36
+Functions in namespace : 44
+Functions in parsed : 25{
+    "package": "scran",
+    "versions": "release_3_8  release_3_9",
+    "param_changes": 1,
+    "param_warnings": 2,
+    "function_removals": 2,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 5
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : scran
+Checking Versions scran_release_3_8
+scran_release_3_9
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : multiBlockVar(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : multiBlockVar(...) | Function Declaration Type : S3(x, block, trend, args = undefined, dec, args = undefined, assay, type = undefined){...}
+New Parameters : Function Name : multiBlockVar(...) | Function Declaration Type : S3(x, block, make, tech, trend = FALSE, trend, args = undefined, dec, args = undefined, assay, type = undefined, ){...} FILE : multiBlockVar.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : fastMNN(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (, k = undefined, cos, norm = TRUE, ndist = undefined, d = undefined, approximate = FALSE, irlba, args = undefined, subset, row = NULL, auto, order = FALSE, pc, input = FALSE, compute, variances = FALSE, assay, type = undefined, get, spikes = FALSE, BNPARAM = NULLBPPARAM = undefined){...}
+New Parameters : (, k = undefined, cos, norm = TRUE, ndist = undefined, d = undefined, approximate = FALSE, irlba, args = undefined, subset, row = NULL, auto, order = FALSE, pc, input = FALSE, compute, variances = FALSE, assay, type = undefined, get, spikes = FALSE, BNPARAM = undefinedBPPARAM = undefined){...}
+2. Function Name : multiBlockVar(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (x, block, trend, args = undefined, dec, args = undefined, assay, type = undefined){...}
+New Parameters : (x, block, make, tech, trend = FALSE, trend, args = undefined, dec, args = undefined, assay, type = undefined){...}
+
+-----------------------Removed Functions------------
+
+simpleSumFactors
+simpleSumFactors
+
+
+---------------------Added Functions---------------
+
+
+correlateGenes
+denoisePCANumber
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 59
+Functions in parsed : 37
+Functions in namespace : 59
+Functions in parsed : 36{
+    "package": "scran",
+    "versions": "release_3_9  release_3_11",
+    "param_changes": 13,
+    "param_warnings": 4,
+    "function_removals": 5,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 22
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : scran
+Checking Versions scran_release_3_9
+scran_release_3_11
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : buildSNNGraph(...) | Function Declaration Type : setMethod |  Signature: SingleCellExperiment had parameters removed in newer version.
+Original Parameters : (x, , subset, row, assay, type, get, spikes, usedimred){...}
+New Parameters : (x, , usedimred){...} FILE : buildSNNGraph.R
+2. Function Name : buildKNNGraph(...) | Function Declaration Type : setMethod |  Signature: SingleCellExperiment had parameters removed in newer version.
+Original Parameters : (x, , subset, row, assay, type, get, spikes, usedimred){...}
+New Parameters : (x, , usedimred){...} FILE : buildSNNGraph.R
+3. Function Name : clusterModularity(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : clusterModularity(...) | Function Declaration Type : S3(graph, clusters, getvalues = FALSE){...}
+New Parameters : Function Name : clusterModularity(...) | Function Declaration Type : S3(graph, clusters, get, weights = FALSE, as, ratio = FALSE){...} FILE : clusterModularity.R
+4. Function Name : combineMarkers(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : combineMarkers(...) | Function Declaration Type : S3(de, lists, pairs, pval, field = undefined, effect, field = undefined, pval, type = undefined, logp){...}
+New Parameters : Function Name : combineMarkers(...) | Function Declaration Type : S3(de, lists, pairs, pval, field = undefined, effect, field = undefined, pval, type = undefined, min, prop = NULL, log, p){...} FILE : combineMarkers.R
+5. Function Name : combinePValues(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : combinePValues(...) | Function Declaration Type : S3(, method = undefined, weights = NULL, logp = FALSE){...}
+New Parameters : Function Name : combinePValues(...) | Function Declaration Type : S3(, method = undefined, weights = NULL, log, p = FALSE, min, prop = undefined){...} FILE : combinePValues.R
+6. Function Name : combineVar(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : combineVar(...) | Function Declaration Type : S3(, method = undefinedweighted = TRUE){...}
+New Parameters : Function Name : combineVar(...) | Function Declaration Type : S3(, method = undefined, pval, field = undefined, other, fields = NULL, equiweight = TRUE, ncells = NULL){...} FILE : combineVar.R
+7. Function Name : doubletCells(...) | Function Declaration Type : setMethod |  Signature: SingleCellExperiment had parameters removed in newer version.
+Original Parameters : (x, size, factors, norm, , subset, row, assay, type, getspikes){...}
+New Parameters : (x, size, factors, norm){...} FILE : doubletCells.R
+8. Function Name : doubletCluster(...) | Function Declaration Type : setMethod |  Signature: SingleCellExperiment had parameters removed in newer version.
+Original Parameters : (x, , subset, row, assay, type, getspikes){...}
+New Parameters : (x, clusters){...} FILE : doubletCluster.R
+9. Function Name : findMarkers(...) | Function Declaration Type : setMethod |  Signature: SingleCellExperiment had parameters removed in newer version.
+Original Parameters : (x, , subset, row, assay, type, getspikes){...}
+New Parameters : (x, groups){...} FILE : findMarkers.R
+10. Function Name : makeTechTrend(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (means, size, factors, tol, dispersion, pseudo, count, approx, npts, xBPPARAM){...}
+New Parameters : (){...} FILE : makeTechTrend.R
+11. Function Name : multiBlockNorm(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (x, block){...}
+New Parameters : (){...} FILE : multiBlockNorm.R
+12. Function Name : multiBlockVar(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (x, block, make, tech, trend, trend, args, dec, args, assay, type){...}
+New Parameters : (){...} FILE : multiBlockVar.R
+13. Function Name : testVar(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (total, , df, design, test, second, df, logp){...}
+New Parameters : (){...} FILE : testVar.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : clusterModularity(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (graph, clusters, getvalues = FALSE){...}
+New Parameters : (graph, clusters, get, weights = FALSE, asratio = FALSE){...}
+2. Function Name : combineMarkers(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (de, lists, pairs, pval, field = undefined, effect, field = undefined, pval, type = undefined, logp){...}
+New Parameters : (de, lists, pairs, pval, field = undefined, effect, field = undefined, pval, type = undefined, min, prop = NULL, logp){...}
+3. Function Name : combineVar(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (, method = undefinedweighted = TRUE){...}
+New Parameters : (, method = undefined, pval, field = undefined, other, fields = NULL, equiweight = TRUEncells = NULL){...}
+4. Function Name : correlateNull(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (ncells, iters = undefined, block = NULL, design = NULLBPPARAM = undefined){...}
+New Parameters : (ncells, iters = undefined, block = NULL, design = NULL, equiweight = TRUEBPPARAM = undefined){...}
+
+-----------------------Removed Functions------------
+
+cosineNorm
+fastMNN
+mnnCorrect
+multiBatchNorm
+multiBatchPCA
+
+
+---------------------Added Functions---------------
+
+
+bootstrapCluster
+neighborsToSNNGraph
+neighborsToKNNGraph
+clusterPurity
+clusterSNNGraph
+clusterKNNGraph
+coassignProb
+combineCV2
+calculateSumFactors
+convertTo
+decideTestsPerLabel
+summarizeTestsPerLabel
+getDenoisedPCs
+doubletRecovery
+fitTrendCV2
+fitTrendPoisson
+fitTrendVar
+getClusteredPCs
+getMarkerEffects
+getTopHVGs
+getTopMarkers
+modelGeneCV2
+modelGeneCV2WithSpikes
+modelGeneVar
+modelGeneVarByPoisson
+modelGeneVarWithSpikes
+multiMarkerStats
+pairwiseBinom
+pseudoBulkDGE
+quickSubCluster
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 89
+Functions in parsed : 63
+Functions in namespace : 59
+Functions in parsed : 37{
+    "package": "scran",
+    "versions": "release_3_11  release_3_12",
+    "param_changes": 6,
+    "param_warnings": 3,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 9
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : scran
+Checking Versions scran_release_3_11
+scran_release_3_12
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : bootstrapCluster(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (x, FUN, clusters, transposed, iterations, summarize){...}
+New Parameters : (){...} FILE : bootstrapCluster.R
+2. Function Name : neighborsToSNNGraph(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (indicestype){...}
+New Parameters : (){...} FILE : buildSNNGraph.R
+3. Function Name : neighborsToKNNGraph(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (indicesdirected){...}
+New Parameters : (){...} FILE : buildSNNGraph.R
+4. Function Name : clusterModularity(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (graph, clusters, get, weights, asratio){...}
+New Parameters : (){...} FILE : clusterModularity.R
+5. Function Name : fitTrendVar(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : fitTrendVar(...) | Function Declaration Type : S3(means, vars, min, mean = undefined, parametric = TRUE, nls, args = undefined){...}
+New Parameters : Function Name : fitTrendVar(...) | Function Declaration Type : S3(means, vars, min, mean = undefined, parametric = TRUE, lowess = TRUE, density, weights = TRUE, nls, args = undefined, ){...} FILE : fitTrendVar.R
+6. Function Name : pseudoBulkDGE(...) | Function Declaration Type : setMethod |  Signature: SummarizedExperiment had non-default parameters added in newer version.
+Original Parameters : Function Name : pseudoBulkDGE(...) | Function Declaration Type : setMethod |  Signature: SummarizedExperiment(x, , assaytype = undefined){...}
+New Parameters : Function Name : pseudoBulkDGE(...) | Function Declaration Type : setMethod |  Signature: SummarizedExperiment(x, col, data = undefined, , assay, type = undefined){...} FILE : pseudoBulkDGE.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : decideTestsPerLabel(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (results, method = undefined, threshold = undefined, pval, field = undefined, lfcfield = undefined){...}
+New Parameters : (results, method = undefined, threshold = undefined, pval, field = NULL, lfcfield = undefined){...}
+2. Function Name : fitTrendVar(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (means, vars, min, mean = undefined, parametric = TRUE, nls, args = undefined){...}
+New Parameters : (means, vars, min, mean = undefined, parametric = TRUE, lowess = TRUE, density, weights = TRUE, nls, args = undefined){...}
+3. Function Name : pseudoBulkDGE(...) | Function Declaration Type : setMethod |  Signature: SummarizedExperiment had parameters modified in newer version.
+Original Parameters : (x, , assaytype = undefined){...}
+New Parameters : (x, col, data = undefined, , assaytype = undefined){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+combineBlocks
+createClusterMST
+connectClusterMST
+orderClusterMST
+pseudoBulkSpecific
+quickPseudotime
+summaryMarkerStats
+testLinearModel
+testPseudotime
+_logBH
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 103
+Functions in parsed : 73
+Functions in namespace : 89
+Functions in parsed : 63{
+    "package": "scran",
+    "versions": "release_3_12  release_3_13",
+    "param_changes": 7,
+    "param_warnings": 2,
+    "function_removals": 4,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 13
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : scran
+Checking Versions scran_release_3_12
+scran_release_3_13
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : coassignProb(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (ref, altsummarize){...}
+New Parameters : (){...} FILE : coassignProb.R
+2. Function Name : computeSumFactors(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (x, , assaytype){...}
+New Parameters : (){...} FILE : computeSumFactors.R
+3. Function Name : createClusterMST(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (centers, outgroupoutscale){...}
+New Parameters : (){...} FILE : createClusterMST.R
+4. Function Name : connectClusterMST(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (centers, mstcombined){...}
+New Parameters : (){...} FILE : createClusterMST.R
+5. Function Name : orderClusterMST(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (x, ids, centers, mststart){...}
+New Parameters : (){...} FILE : createClusterMST.R
+6. Function Name : denoisePCA(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : denoisePCA(...) | Function Declaration Type : S3(x, , value = undefined, assaytype = undefined){...}
+New Parameters : Function Name : denoisePCA(...) | Function Declaration Type : S3(x, , value = undefined, preserve, shape = TRUE, assay, type = undefined, name = NULL){...} FILE : denoisePCA.R
+7. Function Name : quickPseudotime(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (x, clusters, use, outgroup, outscalestart){...}
+New Parameters : (){...} FILE : quickPseudotime.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : denoisePCA(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (x, , value = undefined, assaytype = undefined){...}
+New Parameters : (x, , value = undefined, preserve, shape = TRUE, assay, type = undefinedname = NULL){...}
+2. Function Name : getClusteredPCs(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (pcs, FUN = NULL, , min, rank = undefined, max, rank = undefinedby = undefined){...}
+New Parameters : (pcs, FUN = NULL, , BLUSPARAM = undefined, min, rank = undefined, max, rank = undefinedby = undefined){...}
+
+-----------------------Removed Functions------------
+
+cleanSizeFactors
+computeSpikeFactors
+neighborsToKNNGraph
+neighborsToSNNGraph
+
+
+---------------------Added Functions---------------
+
+
+clusterCells
+computeMinRank
+fixedPCA
+rhoToPValue
+scoreMarkers
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 97
+Functions in parsed : 74
+Functions in namespace : 103
+Functions in parsed : 73{
+    "package": "scran",
+    "versions": "release_3_13  release_3_14",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : scran
+Checking Versions scran_release_3_13
+scran_release_3_14
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 97
+Functions in parsed : 74
+Functions in namespace : 97
+Functions in parsed : 74{
+    "package": "scran",
+    "versions": "release_3_14  master",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : scran
+Checking Versions scran_release_3_14
+scran_master
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 97
+Functions in parsed : 74
+Functions in namespace : 97
+Functions in parsed : 74

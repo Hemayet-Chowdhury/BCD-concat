@@ -1,0 +1,188 @@
+{
+    "package": "complexheatmap",
+    "versions": "release_3_8  release_3_9",
+    "param_changes": 5,
+    "param_warnings": 12,
+    "function_removals": 13,
+    "function_renames": 5,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 5,
+    "total_count": 30
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : complexheatmap
+Checking Versions complexheatmap_release_3_8
+complexheatmap_release_3_9
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : anno_points(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : anno_points(...) | Function Declaration Type : S3(x, which = undefined, border = TRUE, gp = undefined, pch = undefined, size = undefined, ylim = NULL, axis = FALSE, axis_side = NULL, axis_gp = undefined, axis_direction = undefined){...}
+New Parameters : Function Name : anno_points(...) | Function Declaration Type : S3(x, which = undefined, border = TRUE, gp = undefined, pch = undefined, size = undefined, ylim = NULL, extend = undefined, axis = TRUE, axis_param = undefined, width = NULL, height = NULL, ){...} FILE : annotation_fun.R
+2. Function Name : anno_barplot(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : anno_barplot(...) | Function Declaration Type : S3(x, baseline = undefined, which = undefined, border = TRUE, bar_width = undefined, gp = undefined, ylim = NULL, axis = FALSE, axis_side = NULL, axis_gp = undefined, axis_direction = undefined){...}
+New Parameters : Function Name : anno_barplot(...) | Function Declaration Type : S3(x, baseline = undefined, which = undefined, border = TRUE, bar_width = undefined, gp = undefined, ylim = NULL, extend = undefined, axis = TRUE, axis_param = undefined, width = NULL, height = NULL, ){...} FILE : annotation_fun.R
+3. Function Name : anno_boxplot(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : anno_boxplot(...) | Function Declaration Type : S3(x, which = undefined, border = TRUE, gp = undefined, ylim = NULL, outline = TRUE, pch = undefined, size = undefined, axis = FALSE, axis_side = NULL, axis_gp = undefinedaxis_direction = undefined){...}
+New Parameters : Function Name : anno_boxplot(...) | Function Declaration Type : S3(x, which = undefined, border = TRUE, gp = undefined, ylim = NULL, extend = undefined, outline = TRUE, box_width = undefined, pch = undefined, size = undefined, axis = TRUE, axis_param = undefined, width = NULL, height = NULL, ){...} FILE : annotation_fun.R
+4. Function Name : anno_link(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (at, labels, which, side, lines_gp, labels_gp, padding, link_widthextend){...}
+New Parameters : (){...} FILE : annotation_fun.R
+5. Function Name : oncoPrint(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : oncoPrint(...) | Function Declaration Type : S3(mat, get_type = undefined, x, alter_fun = alter_fun_list, alter_fun_list = NULL, col, row_order = undefined, column_order = undefined, show_pct = TRUE, pct_gp = row_names_gp, pct_digits = undefined, axis_gp = undefined, show_row_barplot = TRUE, row_barplot_width = undefined, remove_empty_columns = FALSE, heatmap_legend_param = undefined, top_annotation = undefined, top_annotation_height = undefined, bottom_annotation = undefined, bottom_annotation_height = undefined, barplot_ignore = NULL, row_title = undefined, row_title_side = undefined, row_title_gp = undefinedrow_title_rot = ){...}
+New Parameters : Function Name : oncoPrint(...) | Function Declaration Type : S3(mat, get_type = default_get_type, alter_fun, alter_fun_is_vectorized = NULL, col = NULL, top_annotation = undefined, right_annotation = undefined, left_annotation = NULL, bottom_annotation = NULL, show_pct = TRUE, pct_gp = undefined, pct_digits = undefined, pct_side = undefined, row_labels = NULL, show_row_names = TRUE, row_names_side = undefined, row_names_gp = pct_gp, row_split = NULL, column_labels = NULL, column_names_gp = undefined, column_split = NULL, row_order = NULL, column_order = NULL, remove_empty_columns = FALSE, remove_empty_rows = FALSE, show_column_names = FALSE, heatmap_legend_param = undefined, ){...} FILE : oncoPrint.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : anno_points(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (x, which = undefined, border = TRUE, gp = undefined, pch = undefined, size = undefined, ylim = NULL, axis = FALSE, axis_side = NULL, axis_gp = undefined, axis_direction = undefined){...}
+New Parameters : (x, which = undefined, border = TRUE, gp = undefined, pch = undefined, size = undefined, ylim = NULL, extend = undefined, axis = TRUE, axis_param = undefined, width = NULL, height = NULL){...}
+2. Function Name : anno_barplot(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (x, baseline = undefined, which = undefined, border = TRUE, bar_width = undefined, gp = undefined, ylim = NULL, axis = FALSE, axis_side = NULL, axis_gp = undefined, axis_direction = undefined){...}
+New Parameters : (x, baseline = undefined, which = undefined, border = TRUE, bar_width = undefined, gp = undefined, ylim = NULL, extend = undefined, axis = TRUE, axis_param = undefined, width = NULL, height = NULL){...}
+3. Function Name : anno_boxplot(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (x, which = undefined, border = TRUE, gp = undefined, ylim = NULL, outline = TRUE, pch = undefined, size = undefined, axis = FALSE, axis_side = NULL, axis_gp = undefinedaxis_direction = undefined){...}
+New Parameters : (x, which = undefined, border = TRUE, gp = undefined, ylim = NULL, extend = undefined, outline = TRUE, box_width = undefined, pch = undefined, size = undefined, axis = TRUE, axis_param = undefined, width = NULL, height = NULL){...}
+4. Function Name : anno_histogram(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (x, which = undefined, gp = undefined){...}
+New Parameters : (x, which = undefined, n_breaks = undefined, border = FALSE, gp = undefined, axis = TRUE, axis_param = undefined, width = NULLheight = NULL){...}
+5. Function Name : anno_density(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (x, which = undefined, gp = undefined, type = undefined){...}
+New Parameters : (x, which = undefined, type = undefined, heatmap_colors = undefined, joyplot_scale = undefined, border = TRUE, gp = undefined, axis = TRUE, axis_param = undefined, width = NULLheight = NULL){...}
+6. Function Name : anno_text(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (x, which = undefined, gp = undefined, rot = undefined, just = NULLoffset = undefined){...}
+New Parameters : (x, which = undefined, gp = undefined, rot = undefined, just = undefined, offset = undefined, location = undefined, width = NULLheight = NULL){...}
+7. Function Name : decorate_heatmap_body(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (heatmap, code, slice = undefinedenvir = undefined){...}
+New Parameters : (heatmap, code, slice = undefined, row_slice = slice, column_slice = undefinedenvir = undefined){...}
+8. Function Name : Heatmap(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (matrix, col, name, na_col = undefined, color_space = undefined, rect_gp = undefined, cell_fun = NULL, row_title = undefined, row_title_side = undefined, row_title_gp = undefinedrow_title_rot = ){...}
+New Parameters : (matrix, col, name, na_col = undefined, color_space = undefined, rect_gp = undefined, border = NA, cell_fun = NULL, layer_fun = NULL, row_title = undefined, row_title_side = undefined, row_title_gp = undefinedrow_title_rot = ){...}
+9. Function Name : Legend(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (at, labels = at, nrow = NULL, ncol = undefined, col_fun, by_row = FALSE, grid_height = undefined, grid_width = undefined, gap = undefined, labels_gp = undefined, border = NULL, background = undefined, type = undefined, legend_gp = undefined, pch = undefined, size = undefined, legend_height = NULL, legend_width = NULL, direction = undefined, title = undefined, title_gp = undefinedtitle_position = undefined){...}
+New Parameters : (at, labels = at, col_fun, nrow = NULL, ncol = undefined, by_row = FALSE, grid_height = undefined, grid_width = undefined, gap = undefined, labels_gp = undefined, labels_rot = undefined, border = NULL, background = undefined, type = undefined, legend_gp = undefined, pch = undefined, size = undefined, legend_height = NULL, legend_width = NULL, direction = undefined, title = undefined, title_gp = undefined, title_position = undefinedtitle_gap = undefined){...}
+10. Function Name : packLegend(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (, gap = undefineddirection = undefined){...}
+New Parameters : (, gap = undefined, row_gap = undefined, column_gap = undefined, direction = undefined, max_width = NULL, max_height = NULLlist = NULL){...}
+11. Function Name : oncoPrint(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (mat, get_type = undefined, x, alter_fun = alter_fun_list, alter_fun_list = NULL, col, row_order = undefined, column_order = undefined, show_pct = TRUE, pct_gp = row_names_gp, pct_digits = undefined, axis_gp = undefined, show_row_barplot = TRUE, row_barplot_width = undefined, remove_empty_columns = FALSE, heatmap_legend_param = undefined, top_annotation = undefined, top_annotation_height = undefined, bottom_annotation = undefined, bottom_annotation_height = undefined, barplot_ignore = NULL, row_title = undefined, row_title_side = undefined, row_title_gp = undefinedrow_title_rot = ){...}
+New Parameters : (mat, get_type = default_get_type, alter_fun, alter_fun_is_vectorized = NULL, col = NULL, top_annotation = undefined, right_annotation = undefined, left_annotation = NULL, bottom_annotation = NULL, show_pct = TRUE, pct_gp = undefined, pct_digits = undefined, pct_side = undefined, row_labels = NULL, show_row_names = TRUE, row_names_side = undefined, row_names_gp = pct_gp, row_split = NULL, column_labels = NULL, column_names_gp = undefined, column_split = NULL, row_order = NULL, column_order = NULL, remove_empty_columns = FALSE, remove_empty_rows = FALSE, show_column_names = FALSE, heatmap_legend_param = undefined){...}
+12. Function Name : SingleAnnotation(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (name, value, col, fun, na_col = undefined, which = undefined, show_legend = TRUE, gp = undefined, legend_param = undefined, show_name = FALSE, name_gp = undefined, name_offset = undefined, name_side = undefinedname_rot = undefined){...}
+New Parameters : (name, value, col, fun, na_col = undefined, which = undefined, show_legend = TRUE, gp = undefined, border = FALSE, legend_param = undefined, show_name = TRUE, name_gp = undefined, name_offset = NULL, name_side = undefined, name_rot = NULL, simple_anno_size = ht_opt$simple_anno_size, width = NULLheight = NULL){...}
+
+-----------------------Removed Functions------------
+
+grid_dendrogram2
+adjust_dend_by_leaf_width
+column_anno_barplot
+column_anno_boxplot
+column_anno_density
+column_anno_histogram
+column_anno_link
+column_anno_points
+column_anno_text
+enhanced_basicplot
+plotDataFrame
+selectArea
+get_color_mapping_param_list
+
+
+---------------------Added Functions---------------
+
+
+width.AnnotationFunction
+height.AnnotationFunction
+size.AnnotationFunction
+width.SingleAnnotation
+height.SingleAnnotation
+size.SingleAnnotation
+width.HeatmapAnnotation
+height.HeatmapAnnotation
+size.HeatmapAnnotation
+width.Legends
+height.Legends
+width.HeatmapList
+height.HeatmapList
+width.Heatmap
+height.Heatmap
+AnnotationFunction
+nobs.AnnotationFunction
+anno_empty
+anno_simple
+anno_image
+default_axis_param
+anno_lines
+anno_joyplot
+anno_horizon
+anno_mark
+anno_link
+anno_summary
+anno_block
+anno_zoom
+annotation_axis_grob
+widthDetails.annotation_axis
+heightDetails.annotation_axis
+ht_opt
+dendrogramGrob
+merge_dendrogram
+dend_heights
+dend_xy
+cluster_within_group
+Legends
+dim.Heatmap
+nrow.Heatmap
+ncol.Heatmap
+summary.Heatmap
+HeatmapAnnotation
+nobs.HeatmapAnnotation
+c.HeatmapAnnotation
+names.HeatmapAnnotation
+length.HeatmapAnnotation
+names.HeatmapList
+length.HeatmapList
+summary.HeatmapList
+default_get_type
+test_alter_fun
+list_to_matrix
+make_comb_mat
+set_name
+set_size
+comb_size
+comb_name
+comb_degree
+extract_comb
+t.comb_mat
+print.comb_mat
+UpSet
+upset_top_annotation
+upset_right_annotation
+normalize_comb_mat
+str.comb_mat
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+1. column_anno_points -> anno_link
+2. column_anno_text -> anno_link
+3. column_anno_link -> anno_link
+4. densityHeatmap -> HeatmapAnnotation
+5. enhanced_basicplot -> anno_lines
+Total renames
+5
+Functions in namespace : 253
+Functions in parsed : 106
+Functions in namespace : 97
+Functions in parsed : 50

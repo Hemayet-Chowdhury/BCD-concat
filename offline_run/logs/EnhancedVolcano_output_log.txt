@@ -1,0 +1,340 @@
+{
+    "package": "EnhancedVolcano",
+    "versions": "release_3_8  release_3_9",
+    "param_changes": 1,
+    "param_warnings": 1,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 2
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : EnhancedVolcano
+Checking Versions enhancedvolcano_release_3_8
+enhancedvolcano_release_3_9
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : EnhancedVolcano(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : EnhancedVolcano(...) | Function Declaration Type : S3(toptable, lab, x, y, selectLab = NULL, xlim = undefined, ylim = undefined, xlab = undefined, ylab = undefined, axisLabSize = undefined, pCutoff = undefined, pLabellingCutoff = pCutoff, FCcutoff = undefined, title = undefined, titleLabSize = undefined, transcriptPointSize = undefined, transcriptLabSize = undefined, col = undefined, colOverride = NULL, colAlpha = undefined, legend = undefined, legendPosition = undefined, legendLabSize = undefined, legendIconSize = undefined, DrawConnectors = FALSE, widthConnectors = undefined, colConnectors = undefined, cutoffLineType = undefined, cutoffLineCol = undefined, cutoffLineWidth = undefined, gridlines, major = TRUE, gridlines, minor = TRUE, border = undefined, borderWidth = undefinedborderColour = undefined){...}
+New Parameters : Function Name : EnhancedVolcano(...) | Function Declaration Type : S3(toptable, lab, x, y, selectLab = NULL, xlim = undefined, ylim = undefined, xlab = undefined, ylab = undefined, axisLabSize = undefined, title = undefined, subtitle = undefined, caption = undefined, titleLabSize = undefined, subtitleLabSize = undefined, captionLabSize = undefined, pCutoff = undefined, pLabellingCutoff = pCutoff, FCcutoff = undefined, cutoffLineType = undefined, cutoffLineCol = undefined, cutoffLineWidth = undefined, transcriptPointSize = undefined, transcriptLabSize = undefined, transcriptLabCol = undefined, transcriptLabFace = undefined, transcriptLabhjust = undefined, transcriptLabvjust = undefined, boxedlabels = FALSE, shape = undefined, shapeCustom = NULL, col = undefined, colCustom = NULL, colAlpha = undefined, legend = undefined, legendPosition = undefined, legendLabSize = undefined, legendIconSize = undefined, legendVisible = TRUE, shade = NULL, shadeLabel = NULL, shadeAlpha = undefined, shadeFill = undefined, shadeSize = undefined, shadeBins = undefined, drawConnectors = FALSE, widthConnectors = undefined, typeConnectors = undefined, endsConnectors = undefined, lengthConnectors = undefined, colConnectors = undefined, hline = NULL, hlineType = undefined, hlineCol = undefined, hlineWidth = undefined, vline = NULL, vlineType = undefined, vlineCol = undefined, vlineWidth = undefined, gridlines, major = TRUE, gridlines, minor = TRUE, border = undefined, borderWidth = undefined, borderColour = undefined){...} FILE : EnhancedVolcano.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : EnhancedVolcano(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (toptable, lab, x, y, selectLab = NULL, xlim = undefined, ylim = undefined, xlab = undefined, ylab = undefined, axisLabSize = undefined, pCutoff = undefined, pLabellingCutoff = pCutoff, FCcutoff = undefined, title = undefined, titleLabSize = undefined, transcriptPointSize = undefined, transcriptLabSize = undefined, col = undefined, colOverride = NULL, colAlpha = undefined, legend = undefined, legendPosition = undefined, legendLabSize = undefined, legendIconSize = undefined, DrawConnectors = FALSE, widthConnectors = undefined, colConnectors = undefined, cutoffLineType = undefined, cutoffLineCol = undefined, cutoffLineWidth = undefined, gridlines, major = TRUE, gridlines, minor = TRUE, border = undefined, borderWidth = undefinedborderColour = undefined){...}
+New Parameters : (toptable, lab, x, y, selectLab = NULL, xlim = undefined, ylim = undefined, xlab = undefined, ylab = undefined, axisLabSize = undefined, title = undefined, subtitle = undefined, caption = undefined, titleLabSize = undefined, subtitleLabSize = undefined, captionLabSize = undefined, pCutoff = undefined, pLabellingCutoff = pCutoff, FCcutoff = undefined, cutoffLineType = undefined, cutoffLineCol = undefined, cutoffLineWidth = undefined, transcriptPointSize = undefined, transcriptLabSize = undefined, transcriptLabCol = undefined, transcriptLabFace = undefined, transcriptLabhjust = undefined, transcriptLabvjust = undefined, boxedlabels = FALSE, shape = undefined, shapeCustom = NULL, col = undefined, colCustom = NULL, colAlpha = undefined, legend = undefined, legendPosition = undefined, legendLabSize = undefined, legendIconSize = undefined, legendVisible = TRUE, shade = NULL, shadeLabel = NULL, shadeAlpha = undefined, shadeFill = undefined, shadeSize = undefined, shadeBins = undefined, drawConnectors = FALSE, widthConnectors = undefined, typeConnectors = undefined, endsConnectors = undefined, lengthConnectors = undefined, colConnectors = undefined, hline = NULL, hlineType = undefined, hlineCol = undefined, hlineWidth = undefined, vline = NULL, vlineType = undefined, vlineCol = undefined, vlineWidth = undefined, gridlines, major = TRUE, gridlines, minor = TRUE, border = undefined, borderWidth = undefinedborderColour = undefined){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 1
+Functions in parsed : 1
+Functions in namespace : 1
+Functions in parsed : 1{
+    "package": "EnhancedVolcano",
+    "versions": "release_3_9  release_3_11",
+    "param_changes": 0,
+    "param_warnings": 1,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 1
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : EnhancedVolcano
+Checking Versions enhancedvolcano_release_3_9
+enhancedvolcano_release_3_11
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : EnhancedVolcano(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (toptable, lab, x, y, selectLab = NULL, xlim = undefined, ylim = undefined, xlab = undefined, ylab = undefined, axisLabSize = undefined, title = undefined, subtitle = undefined, caption = undefined, titleLabSize = undefined, subtitleLabSize = undefined, captionLabSize = undefined, pCutoff = undefined, pLabellingCutoff = pCutoff, FCcutoff = undefined, cutoffLineType = undefined, cutoffLineCol = undefined, cutoffLineWidth = undefined, transcriptPointSize = undefined, transcriptLabSize = undefined, transcriptLabCol = undefined, transcriptLabFace = undefined, transcriptLabhjust = undefined, transcriptLabvjust = undefined, boxedlabels = FALSE, shape = undefined, shapeCustom = NULL, col = undefined, colCustom = NULL, colAlpha = undefined, legend = undefined, legendPosition = undefined, legendLabSize = undefined, legendIconSize = undefined, legendVisible = TRUE, shade = NULL, shadeLabel = NULL, shadeAlpha = undefined, shadeFill = undefined, shadeSize = undefined, shadeBins = undefined, drawConnectors = FALSE, widthConnectors = undefined, typeConnectors = undefined, endsConnectors = undefined, lengthConnectors = undefined, colConnectors = undefined, hline = NULL, hlineType = undefined, hlineCol = undefined, hlineWidth = undefined, vline = NULL, vlineType = undefined, vlineCol = undefined, vlineWidth = undefined, gridlines, major = TRUE, gridlines, minor = TRUE, border = undefined, borderWidth = undefinedborderColour = undefined){...}
+New Parameters : (toptable, lab, x, y, selectLab = NULL, xlim = undefined, ylim = undefined, xlab = undefined, ylab = undefined, axisLabSize = undefined, title = undefined, subtitle = undefined, caption = undefined, titleLabSize = undefined, subtitleLabSize = undefined, captionLabSize = undefined, pCutoff = undefined, FCcutoff = undefined, cutoffLineType = undefined, cutoffLineCol = undefined, cutoffLineWidth = undefined, pointSize = undefined, labSize = undefined, labCol = undefined, labFace = undefined, labhjust = undefined, labvjust = undefined, boxedLabels = FALSE, shape = undefined, shapeCustom = NULL, col = undefined, colCustom = NULL, colAlpha = undefined, colGradient = NULL, colGradientBreaks = undefined, colGradientLabels = undefined, colGradientLimits = undefined, legend = undefined, legendLabels = undefined, legendPosition = undefined, legendLabSize = undefined, legendIconSize = undefined, shade = NULL, shadeLabel = NULL, shadeAlpha = undefined, shadeFill = undefined, shadeSize = undefined, shadeBins = undefined, drawConnectors = FALSE, widthConnectors = undefined, typeConnectors = undefined, endsConnectors = undefined, lengthConnectors = undefined, colConnectors = undefined, hline = NULL, hlineType = undefined, hlineCol = undefined, hlineWidth = undefined, vline = NULL, vlineType = undefined, vlineCol = undefined, vlineWidth = undefined, gridlines, major = TRUE, gridlines, minor = TRUE, border = undefined, borderWidth = undefinedborderColour = undefined){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 1
+Functions in parsed : 1
+Functions in namespace : 1
+Functions in parsed : 1{
+    "package": "EnhancedVolcano",
+    "versions": "release_3_11  release_3_12",
+    "param_changes": 1,
+    "param_warnings": 1,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 2
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : EnhancedVolcano
+Checking Versions enhancedvolcano_release_3_11
+enhancedvolcano_release_3_12
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : EnhancedVolcano(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : EnhancedVolcano(...) | Function Declaration Type : S3(toptable, lab, x, y, selectLab = NULL, xlim = undefined, ylim = undefined, xlab = undefined, ylab = undefined, axisLabSize = undefined, title = undefined, subtitle = undefined, caption = undefined, titleLabSize = undefined, subtitleLabSize = undefined, captionLabSize = undefined, pCutoff = undefined, FCcutoff = undefined, cutoffLineType = undefined, cutoffLineCol = undefined, cutoffLineWidth = undefined, pointSize = undefined, labSize = undefined, labCol = undefined, labFace = undefined, labhjust = undefined, labvjust = undefined, boxedLabels = FALSE, shape = undefined, shapeCustom = NULL, col = undefined, colCustom = NULL, colAlpha = undefined, colGradient = NULL, colGradientBreaks = undefined, colGradientLabels = undefined, colGradientLimits = undefined, legend = undefined, legendLabels = undefined, legendPosition = undefined, legendLabSize = undefined, legendIconSize = undefined, shade = NULL, shadeLabel = NULL, shadeAlpha = undefined, shadeFill = undefined, shadeSize = undefined, shadeBins = undefined, drawConnectors = FALSE, widthConnectors = undefined, typeConnectors = undefined, endsConnectors = undefined, lengthConnectors = undefined, colConnectors = undefined, hline = NULL, hlineType = undefined, hlineCol = undefined, hlineWidth = undefined, vline = NULL, vlineType = undefined, vlineCol = undefined, vlineWidth = undefined, gridlines, major = TRUE, gridlines, minor = TRUE, border = undefined, borderWidth = undefinedborderColour = undefined){...}
+New Parameters : Function Name : EnhancedVolcano(...) | Function Declaration Type : S3(toptable, lab, x, y, selectLab = NULL, xlim = undefined, ylim = undefined, xlab = undefined, ylab = undefined, axisLabSize = undefined, title = undefined, subtitle = undefined, caption = undefined, titleLabSize = undefined, subtitleLabSize = undefined, captionLabSize = undefined, pCutoff = undefined, FCcutoff = undefined, cutoffLineType = undefined, cutoffLineCol = undefined, cutoffLineWidth = undefined, pointSize = undefined, labSize = undefined, labCol = undefined, labFace = undefined, labhjust = undefined, labvjust = undefined, boxedLabels = FALSE, shape = undefined, shapeCustom = NULL, col = undefined, colCustom = NULL, colAlpha = undefined, colGradient = NULL, colGradientBreaks = undefined, colGradientLabels = undefined, colGradientLimits = undefined, legendLabels = undefined, legendPosition = undefined, legendLabSize = undefined, legendIconSize = undefined, legendDropLevels = TRUE, encircle = NULL, encircleCol = undefined, encircleFill = undefined, encircleAlpha = undefined, encircleSize = undefined, shade = NULL, shadeFill = undefined, shadeAlpha = undefined, shadeSize = undefined, shadeBins = undefined, drawConnectors = FALSE, widthConnectors = undefined, typeConnectors = undefined, endsConnectors = undefined, lengthConnectors = undefined, colConnectors = undefined, arrowheads = TRUE, hline = NULL, hlineType = undefined, hlineCol = undefined, hlineWidth = undefined, vline = NULL, vlineType = undefined, vlineCol = undefined, vlineWidth = undefined, gridlines, major = TRUE, gridlines, minor = TRUE, border = undefined, borderWidth = undefined, borderColour = undefined, raster = FALSE){...} FILE : EnhancedVolcano.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : EnhancedVolcano(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (toptable, lab, x, y, selectLab = NULL, xlim = undefined, ylim = undefined, xlab = undefined, ylab = undefined, axisLabSize = undefined, title = undefined, subtitle = undefined, caption = undefined, titleLabSize = undefined, subtitleLabSize = undefined, captionLabSize = undefined, pCutoff = undefined, FCcutoff = undefined, cutoffLineType = undefined, cutoffLineCol = undefined, cutoffLineWidth = undefined, pointSize = undefined, labSize = undefined, labCol = undefined, labFace = undefined, labhjust = undefined, labvjust = undefined, boxedLabels = FALSE, shape = undefined, shapeCustom = NULL, col = undefined, colCustom = NULL, colAlpha = undefined, colGradient = NULL, colGradientBreaks = undefined, colGradientLabels = undefined, colGradientLimits = undefined, legend = undefined, legendLabels = undefined, legendPosition = undefined, legendLabSize = undefined, legendIconSize = undefined, shade = NULL, shadeLabel = NULL, shadeAlpha = undefined, shadeFill = undefined, shadeSize = undefined, shadeBins = undefined, drawConnectors = FALSE, widthConnectors = undefined, typeConnectors = undefined, endsConnectors = undefined, lengthConnectors = undefined, colConnectors = undefined, hline = NULL, hlineType = undefined, hlineCol = undefined, hlineWidth = undefined, vline = NULL, vlineType = undefined, vlineCol = undefined, vlineWidth = undefined, gridlines, major = TRUE, gridlines, minor = TRUE, border = undefined, borderWidth = undefinedborderColour = undefined){...}
+New Parameters : (toptable, lab, x, y, selectLab = NULL, xlim = undefined, ylim = undefined, xlab = undefined, ylab = undefined, axisLabSize = undefined, title = undefined, subtitle = undefined, caption = undefined, titleLabSize = undefined, subtitleLabSize = undefined, captionLabSize = undefined, pCutoff = undefined, FCcutoff = undefined, cutoffLineType = undefined, cutoffLineCol = undefined, cutoffLineWidth = undefined, pointSize = undefined, labSize = undefined, labCol = undefined, labFace = undefined, labhjust = undefined, labvjust = undefined, boxedLabels = FALSE, shape = undefined, shapeCustom = NULL, col = undefined, colCustom = NULL, colAlpha = undefined, colGradient = NULL, colGradientBreaks = undefined, colGradientLabels = undefined, colGradientLimits = undefined, legendLabels = undefined, legendPosition = undefined, legendLabSize = undefined, legendIconSize = undefined, legendDropLevels = TRUE, encircle = NULL, encircleCol = undefined, encircleFill = undefined, encircleAlpha = undefined, encircleSize = undefined, shade = NULL, shadeFill = undefined, shadeAlpha = undefined, shadeSize = undefined, shadeBins = undefined, drawConnectors = FALSE, widthConnectors = undefined, typeConnectors = undefined, endsConnectors = undefined, lengthConnectors = undefined, colConnectors = undefined, arrowheads = TRUE, hline = NULL, hlineType = undefined, hlineCol = undefined, hlineWidth = undefined, vline = NULL, vlineType = undefined, vlineCol = undefined, vlineWidth = undefined, gridlines, major = TRUE, gridlines, minor = TRUE, border = undefined, borderWidth = undefined, borderColour = undefinedraster = FALSE){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 1
+Functions in parsed : 1
+Functions in namespace : 1
+Functions in parsed : 1{
+    "package": "EnhancedVolcano",
+    "versions": "release_3_12  release_3_13",
+    "param_changes": 0,
+    "param_warnings": 1,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 1
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : EnhancedVolcano
+Checking Versions enhancedvolcano_release_3_12
+enhancedvolcano_release_3_13
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : EnhancedVolcano(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (toptable, lab, x, y, selectLab = NULL, xlim = undefined, ylim = undefined, xlab = undefined, ylab = undefined, axisLabSize = undefined, title = undefined, subtitle = undefined, caption = undefined, titleLabSize = undefined, subtitleLabSize = undefined, captionLabSize = undefined, pCutoff = undefined, FCcutoff = undefined, cutoffLineType = undefined, cutoffLineCol = undefined, cutoffLineWidth = undefined, pointSize = undefined, labSize = undefined, labCol = undefined, labFace = undefined, labhjust = undefined, labvjust = undefined, boxedLabels = FALSE, shape = undefined, shapeCustom = NULL, col = undefined, colCustom = NULL, colAlpha = undefined, colGradient = NULL, colGradientBreaks = undefined, colGradientLabels = undefined, colGradientLimits = undefined, legendLabels = undefined, legendPosition = undefined, legendLabSize = undefined, legendIconSize = undefined, legendDropLevels = TRUE, encircle = NULL, encircleCol = undefined, encircleFill = undefined, encircleAlpha = undefined, encircleSize = undefined, shade = NULL, shadeFill = undefined, shadeAlpha = undefined, shadeSize = undefined, shadeBins = undefined, drawConnectors = FALSE, widthConnectors = undefined, typeConnectors = undefined, endsConnectors = undefined, lengthConnectors = undefined, colConnectors = undefined, arrowheads = TRUE, hline = NULL, hlineType = undefined, hlineCol = undefined, hlineWidth = undefined, vline = NULL, vlineType = undefined, vlineCol = undefined, vlineWidth = undefined, gridlines, major = TRUE, gridlines, minor = TRUE, border = undefined, borderWidth = undefined, borderColour = undefinedraster = FALSE){...}
+New Parameters : (toptable, lab, x, y, selectLab = NULL, xlim = undefined, ylim = undefined, xlab = undefined, ylab = undefined, axisLabSize = undefined, title = undefined, subtitle = undefined, caption = undefined, titleLabSize = undefined, subtitleLabSize = undefined, captionLabSize = undefined, pCutoff = undefined, pCutoffCol = y, FCcutoff = undefined, cutoffLineType = undefined, cutoffLineCol = undefined, cutoffLineWidth = undefined, pointSize = undefined, labSize = undefined, labCol = undefined, labFace = undefined, boxedLabels = FALSE, parseLabels = FALSE, shape = undefined, shapeCustom = NULL, col = undefined, colCustom = NULL, colAlpha = undefined, colGradient = NULL, colGradientBreaks = undefined, colGradientLabels = undefined, colGradientLimits = undefined, legendLabels = undefined, legendPosition = undefined, legendLabSize = undefined, legendIconSize = undefined, legendDropLevels = TRUE, encircle = NULL, encircleCol = undefined, encircleFill = undefined, encircleAlpha = undefined, encircleSize = undefined, shade = NULL, shadeFill = undefined, shadeAlpha = undefined, shadeSize = undefined, shadeBins = undefined, drawConnectors = FALSE, widthConnectors = undefined, typeConnectors = undefined, endsConnectors = undefined, lengthConnectors = undefined, colConnectors = undefined, maxoverlapsConnectors = undefined, directionConnectors = undefined, arrowheads = TRUE, hline = NULL, hlineType = undefined, hlineCol = undefined, hlineWidth = undefined, vline = NULL, vlineType = undefined, vlineCol = undefined, vlineWidth = undefined, gridlines, major = TRUE, gridlines, minor = TRUE, border = undefined, borderWidth = undefined, borderColour = undefinedraster = FALSE){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 1
+Functions in parsed : 1
+Functions in namespace : 1
+Functions in parsed : 1{
+    "package": "EnhancedVolcano",
+    "versions": "release_3_13  release_3_14",
+    "param_changes": 0,
+    "param_warnings": 1,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 1
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : EnhancedVolcano
+Checking Versions enhancedvolcano_release_3_13
+enhancedvolcano_release_3_14
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : EnhancedVolcano(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (toptable, lab, x, y, selectLab = NULL, xlim = undefined, ylim = undefined, xlab = undefined, ylab = undefined, axisLabSize = undefined, title = undefined, subtitle = undefined, caption = undefined, titleLabSize = undefined, subtitleLabSize = undefined, captionLabSize = undefined, pCutoff = undefined, pCutoffCol = y, FCcutoff = undefined, cutoffLineType = undefined, cutoffLineCol = undefined, cutoffLineWidth = undefined, pointSize = undefined, labSize = undefined, labCol = undefined, labFace = undefined, boxedLabels = FALSE, parseLabels = FALSE, shape = undefined, shapeCustom = NULL, col = undefined, colCustom = NULL, colAlpha = undefined, colGradient = NULL, colGradientBreaks = undefined, colGradientLabels = undefined, colGradientLimits = undefined, legendLabels = undefined, legendPosition = undefined, legendLabSize = undefined, legendIconSize = undefined, legendDropLevels = TRUE, encircle = NULL, encircleCol = undefined, encircleFill = undefined, encircleAlpha = undefined, encircleSize = undefined, shade = NULL, shadeFill = undefined, shadeAlpha = undefined, shadeSize = undefined, shadeBins = undefined, drawConnectors = FALSE, widthConnectors = undefined, typeConnectors = undefined, endsConnectors = undefined, lengthConnectors = undefined, colConnectors = undefined, maxoverlapsConnectors = undefined, directionConnectors = undefined, arrowheads = TRUE, hline = NULL, hlineType = undefined, hlineCol = undefined, hlineWidth = undefined, vline = NULL, vlineType = undefined, vlineCol = undefined, vlineWidth = undefined, gridlines, major = TRUE, gridlines, minor = TRUE, border = undefined, borderWidth = undefined, borderColour = undefinedraster = FALSE){...}
+New Parameters : (toptable, lab, x, y, selectLab = NULL, xlim = undefined, ylim = undefined, xlab = undefined, ylab = undefined, axisLabSize = undefined, title = undefined, subtitle = undefined, caption = undefined, titleLabSize = undefined, subtitleLabSize = undefined, captionLabSize = undefined, pCutoff = undefined, pCutoffCol = y, FCcutoff = undefined, cutoffLineType = undefined, cutoffLineCol = undefined, cutoffLineWidth = undefined, pointSize = undefined, labSize = undefined, labCol = undefined, labFace = undefined, boxedLabels = FALSE, parseLabels = FALSE, shape = undefined, shapeCustom = NULL, col = undefined, colCustom = NULL, colAlpha = undefined, colGradient = NULL, colGradientBreaks = undefined, colGradientLabels = undefined, colGradientLimits = undefined, legendLabels = undefined, legendPosition = undefined, legendLabSize = undefined, legendIconSize = undefined, legendDropLevels = TRUE, encircle = NULL, encircleCol = undefined, encircleFill = undefined, encircleAlpha = undefined, encircleSize = undefined, shade = NULL, shadeFill = undefined, shadeAlpha = undefined, shadeSize = undefined, shadeBins = undefined, drawConnectors = FALSE, widthConnectors = undefined, typeConnectors = undefined, endsConnectors = undefined, lengthConnectors = undefined, colConnectors = undefined, max, overlaps = undefined, maxoverlapsConnectors = NULL, min, segment, length = undefined, directionConnectors = undefined, arrowheads = TRUE, hline = NULL, hlineType = undefined, hlineCol = undefined, hlineWidth = undefined, vline = NULL, vlineType = undefined, vlineCol = undefined, vlineWidth = undefined, gridlines, major = TRUE, gridlines, minor = TRUE, border = undefined, borderWidth = undefined, borderColour = undefinedraster = FALSE){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 1
+Functions in parsed : 1
+Functions in namespace : 1
+Functions in parsed : 1{
+    "package": "EnhancedVolcano",
+    "versions": "release_3_14  master",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : EnhancedVolcano
+Checking Versions enhancedvolcano_release_3_14
+enhancedvolcano_master
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 1
+Functions in parsed : 1
+Functions in namespace : 1
+Functions in parsed : 1

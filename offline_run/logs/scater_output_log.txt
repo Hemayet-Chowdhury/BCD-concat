@@ -1,0 +1,1198 @@
+{
+    "package": "scater",
+    "versions": "release_3_3  release_3_4",
+    "param_changes": 4,
+    "param_warnings": 5,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 9
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : scater
+Checking Versions scater_release_3_3
+scater_release_3_4
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : calculateQCMetrics(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (object, feature_controls, technical_feature_controls, biological_feature_controls, cell_controls, nmadspct_feature_controls_threshold){...}
+New Parameters : (object, feature_controls, cell_controls, nmadspct_feature_controls_threshold){...} FILE : qc.R
+2. Function Name : isOutlier(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : isOutlier(...) | Function Declaration Type : S3(metric, nmads = undefined, type = undefinedlog = FALSE){...}
+New Parameters : Function Name : isOutlier(...) | Function Declaration Type : S3(metric, nmads = undefined, type = undefined, log = FALSE, na, rm = FALSE){...} FILE : qc.R
+3. Function Name : plotExprsFreqVsMean(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : plotExprsFreqVsMean(...) | Function Declaration Type : S3(object, feature_set = NULL, feature_controls = NULL, shape = undefined, alpha = undefined){...}
+New Parameters : Function Name : plotExprsFreqVsMean(...) | Function Declaration Type : S3(object, feature_set = NULL, feature_controls = NULL, shape = undefined, alpha = undefined, show_smooth = TRUE, se = TRUE, ){...} FILE : qc.R
+4. Function Name : sizeFactors(...) | Function Declaration Type : setReplaceMethod |  Signature: undefined had non-default parameters added in newer version.
+Original Parameters : Function Name : sizeFactors(...) | Function Declaration Type : setReplaceMethod |  Signature: undefined(objectvalue){...}
+New Parameters : Function Name : sizeFactors(...) | Function Declaration Type : setReplaceMethod |  Signature: undefined(object, type = NULL, , value){...} FILE : SCESet-methods.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : plotReducedDim(...) | Function Declaration Type : setMethod |  Signature: undefined had parameters modified in newer version.
+Original Parameters : (object, ncomponents = undefined, colour_by = NULL, shape_by = NULL, size_by = NULL, percentVar = NULLlegend = TRUE){...}
+New Parameters : (object, ncomponents = undefined, colour_by = NULL, shape_by = NULL, size_by = NULL, percentVar = NULLlegend = undefined){...}
+2. Function Name : plotExpressionSCESet(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, features, x, exprs_values = undefined, colour_by = NULL, shape_by = NULL, size_by = NULL, ncol = undefined, xlab = NULL, show_median = FALSE, show_violin = TRUE, show_smooth = FALSE, theme_size = undefinedlog2_values = FALSE){...}
+New Parameters : (object, features, x = NULL, exprs_values = undefined, colour_by = NULL, shape_by = NULL, size_by = NULL, ncol = undefined, xlab = NULL, show_median = FALSE, show_violin = TRUE, show_smooth = FALSE, alpha = undefined, theme_size = undefined, log2_values = FALSE, size = NULL, scales = undefined, se = TRUEjitter = undefined){...}
+3. Function Name : plotExprsFreqVsMean(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, feature_set = NULL, feature_controls = NULL, shape = undefined, alpha = undefined){...}
+New Parameters : (object, feature_set = NULL, feature_controls = NULL, shape = undefined, alpha = undefined, show_smooth = TRUE, se = TRUE){...}
+4. Function Name : newSCESet(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (exprsData = NULL, countData = NULL, tpmData = NULL, fpkmData = NULL, cpmData = NULL, phenoData = NULL, featureData = NULL, experimentData = NULL, is_exprsData = NULL, lowerDetectionLimit = undefined, logExprsOffset = undefined, logged = FALSEuseForExprs = undefined){...}
+New Parameters : (exprsData = NULL, countData = NULL, tpmData = NULL, fpkmData = NULL, cpmData = NULL, phenoData = NULL, featureData = NULL, experimentData = NULL, is_exprsData = NULL, cellPairwiseDistances = undefined, featurePairwiseDistances = undefined, lowerDetectionLimit = undefined, logExprsOffset = undefined, logged = FALSEuseForExprs = undefined){...}
+5. Function Name : sizeFactors(...) | Function Declaration Type : setReplaceMethod |  Signature: undefined had parameters modified in newer version.
+Original Parameters : (objectvalue){...}
+New Parameters : (object, type = NULL, value){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+plotPlatePosition
+plotExprsVsTxLength
+nexprs
+runSalmon
+updateSCESet
+writeSCESet
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 171
+Functions in parsed : 75
+Functions in namespace : 162
+Functions in parsed : 70{
+    "package": "scater",
+    "versions": "release_3_4  release_3_5",
+    "param_changes": 4,
+    "param_warnings": 7,
+    "function_removals": 1,
+    "function_renames": 1,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 1,
+    "total_count": 12
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : scater
+Checking Versions scater_release_3_4
+scater_release_3_5
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : calculateFPKM(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : calculateFPKM(...) | Function Declaration Type : S3(objecteffective_length){...}
+New Parameters : Function Name : calculateFPKM(...) | Function Declaration Type : S3(object, effective_length, use, size, factors = TRUE){...} FILE : calculate-expression.R
+2. Function Name : plotPhenoData(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (object, aesth, theme_size){...}
+New Parameters : (object, aesth){...} FILE : plotting.R
+3. Function Name : plotFeatureData(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (object, aesth, theme_size){...}
+New Parameters : (object, aesth){...} FILE : plotting.R
+4. Function Name : newSCESet(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (exprsData, countData, tpmData, fpkmData, cpmData, phenoData, featureData, experimentData, is_exprsData, cellPairwiseDistances, featurePairwiseDistances, lowerDetectionLimit, logExprsOffset, loggeduseForExprs){...}
+New Parameters : (exprsData, countData, tpmData, fpkmData, cpmData, phenoData, featureData, experimentData, is_exprsData, cellPairwiseDistances, featurePairwiseDistances, lowerDetectionLimitlogExprsOffset){...} FILE : SCESet-methods.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : calcIsExprs(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, lowerDetectionLimit = NULLexprs_data = undefined){...}
+New Parameters : (object, lowerDetectionLimit = NULLexprs_values = NULL){...}
+2. Function Name : normaliseExprs(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, method = undefined, design = NULL, feature_set = NULL, exprs_values = undefined, return_norm_as_exprs = TRUE){...}
+New Parameters : (object, method = undefined, design = NULL, feature_set = NULL, exprs_values = NULL, return_norm_as_exprs = TRUE){...}
+3. Function Name : plotMDSSCESet(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, ncomponents = undefined, colour_by = NULL, shape_by = NULL, size_by = NULL, return_SCESet = FALSE, draw_plot = TRUE, theme_size = undefinedlegend = undefined){...}
+New Parameters : (object, ncomponents = undefined, colour_by = NULL, shape_by = NULL, size_by = NULL, return_SCESet = FALSE, draw_plot = TRUE, exprs_values = undefined, theme_size = undefinedlegend = undefined){...}
+4. Function Name : plotMDS(...) | Function Declaration Type : setMethod |  Signature: undefined had parameters modified in newer version.
+Original Parameters : (object, ncomponents = undefined, colour_by = NULL, shape_by = NULL, size_by = NULL, return_SCESet = FALSE, draw_plot = TRUE, theme_size = undefinedlegend = undefined){...}
+New Parameters : (object, ncomponents = undefined, colour_by = NULL, shape_by = NULL, size_by = NULL, return_SCESet = FALSE, draw_plot = TRUE, exprs_values = undefined, theme_size = undefinedlegend = undefined){...}
+5. Function Name : plotPlatePosition(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, plate_position = NULL, colour_by = NULL, x_position = NULL, y_position = NULL, theme_size = undefinedlegend = undefined){...}
+New Parameters : (object, plate_position = NULL, colour_by = NULL, x_position = NULL, y_position = NULL, exprs_values = undefined, theme_size = undefinedlegend = undefined){...}
+6. Function Name : nexprs(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, threshold = NULL, subset, row = NULLbyrow = FALSE){...}
+New Parameters : (object, lowerDetectionLimit = NULL, exprs_values = NULL, byrow = FALSE, subset_row = NULLsubset_col = NULL){...}
+7. Function Name : isOutlier(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (metric, nmads = undefined, type = undefined, log = FALSE, narm = FALSE){...}
+New Parameters : (metric, nmads = undefined, type = undefined, log = FALSE, subset = NULLbatch = NULL){...}
+
+-----------------------Removed Functions------------
+
+getExprs
+
+
+---------------------Added Functions---------------
+
+
+read10XResults
+calculateCPM
+calcAverage
+areSizeFactorsCentred
+plotRLE
+featureControlInfo
+isSpike
+setSpike
+spikes
+mergeSCESet
+normalize
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+1. getExprs -> calcAverage
+Total renames
+1
+Functions in namespace : 188
+Functions in parsed : 85
+Functions in namespace : 171
+Functions in parsed : 75{
+    "package": "scater",
+    "versions": "release_3_5  release_3_6",
+    "param_changes": 4,
+    "param_warnings": 5,
+    "function_removals": 111,
+    "function_renames": 5,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 5,
+    "total_count": 120
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : scater
+Checking Versions scater_release_3_5
+scater_release_3_6
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : read10XResults(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (data_dir, min_total_cell_counts, L, min_mean_gene_counts, expandlogExprsOffset){...}
+New Parameters : (){...} FILE : 10ximport-wrapper.R
+2. Function Name : calcAverage(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : calcAverage(...) | Function Declaration Type : S3(object){...}
+New Parameters : Function Name : calcAverage(...) | Function Declaration Type : S3(object, size, factors = NULL){...} FILE : calculate-expression.R
+3. Function Name : normaliseExprs(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : normaliseExprs(...) | Function Declaration Type : S3(object, method = undefined, design = NULL, feature_set = NULL, exprs_values = NULL, return_norm_as_exprs = TRUE){...}
+New Parameters : Function Name : normaliseExprs(...) | Function Declaration Type : S3(object, method = undefined, design = NULL, feature_set = NULL, exprs_values = undefined, return_norm_as_exprs = TRUE, return_log = TRUE, ){...} FILE : normalisation.R
+4. Function Name : isOutlier(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : isOutlier(...) | Function Declaration Type : S3(metric, nmads = undefined, type = undefined, log = FALSE, subset = NULLbatch = NULL){...}
+New Parameters : Function Name : isOutlier(...) | Function Declaration Type : S3(metric, nmads = undefined, type = undefined, log = FALSE, subset = NULL, batch = NULL, min, diff = NA){...} FILE : qc.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : calcIsExprs(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, lowerDetectionLimit = NULLexprs_values = NULL){...}
+New Parameters : (object, lowerDetectionLimit = undefinedexprs_values = undefined){...}
+2. Function Name : nexprs(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, lowerDetectionLimit = NULL, exprs_values = NULL, byrow = FALSE, subset_row = NULLsubset_col = NULL){...}
+New Parameters : (object, lowerDetectionLimit = undefined, exprs_values = undefined, byrow = FALSE, subset_row = NULLsubset_col = NULL){...}
+3. Function Name : scater_gui(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (sce_set){...}
+New Parameters : (object){...}
+4. Function Name : normaliseExprs(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, method = undefined, design = NULL, feature_set = NULL, exprs_values = NULL, return_norm_as_exprs = TRUE){...}
+New Parameters : (object, method = undefined, design = NULL, feature_set = NULL, exprs_values = undefined, return_norm_as_exprs = TRUE, return_log = TRUE){...}
+5. Function Name : calculateQCMetrics(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, feature_controls = NULL, cell_controls = NULL, nmads = undefinedpct_feature_controls_threshold = undefined){...}
+New Parameters : (object, exprs_values = undefined, feature_controls = NULL, cell_controls = NULL, nmads = undefinedpct_feature_controls_threshold = undefined){...}
+
+-----------------------Removed Functions------------
+
+cellDist<-
+cellNames<-
+cellPairwiseDistances<-
+cpm<-
+featDist<-
+featureControlInfo<-
+featurePairwiseDistances<-
+is_exprs<-
+norm_counts<-
+norm_cpm<-
+norm_fpkm<-
+norm_tpm<-
+redDim<-
+reducedDimension<-
+setSpike<-
+set_exprs<-
+tpm<-
+arrange_SCESet
+bootstraps_SCESet
+cellDist
+cellDistSCESet
+cellNames
+cellPairwiseDistances
+cellPairwiseDistances_SCESet
+counts_SCESet
+cpm
+cpmSCESet
+featDist
+featDistSCESet
+featureControlInfo
+featureControlInfo_SCESet
+featurePairwiseDistances
+featurePairwiseDistancesSCESet
+filter_SCESet
+fpkm_SCESet
+get_exprs
+get_exprs_SCESet
+isSpike
+is_exprs
+is_exprs_SCESet
+mergeSCESet
+mutate_SCESet
+norm_counts
+norm_counts_SCESet
+norm_cpm
+norm_cpm_SCESet
+norm_exprs_SCESet
+norm_fpkm
+norm_fpkm_SCESet
+norm_tpm
+norm_tpm_SCESet
+normalize_SCESet
+plotDiffusionMapSCESet
+plotExpressionSCESet
+plotMDSSCESet
+plotPCASCESet
+plotReducedDim_SCESet
+plotReducedDim_default
+plotSCESet
+redDim
+redDim_SCESet
+reducedDimension
+reducedDimension_SCESet
+rename_SCESet
+sizeFactors_SCESet
+spikes
+stand_exprs_SCESet
+tpm
+tpm_SCESet
+whichSpike
+writeSCESet
+[
+cellDist
+cellNames
+cellPairwiseDistances
+counts
+cpm
+fData
+is_exprs
+norm_counts
+norm_cpm
+norm_fpkm
+norm_tpm
+pData
+redDim
+reducedDimension
+setSpike
+set_exprs
+sizeFactors
+tpm
+cellDist
+cellPairwiseDistances
+counts
+cpm
+featDist
+featureControlInfo
+featurePairwiseDistances
+get_exprs
+isSpike
+is_exprs
+norm_counts
+norm_cpm
+norm_fpkm
+norm_tpm
+plot
+redDim
+reducedDimension
+sizeFactors
+spikes
+tpm
+whichSpike
+
+
+---------------------Added Functions---------------
+
+
+read10xResults
+downsampleCounts
+normalizeSCE
+toSingleCellExperiment
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+1. plotDiffusionMapSCESet -> normalizeSCE
+2. plotMDSSCESet -> normalizeSCE
+3. plotExpressionSCESet -> normalizeSCE
+4. plotExprsVsTxLength -> normalizeSCE
+5. mergeSCESet -> read10xResults
+Total renames
+5
+Functions in namespace : 79
+Functions in parsed : 42
+Functions in namespace : 188
+Functions in parsed : 85{
+    "package": "scater",
+    "versions": "release_3_6  release_3_7",
+    "param_changes": 5,
+    "param_warnings": 9,
+    "function_removals": 7,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 21
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : scater
+Checking Versions scater_release_3_6
+scater_release_3_7
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : calculateFPKM(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (object, effective_length, use, sizefactors){...}
+New Parameters : (object, effective_length){...} FILE : calculate-expression.R
+2. Function Name : readKallistoResults(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (kallisto_log, samples, directories, read_h5, kallisto_version, logExprsOffsetverbose){...}
+New Parameters : (kallisto_log, samples, directories, read_h5, kallisto_versionverbose){...} FILE : kallisto-wrapper.R
+3. Function Name : normaliseExprs(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (object, method, design, feature_set, exprs_values, return_norm_as_exprs, return_log){...}
+New Parameters : (){...} FILE : normalisation.R
+4. Function Name : normalizeExprs(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : normalizeExprs(...) | Function Declaration Type : S3(){...}
+New Parameters : Function Name : normalizeExprs(...) | Function Declaration Type : S3(object, method = undefined, design = NULL, feature_set = NULL, exprs_values = undefined, return_norm_as_exprs = TRUE, return_log = TRUE, ){...} FILE : normalisation.R
+5. Function Name : isOutlier(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (metric, nmads, type, log, subset, batch, mindiff){...}
+New Parameters : (metric, nmads, type, log, subset, batchmin_diff){...} FILE : qc.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : calcIsExprs(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, lowerDetectionLimit = undefinedexprs_values = undefined){...}
+New Parameters : (object, detection_limit = undefinedexprs_values = undefined){...}
+2. Function Name : nexprs(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, lowerDetectionLimit = undefined, exprs_values = undefined, byrow = FALSE, subset_row = NULLsubset_col = NULL){...}
+New Parameters : (object, detection_limit = undefined, exprs_values = undefined, byrow = FALSE, subset_row = NULLsubset_col = NULL){...}
+3. Function Name : calculateCPM(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, use, sizefactors = TRUE){...}
+New Parameters : (object, exprs_values = undefined, use_size_factors = TRUE, size_factor_grouping = NULLsubset_row = NULL){...}
+4. Function Name : calcAverage(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, sizefactors = NULL){...}
+New Parameters : (object, exprs_values = undefined, use_size_factors = TRUE, size_factor_grouping = NULLsubset_row = NULL){...}
+5. Function Name : normalizeExprs(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (){...}
+New Parameters : (object, method = undefined, design = NULL, feature_set = NULL, exprs_values = undefined, return_norm_as_exprs = TRUE, return_log = TRUE){...}
+6. Function Name : normalizeSCE(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, exprs_values = undefined, return_log = TRUE, log_exprs_offset = NULL, centre_size_factors = TRUEreturn_norm_as_exprs = TRUE){...}
+New Parameters : (object, exprs_values = undefined, return_log = TRUE, log_exprs_offset = NULL, centre_size_factors = TRUEsize_factor_grouping = NULL){...}
+7. Function Name : calculateQCMetrics(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, exprs_values = undefined, feature_controls = NULL, cell_controls = NULL, nmads = undefinedpct_feature_controls_threshold = undefined){...}
+New Parameters : (object, exprs_values = undefined, feature_controls = NULL, cell_controls = NULL, percent_top = undefined, detection_limit = undefined, use_spikes = TRUEcompact = FALSE){...}
+8. Function Name : plotHighestExprs(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, col_by_variable = undefined, n = undefined, drop_features = NULL, exprs_values = undefinedfeature_names_to_plot = NULL){...}
+New Parameters : (object, n = undefined, controls, colour_cells_by, drop_features = NULL, exprs_values = undefined, by_exprs_values = exprs_values, by_show_single = TRUE, feature_names_to_plot = NULLas_percentage = TRUE){...}
+9. Function Name : plotExprsFreqVsMean(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, feature_set = NULL, feature_controls = NULL, shape = undefined, alpha = undefined, show_smooth = TRUE, se = TRUE){...}
+New Parameters : (object, freq_exprs, mean_exprs, controls, by_show_single = FALSE, show_smooth = TRUE, show_se = TRUE){...}
+
+-----------------------Removed Functions------------
+
+exprs
+fromCellDataSet
+newSCESet
+plotExpressionDefault
+plotMetadata
+plotReducedDimDefault
+toCellDataSet
+
+
+---------------------Added Functions---------------
+
+
+centreSizeFactors
+uniquifyFeatureNames
+librarySizeFactors
+multiplot
+plotExpression
+plotExprsVsTxLength
+plotHeatmap
+plotPlatePosition
+plotReducedDim
+plotScater
+plotColData
+plotPhenoData
+plotCellData
+plotRowData
+plotFeatureData
+plotPCASCE
+plotTSNE
+plotDiffusionMap
+plotMDS
+runDiffusionMap
+runMDS
+runPCA
+runTSNE
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 77
+Functions in parsed : 61
+Functions in namespace : 79
+Functions in parsed : 42{
+    "package": "scater",
+    "versions": "release_3_7  release_3_8",
+    "param_changes": 14,
+    "param_warnings": 7,
+    "function_removals": 11,
+    "function_renames": 2,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 2,
+    "total_count": 32
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : scater
+Checking Versions scater_release_3_7
+scater_release_3_8
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : centreSizeFactors(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (object, centregrouping){...}
+New Parameters : (objectcentre){...} FILE : areSizeFactorsCentred.R
+2. Function Name : calculateCPM(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (object, exprs_values, use_size_factors, size_factor_groupingsubset_row){...}
+New Parameters : (object, exprs_values, use_size_factorssubset_row){...} FILE : calculateCPM.R
+3. Function Name : getBMFeatureAnnos(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (object, filters, attributes, feature_symbol, feature_id, biomart, datasethost){...}
+New Parameters : (object, ids, filters, attributes, biomart, datasethost){...} FILE : feature-preprocessing.R
+4. Function Name : readKallistoResults(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (kallisto_log, samples, directories, read_h5, kallisto_versionverbose){...}
+New Parameters : (full_length){...} FILE : kallisto-wrapper.R
+5. Function Name : plotExprsFreqVsMean(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : plotExprsFreqVsMean(...) | Function Declaration Type : S3(object, freq_exprs, mean_exprs, controls, by_show_single = FALSE, show_smooth = TRUE, show_se = TRUE){...}
+New Parameters : Function Name : plotExprsFreqVsMean(...) | Function Declaration Type : S3(object, freq_exprs, mean_exprs, controls, exprs_values = undefined, by_show_single = FALSE, show_smooth = TRUE, show_se = TRUE, ){...} FILE : plotExprsFreqVsMean.R
+6. Function Name : plotHeatmap(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : plotHeatmap(...) | Function Declaration Type : S3(object, features, columns = NULL, exprs_values = undefined, center = FALSE, zlim = NULL, symmetric = FALSE, color = NULL, colour_columns_by = NULL, by_exprs_values = exprs_values, by_show_single = FALSE){...}
+New Parameters : Function Name : plotHeatmap(...) | Function Declaration Type : S3(object, features, columns = NULL, exprs_values = undefined, center = FALSE, zlim = NULL, symmetric = FALSE, color = NULL, colour_columns_by = NULL, by_exprs_values = exprs_values, by_show_single = FALSE, show_colnames = TRUE, ){...} FILE : plotHeatmap.R
+7. Function Name : plotPCASCE(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (object, , return_SCE, draw_plot, rerun, ncomponentsrun_args){...}
+New Parameters : (object, , rerun, ncomponentsrun_args){...} FILE : plot_reddim.R
+8. Function Name : plotTSNE(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (object, , return_SCE, draw_plot, rerun, ncomponentsrun_args){...}
+New Parameters : (object, , rerun, ncomponentsrun_args){...} FILE : plot_reddim.R
+9. Function Name : plotDiffusionMap(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (object, , return_SCE, draw_plot, rerun, ncomponentsrun_args){...}
+New Parameters : (object, , rerun, ncomponentsrun_args){...} FILE : plot_reddim.R
+10. Function Name : plotMDS(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (object, , ncomponents, return_SCE, rerun, draw_plotrun_args){...}
+New Parameters : (object, , rerun, ncomponentsrun_args){...} FILE : plot_reddim.R
+11. Function Name : findImportantPCs(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (object, variable, plot_type, exprs_values, ntop, feature_set, scale_featurestheme_size){...}
+New Parameters : (){...} FILE : qc.R
+12. Function Name : plotExplanatoryVariables(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (object, method, exprs_values, nvars_to_plot, min_marginal_r2, variables, return_object, theme_size){...}
+New Parameters : (object, nvars_to_plot, min_marginal_r2, theme_size){...} FILE : qc.R
+13. Function Name : readSalmonResults(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (Salmon_log, samples, directories, logExprsOffsetverbose){...}
+New Parameters : (full_length){...} FILE : salmon-wrapper.R
+14. Function Name : readTxResults(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (samples, files, log, type, txOut, logExprsOffset, verbose){...}
+New Parameters : (full_length){...} FILE : tximport-wrapper.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : calculateTPM(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, effective_length = NULLcalc_from = undefined){...}
+New Parameters : (object, effective_length = NULL, exprs_values = undefinedsubset_row = NULL){...}
+2. Function Name : normalizeSCE(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, exprs_values = undefined, return_log = TRUE, log_exprs_offset = NULL, centre_size_factors = TRUEsize_factor_grouping = NULL){...}
+New Parameters : (object, exprs_values = undefined, return_log = TRUE, log_exprs_offset = NULL, centre_size_factors = TRUEpreserve_zeroes = FALSE){...}
+3. Function Name : plotExprsFreqVsMean(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, freq_exprs, mean_exprs, controls, by_show_single = FALSE, show_smooth = TRUE, show_se = TRUE){...}
+New Parameters : (object, freq_exprs, mean_exprs, controls, exprs_values = undefined, by_show_single = FALSE, show_smooth = TRUE, show_se = TRUE){...}
+4. Function Name : plotHeatmap(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, features, columns = NULL, exprs_values = undefined, center = FALSE, zlim = NULL, symmetric = FALSE, color = NULL, colour_columns_by = NULL, by_exprs_values = exprs_values, by_show_single = FALSE){...}
+New Parameters : (object, features, columns = NULL, exprs_values = undefined, center = FALSE, zlim = NULL, symmetric = FALSE, color = NULL, colour_columns_by = NULL, by_exprs_values = exprs_values, by_show_single = FALSE, show_colnames = TRUE){...}
+5. Function Name : plotPlatePosition(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, plate_position = NULL, colour_by = NULL, size_by = NULL, shape_by = NULL, by_exprs_values = undefined, by_show_single = FALSE, legend = TRUE, theme_size = undefined, alpha = undefinedsize = undefined){...}
+New Parameters : (object, plate_position = NULL, colour_by = NULL, size_by = NULL, shape_by = NULL, by_exprs_values = undefined, by_show_single = FALSE, add_legend = TRUE, theme_size = undefined, point_alpha = undefinedpoint_size = undefined){...}
+6. Function Name : plotReducedDim(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, use_dimred, ncomponents = undefined, percentVar = NULL, colour_by = NULL, shape_by = NULL, size_by = NULL, by_exprs_values = undefined, by_show_single = FALSE, add_ticks = TRUE){...}
+New Parameters : (object, use_dimred, ncomponents = undefined, percentVar = NULL, colour_by = NULL, shape_by = NULL, size_by = NULL, by_exprs_values = undefined, by_show_single = FALSE, add_ticks = NULL){...}
+7. Function Name : plotRLE(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, exprs_mats = undefined, exprs_logged = undefined, colour_by = NULL, style = undefined, legend = undefined, order_by_colour = TRUE, ncol = undefined){...}
+New Parameters : (object, exprs_values = undefined, exprs_logged = TRUE, style = undefined, legend = TRUE, ordering = NULL, colour_by = NULL, by_exprs_values = exprs_values){...}
+
+-----------------------Removed Functions------------
+
+areSizeFactorsCentred
+downsampleCounts
+normaliseExprs
+normalizeExprs
+read10XResults
+read10xResults
+readKallistoResultsOneSample
+readSalmonResultsOneSample
+runKallisto
+runSalmon
+scater_gui
+
+
+---------------------Added Functions---------------
+
+
+calculateAverage
+getExplanatoryPCs
+getVarianceExplained
+normalizeCounts
+plotExplanatoryPCs
+plotUMAP
+readSparseCounts
+runUMAP
+sumCountsAcrossFeatures
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+1. calcAverage -> calculateAverage
+2. normalizeExprs -> calculateAverage
+Total renames
+2
+Functions in namespace : 75
+Functions in parsed : 59
+Functions in namespace : 77
+Functions in parsed : 61{
+    "package": "scater",
+    "versions": "release_3_8  release_3_9",
+    "param_changes": 5,
+    "param_warnings": 4,
+    "function_removals": 11,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 20
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : scater
+Checking Versions scater_release_3_8
+scater_release_3_9
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : getExplanatoryPCs(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : getExplanatoryPCs(...) | Function Declaration Type : S3(object, variables = NULL, use_dimred = undefined, chunk = undefined){...}
+New Parameters : Function Name : getExplanatoryPCs(...) | Function Declaration Type : S3(object, use_dimred = undefined, ncomponents = undefined, rerun = FALSE, run_args = undefined, ){...} FILE : getExplanatoryPCs.R
+2. Function Name : plotReducedDim(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : plotReducedDim(...) | Function Declaration Type : S3(object, use_dimred, ncomponents = undefined, percentVar = NULL, colour_by = NULL, shape_by = NULL, size_by = NULL, by_exprs_values = undefined, by_show_single = FALSE, add_ticks = NULL){...}
+New Parameters : Function Name : plotReducedDim(...) | Function Declaration Type : S3(object, use_dimred, ncomponents = undefined, percentVar = NULL, colour_by = NULL, shape_by = NULL, size_by = NULL, by_exprs_values = undefined, by_show_single = FALSE, text_by = NULL, text_size = undefined, text_colour = undefined, ){...} FILE : plotReducedDim.R
+3. Function Name : runDiffusionMap(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (object, ncomponents, ntop, feature_set, exprs_values, scale_features, use_dimred, n_dimred, rand_seed){...}
+New Parameters : (object, ncomponents, ntop, feature_set, exprs_values, scale_features, use_dimred, n_dimred){...} FILE : runDiffusionMap.R
+4. Function Name : runTSNE(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : runTSNE(...) | Function Declaration Type : S3(object, ncomponents = undefined, ntop = undefined, feature_set = NULL, exprs_values = undefined, scale_features = TRUE, use_dimred = NULL, n_dimred = NULL, rand_seed = NULL, perplexity = undefined, pca = TRUE, initial_dims = undefined){...}
+New Parameters : Function Name : runTSNE(...) | Function Declaration Type : S3(object, ncomponents = undefined, ntop = undefined, feature_set = NULL, exprs_values = undefined, scale_features = TRUE, use_dimred = NULL, n_dimred = NULL, perplexity = undefined, pca = TRUE, initial_dims = undefined, normalize = TRUE, theta = undefined, external_neighbors = FALSE, BNPARAM = undefined, BPPARAM = undefined, ){...} FILE : runTSNE.R
+5. Function Name : runUMAP(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : runUMAP(...) | Function Declaration Type : S3(object, ncomponents = undefined, ntop = undefined, feature_set = NULL, exprs_values = undefined, scale_features = TRUE, use_dimred = NULL, n_dimred = NULL){...}
+New Parameters : Function Name : runUMAP(...) | Function Declaration Type : S3(object, ncomponents = undefined, ntop = undefined, feature_set = NULL, exprs_values = undefined, scale_features = TRUE, use_dimred = NULL, n_dimred = NULL, pca = undefined, n_neighbors = undefined, external_neighbors = FALSE, BNPARAM = undefined, BPPARAM = undefined, ){...} FILE : runUMAP.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : getExplanatoryPCs(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, variables = NULL, use_dimred = undefined, chunk = undefined){...}
+New Parameters : (object, use_dimred = undefined, ncomponents = undefined, rerun = FALSE, run_args = undefined){...}
+2. Function Name : plotReducedDim(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, use_dimred, ncomponents = undefined, percentVar = NULL, colour_by = NULL, shape_by = NULL, size_by = NULL, by_exprs_values = undefined, by_show_single = FALSE, add_ticks = NULL){...}
+New Parameters : (object, use_dimred, ncomponents = undefined, percentVar = NULL, colour_by = NULL, shape_by = NULL, size_by = NULL, by_exprs_values = undefined, by_show_single = FALSE, text_by = NULL, text_size = undefined, text_colour = undefined){...}
+3. Function Name : runTSNE(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, ncomponents = undefined, ntop = undefined, feature_set = NULL, exprs_values = undefined, scale_features = TRUE, use_dimred = NULL, n_dimred = NULL, rand_seed = NULL, perplexity = undefined, pca = TRUE, initial_dims = undefined){...}
+New Parameters : (object, ncomponents = undefined, ntop = undefined, feature_set = NULL, exprs_values = undefined, scale_features = TRUE, use_dimred = NULL, n_dimred = NULL, perplexity = undefined, pca = TRUE, initial_dims = undefined, normalize = TRUE, theta = undefined, external_neighbors = FALSE, BNPARAM = undefined, BPPARAM = undefined){...}
+4. Function Name : runUMAP(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, ncomponents = undefined, ntop = undefined, feature_set = NULL, exprs_values = undefined, scale_features = TRUE, use_dimred = NULL, n_dimred = NULL){...}
+New Parameters : (object, ncomponents = undefined, ntop = undefined, feature_set = NULL, exprs_values = undefined, scale_features = TRUE, use_dimred = NULL, n_dimred = NULL, pca = undefined, n_neighbors = undefined, external_neighbors = FALSE, BNPARAM = undefined, BPPARAM = undefined){...}
+
+-----------------------Removed Functions------------
+
+calcIsExprs
+findImportantPCs
+normalise
+plotCellData
+plotFeatureData
+plotPhenoData
+plotQC
+readKallistoResults
+readSalmonResults
+readTxResults
+summariseExprsAcrossFeatures
+
+
+---------------------Added Functions---------------
+
+
+sumCountsAcrossCells
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 65
+Functions in parsed : 49
+Functions in namespace : 75
+Functions in parsed : 59{
+    "package": "scater",
+    "versions": "release_3_9  release_3_11",
+    "param_changes": 17,
+    "param_warnings": 8,
+    "function_removals": 12,
+    "function_renames": 8,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 8,
+    "total_count": 37
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : scater
+Checking Versions scater_release_3_9
+scater_release_3_11
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : calculateQCMetrics(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (object, exprs_values, feature_controls, cell_controls, percent_top, detection_limit, use_spikes, compactBPPARAM){...}
+New Parameters : (){...} FILE : calculateQCMetrics.R
+2. Function Name : centreSizeFactors(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (objectcentre){...}
+New Parameters : (){...} FILE : centreSizeFactors.R
+3. Function Name : getExplanatoryPCs(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (object, use_dimred, ncomponents, rerun, run_args){...}
+New Parameters : (x, dimred, n_dimred){...} FILE : getExplanatoryPCs.R
+4. Function Name : plotHeatmap(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : plotHeatmap(...) | Function Declaration Type : S3(object, features, columns = NULL, exprs_values = undefined, center = FALSE, zlim = NULL, symmetric = FALSE, color = NULL, colour_columns_by = NULL, by_exprs_values = exprs_values, by_show_single = FALSE, show_colnames = TRUE){...}
+New Parameters : Function Name : plotHeatmap(...) | Function Declaration Type : S3(object, features, columns = NULL, exprs_values = undefined, center = FALSE, zlim = NULL, symmetric = FALSE, color = NULL, colour_columns_by = NULL, order_columns_by = NULL, by_exprs_values = exprs_values, show_colnames = FALSE, cluster_cols = undefined, ){...} FILE : plotHeatmap.R
+5. Function Name : plotHighestExprs(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (object, n, controls, colour_cells_by, drop_features, exprs_values, by_exprs_values, by_show_single, feature_names_to_plotas_percentage){...}
+New Parameters : (object, n, colour_cells_by, drop_features, exprs_values, by_exprs_values, feature_names_to_plotas_percentage){...} FILE : plotHighestExprs.R
+6. Function Name : plotReducedDim(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : plotReducedDim(...) | Function Declaration Type : S3(object, use_dimred, ncomponents = undefined, percentVar = NULL, colour_by = NULL, shape_by = NULL, size_by = NULL, by_exprs_values = undefined, by_show_single = FALSE, text_by = NULL, text_size = undefined, text_colour = undefined){...}
+New Parameters : Function Name : plotReducedDim(...) | Function Declaration Type : S3(object, dimred, ncomponents = undefined, percentVar = NULL, colour_by = NULL, shape_by = NULL, size_by = NULL, by_exprs_values = undefined, text_by = NULL, text_size = undefined, text_colour = undefined, label_format = undefined, other_fields = undefined, ){...} FILE : plotReducedDim.R
+7. Function Name : plotScater(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (x, nfeatures, exprs_values, colour_by, by_exprs_values, by_show_single, block1, block2, ncol, line_widththeme_size){...}
+New Parameters : (x, nfeatures, exprs_values, colour_by, by_exprs_values, block1, block2, ncol, line_widththeme_size){...} FILE : plotScater.R
+8. Function Name : plotPCASCE(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (object, , rerun, ncomponentsrun_args){...}
+New Parameters : (object, ncomponents){...} FILE : plot_reddim.R
+9. Function Name : plotTSNE(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (object, , rerun, ncomponentsrun_args){...}
+New Parameters : (object, ncomponents){...} FILE : plot_reddim.R
+10. Function Name : plotUMAP(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (object, , rerun, ncomponentsrun_args){...}
+New Parameters : (object, ncomponents){...} FILE : plot_reddim.R
+11. Function Name : plotDiffusionMap(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (object, , rerun, ncomponentsrun_args){...}
+New Parameters : (object, ncomponents){...} FILE : plot_reddim.R
+12. Function Name : plotMDS(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (object, , rerun, ncomponentsrun_args){...}
+New Parameters : (object, ncomponents){...} FILE : plot_reddim.R
+13. Function Name : runDiffusionMap(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (object, ncomponents, ntop, feature_set, exprs_values, scale_features, use_dimred, n_dimred){...}
+New Parameters : (x, , altexpname){...} FILE : runDiffusionMap.R
+14. Function Name : runMDS(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (object, ncomponents, ntop, feature_set, exprs_values, scale_features, use_dimred, n_dimredmethod){...}
+New Parameters : (x, , altexpname){...} FILE : runMDS.R
+15. Function Name : runPCA(...) | Function Declaration Type : setMethod |  Signature: SingleCellExperiment had parameters removed in newer version.
+Original Parameters : (x, ncomponents, method, ntop, exprs_values, feature_set, scale_features, use_coldata, selected_variables, detect_outliers, BSPARAMBPPARAM){...}
+New Parameters : (x, , altexpname){...} FILE : runPCA.R
+16. Function Name : runTSNE(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (object, ncomponents, ntop, feature_set, exprs_values, scale_features, use_dimred, n_dimred, perplexity, pca, initial_dims, normalize, theta, external_neighbors, BNPARAM, BPPARAM){...}
+New Parameters : (x, , altexpname){...} FILE : runTSNE.R
+17. Function Name : runUMAP(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (object, ncomponents, ntop, feature_set, exprs_values, scale_features, use_dimred, n_dimred, pca, n_neighbors, external_neighbors, BNPARAM, BPPARAM){...}
+New Parameters : (x, , altexpname){...} FILE : runUMAP.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : calculateFPKM(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, effective_length, subset_row = NULL){...}
+New Parameters : (x, lengths, subset_row = NULL){...}
+2. Function Name : isOutlier(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (metric, nmads = undefined, type = undefined, log = FALSE, subset = NULL, batch = NULLmin_diff = NA){...}
+New Parameters : (metric, nmads = undefined, type = undefined, log = FALSE, subset = NULL, batch = NULL, share_medians = FALSE, share_mads = FALSE, share_missing = TRUEmin_diff = NA){...}
+3. Function Name : plotExpression(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, features, x = NULL, exprs_values = undefined, log2_values = FALSE, colour_by = NULL, shape_by = NULL, size_by = NULL, by_exprs_values = exprs_values, by_show_single = FALSE, xlab = NULL, feature_colours = TRUE, one_facet = TRUE, ncol = undefined, scales = undefined){...}
+New Parameters : (object, features, x = NULL, exprs_values = undefined, log2_values = FALSE, colour_by = NULL, shape_by = NULL, size_by = NULL, by_exprs_values = exprs_values, xlab = NULL, feature_colours = TRUE, one_facet = TRUE, ncol = undefined, scales = undefined, other_fields = undefined){...}
+4. Function Name : plotHeatmap(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, features, columns = NULL, exprs_values = undefined, center = FALSE, zlim = NULL, symmetric = FALSE, color = NULL, colour_columns_by = NULL, by_exprs_values = exprs_values, by_show_single = FALSE, show_colnames = TRUE){...}
+New Parameters : (object, features, columns = NULL, exprs_values = undefined, center = FALSE, zlim = NULL, symmetric = FALSE, color = NULL, colour_columns_by = NULL, order_columns_by = NULL, by_exprs_values = exprs_values, show_colnames = FALSE, cluster_cols = undefined){...}
+5. Function Name : plotPlatePosition(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, plate_position = NULL, colour_by = NULL, size_by = NULL, shape_by = NULL, by_exprs_values = undefined, by_show_single = FALSE, add_legend = TRUE, theme_size = undefined, point_alpha = undefinedpoint_size = undefined){...}
+New Parameters : (object, plate_position = NULL, colour_by = NULL, size_by = NULL, shape_by = NULL, by_exprs_values = undefined, add_legend = TRUE, theme_size = undefined, point_alpha = undefined, point_size = undefinedother_fields = undefined){...}
+6. Function Name : plotReducedDim(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, use_dimred, ncomponents = undefined, percentVar = NULL, colour_by = NULL, shape_by = NULL, size_by = NULL, by_exprs_values = undefined, by_show_single = FALSE, text_by = NULL, text_size = undefined, text_colour = undefined){...}
+New Parameters : (object, dimred, ncomponents = undefined, percentVar = NULL, colour_by = NULL, shape_by = NULL, size_by = NULL, by_exprs_values = undefined, text_by = NULL, text_size = undefined, text_colour = undefined, label_format = undefined, other_fields = undefined){...}
+7. Function Name : plotColData(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, y, x = NULL, colour_by = NULL, shape_by = NULL, size_by = NULL, by_exprs_values = undefined, by_show_single = FALSE){...}
+New Parameters : (object, y, x = NULL, colour_by = NULL, shape_by = NULL, size_by = NULL, by_exprs_values = undefined, other_fields = undefined){...}
+8. Function Name : plotRowData(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, y, x = NULL, colour_by = NULL, shape_by = NULL, size_by = NULL, by_exprs_values = undefined, by_show_single = FALSE){...}
+New Parameters : (object, y, x = NULL, colour_by = NULL, shape_by = NULL, size_by = NULL, by_exprs_values = undefined, other_fields = undefined){...}
+
+-----------------------Removed Functions------------
+
+arrange
+calcAverage
+filter
+mutate
+normalizeSCE
+plotExprsFreqVsMean
+plotExprsVsTxLength
+rename
+arrange
+filter
+mutate
+rename
+
+
+---------------------Added Functions---------------
+
+
+addPerCellQC
+addPerFeatureQC
+annotateBMFeatures
+normalize
+ggcells
+ggfeatures
+computeLibraryFactors
+logNormCounts
+makePerCellDF
+makePerFeatureDF
+medianSizeFactors
+computeMedianFactors
+mockSCE
+numDetectedAcrossCells
+numDetectedAcrossFeatures
+perCellQCMetrics
+perFeatureQCMetrics
+plotDots
+plotNMF
+quickPerCellQC
+retrieveCellInfo
+retrieveFeatureInfo
+runColDataPCA
+calculateDiffusionMap
+calculateMDS
+runMultiUMAP
+calculateNMF
+runNMF
+calculatePCA
+calculateTSNE
+calculateUMAP
+aggregateAcrossCells
+aggregateAcrossFeatures
+_splitRowsByWorkers
+_splitColsByWorkers
+_splitVectorByWorkers
+_assignIndicesToWorkers
+_subset2index
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+1. getBMFeatureAnnos -> annotateBMFeatures
+2. normalizeSCE -> logNormCounts
+3. plotExprsFreqVsMean -> plotDots
+4. plotExprsVsTxLength -> plotDots
+5. mutate -> normalize
+6. rename -> normalize
+7. filter -> normalize
+8. arrange -> normalize
+Total renames
+8
+Functions in namespace : 113
+Functions in parsed : 79
+Functions in namespace : 65
+Functions in parsed : 49{
+    "package": "scater",
+    "versions": "release_3_11  release_3_12",
+    "param_changes": 4,
+    "param_warnings": 6,
+    "function_removals": 6,
+    "function_renames": 4,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 4,
+    "total_count": 16
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : scater
+Checking Versions scater_release_3_11
+scater_release_3_12
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : plotColData(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : plotColData(...) | Function Declaration Type : S3(object, y, x = NULL, colour_by = NULL, shape_by = NULL, size_by = NULL, by_exprs_values = undefined, other_fields = undefined){...}
+New Parameters : Function Name : plotColData(...) | Function Declaration Type : S3(object, y, x = NULL, colour_by = NULL, shape_by = NULL, size_by = NULL, by_exprs_values = undefined, other_fields = undefined, swap_rownames = NULL, ){...} FILE : plotColData.R
+2. Function Name : plotExpression(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : plotExpression(...) | Function Declaration Type : S3(object, features, x = NULL, exprs_values = undefined, log2_values = FALSE, colour_by = NULL, shape_by = NULL, size_by = NULL, by_exprs_values = exprs_values, xlab = NULL, feature_colours = TRUE, one_facet = TRUE, ncol = undefined, scales = undefined, other_fields = undefined){...}
+New Parameters : Function Name : plotExpression(...) | Function Declaration Type : S3(object, features, x = NULL, exprs_values = undefined, log2_values = FALSE, colour_by = NULL, shape_by = NULL, size_by = NULL, by_exprs_values = exprs_values, xlab = NULL, feature_colours = TRUE, one_facet = TRUE, ncol = undefined, scales = undefined, other_fields = undefined, swap_rownames = NULL, ){...} FILE : plotExpression.R
+3. Function Name : plotHeatmap(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : plotHeatmap(...) | Function Declaration Type : S3(object, features, columns = NULL, exprs_values = undefined, center = FALSE, zlim = NULL, symmetric = FALSE, color = NULL, colour_columns_by = NULL, order_columns_by = NULL, by_exprs_values = exprs_values, show_colnames = FALSE, cluster_cols = undefined){...}
+New Parameters : Function Name : plotHeatmap(...) | Function Declaration Type : S3(object, features, columns = NULL, exprs_values = undefined, center = FALSE, zlim = NULL, symmetric = FALSE, color = NULL, colour_columns_by = NULL, column_annotation_colors = undefined, order_columns_by = NULL, by_exprs_values = exprs_values, show_colnames = FALSE, cluster_cols = undefined, swap_rownames = NULL, ){...} FILE : plotHeatmap.R
+4. Function Name : plotReducedDim(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : plotReducedDim(...) | Function Declaration Type : S3(object, dimred, ncomponents = undefined, percentVar = NULL, colour_by = NULL, shape_by = NULL, size_by = NULL, by_exprs_values = undefined, text_by = NULL, text_size = undefined, text_colour = undefined, label_format = undefined, other_fields = undefined){...}
+New Parameters : Function Name : plotReducedDim(...) | Function Declaration Type : S3(object, dimred, ncomponents = undefined, percentVar = NULL, colour_by = NULL, shape_by = NULL, size_by = NULL, by_exprs_values = undefined, text_by = NULL, text_size = undefined, text_colour = undefined, label_format = undefined, other_fields = undefined, swap_rownames = NULL, ){...} FILE : plotReducedDim.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : plotColData(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, y, x = NULL, colour_by = NULL, shape_by = NULL, size_by = NULL, by_exprs_values = undefined, other_fields = undefined){...}
+New Parameters : (object, y, x = NULL, colour_by = NULL, shape_by = NULL, size_by = NULL, by_exprs_values = undefined, other_fields = undefined, swap_rownames = NULL){...}
+2. Function Name : plotDots(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, features, group = NULL, exprs_values = undefined, detection_limit = undefined, low_color = undefined, high_color = undefined, max_ave = NULL, max_detected = NULL, other_fields = undefinedby_exprs_values = exprs_values){...}
+New Parameters : (object, features, group = NULL, block = NULL, exprs_values = undefined, detection_limit = undefined, low_color = undefined, high_color = undefined, max_ave = NULL, max_detected = NULL, other_fields = undefined, by_exprs_values = exprs_valuesswap_rownames = NULL){...}
+3. Function Name : plotExpression(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, features, x = NULL, exprs_values = undefined, log2_values = FALSE, colour_by = NULL, shape_by = NULL, size_by = NULL, by_exprs_values = exprs_values, xlab = NULL, feature_colours = TRUE, one_facet = TRUE, ncol = undefined, scales = undefined, other_fields = undefined){...}
+New Parameters : (object, features, x = NULL, exprs_values = undefined, log2_values = FALSE, colour_by = NULL, shape_by = NULL, size_by = NULL, by_exprs_values = exprs_values, xlab = NULL, feature_colours = TRUE, one_facet = TRUE, ncol = undefined, scales = undefined, other_fields = undefined, swap_rownames = NULL){...}
+4. Function Name : plotHeatmap(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, features, columns = NULL, exprs_values = undefined, center = FALSE, zlim = NULL, symmetric = FALSE, color = NULL, colour_columns_by = NULL, order_columns_by = NULL, by_exprs_values = exprs_values, show_colnames = FALSE, cluster_cols = undefined){...}
+New Parameters : (object, features, columns = NULL, exprs_values = undefined, center = FALSE, zlim = NULL, symmetric = FALSE, color = NULL, colour_columns_by = NULL, column_annotation_colors = undefined, order_columns_by = NULL, by_exprs_values = exprs_values, show_colnames = FALSE, cluster_cols = undefined, swap_rownames = NULL){...}
+5. Function Name : plotReducedDim(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, dimred, ncomponents = undefined, percentVar = NULL, colour_by = NULL, shape_by = NULL, size_by = NULL, by_exprs_values = undefined, text_by = NULL, text_size = undefined, text_colour = undefined, label_format = undefined, other_fields = undefined){...}
+New Parameters : (object, dimred, ncomponents = undefined, percentVar = NULL, colour_by = NULL, shape_by = NULL, size_by = NULL, by_exprs_values = undefined, text_by = NULL, text_size = undefined, text_colour = undefined, label_format = undefined, other_fields = undefined, swap_rownames = NULL){...}
+6. Function Name : runMultiUMAP(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (inputs, metric = undefined){...}
+New Parameters : (x, name = undefined){...}
+
+-----------------------Removed Functions------------
+
+_assignIndicesToWorkers
+_bpNotSharedOrUp
+_splitColsByWorkers
+_splitRowsByWorkers
+_splitVectorByWorkers
+_subset2index
+
+
+---------------------Added Functions---------------
+
+
+batchCorrectedAverages
+plotGroupedHeatmap
+calculateMultiUMAP
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+1. makePerCellDF -> plotGroupedHeatmap
+2. makePerFeatureDF -> plotGroupedHeatmap
+3. plotRLE -> plotGroupedHeatmap
+4. aggregateAcrossCells -> plotGroupedHeatmap
+Total renames
+4
+Functions in namespace : 97
+Functions in parsed : 49
+Functions in namespace : 113
+Functions in parsed : 79{
+    "package": "scater",
+    "versions": "release_3_12  release_3_13",
+    "param_changes": 3,
+    "param_warnings": 4,
+    "function_removals": 1,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 8
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : scater
+Checking Versions scater_release_3_12
+scater_release_3_13
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : plotGroupedHeatmap(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : plotGroupedHeatmap(...) | Function Declaration Type : S3(object, features, group, block = NULL, columns = NULL, exprs_values = undefined, center = FALSE, zlim = NULL, symmetric = FALSE, color = NULL, swap_rownames = NULL){...}
+New Parameters : Function Name : plotGroupedHeatmap(...) | Function Declaration Type : S3(object, features, group, block = NULL, columns = NULL, exprs_values = undefined, center = FALSE, scale = FALSE, zlim = NULL, color = NULL, swap_rownames = NULL, symmetric = NULL, ){...} FILE : plotGroupedHeatmap.R
+2. Function Name : plotHeatmap(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : plotHeatmap(...) | Function Declaration Type : S3(object, features, columns = NULL, exprs_values = undefined, center = FALSE, zlim = NULL, symmetric = FALSE, color = NULL, colour_columns_by = NULL, column_annotation_colors = undefined, order_columns_by = NULL, by_exprs_values = exprs_values, show_colnames = FALSE, cluster_cols = undefined, swap_rownames = NULL){...}
+New Parameters : Function Name : plotHeatmap(...) | Function Declaration Type : S3(object, features, columns = NULL, exprs_values = undefined, center = FALSE, scale = FALSE, zlim = NULL, color = NULL, colour_columns_by = NULL, column_annotation_colors = undefined, order_columns_by = NULL, by_exprs_values = exprs_values, show_colnames = FALSE, cluster_cols = undefined, swap_rownames = NULL, symmetric = NULL, ){...} FILE : plotHeatmap.R
+3. Function Name : calculateMultiUMAP(...) | Function Declaration Type : setMethod |  Signature: SummarizedExperiment had non-default parameters added in newer version.
+Original Parameters : Function Name : calculateMultiUMAP(...) | Function Declaration Type : setMethod |  Signature: SummarizedExperiment(x, exprs_values){...}
+New Parameters : Function Name : calculateMultiUMAP(...) | Function Declaration Type : setMethod |  Signature: SummarizedExperiment(x, exprs_values, metric = undefined, ){...} FILE : runMultiUMAP.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : plotDots(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, features, group = NULL, block = NULL, exprs_values = undefined, detection_limit = undefined, low_color = undefined, high_color = undefined, max_ave = NULL, max_detected = NULL, other_fields = undefined, by_exprs_values = exprs_valuesswap_rownames = NULL){...}
+New Parameters : (object, features, group = NULL, block = NULL, exprs_values = undefined, detection_limit = undefined, zlim = NULL, color = NULL, max_detected = NULL, other_fields = undefined, by_exprs_values = exprs_values, swap_rownames = NULL, center = FALSE, scale = FALSE, low_color = NULL, high_color = NULLmax_ave = NULL){...}
+2. Function Name : plotGroupedHeatmap(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, features, group, block = NULL, columns = NULL, exprs_values = undefined, center = FALSE, zlim = NULL, symmetric = FALSE, color = NULL, swap_rownames = NULL){...}
+New Parameters : (object, features, group, block = NULL, columns = NULL, exprs_values = undefined, center = FALSE, scale = FALSE, zlim = NULL, color = NULL, swap_rownames = NULL, symmetric = NULL){...}
+3. Function Name : plotHeatmap(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, features, columns = NULL, exprs_values = undefined, center = FALSE, zlim = NULL, symmetric = FALSE, color = NULL, colour_columns_by = NULL, column_annotation_colors = undefined, order_columns_by = NULL, by_exprs_values = exprs_values, show_colnames = FALSE, cluster_cols = undefined, swap_rownames = NULL){...}
+New Parameters : (object, features, columns = NULL, exprs_values = undefined, center = FALSE, scale = FALSE, zlim = NULL, color = NULL, colour_columns_by = NULL, column_annotation_colors = undefined, order_columns_by = NULL, by_exprs_values = exprs_values, show_colnames = FALSE, cluster_cols = undefined, swap_rownames = NULL, symmetric = NULL){...}
+4. Function Name : calculateMultiUMAP(...) | Function Declaration Type : setMethod |  Signature: SummarizedExperiment had parameters modified in newer version.
+Original Parameters : (x, exprs_values){...}
+New Parameters : (x, exprs_values, metric = undefined){...}
+
+-----------------------Removed Functions------------
+
+batchCorrectedAverages
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 96
+Functions in parsed : 48
+Functions in namespace : 97
+Functions in parsed : 49{
+    "package": "scater",
+    "versions": "release_3_13  release_3_14",
+    "param_changes": 1,
+    "param_warnings": 1,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 2
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : scater
+Checking Versions scater_release_3_13
+scater_release_3_14
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : plotHeatmap(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : plotHeatmap(...) | Function Declaration Type : S3(object, features, columns = NULL, exprs_values = undefined, center = FALSE, scale = FALSE, zlim = NULL, color = NULL, colour_columns_by = NULL, column_annotation_colors = undefined, order_columns_by = NULL, by_exprs_values = exprs_values, show_colnames = FALSE, cluster_cols = undefined, swap_rownames = NULL, symmetric = NULL){...}
+New Parameters : Function Name : plotHeatmap(...) | Function Declaration Type : S3(object, features, columns = NULL, exprs_values = undefined, center = FALSE, scale = FALSE, zlim = NULL, color = NULL, color_columns_by = NULL, column_annotation_colors = undefined, color_rows_by = NULL, row_annotation_colors = undefined, order_columns_by = NULL, by_exprs_values = exprs_values, show_colnames = FALSE, cluster_cols = undefined, swap_rownames = NULL, symmetric = NULL, ){...} FILE : plotHeatmap.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : plotHeatmap(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, features, columns = NULL, exprs_values = undefined, center = FALSE, scale = FALSE, zlim = NULL, color = NULL, colour_columns_by = NULL, column_annotation_colors = undefined, order_columns_by = NULL, by_exprs_values = exprs_values, show_colnames = FALSE, cluster_cols = undefined, swap_rownames = NULL, symmetric = NULL){...}
+New Parameters : (object, features, columns = NULL, exprs_values = undefined, center = FALSE, scale = FALSE, zlim = NULL, color = NULL, color_columns_by = NULL, column_annotation_colors = undefined, color_rows_by = NULL, row_annotation_colors = undefined, order_columns_by = NULL, by_exprs_values = exprs_values, show_colnames = FALSE, cluster_cols = undefined, swap_rownames = NULL, symmetric = NULL){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 96
+Functions in parsed : 48
+Functions in namespace : 96
+Functions in parsed : 48{
+    "package": "scater",
+    "versions": "release_3_14  master",
+    "param_changes": 2,
+    "param_warnings": 1,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 3
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : scater
+Checking Versions scater_release_3_14
+scater_master
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : plotReducedDim(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : plotReducedDim(...) | Function Declaration Type : S3(object, dimred, ncomponents = undefined, percentVar = NULL, colour_by = NULL, shape_by = NULL, size_by = NULL, by_exprs_values = undefined, text_by = NULL, text_size = undefined, text_colour = undefined, label_format = undefined, other_fields = undefined, swap_rownames = NULL){...}
+New Parameters : Function Name : plotReducedDim(...) | Function Declaration Type : S3(object, dimred, ncomponents = undefined, percentVar = NULL, colour_by = NULL, shape_by = NULL, size_by = NULL, by_exprs_values = undefined, text_by = NULL, text_size = undefined, text_colour = undefined, label_format = undefined, other_fields = undefined, swap_rownames = NULL, point, padding = NA, force = undefined, ){...} FILE : plotReducedDim.R
+2. Function Name : runDiffusionMap(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (x, , altexpname){...}
+New Parameters : (){...} FILE : runDiffusionMap.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : plotReducedDim(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, dimred, ncomponents = undefined, percentVar = NULL, colour_by = NULL, shape_by = NULL, size_by = NULL, by_exprs_values = undefined, text_by = NULL, text_size = undefined, text_colour = undefined, label_format = undefined, other_fields = undefined, swap_rownames = NULL){...}
+New Parameters : (object, dimred, ncomponents = undefined, percentVar = NULL, colour_by = NULL, shape_by = NULL, size_by = NULL, by_exprs_values = undefined, text_by = NULL, text_size = undefined, text_colour = undefined, label_format = undefined, other_fields = undefined, swap_rownames = NULL, point, padding = NA, force = undefined){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 96
+Functions in parsed : 48
+Functions in namespace : 96
+Functions in parsed : 48

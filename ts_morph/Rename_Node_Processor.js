@@ -8,7 +8,9 @@ function replaceAll(str, find, replace) {
   return str.replace(new RegExp(escapedFind, "g"), replace);
 }
 export class Rename_Node_Processor {
-  constructor(old_filtered_dict, new_filtered_dict) {
+  constructor(old_filtered_dict, new_filtered_dict, old_ns_list, new_ns_list) {
+    this.old_ns_list = old_ns_list;
+    this.new_ns_list = new_ns_list;
     this.old_filtered_dict = old_filtered_dict;
     this.new_filtered_dict = new_filtered_dict;
     this.functions_removed_dict = {};
@@ -18,6 +20,8 @@ export class Rename_Node_Processor {
     this.functions_renamed_list = [];
     this.functions_definite_name_renamed_list = [];
     this.functions_definite_body_renamed_list = [];
+    this.ns_removed_list = [];
+    this.getNamespaceRemovals();
     this.getFunctionRemovals();
     this.getFunctionAdditions();
     this.getParameters();
@@ -44,6 +48,27 @@ export class Rename_Node_Processor {
       }
     }
   }
+
+  getNamespaceRemovals() {
+    console.log("OLD NS LIST");
+    console.log(this.old_ns_list);
+    console.log("NEW NS LIST");
+    console.log(this.new_ns_list);
+    for (let old_func of this.old_ns_list) {
+      if (!this.new_ns_list.includes(old_func)) {
+        this.ns_removed_list.push(old_func);
+      }
+    }
+  }
+
+  printNSRemovedFunctions() {
+    console.log("Functions Removed : ");
+    console.log(this.ns_removed_list);
+    return {
+      line: "\n" + this.ns_removed_list.join("\n"),
+      value: this.ns_removed_list.length,
+    };
+  }
   getFunctionRemovals() {
     for (let key in this.old_filtered_dict) {
       if (!this.new_filtered_dict.hasOwnProperty(key)) {
@@ -63,7 +88,10 @@ export class Rename_Node_Processor {
   printRemovedFunctions() {
     console.log("Functions Removed : ");
     console.log(Object.keys(this.functions_removed_dict));
-    return "\n" + Object.keys(this.functions_removed_dict).join("\n");
+    return {
+      line: "\n" + Object.keys(this.functions_removed_dict).join("\n"),
+      value: Object.keys(this.functions_removed_dict).length,
+    };
   }
 
   printAddedFunctions() {
@@ -73,6 +101,7 @@ export class Rename_Node_Processor {
   }
 
   printRenamedFunctions() {
+    var total_renames = 0;
     let idx = 0;
     let body_idx = 0;
     let name_idx = 0;
@@ -174,7 +203,7 @@ export class Rename_Node_Processor {
       }
     }
 
-    var total_renames =
+    total_renames =
       this.functions_definite_body_renamed_list.length +
       this.functions_definite_name_renamed_list.length +
       this.functions_renamed_list.length;
@@ -200,6 +229,12 @@ export class Rename_Node_Processor {
         this.functions_definite_name_renamed_list.length +
         this.functions_renamed_list.length
     );
-    return renamed_output_string;
+    return {
+      line: renamed_output_string,
+      value: total_renames,
+      def_name: this.functions_definite_name_renamed_list.length,
+      def_body: this.functions_definite_body_renamed_list.length,
+      poss_rename: this.functions_renamed_list.length,
+    };
   }
 }

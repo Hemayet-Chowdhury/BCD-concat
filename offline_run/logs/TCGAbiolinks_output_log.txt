@@ -1,0 +1,772 @@
+{
+    "package": "TCGAbiolinks",
+    "versions": "release_3_2  release_3_3",
+    "param_changes": 7,
+    "param_warnings": 5,
+    "function_removals": 6,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 18
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : TCGAbiolinks
+Checking Versions tcgabiolinks_release_3_2
+tcgabiolinks_release_3_3
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : TCGAanalyze_survival(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : TCGAanalyze_survival(...) | Function Declaration Type : S3(data, clusterCol = NULL, legend = undefined, labels = NULL, cutoff = undefined, main = undefined, ylab = undefined, xlab = undefined, filename = undefined, color = NULL, height = undefined, width = undefined, printvalue = TRUE){...}
+New Parameters : Function Name : TCGAanalyze_survival(...) | Function Declaration Type : S3(data, clusterCol = NULL, legend = undefined, labels = NULL, cutoff = undefined, main = undefined, ylab = undefined, xlab = undefined, filename = undefined, color = NULL, height = undefined, width = undefined, dpi = undefined, legend, position = undefined, legend, title, position = undefined, legend, ncols = undefined, add, legend = TRUE, print, value = TRUE, add, points = TRUE){...} FILE : methylation.R
+2. Function Name : TCGAvisualize_meanMethylation(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : TCGAvisualize_meanMethylation(...) | Function Declaration Type : S3(data, groupCol = NULL, subgroupCol = NULL, shapes = NULL, print, pvalue = FALSE, filename = undefined, ylab = undefined, xlab = NULL, title = undefined, labels = NULL, group, legend = NULL, subgroup, legend = NULLcolor = NULL){...}
+New Parameters : Function Name : TCGAvisualize_meanMethylation(...) | Function Declaration Type : S3(data, groupCol = NULL, subgroupCol = NULL, shapes = NULL, print, pvalue = FALSE, plot, jitter = TRUE, jitter, size = undefined, filename = undefined, ylab = undefined, xlab = NULL, title = undefined, labels = NULL, group, legend = NULL, subgroup, legend = NULL, color = NULL, y, limits = NULL, sort, order, legend, position = undefined, legend, title, position = undefined, legend, ncols = undefined, add, axis, x, text = FALSE, width = undefined, height = undefined, dpi = undefined, axis, text, x, angle = undefined){...} FILE : methylation.R
+3. Function Name : TCGAVisualize_volcano(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : TCGAVisualize_volcano(...) | Function Declaration Type : S3(x, y, filename = undefined, ylab = undefined, xlab = NULL, title = NULL, legend = NULL, label = NULL, xlim = NULL, ylim = NULL, color = undefined, names = NULL, x, cut = undefined, y, cut = undefined, height = undefinedwidth = undefined){...}
+New Parameters : Function Name : TCGAVisualize_volcano(...) | Function Declaration Type : S3(x, y, filename = undefined, ylab = undefined, xlab = NULL, title = NULL, legend = NULL, label = NULL, xlim = NULL, ylim = NULL, color = undefined, names = NULL, names, fill = TRUE, show, names = undefined, x, cut = undefined, y, cut = undefined, height = undefined, width = undefined, highlight = NULL, highlight, color = undefined, names, size = undefined, dpi = undefined){...} FILE : methylation.R
+4. Function Name : TCGAvisualize_starburst(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (met, exp, group1, group2, exp, p, cut, met, p, cut, diffmean, cut, logFC, cut, names, filename, ylab, xlab, title, legend, color, label, xlimylim){...}
+New Parameters : (met, exp, group1, group2, exp, p, cut, met, p, cut, diffmean, cut, logFC, cut, names, names, fill, circlefilename){...} FILE : methylation.R
+5. Function Name : TCGAprepare(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (query, dir, samples, type, save, filename, add, mutation, genes, reannotate, summarizedExperiment, addsubtype){...}
+New Parameters : (query, dir, samples, type, save, filenamesummarizedExperiment){...} FILE : TCGAPrepare.R
+6. Function Name : TCGAvisualize_EAbarplot(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : TCGAvisualize_EAbarplot(...) | Function Declaration Type : S3(tf, GOMFTab, GOBPTab, GOCCTab, PathTab, nBarnRGTab){...}
+New Parameters : Function Name : TCGAvisualize_EAbarplot(...) | Function Declaration Type : S3(tf, GOMFTab, GOBPTab, GOCCTab, PathTab, nBar, nRGTab, filename = undefined, text, size = undefined, mfrow = undefined, xlim = NULL, color = undefined){...} FILE : TCGAvisualize.R
+7. Function Name : TCGAvisualize_Heatmap(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : TCGAvisualize_Heatmap(...) | Function Declaration Type : S3(cancer, DFfilt, DFclin, DFsubt, data_Hc2, cbPalettefilename = NULL){...}
+New Parameters : Function Name : TCGAvisualize_Heatmap(...) | Function Declaration Type : S3(data, col, metadata, row, metadata, col, colors = NULL, row, colors = NULL, show_column_names = FALSE, show_row_names = FALSE, cluster_rows = FALSE, cluster_columns = FALSE, sortCol, extrems = NULL, rownames, size = undefined, title = NULL, color, levels = NULL, values, label = NULL, filename = undefined, width = undefined, height = undefined, type = undefined, scale = undefined, heatmap, legend, color, bar = undefined){...} FILE : TCGAvisualize.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : TCGAanalyze_survival(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (data, clusterCol = NULL, legend = undefined, labels = NULL, cutoff = undefined, main = undefined, ylab = undefined, xlab = undefined, filename = undefined, color = NULL, height = undefined, width = undefined, printvalue = TRUE){...}
+New Parameters : (data, clusterCol = NULL, legend = undefined, labels = NULL, cutoff = undefined, main = undefined, ylab = undefined, xlab = undefined, filename = undefined, color = NULL, height = undefined, width = undefined, dpi = undefined, legend, position = undefined, legend, title, position = undefined, legend, ncols = undefined, add, legend = TRUE, print, value = TRUE, addpoints = TRUE){...}
+2. Function Name : TCGAvisualize_meanMethylation(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (data, groupCol = NULL, subgroupCol = NULL, shapes = NULL, print, pvalue = FALSE, filename = undefined, ylab = undefined, xlab = NULL, title = undefined, labels = NULL, group, legend = NULL, subgroup, legend = NULLcolor = NULL){...}
+New Parameters : (data, groupCol = NULL, subgroupCol = NULL, shapes = NULL, print, pvalue = FALSE, plot, jitter = TRUE, jitter, size = undefined, filename = undefined, ylab = undefined, xlab = NULL, title = undefined, labels = NULL, group, legend = NULL, subgroup, legend = NULL, color = NULL, y, limits = NULL, sort, order, legend, position = undefined, legend, title, position = undefined, legend, ncols = undefined, add, axis, x, text = FALSE, width = undefined, height = undefined, dpi = undefined, axis, text, xangle = undefined){...}
+3. Function Name : TCGAVisualize_volcano(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (x, y, filename = undefined, ylab = undefined, xlab = NULL, title = NULL, legend = NULL, label = NULL, xlim = NULL, ylim = NULL, color = undefined, names = NULL, x, cut = undefined, y, cut = undefined, height = undefinedwidth = undefined){...}
+New Parameters : (x, y, filename = undefined, ylab = undefined, xlab = NULL, title = NULL, legend = NULL, label = NULL, xlim = NULL, ylim = NULL, color = undefined, names = NULL, names, fill = TRUE, show, names = undefined, x, cut = undefined, y, cut = undefined, height = undefined, width = undefined, highlight = NULL, highlight, color = undefined, names, size = undefineddpi = undefined){...}
+4. Function Name : TCGAanalyze_DMR(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (data, groupCol = NULL, group1 = NULL, group2 = NULL, plot, filename = undefined, ylab = undefined, xlab = undefined, title = NULL, legend = undefined, color = undefined, label = NULL, xlim = NULL, ylim = NULL, p, cut = undefined, probe, names = FALSE, diffmean, cut = undefined, paired = FALSE, adj, method = undefined, overwrite = FALSE, cores = undefined, save = TRUEfilename = NULL){...}
+New Parameters : (data, groupCol = NULL, group1 = NULL, group2 = NULL, plot, filename = undefined, ylab = undefined, xlab = undefined, title = NULL, legend = undefined, color = undefined, label = NULL, xlim = NULL, ylim = NULL, p, cut = undefined, probe, names = FALSE, diffmean, cut = undefined, paired = FALSE, adj, method = undefined, overwrite = FALSE, cores = undefined, save = TRUE, save, directory = undefinedfilename = NULL){...}
+5. Function Name : TCGAvisualize_Heatmap(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (cancer, DFfilt, DFclin, DFsubt, data_Hc2, cbPalettefilename = NULL){...}
+New Parameters : (data, col, metadata, row, metadata, col, colors = NULL, row, colors = NULL, show_column_names = FALSE, show_row_names = FALSE, cluster_rows = FALSE, cluster_columns = FALSE, sortCol, extrems = NULL, rownames, size = undefined, title = NULL, color, levels = NULL, values, label = NULL, filename = undefined, width = undefined, height = undefined, type = undefined, scale = undefined, heatmap, legend, colorbar = undefined){...}
+
+-----------------------Removed Functions------------
+
+TCGAanalyze_copynumber
+TCGAquery_Investigate
+TCGAquery_Social
+TCGAquery_Version
+TCGAquery_integrate
+TCGAquery_samplesfilter
+
+
+---------------------Added Functions---------------
+
+
+TCGAanalyze_analyseGRN
+GDCdownload
+isServeOK
+GDCprepare
+GDCquery
+GDCprepare_clinic
+TCGAvisualize_oncoprint
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 41
+Functions in parsed : 38
+Functions in namespace : 37
+Functions in parsed : 37{
+    "package": "TCGAbiolinks",
+    "versions": "release_3_3  release_3_4",
+    "param_changes": 6,
+    "param_warnings": 4,
+    "function_removals": 6,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 16
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : TCGAbiolinks
+Checking Versions tcgabiolinks_release_3_3
+tcgabiolinks_release_3_4
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : TCGAanalyze_survival(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (data, clusterCol, legend, labels, cutoff, main, ylab, xlab, filename, color, height, width, dpi, legend, position, legend, title, position, legend, ncols, add, legend, print, value, addpoints){...}
+New Parameters : (data, clusterCol, legend, labels, risk, table, xlim, main, ylab, xlab, filename, color, height, width, dpi, pvalue, conf, int){...} FILE : methylation.R
+2. Function Name : TCGAanalyze_DMR(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : TCGAanalyze_DMR(...) | Function Declaration Type : S3(data, groupCol = NULL, group1 = NULL, group2 = NULL, plot, filename = undefined, ylab = undefined, xlab = undefined, title = NULL, legend = undefined, color = undefined, label = NULL, xlim = NULL, ylim = NULL, p, cut = undefined, probe, names = FALSE, diffmean, cut = undefined, paired = FALSE, adj, method = undefined, overwrite = FALSE, cores = undefined, save = TRUE, save, directory = undefinedfilename = NULL){...}
+New Parameters : Function Name : TCGAanalyze_DMR(...) | Function Declaration Type : S3(data, groupCol = NULL, group1 = NULL, group2 = NULL, calculate, pvalues, probes = undefined, plot, filename = undefined, ylab = undefined, xlab = undefined, title = NULL, legend = undefined, color = undefined, label = NULL, xlim = NULL, ylim = NULL, p, cut = undefined, probe, names = FALSE, diffmean, cut = undefined, paired = FALSE, adj, method = undefined, overwrite = FALSE, cores = undefined, save = TRUE, save, directory = undefined, filename = NULL){...} FILE : methylation.R
+3. Function Name : TCGAanalyze_SurvivalKM(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : TCGAanalyze_SurvivalKM(...) | Function Declaration Type : S3(clinical_patient, dataGE, Genelist, Survresult, ThreshTop = undefined, ThreshDown = undefined, pcut = undefined){...}
+New Parameters : Function Name : TCGAanalyze_SurvivalKM(...) | Function Declaration Type : S3(clinical_patient, dataGE, Genelist, Survresult, ThreshTop = undefined, ThreshDown = undefined, p, cut = undefined, group1, group2){...} FILE : TCGAanalyze.R
+4. Function Name : GDCprepare(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : GDCprepare(...) | Function Declaration Type : S3(query, save = FALSE, save, filename, directory = undefined, summarizedExperiment = TRUE, remove, filesprepared = FALSE){...}
+New Parameters : Function Name : GDCprepare(...) | Function Declaration Type : S3(query, save = FALSE, save, filename, directory = undefined, summarizedExperiment = TRUE, remove, files, prepared = FALSE, add, gistic2, mut = NULL, mut, pipeline = undefined){...} FILE : TCGAPrepare.R
+5. Function Name : TCGAvisualize_PCA(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : TCGAvisualize_PCA(...) | Function Declaration Type : S3(dataFilt, dataDEGsFiltLevelntopgenes){...}
+New Parameters : Function Name : TCGAvisualize_PCA(...) | Function Declaration Type : S3(dataFilt, dataDEGsFiltLevel, ntopgenes, group1, group2){...} FILE : TCGAvisualize.R
+6. Function Name : TCGAvisualize_oncoprint(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : TCGAvisualize_oncoprint(...) | Function Declaration Type : S3(mut, genes, filename, color, annotation, position = undefined, annotation, height, width = undefined, rm, empty, columns = FALSE, show, column, names = FALSE, show, row, barplot = TRUE, label, title = undefined, label, font, size = undefined, rows, font, size = undefined, dist, col = undefined, dist, row = undefined, row, order = FALSE, heatmap, legend, side = undefined, annotation, legendside = undefined){...}
+New Parameters : Function Name : TCGAvisualize_oncoprint(...) | Function Declaration Type : S3(mut, genes, filename, color, annotation, position = undefined, annotation, height, width = undefined, rm, empty, columns = FALSE, show, column, names = FALSE, show, row, barplot = TRUE, label, title = undefined, column, names, size = undefined, label, font, size = undefined, rows, font, size = undefined, dist, col = undefined, dist, row = undefined, information = undefined, row, order = TRUE, col, order = TRUE, heatmap, legend, side = undefined, annotation, legend, side = undefined){...} FILE : TCGAvisualize.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : TCGAvisualize_meanMethylation(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (data, groupCol = NULL, subgroupCol = NULL, shapes = NULL, print, pvalue = FALSE, plot, jitter = TRUE, jitter, size = undefined, filename = undefined, ylab = undefined, xlab = NULL, title = undefined, labels = NULL, group, legend = NULL, subgroup, legend = NULL, color = NULL, y, limits = NULL, sort, order, legend, position = undefined, legend, title, position = undefined, legend, ncols = undefined, add, axis, x, text = FALSE, width = undefined, height = undefined, dpi = undefined, axis, text, xangle = undefined){...}
+New Parameters : (data, groupCol = NULL, subgroupCol = NULL, shapes = NULL, print, pvalue = FALSE, plot, jitter = TRUE, jitter, size = undefined, filename = undefined, ylab = undefined, xlab = NULL, title = undefined, labels = NULL, group, legend = NULL, subgroup, legend = NULL, color = NULL, y, limits = NULL, sort, order, legend, position = undefined, legend, title, position = undefined, legend, ncols = undefined, add, axis, x, text = TRUE, width = undefined, height = undefined, dpi = undefined, axis, text, xangle = undefined){...}
+2. Function Name : TCGAVisualize_volcano(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (x, y, filename = undefined, ylab = undefined, xlab = NULL, title = NULL, legend = NULL, label = NULL, xlim = NULL, ylim = NULL, color = undefined, names = NULL, names, fill = TRUE, show, names = undefined, x, cut = undefined, y, cut = undefined, height = undefined, width = undefined, highlight = NULL, highlight, color = undefined, names, size = undefineddpi = undefined){...}
+New Parameters : (x, y, filename = undefined, ylab = undefined, xlab = NULL, title = undefined, legend = NULL, label = NULL, xlim = NULL, ylim = NULL, color = undefined, names = NULL, names, fill = TRUE, show, names = undefined, x, cut = undefined, y, cut = undefined, height = undefined, width = undefined, highlight = NULL, highlight, color = undefined, names, size = undefineddpi = undefined){...}
+3. Function Name : TCGAanalyze_DMR(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (data, groupCol = NULL, group1 = NULL, group2 = NULL, plot, filename = undefined, ylab = undefined, xlab = undefined, title = NULL, legend = undefined, color = undefined, label = NULL, xlim = NULL, ylim = NULL, p, cut = undefined, probe, names = FALSE, diffmean, cut = undefined, paired = FALSE, adj, method = undefined, overwrite = FALSE, cores = undefined, save = TRUE, save, directory = undefinedfilename = NULL){...}
+New Parameters : (data, groupCol = NULL, group1 = NULL, group2 = NULL, calculate, pvalues, probes = undefined, plot, filename = undefined, ylab = undefined, xlab = undefined, title = NULL, legend = undefined, color = undefined, label = NULL, xlim = NULL, ylim = NULL, p, cut = undefined, probe, names = FALSE, diffmean, cut = undefined, paired = FALSE, adj, method = undefined, overwrite = FALSE, cores = undefined, save = TRUE, save, directory = undefinedfilename = NULL){...}
+4. Function Name : TCGAvisualize_oncoprint(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (mut, genes, filename, color, annotation, position = undefined, annotation, height, width = undefined, rm, empty, columns = FALSE, show, column, names = FALSE, show, row, barplot = TRUE, label, title = undefined, label, font, size = undefined, rows, font, size = undefined, dist, col = undefined, dist, row = undefined, row, order = FALSE, heatmap, legend, side = undefined, annotation, legendside = undefined){...}
+New Parameters : (mut, genes, filename, color, annotation, position = undefined, annotation, height, width = undefined, rm, empty, columns = FALSE, show, column, names = FALSE, show, row, barplot = TRUE, label, title = undefined, column, names, size = undefined, label, font, size = undefined, rows, font, size = undefined, dist, col = undefined, dist, row = undefined, information = undefined, row, order = TRUE, col, order = TRUE, heatmap, legend, side = undefined, annotation, legendside = undefined){...}
+
+-----------------------Removed Functions------------
+
+TCGAdownload
+TCGAprepare
+TCGAquery
+TCGAquery_clinic
+TCGAquery_clinicFilt
+TCGAquery_maf
+
+
+---------------------Added Functions---------------
+
+
+TCGAanalyze_Pathview
+TCGAanalyze_networkInference
+GDCquery_clinic
+getResults
+GDCquery_Maf
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 38
+Functions in parsed : 36
+Functions in namespace : 41
+Functions in parsed : 38{
+    "package": "TCGAbiolinks",
+    "versions": "release_3_4  release_3_5",
+    "param_changes": 0,
+    "param_warnings": 2,
+    "function_removals": 1,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 3
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : TCGAbiolinks
+Checking Versions tcgabiolinks_release_3_4
+tcgabiolinks_release_3_5
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : GDCdownload(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (query, token, file, method = undefined, directory = undefined, chunks, perdownload = NULL){...}
+New Parameters : (query, token, file, method = undefined, directory = undefined, files, perchunk = NULL){...}
+2. Function Name : TCGAvisualize_starburst(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (met, exp, group1 = NULL, group2 = NULL, exp, p, cut = undefined, met, p, cut = undefined, diffmean, cut = undefined, logFC, cut = undefined, names = FALSE, names, fill = TRUE, circle = TRUEfilename = undefined){...}
+New Parameters : (met, exp, group1 = NULL, group2 = NULL, exp, p, cut = undefined, met, p, cut = undefined, diffmean, cut = undefined, logFC, cut = undefined, met, platform, genome, names = FALSE, names, fill = TRUE, circle = TRUEfilename = undefined){...}
+
+-----------------------Removed Functions------------
+
+TCGAvisualize_Tables
+
+
+---------------------Added Functions---------------
+
+
+gaiaCNVplot
+getAdjacencyBiogrid
+matchedMetExp
+getDataCategorySummary
+getGDCInfo
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 43
+Functions in parsed : 40
+Functions in namespace : 38
+Functions in parsed : 36{
+    "package": "TCGAbiolinks",
+    "versions": "release_3_5  release_3_6",
+    "param_changes": 2,
+    "param_warnings": 2,
+    "function_removals": 1,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 5
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : TCGAbiolinks
+Checking Versions tcgabiolinks_release_3_5
+tcgabiolinks_release_3_6
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : TCGAanalyze_DEA(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : TCGAanalyze_DEA(...) | Function Declaration Type : S3(mat1, mat2, Cond1type, Cond2type, method = undefined, fdr, cut = undefined, logFC, cut = undefinedelementsRatio = undefined){...}
+New Parameters : Function Name : TCGAanalyze_DEA(...) | Function Declaration Type : S3(mat1, mat2, Cond1type, Cond2type, pipeline = undefined, method = undefined, fdr, cut = undefined, logFC, cut = undefined, elementsRatio = undefined, batch, factors = NULL, ClinicalDF = undefined, paired = FALSE, log, trans = FALSE, voom = FALSE, trend = FALSE, MAT = undefined, contrast, formula = undefined, Condtypes = undefined){...} FILE : analyze.R
+2. Function Name : TCGAvisualize_starburst(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (met, exp, group1, group2, exp, p, cut, met, p, cut, diffmean, cut, logFC, cut, met, platform, genome, names, names, fill, circlefilename){...}
+New Parameters : (met, exp, group1, group2, exp, p, cut, met, p, cut, diffmean, cut, logFC, cut, met, platform, genome, names, names, fillfilename){...} FILE : methylation.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : TCGAanalyze_SurvivalKM(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (clinical_patient, dataGE, Genelist, Survresult, ThreshTop = undefined, ThreshDown = undefined, p, cut = undefined, group1group2){...}
+New Parameters : (clinical_patient, dataGE, Genelist, Survresult = FALSE, ThreshTop = undefined, ThreshDown = undefined, p, cut = undefined, group1group2){...}
+2. Function Name : TCGAanalyze_DEA(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (mat1, mat2, Cond1type, Cond2type, method = undefined, fdr, cut = undefined, logFC, cut = undefinedelementsRatio = undefined){...}
+New Parameters : (mat1, mat2, Cond1type, Cond2type, pipeline = undefined, method = undefined, fdr, cut = undefined, logFC, cut = undefined, elementsRatio = undefined, batch, factors = NULL, ClinicalDF = undefined, paired = FALSE, log, trans = FALSE, voom = FALSE, trend = FALSE, MAT = undefined, contrast, formula = undefinedCondtypes = undefined){...}
+
+-----------------------Removed Functions------------
+
+TCGAprepare_elmer
+
+
+---------------------Added Functions---------------
+
+
+TCGAbatch_Correction
+UseRaw_afterFilter
+PanCancerAtlas_subtypes
+TCGA_MolecularSubtype
+TCGAtumor_purity
+getManifest
+getGDCprojects
+TCGAquery_recount2
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 49
+Functions in parsed : 46
+Functions in namespace : 43
+Functions in parsed : 40{
+    "package": "TCGAbiolinks",
+    "versions": "release_3_6  release_3_7",
+    "param_changes": 0,
+    "param_warnings": 1,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 1
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : TCGAbiolinks
+Checking Versions tcgabiolinks_release_3_6
+tcgabiolinks_release_3_7
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : TCGAanalyze_DEA(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (mat1, mat2, Cond1type, Cond2type, pipeline = undefined, method = undefined, fdr, cut = undefined, logFC, cut = undefined, elementsRatio = undefined, batch, factors = NULL, ClinicalDF = undefined, paired = FALSE, log, trans = FALSE, voom = FALSE, trend = FALSE, MAT = undefined, contrast, formula = undefinedCondtypes = undefined){...}
+New Parameters : (mat1, mat2, metadata = TRUE, Cond1type, Cond2type, pipeline = undefined, method = undefined, fdr, cut = undefined, logFC, cut = undefined, elementsRatio = undefined, batch, factors = NULL, ClinicalDF = undefined, paired = FALSE, log, trans = FALSE, voom = FALSE, trend = FALSE, MAT = undefined, contrast, formula = undefinedCondtypes = undefined){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+get_IDs
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 50
+Functions in parsed : 47
+Functions in namespace : 49
+Functions in parsed : 46{
+    "package": "TCGAbiolinks",
+    "versions": "release_3_7  release_3_8",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : TCGAbiolinks
+Checking Versions tcgabiolinks_release_3_7
+tcgabiolinks_release_3_8
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+GDCquery_ATAC_seq
+getSampleFilesSummary
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 54
+Functions in parsed : 49
+Functions in namespace : 50
+Functions in parsed : 47{
+    "package": "TCGAbiolinks",
+    "versions": "release_3_8  release_3_9",
+    "param_changes": 1,
+    "param_warnings": 1,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 2
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : TCGAbiolinks
+Checking Versions tcgabiolinks_release_3_8
+tcgabiolinks_release_3_9
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : GDCquery(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : GDCquery(...) | Function Declaration Type : S3(project, data, category, data, type, workflow, type, legacy = FALSE, access, platform, file, type, barcode, experimental, strategy, sampletype){...}
+New Parameters : Function Name : GDCquery(...) | Function Declaration Type : S3(project, data, category, data, type, workflow, type, legacy = FALSE, access, platform, file, type, barcode, data, format, experimental, strategy, sample, type){...} FILE : query.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : GDCquery(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (project, data, category, data, type, workflow, type, legacy = FALSE, access, platform, file, type, barcode, experimental, strategy, sampletype){...}
+New Parameters : (project, data, category, data, type, workflow, type, legacy = FALSE, access, platform, file, type, barcode, data, format, experimental, strategy, sampletype){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+TCGAanalyze_Stemness
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 55
+Functions in parsed : 50
+Functions in namespace : 54
+Functions in parsed : 49{
+    "package": "TCGAbiolinks",
+    "versions": "release_3_9  release_3_11",
+    "param_changes": 0,
+    "param_warnings": 2,
+    "function_removals": 1,
+    "function_renames": 1,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 1,
+    "total_count": 3
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : TCGAbiolinks
+Checking Versions tcgabiolinks_release_3_9
+tcgabiolinks_release_3_11
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : getManifest(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (querysave = F){...}
+New Parameters : (querysave = FALSE){...}
+2. Function Name : TCGAvisualize_Heatmap(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (data, col, metadata, row, metadata, col, colors = NULL, row, colors = NULL, show_column_names = FALSE, show_row_names = FALSE, cluster_rows = FALSE, cluster_columns = FALSE, sortCol, extrems = NULL, rownames, size = undefined, title = NULL, color, levels = NULL, values, label = NULL, filename = undefined, width = undefined, height = undefined, type = undefined, scale = undefined, heatmap, legend, colorbar = undefined){...}
+New Parameters : (data, col, metadata, row, metadata, col, colors = NULL, row, colors = NULL, show_column_names = FALSE, show_row_names = FALSE, cluster_rows = FALSE, cluster_columns = FALSE, sortCol, extremes = NULL, rownames, size = undefined, title = NULL, color, levels = NULL, values, label = NULL, filename = undefined, width = undefined, height = undefined, type = undefined, scale = undefined, heatmap, legend, colorbar = undefined){...}
+
+-----------------------Removed Functions------------
+
+TCGAanalyze_DMR
+
+
+---------------------Added Functions---------------
+
+
+gliomaClassifier
+getLinkedOmicsData
+TCGAanalyze_DMC
+colDataPrepare
+getMC3MAF
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+1. TCGAanalyze_DMR -> TCGAanalyze_DMC
+Total renames
+1
+Functions in namespace : 58
+Functions in parsed : 54
+Functions in namespace : 55
+Functions in parsed : 50{
+    "package": "TCGAbiolinks",
+    "versions": "release_3_11  release_3_12",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : TCGAbiolinks
+Checking Versions tcgabiolinks_release_3_11
+tcgabiolinks_release_3_12
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 58
+Functions in parsed : 54
+Functions in namespace : 58
+Functions in parsed : 54{
+    "package": "TCGAbiolinks",
+    "versions": "release_3_12  release_3_13",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : TCGAbiolinks
+Checking Versions tcgabiolinks_release_3_12
+tcgabiolinks_release_3_13
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 58
+Functions in parsed : 54
+Functions in namespace : 58
+Functions in parsed : 54{
+    "package": "TCGAbiolinks",
+    "versions": "release_3_13  release_3_14",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : TCGAbiolinks
+Checking Versions tcgabiolinks_release_3_13
+tcgabiolinks_release_3_14
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 58
+Functions in parsed : 54
+Functions in namespace : 58
+Functions in parsed : 54{
+    "package": "TCGAbiolinks",
+    "versions": "release_3_14  master",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : TCGAbiolinks
+Checking Versions tcgabiolinks_release_3_14
+tcgabiolinks_master
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 58
+Functions in parsed : 54
+Functions in namespace : 58
+Functions in parsed : 54

@@ -1,0 +1,181 @@
+{
+    "package": "scuttle",
+    "versions": "release_3_12  release_3_13",
+    "param_changes": 0,
+    "param_warnings": 3,
+    "function_removals": 0,
+    "function_renames": 2,
+    "def_body_renames": 2,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 3
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : scuttle
+Checking Versions scuttle_release_3_12
+scuttle_release_3_13
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : logNormCounts(...) | Function Declaration Type : setMethod |  Signature: SummarizedExperiment had parameters modified in newer version.
+Original Parameters : (x, size, factors = NULL, log = TRUE, pseudo, count = undefined, center, size, factors = TRUE, , assay, type = undefined, name = NULL, BPPARAM = undefined, size_factors = NULL, pseudo_count = NULL, center_size_factors = NULLexprs_values = NULL){...}
+New Parameters : (x, size, factors = NULL, log = NULL, transform = undefined, pseudo, count = undefined, center, size, factors = TRUE, , subset, row = NULL, normalize, all = FALSE, assay, type = undefined, name = NULL, BPPARAM = undefined, size_factors = NULL, pseudo_count = NULL, center_size_factors = NULLexprs_values = NULL){...}
+2. Function Name : normalizeCounts(...) | Function Declaration Type : setMethod |  Signature: ANY had parameters modified in newer version.
+Original Parameters : (x, size, factors = NULL, log = TRUE, pseudo, count = undefined, center, size, factors = TRUE, subset, row = NULL, downsample = FALSE, down, target = NULL, down, prop = undefined, BPPARAM = undefined, size_factors = NULL, pseudo_count = NULL, center_size_factors = NULL, subset_row = NULL, down_target = NULLdown_prop = NULL){...}
+New Parameters : (x, size, factors = NULL, log = NULL, transform = undefined, pseudo, count = undefined, center, size, factors = TRUE, subset, row = NULL, normalize, all = FALSE, downsample = FALSE, down, target = NULL, down, prop = undefined, BPPARAM = undefined, size_factors = NULL, pseudo_count = NULL, center_size_factors = NULL, subset_row = NULL, down_target = NULLdown_prop = NULL){...}
+3. Function Name : normalizeCounts(...) | Function Declaration Type : setMethod |  Signature: SingleCellExperiment had parameters modified in newer version.
+Original Parameters : (x, size, factors = NULL){...}
+New Parameters : (x, size, factors = undefined){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+addPerCellQCMetrics
+addPerFeatureQCMetrics
+cleanSizeFactors
+computeSpikeFactors
+correctGroupSummary
+perCellQCFilters
+_guessMinMean
+pooledSizeFactors
+computePooledFactors
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+1. addPerCellQC -> addPerCellQCMetrics
+2. addPerFeatureQC -> addPerFeatureQCMetrics
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+2
+Functions in namespace : 72
+Functions in parsed : 47
+Functions in namespace : 60
+Functions in parsed : 41{
+    "package": "scuttle",
+    "versions": "release_3_13  release_3_14",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : scuttle
+Checking Versions scuttle_release_3_13
+scuttle_release_3_14
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 72
+Functions in parsed : 47
+Functions in namespace : 72
+Functions in parsed : 47{
+    "package": "scuttle",
+    "versions": "release_3_14  master",
+    "param_changes": 0,
+    "param_warnings": 1,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 1
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : scuttle
+Checking Versions scuttle_release_3_14
+scuttle_master
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : perCellQCMetrics(...) | Function Declaration Type : setMethod |  Signature: SingleCellExperiment had parameters modified in newer version.
+Original Parameters : (x, subsets = NULL, percent, top = undefined, , flatten = TRUE, assay, type = undefined, use, altexps = TRUE, percent_top = NULL, exprs_values = NULLuse_altexps = NULL){...}
+New Parameters : (x, subsets = NULL, percent, top = undefined, , flatten = TRUE, assay, type = undefined, use, altexps = NULL, percent_top = NULL, exprs_values = NULLuse_altexps = NULL){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 72
+Functions in parsed : 47
+Functions in namespace : 72
+Functions in parsed : 47

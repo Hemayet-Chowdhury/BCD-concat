@@ -29,24 +29,26 @@ const readline = require("readline");
 const path = require("path");
 
 //DICTS
-const old_location_dict = {};
-const new_location_dict = {};
-const old_main_dict = {};
-const new_main_dict = {};
-
-//RENAME STUFF
-var project_old = new Project();
-var project_new = new Project();
-
-const rename_old_main_dict = {};
-const rename_new_main_dict = {};
 
 export default async function offline(
   package_name,
   old_version,
   new_version,
-  message
+  message,
+  collection
 ) {
+  const old_location_dict = {};
+  const new_location_dict = {};
+  const old_main_dict = {};
+  const new_main_dict = {};
+
+  //RENAME STUFF
+  var project_old = new Project();
+  var project_new = new Project();
+
+  const rename_old_main_dict = {};
+  const rename_new_main_dict = {};
+
   console.log("##################################");
   console.log("##################################");
   console.log("##################################");
@@ -59,7 +61,7 @@ export default async function offline(
   const readdir = util.promisify(fs.readdir);
 
   const absolute_base =
-    "C:\\NodeProjects\\first_app\\R\\downloader\\test_offline\\";
+    "C:\\NodeProjects\\first_app\\R\\downloader\\download_final_100\\";
 
   //   const raw_old_root = absolute_base + "case 8\\nanomethviz_release_3_12";
   //   const raw_new_root = absolute_base + "case 8\\nanomethviz_release_3_14";
@@ -234,7 +236,9 @@ export default async function offline(
   //rename stuff
   var rename_node_processor = new Rename_Node_Processor(
     rename_old_filtered_dict,
-    rename_new_filtered_dict
+    rename_new_filtered_dict,
+    old_ns_parser.getNameSpaceList(),
+    new_ns_parser.getNameSpaceList()
   );
 
   //rename stuff ends
@@ -267,7 +271,7 @@ export default async function offline(
 
   //rename stuff
   var function_removal_rename_object =
-    rename_node_processor.printRemovedFunctions();
+    rename_node_processor.printNSRemovedFunctions();
   log_output +=
     "\n-----------------------Removed Functions------------\n" +
     function_removal_rename_object.line +
@@ -309,6 +313,7 @@ export default async function offline(
   message.write(log_output);
 
   console.log(result_object);
+  const result = await collection.insertOne(result_object);
   return result_object;
 }
 

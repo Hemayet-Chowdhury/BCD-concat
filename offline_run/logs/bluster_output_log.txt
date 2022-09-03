@@ -1,0 +1,194 @@
+{
+    "package": "bluster",
+    "versions": "release_3_12  release_3_13",
+    "param_changes": 2,
+    "param_warnings": 3,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 5
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : bluster
+Checking Versions bluster_release_3_12
+bluster_release_3_13
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : HclustParam(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : HclustParam(...) | Function Declaration Type : S3(metric = undefined, method = undefined, cut, fun = NULL, cut, dynamic = FALSE, cut, height = NULL, cut, number = NULL){...}
+New Parameters : Function Name : HclustParam(...) | Function Declaration Type : S3(metric = NULL, method = NULL, cut, fun = NULL, cut, dynamic = FALSE, cut, height = NULL, cut, number = NULL, cut, params = undefined, ){...} FILE : HclustParam.R
+2. Function Name : NNGraphParam(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : NNGraphParam(...) | Function Declaration Type : S3(shared = TRUE, , cluster, fun = undefined, clusterargs = undefined){...}
+New Parameters : Function Name : NNGraphParam(...) | Function Declaration Type : S3(shared = TRUE, k = undefined, , BNPARAM = undefined, BPPARAM = undefined, cluster, fun = undefined, cluster, args = undefined){...} FILE : NNGraphParam.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : HclustParam(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (metric = undefined, method = undefined, cut, fun = NULL, cut, dynamic = FALSE, cut, height = NULL, cut, number = NULL){...}
+New Parameters : (metric = NULL, method = NULL, cut, fun = NULL, cut, dynamic = FALSE, cut, height = NULL, cut, number = NULL, cut, params = undefined){...}
+2. Function Name : KmeansParam(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (centers){...}
+New Parameters : (centers, iter, max = NULL, nstart = NULLalgorithm = NULL){...}
+3. Function Name : NNGraphParam(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (shared = TRUE, , cluster, fun = undefined, clusterargs = undefined){...}
+New Parameters : (shared = TRUE, k = undefined, , BNPARAM = undefined, BPPARAM = undefined, cluster, fun = undefined, clusterargs = undefined){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+AffinityParam
+AgnesParam
+_showScalarArguments
+_extractScalarArguments
+ClaraParam
+clusterRMSD
+clusterSweep
+compareClusterings
+DbscanParam
+DianaParam
+centers
+updateObject
+linkClusters
+linkClustersMatrix
+MbkmeansParam
+nestedClusters
+SNNGraphParam
+KNNGraphParam
+PamParam
+SomParam
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 61
+Functions in parsed : 37
+Functions in namespace : 24
+Functions in parsed : 17{
+    "package": "bluster",
+    "versions": "release_3_13  release_3_14",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : bluster
+Checking Versions bluster_release_3_13
+bluster_release_3_14
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 61
+Functions in parsed : 37
+Functions in namespace : 61
+Functions in parsed : 37{
+    "package": "bluster",
+    "versions": "release_3_14  master",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : bluster
+Checking Versions bluster_release_3_14
+bluster_master
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 61
+Functions in parsed : 37
+Functions in namespace : 61
+Functions in parsed : 37

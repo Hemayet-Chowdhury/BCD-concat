@@ -1,0 +1,425 @@
+{
+    "package": "BiocNeighbors",
+    "versions": "release_3_8  release_3_9",
+    "param_changes": 3,
+    "param_warnings": 3,
+    "function_removals": 4,
+    "function_renames": 1,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 1,
+    "total_count": 10
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : BiocNeighbors
+Checking Versions biocneighbors_release_3_8
+biocneighbors_release_3_9
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : AnnoyParam(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : AnnoyParam(...) | Function Declaration Type : S3(ntrees = undefineddirectory = undefined){...}
+New Parameters : Function Name : AnnoyParam(...) | Function Declaration Type : S3(ntrees = undefined, directory = undefined, search, mult = ntrees, distance = undefined){...} FILE : Annoy-class.R
+2. Function Name : buildAnnoy(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : buildAnnoy(...) | Function Declaration Type : S3(X, ntrees = undefined, directory = undefinedfname = undefined){...}
+New Parameters : Function Name : buildAnnoy(...) | Function Declaration Type : S3(X, transposed = FALSE, ntrees = undefined, directory = undefined, search, mult = ntrees, fname = undefined, distance = undefined){...} FILE : buildAnnoy.R
+3. Function Name : buildKmknn(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : buildKmknn(...) | Function Declaration Type : S3(X){...}
+New Parameters : Function Name : buildKmknn(...) | Function Declaration Type : S3(X, transposed = FALSE, distance = undefined, ){...} FILE : buildKmknn.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : AnnoyIndex(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (path, dimNAMES = NULL){...}
+New Parameters : (data, path, search, mult = undefined, NAMES = NULLdistance = undefined){...}
+2. Function Name : buildAnnoy(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (X, ntrees = undefined, directory = undefinedfname = undefined){...}
+New Parameters : (X, transposed = FALSE, ntrees = undefined, directory = undefined, search, mult = ntrees, fname = undefineddistance = undefined){...}
+3. Function Name : buildKmknn(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (X){...}
+New Parameters : (X, transposed = FALSE, distance = undefined){...}
+
+-----------------------Removed Functions------------
+
+KmknnIndex_clustered_data
+KmknnIndex_clustered_order
+buildNNIndex
+buildNNIndex
+
+
+---------------------Added Functions---------------
+
+
+buildIndex
+AnnoyParam_ntrees
+AnnoyParam_search_mult
+AnnoyIndex_path
+AnnoyIndex_search_mult
+bnorder
+bndistance
+dimnames
+bndata
+buildHnsw
+buildVptree
+findHnsw
+findVptree
+HnswParam
+HnswParam_nlinks
+HnswParam_ef_construction
+HnswParam_directory
+HnswParam_ef_search
+HnswIndex
+HnswIndex_path
+HnswIndex_ef_search
+KmknnParam_kmeans_args
+queryHnsw
+queryVptree
+rangeFindKmknn
+rangeFindVptree
+rangeQueryKmknn
+rangeQueryVptree
+VptreeParam
+VptreeIndex
+VptreeIndex_nodes
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+1. KmknnIndex_clustered_order -> VptreeIndex_nodes
+Total renames
+1
+Functions in namespace : 68
+Functions in parsed : 50
+Functions in namespace : 35
+Functions in parsed : 21{
+    "package": "BiocNeighbors",
+    "versions": "release_3_9  release_3_11",
+    "param_changes": 8,
+    "param_warnings": 8,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 16
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : BiocNeighbors
+Checking Versions biocneighbors_release_3_9
+biocneighbors_release_3_11
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : findAnnoy(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : findAnnoy(...) | Function Declaration Type : S3(X, k, get, index = TRUE, get, distance = TRUE, BPPARAM = undefined, precomputed = NULL, subset = NULL){...}
+New Parameters : Function Name : findAnnoy(...) | Function Declaration Type : S3(X, k, get, index = TRUE, get, distance = TRUE, last = k, BPPARAM = undefined, precomputed = NULL, subset = NULL, raw, index = NA, warn, ties = NA, ){...} FILE : findAnnoy.R
+2. Function Name : findHnsw(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : findHnsw(...) | Function Declaration Type : S3(X, k, get, index = TRUE, get, distance = TRUE, BPPARAM = undefined, precomputed = NULL, subset = NULL){...}
+New Parameters : Function Name : findHnsw(...) | Function Declaration Type : S3(X, k, get, index = TRUE, get, distance = TRUE, last = k, BPPARAM = undefined, precomputed = NULL, subset = NULL, raw, index = NA, warn, ties = NA, ){...} FILE : findHnsw.R
+3. Function Name : findKmknn(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : findKmknn(...) | Function Declaration Type : S3(X, k, get, index = TRUE, get, distance = TRUE, BPPARAM = undefined, precomputed = NULL, subset = NULL, raw, index = FALSE){...}
+New Parameters : Function Name : findKmknn(...) | Function Declaration Type : S3(X, k, get, index = TRUE, get, distance = TRUE, last = k, BPPARAM = undefined, precomputed = NULL, subset = NULL, raw, index = FALSE, warn, ties = TRUE, ){...} FILE : findKmknn.R
+4. Function Name : findVptree(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : findVptree(...) | Function Declaration Type : S3(X, k, get, index = TRUE, get, distance = TRUE, BPPARAM = undefined, precomputed = NULL, subset = NULL, raw, index = FALSE){...}
+New Parameters : Function Name : findVptree(...) | Function Declaration Type : S3(X, k, get, index = TRUE, get, distance = TRUE, last = k, BPPARAM = undefined, precomputed = NULL, subset = NULL, raw, index = FALSE, warn, ties = TRUE, ){...} FILE : findVptree.R
+5. Function Name : queryAnnoy(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : queryAnnoy(...) | Function Declaration Type : S3(X, query, k, get, index = TRUE, get, distance = TRUE, BPPARAM = undefined, precomputed = NULL, transposed = FALSE, subset = NULL){...}
+New Parameters : Function Name : queryAnnoy(...) | Function Declaration Type : S3(X, query, k, get, index = TRUE, get, distance = TRUE, last = k, BPPARAM = undefined, precomputed = NULL, transposed = FALSE, subset = NULL, raw, index = NA, warn, ties = NA, ){...} FILE : queryAnnoy.R
+6. Function Name : queryHnsw(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : queryHnsw(...) | Function Declaration Type : S3(X, query, k, get, index = TRUE, get, distance = TRUE, BPPARAM = undefined, precomputed = NULL, transposed = FALSE, subset = NULL){...}
+New Parameters : Function Name : queryHnsw(...) | Function Declaration Type : S3(X, query, k, get, index = TRUE, get, distance = TRUE, last = k, BPPARAM = undefined, precomputed = NULL, transposed = FALSE, subset = NULL, raw, index = NA, warn, ties = NA, ){...} FILE : queryHnsw.R
+7. Function Name : queryKmknn(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : queryKmknn(...) | Function Declaration Type : S3(X, query, k, get, index = TRUE, get, distance = TRUE, BPPARAM = undefined, precomputed = NULL, transposed = FALSE, subset = NULL, raw, index = FALSE){...}
+New Parameters : Function Name : queryKmknn(...) | Function Declaration Type : S3(X, query, k, get, index = TRUE, get, distance = TRUE, last = k, BPPARAM = undefined, precomputed = NULL, transposed = FALSE, subset = NULL, raw, index = FALSE, warn, ties = TRUE, ){...} FILE : queryKmknn.R
+8. Function Name : queryVptree(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : queryVptree(...) | Function Declaration Type : S3(X, query, k, get, index = TRUE, get, distance = TRUE, BPPARAM = undefined, precomputed = NULL, transposed = FALSE, subset = NULL, raw, index = FALSE){...}
+New Parameters : Function Name : queryVptree(...) | Function Declaration Type : S3(X, query, k, get, index = TRUE, get, distance = TRUE, last = k, BPPARAM = undefined, precomputed = NULL, transposed = FALSE, subset = NULL, raw, index = FALSE, warn, ties = TRUE, ){...} FILE : queryVptree.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : findAnnoy(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (X, k, get, index = TRUE, get, distance = TRUE, BPPARAM = undefined, precomputed = NULL, subset = NULL){...}
+New Parameters : (X, k, get, index = TRUE, get, distance = TRUE, last = k, BPPARAM = undefined, precomputed = NULL, subset = NULL, raw, index = NA, warn, ties = NA){...}
+2. Function Name : findHnsw(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (X, k, get, index = TRUE, get, distance = TRUE, BPPARAM = undefined, precomputed = NULL, subset = NULL){...}
+New Parameters : (X, k, get, index = TRUE, get, distance = TRUE, last = k, BPPARAM = undefined, precomputed = NULL, subset = NULL, raw, index = NA, warn, ties = NA){...}
+3. Function Name : findKmknn(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (X, k, get, index = TRUE, get, distance = TRUE, BPPARAM = undefined, precomputed = NULL, subset = NULL, raw, index = FALSE){...}
+New Parameters : (X, k, get, index = TRUE, get, distance = TRUE, last = k, BPPARAM = undefined, precomputed = NULL, subset = NULL, raw, index = FALSE, warn, ties = TRUE){...}
+4. Function Name : findVptree(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (X, k, get, index = TRUE, get, distance = TRUE, BPPARAM = undefined, precomputed = NULL, subset = NULL, raw, index = FALSE){...}
+New Parameters : (X, k, get, index = TRUE, get, distance = TRUE, last = k, BPPARAM = undefined, precomputed = NULL, subset = NULL, raw, index = FALSE, warn, ties = TRUE){...}
+5. Function Name : queryAnnoy(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (X, query, k, get, index = TRUE, get, distance = TRUE, BPPARAM = undefined, precomputed = NULL, transposed = FALSE, subset = NULL){...}
+New Parameters : (X, query, k, get, index = TRUE, get, distance = TRUE, last = k, BPPARAM = undefined, precomputed = NULL, transposed = FALSE, subset = NULL, raw, index = NA, warn, ties = NA){...}
+6. Function Name : queryHnsw(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (X, query, k, get, index = TRUE, get, distance = TRUE, BPPARAM = undefined, precomputed = NULL, transposed = FALSE, subset = NULL){...}
+New Parameters : (X, query, k, get, index = TRUE, get, distance = TRUE, last = k, BPPARAM = undefined, precomputed = NULL, transposed = FALSE, subset = NULL, raw, index = NA, warn, ties = NA){...}
+7. Function Name : queryKmknn(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (X, query, k, get, index = TRUE, get, distance = TRUE, BPPARAM = undefined, precomputed = NULL, transposed = FALSE, subset = NULL, raw, index = FALSE){...}
+New Parameters : (X, query, k, get, index = TRUE, get, distance = TRUE, last = k, BPPARAM = undefined, precomputed = NULL, transposed = FALSE, subset = NULL, raw, index = FALSE, warn, ties = TRUE){...}
+8. Function Name : queryVptree(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (X, query, k, get, index = TRUE, get, distance = TRUE, BPPARAM = undefined, precomputed = NULL, transposed = FALSE, subset = NULL, raw, index = FALSE){...}
+New Parameters : (X, query, k, get, index = TRUE, get, distance = TRUE, last = k, BPPARAM = undefined, precomputed = NULL, transposed = FALSE, subset = NULL, raw, index = FALSE, warn, ties = TRUE){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+buildExhaustive
+ExhaustiveParam
+ExhaustiveIndex
+findExhaustive
+rangeFindExhaustive
+queryExhaustive
+rangeQueryExhaustive
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 77
+Functions in parsed : 57
+Functions in namespace : 68
+Functions in parsed : 50{
+    "package": "BiocNeighbors",
+    "versions": "release_3_11  release_3_12",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : BiocNeighbors
+Checking Versions biocneighbors_release_3_11
+biocneighbors_release_3_12
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 77
+Functions in parsed : 57
+Functions in namespace : 77
+Functions in parsed : 57{
+    "package": "BiocNeighbors",
+    "versions": "release_3_12  release_3_13",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : BiocNeighbors
+Checking Versions biocneighbors_release_3_12
+biocneighbors_release_3_13
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+[[
+findMutualNN
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 80
+Functions in parsed : 59
+Functions in namespace : 77
+Functions in parsed : 57{
+    "package": "BiocNeighbors",
+    "versions": "release_3_13  release_3_14",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : BiocNeighbors
+Checking Versions biocneighbors_release_3_13
+biocneighbors_release_3_14
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 80
+Functions in parsed : 59
+Functions in namespace : 80
+Functions in parsed : 59{
+    "package": "BiocNeighbors",
+    "versions": "release_3_14  master",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : BiocNeighbors
+Checking Versions biocneighbors_release_3_14
+biocneighbors_master
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 80
+Functions in parsed : 59
+Functions in namespace : 80
+Functions in parsed : 59

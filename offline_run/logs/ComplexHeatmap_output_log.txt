@@ -1,0 +1,1024 @@
+{
+    "package": "ComplexHeatmap",
+    "versions": "release_3_1  release_3_2",
+    "param_changes": 1,
+    "param_warnings": 1,
+    "function_removals": 1,
+    "function_renames": 1,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 1,
+    "total_count": 3
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : ComplexHeatmap
+Checking Versions complexheatmap_release_3_1
+complexheatmap_release_3_2
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : anno_points(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : anno_points(...) | Function Declaration Type : S3(x, which = undefined, gp = undefined, pch = undefined, size = undefined){...}
+New Parameters : Function Name : anno_points(...) | Function Declaration Type : S3(x, which = undefined, border = TRUE, gp = undefined, pch = undefined, size = undefined, lim = NULL, axis = FALSE, axis_side = NULL, axis_gp = undefined, axis_direction = undefined, ){...} FILE : annotation_fun.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : anno_points(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (x, which = undefined, gp = undefined, pch = undefined, size = undefined){...}
+New Parameters : (x, which = undefined, border = TRUE, gp = undefined, pch = undefined, size = undefined, lim = NULL, axis = FALSE, axis_side = NULL, axis_gp = undefined, axis_direction = undefined){...}
+
+-----------------------Removed Functions------------
+
+draw_hclust
+
+
+---------------------Added Functions---------------
+
+
+anno_barplot
+anno_boxplot
+anno_histogram
+anno_density
+anno_text
+row_anno_points
+column_anno_points
+row_anno_barplot
+column_anno_barplot
+row_anno_boxplot
+column_anno_boxplot
+row_anno_histogram
+column_anno_histogram
+row_anno_density
+column_anno_density
+row_anno_text
+column_anno_text
+decorate_heatmap_body
+decorate_dend
+decorate_column_dend
+decorate_row_dend
+decorate_dimnames
+decorate_row_names
+decorate_column_names
+decorate_title
+decorate_row_title
+decorate_column_title
+decorate_annotation
+densityHeatmap
+enhanced_basicplot
+ht_global_opt
+Heatmap
+rowAnnotation
+columnAnnotation
+is_abs_unit
+oncoPrint
+unify_mat_list
+plotDataFrame
+select
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+1. HeatmapAnnotation -> enhanced_basicplot
+Total renames
+1
+Functions in namespace : 89
+Functions in parsed : 44
+Functions in namespace : 48
+Functions in parsed : 6{
+    "package": "ComplexHeatmap",
+    "versions": "release_3_2  release_3_3",
+    "param_changes": 3,
+    "param_warnings": 8,
+    "function_removals": 1,
+    "function_renames": 1,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 1,
+    "total_count": 12
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : ComplexHeatmap
+Checking Versions complexheatmap_release_3_2
+complexheatmap_release_3_3
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : densityHeatmap(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : densityHeatmap(...) | Function Declaration Type : S3(data, col = undefined, color_space = undefined, anno = NULL, ylab = undefinedtitle = undefined){...}
+New Parameters : Function Name : densityHeatmap(...) | Function Declaration Type : S3(data, col = undefined, color_space = undefined, anno = NULL, ylab = undefined, title = undefined, range = undefined, column_order = NULL, ){...} FILE : densityHeatmap.R
+2. Function Name : oncoPrint(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : oncoPrint(...) | Function Declaration Type : S3(mat, get_type = undefined, x, alter_fun_list, col, row_order = undefined, column_order = undefined, show_column_names = FALSE, pct_gp = undefined, axis_gp = undefined, show_row_barplot = TRUE, row_barplot_width = undefined, show_column_barplot = TRUE, column_barplot_height = undefined, remove_empty_columns = FALSE, heatmap_legend_param = undefined){...}
+New Parameters : Function Name : oncoPrint(...) | Function Declaration Type : S3(mat, get_type = undefined, x, alter_fun = alter_fun_list, alter_fun_list = NULL, col, row_order = undefined, column_order = undefined, show_column_names = FALSE, show_pct = TRUE, pct_gp = undefined, pct_digits = undefined, axis_gp = undefined, show_row_barplot = TRUE, row_barplot_width = undefined, remove_empty_columns = FALSE, heatmap_legend_param = undefined, top_annotation = undefined, barplot_ignore = NULL, ){...} FILE : oncoPrint.R
+3. Function Name : plotDataFrame(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : plotDataFrame(...) | Function Declaration Type : S3(df, overlap = undefined, nlevel = undefined, show_row_names = TRUE, show_column_names = TRUE, group = NULL, group_names = undefined, main_heatmap = NULL, km = undefined, split = NULL, cluster_rows = TRUE, cluster_columns = TRUE){...}
+New Parameters : Function Name : plotDataFrame(...) | Function Declaration Type : S3(df, overlap = undefined, nlevel = undefined, show_row_names = TRUE, show_column_names = TRUE, group = NULL, group_names = undefined, main_heatmap = NULL, km = undefined, split = NULL, cluster_rows = TRUE, cluster_columns = TRUE, row_order = NULL, ){...} FILE : plotDataFrame.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : anno_points(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (x, which = undefined, border = TRUE, gp = undefined, pch = undefined, size = undefined, lim = NULL, axis = FALSE, axis_side = NULL, axis_gp = undefined, axis_direction = undefined){...}
+New Parameters : (x, which = undefined, border = TRUE, gp = undefined, pch = undefined, size = undefined, ylim = NULL, axis = FALSE, axis_side = NULL, axis_gp = undefined, axis_direction = undefined){...}
+2. Function Name : anno_barplot(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (x, baseline = undefined, which = undefined, border = TRUE, bar_width = undefined, gp = undefined, lim = NULL, axis = FALSE, axis_side = NULL, axis_gp = undefined, axis_direction = undefined){...}
+New Parameters : (x, baseline = undefined, which = undefined, border = TRUE, bar_width = undefined, gp = undefined, ylim = NULL, axis = FALSE, axis_side = NULL, axis_gp = undefined, axis_direction = undefined){...}
+3. Function Name : anno_boxplot(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (x, which = undefined, border = TRUE, gp = undefined, lim = NULL, pch = undefined, size = undefined, axis = FALSE, axis_side = NULL, axis_gp = undefinedaxis_direction = undefined){...}
+New Parameters : (x, which = undefined, border = TRUE, gp = undefined, ylim = NULL, outline = TRUE, pch = undefined, size = undefined, axis = FALSE, axis_side = NULL, axis_gp = undefinedaxis_direction = undefined){...}
+4. Function Name : decorate_annotation(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (annotation, codeslice = NULL){...}
+New Parameters : (annotation, codeslice){...}
+5. Function Name : enhanced_basicplot(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (data, , ylim = NULL, ylab = undefined, title = NULL, title_gp = undefined, type = undefined, width = undefined, gp = undefined, pch = undefined, size = undefined, axis_gp = undefinedheatmap_legend_list = undefined){...}
+New Parameters : (data, , ylim = NULL, ylab = undefined, title = NULL, title_gp = undefined, type = undefined, width = undefined, gp = undefined, pch = undefined, size = undefined, axis_gp = undefined, padding = undefinedheatmap_legend_list = undefined){...}
+6. Function Name : oncoPrint(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (mat, get_type = undefined, x, alter_fun_list, col, row_order = undefined, column_order = undefined, show_column_names = FALSE, pct_gp = undefined, axis_gp = undefined, show_row_barplot = TRUE, row_barplot_width = undefined, show_column_barplot = TRUE, column_barplot_height = undefined, remove_empty_columns = FALSE, heatmap_legend_param = undefined){...}
+New Parameters : (mat, get_type = undefined, x, alter_fun = alter_fun_list, alter_fun_list = NULL, col, row_order = undefined, column_order = undefined, show_column_names = FALSE, show_pct = TRUE, pct_gp = undefined, pct_digits = undefined, axis_gp = undefined, show_row_barplot = TRUE, row_barplot_width = undefined, remove_empty_columns = FALSE, heatmap_legend_param = undefined, top_annotation = undefined, barplot_ignore = NULL){...}
+7. Function Name : plotDataFrame(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (df, overlap = undefined, nlevel = undefined, show_row_names = TRUE, show_column_names = TRUE, group = NULL, group_names = undefined, main_heatmap = NULL, km = undefined, split = NULL, cluster_rows = TRUE, cluster_columns = TRUE){...}
+New Parameters : (df, overlap = undefined, nlevel = undefined, show_row_names = TRUE, show_column_names = TRUE, group = NULL, group_names = undefined, main_heatmap = NULL, km = undefined, split = NULL, cluster_rows = TRUE, cluster_columns = TRUE, row_order = NULL){...}
+8. Function Name : SingleAnnotation(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (name, value, col, fun, which = undefined, show_legend = TRUE, gp = undefinedlegend_param = undefined){...}
+New Parameters : (name, value, col, fun, na_col = undefined, which = undefined, show_legend = TRUE, gp = undefinedlegend_param = undefined){...}
+
+-----------------------Removed Functions------------
+
+select
+
+
+---------------------Added Functions---------------
+
+
+row_anno_link
+column_anno_link
+Legend
+selectArea
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+1. select -> selectArea
+Total renames
+1
+Functions in namespace : 93
+Functions in parsed : 47
+Functions in namespace : 89
+Functions in parsed : 44{
+    "package": "ComplexHeatmap",
+    "versions": "release_3_3  release_3_4",
+    "param_changes": 1,
+    "param_warnings": 1,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 2
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : ComplexHeatmap
+Checking Versions complexheatmap_release_3_3
+complexheatmap_release_3_4
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : densityHeatmap(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : densityHeatmap(...) | Function Declaration Type : S3(data, col = undefined, color_space = undefined, anno = NULL, ylab = undefined, title = undefined, range = undefined, column_order = NULL){...}
+New Parameters : Function Name : densityHeatmap(...) | Function Declaration Type : S3(data, col = undefined, color_space = undefined, anno = NULL, ylab = undefined, title = undefined, range = undefined, cluster_columns = FALSE, clustering_distance_columns = undefined, clustering_method_columns = undefined, column_dend_side = undefined, column_dend_height = undefined, show_column_dend = FALSE, column_dend_gp = undefined, column_dend_reorder = TRUE, column_names_side = undefined, show_column_names = TRUE, column_names_max_height = undefined, column_names_gp = undefined, column_order = NULL, ){...} FILE : densityHeatmap.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : densityHeatmap(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (data, col = undefined, color_space = undefined, anno = NULL, ylab = undefined, title = undefined, range = undefined, column_order = NULL){...}
+New Parameters : (data, col = undefined, color_space = undefined, anno = NULL, ylab = undefined, title = undefined, range = undefined, cluster_columns = FALSE, clustering_distance_columns = undefined, clustering_method_columns = undefined, column_dend_side = undefined, column_dend_height = undefined, show_column_dend = FALSE, column_dend_gp = undefined, column_dend_reorder = TRUE, column_names_side = undefined, show_column_names = TRUE, column_names_max_height = undefined, column_names_gp = undefined, column_order = NULL){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+anno_oncoprint_barplot
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 94
+Functions in parsed : 48
+Functions in namespace : 93
+Functions in parsed : 47{
+    "package": "ComplexHeatmap",
+    "versions": "release_3_4  release_3_5",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : ComplexHeatmap
+Checking Versions complexheatmap_release_3_4
+complexheatmap_release_3_5
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+packLegend
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 95
+Functions in parsed : 49
+Functions in namespace : 94
+Functions in parsed : 48{
+    "package": "ComplexHeatmap",
+    "versions": "release_3_5  release_3_6",
+    "param_changes": 2,
+    "param_warnings": 3,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 5
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : ComplexHeatmap
+Checking Versions complexheatmap_release_3_5
+complexheatmap_release_3_6
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : densityHeatmap(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : densityHeatmap(...) | Function Declaration Type : S3(data, col = undefined, color_space = undefined, anno = NULL, ylab = undefined, title = undefined, range = undefined, cluster_columns = FALSE, clustering_distance_columns = undefined, clustering_method_columns = undefined, column_dend_side = undefined, column_dend_height = undefined, show_column_dend = FALSE, column_dend_gp = undefined, column_dend_reorder = TRUE, column_names_side = undefined, show_column_names = TRUE, column_names_max_height = undefined, column_names_gp = undefined, column_order = NULL){...}
+New Parameters : Function Name : densityHeatmap(...) | Function Declaration Type : S3(data, col = undefined, density_param = undefined, color_space = undefined, anno = NULL, ylab = undefined, title = undefined, range = undefined, cluster_columns = FALSE, clustering_distance_columns = undefined, clustering_method_columns = undefined, column_dend_side = undefined, column_dend_height = undefined, show_column_dend = FALSE, column_dend_gp = undefined, column_dend_reorder = TRUE, column_names_side = undefined, show_column_names = TRUE, column_names_max_height = undefined, column_names_gp = undefined, column_order = NULL, ){...} FILE : densityHeatmap.R
+2. Function Name : Heatmap(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (matrix, col, name, na_col, color_space, rect_gp, cell_fun, NULL, row_title, row_title_side, row_title_gprow_title_rot){...}
+New Parameters : (matrix, col, name, na_col, color_space, rect_gp, cell_fun, row_title, row_title_side, row_title_gprow_title_rot){...} FILE : Heatmap-class.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : densityHeatmap(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (data, col = undefined, color_space = undefined, anno = NULL, ylab = undefined, title = undefined, range = undefined, cluster_columns = FALSE, clustering_distance_columns = undefined, clustering_method_columns = undefined, column_dend_side = undefined, column_dend_height = undefined, show_column_dend = FALSE, column_dend_gp = undefined, column_dend_reorder = TRUE, column_names_side = undefined, show_column_names = TRUE, column_names_max_height = undefined, column_names_gp = undefined, column_order = NULL){...}
+New Parameters : (data, col = undefined, density_param = undefined, color_space = undefined, anno = NULL, ylab = undefined, title = undefined, range = undefined, cluster_columns = FALSE, clustering_distance_columns = undefined, clustering_method_columns = undefined, column_dend_side = undefined, column_dend_height = undefined, show_column_dend = FALSE, column_dend_gp = undefined, column_dend_reorder = TRUE, column_names_side = undefined, show_column_names = TRUE, column_names_max_height = undefined, column_names_gp = undefined, column_order = NULL){...}
+2. Function Name : Legend(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (at, labels = at, nrow = NULL, ncol = undefined, col_fun, grid_height = undefined, grid_width = undefined, gap = undefined, labels_gp = undefined, border = NULL, background = undefined, type = undefined, legend_gp = undefined, pch = undefined, size = undefined, legend_height = NULL, legend_width = NULL, direction = undefined, title = undefined, title_gp = undefinedtitle_position = undefined){...}
+New Parameters : (at, labels = at, nrow = NULL, ncol = undefined, col_fun, by_row = FALSE, grid_height = undefined, grid_width = undefined, gap = undefined, labels_gp = undefined, border = NULL, background = undefined, type = undefined, legend_gp = undefined, pch = undefined, size = undefined, legend_height = NULL, legend_width = NULL, direction = undefined, title = undefined, title_gp = undefinedtitle_position = undefined){...}
+3. Function Name : oncoPrint(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (mat, get_type = undefined, x, alter_fun = alter_fun_list, alter_fun_list = NULL, col, row_order = undefined, column_order = undefined, show_column_names = FALSE, show_pct = TRUE, pct_gp = undefined, pct_digits = undefined, axis_gp = undefined, show_row_barplot = TRUE, row_barplot_width = undefined, remove_empty_columns = FALSE, heatmap_legend_param = undefined, top_annotation = undefined, barplot_ignore = NULL){...}
+New Parameters : (mat, get_type = undefined, x, alter_fun = alter_fun_list, alter_fun_list = NULL, col, row_order = undefined, column_order = undefined, show_pct = TRUE, pct_gp = row_names_gp, pct_digits = undefined, axis_gp = undefined, show_row_barplot = TRUE, row_barplot_width = undefined, remove_empty_columns = FALSE, heatmap_legend_param = undefined, top_annotation = undefined, top_annotation_height = undefined, bottom_annotation = undefined, bottom_annotation_height = undefined, barplot_ignore = NULL, row_title = undefined, row_title_side = undefined, row_title_gp = undefinedrow_title_rot = ){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+adjust_dend_by_leaf_width
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 97
+Functions in parsed : 50
+Functions in namespace : 95
+Functions in parsed : 49{
+    "package": "ComplexHeatmap",
+    "versions": "release_3_6  release_3_7",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : ComplexHeatmap
+Checking Versions complexheatmap_release_3_6
+complexheatmap_release_3_7
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 97
+Functions in parsed : 50
+Functions in namespace : 97
+Functions in parsed : 50{
+    "package": "ComplexHeatmap",
+    "versions": "release_3_7  release_3_8",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : ComplexHeatmap
+Checking Versions complexheatmap_release_3_7
+complexheatmap_release_3_8
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 97
+Functions in parsed : 50
+Functions in namespace : 97
+Functions in parsed : 50{
+    "package": "ComplexHeatmap",
+    "versions": "release_3_8  release_3_9",
+    "param_changes": 5,
+    "param_warnings": 12,
+    "function_removals": 13,
+    "function_renames": 5,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 5,
+    "total_count": 30
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : ComplexHeatmap
+Checking Versions complexheatmap_release_3_8
+complexheatmap_release_3_9
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : anno_points(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : anno_points(...) | Function Declaration Type : S3(x, which = undefined, border = TRUE, gp = undefined, pch = undefined, size = undefined, ylim = NULL, axis = FALSE, axis_side = NULL, axis_gp = undefined, axis_direction = undefined){...}
+New Parameters : Function Name : anno_points(...) | Function Declaration Type : S3(x, which = undefined, border = TRUE, gp = undefined, pch = undefined, size = undefined, ylim = NULL, extend = undefined, axis = TRUE, axis_param = undefined, width = NULL, height = NULL, ){...} FILE : annotation_fun.R
+2. Function Name : anno_barplot(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : anno_barplot(...) | Function Declaration Type : S3(x, baseline = undefined, which = undefined, border = TRUE, bar_width = undefined, gp = undefined, ylim = NULL, axis = FALSE, axis_side = NULL, axis_gp = undefined, axis_direction = undefined){...}
+New Parameters : Function Name : anno_barplot(...) | Function Declaration Type : S3(x, baseline = undefined, which = undefined, border = TRUE, bar_width = undefined, gp = undefined, ylim = NULL, extend = undefined, axis = TRUE, axis_param = undefined, width = NULL, height = NULL, ){...} FILE : annotation_fun.R
+3. Function Name : anno_boxplot(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : anno_boxplot(...) | Function Declaration Type : S3(x, which = undefined, border = TRUE, gp = undefined, ylim = NULL, outline = TRUE, pch = undefined, size = undefined, axis = FALSE, axis_side = NULL, axis_gp = undefinedaxis_direction = undefined){...}
+New Parameters : Function Name : anno_boxplot(...) | Function Declaration Type : S3(x, which = undefined, border = TRUE, gp = undefined, ylim = NULL, extend = undefined, outline = TRUE, box_width = undefined, pch = undefined, size = undefined, axis = TRUE, axis_param = undefined, width = NULL, height = NULL, ){...} FILE : annotation_fun.R
+4. Function Name : anno_link(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (at, labels, which, side, lines_gp, labels_gp, padding, link_widthextend){...}
+New Parameters : (){...} FILE : annotation_fun.R
+5. Function Name : oncoPrint(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : oncoPrint(...) | Function Declaration Type : S3(mat, get_type = undefined, x, alter_fun = alter_fun_list, alter_fun_list = NULL, col, row_order = undefined, column_order = undefined, show_pct = TRUE, pct_gp = row_names_gp, pct_digits = undefined, axis_gp = undefined, show_row_barplot = TRUE, row_barplot_width = undefined, remove_empty_columns = FALSE, heatmap_legend_param = undefined, top_annotation = undefined, top_annotation_height = undefined, bottom_annotation = undefined, bottom_annotation_height = undefined, barplot_ignore = NULL, row_title = undefined, row_title_side = undefined, row_title_gp = undefinedrow_title_rot = ){...}
+New Parameters : Function Name : oncoPrint(...) | Function Declaration Type : S3(mat, get_type = default_get_type, alter_fun, alter_fun_is_vectorized = NULL, col = NULL, top_annotation = undefined, right_annotation = undefined, left_annotation = NULL, bottom_annotation = NULL, show_pct = TRUE, pct_gp = undefined, pct_digits = undefined, pct_side = undefined, row_labels = NULL, show_row_names = TRUE, row_names_side = undefined, row_names_gp = pct_gp, row_split = NULL, column_labels = NULL, column_names_gp = undefined, column_split = NULL, row_order = NULL, column_order = NULL, remove_empty_columns = FALSE, remove_empty_rows = FALSE, show_column_names = FALSE, heatmap_legend_param = undefined, ){...} FILE : oncoPrint.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : anno_points(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (x, which = undefined, border = TRUE, gp = undefined, pch = undefined, size = undefined, ylim = NULL, axis = FALSE, axis_side = NULL, axis_gp = undefined, axis_direction = undefined){...}
+New Parameters : (x, which = undefined, border = TRUE, gp = undefined, pch = undefined, size = undefined, ylim = NULL, extend = undefined, axis = TRUE, axis_param = undefined, width = NULL, height = NULL){...}
+2. Function Name : anno_barplot(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (x, baseline = undefined, which = undefined, border = TRUE, bar_width = undefined, gp = undefined, ylim = NULL, axis = FALSE, axis_side = NULL, axis_gp = undefined, axis_direction = undefined){...}
+New Parameters : (x, baseline = undefined, which = undefined, border = TRUE, bar_width = undefined, gp = undefined, ylim = NULL, extend = undefined, axis = TRUE, axis_param = undefined, width = NULL, height = NULL){...}
+3. Function Name : anno_boxplot(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (x, which = undefined, border = TRUE, gp = undefined, ylim = NULL, outline = TRUE, pch = undefined, size = undefined, axis = FALSE, axis_side = NULL, axis_gp = undefinedaxis_direction = undefined){...}
+New Parameters : (x, which = undefined, border = TRUE, gp = undefined, ylim = NULL, extend = undefined, outline = TRUE, box_width = undefined, pch = undefined, size = undefined, axis = TRUE, axis_param = undefined, width = NULL, height = NULL){...}
+4. Function Name : anno_histogram(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (x, which = undefined, gp = undefined){...}
+New Parameters : (x, which = undefined, n_breaks = undefined, border = FALSE, gp = undefined, axis = TRUE, axis_param = undefined, width = NULLheight = NULL){...}
+5. Function Name : anno_density(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (x, which = undefined, gp = undefined, type = undefined){...}
+New Parameters : (x, which = undefined, type = undefined, heatmap_colors = undefined, joyplot_scale = undefined, border = TRUE, gp = undefined, axis = TRUE, axis_param = undefined, width = NULLheight = NULL){...}
+6. Function Name : anno_text(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (x, which = undefined, gp = undefined, rot = undefined, just = NULLoffset = undefined){...}
+New Parameters : (x, which = undefined, gp = undefined, rot = undefined, just = undefined, offset = undefined, location = undefined, width = NULLheight = NULL){...}
+7. Function Name : decorate_heatmap_body(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (heatmap, code, slice = undefinedenvir = undefined){...}
+New Parameters : (heatmap, code, slice = undefined, row_slice = slice, column_slice = undefinedenvir = undefined){...}
+8. Function Name : Heatmap(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (matrix, col, name, na_col = undefined, color_space = undefined, rect_gp = undefined, cell_fun = NULL, row_title = undefined, row_title_side = undefined, row_title_gp = undefinedrow_title_rot = ){...}
+New Parameters : (matrix, col, name, na_col = undefined, color_space = undefined, rect_gp = undefined, border = NA, cell_fun = NULL, layer_fun = NULL, row_title = undefined, row_title_side = undefined, row_title_gp = undefinedrow_title_rot = ){...}
+9. Function Name : Legend(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (at, labels = at, nrow = NULL, ncol = undefined, col_fun, by_row = FALSE, grid_height = undefined, grid_width = undefined, gap = undefined, labels_gp = undefined, border = NULL, background = undefined, type = undefined, legend_gp = undefined, pch = undefined, size = undefined, legend_height = NULL, legend_width = NULL, direction = undefined, title = undefined, title_gp = undefinedtitle_position = undefined){...}
+New Parameters : (at, labels = at, col_fun, nrow = NULL, ncol = undefined, by_row = FALSE, grid_height = undefined, grid_width = undefined, gap = undefined, labels_gp = undefined, labels_rot = undefined, border = NULL, background = undefined, type = undefined, legend_gp = undefined, pch = undefined, size = undefined, legend_height = NULL, legend_width = NULL, direction = undefined, title = undefined, title_gp = undefined, title_position = undefinedtitle_gap = undefined){...}
+10. Function Name : packLegend(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (, gap = undefineddirection = undefined){...}
+New Parameters : (, gap = undefined, row_gap = undefined, column_gap = undefined, direction = undefined, max_width = NULL, max_height = NULLlist = NULL){...}
+11. Function Name : oncoPrint(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (mat, get_type = undefined, x, alter_fun = alter_fun_list, alter_fun_list = NULL, col, row_order = undefined, column_order = undefined, show_pct = TRUE, pct_gp = row_names_gp, pct_digits = undefined, axis_gp = undefined, show_row_barplot = TRUE, row_barplot_width = undefined, remove_empty_columns = FALSE, heatmap_legend_param = undefined, top_annotation = undefined, top_annotation_height = undefined, bottom_annotation = undefined, bottom_annotation_height = undefined, barplot_ignore = NULL, row_title = undefined, row_title_side = undefined, row_title_gp = undefinedrow_title_rot = ){...}
+New Parameters : (mat, get_type = default_get_type, alter_fun, alter_fun_is_vectorized = NULL, col = NULL, top_annotation = undefined, right_annotation = undefined, left_annotation = NULL, bottom_annotation = NULL, show_pct = TRUE, pct_gp = undefined, pct_digits = undefined, pct_side = undefined, row_labels = NULL, show_row_names = TRUE, row_names_side = undefined, row_names_gp = pct_gp, row_split = NULL, column_labels = NULL, column_names_gp = undefined, column_split = NULL, row_order = NULL, column_order = NULL, remove_empty_columns = FALSE, remove_empty_rows = FALSE, show_column_names = FALSE, heatmap_legend_param = undefined){...}
+12. Function Name : SingleAnnotation(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (name, value, col, fun, na_col = undefined, which = undefined, show_legend = TRUE, gp = undefined, legend_param = undefined, show_name = FALSE, name_gp = undefined, name_offset = undefined, name_side = undefinedname_rot = undefined){...}
+New Parameters : (name, value, col, fun, na_col = undefined, which = undefined, show_legend = TRUE, gp = undefined, border = FALSE, legend_param = undefined, show_name = TRUE, name_gp = undefined, name_offset = NULL, name_side = undefined, name_rot = NULL, simple_anno_size = ht_opt$simple_anno_size, width = NULLheight = NULL){...}
+
+-----------------------Removed Functions------------
+
+grid_dendrogram2
+adjust_dend_by_leaf_width
+column_anno_barplot
+column_anno_boxplot
+column_anno_density
+column_anno_histogram
+column_anno_link
+column_anno_points
+column_anno_text
+enhanced_basicplot
+plotDataFrame
+selectArea
+get_color_mapping_param_list
+
+
+---------------------Added Functions---------------
+
+
+width.AnnotationFunction
+height.AnnotationFunction
+size.AnnotationFunction
+width.SingleAnnotation
+height.SingleAnnotation
+size.SingleAnnotation
+width.HeatmapAnnotation
+height.HeatmapAnnotation
+size.HeatmapAnnotation
+width.Legends
+height.Legends
+width.HeatmapList
+height.HeatmapList
+width.Heatmap
+height.Heatmap
+AnnotationFunction
+nobs.AnnotationFunction
+anno_empty
+anno_simple
+anno_image
+default_axis_param
+anno_lines
+anno_joyplot
+anno_horizon
+anno_mark
+anno_link
+anno_summary
+anno_block
+anno_zoom
+annotation_axis_grob
+widthDetails.annotation_axis
+heightDetails.annotation_axis
+ht_opt
+dendrogramGrob
+merge_dendrogram
+dend_heights
+dend_xy
+cluster_within_group
+Legends
+dim.Heatmap
+nrow.Heatmap
+ncol.Heatmap
+summary.Heatmap
+HeatmapAnnotation
+nobs.HeatmapAnnotation
+c.HeatmapAnnotation
+names.HeatmapAnnotation
+length.HeatmapAnnotation
+names.HeatmapList
+length.HeatmapList
+summary.HeatmapList
+default_get_type
+test_alter_fun
+list_to_matrix
+make_comb_mat
+set_name
+set_size
+comb_size
+comb_name
+comb_degree
+extract_comb
+t.comb_mat
+print.comb_mat
+UpSet
+upset_top_annotation
+upset_right_annotation
+normalize_comb_mat
+str.comb_mat
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+1. column_anno_points -> anno_link
+2. column_anno_text -> anno_link
+3. column_anno_link -> anno_link
+4. densityHeatmap -> HeatmapAnnotation
+5. enhanced_basicplot -> anno_lines
+Total renames
+5
+Functions in namespace : 253
+Functions in parsed : 106
+Functions in namespace : 97
+Functions in parsed : 50{
+    "package": "ComplexHeatmap",
+    "versions": "release_3_9  release_3_11",
+    "param_changes": 2,
+    "param_warnings": 6,
+    "function_removals": 1,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 9
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : ComplexHeatmap
+Checking Versions complexheatmap_release_3_9
+complexheatmap_release_3_11
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : oncoPrint(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : oncoPrint(...) | Function Declaration Type : S3(mat, get_type = default_get_type, alter_fun, alter_fun_is_vectorized = NULL, col = NULL, top_annotation = undefined, right_annotation = undefined, left_annotation = NULL, bottom_annotation = NULL, show_pct = TRUE, pct_gp = undefined, pct_digits = undefined, pct_side = undefined, row_labels = NULL, show_row_names = TRUE, row_names_side = undefined, row_names_gp = pct_gp, row_split = NULL, column_labels = NULL, column_names_gp = undefined, column_split = NULL, row_order = NULL, column_order = NULL, remove_empty_columns = FALSE, remove_empty_rows = FALSE, show_column_names = FALSE, heatmap_legend_param = undefined){...}
+New Parameters : Function Name : oncoPrint(...) | Function Declaration Type : S3(mat, get_type = default_get_type, alter_fun, alter_fun_is_vectorized = NULL, col = NULL, top_annotation = undefined, right_annotation = undefined, left_annotation = NULL, bottom_annotation = NULL, show_pct = TRUE, pct_gp = undefined, pct_digits = undefined, pct_side = undefined, row_labels = NULL, show_row_names = TRUE, row_names_side = undefined, row_names_gp = pct_gp, row_split = NULL, column_labels = NULL, column_names_gp = undefined, column_split = NULL, row_order = NULL, column_order = NULL, cluster_rows = FALSE, cluster_columns = FALSE, remove_empty_columns = FALSE, remove_empty_rows = FALSE, show_column_names = FALSE, heatmap_legend_param = undefined, ){...} FILE : oncoPrint.R
+2. Function Name : make_comb_mat(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (, mode, top_n_sets, min_set_size, remove_empty_comb_set, remove_complement_set, universal_set, complement_sizevalue_fun){...}
+New Parameters : (, mode, top_n_sets, min_set_size, universal_set, complement_size, value_funset_on_rows){...} FILE : Upset.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : anno_mark(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (at, labels, which = undefined, side = undefined, lines_gp = undefined, labels_gp = undefined, padding = undefined, link_width = undefined, link_height = link_width, link_gp = lines_gpextend = undefined){...}
+New Parameters : (at, labels, which = undefined, side = undefined, lines_gp = undefined, labels_gp = undefined, labels_rot = undefined, padding = undefined, link_width = undefined, link_height = link_width, link_gp = lines_gpextend = undefined){...}
+2. Function Name : Heatmap(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (matrix, col, name, na_col = undefined, color_space = undefined, rect_gp = undefined, border = NA, cell_fun = NULL, layer_fun = NULL, row_title = undefined, row_title_side = undefined, row_title_gp = undefinedrow_title_rot = ){...}
+New Parameters : (matrix, col, name, na_col = undefined, color_space = undefined, rect_gp = undefined, border = NA, cell_fun = NULL, layer_fun = NULL, jitter = FALSE, row_title = undefined, row_title_side = undefined, row_title_gp = undefinedrow_title_rot = ){...}
+3. Function Name : HeatmapAnnotation(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (, df, name, col, na_col = undefined, annotation_legend_param = undefined, show_legend = TRUE, which = undefined, gp = undefined, border = FALSE, gap = undefined, show_annotation_name = TRUE, annotation_name_gp = undefined, annotation_name_offset = NULL, annotation_name_side = undefined, annotation_name_rot = NULL, annotation_height = NULL, annotation_width = NULL, height = NULL, width = NULL, simple_anno_size = ht_opt$simple_anno_sizesimple_anno_size_adjust = FALSE){...}
+New Parameters : (, df, name, col, na_col = undefined, annotation_legend_param = undefined, show_legend = TRUE, which = undefined, gp = undefined, border = FALSE, gap = undefined, show_annotation_name = TRUE, annotation_label = NULL, annotation_name_gp = undefined, annotation_name_offset = NULL, annotation_name_side = undefined, annotation_name_rot = NULL, annotation_height = NULL, annotation_width = NULL, height = NULL, width = NULL, simple_anno_size = ht_opt$simple_anno_sizesimple_anno_size_adjust = FALSE){...}
+4. Function Name : oncoPrint(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (mat, get_type = default_get_type, alter_fun, alter_fun_is_vectorized = NULL, col = NULL, top_annotation = undefined, right_annotation = undefined, left_annotation = NULL, bottom_annotation = NULL, show_pct = TRUE, pct_gp = undefined, pct_digits = undefined, pct_side = undefined, row_labels = NULL, show_row_names = TRUE, row_names_side = undefined, row_names_gp = pct_gp, row_split = NULL, column_labels = NULL, column_names_gp = undefined, column_split = NULL, row_order = NULL, column_order = NULL, remove_empty_columns = FALSE, remove_empty_rows = FALSE, show_column_names = FALSE, heatmap_legend_param = undefined){...}
+New Parameters : (mat, get_type = default_get_type, alter_fun, alter_fun_is_vectorized = NULL, col = NULL, top_annotation = undefined, right_annotation = undefined, left_annotation = NULL, bottom_annotation = NULL, show_pct = TRUE, pct_gp = undefined, pct_digits = undefined, pct_side = undefined, row_labels = NULL, show_row_names = TRUE, row_names_side = undefined, row_names_gp = pct_gp, row_split = NULL, column_labels = NULL, column_names_gp = undefined, column_split = NULL, row_order = NULL, column_order = NULL, cluster_rows = FALSE, cluster_columns = FALSE, remove_empty_columns = FALSE, remove_empty_rows = FALSE, show_column_names = FALSE, heatmap_legend_param = undefined){...}
+5. Function Name : anno_oncoprint_barplot(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (type = NULL, which = undefined, bar_width = undefined, axis = TRUEaxis_param = ){...}
+New Parameters : (type = NULL, which = undefined, bar_width = undefined, ylim = NULL, axis = TRUEaxis_param = ){...}
+6. Function Name : SingleAnnotation(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (name, value, col, fun, na_col = undefined, which = undefined, show_legend = TRUE, gp = undefined, border = FALSE, legend_param = undefined, show_name = TRUE, name_gp = undefined, name_offset = NULL, name_side = undefined, name_rot = NULL, simple_anno_size = ht_opt$simple_anno_size, width = NULLheight = NULL){...}
+New Parameters : (name, value, col, fun, label = NULL, na_col = undefined, which = undefined, show_legend = TRUE, gp = undefined, border = FALSE, legend_param = undefined, show_name = TRUE, name_gp = undefined, name_offset = NULL, name_side = undefined, name_rot = NULL, simple_anno_size = ht_opt$simple_anno_size, width = NULLheight = NULL){...}
+
+-----------------------Removed Functions------------
+
+row_anno_link
+
+
+---------------------Added Functions---------------
+
+
+smartAlign2
+c.ColorMapping
+gt_render
+alter_graphic
+full_comb_code
+complement_size
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 261
+Functions in parsed : 111
+Functions in namespace : 253
+Functions in parsed : 106{
+    "package": "ComplexHeatmap",
+    "versions": "release_3_11  release_3_12",
+    "param_changes": 0,
+    "param_warnings": 6,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 6
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : ComplexHeatmap
+Checking Versions complexheatmap_release_3_11
+complexheatmap_release_3_12
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : anno_density(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (x, which = undefined, type = undefined, heatmap_colors = undefined, joyplot_scale = undefined, border = TRUE, gp = undefined, axis = TRUE, axis_param = undefined, width = NULLheight = NULL){...}
+New Parameters : (x, which = undefined, type = undefined, xlim = NULL, heatmap_colors = undefined, joyplot_scale = undefined, border = TRUE, gp = undefined, axis = TRUE, axis_param = undefined, width = NULLheight = NULL){...}
+2. Function Name : Legend(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (at, labels = at, col_fun, nrow = NULL, ncol = undefined, by_row = FALSE, grid_height = undefined, grid_width = undefined, gap = undefined, labels_gp = undefined, labels_rot = undefined, border = NULL, background = undefined, type = undefined, legend_gp = undefined, pch = undefined, size = undefined, legend_height = NULL, legend_width = NULL, direction = undefined, title = undefined, title_gp = undefined, title_position = undefinedtitle_gap = undefined){...}
+New Parameters : (at, labels = at, col_fun, name = NULL, break_dist = NULL, nrow = NULL, ncol = undefined, by_row = FALSE, grid_height = undefined, grid_width = undefined, gap = undefined, column_gap = gap, row_gap = undefined, labels_gp = undefined, labels_rot = undefined, border = NULL, background = undefined, type = undefined, graphics = NULL, legend_gp = undefined, pch = undefined, size = undefined, legend_height = NULL, legend_width = NULL, direction = undefined, title = undefined, title_gp = undefined, title_position = undefinedtitle_gap = undefined){...}
+3. Function Name : Heatmap(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (matrix, col, name, na_col = undefined, color_space = undefined, rect_gp = undefined, border = NA, cell_fun = NULL, layer_fun = NULL, jitter = FALSE, row_title = undefined, row_title_side = undefined, row_title_gp = undefinedrow_title_rot = ){...}
+New Parameters : (matrix, col, name, na_col = undefined, color_space = undefined, rect_gp = undefined, border = NA, border_gp = undefined, cell_fun = NULL, layer_fun = NULL, jitter = FALSE, row_title = undefined, row_title_side = undefined, row_title_gp = undefinedrow_title_rot = ){...}
+4. Function Name : HeatmapAnnotation(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (, df, name, col, na_col = undefined, annotation_legend_param = undefined, show_legend = TRUE, which = undefined, gp = undefined, border = FALSE, gap = undefined, show_annotation_name = TRUE, annotation_label = NULL, annotation_name_gp = undefined, annotation_name_offset = NULL, annotation_name_side = undefined, annotation_name_rot = NULL, annotation_height = NULL, annotation_width = NULL, height = NULL, width = NULL, simple_anno_size = ht_opt$simple_anno_sizesimple_anno_size_adjust = FALSE){...}
+New Parameters : (, df, name, col, na_col = undefined, annotation_legend_param = undefined, show_legend = TRUE, which = undefined, gp = undefined, border = FALSE, gap = undefined, show_annotation_name = TRUE, annotation_label = NULL, annotation_name_gp = undefined, annotation_name_offset = NULL, annotation_name_side = undefined, annotation_name_rot = NULL, annotation_name_align = FALSE, annotation_height = NULL, annotation_width = NULL, height = NULL, width = NULL, simple_anno_size = ht_opt$simple_anno_sizesimple_anno_size_adjust = FALSE){...}
+5. Function Name : oncoPrint(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (mat, get_type = default_get_type, alter_fun, alter_fun_is_vectorized = NULL, col = NULL, top_annotation = undefined, right_annotation = undefined, left_annotation = NULL, bottom_annotation = NULL, show_pct = TRUE, pct_gp = undefined, pct_digits = undefined, pct_side = undefined, row_labels = NULL, show_row_names = TRUE, row_names_side = undefined, row_names_gp = pct_gp, row_split = NULL, column_labels = NULL, column_names_gp = undefined, column_split = NULL, row_order = NULL, column_order = NULL, cluster_rows = FALSE, cluster_columns = FALSE, remove_empty_columns = FALSE, remove_empty_rows = FALSE, show_column_names = FALSE, heatmap_legend_param = undefined){...}
+New Parameters : (mat, get_type = default_get_type, alter_fun, alter_fun_is_vectorized = NULL, col = NULL, top_annotation = undefined, right_annotation = undefined, left_annotation = NULL, bottom_annotation = NULL, show_pct = TRUE, pct_gp = undefined, pct_digits = undefined, pct_side = undefined, row_labels = NULL, show_row_names = TRUE, row_names_side = undefined, row_names_gp = pct_gp, row_split = NULL, column_labels = NULL, column_names_gp = undefined, column_split = NULL, row_order = NULL, column_order = NULL, cluster_rows = FALSE, cluster_columns = FALSE, remove_empty_columns = FALSE, remove_empty_rows = FALSE, show_column_names = FALSE, heatmap_legend_param = NULL){...}
+6. Function Name : anno_oncoprint_barplot(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (type = NULL, which = undefined, bar_width = undefined, ylim = NULL, axis = TRUEaxis_param = ){...}
+New Parameters : (type = NULL, which = undefined, bar_width = undefined, ylim = NULL, show_fraction = FALSE, axis = TRUEaxis_param = ){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+ht_size
+selectArea
+selectPosition
+ht_pos_on_device
+ht_shiny
+compare_pheatmap
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 269
+Functions in parsed : 117
+Functions in namespace : 261
+Functions in parsed : 111{
+    "package": "ComplexHeatmap",
+    "versions": "release_3_12  release_3_13",
+    "param_changes": 2,
+    "param_warnings": 4,
+    "function_removals": 4,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 10
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : ComplexHeatmap
+Checking Versions complexheatmap_release_3_12
+complexheatmap_release_3_13
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : oncoPrint(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : oncoPrint(...) | Function Declaration Type : S3(mat, get_type = default_get_type, alter_fun, alter_fun_is_vectorized = NULL, col = NULL, top_annotation = undefined, right_annotation = undefined, left_annotation = NULL, bottom_annotation = NULL, show_pct = TRUE, pct_gp = undefined, pct_digits = undefined, pct_side = undefined, row_labels = NULL, show_row_names = TRUE, row_names_side = undefined, row_names_gp = pct_gp, row_split = NULL, column_labels = NULL, column_names_gp = undefined, column_split = NULL, row_order = NULL, column_order = NULL, cluster_rows = FALSE, cluster_columns = FALSE, remove_empty_columns = FALSE, remove_empty_rows = FALSE, show_column_names = FALSE, heatmap_legend_param = NULL){...}
+New Parameters : Function Name : oncoPrint(...) | Function Declaration Type : S3(mat, name, get_type = default_get_type, alter_fun, alter_fun_is_vectorized = NULL, col = NULL, top_annotation = undefined, right_annotation = undefined, left_annotation = NULL, bottom_annotation = NULL, show_pct = TRUE, pct_gp = undefined, pct_digits = undefined, pct_side = undefined, row_labels = NULL, show_row_names = TRUE, row_names_side = undefined, row_names_gp = pct_gp, row_split = NULL, column_labels = NULL, column_names_gp = undefined, column_split = NULL, row_order = NULL, column_order = NULL, cluster_rows = FALSE, cluster_columns = FALSE, remove_empty_columns = FALSE, remove_empty_rows = FALSE, show_column_names = FALSE, heatmap_legend_param = NULL, ){...} FILE : oncoPrint.R
+2. Function Name : pheatmap(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : pheatmap(...) | Function Declaration Type : S3(mat, color = undefined, kmeans_k = NA, breaks = NA, border_color = undefined, cellwidth = NA, cellheight = NA, scale = undefined, cluster_rows = TRUE, cluster_cols = TRUE, clustering_distance_rows = undefined, clustering_distance_cols = undefined, clustering_method = undefined, clustering_callback = NA, cutree_rows = NA, cutree_cols = NA, treeheight_row = undefined, treeheight_col = undefined, legend = TRUE, legend_breaks = NA, legend_labels = NA, annotation_row = NA, annotation_col = NA, annotation = NA, annotation_colors = NA, annotation_legend = TRUE, annotation_names_row = TRUE, annotation_names_col = TRUE, drop_levels = TRUE, show_rownames = TRUE, show_colnames = TRUE, main = NA, fontsize = undefined, fontsize_row = fontsize, fontsize_col = fontsize, angle_col = undefined, display_numbers = FALSE, number_format = undefined, number_color = undefined, fontsize_number = undefined, gaps_row = NULL, gaps_col = NULL, labels_row = NULL, labels_col = NULL, filename = NA, width = NA, height = NA, silent = FALSE, na_col = undefined, name = undefined){...}
+New Parameters : Function Name : pheatmap(...) | Function Declaration Type : S3(mat, color = undefined, kmeans_k = NA, breaks = NA, border_color = undefined, cellwidth = NA, cellheight = NA, scale = undefined, cluster_rows = TRUE, cluster_cols = TRUE, clustering_distance_rows = undefined, clustering_distance_cols = undefined, clustering_method = undefined, clustering_callback = NA, cutree_rows = NA, cutree_cols = NA, treeheight_row = undefined, treeheight_col = undefined, legend = TRUE, legend_breaks = NA, legend_labels = NA, annotation_row = NA, annotation_col = NA, annotation = NA, annotation_colors = NA, annotation_legend = TRUE, annotation_names_row = TRUE, annotation_names_col = TRUE, drop_levels = TRUE, show_rownames = TRUE, show_colnames = TRUE, main = NA, fontsize = undefined, fontsize_row = fontsize, fontsize_col = fontsize, angle_col = undefined, display_numbers = FALSE, number_format = undefined, number_color = undefined, fontsize_number = undefined, gaps_row = NULL, gaps_col = NULL, labels_row = NULL, labels_col = NULL, filename = NA, width = NA, height = NA, silent = FALSE, na_col = undefined, name = undefined, heatmap_legend_param = undefined, , run_draw = TRUE){...} FILE : pheatmap_translate.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : anno_block(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (gp = undefined, labels = NULL, labels_gp = undefined, labels_rot = undefined, which = undefined, width = NULL, height = NULLshow_name = FALSE){...}
+New Parameters : (gp = undefined, labels = NULL, labels_gp = undefined, labels_rot = undefined, labels_offset = undefined, labels_just = undefined, which = undefined, width = NULL, height = NULL, show_name = FALSEgraphics = NULL){...}
+2. Function Name : Legend(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (at, labels = at, col_fun, name = NULL, break_dist = NULL, nrow = NULL, ncol = undefined, by_row = FALSE, grid_height = undefined, grid_width = undefined, gap = undefined, column_gap = gap, row_gap = undefined, labels_gp = undefined, labels_rot = undefined, border = NULL, background = undefined, type = undefined, graphics = NULL, legend_gp = undefined, pch = undefined, size = undefined, legend_height = NULL, legend_width = NULL, direction = undefined, title = undefined, title_gp = undefined, title_position = undefinedtitle_gap = undefined){...}
+New Parameters : (at, labels = at, col_fun, name = NULL, grob = NULL, break_dist = NULL, nrow = NULL, ncol = undefined, by_row = FALSE, grid_height = undefined, grid_width = undefined, gap = undefined, column_gap = gap, row_gap = undefined, labels_gp = undefined, labels_rot = undefined, border = NULL, background = undefined, type = undefined, graphics = NULL, legend_gp = undefined, pch = undefined, size = undefined, legend_height = NULL, legend_width = NULL, direction = undefined, title = undefined, title_gp = undefined, title_position = undefinedtitle_gap = undefined){...}
+3. Function Name : oncoPrint(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (mat, get_type = default_get_type, alter_fun, alter_fun_is_vectorized = NULL, col = NULL, top_annotation = undefined, right_annotation = undefined, left_annotation = NULL, bottom_annotation = NULL, show_pct = TRUE, pct_gp = undefined, pct_digits = undefined, pct_side = undefined, row_labels = NULL, show_row_names = TRUE, row_names_side = undefined, row_names_gp = pct_gp, row_split = NULL, column_labels = NULL, column_names_gp = undefined, column_split = NULL, row_order = NULL, column_order = NULL, cluster_rows = FALSE, cluster_columns = FALSE, remove_empty_columns = FALSE, remove_empty_rows = FALSE, show_column_names = FALSE, heatmap_legend_param = NULL){...}
+New Parameters : (mat, name, get_type = default_get_type, alter_fun, alter_fun_is_vectorized = NULL, col = NULL, top_annotation = undefined, right_annotation = undefined, left_annotation = NULL, bottom_annotation = NULL, show_pct = TRUE, pct_gp = undefined, pct_digits = undefined, pct_side = undefined, row_labels = NULL, show_row_names = TRUE, row_names_side = undefined, row_names_gp = pct_gp, row_split = NULL, column_labels = NULL, column_names_gp = undefined, column_split = NULL, row_order = NULL, column_order = NULL, cluster_rows = FALSE, cluster_columns = FALSE, remove_empty_columns = FALSE, remove_empty_rows = FALSE, show_column_names = FALSE, heatmap_legend_param = NULL){...}
+4. Function Name : pheatmap(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (mat, color = undefined, kmeans_k = NA, breaks = NA, border_color = undefined, cellwidth = NA, cellheight = NA, scale = undefined, cluster_rows = TRUE, cluster_cols = TRUE, clustering_distance_rows = undefined, clustering_distance_cols = undefined, clustering_method = undefined, clustering_callback = NA, cutree_rows = NA, cutree_cols = NA, treeheight_row = undefined, treeheight_col = undefined, legend = TRUE, legend_breaks = NA, legend_labels = NA, annotation_row = NA, annotation_col = NA, annotation = NA, annotation_colors = NA, annotation_legend = TRUE, annotation_names_row = TRUE, annotation_names_col = TRUE, drop_levels = TRUE, show_rownames = TRUE, show_colnames = TRUE, main = NA, fontsize = undefined, fontsize_row = fontsize, fontsize_col = fontsize, angle_col = undefined, display_numbers = FALSE, number_format = undefined, number_color = undefined, fontsize_number = undefined, gaps_row = NULL, gaps_col = NULL, labels_row = NULL, labels_col = NULL, filename = NA, width = NA, height = NA, silent = FALSE, na_col = undefined, name = undefined){...}
+New Parameters : (mat, color = undefined, kmeans_k = NA, breaks = NA, border_color = undefined, cellwidth = NA, cellheight = NA, scale = undefined, cluster_rows = TRUE, cluster_cols = TRUE, clustering_distance_rows = undefined, clustering_distance_cols = undefined, clustering_method = undefined, clustering_callback = NA, cutree_rows = NA, cutree_cols = NA, treeheight_row = undefined, treeheight_col = undefined, legend = TRUE, legend_breaks = NA, legend_labels = NA, annotation_row = NA, annotation_col = NA, annotation = NA, annotation_colors = NA, annotation_legend = TRUE, annotation_names_row = TRUE, annotation_names_col = TRUE, drop_levels = TRUE, show_rownames = TRUE, show_colnames = TRUE, main = NA, fontsize = undefined, fontsize_row = fontsize, fontsize_col = fontsize, angle_col = undefined, display_numbers = FALSE, number_format = undefined, number_color = undefined, fontsize_number = undefined, gaps_row = NULL, gaps_col = NULL, labels_row = NULL, labels_col = NULL, filename = NA, width = NA, height = NA, silent = FALSE, na_col = undefined, name = undefined, heatmap_legend_param = undefined, run_draw = TRUE){...}
+
+-----------------------Removed Functions------------
+
+ht_pos_on_device
+ht_shiny
+selectArea
+selectPosition
+
+
+---------------------Added Functions---------------
+
+
+bar3D
+Heatmap3D
+frequencyHeatmap
+bin_genome
+normalize_genomic_signals_to_bins
+cluster_between_groups
+compare_heatmap
+pheatmap
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 273
+Functions in parsed : 121
+Functions in namespace : 269
+Functions in parsed : 117{
+    "package": "ComplexHeatmap",
+    "versions": "release_3_13  release_3_14",
+    "param_changes": 1,
+    "param_warnings": 4,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 5
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : ComplexHeatmap
+Checking Versions complexheatmap_release_3_13
+complexheatmap_release_3_14
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : anno_barplot(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : anno_barplot(...) | Function Declaration Type : S3(x, baseline = undefined, which = undefined, border = TRUE, bar_width = undefined, gp = undefined, ylim = NULL, extend = undefined, axis = TRUE, axis_param = undefined, width = NULL, height = NULL){...}
+New Parameters : Function Name : anno_barplot(...) | Function Declaration Type : S3(x, baseline = undefined, which = undefined, border = TRUE, bar_width = undefined, beside = FALSE, gp = undefined, ylim = NULL, extend = undefined, axis = TRUE, axis_param = undefined, add_numbers = FALSE, numbers_gp = undefined, numbers_rot = undefined, numbers_offset = undefined, width = NULL, height = NULL, ){...} FILE : AnnotationFunction-function.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : AnnotationFunction(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (fun, fun_name = undefined, which = undefined, var_import = undefined, n = NA, data_scale = undefined, subset_rule = undefined, subsetable = undefined, show_name = TRUE, width = NULLheight = NULL){...}
+New Parameters : (fun, fun_name = undefined, which = undefined, cell_fun = NULL, var_import = undefined, n = NA, data_scale = undefined, subset_rule = undefined, subsetable = undefined, show_name = TRUE, width = NULLheight = NULL){...}
+2. Function Name : anno_barplot(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (x, baseline = undefined, which = undefined, border = TRUE, bar_width = undefined, gp = undefined, ylim = NULL, extend = undefined, axis = TRUE, axis_param = undefined, width = NULL, height = NULL){...}
+New Parameters : (x, baseline = undefined, which = undefined, border = TRUE, bar_width = undefined, beside = FALSE, gp = undefined, ylim = NULL, extend = undefined, axis = TRUE, axis_param = undefined, add_numbers = FALSE, numbers_gp = undefined, numbers_rot = undefined, numbers_offset = undefined, width = NULL, height = NULL){...}
+3. Function Name : anno_oncoprint_barplot(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (type = NULL, which = undefined, bar_width = undefined, ylim = NULL, show_fraction = FALSE, axis = TRUEaxis_param = ){...}
+New Parameters : (type = NULL, which = undefined, bar_width = undefined, beside = FALSE, ylim = NULL, show_fraction = FALSE, axis = TRUEaxis_param = ){...}
+4. Function Name : pheatmap(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (mat, color = undefined, kmeans_k = NA, breaks = NA, border_color = undefined, cellwidth = NA, cellheight = NA, scale = undefined, cluster_rows = TRUE, cluster_cols = TRUE, clustering_distance_rows = undefined, clustering_distance_cols = undefined, clustering_method = undefined, clustering_callback = NA, cutree_rows = NA, cutree_cols = NA, treeheight_row = undefined, treeheight_col = undefined, legend = TRUE, legend_breaks = NA, legend_labels = NA, annotation_row = NA, annotation_col = NA, annotation = NA, annotation_colors = NA, annotation_legend = TRUE, annotation_names_row = TRUE, annotation_names_col = TRUE, drop_levels = TRUE, show_rownames = TRUE, show_colnames = TRUE, main = NA, fontsize = undefined, fontsize_row = fontsize, fontsize_col = fontsize, angle_col = undefined, display_numbers = FALSE, number_format = undefined, number_color = undefined, fontsize_number = undefined, gaps_row = NULL, gaps_col = NULL, labels_row = NULL, labels_col = NULL, filename = NA, width = NA, height = NA, silent = FALSE, na_col = undefined, name = undefined, heatmap_legend_param = undefined, run_draw = TRUE){...}
+New Parameters : (mat, color = undefined, kmeans_k = NA, breaks = NA, border_color = undefined, cellwidth = NA, cellheight = NA, scale = undefined, cluster_rows = TRUE, cluster_cols = TRUE, clustering_distance_rows = undefined, clustering_distance_cols = undefined, clustering_method = undefined, clustering_callback = NA, cutree_rows = NA, cutree_cols = NA, treeheight_row = undefined, treeheight_col = undefined, legend = TRUE, legend_breaks = NA, legend_labels = NA, annotation_row = NA, annotation_col = NA, annotation = NA, annotation_colors = NA, annotation_legend = TRUE, annotation_names_row = TRUE, annotation_names_col = TRUE, drop_levels = TRUE, show_rownames = TRUE, show_colnames = TRUE, main = NA, fontsize = undefined, fontsize_row = fontsize, fontsize_col = fontsize, angle_col = undefined, display_numbers = FALSE, number_format = undefined, number_color = undefined, fontsize_number = undefined, gaps_row = NULL, gaps_col = NULL, labels_row = NULL, labels_col = NULL, filename = NA, width = NA, height = NA, silent = FALSE, na_col = undefined, name = NULL, heatmap_legend_param = undefined, run_draw = FALSE){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+anno_customize
+plot.HeatmapList
+plot.Heatmap
+plot.HeatmapAnnotation
+upset_left_annotation
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 282
+Functions in parsed : 126
+Functions in namespace : 273
+Functions in parsed : 121{
+    "package": "ComplexHeatmap",
+    "versions": "release_3_14  master",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : ComplexHeatmap
+Checking Versions complexheatmap_release_3_14
+complexheatmap_master
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 282
+Functions in parsed : 126
+Functions in namespace : 282
+Functions in parsed : 126

@@ -1,0 +1,527 @@
+{
+    "package": "SingleCellExperiment",
+    "versions": "release_3_6  release_3_7",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : SingleCellExperiment
+Checking Versions singlecellexperiment_release_3_6
+singlecellexperiment_release_3_7
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+featureLoadings
+factorData
+sampleFactors
+$
+dim
+dimnames
+as.matrix.LinearEmbeddingMatrix
+LinearEmbeddingMatrix
+[
+rbind
+cbind
+reducedDims
+reducedDimNames
+reducedDim
+sizeFactors
+clearSizeFactors
+isSpike
+clearSpikes
+colData
+rowData
+spikeNames
+sizeFactorNames
+objectVersion
+SingleCellExperiment
+subset
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 76
+Functions in parsed : 25
+Functions in namespace : 3
+Functions in parsed : 0{
+    "package": "SingleCellExperiment",
+    "versions": "release_3_7  release_3_8",
+    "param_changes": 0,
+    "param_warnings": 2,
+    "function_removals": 1,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 3
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : SingleCellExperiment
+Checking Versions singlecellexperiment_release_3_7
+singlecellexperiment_release_3_8
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : colData(...) | Function Declaration Type : setMethod |  Signature: SingleCellExperiment had parameters modified in newer version.
+Original Parameters : (xinternal = FALSE){...}
+New Parameters : (x, internal = FALSE){...}
+2. Function Name : rowData(...) | Function Declaration Type : setMethod |  Signature: SingleCellExperiment had parameters modified in newer version.
+Original Parameters : (xinternal = FALSE){...}
+New Parameters : (x, internal = FALSE){...}
+
+-----------------------Removed Functions------------
+
+subset
+
+
+---------------------Added Functions---------------
+
+
+int_elementMetadata
+int_colData
+int_metadata
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 92
+Functions in parsed : 27
+Functions in namespace : 76
+Functions in parsed : 25{
+    "package": "SingleCellExperiment",
+    "versions": "release_3_8  release_3_9",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : SingleCellExperiment
+Checking Versions singlecellexperiment_release_3_8
+singlecellexperiment_release_3_9
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 92
+Functions in parsed : 27
+Functions in namespace : 92
+Functions in parsed : 27{
+    "package": "SingleCellExperiment",
+    "versions": "release_3_9  release_3_11",
+    "param_changes": 1,
+    "param_warnings": 1,
+    "function_removals": 12,
+    "function_renames": 2,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 2,
+    "total_count": 14
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : SingleCellExperiment
+Checking Versions singlecellexperiment_release_3_9
+singlecellexperiment_release_3_11
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : sizeFactors(...) | Function Declaration Type : setReplaceMethod |  Signature: SingleCellExperiment had parameters removed in newer version.
+Original Parameters : (object, type, value){...}
+New Parameters : (object, value){...} FILE : SCE-sizeFactors.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : sizeFactors(...) | Function Declaration Type : setMethod |  Signature: SingleCellExperiment had parameters modified in newer version.
+Original Parameters : (objecttype = NULL){...}
+New Parameters : (objectonAbsence = undefined){...}
+
+-----------------------Removed Functions------------
+
+isSpike<-
+clearSizeFactors
+clearSpikes
+isSpike
+sizeFactorNames
+spikeNames
+isSpike
+clearSizeFactors
+clearSpikes
+isSpike
+sizeFactorNames
+spikeNames
+
+
+---------------------Added Functions---------------
+
+
+altExpNames
+altExps
+altExp
+removeAltExps
+colLabels
+splitAltExps
+swapAltExp
+updateObject
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+1. isSpike -> altExp
+2. spikeNames -> altExpNames
+Total renames
+2
+Functions in namespace : 100
+Functions in parsed : 30
+Functions in namespace : 92
+Functions in parsed : 27{
+    "package": "SingleCellExperiment",
+    "versions": "release_3_11  release_3_12",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : SingleCellExperiment
+Checking Versions singlecellexperiment_release_3_11
+singlecellexperiment_release_3_12
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+colPairs
+colPairNames
+colPair
+parallel_slot_names
+rowPairs
+rowPairNames
+rowPair
+rowSubset
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 129
+Functions in parsed : 38
+Functions in namespace : 100
+Functions in parsed : 30{
+    "package": "SingleCellExperiment",
+    "versions": "release_3_12  release_3_13",
+    "param_changes": 4,
+    "param_warnings": 7,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 11
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : SingleCellExperiment
+Checking Versions singlecellexperiment_release_3_12
+singlecellexperiment_release_3_13
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : altExps(...) | Function Declaration Type : setReplaceMethod |  Signature: SingleCellExperiment had non-default parameters added in newer version.
+Original Parameters : Function Name : altExps(...) | Function Declaration Type : setReplaceMethod |  Signature: SingleCellExperiment(xvalue){...}
+New Parameters : Function Name : altExps(...) | Function Declaration Type : setReplaceMethod |  Signature: SingleCellExperiment(x, withDimnames = TRUE, withColData = FALSE, , value){...} FILE : altExps.R
+2. Function Name : altExp(...) | Function Declaration Type : setReplaceMethod |  Signature: undefined had non-default parameters added in newer version.
+Original Parameters : Function Name : altExp(...) | Function Declaration Type : setReplaceMethod |  Signature: undefined(x, e, value){...}
+New Parameters : Function Name : altExp(...) | Function Declaration Type : setReplaceMethod |  Signature: undefined(x, e, withDimnames = TRUE, withColData = FALSE, , value){...} FILE : altExps.R
+3. Function Name : reducedDims(...) | Function Declaration Type : setReplaceMethod |  Signature: SingleCellExperiment had non-default parameters added in newer version.
+Original Parameters : Function Name : reducedDims(...) | Function Declaration Type : setReplaceMethod |  Signature: SingleCellExperiment(xvalue){...}
+New Parameters : Function Name : reducedDims(...) | Function Declaration Type : setReplaceMethod |  Signature: SingleCellExperiment(x, withDimnames = TRUE, , value){...} FILE : reducedDims.R
+4. Function Name : reducedDim(...) | Function Declaration Type : setReplaceMethod |  Signature: undefined had non-default parameters added in newer version.
+Original Parameters : Function Name : reducedDim(...) | Function Declaration Type : setReplaceMethod |  Signature: undefined(x, type, value){...}
+New Parameters : Function Name : reducedDim(...) | Function Declaration Type : setReplaceMethod |  Signature: undefined(x, type, withDimnames = TRUE, , value){...} FILE : reducedDims.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : altExps(...) | Function Declaration Type : setMethod |  Signature: SingleCellExperiment had parameters modified in newer version.
+Original Parameters : (xwithColData = FALSE){...}
+New Parameters : (x, withDimnames = TRUEwithColData = FALSE){...}
+2. Function Name : altExp(...) | Function Declaration Type : setMethod |  Signature: undefined had parameters modified in newer version.
+Original Parameters : (x, ewithColData = FALSE){...}
+New Parameters : (x, e, withDimnames = TRUEwithColData = FALSE){...}
+3. Function Name : altExps(...) | Function Declaration Type : setReplaceMethod |  Signature: SingleCellExperiment had parameters modified in newer version.
+Original Parameters : (xvalue){...}
+New Parameters : (x, withDimnames = TRUE, withColData = FALSE, value){...}
+4. Function Name : altExp(...) | Function Declaration Type : setReplaceMethod |  Signature: undefined had parameters modified in newer version.
+Original Parameters : (x, e, value){...}
+New Parameters : (x, e, withDimnames = TRUE, withColData = FALSE, value){...}
+5. Function Name : reducedDims(...) | Function Declaration Type : setReplaceMethod |  Signature: SingleCellExperiment had parameters modified in newer version.
+Original Parameters : (xvalue){...}
+New Parameters : (x, withDimnames = TRUE, value){...}
+6. Function Name : reducedDim(...) | Function Declaration Type : setReplaceMethod |  Signature: undefined had parameters modified in newer version.
+Original Parameters : (x, type, value){...}
+New Parameters : (x, type, withDimnames = TRUE, value){...}
+7. Function Name : swapAltExp(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (x, name, saved = NULLwithColData = TRUE){...}
+New Parameters : (x, name, saved = undefinedwithColData = TRUE){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+mainExpName
+applySCE
+rbind.reduced.dim.matrix
+cbind.reduced.dim.matrix
+simplifyToSCE
+unsplitAltExps
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 141
+Functions in parsed : 44
+Functions in namespace : 129
+Functions in parsed : 38{
+    "package": "SingleCellExperiment",
+    "versions": "release_3_13  release_3_14",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : SingleCellExperiment
+Checking Versions singlecellexperiment_release_3_13
+singlecellexperiment_release_3_14
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+combineCols
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 142
+Functions in parsed : 45
+Functions in namespace : 141
+Functions in parsed : 44{
+    "package": "SingleCellExperiment",
+    "versions": "release_3_14  master",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : SingleCellExperiment
+Checking Versions singlecellexperiment_release_3_14
+singlecellexperiment_master
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 142
+Functions in parsed : 45
+Functions in namespace : 142
+Functions in parsed : 45

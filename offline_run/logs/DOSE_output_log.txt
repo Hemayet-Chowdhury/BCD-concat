@@ -1,0 +1,1172 @@
+{
+    "package": "DOSE",
+    "versions": "release_2_9  release_2_11",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 3,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 3
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : DOSE
+Checking Versions dose_release_2_9
+dose_release_2_11
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+lasses
+(
+(
+
+
+---------------------Added Functions---------------
+
+
+EXTID2TERMID
+TERMID2EXTID
+ALLEXTID
+TERM2NAME
+cnetplot
+doSim
+EXTID2TERMID.DO
+TERMID2EXTID.DO
+TERM2NAME.DO
+ALLEXTID.DO
+enrichDO
+show
+summary
+plot
+geneSim
+simplot
+EXTID2NAME
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 22
+Functions in parsed : 17
+Functions in namespace : 3
+Functions in parsed : 0{
+    "package": "DOSE",
+    "versions": "release_2_11  release_2_12",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : DOSE
+Checking Versions dose_release_2_11
+dose_release_2_12
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 22
+Functions in parsed : 17
+Functions in namespace : 22
+Functions in parsed : 17{
+    "package": "DOSE",
+    "versions": "release_2_12  release_2_13",
+    "param_changes": 5,
+    "param_warnings": 2,
+    "function_removals": 2,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 9
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : DOSE
+Checking Versions dose_release_2_12
+dose_release_2_13
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : TERM2NAME(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : TERM2NAME(...) | Function Declaration Type : S3(term){...}
+New Parameters : Function Name : TERM2NAME(...) | Function Declaration Type : S3(term, organism){...} FILE : AllGenerics.R
+2. Function Name : doSim(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (DOID1, DOID2, methodorganism){...}
+New Parameters : (DOID1, DOID2measure){...} FILE : doSim.R
+3. Function Name : plot(...) | Function Declaration Type : setMethod |  Signature: undefined had non-default parameters added in newer version.
+Original Parameters : Function Name : plot(...) | Function Declaration Type : setMethod |  Signature: undefined(x, type = undefined){...}
+New Parameters : Function Name : plot(...) | Function Declaration Type : setMethod |  Signature: undefined(x, geneSetID, by = undefined, ){...} FILE : enrichDO.R
+4. Function Name : geneSim(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (geneID1, geneID2, method, organismcombine){...}
+New Parameters : (geneID1, geneID2, measurecombine){...} FILE : geneSim.R
+5. Function Name : simplot(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : simplot(...) | Function Declaration Type : S3(sim, xlab = undefinedylab = undefined){...}
+New Parameters : Function Name : simplot(...) | Function Declaration Type : S3(sim, xlab = undefined, ylab = undefined, color, low = undefined, color, high = undefined, labs = TRUE, digits = undefined, labs, size = undefined, font, size = undefined){...} FILE : simplot.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : enrichDO(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (gene, ont = undefined, pvalueCutoff = undefined, qvalueCutoff = undefinedreadable = F){...}
+New Parameters : (gene, ont = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, universe, minGSSize = undefined, qvalueCutoff = undefinedreadable = FALSE){...}
+2. Function Name : plot(...) | Function Declaration Type : setMethod |  Signature: undefined had parameters modified in newer version.
+Original Parameters : (x, type = undefined){...}
+New Parameters : (x, geneSetID, by = undefined){...}
+
+-----------------------Removed Functions------------
+
+lasses(DOParams
+sim
+
+
+---------------------Added Functions---------------
+
+
+getGeneSet
+fortify.enrichResult
+theme_dose
+barplot.enrichResult
+scaleNodeColor
+netplot
+setReadable
+gsea
+gseAnalyzer
+getGeneSet.DO
+fortify.gseaResult
+gseaplot
+getALLEG
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 34
+Functions in parsed : 30
+Functions in namespace : 22
+Functions in parsed : 17{
+    "package": "DOSE",
+    "versions": "release_2_13  release_2_14",
+    "param_changes": 0,
+    "param_warnings": 1,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 1
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : DOSE
+Checking Versions dose_release_2_13
+dose_release_2_14
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : geneSim(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (geneID1, geneID2, measure = undefinedcombine = undefined){...}
+New Parameters : (geneID1, geneID2 = NULL, measure = undefinedcombine = undefined){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 34
+Functions in parsed : 30
+Functions in namespace : 34
+Functions in parsed : 30{
+    "package": "DOSE",
+    "versions": "release_2_14  release_3_1",
+    "param_changes": 9,
+    "param_warnings": 1,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 10
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : DOSE
+Checking Versions dose_release_2_14
+dose_release_3_1
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : getGeneSet(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : getGeneSet(...) | Function Declaration Type : S3(setTypeorganism){...}
+New Parameters : Function Name : getGeneSet(...) | Function Declaration Type : S3(setType, organism, ){...} FILE : AllGenerics.R
+2. Function Name : EXTID2TERMID(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : EXTID2TERMID(...) | Function Declaration Type : S3(geneorganism){...}
+New Parameters : Function Name : EXTID2TERMID(...) | Function Declaration Type : S3(gene, organism, ){...} FILE : AllGenerics.R
+3. Function Name : TERMID2EXTID(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : TERMID2EXTID(...) | Function Declaration Type : S3(termorganism){...}
+New Parameters : Function Name : TERMID2EXTID(...) | Function Declaration Type : S3(term, organism, ){...} FILE : AllGenerics.R
+4. Function Name : ALLEXTID(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : ALLEXTID(...) | Function Declaration Type : S3(organism){...}
+New Parameters : Function Name : ALLEXTID(...) | Function Declaration Type : S3(organism, ){...} FILE : AllGenerics.R
+5. Function Name : TERM2NAME(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : TERM2NAME(...) | Function Declaration Type : S3(termorganism){...}
+New Parameters : Function Name : TERM2NAME(...) | Function Declaration Type : S3(term, organism, ){...} FILE : AllGenerics.R
+6. Function Name : summary(...) | Function Declaration Type : setMethod |  Signature: undefined had non-default parameters added in newer version.
+Original Parameters : Function Name : summary(...) | Function Declaration Type : setMethod |  Signature: undefined(object){...}
+New Parameters : Function Name : summary(...) | Function Declaration Type : setMethod |  Signature: undefined(object, ){...} FILE : gseAnalyzer.R
+7. Function Name : plot(...) | Function Declaration Type : setMethod |  Signature: undefined had parameters removed in newer version.
+Original Parameters : (x, geneSetID, by){...}
+New Parameters : (x, type){...} FILE : gseAnalyzer.R
+8. Function Name : gsea(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : gsea(...) | Function Declaration Type : S3(geneList, geneSets, setType, organism, exponent, nPerm, minGSSize, pvalueCutoff, pAdjustMethodverbose){...}
+New Parameters : Function Name : gsea(...) | Function Declaration Type : S3(geneList, geneSets, setType, organism, exponent, nPerm, minGSSize, pvalueCutoff, pAdjustMethod, verbose, seed = FALSE, ){...} FILE : gsea.R
+9. Function Name : gseAnalyzer(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : gseAnalyzer(...) | Function Declaration Type : S3(geneList, setType, organism = undefined, exponent = undefined, nPerm = undefined, minGSSize = undefined, pvalueCutoff = undefined, pAdjustMethod = undefinedverbose = TRUE){...}
+New Parameters : Function Name : gseAnalyzer(...) | Function Declaration Type : S3(geneList, setType, organism = undefined, exponent = undefined, nPerm = undefined, minGSSize = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, verbose = TRUE, ){...} FILE : gseAnalyzer.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : scaleNodeColor(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (g, foldChange, node, idx = NULL, DEfoldChange = FALSE){...}
+New Parameters : (g, foldChange, node, idx = NULL, DEfoldChange){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+clusterSim
+EXTID2TERMID.DOLite
+TERMID2EXTID.DOLite
+TERM2NAME.DOLite
+ALLEXTID.DOLite
+enrichMap
+enrichNCG
+EXTID2TERMID.NCG
+TERMID2EXTID.NCG
+TERM2NAME.NCG
+ALLEXTID.NCG
+EXTID2TERMID.USER_DEFINED
+TERMID2EXTID.USER_DEFINED
+TERM2NAME.USER_DEFINED
+ALLEXTID.USER_DEFINED
+dotplot
+getGeneSet.NCG
+getGeneSet.DOLite
+mclusterSim
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 55
+Functions in parsed : 49
+Functions in namespace : 34
+Functions in parsed : 30{
+    "package": "DOSE",
+    "versions": "release_3_1  release_3_2",
+    "param_changes": 1,
+    "param_warnings": 1,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 2
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : DOSE
+Checking Versions dose_release_3_1
+dose_release_3_2
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : enrichMap(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : enrichMap(...) | Function Declaration Type : S3(x, n = undefined, fixed = TRUE){...}
+New Parameters : Function Name : enrichMap(...) | Function Declaration Type : S3(x, n = undefined, fixed = TRUE, vertex, label, font = undefined, ){...} FILE : enrichMap.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : enrichMap(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (x, n = undefined, fixed = TRUE){...}
+New Parameters : (x, n = undefined, fixed = TRUE, vertex, label, font = undefined){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 55
+Functions in parsed : 49
+Functions in namespace : 55
+Functions in parsed : 49{
+    "package": "DOSE",
+    "versions": "release_3_2  release_3_3",
+    "param_changes": 3,
+    "param_warnings": 3,
+    "function_removals": 28,
+    "function_renames": 2,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 2,
+    "total_count": 34
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : DOSE
+Checking Versions dose_release_3_2
+dose_release_3_3
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : setReadable(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : setReadable(...) | Function Declaration Type : S3(x){...}
+New Parameters : Function Name : setReadable(...) | Function Declaration Type : S3(x, OrgDb, keytype = undefined){...} FILE : enrichResult.R
+2. Function Name : simplot(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (sim, xlab, ylab, color, low, color, high, labs, digits, labs, size, font, sizereadable){...}
+New Parameters : (sim, xlab, ylab, color, low, color, high, labs, digits, labs, size, fontsize){...} FILE : simplot.R
+3. Function Name : EXTID2NAME(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : EXTID2NAME(...) | Function Declaration Type : S3(geneIDorganism){...}
+New Parameters : Function Name : EXTID2NAME(...) | Function Declaration Type : S3(OrgDb, geneID, keytype){...} FILE : utilities.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : enrichDO(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (gene, ont = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, universe, minGSSize = undefined, qvalueCutoff = undefinedreadable = FALSE){...}
+New Parameters : (gene, ont = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, universe, minGSSize = undefined, maxGSSize = undefined, qvalueCutoff = undefinedreadable = FALSE){...}
+2. Function Name : enrichNCG(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (gene, pvalueCutoff = undefined, pAdjustMethod = undefined, universe, minGSSize = undefined, qvalueCutoff = undefinedreadable = FALSE){...}
+New Parameters : (gene, pvalueCutoff = undefined, pAdjustMethod = undefined, universe, minGSSize = undefined, maxGSSize = undefined, qvalueCutoff = undefinedreadable = FALSE){...}
+3. Function Name : EXTID2NAME(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (geneIDorganism){...}
+New Parameters : (OrgDb, geneIDkeytype){...}
+
+-----------------------Removed Functions------------
+
+ALLEXTID.DO
+ALLEXTID.DOLite
+ALLEXTID.NCG
+ALLEXTID.USER_DEFINED
+EXTID2TERMID.DO
+EXTID2TERMID.DOLite
+EXTID2TERMID.NCG
+EXTID2TERMID.USER_DEFINED
+TERM2NAME.DO
+TERM2NAME.DOLite
+TERM2NAME.NCG
+TERM2NAME.USER_DEFINED
+TERMID2EXTID.DO
+TERMID2EXTID.DOLite
+TERMID2EXTID.NCG
+TERMID2EXTID.USER_DEFINED
+getGeneSet.DO
+getGeneSet.DOLite
+getGeneSet.NCG
+ALLEXTID
+EXTID2TERMID
+TERM2NAME
+TERMID2EXTID
+enrich_internal
+getALLEG
+getGeneSet
+gseAnalyzer
+gsea
+
+
+---------------------Added Functions---------------
+
+
+enricher_internal
+upsetplot
+GSEA_internal
+gseDO
+gseNCG
+gsfilter
+load_OrgDb
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+1. gsea -> GSEA_internal
+2. gseAnalyzer -> gseDO
+Total renames
+2
+Functions in namespace : 35
+Functions in parsed : 29
+Functions in namespace : 55
+Functions in parsed : 49{
+    "package": "DOSE",
+    "versions": "release_3_3  release_3_4",
+    "param_changes": 1,
+    "param_warnings": 1,
+    "function_removals": 3,
+    "function_renames": 2,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 2,
+    "total_count": 5
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : DOSE
+Checking Versions dose_release_3_3
+dose_release_3_4
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : netplot(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : netplot(...) | Function Declaration Type : S3(g, vertex, label, font = undefined, vertex, label, color = undefined, vertex, label, cex = undefined, layout = undefined, foldChange = NULL, fixed = TRUE, col, bin = undefined, legend, x = undefined, legendy = undefined){...}
+New Parameters : Function Name : netplot(...) | Function Declaration Type : S3(g, vertex, label, font = undefined, vertex, label, color = undefined, vertex, label, cex = undefined, layout = undefined, foldChange = NULL, fixed = TRUE, col, bin = undefined, legend, x = undefined, legend, y = undefined, ){...} FILE : cnetplot.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : dotplot(...) | Function Declaration Type : setMethod |  Signature: undefined had parameters modified in newer version.
+Original Parameters : (object, x = undefined, colorBy = undefined, showCategory = undefined, font, size = undefinedtitle = undefined){...}
+New Parameters : (object, x = undefined, colorBy = undefined, showCategory = undefined, category = NULL, font, size = undefinedtitle = undefined){...}
+
+-----------------------Removed Functions------------
+
+GSEA_internal
+enricher_internal
+load_OrgDb
+
+
+---------------------Added Functions---------------
+
+
+as.data.frame.enrichResult
+as.data.frame.gseaResult
+geneInCategory.enrichResult
+geneInCategory.gseaResult
+head.enrichResult
+tail.enrichResult
+dim.enrichResult
+geneID
+geneInCategory
+enrichDGN
+enrichDGNv
+gseDGN
+gene2DO
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+1. enricher_internal -> enrichDGN
+2. GSEA_internal -> gseDGN
+Total renames
+2
+Functions in namespace : 56
+Functions in parsed : 39
+Functions in namespace : 35
+Functions in parsed : 29{
+    "package": "DOSE",
+    "versions": "release_3_4  release_3_5",
+    "param_changes": 0,
+    "param_warnings": 1,
+    "function_removals": 1,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 2
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : DOSE
+Checking Versions dose_release_3_4
+dose_release_3_5
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : dotplot(...) | Function Declaration Type : setMethod |  Signature: undefined had parameters modified in newer version.
+Original Parameters : (object, x = undefined, colorBy = undefined, showCategory = undefined, category = NULL, font, size = undefinedtitle = undefined){...}
+New Parameters : (object, x = undefined, colorBy = undefined, showCategory = undefined, split = NULL, font, size = undefinedtitle = undefined){...}
+
+-----------------------Removed Functions------------
+
+fortify.gseaResult
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 56
+Functions in parsed : 38
+Functions in namespace : 56
+Functions in parsed : 39{
+    "package": "DOSE",
+    "versions": "release_3_5  release_3_6",
+    "param_changes": 1,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 1
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : DOSE
+Checking Versions dose_release_3_5
+dose_release_3_6
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : gseaplot(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : gseaplot(...) | Function Declaration Type : S3(gseaResult, geneSetID, by = undefinedtitle = undefined){...}
+New Parameters : Function Name : gseaplot(...) | Function Declaration Type : S3(gseaResult, geneSetID, by = undefined, title = undefined, color = undefined, color, line = undefined, color, vline = undefined){...} FILE : gseAnalyzer.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+ridgeplot
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 57
+Functions in parsed : 39
+Functions in namespace : 56
+Functions in parsed : 38{
+    "package": "DOSE",
+    "versions": "release_3_6  release_3_7",
+    "param_changes": 1,
+    "param_warnings": 0,
+    "function_removals": 13,
+    "function_renames": 1,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 1,
+    "total_count": 14
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : DOSE
+Checking Versions dose_release_3_6
+dose_release_3_7
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : enrichMap(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (x, n, fixed, vertex, label, font){...}
+New Parameters : (x, n){...} FILE : enrichMap.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+barplot.enrichResult
+cnetplot
+dotplot
+gseaplot
+netplot
+ridgeplot
+scaleNodeColor
+setting_graph.attributes
+upsetplot
+cnetplot
+dotplot
+plot
+upsetplot
+
+
+---------------------Added Functions---------------
+
+
+head.gseaResult
+tail.gseaResult
+dim.gseaResult
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+1. upsetplot -> head.gseaResult
+Total renames
+1
+Functions in namespace : 44
+Functions in parsed : 33
+Functions in namespace : 57
+Functions in parsed : 39{
+    "package": "DOSE",
+    "versions": "release_3_7  release_3_8",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 1,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 1
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : DOSE
+Checking Versions dose_release_3_7
+dose_release_3_8
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+enrichMap
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 43
+Functions in parsed : 32
+Functions in namespace : 44
+Functions in parsed : 33{
+    "package": "DOSE",
+    "versions": "release_3_8  release_3_9",
+    "param_changes": 1,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 1
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : DOSE
+Checking Versions dose_release_3_8
+dose_release_3_9
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : setReadable(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (x, OrgDb, keytypekeyType){...}
+New Parameters : (x, OrgDbkeyType){...} FILE : setReadable.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+parse_ratio
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 44
+Functions in parsed : 33
+Functions in namespace : 43
+Functions in parsed : 32{
+    "package": "DOSE",
+    "versions": "release_3_9  release_3_11",
+    "param_changes": 0,
+    "param_warnings": 3,
+    "function_removals": 1,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 4
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : DOSE
+Checking Versions dose_release_3_9
+dose_release_3_11
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : gseDO(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (geneList, exponent = undefined, nPerm = undefined, minGSSize = undefined, maxGSSize = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, verbose = TRUE, seed = FALSEby = undefined){...}
+New Parameters : (geneList, exponent = undefined, minGSSize = undefined, maxGSSize = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, verbose = TRUE, seed = FALSE, by = undefined){...}
+2. Function Name : gseNCG(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (geneList, exponent = undefined, nPerm = undefined, minGSSize = undefined, maxGSSize = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, verbose = TRUE, seed = FALSEby = undefined){...}
+New Parameters : (geneList, exponent = undefined, minGSSize = undefined, maxGSSize = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, verbose = TRUE, seed = FALSE, by = undefined){...}
+3. Function Name : gseDGN(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (geneList, exponent = undefined, nPerm = undefined, minGSSize = undefined, maxGSSize = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, verbose = TRUE, seed = FALSEby = undefined){...}
+New Parameters : (geneList, exponent = undefined, minGSSize = undefined, maxGSSize = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, verbose = TRUE, seed = FALSE, by = undefined){...}
+
+-----------------------Removed Functions------------
+
+fortify.enrichResult
+
+
+---------------------Added Functions---------------
+
+
+geneInCategory.compareClusterResult
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 46
+Functions in parsed : 33
+Functions in namespace : 44
+Functions in parsed : 33{
+    "package": "DOSE",
+    "versions": "release_3_11  release_3_12",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : DOSE
+Checking Versions dose_release_3_11
+dose_release_3_12
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 46
+Functions in parsed : 33
+Functions in namespace : 46
+Functions in parsed : 33{
+    "package": "DOSE",
+    "versions": "release_3_12  release_3_13",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : DOSE
+Checking Versions dose_release_3_12
+dose_release_3_13
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 46
+Functions in parsed : 33
+Functions in namespace : 46
+Functions in parsed : 33{
+    "package": "DOSE",
+    "versions": "release_3_13  release_3_14",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : DOSE
+Checking Versions dose_release_3_13
+dose_release_3_14
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 46
+Functions in parsed : 33
+Functions in namespace : 46
+Functions in parsed : 33{
+    "package": "DOSE",
+    "versions": "release_3_14  master",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : DOSE
+Checking Versions dose_release_3_14
+dose_master
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 46
+Functions in parsed : 33
+Functions in namespace : 46
+Functions in parsed : 33

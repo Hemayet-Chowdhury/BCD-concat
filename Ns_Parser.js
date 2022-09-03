@@ -1,3 +1,5 @@
+import { replaceAll } from "./crawler/utils.js";
+
 export class Ns_Parser {
   constructor(mainDict) {
     this.mainDict = mainDict;
@@ -9,8 +11,9 @@ export class Ns_Parser {
     let result = undefined;
     if (line.substring(0, 8) == "S3method") {
       let temp = line.substring(9, line.length - 1);
-      temp = temp.replace(",", ".");
-
+      temp = replaceAll(temp, ",", ".");
+      temp = replaceAll(temp, '"', "");
+      temp = replaceAll(temp, " ", "");
       result = temp;
     } else if (line.substring(0, 13) == "exportMethods") {
       let temp = line.substring(14, line.length - 1);
@@ -21,12 +24,16 @@ export class Ns_Parser {
       temp = temp.replace("<", "");
       temp = temp.replace("-", "");
       temp = temp.replace(".", "_");
+      temp = replaceAll(temp, '"', "");
+      temp = replaceAll(temp, " ", "");
       result = temp;
     } else if (line.substring(0, 6) == "export") {
       let temp = line.substring(7, line.length - 1);
       temp = temp.replace(/'/g, "");
       temp = temp.replace(/'/g, "");
       temp = temp.replace(".", "_");
+      temp = replaceAll(temp, '"', "");
+      temp = replaceAll(temp, " ", "");
       result = temp;
     }
     if (result) this.functions_list.push(result);
@@ -89,6 +96,11 @@ export class Ns_Parser {
       "\nFunctions in parsed : ",
       Object.keys(this.filteredDict).length
     );
+    return {
+      line: missing_result_string,
+      namespace_count: this.functions_list.length,
+      parsed_count: Object.keys(this.filteredDict).length,
+    };
     return missing_result_string;
   }
 }

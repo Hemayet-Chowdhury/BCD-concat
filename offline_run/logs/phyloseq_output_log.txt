@@ -1,0 +1,1048 @@
+{
+    "package": "phyloseq",
+    "versions": "release_2_11  release_2_12",
+    "param_changes": 8,
+    "param_warnings": 9,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 17
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : phyloseq
+Checking Versions phyloseq_release_2_11
+phyloseq_release_2_12
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : import_qiime(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : import_qiime(...) | Function Declaration Type : S3(otufilename = NULL, mapfilename = NULL, treefilename = NULL, biotaxonomy = NULL, showProgress = TRUE, chunk, size = undefined, L){...}
+New Parameters : Function Name : import_qiime(...) | Function Declaration Type : S3(otufilename = NULL, mapfilename = NULL, treefilename = NULL, refseqfilename = NULL, refseqFunction = readDNAStringSet, refseqArgs = NULL, parseFunction = parse_taxonomy_qiime, showProgress = TRUE, chunk, size = undefined, L, ){...} FILE : IO-methods.R
+2. Function Name : import_biom(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : import_biom(...) | Function Declaration Type : S3(BIOMfilename, taxaPrefix = NULL, parallel = FALSEversion = undefined){...}
+New Parameters : Function Name : import_biom(...) | Function Declaration Type : S3(BIOMfilename, treefilename = NULL, refseqfilename = NULL, refseqFunction = readDNAStringSet, refseqArgs = NULL, parseFunction = parse_taxonomy_default, parallel = FALSE, version = undefined, ){...} FILE : IO-methods.R
+3. Function Name : merge_taxa(...) | Function Declaration Type : setMethod |  Signature: otu_table had non-default parameters added in newer version.
+Original Parameters : Function Name : merge_taxa(...) | Function Declaration Type : setMethod |  Signature: otu_table(x, eqspeciesarchetype = undefined){...}
+New Parameters : Function Name : merge_taxa(...) | Function Declaration Type : setMethod |  Signature: otu_table(x, eqtaxa, archetype = undefined, L){...} FILE : merge-methods.R
+4. Function Name : merge_taxa(...) | Function Declaration Type : setMethod |  Signature: phylo had non-default parameters added in newer version.
+Original Parameters : Function Name : merge_taxa(...) | Function Declaration Type : setMethod |  Signature: phylo(x, eqspeciesarchetype = undefined){...}
+New Parameters : Function Name : merge_taxa(...) | Function Declaration Type : setMethod |  Signature: phylo(x, eqtaxa, archetype = undefined, L){...} FILE : merge-methods.R
+5. Function Name : merge_taxa(...) | Function Declaration Type : setMethod |  Signature: phyloseq had non-default parameters added in newer version.
+Original Parameters : Function Name : merge_taxa(...) | Function Declaration Type : setMethod |  Signature: phyloseq(x, eqspeciesarchetype = undefined){...}
+New Parameters : Function Name : merge_taxa(...) | Function Declaration Type : setMethod |  Signature: phyloseq(x, eqtaxa, archetype = undefined, L){...} FILE : merge-methods.R
+6. Function Name : merge_taxa(...) | Function Declaration Type : setMethod |  Signature: sample_data had non-default parameters added in newer version.
+Original Parameters : Function Name : merge_taxa(...) | Function Declaration Type : setMethod |  Signature: sample_data(x, eqspeciesarchetype = undefined){...}
+New Parameters : Function Name : merge_taxa(...) | Function Declaration Type : setMethod |  Signature: sample_data(x, eqtaxa, archetype = undefined, L){...} FILE : merge-methods.R
+7. Function Name : merge_taxa(...) | Function Declaration Type : setMethod |  Signature: taxonomyTable had non-default parameters added in newer version.
+Original Parameters : Function Name : merge_taxa(...) | Function Declaration Type : setMethod |  Signature: taxonomyTable(x, eqspeciesarchetype = undefined){...}
+New Parameters : Function Name : merge_taxa(...) | Function Declaration Type : setMethod |  Signature: taxonomyTable(x, eqtaxa, archetype = undefined, L){...} FILE : merge-methods.R
+8. Function Name : plot_tree(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : plot_tree(...) | Function Declaration Type : S3(physeq, method = undefined, color = NULL, shape = NULL, size = NULL, min, abundance = Inf, label, tips = NULL, text, size = NULL, sizebase = undefined, base, spacing = undefinedtitle = NULL){...}
+New Parameters : Function Name : plot_tree(...) | Function Declaration Type : S3(physeq, method = undefined, nodelabf = NULL, color = NULL, shape = NULL, size = NULL, min, abundance = Inf, label, tips = NULL, text, size = NULL, sizebase = undefined, base, spacing = undefined, ladderize = FALSE, plot, margin = undefined, title = NULL){...} FILE : plot-methods.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : import_qiime(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (otufilename = NULL, mapfilename = NULL, treefilename = NULL, biotaxonomy = NULL, showProgress = TRUE, chunk, size = undefined, L){...}
+New Parameters : (otufilename = NULL, mapfilename = NULL, treefilename = NULL, refseqfilename = NULL, refseqFunction = readDNAStringSet, refseqArgs = NULL, parseFunction = parse_taxonomy_qiime, showProgress = TRUE, chunk, size = undefined, L){...}
+2. Function Name : import_qiime_otu_tax(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (file, biotaxonomy = NULL, parallel = FALSE, chunk, size = undefined, Lverbose = TRUE){...}
+New Parameters : (file, parseFunction = parse_taxonomy_qiime, parallel = FALSE, chunk, size = undefined, Lverbose = TRUE){...}
+3. Function Name : import_biom(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (BIOMfilename, taxaPrefix = NULL, parallel = FALSEversion = undefined){...}
+New Parameters : (BIOMfilename, treefilename = NULL, refseqfilename = NULL, refseqFunction = readDNAStringSet, refseqArgs = NULL, parseFunction = parse_taxonomy_default, parallel = FALSE, version = undefined){...}
+4. Function Name : merge_taxa(...) | Function Declaration Type : setMethod |  Signature: otu_table had parameters modified in newer version.
+Original Parameters : (x, eqspeciesarchetype = undefined){...}
+New Parameters : (x, eqtaxa, archetype = undefinedL){...}
+5. Function Name : merge_taxa(...) | Function Declaration Type : setMethod |  Signature: phylo had parameters modified in newer version.
+Original Parameters : (x, eqspeciesarchetype = undefined){...}
+New Parameters : (x, eqtaxa, archetype = undefinedL){...}
+6. Function Name : merge_taxa(...) | Function Declaration Type : setMethod |  Signature: phyloseq had parameters modified in newer version.
+Original Parameters : (x, eqspeciesarchetype = undefined){...}
+New Parameters : (x, eqtaxa, archetype = undefinedL){...}
+7. Function Name : merge_taxa(...) | Function Declaration Type : setMethod |  Signature: sample_data had parameters modified in newer version.
+Original Parameters : (x, eqspeciesarchetype = undefined){...}
+New Parameters : (x, eqtaxa, archetype = undefinedL){...}
+8. Function Name : merge_taxa(...) | Function Declaration Type : setMethod |  Signature: taxonomyTable had parameters modified in newer version.
+Original Parameters : (x, eqspeciesarchetype = undefined){...}
+New Parameters : (x, eqtaxa, archetype = undefinedL){...}
+9. Function Name : plot_tree(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (physeq, method = undefined, color = NULL, shape = NULL, size = NULL, min, abundance = Inf, label, tips = NULL, text, size = NULL, sizebase = undefined, base, spacing = undefinedtitle = NULL){...}
+New Parameters : (physeq, method = undefined, nodelabf = NULL, color = NULL, shape = NULL, size = NULL, min, abundance = Inf, label, tips = NULL, text, size = NULL, sizebase = undefined, base, spacing = undefined, ladderize = FALSE, plot, margin = undefinedtitle = NULL){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+refseq
+parse_taxonomy_default
+parse_taxonomy_greengenes
+parse_taxonomy_qiime
+build_tax_table
+plot_scree
+psmelt
+plot_bar
+nodeplotblank
+nodeplotboot
+nodeplotdefault
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 134
+Functions in parsed : 83
+Functions in namespace : 121
+Functions in parsed : 72{
+    "package": "phyloseq",
+    "versions": "release_2_12  release_2_13",
+    "param_changes": 3,
+    "param_warnings": 2,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 5
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : phyloseq
+Checking Versions phyloseq_release_2_12
+phyloseq_release_2_13
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : plot_taxa_bar(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (physeq, taxavec, showOnlyTheseTaxa, threshold, x, fillfacet_formula){...}
+New Parameters : (){...} FILE : deprecated_functions.R
+2. Function Name : plot_heatmap(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : plot_heatmap(...) | Function Declaration Type : S3(physeq, method = undefined, distance = undefined, sample, label = NULL, species, label = NULL, low = undefined, high = undefined, na, value = undefined, trans = undefined, max, label = undefined, title = NULL){...}
+New Parameters : Function Name : plot_heatmap(...) | Function Declaration Type : S3(physeq, method = undefined, distance = undefined, sample, label = NULL, taxa, label = NULL, low = undefined, high = undefined, na, value = undefined, trans = undefined, max, label = undefined, title = NULL, species, label = undefined, ){...} FILE : plot-methods.R
+3. Function Name : transform_sample_counts(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : transform_sample_counts(...) | Function Declaration Type : S3(physeqfun){...}
+New Parameters : Function Name : transform_sample_counts(...) | Function Declaration Type : S3(physeq, fun, ){...} FILE : transform_filter-methods.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : plot_richness(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (physeq, x = undefined, color = NULL, shape = NULL, title = NULLshsi = FALSE){...}
+New Parameters : (physeq, x = undefined, color = NULL, shape = NULL, title = NULL, scales = undefined, nrow = undefined, shsi = NULLmeasures = NULL){...}
+2. Function Name : plot_heatmap(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (physeq, method = undefined, distance = undefined, sample, label = NULL, species, label = NULL, low = undefined, high = undefined, na, value = undefined, trans = undefined, max, label = undefined, title = NULL){...}
+New Parameters : (physeq, method = undefined, distance = undefined, sample, label = NULL, taxa, label = NULL, low = undefined, high = undefined, na, value = undefined, trans = undefined, max, label = undefined, title = NULL, species, label = undefined){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+taxaplot
+taxtab
+taxTab
+sampleData
+samData
+sam_data
+speciesSums
+sampleSums
+nspecies
+sampleNames
+getSamples
+getSpecies
+getTaxa
+getVariable
+merge_species
+otuTable
+speciesarerows
+speciesAreRows
+plot_richness_estimates
+import_qiime_sampleData
+filterfunSample
+genefilterSample
+prune_species
+subset_species
+tipglom
+taxglom
+tre
+read_tree_greengenes
+microbio_me_qiime
+gapstat_ord
+plot_clusgap
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 138
+Functions in parsed : 114
+Functions in namespace : 134
+Functions in parsed : 83{
+    "package": "phyloseq",
+    "versions": "release_2_13  release_2_14",
+    "param_changes": 6,
+    "param_warnings": 4,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 10
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : phyloseq
+Checking Versions phyloseq_release_2_13
+phyloseq_release_2_14
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : import_qiime(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (otufilename, mapfilename, treefilename, refseqfilename, refseqFunction, refseqArgs, parseFunction, showProgress, chunk, size, L){...}
+New Parameters : (otufilename, mapfilename, treefilename, refseqfilename, refseqFunction, refseqArgs, parseFunction, verbose){...} FILE : IO-methods.R
+2. Function Name : import_qiime_otu_tax(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (file, parseFunction, parallel, chunk, size, Lverbose){...}
+New Parameters : (file, parseFunction, verboseparallel){...} FILE : IO-methods.R
+3. Function Name : merge_taxa(...) | Function Declaration Type : setMethod |  Signature: phyloseq had parameters removed in newer version.
+Original Parameters : (x, eqtaxa, archetypeL){...}
+New Parameters : (x, eqtaxaarchetype){...} FILE : merge-methods.R
+4. Function Name : merge_taxa(...) | Function Declaration Type : setMethod |  Signature: otu_table had parameters removed in newer version.
+Original Parameters : (x, eqtaxa, archetypeL){...}
+New Parameters : (x, eqtaxaarchetype){...} FILE : merge-methods.R
+5. Function Name : ordinate(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : ordinate(...) | Function Declaration Type : S3(physeq, method = undefined, distance = undefined){...}
+New Parameters : Function Name : ordinate(...) | Function Declaration Type : S3(physeq, method = undefined, distance = undefined, formula = NULL, ){...} FILE : ordination-methods.R
+6. Function Name : plot_heatmap(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : plot_heatmap(...) | Function Declaration Type : S3(physeq, method = undefined, distance = undefined, sample, label = NULL, taxa, label = NULL, low = undefined, high = undefined, na, value = undefined, trans = undefined, max, label = undefined, title = NULL, species, label = undefined){...}
+New Parameters : Function Name : plot_heatmap(...) | Function Declaration Type : S3(physeq, method = undefined, distance = undefined, sample, label = NULL, taxa, label = NULL, low = undefined, high = undefined, na, value = undefined, trans = undefined, max, label = undefined, title = NULL, sample, order = NULL, taxa, order = NULL, first, sample = NULL, first, taxa = NULL, ){...} FILE : plot-methods.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : show_mothur_list_cutoffs(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (mothur_list_file){...}
+New Parameters : (){...}
+2. Function Name : import_mothur(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (mothur_list_file, mothur_group_file = NULL, mothur_tree_file = NULLcutoff = NULL){...}
+New Parameters : (mothur_list_file = NULL, mothur_group_file = NULL, mothur_tree_file = NULL, cutoff = NULL, mothur_shared_file = NULL, mothur_constaxonomy_file = NULLparseFunction = parse_taxonomy_default){...}
+3. Function Name : ordinate(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (physeq, method = undefined, distance = undefined){...}
+New Parameters : (physeq, method = undefined, distance = undefined, formula = NULL){...}
+4. Function Name : plot_heatmap(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (physeq, method = undefined, distance = undefined, sample, label = NULL, taxa, label = NULL, low = undefined, high = undefined, na, value = undefined, trans = undefined, max, label = undefined, title = NULL, species, label = undefined){...}
+New Parameters : (physeq, method = undefined, distance = undefined, sample, label = NULL, taxa, label = NULL, low = undefined, high = undefined, na, value = undefined, trans = undefined, max, label = undefined, title = NULL, sample, order = NULL, taxa, order = NULL, first, sample = NULL, first, taxa = NULL){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+phyloseq_to_deseq2
+show_mothur_cutoffs
+export_mothur_dist
+import_usearch_uc
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 143
+Functions in parsed : 118
+Functions in namespace : 138
+Functions in parsed : 114{
+    "package": "phyloseq",
+    "versions": "release_2_14  release_3_1",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 1,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 1,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : phyloseq
+Checking Versions phyloseq_release_2_14
+phyloseq_release_3_1
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+plot_net
+tree_layout
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+1. plot_ordination -> plot_net
+Total renames
+1
+Functions in namespace : 145
+Functions in parsed : 119
+Functions in namespace : 143
+Functions in parsed : 118{
+    "package": "phyloseq",
+    "versions": "release_3_1  release_3_2",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : phyloseq
+Checking Versions phyloseq_release_3_1
+phyloseq_release_3_2
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+otu_table<-
+taxa_are_rows<-
+tax_table<-
+phy_tree<-
+taxa_names<-
+sample_names<-
+phyloseq_to_metagenomeSeq
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 147
+Functions in parsed : 126
+Functions in namespace : 145
+Functions in parsed : 119{
+    "package": "phyloseq",
+    "versions": "release_3_2  release_3_3",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : phyloseq
+Checking Versions phyloseq_release_3_2
+phyloseq_release_3_3
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+import_uparse
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 148
+Functions in parsed : 127
+Functions in namespace : 147
+Functions in parsed : 126{
+    "package": "phyloseq",
+    "versions": "release_3_3  release_3_4",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : phyloseq
+Checking Versions phyloseq_release_3_3
+phyloseq_release_3_4
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 148
+Functions in parsed : 127
+Functions in namespace : 148
+Functions in parsed : 127{
+    "package": "phyloseq",
+    "versions": "release_3_4  release_3_5",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : phyloseq
+Checking Versions phyloseq_release_3_4
+phyloseq_release_3_5
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 148
+Functions in parsed : 127
+Functions in namespace : 148
+Functions in parsed : 127{
+    "package": "phyloseq",
+    "versions": "release_3_5  release_3_6",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : phyloseq
+Checking Versions phyloseq_release_3_5
+phyloseq_release_3_6
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 148
+Functions in parsed : 127
+Functions in namespace : 148
+Functions in parsed : 127{
+    "package": "phyloseq",
+    "versions": "release_3_6  release_3_7",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : phyloseq
+Checking Versions phyloseq_release_3_6
+phyloseq_release_3_7
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 148
+Functions in parsed : 127
+Functions in namespace : 148
+Functions in parsed : 127{
+    "package": "phyloseq",
+    "versions": "release_3_7  release_3_8",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : phyloseq
+Checking Versions phyloseq_release_3_7
+phyloseq_release_3_8
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 148
+Functions in parsed : 127
+Functions in namespace : 148
+Functions in parsed : 127{
+    "package": "phyloseq",
+    "versions": "release_3_8  release_3_9",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : phyloseq
+Checking Versions phyloseq_release_3_8
+phyloseq_release_3_9
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 148
+Functions in parsed : 127
+Functions in namespace : 148
+Functions in parsed : 127{
+    "package": "phyloseq",
+    "versions": "release_3_9  release_3_11",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : phyloseq
+Checking Versions phyloseq_release_3_9
+phyloseq_release_3_11
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 148
+Functions in parsed : 127
+Functions in namespace : 148
+Functions in parsed : 127{
+    "package": "phyloseq",
+    "versions": "release_3_11  release_3_12",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : phyloseq
+Checking Versions phyloseq_release_3_11
+phyloseq_release_3_12
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 148
+Functions in parsed : 127
+Functions in namespace : 148
+Functions in parsed : 127{
+    "package": "phyloseq",
+    "versions": "release_3_12  release_3_13",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : phyloseq
+Checking Versions phyloseq_release_3_12
+phyloseq_release_3_13
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 148
+Functions in parsed : 127
+Functions in namespace : 148
+Functions in parsed : 127{
+    "package": "phyloseq",
+    "versions": "release_3_13  release_3_14",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : phyloseq
+Checking Versions phyloseq_release_3_13
+phyloseq_release_3_14
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 148
+Functions in parsed : 127
+Functions in namespace : 148
+Functions in parsed : 127{
+    "package": "phyloseq",
+    "versions": "release_3_14  master",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : phyloseq
+Checking Versions phyloseq_release_3_14
+phyloseq_master
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 148
+Functions in parsed : 127
+Functions in namespace : 148
+Functions in parsed : 127

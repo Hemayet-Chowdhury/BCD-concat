@@ -1,0 +1,483 @@
+{
+    "package": "DelayedMatrixStats",
+    "versions": "release_3_6  release_3_7",
+    "param_changes": 0,
+    "param_warnings": 1,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 1
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : DelayedMatrixStats
+Checking Versions delayedmatrixstats_release_3_6
+delayedmatrixstats_release_3_7
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : rowAvgsPerColSet(...) | Function Declaration Type : setMethod |  Signature: DelayedMatrix had parameters modified in newer version.
+Original Parameters : (X, W = NULL, rows = NULL, S, FUN = colMeans, , force_block_processing = FALSEtFUN = FALSE){...}
+New Parameters : (X, W = NULL, rows = NULL, S, FUN = rowMeans, , force_block_processing = FALSEtFUN = FALSE){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+colAvgsPerRowSet
+colWeightedSds
+colWeightedVars
+rowWeightedSds
+rowWeightedVars
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 136
+Functions in parsed : 32
+Functions in namespace : 126
+Functions in parsed : 27{
+    "package": "DelayedMatrixStats",
+    "versions": "release_3_7  release_3_8",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : DelayedMatrixStats
+Checking Versions delayedmatrixstats_release_3_7
+delayedmatrixstats_release_3_8
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+colsum
+rowsum
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 140
+Functions in parsed : 34
+Functions in namespace : 136
+Functions in parsed : 32{
+    "package": "DelayedMatrixStats",
+    "versions": "release_3_8  release_3_9",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 4,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 4
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : DelayedMatrixStats
+Checking Versions delayedmatrixstats_release_3_8
+delayedmatrixstats_release_3_9
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+colsum
+rowsum
+colsum
+rowsum
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 136
+Functions in parsed : 32
+Functions in namespace : 140
+Functions in parsed : 34{
+    "package": "DelayedMatrixStats",
+    "versions": "release_3_9  release_3_11",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : DelayedMatrixStats
+Checking Versions delayedmatrixstats_release_3_9
+delayedmatrixstats_release_3_11
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 136
+Functions in parsed : 32
+Functions in namespace : 136
+Functions in parsed : 32{
+    "package": "DelayedMatrixStats",
+    "versions": "release_3_11  release_3_12",
+    "param_changes": 0,
+    "param_warnings": 2,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 2
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : DelayedMatrixStats
+Checking Versions delayedmatrixstats_release_3_11
+delayedmatrixstats_release_3_12
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : colAvgsPerRowSet(...) | Function Declaration Type : setMethod |  Signature: DelayedMatrix had parameters modified in newer version.
+Original Parameters : (X, W = NULL, cols = NULL, S, FUN = colMeans, , force_block_processing = FALSEtFUN = FALSE){...}
+New Parameters : (X, W = NULL, cols = NULL, S, FUN = colMeans, , force_block_processing = FALSE, na, rm = NAtFUN = FALSE){...}
+2. Function Name : rowAvgsPerColSet(...) | Function Declaration Type : setMethod |  Signature: DelayedMatrix had parameters modified in newer version.
+Original Parameters : (X, W = NULL, rows = NULL, S, FUN = rowMeans, , force_block_processing = FALSEtFUN = FALSE){...}
+New Parameters : (X, W = NULL, rows = NULL, S, FUN = rowMeans, , force_block_processing = FALSE, na, rm = NAtFUN = FALSE){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+colAlls
+colAnys
+colCollapse
+colCounts
+colCummaxs
+colCummins
+colCumprods
+colCumsums
+colDiffs
+colLogSumExps
+colMads
+colMeans2
+colMedians
+colOrderStats
+colRanks
+colSds
+colSums2
+colVars
+rowAlls
+rowAnys
+rowCollapse
+rowCounts
+rowCummaxs
+rowCummins
+rowCumprods
+rowCumsums
+rowDiffs
+rowLogSumExps
+rowMads
+rowMeans2
+rowMedians
+rowOrderStats
+rowRanks
+rowSds
+rowSums2
+rowVars
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 76
+Functions in parsed : 68
+Functions in namespace : 136
+Functions in parsed : 32{
+    "package": "DelayedMatrixStats",
+    "versions": "release_3_12  release_3_13",
+    "param_changes": 0,
+    "param_warnings": 2,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 2
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : DelayedMatrixStats
+Checking Versions delayedmatrixstats_release_3_12
+delayedmatrixstats_release_3_13
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : colQuantiles(...) | Function Declaration Type : setMethod |  Signature: DelayedMatrix had parameters modified in newer version.
+Original Parameters : (x, rows = NULL, cols = NULL, probs = undefined, na, rm = FALSE, type = undefined, L, force_block_processing = FALSE, drop = TRUE){...}
+New Parameters : (x, rows = NULL, cols = NULL, probs = undefined, na, rm = FALSE, type = undefined, L, force_block_processing = FALSE, , useNames = NAdrop = TRUE){...}
+2. Function Name : rowQuantiles(...) | Function Declaration Type : setMethod |  Signature: DelayedMatrix had parameters modified in newer version.
+Original Parameters : (x, rows = NULL, cols = NULL, probs = undefined, na, rm = FALSE, type = undefined, L, force_block_processing = FALSE, drop = TRUE){...}
+New Parameters : (x, rows = NULL, cols = NULL, probs = undefined, na, rm = FALSE, type = undefined, L, force_block_processing = FALSE, , useNames = NAdrop = TRUE){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 76
+Functions in parsed : 68
+Functions in namespace : 76
+Functions in parsed : 68{
+    "package": "DelayedMatrixStats",
+    "versions": "release_3_13  release_3_14",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : DelayedMatrixStats
+Checking Versions delayedmatrixstats_release_3_13
+delayedmatrixstats_release_3_14
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 76
+Functions in parsed : 68
+Functions in namespace : 76
+Functions in parsed : 68{
+    "package": "DelayedMatrixStats",
+    "versions": "release_3_14  master",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : DelayedMatrixStats
+Checking Versions delayedmatrixstats_release_3_14
+delayedmatrixstats_master
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 76
+Functions in parsed : 68
+Functions in namespace : 76
+Functions in parsed : 68

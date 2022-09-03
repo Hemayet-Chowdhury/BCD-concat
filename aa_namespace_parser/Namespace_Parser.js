@@ -23,8 +23,10 @@ export class Namespace_Parser {
       this.list_export_methods,
       this.list_S3_method,
     ]);
-    console.log(205 + 184 + 55);
-    console.log(this.set_all_exported_functions.size);
+    console.log(
+      "[NameSpace] Size of set",
+      this.set_all_exported_functions.size
+    );
   }
 
   /* This function takes in a namespace file and cleans out the comments. 
@@ -145,8 +147,6 @@ export class Namespace_Parser {
 } // end file
 
 //to do
-// MUST catch null exceptions -> done
-// test size of export == exportMethods >= S3Methods -> done
-//import, importFrom, exportClasses -> done
-//join export,exportMethods and S3Methods
-//check what "term" (functions wrapped in quotes in Namespace file) means in code
+
+// check for duplicates in set (all functions set)
+// check against 5 other namespace files. see if all patterns are covered.

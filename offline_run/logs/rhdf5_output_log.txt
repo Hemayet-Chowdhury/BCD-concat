@@ -1,0 +1,1109 @@
+{
+    "package": "rhdf5",
+    "versions": "release_2_11  release_2_12",
+    "param_changes": 1,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 1
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : rhdf5
+Checking Versions rhdf5_release_2_11
+rhdf5_release_2_12
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : H5Dread(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : H5Dread(...) | Function Declaration Type : S3(h5dataset, h5spaceFile = NULL, h5spaceMem = NULL, buf = NULLcompoundAsDataFrame = TRUE){...}
+New Parameters : Function Name : H5Dread(...) | Function Declaration Type : S3(h5dataset, h5spaceFile = NULL, h5spaceMem = NULL, buf = NULL, compoundAsDataFrame = TRUE, bit64conversion){...} FILE : H5D.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 81
+Functions in parsed : 65
+Functions in namespace : 81
+Functions in parsed : 65{
+    "package": "rhdf5",
+    "versions": "release_2_12  release_2_13",
+    "param_changes": 0,
+    "param_warnings": 1,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 1
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : rhdf5
+Checking Versions rhdf5_release_2_12
+rhdf5_release_2_13
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : h5read(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (file, name, index = NULL, start = NULL, stride = NULL, block = NULL, count = NULL, compoundAsDataFrame = TRUE, callGeneric = TRUE, read, attributes = TRUE){...}
+New Parameters : (file, name, index = NULL, start = NULL, stride = NULL, block = NULL, count = NULL, compoundAsDataFrame = TRUE, callGeneric = TRUE, read, attributes = FALSE){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 81
+Functions in parsed : 65
+Functions in namespace : 81
+Functions in parsed : 65{
+    "package": "rhdf5",
+    "versions": "release_2_13  release_2_14",
+    "param_changes": 0,
+    "param_warnings": 2,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 2
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : rhdf5
+Checking Versions rhdf5_release_2_13
+rhdf5_release_2_14
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : h5createDataset(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (file, dataset, dims, maxdims = dims, storage, mode = undefined, H5type = NULL, size = NULL, chunk = NULLlevel = undefined){...}
+New Parameters : (file, dataset, dims, maxdims = dims, storage, mode = undefined, H5type = NULL, size = NULL, chunk = dims, level = undefinedshowWarnings = TRUE){...}
+2. Function Name : H5Screate_simple(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (dimsmaxdims = dims){...}
+New Parameters : (dimsmaxdims){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+H5open
+H5close
+H5garbage_collect
+H5get_libversion
+H5Dset_extent
+h5version
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 87
+Functions in parsed : 71
+Functions in namespace : 81
+Functions in parsed : 65{
+    "package": "rhdf5",
+    "versions": "release_2_14  release_3_1",
+    "param_changes": 0,
+    "param_warnings": 2,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 2
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : rhdf5
+Checking Versions rhdf5_release_2_14
+rhdf5_release_3_1
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : h5createDataset(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (file, dataset, dims, maxdims = dims, storage, mode = undefined, H5type = NULL, size = NULL, chunk = dims, level = undefinedshowWarnings = TRUE){...}
+New Parameters : (file, dataset, dims, maxdims = dims, storage, mode = undefined, H5type = NULL, size = NULL, chunk = dims, level = undefined, fillValueshowWarnings = TRUE){...}
+2. Function Name : H5Dcreate(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (h5loc, name, dtype_id, h5space, internal1 = NULLinternal2 = undefined){...}
+New Parameters : (h5loc, name, dtype_id, h5space, lcpl = NULL, dcpl = NULLdapl = NULL){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+H5Fis_hdf5
+H5Fget_filesize
+H5Fget_name
+H5Lcreate_external
+h5set_extent
+H5Pcreate
+H5Pget_class
+H5Pcopy
+H5Pclose
+H5Pset_char_encoding
+H5Pget_char_encoding
+H5Pset_create_intermediate_group
+H5Pget_create_intermediate_group
+H5Pset_layout
+H5Pget_layout
+H5Pset_chunk
+H5Pget_chunk
+H5Pset_deflate
+H5Pfill_value_defined
+H5Pset_fill_time
+H5Pget_fill_time
+H5Pset_alloc_time
+H5Pget_alloc_time
+H5Pset_chunk_cache
+H5Pequal
+H5Pclose_class
+h5readAttributes
+H5Sset_extent_simple
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 116
+Functions in parsed : 99
+Functions in namespace : 87
+Functions in parsed : 71{
+    "package": "rhdf5",
+    "versions": "release_3_1  release_3_2",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : rhdf5
+Checking Versions rhdf5_release_3_1
+rhdf5_release_3_2
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+H5Dget_storage_size
+h5errorHandling
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 118
+Functions in parsed : 101
+Functions in namespace : 116
+Functions in parsed : 99{
+    "package": "rhdf5",
+    "versions": "release_3_2  release_3_3",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : rhdf5
+Checking Versions rhdf5_release_3_2
+rhdf5_release_3_3
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+H5Dget_create_plist
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 119
+Functions in parsed : 102
+Functions in namespace : 118
+Functions in parsed : 101{
+    "package": "rhdf5",
+    "versions": "release_3_3  release_3_4",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : rhdf5
+Checking Versions rhdf5_release_3_3
+rhdf5_release_3_4
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+H5Fget_create_plist
+H5Fget_access_plist
+H5Pset_libver_bounds
+H5Pget_libver_bounds
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 123
+Functions in parsed : 106
+Functions in namespace : 119
+Functions in parsed : 102{
+    "package": "rhdf5",
+    "versions": "release_3_4  release_3_5",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : rhdf5
+Checking Versions rhdf5_release_3_4
+rhdf5_release_3_5
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 123
+Functions in parsed : 106
+Functions in namespace : 123
+Functions in parsed : 106{
+    "package": "rhdf5",
+    "versions": "release_3_5  release_3_6",
+    "param_changes": 1,
+    "param_warnings": 1,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 2
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : rhdf5
+Checking Versions rhdf5_release_3_5
+rhdf5_release_3_6
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : h5read(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : h5read(...) | Function Declaration Type : S3(file, name, index = NULL, start = NULL, stride = NULL, block = NULL, count = NULL, compoundAsDataFrame = TRUE, callGeneric = TRUE, read, attributes = FALSE){...}
+New Parameters : Function Name : h5read(...) | Function Declaration Type : S3(file, name, index = NULL, start = NULL, stride = NULL, block = NULL, count = NULL, compoundAsDataFrame = TRUE, callGeneric = TRUE, read, attributes = FALSE, drop = FALSE, ){...} FILE : h5read.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : h5read(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (file, name, index = NULL, start = NULL, stride = NULL, block = NULL, count = NULL, compoundAsDataFrame = TRUE, callGeneric = TRUE, read, attributes = FALSE){...}
+New Parameters : (file, name, index = NULL, start = NULL, stride = NULL, block = NULL, count = NULL, compoundAsDataFrame = TRUE, callGeneric = TRUE, read, attributes = FALSE, drop = FALSE){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 123
+Functions in parsed : 106
+Functions in namespace : 123
+Functions in parsed : 106{
+    "package": "rhdf5",
+    "versions": "release_3_6  release_3_7",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : rhdf5
+Checking Versions rhdf5_release_3_6
+rhdf5_release_3_7
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+h5closeAll
+h5delete
+H5Ldelete
+H5Sunlimited
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 127
+Functions in parsed : 110
+Functions in namespace : 123
+Functions in parsed : 106{
+    "package": "rhdf5",
+    "versions": "release_3_7  release_3_8",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 1,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 1,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : rhdf5
+Checking Versions rhdf5_release_3_7
+rhdf5_release_3_8
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+h5testFileLocking
+h5disableFileLocking
+h5enableFileLocking
+h5write.default
+h5writeDataset.data.frame
+h5writeDataset.list
+h5writeDataset.matrix
+h5writeDataset.integer
+h5writeDataset.double
+h5writeDataset.logical
+h5writeDataset.character
+h5writeDataset.array
+h5writeAttribute.matrix
+h5writeAttribute.integer
+h5writeAttribute.double
+h5writeAttribute.logical
+h5writeAttribute.character
+h5writeAttribute.default
+h5writeAttribute.array
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+1. H5Awrite -> h5writeAttribute.double
+Total renames
+1
+Functions in namespace : 146
+Functions in parsed : 118
+Functions in namespace : 127
+Functions in parsed : 110{
+    "package": "rhdf5",
+    "versions": "release_3_8  release_3_9",
+    "param_changes": 0,
+    "param_warnings": 1,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 1
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : rhdf5
+Checking Versions rhdf5_release_3_8
+rhdf5_release_3_9
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : h5createDataset(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (file, dataset, dims, maxdims = dims, storage, mode = undefined, H5type = NULL, size = NULL, chunk = dims, level = undefined, fillValue, showWarnings = TRUEnative = FALSE){...}
+New Parameters : (file, dataset, dims, maxdims = dims, storage, mode = undefined, H5type = NULL, size = NULL, chunk = dims, level = undefined, fillValue, showWarningsnative = FALSE){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+H5Pall_filters_avail
+H5Pget_nfilters
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 148
+Functions in parsed : 120
+Functions in namespace : 146
+Functions in parsed : 118{
+    "package": "rhdf5",
+    "versions": "release_3_9  release_3_11",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : rhdf5
+Checking Versions rhdf5_release_3_9
+rhdf5_release_3_11
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+H5Lmove
+H5Lcopy
+H5Pset_obj_track_times
+H5Pget_obj_track_times
+H5Tget_size
+H5Tset_strpad
+H5Tget_strpad
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 155
+Functions in parsed : 127
+Functions in namespace : 148
+Functions in parsed : 120{
+    "package": "rhdf5",
+    "versions": "release_3_11  release_3_12",
+    "param_changes": 1,
+    "param_warnings": 4,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 5
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : rhdf5
+Checking Versions rhdf5_release_3_11
+rhdf5_release_3_12
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : h5dump(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : h5dump(...) | Function Declaration Type : S3(file, recursive = TRUE, load = TRUE, all = FALSE, index_type = undefined, order = undefined, native = FALSE){...}
+New Parameters : Function Name : h5dump(...) | Function Declaration Type : S3(file, recursive = TRUE, load = TRUE, all = FALSE, index_type = undefined, order = undefined, s3 = FALSE, s3credentials = NULL, , native = FALSE){...} FILE : h5dump.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : h5createDataset(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (file, dataset, dims, maxdims = dims, storage, mode = undefined, H5type = NULL, size = NULL, chunk = dims, level = undefined, fillValue, showWarningsnative = FALSE){...}
+New Parameters : (file, dataset, dims, maxdims = dims, storage, mode = undefined, H5type = NULL, size = NULL, chunk = dims, fillValue, level = undefined, filter = undefined, shuffle = TRUEnative = FALSE){...}
+2. Function Name : h5dump(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (file, recursive = TRUE, load = TRUE, all = FALSE, index_type = undefined, order = undefined, native = FALSE){...}
+New Parameters : (file, recursive = TRUE, load = TRUE, all = FALSE, index_type = undefined, order = undefined, s3 = FALSE, s3credentials = NULL, native = FALSE){...}
+3. Function Name : H5Fopen(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (name, flags = undefinednative = FALSE){...}
+New Parameters : (name, flags = undefined, fapl = NULLnative = FALSE){...}
+4. Function Name : h5ls(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (file, recursive = TRUE, all = FALSE, datasetinfo = TRUE, index_type = undefined, order = undefinednative = FALSE){...}
+New Parameters : (file, recursive = TRUE, all = FALSE, datasetinfo = TRUE, index_type = undefined, order = undefined, s3 = FALSE, s3credentials = NULLnative = FALSE){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+H5Pset_bzip2
+H5Pset_blosc
+H5Pset_fapl_ros3
+H5Pset_shuffle
+H5Pset_szip
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 160
+Functions in parsed : 132
+Functions in namespace : 155
+Functions in parsed : 127{
+    "package": "rhdf5",
+    "versions": "release_3_12  release_3_13",
+    "param_changes": 0,
+    "param_warnings": 1,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 1
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : rhdf5
+Checking Versions rhdf5_release_3_12
+rhdf5_release_3_13
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : h5createAttribute(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (obj, attr, dims, maxdims = dims, file, storage, mode = undefined, H5type = NULL, size = NULLnative = FALSE){...}
+New Parameters : (obj, attr, dims, maxdims = dims, file, storage, mode = undefined, H5type = NULL, size = NULL, cset = undefinednative = FALSE){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+H5Pset_lzf
+H5Sget_select_npoints
+H5Sselect_all
+H5Sselect_none
+H5Sselect_valid
+H5Scombine_hyperslab
+H5Scombine_select
+H5Tset_cset
+H5Tget_cset
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 169
+Functions in parsed : 141
+Functions in namespace : 160
+Functions in parsed : 132{
+    "package": "rhdf5",
+    "versions": "release_3_13  release_3_14",
+    "param_changes": 2,
+    "param_warnings": 2,
+    "function_removals": 27,
+    "function_renames": 8,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 8,
+    "total_count": 31
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : rhdf5
+Checking Versions rhdf5_release_3_13
+rhdf5_release_3_14
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : H5Aread(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : H5Aread(...) | Function Declaration Type : S3(h5attributebuf = NULL){...}
+New Parameters : Function Name : H5Aread(...) | Function Declaration Type : S3(h5attribute, buf = NULL, bit64conversion){...} FILE : H5A.R
+2. Function Name : h5readAttributes(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : h5readAttributes(...) | Function Declaration Type : S3(file, namenative = FALSE){...}
+New Parameters : Function Name : h5readAttributes(...) | Function Declaration Type : S3(file, name, native = FALSE, ){...} FILE : h5readAttributes.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : h5createDataset(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (file, dataset, dims, maxdims = dims, storage, mode = undefined, H5type = NULL, size = NULL, chunk = dims, fillValue, level = undefined, filter = undefined, shuffle = TRUEnative = FALSE){...}
+New Parameters : (file, dataset, dims, maxdims = dims, storage, mode = undefined, H5type = NULL, size = NULL, encoding = undefined, chunk = dims, fillValue, level = undefined, filter = undefined, shuffle = TRUEnative = FALSE){...}
+2. Function Name : h5writeAttribute(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (attr, h5obj, name){...}
+New Parameters : (attr, h5obj, name, cset = undefined, variableLengthString = FALSEasScalar = FALSE){...}
+
+-----------------------Removed Functions------------
+
+lasses(H5IdComponent
+H5Pclose_class
+H5Pset_char_encoding
+H5Pget_char_encoding
+H5Pset_create_intermediate_group
+H5Pget_create_intermediate_group
+H5Pset_alloc_time
+H5Pget_alloc_time
+H5Pall_filters_avail
+H5Pget_nfilters
+H5Pequal
+h5write_default
+h5writeDataset_data.frame
+h5writeDataset_list
+h5writeDataset_matrix
+h5writeDataset_integer
+h5writeDataset_double
+h5writeDataset_logical
+h5writeDataset_character
+h5writeDataset_array
+h5writeAttribute_matrix
+h5writeAttribute_integer
+h5writeAttribute_double
+h5writeAttribute_logical
+h5writeAttribute_character
+h5writeAttribute_array
+h5writeAttribute.array
+
+
+---------------------Added Functions---------------
+
+
+show
+h5deleteAttribute
+H5Dchunk_dims
+H5Olink
+H5Pget_version
+H5Pset_userblock
+H5Pget_userblock
+H5Pset_sizes
+H5Pget_sizes
+H5Pset_sym_k
+H5Pget_sym_k
+H5Pset_istore_k
+H5Pget_istore_k
+H5Pset_shared_mesg_nindexes
+H5Pget_shared_mesg_nindexes
+H5Pset_shared_mesg_index
+H5Pget_shared_mesg_index
+H5Pset_shared_mesg_phase_change
+H5Pget_shared_mesg_phase_change
+H5Tis_variable_str
+h5writeDataset.raw
+H5Zfilter_avail
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+1. H5Pset_char_encoding -> H5Pset_shared_mesg_nindexes
+2. H5Pget_char_encoding -> H5Pget_shared_mesg_phase_change
+3. H5Pset_alloc_time -> H5Pset_shared_mesg_index
+4. H5Pget_alloc_time -> H5Pget_userblock
+5. H5Pall_filters_avail -> H5Pget_version
+6. H5Pget_nfilters -> H5Pget_version
+7. H5Pequal -> H5Pget_istore_k
+8. H5Pclose_class -> H5Pset_istore_k
+Total renames
+8
+Functions in namespace : 169
+Functions in parsed : 152
+Functions in namespace : 169
+Functions in parsed : 141{
+    "package": "rhdf5",
+    "versions": "release_3_14  master",
+    "param_changes": 0,
+    "param_warnings": 3,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 3
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : rhdf5
+Checking Versions rhdf5_release_3_14
+rhdf5_master
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : h5createDataset(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (file, dataset, dims, maxdims = dims, storage, mode = undefined, H5type = NULL, size = NULL, encoding = undefined, chunk = dims, fillValue, level = undefined, filter = undefined, shuffle = TRUEnative = FALSE){...}
+New Parameters : (file, dataset, dims, maxdims = dims, storage, mode = undefined, H5type = NULL, size = NULL, encoding = NULL, chunk = dims, fillValue, level = undefined, filter = undefined, shuffle = TRUEnative = FALSE){...}
+2. Function Name : h5createAttribute(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (obj, attr, dims, maxdims = dims, file, storage, mode = undefined, H5type = NULL, size = NULL, cset = undefinednative = FALSE){...}
+New Parameters : (obj, attr, dims, maxdims = dims, file, storage, mode = undefined, H5type = NULL, size = NULL, encoding = NULL, cset = NULLnative = FALSE){...}
+3. Function Name : h5writeAttribute(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (attr, h5obj, name, cset = undefined, variableLengthString = FALSEasScalar = FALSE){...}
+New Parameters : (attr, h5obj, name, encoding = NULL, cset = NULL, variableLengthString = FALSEasScalar = FALSE){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+[
+H5Pall_filters_avail
+H5Pget_nfilters
+H5Pget_filter
+H5Pset_nbit
+H5Rcreate
+H5Rdereference
+H5Rget_name
+H5Rget_obj_type
+H5Rget_region
+H5Tset_precision
+H5Tget_precision
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 182
+Functions in parsed : 164
+Functions in namespace : 169
+Functions in parsed : 152

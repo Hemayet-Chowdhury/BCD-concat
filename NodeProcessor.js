@@ -131,7 +131,7 @@ export class NodeProcessor {
       param_change_array += index + 1 + ". " + param_issue + "\n";
     });
 
-    return param_change_array;
+    return { line: param_change_array, value: this.parameter_breaks.length };
   }
 
   printParameterWarnings() {
@@ -148,7 +148,7 @@ export class NodeProcessor {
       console.log(index + 1 + ". " + param_issue + "\n");
       param_warn_array += index + 1 + ". " + param_issue + "\n";
     });
-    return param_warn_array;
+    return { line: param_warn_array, value: this.parameter_warnings.length };
   }
 
   getFunctionRemovals() {
@@ -196,7 +196,10 @@ export class NodeProcessor {
         this.old_location_dict[functionName] +
         "\n";
     });
-    return function_removal_string;
+    return {
+      line: function_removal_string,
+      value: this.removed_functions.length,
+    };
   }
 
   getFunctionsAdded() {

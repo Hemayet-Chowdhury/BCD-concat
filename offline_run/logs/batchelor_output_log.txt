@@ -1,0 +1,350 @@
+{
+    "package": "batchelor",
+    "versions": "release_3_9  release_3_11",
+    "param_changes": 7,
+    "param_warnings": 4,
+    "function_removals": 1,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 12
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : batchelor
+Checking Versions batchelor_release_3_9
+batchelor_release_3_11
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : batchCorrect(...) | Function Declaration Type : setMethod |  Signature: ClassicMnnParam had parameters removed in newer version.
+Original Parameters : (, batch, restrict, subset, row, correct, all, assay, type, get, spikesPARAM){...}
+New Parameters : (, batch, restrict, subset, row, correct, all, assay, typePARAM){...} FILE : batchCorrect.R
+2. Function Name : batchCorrect(...) | Function Declaration Type : setMethod |  Signature: FastMnnParam had parameters removed in newer version.
+Original Parameters : (, batch, restrict, subset, row, correct, all, assay, type, get, spikesPARAM){...}
+New Parameters : (, batch, restrict, subset, row, correct, all, assay, typePARAM){...} FILE : batchCorrect.R
+3. Function Name : batchCorrect(...) | Function Declaration Type : setMethod |  Signature: RescaleParam had parameters removed in newer version.
+Original Parameters : (, batch, restrict, subset, row, correct, all, assay, type, get, spikesPARAM){...}
+New Parameters : (, batch, restrict, subset, row, correct, all, assay, typePARAM){...} FILE : batchCorrect.R
+4. Function Name : cosineNorm(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : cosineNorm(...) | Function Declaration Type : S3(xmode = undefined){...}
+New Parameters : Function Name : cosineNorm(...) | Function Declaration Type : S3(x, mode = undefined, subset, row = NULL, BPPARAM = undefined){...} FILE : cosineNorm.R
+5. Function Name : mnnCorrect(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : mnnCorrect(...) | Function Declaration Type : S3(, batch = NULL, restrict = NULL, k = undefined, sigma = undefined, cosnorm){...}
+New Parameters : Function Name : mnnCorrect(...) | Function Declaration Type : S3(, batch = NULL, restrict = NULL, k = undefined, prop, k = NULL, sigma = undefined, cos, norm){...} FILE : mnnCorrect.R
+6. Function Name : multiBatchNorm(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : multiBatchNorm(...) | Function Declaration Type : S3(, assay, type = undefined, norm, args = undefined, min, mean = undefined, subset, row = NULL, separatespikes = FALSE){...}
+New Parameters : Function Name : multiBatchNorm(...) | Function Declaration Type : S3(, batch = NULL, assay, type = undefined, norm, args = undefined, min, mean = undefined, subset, row = NULL, normalize, all = FALSE, preserve, single = TRUE, BPPARAM = undefined){...} FILE : multiBatchNorm.R
+7. Function Name : rescaleBatches(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (, batch, restrict, log, base, pseudo, count, subset, row, assay, type, getspikes){...}
+New Parameters : (, batch, restrict, log, base, pseudo, count, subset, row, assaytype){...} FILE : rescaleBatches.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : fastMNN(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (, batch = NULL, k = undefined, restrict = NULL, cos, norm = TRUE, ndist = undefined, d = undefined, auto, order = FALSE, min, batch, skip = undefined, subset, row = NULL, correct, all = FALSE, pc, input = FALSE, assay, type = undefined, get, spikes = FALSE, use, dimred = NULL, BSPARAM = undefined, BNPARAM = undefinedBPPARAM = undefined){...}
+New Parameters : (, batch = NULL, k = undefined, prop, k = NULL, restrict = NULL, cos, norm = TRUE, ndist = undefined, d = undefined, weights = NULL, get, variance = FALSE, merge, order = NULL, auto, merge = FALSE, min, batch, skip = undefined, subset, row = NULL, correct, all = FALSE, assay, type = undefined, BSPARAM = undefined, BNPARAM = undefinedBPPARAM = undefined){...}
+2. Function Name : mnnCorrect(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (, batch = NULL, restrict = NULL, k = undefined, sigma = undefined, cosnorm){...}
+New Parameters : (, batch = NULL, restrict = NULL, k = undefined, prop, k = NULL, sigma = undefined, cosnorm){...}
+3. Function Name : multiBatchNorm(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (, assay, type = undefined, norm, args = undefined, min, mean = undefined, subset, row = NULL, separatespikes = FALSE){...}
+New Parameters : (, batch = NULL, assay, type = undefined, norm, args = undefined, min, mean = undefined, subset, row = NULL, normalize, all = FALSE, preserve, single = TRUEBPPARAM = undefined){...}
+4. Function Name : multiBatchPCA(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (, batch = NULL, d = undefined, subset, row = NULL, rotate, all = FALSE, get, variance = FALSE, preserve, single = FALSE, assay, type = undefined, get, spikes = FALSE, BSPARAM = undefinedBPPARAM = undefined){...}
+New Parameters : (, batch = NULL, d = undefined, subset, row = NULL, weights = NULL, get, all, genes = FALSE, get, variance = FALSE, preserve, single = FALSE, assay, type = undefined, BSPARAM = undefinedBPPARAM = undefined){...}
+
+-----------------------Removed Functions------------
+
+checkSpikeConsistency
+
+
+---------------------Added Functions---------------
+
+
+RegressParam
+NoCorrectParam
+clusterMNN
+correctExperiments
+noCorrect
+reducedMNN
+regressBatches
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 29
+Functions in parsed : 19
+Functions in namespace : 21
+Functions in parsed : 13{
+    "package": "batchelor",
+    "versions": "release_3_11  release_3_12",
+    "param_changes": 4,
+    "param_warnings": 6,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 10
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : batchelor
+Checking Versions batchelor_release_3_11
+batchelor_release_3_12
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : correctExperiments(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : correctExperiments(...) | Function Declaration Type : S3(, batch = NULL, restrict = NULL, subset, row = NULL, correct, all = FALSE, assay, type = undefined, PARAM = undefined, combine, assays = NULL, combine, coldata = NULL, includerowdata = TRUE){...}
+New Parameters : Function Name : correctExperiments(...) | Function Declaration Type : S3(, batch = NULL, restrict = NULL, subset, row = NULL, correct, all = FALSE, assay, type = undefined, PARAM = undefined, combine, assays = NULL, combine, coldata = NULL, include, rowdata = TRUE, add, single = TRUE){...} FILE : correctExperiments.R
+2. Function Name : noCorrect(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : noCorrect(...) | Function Declaration Type : S3(, batch = NULL, subset, row = NULL, assaytype = undefined){...}
+New Parameters : Function Name : noCorrect(...) | Function Declaration Type : S3(, batch = NULL, subset, row = NULL, correct, all = FALSE, assay, type = undefined){...} FILE : noCorrect.R
+3. Function Name : regressBatches(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : regressBatches(...) | Function Declaration Type : S3(, batch = NULL, design = NULL, restrict = NULL, subset, row = NULL, assaytype = undefined){...}
+New Parameters : Function Name : regressBatches(...) | Function Declaration Type : S3(, batch = NULL, design = NULL, keep = NULL, restrict = NULL, subset, row = NULL, correct, all = FALSE, assay, type = undefined, d = NA, BSPARAM = undefined, deferred = TRUE, BPPARAM = undefined){...} FILE : regressBatches.R
+4. Function Name : rescaleBatches(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : rescaleBatches(...) | Function Declaration Type : S3(, batch = NULL, restrict = NULL, log, base = undefined, pseudo, count = undefined, subset, row = NULL, assaytype = undefined){...}
+New Parameters : Function Name : rescaleBatches(...) | Function Declaration Type : S3(, batch = NULL, restrict = NULL, log, base = undefined, pseudo, count = undefined, subset, row = NULL, correct, all = FALSE, assay, type = undefined){...} FILE : rescaleBatches.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : clusterMNN(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (, batch = NULL, restrict = NULL, clusters = NULL, cos, norm = TRUE, merge, order = NULL, auto, merge = FALSE, min, batch, skip = undefined, subset, row = NULL, correct, all = FALSE, assay, type = undefined, BSPARAM = undefined, BNPARAM = undefinedBPPARAM = undefined){...}
+New Parameters : (, batch = NULL, restrict = NULL, clusters, cluster, d = undefined, cos, norm = TRUE, merge, order = NULL, auto, merge = FALSE, min, batch, skip = undefined, subset, row = NULL, correct, all = FALSE, assay, type = undefined, BSPARAM = undefined, BNPARAM = undefinedBPPARAM = undefined){...}
+2. Function Name : fastMNN(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (, batch = NULL, k = undefined, prop, k = NULL, restrict = NULL, cos, norm = TRUE, ndist = undefined, d = undefined, weights = NULL, get, variance = FALSE, merge, order = NULL, auto, merge = FALSE, min, batch, skip = undefined, subset, row = NULL, correct, all = FALSE, assay, type = undefined, BSPARAM = undefined, BNPARAM = undefinedBPPARAM = undefined){...}
+New Parameters : (, batch = NULL, k = undefined, prop, k = NULL, restrict = NULL, cos, norm = TRUE, ndist = undefined, d = undefined, weights = NULL, get, variance = FALSE, merge, order = NULL, auto, merge = FALSE, min, batch, skip = undefined, subset, row = NULL, correct, all = FALSE, assay, type = undefined, BSPARAM = undefined, deferred = TRUE, BNPARAM = undefinedBPPARAM = undefined){...}
+3. Function Name : multiBatchPCA(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (, batch = NULL, d = undefined, subset, row = NULL, weights = NULL, get, all, genes = FALSE, get, variance = FALSE, preserve, single = FALSE, assay, type = undefined, BSPARAM = undefinedBPPARAM = undefined){...}
+New Parameters : (, batch = NULL, d = undefined, subset, row = NULL, weights = NULL, get, all, genes = FALSE, get, variance = FALSE, preserve, single = FALSE, assay, type = undefined, BSPARAM = undefined, deferred = TRUEBPPARAM = undefined){...}
+4. Function Name : noCorrect(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (, batch = NULL, subset, row = NULL, assaytype = undefined){...}
+New Parameters : (, batch = NULL, subset, row = NULL, correct, all = FALSE, assaytype = undefined){...}
+5. Function Name : regressBatches(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (, batch = NULL, design = NULL, restrict = NULL, subset, row = NULL, assaytype = undefined){...}
+New Parameters : (, batch = NULL, design = NULL, keep = NULL, restrict = NULL, subset, row = NULL, correct, all = FALSE, assay, type = undefined, d = NA, BSPARAM = undefined, deferred = TRUEBPPARAM = undefined){...}
+6. Function Name : rescaleBatches(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (, batch = NULL, restrict = NULL, log, base = undefined, pseudo, count = undefined, subset, row = NULL, assaytype = undefined){...}
+New Parameters : (, batch = NULL, restrict = NULL, log, base = undefined, pseudo, count = undefined, subset, row = NULL, correct, all = FALSE, assaytype = undefined){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 29
+Functions in parsed : 19
+Functions in namespace : 29
+Functions in parsed : 19{
+    "package": "batchelor",
+    "versions": "release_3_12  release_3_13",
+    "param_changes": 0,
+    "param_warnings": 3,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 3
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : batchelor
+Checking Versions batchelor_release_3_12
+batchelor_release_3_13
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : fastMNN(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (, batch = NULL, k = undefined, prop, k = NULL, restrict = NULL, cos, norm = TRUE, ndist = undefined, d = undefined, weights = NULL, get, variance = FALSE, merge, order = NULL, auto, merge = FALSE, min, batch, skip = undefined, subset, row = NULL, correct, all = FALSE, assay, type = undefined, BSPARAM = undefined, deferred = TRUE, BNPARAM = undefinedBPPARAM = undefined){...}
+New Parameters : (, batch = NULL, k = undefined, prop, k = NULL, restrict = NULL, cos, norm = TRUE, ndist = undefined, d = undefined, deferred = TRUE, weights = NULL, get, variance = FALSE, merge, order = NULL, auto, merge = FALSE, min, batch, skip = undefined, subset, row = NULL, correct, all = FALSE, assay, type = undefined, BSPARAM = undefined, BNPARAM = undefinedBPPARAM = undefined){...}
+2. Function Name : multiBatchNorm(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (, batch = NULL, assay, type = undefined, norm, args = undefined, min, mean = undefined, subset, row = NULL, normalize, all = FALSE, preserve, single = TRUEBPPARAM = undefined){...}
+New Parameters : (, batch = NULL, norm, args = undefined, min, mean = undefined, subset, row = NULL, normalize, all = FALSE, preserve, single = TRUE, assay, type = undefinedBPPARAM = undefined){...}
+3. Function Name : regressBatches(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (, batch = NULL, design = NULL, keep = NULL, restrict = NULL, subset, row = NULL, correct, all = FALSE, assay, type = undefined, d = NA, BSPARAM = undefined, deferred = TRUEBPPARAM = undefined){...}
+New Parameters : (, batch = NULL, design = NULL, keep = NULL, restrict = NULL, subset, row = NULL, correct, all = FALSE, d = NA, deferred = TRUE, assay, type = undefined, BSPARAM = undefinedBPPARAM = undefined){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+applyMultiSCE
+convertPCsToSCE
+clusterAbundanceTest
+clusterAbundanceVar
+intersectRows
+mnnDeltaVariance
+quickCorrect
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 36
+Functions in parsed : 25
+Functions in namespace : 29
+Functions in parsed : 19{
+    "package": "batchelor",
+    "versions": "release_3_13  release_3_14",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : batchelor
+Checking Versions batchelor_release_3_13
+batchelor_release_3_14
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 36
+Functions in parsed : 25
+Functions in namespace : 36
+Functions in parsed : 25{
+    "package": "batchelor",
+    "versions": "release_3_14  master",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : batchelor
+Checking Versions batchelor_release_3_14
+batchelor_master
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 36
+Functions in parsed : 25
+Functions in namespace : 36
+Functions in parsed : 25

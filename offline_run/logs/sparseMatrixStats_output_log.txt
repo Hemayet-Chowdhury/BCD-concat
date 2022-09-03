@@ -1,0 +1,276 @@
+{
+    "package": "sparseMatrixStats",
+    "versions": "release_3_11  release_3_12",
+    "param_changes": 5,
+    "param_warnings": 3,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 8
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : sparseMatrixStats
+Checking Versions sparsematrixstats_release_3_11
+sparsematrixstats_release_3_12
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : colProds(...) | Function Declaration Type : setMethod |  Signature: undefined had non-default parameters added in newer version.
+Original Parameters : Function Name : colProds(...) | Function Declaration Type : setMethod |  Signature: undefined(x, rows = NULL, cols = NULL, narm = FALSE){...}
+New Parameters : Function Name : colProds(...) | Function Declaration Type : setMethod |  Signature: undefined(x, rows = NULL, cols = NULL, na, rm = FALSE, ){...} FILE : methods.R
+2. Function Name : colQuantiles(...) | Function Declaration Type : setMethod |  Signature: undefined had non-default parameters added in newer version.
+Original Parameters : Function Name : colQuantiles(...) | Function Declaration Type : setMethod |  Signature: undefined(x, rows = NULL, cols = NULL, probs = undefined, na, rm = FALSEdrop = TRUE){...}
+New Parameters : Function Name : colQuantiles(...) | Function Declaration Type : setMethod |  Signature: undefined(x, rows = NULL, cols = NULL, probs = undefined, na, rm = FALSE, type = undefined, L, drop = TRUE){...} FILE : methods.R
+3. Function Name : colRanks(...) | Function Declaration Type : setMethod |  Signature: undefined had parameters removed in newer version.
+Original Parameters : (x, rows, cols, ties, method, preserve, shape, nahandling){...}
+New Parameters : (x, rows, cols, ties, method, preserveShape, nahandling){...} FILE : methods.R
+4. Function Name : rowProds(...) | Function Declaration Type : setMethod |  Signature: undefined had non-default parameters added in newer version.
+Original Parameters : Function Name : rowProds(...) | Function Declaration Type : setMethod |  Signature: undefined(x, rows = NULL, cols = NULL, narm = FALSE){...}
+New Parameters : Function Name : rowProds(...) | Function Declaration Type : setMethod |  Signature: undefined(x, rows = NULL, cols = NULL, na, rm = FALSE, ){...} FILE : methods_row.R
+5. Function Name : rowRanks(...) | Function Declaration Type : setMethod |  Signature: undefined had parameters removed in newer version.
+Original Parameters : (x, rows, cols, ties, method, preserve, shape, nahandling){...}
+New Parameters : (x, rows, cols, ties, method, preserveShape, nahandling){...} FILE : methods_row.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : colQuantiles(...) | Function Declaration Type : setMethod |  Signature: undefined had parameters modified in newer version.
+Original Parameters : (x, rows = NULL, cols = NULL, probs = undefined, na, rm = FALSEdrop = TRUE){...}
+New Parameters : (x, rows = NULL, cols = NULL, probs = undefined, na, rm = FALSE, type = undefined, Ldrop = TRUE){...}
+2. Function Name : colAvgsPerRowSet(...) | Function Declaration Type : setMethod |  Signature: undefined had parameters modified in newer version.
+Original Parameters : (X, W = NULL, cols = NULL, S, FUN = colMeans2, tFUN = FALSE){...}
+New Parameters : (X, W = NULL, cols = NULL, S, FUN = colMeans2, , na, rm = NAtFUN = FALSE){...}
+3. Function Name : rowAvgsPerColSet(...) | Function Declaration Type : setMethod |  Signature: undefined had parameters modified in newer version.
+Original Parameters : (X, W = NULL, rows = NULL, S, FUN = rowMeans2, tFUN = FALSE){...}
+New Parameters : (X, W = NULL, rows = NULL, S, FUN = rowMeans2, , na, rm = NAtFUN = FALSE){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 72
+Functions in parsed : 71
+Functions in namespace : 72
+Functions in parsed : 71{
+    "package": "sparseMatrixStats",
+    "versions": "release_3_12  release_3_13",
+    "param_changes": 4,
+    "param_warnings": 8,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 12
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : sparseMatrixStats
+Checking Versions sparsematrixstats_release_3_12
+sparsematrixstats_release_3_13
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : colRanks(...) | Function Declaration Type : setMethod |  Signature: undefined had non-default parameters added in newer version.
+Original Parameters : Function Name : colRanks(...) | Function Declaration Type : setMethod |  Signature: undefined(x, rows = NULL, cols = NULL, ties, method = undefined, preserveShape = FALSE, nahandling = undefined){...}
+New Parameters : Function Name : colRanks(...) | Function Declaration Type : setMethod |  Signature: undefined(x, rows = NULL, cols = NULL, ties, method = undefined, preserveShape = FALSE, na, handling = undefined, , useNames = NA){...} FILE : methods.R
+2. Function Name : colMadDiffs(...) | Function Declaration Type : setMethod |  Signature: undefined had non-default parameters added in newer version.
+Original Parameters : Function Name : colMadDiffs(...) | Function Declaration Type : setMethod |  Signature: undefined(x, rows = NULL, cols = NULL, na, rm = FALSE, diff = undefined, L, trim = undefinedconstant = undefined){...}
+New Parameters : Function Name : colMadDiffs(...) | Function Declaration Type : setMethod |  Signature: undefined(x, rows = NULL, cols = NULL, na, rm = FALSE, diff = undefined, L, trim = undefined, constant = undefined, , useNames = NA){...} FILE : methods.R
+3. Function Name : rowRanks(...) | Function Declaration Type : setMethod |  Signature: undefined had non-default parameters added in newer version.
+Original Parameters : Function Name : rowRanks(...) | Function Declaration Type : setMethod |  Signature: undefined(x, rows = NULL, cols = NULL, ties, method = undefined, preserveShape = TRUE, nahandling = undefined){...}
+New Parameters : Function Name : rowRanks(...) | Function Declaration Type : setMethod |  Signature: undefined(x, rows = NULL, cols = NULL, ties, method = undefined, preserveShape = TRUE, na, handling = undefined, , useNames = NA){...} FILE : methods_row.R
+4. Function Name : rowMadDiffs(...) | Function Declaration Type : setMethod |  Signature: undefined had non-default parameters added in newer version.
+Original Parameters : Function Name : rowMadDiffs(...) | Function Declaration Type : setMethod |  Signature: undefined(x, rows = NULL, cols = NULL, na, rm = FALSE, diff = undefined, L, trim = undefinedconstant = undefined){...}
+New Parameters : Function Name : rowMadDiffs(...) | Function Declaration Type : setMethod |  Signature: undefined(x, rows = NULL, cols = NULL, na, rm = FALSE, diff = undefined, L, trim = undefined, constant = undefined, , useNames = NA){...} FILE : methods_row.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : colMads(...) | Function Declaration Type : setMethod |  Signature: undefined had parameters modified in newer version.
+Original Parameters : (x, rows = NULL, cols = NULL, constant = undefined, narm = FALSE){...}
+New Parameters : (x, rows = NULL, cols = NULL, center = NULL, constant = undefined, na, rm = FALSEuseNames = NA){...}
+2. Function Name : colProds(...) | Function Declaration Type : setMethod |  Signature: undefined had parameters modified in newer version.
+Original Parameters : (x, rows = NULL, cols = NULL, na, rm = FALSE){...}
+New Parameters : (x, rows = NULL, cols = NULL, na, rm = FALSEuseNames = NA){...}
+3. Function Name : colOrderStats(...) | Function Declaration Type : setMethod |  Signature: undefined had parameters modified in newer version.
+Original Parameters : (x, rows = NULL, cols = NULL, which = undefined, narm = FALSE){...}
+New Parameters : (x, rows = NULL, cols = NULL, which = undefined, useNames = NA, narm = FALSE){...}
+4. Function Name : colQuantiles(...) | Function Declaration Type : setMethod |  Signature: undefined had parameters modified in newer version.
+Original Parameters : (x, rows = NULL, cols = NULL, probs = undefined, na, rm = FALSE, type = undefined, Ldrop = TRUE){...}
+New Parameters : (x, rows = NULL, cols = NULL, probs = undefined, na, rm = FALSE, type = undefined, L, useNames = NAdrop = TRUE){...}
+5. Function Name : rowMads(...) | Function Declaration Type : setMethod |  Signature: undefined had parameters modified in newer version.
+Original Parameters : (x, rows = NULL, cols = NULL, constant = undefined, narm = FALSE){...}
+New Parameters : (x, rows = NULL, cols = NULL, center = NULL, constant = undefined, na, rm = FALSEuseNames = NA){...}
+6. Function Name : rowProds(...) | Function Declaration Type : setMethod |  Signature: undefined had parameters modified in newer version.
+Original Parameters : (x, rows = NULL, cols = NULL, na, rm = FALSE){...}
+New Parameters : (x, rows = NULL, cols = NULL, na, rm = FALSEuseNames = NA){...}
+7. Function Name : rowOrderStats(...) | Function Declaration Type : setMethod |  Signature: undefined had parameters modified in newer version.
+Original Parameters : (x, rows = NULL, cols = NULL, which = undefined, narm = FALSE){...}
+New Parameters : (x, rows = NULL, cols = NULL, which = undefined, useNames = NA, narm = FALSE){...}
+8. Function Name : rowQuantiles(...) | Function Declaration Type : setMethod |  Signature: undefined had parameters modified in newer version.
+Original Parameters : (x, rows = NULL, cols = NULL, probs = undefined, na, rm = FALSEdrop = TRUE){...}
+New Parameters : (x, rows = NULL, cols = NULL, probs = undefined, na, rm = FALSE, useNames = NAdrop = TRUE){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 72
+Functions in parsed : 71
+Functions in namespace : 72
+Functions in parsed : 71{
+    "package": "sparseMatrixStats",
+    "versions": "release_3_13  release_3_14",
+    "param_changes": 0,
+    "param_warnings": 1,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 1
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : sparseMatrixStats
+Checking Versions sparsematrixstats_release_3_13
+sparsematrixstats_release_3_14
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : rowQuantiles(...) | Function Declaration Type : setMethod |  Signature: undefined had parameters modified in newer version.
+Original Parameters : (x, rows = NULL, cols = NULL, probs = undefined, na, rm = FALSE, useNames = NAdrop = TRUE){...}
+New Parameters : (x, rows = NULL, cols = NULL, probs = undefined, na, rm = FALSE, type = undefined, L, useNames = NAdrop = TRUE){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 72
+Functions in parsed : 71
+Functions in namespace : 72
+Functions in parsed : 71{
+    "package": "sparseMatrixStats",
+    "versions": "release_3_14  master",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : sparseMatrixStats
+Checking Versions sparsematrixstats_release_3_14
+sparsematrixstats_master
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 72
+Functions in parsed : 71
+Functions in namespace : 72
+Functions in parsed : 71

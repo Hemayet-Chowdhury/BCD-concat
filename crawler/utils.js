@@ -151,8 +151,8 @@ export let list_100 = [
   // "MSnbase",
   // "bluster",
   // "ConsensusClusterPlus",
-  "GOstats",
-  "mzR",
+  // "GOstats",
+  // "mzR",
   // "illuminaio",
   // "batchelor",
   // "EBImage",
@@ -229,6 +229,37 @@ export function sort_by_branch(a, b) {
 
     second_version = second_version.join("");
     second_version = +second_version;
+    if (String(first_version).charAt(0) === String(second_version).charAt(0)) {
+      return first_version - second_version;
+    } else {
+      let first_num = String(first_version).charAt(0);
+      first_num = +first_num;
+      let second_num = String(second_version).charAt(0);
+      second_num = +second_num;
+      return first_num - second_num;
+    }
+  } else {
+    return 1;
+  }
+}
+
+export function sort_array_by_branch(a, b) {
+  if (a.slice(-6) === "master") return 1;
+  if (b.slice(-6) === "master") return -1;
+  const [old_first, ...old_rest] = a.split("_");
+  const old_remainder = old_rest.join("_");
+  const [new_first, ...new_rest] = b.split("_");
+  const new__remainder = new_rest.join("_");
+  var first_version = old_remainder.match(/\d/g);
+  var second_version = new__remainder.match(/\d/g);
+
+  if (first_version && second_version) {
+    first_version = first_version.join("");
+    first_version = +first_version;
+
+    second_version = second_version.join("");
+    second_version = +second_version;
+
     if (String(first_version).charAt(0) === String(second_version).charAt(0)) {
       return first_version - second_version;
     } else {

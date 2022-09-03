@@ -1,0 +1,1051 @@
+{
+    "package": "DESeq2",
+    "versions": "release_2_12  release_2_13",
+    "param_changes": 5,
+    "param_warnings": 4,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 9
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : DESeq2
+Checking Versions deseq2_release_2_12
+deseq2_release_2_13
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : DESeq(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : DESeq(...) | Function Declaration Type : S3(object, fitType = undefined, betaPrior = TRUE, pAdjustMethod = undefinedquiet = FALSE){...}
+New Parameters : Function Name : DESeq(...) | Function Declaration Type : S3(object, test = undefined, fitType = undefined, betaPrior = TRUE, full = undefined, reduced, quiet = FALSE){...} FILE : core.R
+2. Function Name : estimateSizeFactorsForMatrix(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : estimateSizeFactorsForMatrix(...) | Function Declaration Type : S3(countslocfunc = median){...}
+New Parameters : Function Name : estimateSizeFactorsForMatrix(...) | Function Declaration Type : S3(counts, locfunc = median, geoMeans){...} FILE : core.R
+3. Function Name : nbinomWaldTest(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (object, betaPrior, pAdjustMethod, priorSigmaSq, cooksCutoff, maxit, useOptim, quiet, useTdf){...}
+New Parameters : (object, betaPrior, betaPriorVar, maxit, useOptim, quiet, useT, dfuseQR){...} FILE : core.R
+4. Function Name : nbinomLRT(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (object, full, reduced, pAdjustMethod, cooksCutoff, maxit, useOptimquiet){...}
+New Parameters : (object, full, reduced, maxit, useOptim, quietuseQR){...} FILE : core.R
+5. Function Name : results(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : results(...) | Function Declaration Type : S3(objectname){...}
+New Parameters : Function Name : results(...) | Function Declaration Type : S3(object, name, contrast, cooksCutoff, independentFiltering = TRUE, alpha = undefined, filter, theta = undefined, pAdjustMethod = undefined){...} FILE : core.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : DESeq(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, fitType = undefined, betaPrior = TRUE, pAdjustMethod = undefinedquiet = FALSE){...}
+New Parameters : (object, test = undefined, fitType = undefined, betaPrior = TRUE, full = undefined, reducedquiet = FALSE){...}
+2. Function Name : estimateDispersionsMAP(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, outlierSD = undefined, priorVar, minDisp = undefined, kappa_0 = undefined, dispTol = undefined, maxit = undefinedquiet = FALSE){...}
+New Parameters : (object, outlierSD = undefined, dispPriorVar, minDisp = undefined, kappa_0 = undefined, dispTol = undefined, maxit = undefinedquiet = FALSE){...}
+3. Function Name : rlogTransformation(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, blind = TRUE, samplesVector, priorSigmasqrowVarQuantile = undefined){...}
+New Parameters : (object, blind = TRUE, samplesVector, betaPriorVarintercept){...}
+4. Function Name : rlogData(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, samplesVector, priorSigmasqrowVarQuantile = undefined){...}
+New Parameters : (object, samplesVector, betaPriorVarintercept){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+replaceOutliersWithTrimmedMean
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 39
+Functions in parsed : 25
+Functions in namespace : 36
+Functions in parsed : 26{
+    "package": "DESeq2",
+    "versions": "release_2_13  release_2_14",
+    "param_changes": 7,
+    "param_warnings": 7,
+    "function_removals": 0,
+    "function_renames": 2,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 2,
+    "total_count": 14
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : DESeq2
+Checking Versions deseq2_release_2_13
+deseq2_release_2_14
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : DESeqDataSetFromMatrix(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : DESeqDataSetFromMatrix(...) | Function Declaration Type : S3(countData, colData, design){...}
+New Parameters : Function Name : DESeqDataSetFromMatrix(...) | Function Declaration Type : S3(countData, colData, design, ignoreRank = FALSE, ){...} FILE : AllClasses.R
+2. Function Name : DESeqDataSetFromHTSeqCount(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : DESeqDataSetFromHTSeqCount(...) | Function Declaration Type : S3(sampleTable, directory = undefined, design){...}
+New Parameters : Function Name : DESeqDataSetFromHTSeqCount(...) | Function Declaration Type : S3(sampleTable, directory = undefined, design, ignoreRank = FALSE, ){...} FILE : AllClasses.R
+3. Function Name : DESeq(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : DESeq(...) | Function Declaration Type : S3(object, test = undefined, fitType = undefined, betaPrior = TRUE, full = undefined, reducedquiet = FALSE){...}
+New Parameters : Function Name : DESeq(...) | Function Declaration Type : S3(object, test = undefined, fitType = undefined, betaPrior, full = undefined, reduced, quiet = FALSE, minReplicatesForReplace = undefined, modelMatrixType){...} FILE : core.R
+4. Function Name : estimateDispersionsGeneEst(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : estimateDispersionsGeneEst(...) | Function Declaration Type : S3(object, minDisp = undefined, kappa_0 = undefined, dispTol = undefined, maxit = undefinedquiet = FALSE){...}
+New Parameters : Function Name : estimateDispersionsGeneEst(...) | Function Declaration Type : S3(object, minDisp = undefined, kappa_0 = undefined, dispTol = undefined, maxit = undefined, quiet = FALSE, modelMatrix, niter = undefined){...} FILE : core.R
+5. Function Name : results(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : results(...) | Function Declaration Type : S3(object, name, contrast, cooksCutoff, independentFiltering = TRUE, alpha = undefined, filter, theta = undefinedpAdjustMethod = undefined){...}
+New Parameters : Function Name : results(...) | Function Declaration Type : S3(object, contrast, name, lfcThreshold = undefined, altHypothesis = undefined, listValues = undefined, cooksCutoff, independentFiltering = TRUE, alpha = undefined, filter, theta, pAdjustMethod = undefined){...} FILE : core.R
+6. Function Name : plotPCA(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : plotPCA(...) | Function Declaration Type : S3(x, intgroup = undefinedntop = undefined){...}
+New Parameters : Function Name : plotPCA(...) | Function Declaration Type : S3(x, intgroup = undefined, ntop = undefined, col){...} FILE : plots.R
+7. Function Name : rlogData(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (object, samplesVector, betaPriorVarintercept){...}
+New Parameters : (object, interceptbetaPriorVar){...} FILE : rlogTransformation.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : DESeqDataSetFromMatrix(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (countData, colData, design){...}
+New Parameters : (countData, colData, design, ignoreRank = FALSE){...}
+2. Function Name : DESeqDataSetFromHTSeqCount(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (sampleTable, directory = undefined, design){...}
+New Parameters : (sampleTable, directory = undefined, design, ignoreRank = FALSE){...}
+3. Function Name : DESeq(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, test = undefined, fitType = undefined, betaPrior = TRUE, full = undefined, reducedquiet = FALSE){...}
+New Parameters : (object, test = undefined, fitType = undefined, betaPrior, full = undefined, reduced, quiet = FALSE, minReplicatesForReplace = undefinedmodelMatrixType){...}
+4. Function Name : estimateDispersionsMAP(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, outlierSD = undefined, dispPriorVar, minDisp = undefined, kappa_0 = undefined, dispTol = undefined, maxit = undefinedquiet = FALSE){...}
+New Parameters : (object, outlierSD = undefined, dispPriorVar, minDisp = undefined, kappa_0 = undefined, dispTol = undefined, maxit = undefined, modelMatrixquiet = FALSE){...}
+5. Function Name : nbinomWaldTest(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, betaPrior = TRUE, betaPriorVar, maxit = undefined, useOptim = TRUE, quiet = FALSE, useT = FALSE, dfuseQR = TRUE){...}
+New Parameters : (object, betaPrior = TRUE, betaPriorVar, modelMatrixType, maxit = undefined, useOptim = TRUE, quiet = FALSE, useT = FALSE, df, useQR = TRUEbetaPriorUpperQuantile = undefined){...}
+6. Function Name : nbinomLRT(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, full = undefined, reduced, maxit = undefined, useOptim = TRUE, quiet = FALSEuseQR = TRUE){...}
+New Parameters : (object, full = undefined, reduced, betaPrior = FALSE, betaPriorVar, modelMatrixType, maxit = undefined, useOptim = TRUE, quiet = FALSE, useQR = TRUEbetaPriorUpperQuantile = undefined){...}
+7. Function Name : results(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, name, contrast, cooksCutoff, independentFiltering = TRUE, alpha = undefined, filter, theta = undefinedpAdjustMethod = undefined){...}
+New Parameters : (object, contrast, name, lfcThreshold = undefined, altHypothesis = undefined, listValues = undefined, cooksCutoff, independentFiltering = TRUE, alpha = undefined, filter, thetapAdjustMethod = undefined){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+DESeqResults
+replaceOutliers
+collapseReplicates
+fpkm
+fpm
+show
+coef.DESeqDataSet
+rlog
+rlogDataFast
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+1. replaceOutliersWithTrimmedMean -> replaceOutliers
+2. rlogTransformation -> rlog
+Total renames
+2
+Functions in namespace : 50
+Functions in parsed : 32
+Functions in namespace : 39
+Functions in parsed : 25{
+    "package": "DESeq2",
+    "versions": "release_2_14  release_3_1",
+    "param_changes": 4,
+    "param_warnings": 6,
+    "function_removals": 2,
+    "function_renames": 2,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 2,
+    "total_count": 12
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : DESeq2
+Checking Versions deseq2_release_2_14
+deseq2_release_3_1
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : DESeqDataSetFromMatrix(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : DESeqDataSetFromMatrix(...) | Function Declaration Type : S3(countData, colData, design, ignoreRank = FALSE){...}
+New Parameters : Function Name : DESeqDataSetFromMatrix(...) | Function Declaration Type : S3(countData, colData, design, tidy = FALSE, ignoreRank = FALSE, ){...} FILE : AllClasses.R
+2. Function Name : estimateSizeFactorsForMatrix(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : estimateSizeFactorsForMatrix(...) | Function Declaration Type : S3(counts, locfunc = mediangeoMeans){...}
+New Parameters : Function Name : estimateSizeFactorsForMatrix(...) | Function Declaration Type : S3(counts, locfunc = stats, median, geoMeans, controlGenes){...} FILE : core.R
+3. Function Name : nbinomLRT(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (object, full, reduced, betaPrior, betaPriorVar, modelMatrixType, maxit, useOptim, quiet, useQRbetaPriorUpperQuantile){...}
+New Parameters : (object, full, reduced, betaPrior, betaPriorVar, modelMatrixType, maxit, useOptim, quietuseQR){...} FILE : core.R
+4. Function Name : results(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : results(...) | Function Declaration Type : S3(object, contrast, name, lfcThreshold = undefined, altHypothesis = undefined, listValues = undefined, cooksCutoff, independentFiltering = TRUE, alpha = undefined, filter, thetapAdjustMethod = undefined){...}
+New Parameters : Function Name : results(...) | Function Declaration Type : S3(object, contrast, name, lfcThreshold = undefined, altHypothesis = undefined, listValues = undefined, cooksCutoff, independentFiltering = TRUE, alpha = undefined, filter, theta, pAdjustMethod = undefined, format = undefined, test, addMLE = FALSE, tidy = FALSE, parallel = FALSE, BPPARAM = undefined){...} FILE : results.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : DESeqDataSetFromMatrix(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (countData, colData, design, ignoreRank = FALSE){...}
+New Parameters : (countData, colData, design, tidy = FALSE, ignoreRank = FALSE){...}
+2. Function Name : estimateSizeFactorsForMatrix(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (counts, locfunc = mediangeoMeans){...}
+New Parameters : (counts, locfunc = stats, median, geoMeanscontrolGenes){...}
+3. Function Name : estimateDispersionsGeneEst(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, minDisp = undefined, kappa_0 = undefined, dispTol = undefined, maxit = undefined, quiet = FALSE, modelMatrixniter = undefined){...}
+New Parameters : (object, minDisp = undefined, kappa_0 = undefined, dispTol = undefined, maxit = undefined, quiet = FALSE, modelMatrix = NULLniter = undefined){...}
+4. Function Name : estimateDispersionsMAP(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, outlierSD = undefined, dispPriorVar, minDisp = undefined, kappa_0 = undefined, dispTol = undefined, maxit = undefined, modelMatrixquiet = FALSE){...}
+New Parameters : (object, outlierSD = undefined, dispPriorVar, minDisp = undefined, kappa_0 = undefined, dispTol = undefined, maxit = undefined, modelMatrix = NULLquiet = FALSE){...}
+5. Function Name : nbinomWaldTest(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, betaPrior = TRUE, betaPriorVar, modelMatrixType, maxit = undefined, useOptim = TRUE, quiet = FALSE, useT = FALSE, df, useQR = TRUEbetaPriorUpperQuantile = undefined){...}
+New Parameters : (object, betaPrior = TRUE, betaPriorVar, modelMatrix = NULL, modelMatrixType, maxit = undefined, useOptim = TRUE, quiet = FALSE, useT = FALSE, dfuseQR = TRUE){...}
+6. Function Name : replaceOutliers(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (dds, trim = undefined, cooksCutoff, minReplicates = undefinedwhichSamples){...}
+New Parameters : (object, trim = undefined, cooksCutoff, minReplicates = undefinedwhichSamples){...}
+
+-----------------------Removed Functions------------
+
+rlogData
+rlogDataFast
+
+
+---------------------Added Functions---------------
+
+
+DESeqTransform
+estimateDispersionsPriorVar
+estimateBetaPriorVar
+estimateMLEForBetaPriorVar
+plotCounts
+plotSparsity
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+1. rlogData -> estimateBetaPriorVar
+2. rlogDataFast -> estimateBetaPriorVar
+Total renames
+2
+Functions in namespace : 59
+Functions in parsed : 35
+Functions in namespace : 50
+Functions in parsed : 32{
+    "package": "DESeq2",
+    "versions": "release_3_1  release_3_2",
+    "param_changes": 2,
+    "param_warnings": 2,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 4
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : DESeq2
+Checking Versions deseq2_release_3_1
+deseq2_release_3_2
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : nbinomLRT(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (object, full, reduced, betaPrior, betaPriorVar, modelMatrixType, maxit, useOptim, quietuseQR){...}
+New Parameters : (object, full, reduced, betaPrior, betaPriorVar, maxit, useOptim, quietuseQR){...} FILE : core.R
+2. Function Name : rlog(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (object, blind, fast, intercept, betaPriorVar, BfitType){...}
+New Parameters : (object, blind, intercept, betaPriorVarfitType){...} FILE : rlogTransformation.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : nbinomWaldTest(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, betaPrior = TRUE, betaPriorVar, modelMatrix = NULL, modelMatrixType, maxit = undefined, useOptim = TRUE, quiet = FALSE, useT = FALSE, dfuseQR = TRUE){...}
+New Parameters : (object, betaPrior, betaPriorVar, modelMatrix = NULL, modelMatrixType, maxit = undefined, useOptim = TRUE, quiet = FALSE, useT = FALSE, dfuseQR = TRUE){...}
+2. Function Name : results(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, contrast, name, lfcThreshold = undefined, altHypothesis = undefined, listValues = undefined, cooksCutoff, independentFiltering = TRUE, alpha = undefined, filter, theta, pAdjustMethod = undefined, format = undefined, test, addMLE = FALSE, tidy = FALSE, parallel = FALSEBPPARAM = undefined){...}
+New Parameters : (object, contrast, name, lfcThreshold = undefined, altHypothesis = undefined, listValues = undefined, cooksCutoff, independentFiltering = TRUE, alpha = undefined, filter, theta, pAdjustMethod = undefined, filterFun, format = undefined, test, addMLE = FALSE, tidy = FALSE, parallel = FALSEBPPARAM = undefined){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+normalizeGeneLength
+normTransform
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 61
+Functions in parsed : 37
+Functions in namespace : 59
+Functions in parsed : 35{
+    "package": "DESeq2",
+    "versions": "release_3_2  release_3_3",
+    "param_changes": 2,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 2
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : DESeq2
+Checking Versions deseq2_release_3_2
+deseq2_release_3_3
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : normalizeGeneLength(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (object, files, level, geneIdCol, lengthCol, abundanceCol, dropGenes, importer){...}
+New Parameters : (){...} FILE : helper.R
+2. Function Name : results(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : results(...) | Function Declaration Type : S3(object, contrast, name, lfcThreshold = undefined, altHypothesis = undefined, listValues = undefined, cooksCutoff, independentFiltering = TRUE, alpha = undefined, filter, theta, pAdjustMethod = undefined, filterFun, format = undefined, test, addMLE = FALSE, tidy = FALSE, parallel = FALSEBPPARAM = undefined){...}
+New Parameters : Function Name : results(...) | Function Declaration Type : S3(object, contrast, name, lfcThreshold = undefined, altHypothesis = undefined, listValues = undefined, cooksCutoff, independentFiltering = TRUE, alpha = undefined, filter, theta, pAdjustMethod = undefined, filterFun, format = undefined, test, addMLE = FALSE, tidy = FALSE, parallel = FALSE, BPPARAM = undefined, ){...} FILE : results.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+DESeqDataSetFromTximport
+vst
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 63
+Functions in parsed : 39
+Functions in namespace : 61
+Functions in parsed : 37{
+    "package": "DESeq2",
+    "versions": "release_3_3  release_3_4",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : DESeq2
+Checking Versions deseq2_release_3_3
+deseq2_release_3_4
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 63
+Functions in parsed : 39
+Functions in namespace : 63
+Functions in parsed : 39{
+    "package": "DESeq2",
+    "versions": "release_3_4  release_3_5",
+    "param_changes": 2,
+    "param_warnings": 2,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 4
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : DESeq2
+Checking Versions deseq2_release_3_4
+deseq2_release_3_5
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : nbinomLRT(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (object, full, reduced, betaPrior, betaPriorVar, maxit, useOptim, quietuseQR){...}
+New Parameters : (object, full, reduced, betaTol, maxit, useOptim, quietuseQR){...} FILE : core.R
+2. Function Name : plotCounts(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : plotCounts(...) | Function Declaration Type : S3(dds, gene, intgroup = undefined, normalized = TRUE, transform = FALSE, main, xlab = undefined, returnData = FALSE, replaced = FALSE){...}
+New Parameters : Function Name : plotCounts(...) | Function Declaration Type : S3(dds, gene, intgroup = undefined, normalized = TRUE, transform = TRUE, main, xlab = undefined, returnData = FALSE, replaced = FALSE, pc, ){...} FILE : plots.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : nbinomWaldTest(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, betaPrior, betaPriorVar, modelMatrix = NULL, modelMatrixType, maxit = undefined, useOptim = TRUE, quiet = FALSE, useT = FALSE, dfuseQR = TRUE){...}
+New Parameters : (object, betaPrior = FALSE, betaPriorVar, modelMatrix = NULL, modelMatrixType, betaTol = undefined, maxit = undefined, useOptim = TRUE, quiet = FALSE, useT = FALSE, dfuseQR = TRUE){...}
+2. Function Name : plotCounts(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (dds, gene, intgroup = undefined, normalized = TRUE, transform = FALSE, main, xlab = undefined, returnData = FALSE, replaced = FALSE){...}
+New Parameters : (dds, gene, intgroup = undefined, normalized = TRUE, transform = TRUE, main, xlab = undefined, returnData = FALSE, replaced = FALSE, pc){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+lfcShrink
+unmix
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 65
+Functions in parsed : 41
+Functions in namespace : 63
+Functions in parsed : 39{
+    "package": "DESeq2",
+    "versions": "release_3_5  release_3_6",
+    "param_changes": 1,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 1
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : DESeq2
+Checking Versions deseq2_release_3_5
+deseq2_release_3_6
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : lfcShrink(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : lfcShrink(...) | Function Declaration Type : S3(dds, coef, contrast, restype = undefined){...}
+New Parameters : Function Name : lfcShrink(...) | Function Declaration Type : S3(dds, coef, contrast, res, type = undefined, svalue = FALSE, returnList = FALSE, apeAdapt = TRUE, parallel = FALSE, BPPARAM = undefined, ){...} FILE : helper.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+priorInfo
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 69
+Functions in parsed : 42
+Functions in namespace : 65
+Functions in parsed : 41{
+    "package": "DESeq2",
+    "versions": "release_3_6  release_3_7",
+    "param_changes": 1,
+    "param_warnings": 3,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 4
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : DESeq2
+Checking Versions deseq2_release_3_6
+deseq2_release_3_7
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : lfcShrink(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : lfcShrink(...) | Function Declaration Type : S3(dds, coef, contrast, res, type = undefined, svalue = FALSE, returnList = FALSE, apeAdapt = TRUE, parallel = FALSE, BPPARAM = undefined){...}
+New Parameters : Function Name : lfcShrink(...) | Function Declaration Type : S3(dds, coef, contrast, res, type = undefined, lfcThreshold = undefined, svalue = FALSE, returnList = FALSE, apeAdapt = TRUE, apeMethod = undefined, parallel = FALSE, BPPARAM = undefined, quiet = FALSE, ){...} FILE : lfcShrink.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : DESeq(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, test = undefined, fitType = undefined, betaPrior, full = undefined, reduced, quiet = FALSE, minReplicatesForReplace = undefined, modelMatrixType, parallel = FALSEBPPARAM = undefined){...}
+New Parameters : (object, test = undefined, fitType = undefined, sfType = undefined, betaPrior, full = undefined, reduced, quiet = FALSE, minReplicatesForReplace = undefined, modelMatrixType, useT = FALSE, minmu = undefined, parallel = FALSEBPPARAM = undefined){...}
+2. Function Name : lfcShrink(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (dds, coef, contrast, res, type = undefined, svalue = FALSE, returnList = FALSE, apeAdapt = TRUE, parallel = FALSE, BPPARAM = undefined){...}
+New Parameters : (dds, coef, contrast, res, type = undefined, lfcThreshold = undefined, svalue = FALSE, returnList = FALSE, apeAdapt = TRUE, apeMethod = undefined, parallel = FALSE, BPPARAM = undefined, quiet = FALSE){...}
+3. Function Name : results(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, contrast, name, lfcThreshold = undefined, altHypothesis = undefined, listValues = undefined, cooksCutoff, independentFiltering = TRUE, alpha = undefined, filter, theta, pAdjustMethod = undefined, filterFun, format = undefined, test, addMLE = FALSE, tidy = FALSE, parallel = FALSE, BPPARAM = undefined){...}
+New Parameters : (object, contrast, name, lfcThreshold = undefined, altHypothesis = undefined, listValues = undefined, cooksCutoff, independentFiltering = TRUE, alpha = undefined, filter, theta, pAdjustMethod = undefined, filterFun, format = undefined, test, addMLE = FALSE, tidy = FALSE, parallel = FALSE, BPPARAM = undefinedminmu = undefined){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 69
+Functions in parsed : 40
+Functions in namespace : 69
+Functions in parsed : 42{
+    "package": "DESeq2",
+    "versions": "release_3_7  release_3_8",
+    "param_changes": 1,
+    "param_warnings": 2,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 3
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : DESeq2
+Checking Versions deseq2_release_3_7
+deseq2_release_3_8
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : lfcShrink(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : lfcShrink(...) | Function Declaration Type : S3(dds, coef, contrast, res, type = undefined, lfcThreshold = undefined, svalue = FALSE, returnList = FALSE, apeAdapt = TRUE, apeMethod = undefined, parallel = FALSE, BPPARAM = undefined, quiet = FALSE){...}
+New Parameters : Function Name : lfcShrink(...) | Function Declaration Type : S3(dds, coef, contrast, res, type = undefined, lfcThreshold = undefined, svalue = FALSE, returnList = FALSE, format = undefined, apeAdapt = TRUE, apeMethod = undefined, parallel = FALSE, BPPARAM = undefined, quiet = FALSE, ){...} FILE : lfcShrink.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : unmix(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (x, pure, alpha, shift, loss = undefinedquiet = FALSE){...}
+New Parameters : (x, pure, alpha, shift, power = undefined, format = undefinedquiet = FALSE){...}
+2. Function Name : lfcShrink(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (dds, coef, contrast, res, type = undefined, lfcThreshold = undefined, svalue = FALSE, returnList = FALSE, apeAdapt = TRUE, apeMethod = undefined, parallel = FALSE, BPPARAM = undefined, quiet = FALSE){...}
+New Parameters : (dds, coef, contrast, res, type = undefined, lfcThreshold = undefined, svalue = FALSE, returnList = FALSE, format = undefined, apeAdapt = TRUE, apeMethod = undefined, parallel = FALSE, BPPARAM = undefined, quiet = FALSE){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 69
+Functions in parsed : 40
+Functions in namespace : 69
+Functions in parsed : 40{
+    "package": "DESeq2",
+    "versions": "release_3_8  release_3_9",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : DESeq2
+Checking Versions deseq2_release_3_8
+deseq2_release_3_9
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 69
+Functions in parsed : 40
+Functions in namespace : 69
+Functions in parsed : 40{
+    "package": "DESeq2",
+    "versions": "release_3_9  release_3_11",
+    "param_changes": 0,
+    "param_warnings": 2,
+    "function_removals": 1,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 3
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : DESeq2
+Checking Versions deseq2_release_3_9
+deseq2_release_3_11
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : estimateDispersionsGeneEst(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, minDisp = undefined, kappa_0 = undefined, dispTol = undefined, maxit = undefined, quiet = FALSE, modelMatrix = NULL, niter = undefined, linearMu = NULLminmu = undefined){...}
+New Parameters : (object, minDisp = undefined, kappa_0 = undefined, dispTol = undefined, maxit = undefined, useCR = TRUE, weightThreshold = undefined, quiet = FALSE, modelMatrix = NULL, niter = undefined, linearMu = NULL, minmu = undefinedalphaInit = NULL){...}
+2. Function Name : estimateDispersionsMAP(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, outlierSD = undefined, dispPriorVar, minDisp = undefined, kappa_0 = undefined, dispTol = undefined, maxit = undefined, modelMatrix = NULLquiet = FALSE){...}
+New Parameters : (object, outlierSD = undefined, dispPriorVar, minDisp = undefined, kappa_0 = undefined, dispTol = undefined, maxit = undefined, useCR = TRUE, weightThreshold = undefined, modelMatrix = NULLquiet = FALSE){...}
+
+-----------------------Removed Functions------------
+
+summary_DESeqResults
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 69
+Functions in parsed : 40
+Functions in namespace : 69
+Functions in parsed : 40{
+    "package": "DESeq2",
+    "versions": "release_3_11  release_3_12",
+    "param_changes": 2,
+    "param_warnings": 2,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 4
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : DESeq2
+Checking Versions deseq2_release_3_11
+deseq2_release_3_12
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : DESeq(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (object, test, fitType, sfType, betaPrior, full, reduced, quiet, minReplicatesForReplace, modelMatrixType, useT, minmu, parallelBPPARAM){...}
+New Parameters : (object, test, fitType, sfType, betaPrior, full, reduced, quiet, minReplicatesForReplace, modelMatrixType, useTminmu){...} FILE : core.R
+2. Function Name : estimateDispersionsGeneEst(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (object, minDisp, kappa_0, dispTol, maxit, useCR, weightThreshold, quiet, modelMatrix, niter, linearMu, minmualphaInit){...}
+New Parameters : (object, minDisp, kappa_0, dispTol, maxit, useCR, weightThreshold, quiet, modelMatrix, niter, linearMuminmu){...} FILE : core.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : estimateDispersionsMAP(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, outlierSD = undefined, dispPriorVar, minDisp = undefined, kappa_0 = undefined, dispTol = undefined, maxit = undefined, useCR = TRUE, weightThreshold = undefined, modelMatrix = NULLquiet = FALSE){...}
+New Parameters : (object, outlierSD = undefined, dispPriorVar, minDisp = undefined, kappa_0 = undefined, dispTol = undefined, maxit = undefined, useCR = TRUE, weightThreshold = undefined, modelMatrix = NULL, type = undefinedquiet = FALSE){...}
+2. Function Name : nbinomLRT(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, full = undefined, reduced, betaTol = undefined, maxit = undefined, useOptim = TRUE, quiet = FALSE, useQR = TRUEminmu = undefined){...}
+New Parameters : (object, full = undefined, reduced, betaTol = undefined, maxit = undefined, useOptim = TRUE, quiet = FALSE, useQR = TRUEminmu = ){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+integrateWithSingleCell
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 70
+Functions in parsed : 41
+Functions in namespace : 69
+Functions in parsed : 40{
+    "package": "DESeq2",
+    "versions": "release_3_12  release_3_13",
+    "param_changes": 2,
+    "param_warnings": 2,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 4
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : DESeq2
+Checking Versions deseq2_release_3_12
+deseq2_release_3_13
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : integrateWithSingleCell(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : integrateWithSingleCell(...) | Function Declaration Type : S3(resdds){...}
+New Parameters : Function Name : integrateWithSingleCell(...) | Function Declaration Type : S3(res, dds, ){...} FILE : helper.R
+2. Function Name : lfcShrink(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : lfcShrink(...) | Function Declaration Type : S3(dds, coef, contrast, res, type = undefined, lfcThreshold = undefined, svalue = FALSE, returnList = FALSE, format = undefined, apeAdapt = TRUE, apeMethod = undefined, parallel = FALSE, BPPARAM = undefined, quiet = FALSE){...}
+New Parameters : Function Name : lfcShrink(...) | Function Declaration Type : S3(dds, coef, contrast, res, type = undefined, lfcThreshold = undefined, svalue = FALSE, returnList = FALSE, format = undefined, saveCols = NULL, apeAdapt = TRUE, apeMethod = undefined, parallel = FALSE, BPPARAM = undefined, quiet = FALSE, ){...} FILE : lfcShrink.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : lfcShrink(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (dds, coef, contrast, res, type = undefined, lfcThreshold = undefined, svalue = FALSE, returnList = FALSE, format = undefined, apeAdapt = TRUE, apeMethod = undefined, parallel = FALSE, BPPARAM = undefined, quiet = FALSE){...}
+New Parameters : (dds, coef, contrast, res, type = undefined, lfcThreshold = undefined, svalue = FALSE, returnList = FALSE, format = undefined, saveCols = NULL, apeAdapt = TRUE, apeMethod = undefined, parallel = FALSE, BPPARAM = undefined, quiet = FALSE){...}
+2. Function Name : results(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (object, contrast, name, lfcThreshold = undefined, altHypothesis = undefined, listValues = undefined, cooksCutoff, independentFiltering = TRUE, alpha = undefined, filter, theta, pAdjustMethod = undefined, filterFun, format = undefined, test, addMLE = FALSE, tidy = FALSE, parallel = FALSE, BPPARAM = undefinedminmu = undefined){...}
+New Parameters : (object, contrast, name, lfcThreshold = undefined, altHypothesis = undefined, listValues = undefined, cooksCutoff, independentFiltering = TRUE, alpha = undefined, filter, theta, pAdjustMethod = undefined, filterFun, format = undefined, saveCols = NULL, test, addMLE = FALSE, tidy = FALSE, parallel = FALSE, BPPARAM = undefinedminmu = undefined){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 70
+Functions in parsed : 41
+Functions in namespace : 70
+Functions in parsed : 41{
+    "package": "DESeq2",
+    "versions": "release_3_13  release_3_14",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : DESeq2
+Checking Versions deseq2_release_3_13
+deseq2_release_3_14
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 70
+Functions in parsed : 41
+Functions in namespace : 70
+Functions in parsed : 41{
+    "package": "DESeq2",
+    "versions": "release_3_14  master",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : DESeq2
+Checking Versions deseq2_release_3_14
+deseq2_master
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 70
+Functions in parsed : 41
+Functions in namespace : 70
+Functions in parsed : 41

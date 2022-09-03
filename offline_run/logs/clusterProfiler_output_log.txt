@@ -1,0 +1,1220 @@
+{
+    "package": "clusterProfiler",
+    "versions": "release_2_8  release_2_9",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : clusterProfiler
+Checking Versions clusterprofiler_release_2_8
+clusterprofiler_release_2_9
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 11
+Functions in parsed : 7
+Functions in namespace : 11
+Functions in parsed : 7{
+    "package": "clusterProfiler",
+    "versions": "release_2_9  release_2_11",
+    "param_changes": 0,
+    "param_warnings": 4,
+    "function_removals": 3,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 7
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : clusterProfiler
+Checking Versions clusterprofiler_release_2_9
+clusterprofiler_release_2_11
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : compareCluster(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (geneClusters, fun = enrichGO){...}
+New Parameters : (geneClusters, fun = undefined){...}
+2. Function Name : plot(...) | Function Declaration Type : setMethod |  Signature: undefined had parameters modified in newer version.
+Original Parameters : (x, order = undefined, title = undefined, font, size = undefineddrop = FALSE){...}
+New Parameters : (x, type = undefined, title = undefined, font, size = undefined, showCategory = undefinedby = undefined){...}
+3. Function Name : enrichGO(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (gene, organism = undefined, ont = undefined, pvalueCutoff = undefinedreadable = FALSE){...}
+New Parameters : (gene, organism = undefined, ont = undefined, pvalueCutoff = undefined, qvalueCutoff = undefinedreadable = FALSE){...}
+4. Function Name : enrichKEGG(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (gene, organism = undefined, pvalueCutoff = undefinedreadable = FALSE){...}
+New Parameters : (gene, organism = undefined, pvalueCutoff = undefined, qvalueCutoff = undefinedreadable = FALSE){...}
+
+-----------------------Removed Functions------------
+
+show
+lasses(enrichGOResult
+lasses(enrichKEGGResult
+
+
+---------------------Added Functions---------------
+
+
+EXTID2TERMID.MF
+EXTID2TERMID.BP
+EXTID2TERMID.CC
+TERMID2EXTID.MF
+TERMID2EXTID.BP
+TERMID2EXTID.CC
+ALLEXTID.MF
+ALLEXTID.BP
+ALLEXTID.CC
+TERM2NAME.MF
+TERM2NAME.BP
+TERM2NAME.CC
+EXTID2TERMID.KEGG
+TERMID2EXTID.KEGG
+ALLEXTID.KEGG
+TERM2NAME.KEGG
+Gff2GeneTable
+buildGOmap
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 26
+Functions in parsed : 24
+Functions in namespace : 11
+Functions in parsed : 7{
+    "package": "clusterProfiler",
+    "versions": "release_2_11  release_2_12",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : clusterProfiler
+Checking Versions clusterprofiler_release_2_11
+clusterprofiler_release_2_12
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 26
+Functions in parsed : 24
+Functions in namespace : 26
+Functions in parsed : 24{
+    "package": "clusterProfiler",
+    "versions": "release_2_12  release_2_13",
+    "param_changes": 0,
+    "param_warnings": 2,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 2
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : clusterProfiler
+Checking Versions clusterprofiler_release_2_12
+clusterprofiler_release_2_13
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : enrichGO(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (gene, organism = undefined, ont = undefined, pvalueCutoff = undefined, qvalueCutoff = undefinedreadable = FALSE){...}
+New Parameters : (gene, organism = undefined, ont = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, universe, qvalueCutoff = undefined, minGSSize = undefinedreadable = FALSE){...}
+2. Function Name : enrichKEGG(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (gene, organism = undefined, pvalueCutoff = undefined, qvalueCutoff = undefinedreadable = FALSE){...}
+New Parameters : (gene, organism = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, universe, minGSSize = undefined, qvalueCutoff = undefinedreadable = FALSE){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 26
+Functions in parsed : 24
+Functions in namespace : 26
+Functions in parsed : 24{
+    "package": "clusterProfiler",
+    "versions": "release_2_13  release_2_14",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 1,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 1
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : clusterProfiler
+Checking Versions clusterprofiler_release_2_13
+clusterprofiler_release_2_14
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+summary
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 25
+Functions in parsed : 22
+Functions in namespace : 26
+Functions in parsed : 24{
+    "package": "clusterProfiler",
+    "versions": "release_2_14  release_3_1",
+    "param_changes": 2,
+    "param_warnings": 1,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 3
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : clusterProfiler
+Checking Versions clusterprofiler_release_2_14
+clusterprofiler_release_3_1
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : compareCluster(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : compareCluster(...) | Function Declaration Type : S3(geneClusters, fun = undefined){...}
+New Parameters : Function Name : compareCluster(...) | Function Declaration Type : S3(geneClusters, fun = undefined, data = undefined, ){...} FILE : compareCluster.R
+2. Function Name : buildGOmap(...) | Function Declaration Type : S3 had parameters removed in newer version.
+Original Parameters : (gomapcompress){...}
+New Parameters : (gomap){...} FILE : utilities.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : compareCluster(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (geneClusters, fun = undefined){...}
+New Parameters : (geneClusters, fun = undefined, data = undefined){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+idType
+bitr
+enrichDAVID
+enricher
+GSEA
+getGeneSet.USER_DEFINED
+gseGO
+gseKEGG
+getGeneSet.KEGG
+getGeneSet.GO
+getGeneSet.BP
+getGeneSet.MF
+getGeneSet.CC
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 41
+Functions in parsed : 35
+Functions in namespace : 25
+Functions in parsed : 22{
+    "package": "clusterProfiler",
+    "versions": "release_3_1  release_3_2",
+    "param_changes": 0,
+    "param_warnings": 1,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 1
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : clusterProfiler
+Checking Versions clusterprofiler_release_3_1
+clusterprofiler_release_3_2
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : plot(...) | Function Declaration Type : setMethod |  Signature: undefined had parameters modified in newer version.
+Original Parameters : (x, type = undefined, title = undefined, font, size = undefined, showCategory = undefined, by = undefined, colorBy = undefinedincludeAll = TRUE){...}
+New Parameters : (x, type = undefined, colorBy = undefined, showCategory = undefined, by = undefined, includeAll = TRUE, font, size = undefinedtitle = undefined){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+fortify.compareClusterResult
+dropGO
+plotGOgraph
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 46
+Functions in parsed : 38
+Functions in namespace : 41
+Functions in parsed : 35{
+    "package": "clusterProfiler",
+    "versions": "release_3_2  release_3_3",
+    "param_changes": 1,
+    "param_warnings": 11,
+    "function_removals": 25,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 37
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : clusterProfiler
+Checking Versions clusterprofiler_release_3_2
+clusterprofiler_release_3_3
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : enrichDAVID(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : enrichDAVID(...) | Function Declaration Type : S3(gene, idType = undefined, listType = undefined, minGSSize = undefined, annotation = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, qvalueCutoff = undefined, species = NA, daviduser = undefined){...}
+New Parameters : Function Name : enrichDAVID(...) | Function Declaration Type : S3(gene, idType = undefined, listType = undefined, minGSSize = undefined, maxGSSize = undefined, annotation = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, qvalueCutoff = undefined, species = NA, david, user){...} FILE : enrichDAVID.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : idType(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (annoDb = undefined){...}
+New Parameters : (OrgDb = undefined){...}
+2. Function Name : bitr(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (geneID, fromType, toType, annoDbdrop = TRUE){...}
+New Parameters : (geneID, fromType, toType, OrgDbdrop = TRUE){...}
+3. Function Name : dotplot(...) | Function Declaration Type : setMethod |  Signature: undefined had parameters modified in newer version.
+Original Parameters : (object, colorBy = undefined, showCategory = undefined, by = undefined, includeAll = TRUE, font, size = undefinedtitle = undefined){...}
+New Parameters : (object, x = undefined, colorBy = undefined, showCategory = undefined, by = undefined, includeAll = TRUE, font, size = undefinedtitle = undefined){...}
+4. Function Name : enrichDAVID(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (gene, idType = undefined, listType = undefined, minGSSize = undefined, annotation = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, qvalueCutoff = undefined, species = NA, daviduser = undefined){...}
+New Parameters : (gene, idType = undefined, listType = undefined, minGSSize = undefined, maxGSSize = undefined, annotation = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, qvalueCutoff = undefined, species = NA, daviduser){...}
+5. Function Name : enricher(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (gene, pvalueCutoff = undefined, pAdjustMethod = undefined, universe, minGSSize = undefined, qvalueCutoff = undefined, TERM2GENETERM2NAME = NA){...}
+New Parameters : (gene, pvalueCutoff = undefined, pAdjustMethod = undefined, universe, minGSSize = undefined, maxGSSize = undefined, qvalueCutoff = undefined, TERM2GENETERM2NAME = NA){...}
+6. Function Name : GSEA(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (geneList, exponent = undefined, nPerm = undefined, minGSSize = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, TERM2GENE, TERM2NAME = NAverbose = TRUE){...}
+New Parameters : (geneList, exponent = undefined, nPerm = undefined, minGSSize = undefined, maxGSSize = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, TERM2GENE, TERM2NAME = NA, verbose = TRUEseed = FALSE){...}
+7. Function Name : enrichGO(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (gene, organism = undefined, ont = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, universe, qvalueCutoff = undefined, minGSSize = undefinedreadable = FALSE){...}
+New Parameters : (gene, OrgDb, keytype = undefined, ont = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, universe, qvalueCutoff = undefined, minGSSize = undefined, maxGSSize = undefinedreadable = FALSE){...}
+8. Function Name : enrichKEGG(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (gene, organism = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, universe, minGSSize = undefined, qvalueCutoff = undefined, readable = FALSEuse_internal_data = FALSE){...}
+New Parameters : (gene, organism = undefined, keyType = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, universe, minGSSize = undefined, maxGSSize = undefined, qvalueCutoff = undefineduse_internal_data = FALSE){...}
+9. Function Name : groupGO(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (gene, organism = undefined, ont = undefined, level = undefinedreadable = FALSE){...}
+New Parameters : (gene, OrgDb, keytype = undefined, ont = undefined, level = undefinedreadable = FALSE){...}
+10. Function Name : gseGO(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (geneList, ont = undefined, organism = undefined, exponent = undefined, nPerm = undefined, minGSSize = undefined, pvalueCutoff = undefined, pAdjustMethod = undefinedverbose = TRUE){...}
+New Parameters : (geneList, ont = undefined, OrgDb, keytype = undefined, exponent = undefined, nPerm = undefined, minGSSize = undefined, maxGSSize = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, verbose = TRUEseed = FALSE){...}
+11. Function Name : gseKEGG(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (geneList, organism = undefined, exponent = undefined, nPerm = undefined, minGSSize = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, use_internal_data = FALSEverbose = TRUE){...}
+New Parameters : (geneList, organism = undefined, keyType = undefined, exponent = undefined, nPerm = undefined, minGSSize = undefined, maxGSSize = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, verbose = TRUE, use_internal_data = FALSEseed = FALSE){...}
+
+-----------------------Removed Functions------------
+
+ALLEXTID.BP
+ALLEXTID.CC
+ALLEXTID.KEGG
+ALLEXTID.MF
+EXTID2TERMID.BP
+EXTID2TERMID.CC
+EXTID2TERMID.KEGG
+EXTID2TERMID.MF
+TERM2NAME.BP
+TERM2NAME.CC
+TERM2NAME.KEGG
+TERM2NAME.MF
+TERMID2EXTID.BP
+TERMID2EXTID.CC
+TERMID2EXTID.KEGG
+TERMID2EXTID.MF
+getGeneSet.BP
+getGeneSet.CC
+getGeneSet.GO
+getGeneSet.KEGG
+getGeneSet.MF
+getGeneSet.USER_DEFINED
+cnetplot
+enrichMap
+gseaplot
+
+
+---------------------Added Functions---------------
+
+
+bitr_kegg
+enrichMKEGG
+go2term
+go2ont
+gofilter
+gseMKEGG
+search_kegg_organism
+simplify
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 30
+Functions in parsed : 24
+Functions in namespace : 46
+Functions in parsed : 38{
+    "package": "clusterProfiler",
+    "versions": "release_3_3  release_3_4",
+    "param_changes": 0,
+    "param_warnings": 2,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 2
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : clusterProfiler
+Checking Versions clusterprofiler_release_3_3
+clusterprofiler_release_3_4
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : plot(...) | Function Declaration Type : setMethod |  Signature: undefined had parameters modified in newer version.
+Original Parameters : (x, type = undefined, colorBy = undefined, showCategory = undefined, by = undefined, includeAll = TRUE, font, size = undefinedtitle = undefined){...}
+New Parameters : (x, type = undefined, colorBy = undefined, showCategory = undefined, by = undefined, category = NULL, includeAll = TRUE, font, size = undefinedtitle = undefined){...}
+2. Function Name : dotplot(...) | Function Declaration Type : setMethod |  Signature: undefined had parameters modified in newer version.
+Original Parameters : (object, x = undefined, colorBy = undefined, showCategory = undefined, by = undefined, includeAll = TRUE, font, size = undefinedtitle = undefined){...}
+New Parameters : (object, x = undefined, colorBy = undefined, showCategory = undefined, by = undefined, category = NULL, includeAll = TRUE, font, size = undefinedtitle = undefined){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+as.data.frame.compareClusterResult
+head.compareClusterResult
+tail.compareClusterResult
+dim.compareClusterResult
+geneInCategory.groupGOResult
+download_KEGG
+browseKEGG
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 40
+Functions in parsed : 31
+Functions in namespace : 30
+Functions in parsed : 24{
+    "package": "clusterProfiler",
+    "versions": "release_3_4  release_3_5",
+    "param_changes": 0,
+    "param_warnings": 3,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 3
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : clusterProfiler
+Checking Versions clusterprofiler_release_3_4
+clusterprofiler_release_3_5
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : plot(...) | Function Declaration Type : setMethod |  Signature: undefined had parameters modified in newer version.
+Original Parameters : (x, type = undefined, colorBy = undefined, showCategory = undefined, by = undefined, category = NULL, includeAll = TRUE, font, size = undefinedtitle = undefined){...}
+New Parameters : (x, type = undefined, colorBy = undefined, showCategory = undefined, by = undefined, split = NULL, includeAll = TRUE, font, size = undefinedtitle = undefined){...}
+2. Function Name : dotplot(...) | Function Declaration Type : setMethod |  Signature: undefined had parameters modified in newer version.
+Original Parameters : (object, x = undefined, colorBy = undefined, showCategory = undefined, by = undefined, category = NULL, includeAll = TRUE, font, size = undefinedtitle = undefined){...}
+New Parameters : (object, x = undefined, colorBy = undefined, showCategory = undefined, by = undefined, split = NULL, includeAll = TRUE, font, size = undefinedtitle = undefined){...}
+3. Function Name : gseGO(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (geneList, ont = undefined, OrgDb, keytype = undefined, exponent = undefined, nPerm = undefined, minGSSize = undefined, maxGSSize = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, verbose = TRUE, seed = FALSEby = undefined){...}
+New Parameters : (geneList, ont = undefined, OrgDb, keyType = undefined, exponent = undefined, nPerm = undefined, minGSSize = undefined, maxGSSize = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, verbose = TRUE, seed = FALSEby = undefined){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 40
+Functions in parsed : 31
+Functions in namespace : 40
+Functions in parsed : 31{
+    "package": "clusterProfiler",
+    "versions": "release_3_5  release_3_6",
+    "param_changes": 0,
+    "param_warnings": 2,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 2
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : clusterProfiler
+Checking Versions clusterprofiler_release_3_5
+clusterprofiler_release_3_6
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : enrichDAVID(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (gene, idType = undefined, listType = undefined, minGSSize = undefined, maxGSSize = undefined, annotation = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, qvalueCutoff = undefined, species = NA, daviduser){...}
+New Parameters : (gene, idType = undefined, universe, minGSSize = undefined, maxGSSize = undefined, annotation = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, qvalueCutoff = undefined, species = NA, daviduser){...}
+2. Function Name : enrichGO(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (gene, OrgDb, keytype = undefined, ont = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, universe, qvalueCutoff = undefined, minGSSize = undefined, maxGSSize = undefined, readable = FALSEpool = FALSE){...}
+New Parameters : (gene, OrgDb, keyType = undefined, ont = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, universe, qvalueCutoff = undefined, minGSSize = undefined, maxGSSize = undefined, readable = FALSEpool = FALSE){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+ko2name
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 41
+Functions in parsed : 32
+Functions in namespace : 40
+Functions in parsed : 31{
+    "package": "clusterProfiler",
+    "versions": "release_3_6  release_3_7",
+    "param_changes": 0,
+    "param_warnings": 2,
+    "function_removals": 1,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 3
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : clusterProfiler
+Checking Versions clusterprofiler_release_3_6
+clusterprofiler_release_3_7
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : dotplot(...) | Function Declaration Type : setMethod |  Signature: undefined had parameters modified in newer version.
+Original Parameters : (object, x = undefined, colorBy = undefined, showCategory = undefined, by = undefined, split = NULL, includeAll = TRUE, font, size = undefinedtitle = undefined){...}
+New Parameters : (object, x = undefined, color = undefined, showCategory = undefined, split = NULL, font, size = undefined, title = undefined, by = undefinedincludeAll = TRUE){...}
+2. Function Name : groupGO(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (gene, OrgDb, keytype = undefined, ont = undefined, level = undefinedreadable = FALSE){...}
+New Parameters : (gene, OrgDb, keyType = undefined, ont = undefined, level = undefinedreadable = FALSE){...}
+
+-----------------------Removed Functions------------
+
+plot
+
+
+---------------------Added Functions---------------
+
+
+as.data.frame.groupGOResult
+uniprot_get
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 51
+Functions in parsed : 34
+Functions in namespace : 41
+Functions in parsed : 32{
+    "package": "clusterProfiler",
+    "versions": "release_3_7  release_3_8",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : clusterProfiler
+Checking Versions clusterprofiler_release_3_7
+clusterprofiler_release_3_8
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 53
+Functions in parsed : 34
+Functions in namespace : 51
+Functions in parsed : 34{
+    "package": "clusterProfiler",
+    "versions": "release_3_8  release_3_9",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : clusterProfiler
+Checking Versions clusterprofiler_release_3_8
+clusterprofiler_release_3_9
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 53
+Functions in parsed : 33
+Functions in namespace : 53
+Functions in parsed : 34{
+    "package": "clusterProfiler",
+    "versions": "release_3_9  release_3_11",
+    "param_changes": 4,
+    "param_warnings": 4,
+    "function_removals": 2,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 10
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : clusterProfiler
+Checking Versions clusterprofiler_release_3_9
+clusterprofiler_release_3_11
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : GSEA(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : GSEA(...) | Function Declaration Type : S3(geneList, exponent = undefined, nPerm = undefined, minGSSize = undefined, maxGSSize = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, TERM2GENE, TERM2NAME = NA, verbose = TRUE, seed = FALSEby = undefined){...}
+New Parameters : Function Name : GSEA(...) | Function Declaration Type : S3(geneList, exponent = undefined, minGSSize = undefined, maxGSSize = undefined, eps = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, TERM2GENE, TERM2NAME = NA, verbose = TRUE, seed = FALSE, by = undefined, ){...} FILE : enricher.R
+2. Function Name : gseGO(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : gseGO(...) | Function Declaration Type : S3(geneList, ont = undefined, OrgDb, keyType = undefined, exponent = undefined, nPerm = undefined, minGSSize = undefined, maxGSSize = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, verbose = TRUE, seed = FALSEby = undefined){...}
+New Parameters : Function Name : gseGO(...) | Function Declaration Type : S3(geneList, ont = undefined, OrgDb, keyType = undefined, exponent = undefined, minGSSize = undefined, maxGSSize = undefined, eps = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, verbose = TRUE, seed = FALSE, by = undefined, ){...} FILE : gseAnalyzer.R
+3. Function Name : gseMKEGG(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : gseMKEGG(...) | Function Declaration Type : S3(geneList, organism = undefined, keyType = undefined, exponent = undefined, nPerm = undefined, minGSSize = undefined, maxGSSize = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, verbose = TRUE, seed = FALSEby = undefined){...}
+New Parameters : Function Name : gseMKEGG(...) | Function Declaration Type : S3(geneList, organism = undefined, keyType = undefined, exponent = undefined, minGSSize = undefined, maxGSSize = undefined, eps = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, verbose = TRUE, seed = FALSE, by = undefined, ){...} FILE : gseAnalyzer.R
+4. Function Name : gseKEGG(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : gseKEGG(...) | Function Declaration Type : S3(geneList, organism = undefined, keyType = undefined, exponent = undefined, nPerm = undefined, minGSSize = undefined, maxGSSize = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, verbose = TRUE, use_internal_data = FALSE, seed = FALSEby = undefined){...}
+New Parameters : Function Name : gseKEGG(...) | Function Declaration Type : S3(geneList, organism = undefined, keyType = undefined, exponent = undefined, minGSSize = undefined, maxGSSize = undefined, eps = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, verbose = TRUE, use_internal_data = FALSE, seed = FALSE, by = undefined, ){...} FILE : gseAnalyzer.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : GSEA(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (geneList, exponent = undefined, nPerm = undefined, minGSSize = undefined, maxGSSize = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, TERM2GENE, TERM2NAME = NA, verbose = TRUE, seed = FALSEby = undefined){...}
+New Parameters : (geneList, exponent = undefined, minGSSize = undefined, maxGSSize = undefined, eps = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, TERM2GENE, TERM2NAME = NA, verbose = TRUE, seed = FALSE, by = undefined){...}
+2. Function Name : gseGO(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (geneList, ont = undefined, OrgDb, keyType = undefined, exponent = undefined, nPerm = undefined, minGSSize = undefined, maxGSSize = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, verbose = TRUE, seed = FALSEby = undefined){...}
+New Parameters : (geneList, ont = undefined, OrgDb, keyType = undefined, exponent = undefined, minGSSize = undefined, maxGSSize = undefined, eps = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, verbose = TRUE, seed = FALSE, by = undefined){...}
+3. Function Name : gseMKEGG(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (geneList, organism = undefined, keyType = undefined, exponent = undefined, nPerm = undefined, minGSSize = undefined, maxGSSize = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, verbose = TRUE, seed = FALSEby = undefined){...}
+New Parameters : (geneList, organism = undefined, keyType = undefined, exponent = undefined, minGSSize = undefined, maxGSSize = undefined, eps = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, verbose = TRUE, seed = FALSE, by = undefined){...}
+4. Function Name : gseKEGG(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (geneList, organism = undefined, keyType = undefined, exponent = undefined, nPerm = undefined, minGSSize = undefined, maxGSSize = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, verbose = TRUE, use_internal_data = FALSE, seed = FALSEby = undefined){...}
+New Parameters : (geneList, organism = undefined, keyType = undefined, exponent = undefined, minGSSize = undefined, maxGSSize = undefined, eps = undefined, pvalueCutoff = undefined, pAdjustMethod = undefined, verbose = TRUE, use_internal_data = FALSE, seed = FALSE, by = undefined){...}
+
+-----------------------Removed Functions------------
+
+fortify.compareClusterResult
+lasses(compareClusterResult
+
+
+---------------------Added Functions---------------
+
+
+arrange.enrichResult
+arrange.compareClusterResult
+filter.enrichResult
+filter.compareClusterResult
+group_by.enrichResult
+group_by.compareClusterResult
+mutate.enrichResult
+mutate.compareClusterResult
+rename.enrichResult
+rename.compareClusterResult
+select.enrichResult
+select.compareClusterResult
+slice.enrichResult
+slice.compareClusterResult
+summarise.enrichResult
+summarise.compareClusterResult
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 85
+Functions in parsed : 48
+Functions in namespace : 53
+Functions in parsed : 33{
+    "package": "clusterProfiler",
+    "versions": "release_3_11  release_3_12",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : clusterProfiler
+Checking Versions clusterprofiler_release_3_11
+clusterprofiler_release_3_12
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+enrichWP
+gseWP
+get_wp_organisms
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 89
+Functions in parsed : 50
+Functions in namespace : 85
+Functions in parsed : 48{
+    "package": "clusterProfiler",
+    "versions": "release_3_12  release_3_13",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : clusterProfiler
+Checking Versions clusterprofiler_release_3_12
+clusterprofiler_release_3_13
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 89
+Functions in parsed : 50
+Functions in namespace : 89
+Functions in parsed : 50{
+    "package": "clusterProfiler",
+    "versions": "release_3_13  release_3_14",
+    "param_changes": 0,
+    "param_warnings": 0,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 0
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : clusterProfiler
+Checking Versions clusterprofiler_release_3_13
+clusterprofiler_release_3_14
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 89
+Functions in parsed : 50
+Functions in namespace : 89
+Functions in parsed : 50{
+    "package": "clusterProfiler",
+    "versions": "release_3_14  master",
+    "param_changes": 1,
+    "param_warnings": 1,
+    "function_removals": 0,
+    "function_renames": 0,
+    "def_body_renames": 0,
+    "def_name_renames": 0,
+    "potential_renames": 0,
+    "total_count": 2
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Package : clusterProfiler
+Checking Versions clusterprofiler_release_3_14
+clusterprofiler_master
+
+
+--------------------------------------BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : compareCluster(...) | Function Declaration Type : S3 had non-default parameters added in newer version.
+Original Parameters : Function Name : compareCluster(...) | Function Declaration Type : S3(geneClusters, fun = undefined, data = undefined){...}
+New Parameters : Function Name : compareCluster(...) | Function Declaration Type : S3(geneClusters, fun = undefined, data = undefined, source_from = NULL, ){...} FILE : compareCluster.R
+
+
+--------------------------------------WARNINGS : POTENTIAL BREAKING CHANGES FROM PARAMETER MODIFICATIONS--------------------------------------
+1. Function Name : compareCluster(...) | Function Declaration Type : S3 had parameters modified in newer version.
+Original Parameters : (geneClusters, fun = undefined, data = undefined){...}
+New Parameters : (geneClusters, fun = undefined, data = undefined, source_from = NULL){...}
+
+-----------------------Removed Functions------------
+
+
+
+
+---------------------Added Functions---------------
+
+
+parse_gff
+
+---------------------Renamed Functions---------------
+
+
+
+Definite Rename : Body Match
+
+Definite Rename : Name Match
+
+Potential Renames
+
+Total renames
+0
+Functions in namespace : 90
+Functions in parsed : 51
+Functions in namespace : 89
+Functions in parsed : 50
