@@ -101,9 +101,25 @@ export class Compare_2_libraries {
 
     //debug - delete later
 
-    console.log(old_filtered_functions_hash_list);
-
     //differences
+
+    //parameter differences
+
+    this.comparison_processor.getParameterModifications(
+      old_filtered_functions_hash_list,
+      new_filtered_functions_hash_list
+    );
+
+    console.log("parameter differences");
+    console.log(this.comparison_processor.parameterRemovals.length);
+    console.log(this.comparison_processor.parameterAdditions.length);
+    console.log(this.comparison_processor.parameterRenames.length);
+    console.log(this.comparison_processor.parameterWarnings.length);
+    console.log("parameter differences end");
+    console.log("parameter renames list");
+    console.log(this.comparison_processor.parameterRenames);
+    console.log("parameter warnings list");
+    console.log(this.comparison_processor.parameterWarnings);
 
     //removed functions
     const removed_functions = this.comparison_processor.getFunctionRemovals(

@@ -102,12 +102,5 @@ export function checkDefaultChange(arr_old, arr_new) {
   }
   return false;
 }
-let processed_string = processParametersString(param_str);
-let node_list = nodifyParameters(processed_string);
 
-let processed_string2 = processParametersString(param2_str);
-let node_list2 = nodifyParameters(processed_string2);
-console.log(checkParameterAddition(node_list, node_list2));
-console.log(node_list2);
-console.log(checkDefaultChange(node_list, node_list2));
 //test removal and addition functions

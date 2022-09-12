@@ -16,8 +16,8 @@ export class Comparison_Processor {
     //should be two function set
     this.parameterRemovals = [];
     this.parameterAdditions = [];
-    this.paremeterRenames = [];
-    this.paremeterWarnings = [];
+    this.parameterRenames = [];
+    this.parameterWarnings = [];
     this.uncaught = [];
   }
   getFunctionRemovals(set_old, set_new) {
@@ -64,10 +64,18 @@ export class Comparison_Processor {
   getParameterModifications(old_hash_list, new_hash_list) {
     for (let common_key in old_hash_list) {
       if (new_hash_list.hasOwnProperty(common_key)) {
-        old_array = old_hash_list[common_key];
-        new_array = new_hash_list[common_key];
-        for (let old_node in old_array) {
-          for (let new_node in new_array) {
+        let old_array = old_hash_list[common_key];
+        let new_array = new_hash_list[common_key];
+        for (let old_node of old_array) {
+          if (!old_node.parameters) {
+            console.log("undefined params", old_node);
+            continue;
+          }
+          for (let new_node of new_array) {
+            if (!new_node.parameters) {
+              console.log("undefined params", new_node);
+              continue;
+            }
             //parameter comparison starts
             let joint_obj = { old_function: old_node, new_function: new_node };
             if (old_node.signature == new_node.signature) {
@@ -104,7 +112,8 @@ export class Comparison_Processor {
                   } else {
                     if (
                       checkParameterAddition(
-                        old_param_node_list.new_param_node_list
+                        old_param_node_list,
+                        new_param_node_list
                       )
                     ) {
                       this.parameterAdditions.push(joint_obj);
@@ -115,7 +124,7 @@ export class Comparison_Processor {
                           new_param_node_list
                         )
                       ) {
-                        this.paremeterWarnings.push(joint_obj);
+                        this.parameterWarnings.push(joint_obj);
                       }
                     }
                   }
