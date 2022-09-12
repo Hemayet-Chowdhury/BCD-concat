@@ -29,6 +29,7 @@ export class FunctionExtraction {
     this.variant_node_list = [];
     this.R_directory = directory + "\\R";
     this.all_functions = [];
+    this.all_functions_hash_list = {};
   }
 
   async collectNodes() {
@@ -81,6 +82,23 @@ export class FunctionExtraction {
         getSetReplaceMethodVariant2Functions(node);
       if (setReplaceMethodVariant2FunctionsModel) {
         this.all_functions.push(setReplaceMethodVariant2FunctionsModel);
+      }
+    });
+  }
+
+  getFunctionsHashList() {
+    this.all_functions.forEach((functionNode) => {
+      if (
+        this.all_functions_hash_list.hasOwnProperty(functionNode.representation)
+      ) {
+        this.all_functions_hash_list[functionNode.representation].push(
+          functionNode
+        );
+      } else {
+        this.all_functions_hash_list[functionNode.representation] = [];
+        this.all_functions_hash_list[functionNode.representation].push(
+          functionNode
+        );
       }
     });
   }

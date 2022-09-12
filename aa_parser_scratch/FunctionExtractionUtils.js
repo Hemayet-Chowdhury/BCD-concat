@@ -59,8 +59,10 @@ export function getAllTextRecursively(node) {
   if (node.subElements == undefined) return;
   let res = "";
   node.subElements.forEach((subElement) => {
-    res += subElement.textContents[0].text.trim() + " ";
-    getAllTextRecursively(subElement);
+    res +=
+      subElement.textContents[0].text.trim() +
+      " " +
+      getAllTextRecursively(subElement);
   });
   return res;
 }
@@ -126,7 +128,7 @@ export function getS3Functions(node) {
     return new FunctionModel(
       functionName,
       representation,
-      signature,
+      signature?.trim(),
       parameters,
       replacement_function
     );
@@ -142,8 +144,7 @@ export function getSetMethodFunctions(node) {
       node?.parent?.subElements[2]?.subElements[0]?.textContents[0]?.text;
     let functionName = replaceAll(raw_functionName, '"', "");
     let representation = functionName;
-    let raw_signature =
-      node?.parent?.subElements[4]?.subElements[0]?.textContents[0]?.text;
+    let raw_signature = getAllTextRecursively(node?.parent?.subElements[4]);
     let signature = replaceAll(raw_signature, '"', "");
     let parameters = getParameterWrapper(node);
     let replacement_function = undefined;
@@ -151,7 +152,7 @@ export function getSetMethodFunctions(node) {
     return new FunctionModel(
       functionName,
       representation,
-      signature,
+      signature?.trim(),
       parameters,
       replacement_function
     );
@@ -167,13 +168,14 @@ export function getSetReplaceMethodFunctions(node) {
       node?.parent?.subElements[2]?.subElements[0]?.textContents[0]?.text;
     let functionName = replaceAll(raw_functionName, '"', "");
     let representation = functionName + "<-";
-    let signature = getAllTextRecursively(node?.parent?.subElements[4]);
+    let raw_signature = getAllTextRecursively(node?.parent?.subElements[4]);
+    let signature = replaceAll(raw_signature, '"', "");
     let parameters = getParameterWrapper(node);
     let replacement_function = undefined;
     return new FunctionModel(
       functionName,
       representation,
-      signature,
+      signature?.trim(),
       parameters,
       replacement_function
     );
@@ -196,7 +198,7 @@ export function getSetMethodVariant2Functions(node) {
     return new FunctionModel(
       functionName,
       representation,
-      signature,
+      signature?.trim(),
       parameters,
       replacement_function
     );
@@ -220,7 +222,7 @@ export function getSetReplaceMethodVariant2Functions(node) {
     return new FunctionModel(
       functionName,
       representation,
-      signature,
+      signature?.trim(),
       parameters,
       replacement_function
     );

@@ -26,6 +26,6 @@ let compare_2_libraries = new Compare_2_libraries(
   "./final_2/scater/scater_release_3_6",
   log_writer
 );
-compare_2_libraries.compare();
+await compare_2_libraries.compare();
 
 //to do

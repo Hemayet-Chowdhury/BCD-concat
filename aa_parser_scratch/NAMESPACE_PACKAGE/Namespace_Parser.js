@@ -18,6 +18,9 @@ export class Namespace_Parser {
     );
     this.list_import = this.getImport(this.cleaned_namespace_file);
     this.list_import_from = this.getImportFrom(this.cleaned_namespace_file);
+    this.list_import_classes_from = this.getImportClassesFrom(
+      this.cleaned_namespace_file
+    );
     this.all_exported_functions_set = this.getAllExportedFunctions([
       this.list_export,
       this.list_export_methods,
@@ -121,7 +124,7 @@ export class Namespace_Parser {
   }
 
   /*
-  get all combined tokens under "import" pattern
+  get all combined tokens under "importFrom" pattern
   @param text : cleaned namespace file text, input as a string
   @return array of tokens
   */
@@ -129,6 +132,21 @@ export class Namespace_Parser {
     let extracted_raw = text.match(/(?<=importFrom\().*?(?=\))/gs);
     if (extracted_raw == null) {
       console.debug("no pattern match for importFrom");
+      return [];
+    }
+    let tokens = getTokensFromImportFromPatternArray(extracted_raw);
+    return tokens;
+  }
+
+  /*
+  get all combined tokens under "importFrom" pattern
+  @param text : cleaned namespace file text, input as a string
+  @return array of tokens
+  */
+  getImportClassesFrom(text) {
+    let extracted_raw = text.match(/(?<=importClassesFrom\().*?(?=\))/gs);
+    if (extracted_raw == null) {
+      console.debug("no pattern match for importClassesFrom");
       return [];
     }
     let tokens = getTokensFromImportFromPatternArray(extracted_raw);
