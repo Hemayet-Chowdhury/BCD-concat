@@ -1,0 +1,988 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<exprlist>
+  <COMMENT line1="1" col1="1" line2="1" col2="35" start="97" end="131">#' Load in data from 10x experiment</COMMENT>
+  <COMMENT line1="2" col1="1" line2="2" col2="3" start="193" end="195">#' </COMMENT>
+  <COMMENT line1="3" col1="1" line2="3" col2="77" start="289" end="365">#' Creates a full or sparse matrix from a sparse data matrix provided by 10X </COMMENT>
+  <COMMENT line1="4" col1="1" line2="4" col2="12" start="385" end="396">#' genomics.</COMMENT>
+  <COMMENT line1="5" col1="1" line2="5" col2="3" start="481" end="483">#' </COMMENT>
+  <COMMENT line1="6" col1="1" line2="6" col2="71" start="577" end="647">#' @param data_dir Directory containing the matrix.mtx, genes.tsv, and </COMMENT>
+  <COMMENT line1="7" col1="1" line2="7" col2="80" start="673" end="752">#' barcodes.tsv files provided by 10x. A vector or named vector can be given in </COMMENT>
+  <COMMENT line1="8" col1="1" line2="8" col2="80" start="769" end="848">#' order to load several data directories. If a named vector is given, the cell </COMMENT>
+  <COMMENT line1="9" col1="1" line2="9" col2="48" start="865" end="912">#' barcode names will be prefixed with the name.</COMMENT>
+  <COMMENT line1="10" col1="1" line2="10" col2="79" start="961" end="1039">#' @param min_total_cell_counts integer(1) threshold such that cells (barcodes)</COMMENT>
+  <COMMENT line1="11" col1="1" line2="11" col2="57" start="1057" end="1113">#' with total counts below the threshold are filtered out</COMMENT>
+  <COMMENT line1="12" col1="1" line2="12" col2="78" start="1153" end="1230">#' @param min_mean_gene_counts numeric(1) threshold such that genes with mean </COMMENT>
+  <COMMENT line1="13" col1="1" line2="13" col2="47" start="1249" end="1295">#' counts below the threshold are filtered out.</COMMENT>
+  <COMMENT line1="14" col1="1" line2="14" col2="30" start="1345" end="1374">#' @param ... passed arguments</COMMENT>
+  <COMMENT line1="15" col1="1" line2="15" col2="3" start="1441" end="1443">#' </COMMENT>
+  <COMMENT line1="16" col1="1" line2="16" col2="78" start="1537" end="1614">#' @details This function was developed from the \code{Read10X} function from </COMMENT>
+  <COMMENT line1="17" col1="1" line2="17" col2="28" start="1633" end="1660">#' the \pkg{Seurat} package.</COMMENT>
+  <COMMENT line1="18" col1="1" line2="18" col2="3" start="1729" end="1731">#' </COMMENT>
+  <COMMENT line1="19" col1="1" line2="19" col2="78" start="1825" end="1902">#' @return Returns an SingleCellExperiment object with counts data stored as a</COMMENT>
+  <COMMENT line1="20" col1="1" line2="20" col2="79" start="1921" end="1999">#' sparse matrix. Rows are named with the gene name and columns are named with </COMMENT>
+  <COMMENT line1="21" col1="1" line2="21" col2="76" start="2017" end="2092">#' the cell barcode (if \code{data_dir} contains one element; otherwise the </COMMENT>
+  <COMMENT line1="22" col1="1" line2="22" col2="67" start="2113" end="2179">#' columns are unnamed to avoid problems with non-unique barcodes).</COMMENT>
+  <COMMENT line1="23" col1="1" line2="23" col2="3" start="2209" end="2211">#' </COMMENT>
+  <COMMENT line1="24" col1="1" line2="24" col2="28" start="2305" end="2332">#' @importFrom Matrix readMM</COMMENT>
+  <COMMENT line1="25" col1="1" line2="25" col2="17" start="2401" end="2417">#' @import Matrix</COMMENT>
+  <COMMENT line1="26" col1="1" line2="26" col2="25" start="2497" end="2521">#' @rdname read10xResults</COMMENT>
+  <COMMENT line1="27" col1="1" line2="27" col2="41" start="2593" end="2633">#' @aliases read10xResults read10XResults</COMMENT>
+  <COMMENT line1="28" col1="1" line2="28" col2="10" start="2689" end="2698">#' @export</COMMENT>
+  <COMMENT line1="29" col1="1" line2="29" col2="13" start="2785" end="2797">#' @examples </COMMENT>
+  <COMMENT line1="30" col1="1" line2="30" col2="69" start="2881" end="2949">#' sce10x &lt;- read10xResults(system.file("extdata", package="scater"))</COMMENT>
+  <COMMENT line1="31" col1="1" line2="31" col2="3" start="2977" end="2979">#' </COMMENT>
+  <expr line1="32" col1="1" line2="97" col2="1" start="3073" end="9313">
+    <expr line1="32" col1="1" line2="32" col2="14" start="3073" end="3086">
+      <SYMBOL line1="32" col1="1" line2="32" col2="14" start="3073" end="3086">read10xResults</SYMBOL>
+    </expr>
+    <LEFT_ASSIGN line1="32" col1="16" line2="32" col2="17" start="3088" end="3089">&lt;-</LEFT_ASSIGN>
+    <expr line1="32" col1="19" line2="97" col2="1" start="3091" end="9313">
+      <FUNCTION line1="32" col1="19" line2="32" col2="26" start="3091" end="3098">function</FUNCTION>
+      <OP-LEFT-PAREN line1="32" col1="27" line2="32" col2="27" start="3099" end="3099">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="32" col1="28" line2="32" col2="35" start="3100" end="3107">data_dir</SYMBOL_FORMALS>
+      <OP-COMMA line1="32" col1="36" line2="32" col2="36" start="3108" end="3108">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="32" col1="38" line2="32" col2="58" start="3110" end="3130">min_total_cell_counts</SYMBOL_FORMALS>
+      <EQ_FORMALS line1="32" col1="60" line2="32" col2="60" start="3132" end="3132">=</EQ_FORMALS>
+      <expr line1="32" col1="62" line2="32" col2="65" start="3134" end="3137">
+        <NULL_CONST line1="32" col1="62" line2="32" col2="65" start="3134" end="3137">NULL</NULL_CONST>
+      </expr>
+      <OP-COMMA line1="32" col1="66" line2="32" col2="66" start="3138" end="3138">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="33" col1="28" line2="33" col2="47" start="3196" end="3215">min_mean_gene_counts</SYMBOL_FORMALS>
+      <EQ_FORMALS line1="33" col1="49" line2="33" col2="49" start="3217" end="3217">=</EQ_FORMALS>
+      <expr line1="33" col1="51" line2="33" col2="54" start="3219" end="3222">
+        <NULL_CONST line1="33" col1="51" line2="33" col2="54" start="3219" end="3222">NULL</NULL_CONST>
+      </expr>
+      <OP-RIGHT-PAREN line1="33" col1="55" line2="33" col2="55" start="3223" end="3223">)</OP-RIGHT-PAREN>
+      <expr line1="33" col1="57" line2="97" col2="1" start="3225" end="9313">
+        <OP-LEFT-BRACE line1="33" col1="57" line2="33" col2="57" start="3225" end="3225">{</OP-LEFT-BRACE>
+        <expr line1="35" col1="5" line2="35" col2="29" start="3365" end="3389">
+          <expr line1="35" col1="5" line2="35" col2="9" start="3365" end="3369">
+            <SYMBOL line1="35" col1="5" line2="35" col2="9" start="3365" end="3369">nsets</SYMBOL>
+          </expr>
+          <LEFT_ASSIGN line1="35" col1="11" line2="35" col2="12" start="3371" end="3372">&lt;-</LEFT_ASSIGN>
+          <expr line1="35" col1="14" line2="35" col2="29" start="3374" end="3389">
+            <expr line1="35" col1="14" line2="35" col2="19" start="3374" end="3379">
+              <SYMBOL_FUNCTION_CALL line1="35" col1="14" line2="35" col2="19" start="3374" end="3379">length</SYMBOL_FUNCTION_CALL>
+            </expr>
+            <OP-LEFT-PAREN line1="35" col1="20" line2="35" col2="20" start="3380" end="3380">(</OP-LEFT-PAREN>
+            <expr line1="35" col1="21" line2="35" col2="28" start="3381" end="3388">
+              <SYMBOL line1="35" col1="21" line2="35" col2="28" start="3381" end="3388">data_dir</SYMBOL>
+            </expr>
+            <OP-RIGHT-PAREN line1="35" col1="29" line2="35" col2="29" start="3389" end="3389">)</OP-RIGHT-PAREN>
+          </expr>
+        </expr>
+        <expr line1="36" col1="5" line2="36" col2="38" start="3461" end="3494">
+          <expr line1="36" col1="5" line2="36" col2="13" start="3461" end="3469">
+            <SYMBOL line1="36" col1="5" line2="36" col2="13" start="3461" end="3469">full_data</SYMBOL>
+          </expr>
+          <LEFT_ASSIGN line1="36" col1="15" line2="36" col2="16" start="3471" end="3472">&lt;-</LEFT_ASSIGN>
+          <expr line1="36" col1="18" line2="36" col2="38" start="3474" end="3494">
+            <expr line1="36" col1="18" line2="36" col2="23" start="3474" end="3479">
+              <SYMBOL_FUNCTION_CALL line1="36" col1="18" line2="36" col2="23" start="3474" end="3479">vector</SYMBOL_FUNCTION_CALL>
+            </expr>
+            <OP-LEFT-PAREN line1="36" col1="24" line2="36" col2="24" start="3480" end="3480">(</OP-LEFT-PAREN>
+            <expr line1="36" col1="25" line2="36" col2="30" start="3481" end="3486">
+              <STR_CONST line1="36" col1="25" line2="36" col2="30" start="3481" end="3486">"list"</STR_CONST>
+            </expr>
+            <OP-COMMA line1="36" col1="31" line2="36" col2="31" start="3487" end="3487">,</OP-COMMA>
+            <expr line1="36" col1="33" line2="36" col2="37" start="3489" end="3493">
+              <SYMBOL line1="36" col1="33" line2="36" col2="37" start="3489" end="3493">nsets</SYMBOL>
+            </expr>
+            <OP-RIGHT-PAREN line1="36" col1="38" line2="36" col2="38" start="3494" end="3494">)</OP-RIGHT-PAREN>
+          </expr>
+        </expr>
+        <expr line1="37" col1="5" line2="37" col2="43" start="3557" end="3595">
+          <expr line1="37" col1="5" line2="37" col2="18" start="3557" end="3570">
+            <SYMBOL line1="37" col1="5" line2="37" col2="18" start="3557" end="3570">gene_info_list</SYMBOL>
+          </expr>
+          <LEFT_ASSIGN line1="37" col1="20" line2="37" col2="21" start="3572" end="3573">&lt;-</LEFT_ASSIGN>
+          <expr line1="37" col1="23" line2="37" col2="43" start="3575" end="3595">
+            <expr line1="37" col1="23" line2="37" col2="28" start="3575" end="3580">
+              <SYMBOL_FUNCTION_CALL line1="37" col1="23" line2="37" col2="28" start="3575" end="3580">vector</SYMBOL_FUNCTION_CALL>
+            </expr>
+            <OP-LEFT-PAREN line1="37" col1="29" line2="37" col2="29" start="3581" end="3581">(</OP-LEFT-PAREN>
+            <expr line1="37" col1="30" line2="37" col2="35" start="3582" end="3587">
+              <STR_CONST line1="37" col1="30" line2="37" col2="35" start="3582" end="3587">"list"</STR_CONST>
+            </expr>
+            <OP-COMMA line1="37" col1="36" line2="37" col2="36" start="3588" end="3588">,</OP-COMMA>
+            <expr line1="37" col1="38" line2="37" col2="42" start="3590" end="3594">
+              <SYMBOL line1="37" col1="38" line2="37" col2="42" start="3590" end="3594">nsets</SYMBOL>
+            </expr>
+            <OP-RIGHT-PAREN line1="37" col1="43" line2="37" col2="43" start="3595" end="3595">)</OP-RIGHT-PAREN>
+          </expr>
+        </expr>
+        <expr line1="38" col1="5" line2="38" col2="43" start="3653" end="3691">
+          <expr line1="38" col1="5" line2="38" col2="18" start="3653" end="3666">
+            <SYMBOL line1="38" col1="5" line2="38" col2="18" start="3653" end="3666">cell_info_list</SYMBOL>
+          </expr>
+          <LEFT_ASSIGN line1="38" col1="20" line2="38" col2="21" start="3668" end="3669">&lt;-</LEFT_ASSIGN>
+          <expr line1="38" col1="23" line2="38" col2="43" start="3671" end="3691">
+            <expr line1="38" col1="23" line2="38" col2="28" start="3671" end="3676">
+              <SYMBOL_FUNCTION_CALL line1="38" col1="23" line2="38" col2="28" start="3671" end="3676">vector</SYMBOL_FUNCTION_CALL>
+            </expr>
+            <OP-LEFT-PAREN line1="38" col1="29" line2="38" col2="29" start="3677" end="3677">(</OP-LEFT-PAREN>
+            <expr line1="38" col1="30" line2="38" col2="35" start="3678" end="3683">
+              <STR_CONST line1="38" col1="30" line2="38" col2="35" start="3678" end="3683">"list"</STR_CONST>
+            </expr>
+            <OP-COMMA line1="38" col1="36" line2="38" col2="36" start="3684" end="3684">,</OP-COMMA>
+            <expr line1="38" col1="38" line2="38" col2="42" start="3686" end="3690">
+              <SYMBOL line1="38" col1="38" line2="38" col2="42" start="3686" end="3690">nsets</SYMBOL>
+            </expr>
+            <OP-RIGHT-PAREN line1="38" col1="43" line2="38" col2="43" start="3691" end="3691">)</OP-RIGHT-PAREN>
+          </expr>
+        </expr>
+        <expr line1="40" col1="5" line2="69" col2="5" start="3845" end="6629">
+          <FOR line1="40" col1="5" line2="40" col2="7" start="3845" end="3847">for</FOR>
+          <forcond line1="40" col1="9" line2="40" col2="29" start="3849" end="3869">
+            <OP-LEFT-PAREN line1="40" col1="9" line2="40" col2="9" start="3849" end="3849">(</OP-LEFT-PAREN>
+            <SYMBOL line1="40" col1="10" line2="40" col2="10" start="3850" end="3850">i</SYMBOL>
+            <IN line1="40" col1="12" line2="40" col2="13" start="3852" end="3853">in</IN>
+            <expr line1="40" col1="15" line2="40" col2="28" start="3855" end="3868">
+              <expr line1="40" col1="15" line2="40" col2="21" start="3855" end="3861">
+                <SYMBOL_FUNCTION_CALL line1="40" col1="15" line2="40" col2="21" start="3855" end="3861">seq_len</SYMBOL_FUNCTION_CALL>
+              </expr>
+              <OP-LEFT-PAREN line1="40" col1="22" line2="40" col2="22" start="3862" end="3862">(</OP-LEFT-PAREN>
+              <expr line1="40" col1="23" line2="40" col2="27" start="3863" end="3867">
+                <SYMBOL line1="40" col1="23" line2="40" col2="27" start="3863" end="3867">nsets</SYMBOL>
+              </expr>
+              <OP-RIGHT-PAREN line1="40" col1="28" line2="40" col2="28" start="3868" end="3868">)</OP-RIGHT-PAREN>
+            </expr>
+            <OP-RIGHT-PAREN line1="40" col1="29" line2="40" col2="29" start="3869" end="3869">)</OP-RIGHT-PAREN>
+          </forcond>
+          <expr line1="40" col1="31" line2="69" col2="5" start="3871" end="6629">
+            <OP-LEFT-BRACE line1="40" col1="31" line2="40" col2="31" start="3871" end="3871">{</OP-LEFT-BRACE>
+            <expr line1="41" col1="9" line2="41" col2="26" start="3945" end="3962">
+              <expr line1="41" col1="9" line2="41" col2="11" start="3945" end="3947">
+                <SYMBOL line1="41" col1="9" line2="41" col2="11" start="3945" end="3947">run</SYMBOL>
+              </expr>
+              <LEFT_ASSIGN line1="41" col1="13" line2="41" col2="14" start="3949" end="3950">&lt;-</LEFT_ASSIGN>
+              <expr line1="41" col1="16" line2="41" col2="26" start="3952" end="3962">
+                <expr line1="41" col1="16" line2="41" col2="23" start="3952" end="3959">
+                  <SYMBOL line1="41" col1="16" line2="41" col2="23" start="3952" end="3959">data_dir</SYMBOL>
+                </expr>
+                <OP-LEFT-BRACKET line1="41" col1="24" line2="41" col2="24" start="3960" end="3960">[</OP-LEFT-BRACKET>
+                <expr line1="41" col1="25" line2="41" col2="25" start="3961" end="3961">
+                  <SYMBOL line1="41" col1="25" line2="41" col2="25" start="3961" end="3961">i</SYMBOL>
+                </expr>
+                <OP-RIGHT-BRACKET line1="41" col1="26" line2="41" col2="26" start="3962" end="3962">]</OP-RIGHT-BRACKET>
+              </expr>
+            </expr>
+            <expr line1="42" col1="9" line2="42" col2="53" start="4041" end="4085">
+              <expr line1="42" col1="9" line2="42" col2="19" start="4041" end="4051">
+                <SYMBOL line1="42" col1="9" line2="42" col2="19" start="4041" end="4051">barcode.loc</SYMBOL>
+              </expr>
+              <LEFT_ASSIGN line1="42" col1="21" line2="42" col2="22" start="4053" end="4054">&lt;-</LEFT_ASSIGN>
+              <expr line1="42" col1="24" line2="42" col2="53" start="4056" end="4085">
+                <expr line1="42" col1="24" line2="42" col2="32" start="4056" end="4064">
+                  <SYMBOL_FUNCTION_CALL line1="42" col1="24" line2="42" col2="32" start="4056" end="4064">file.path</SYMBOL_FUNCTION_CALL>
+                </expr>
+                <OP-LEFT-PAREN line1="42" col1="33" line2="42" col2="33" start="4065" end="4065">(</OP-LEFT-PAREN>
+                <expr line1="42" col1="34" line2="42" col2="36" start="4066" end="4068">
+                  <SYMBOL line1="42" col1="34" line2="42" col2="36" start="4066" end="4068">run</SYMBOL>
+                </expr>
+                <OP-COMMA line1="42" col1="37" line2="42" col2="37" start="4069" end="4069">,</OP-COMMA>
+                <expr line1="42" col1="39" line2="42" col2="52" start="4071" end="4084">
+                  <STR_CONST line1="42" col1="39" line2="42" col2="52" start="4071" end="4084">"barcodes.tsv"</STR_CONST>
+                </expr>
+                <OP-RIGHT-PAREN line1="42" col1="53" line2="42" col2="53" start="4085" end="4085">)</OP-RIGHT-PAREN>
+              </expr>
+            </expr>
+            <expr line1="43" col1="9" line2="43" col2="47" start="4137" end="4175">
+              <expr line1="43" col1="9" line2="43" col2="16" start="4137" end="4144">
+                <SYMBOL line1="43" col1="9" line2="43" col2="16" start="4137" end="4144">gene.loc</SYMBOL>
+              </expr>
+              <LEFT_ASSIGN line1="43" col1="18" line2="43" col2="19" start="4146" end="4147">&lt;-</LEFT_ASSIGN>
+              <expr line1="43" col1="21" line2="43" col2="47" start="4149" end="4175">
+                <expr line1="43" col1="21" line2="43" col2="29" start="4149" end="4157">
+                  <SYMBOL_FUNCTION_CALL line1="43" col1="21" line2="43" col2="29" start="4149" end="4157">file.path</SYMBOL_FUNCTION_CALL>
+                </expr>
+                <OP-LEFT-PAREN line1="43" col1="30" line2="43" col2="30" start="4158" end="4158">(</OP-LEFT-PAREN>
+                <expr line1="43" col1="31" line2="43" col2="33" start="4159" end="4161">
+                  <SYMBOL line1="43" col1="31" line2="43" col2="33" start="4159" end="4161">run</SYMBOL>
+                </expr>
+                <OP-COMMA line1="43" col1="34" line2="43" col2="34" start="4162" end="4162">,</OP-COMMA>
+                <expr line1="43" col1="36" line2="43" col2="46" start="4164" end="4174">
+                  <STR_CONST line1="43" col1="36" line2="43" col2="46" start="4164" end="4174">"genes.tsv"</STR_CONST>
+                </expr>
+                <OP-RIGHT-PAREN line1="43" col1="47" line2="43" col2="47" start="4175" end="4175">)</OP-RIGHT-PAREN>
+              </expr>
+            </expr>
+            <expr line1="44" col1="9" line2="44" col2="50" start="4233" end="4274">
+              <expr line1="44" col1="9" line2="44" col2="18" start="4233" end="4242">
+                <SYMBOL line1="44" col1="9" line2="44" col2="18" start="4233" end="4242">matrix.loc</SYMBOL>
+              </expr>
+              <LEFT_ASSIGN line1="44" col1="20" line2="44" col2="21" start="4244" end="4245">&lt;-</LEFT_ASSIGN>
+              <expr line1="44" col1="23" line2="44" col2="50" start="4247" end="4274">
+                <expr line1="44" col1="23" line2="44" col2="31" start="4247" end="4255">
+                  <SYMBOL_FUNCTION_CALL line1="44" col1="23" line2="44" col2="31" start="4247" end="4255">file.path</SYMBOL_FUNCTION_CALL>
+                </expr>
+                <OP-LEFT-PAREN line1="44" col1="32" line2="44" col2="32" start="4256" end="4256">(</OP-LEFT-PAREN>
+                <expr line1="44" col1="33" line2="44" col2="35" start="4257" end="4259">
+                  <SYMBOL line1="44" col1="33" line2="44" col2="35" start="4257" end="4259">run</SYMBOL>
+                </expr>
+                <OP-COMMA line1="44" col1="36" line2="44" col2="36" start="4260" end="4260">,</OP-COMMA>
+                <expr line1="44" col1="38" line2="44" col2="49" start="4262" end="4273">
+                  <STR_CONST line1="44" col1="38" line2="44" col2="49" start="4262" end="4273">"matrix.mtx"</STR_CONST>
+                </expr>
+                <OP-RIGHT-PAREN line1="44" col1="50" line2="44" col2="50" start="4274" end="4274">)</OP-RIGHT-PAREN>
+              </expr>
+            </expr>
+            <COMMENT line1="46" col1="9" line2="46" col2="54" start="4425" end="4470">## read sparse count matrix and cell barcodes.</COMMENT>
+            <expr line1="47" col1="9" line2="47" col2="46" start="4521" end="4558">
+              <expr line1="47" col1="9" line2="47" col2="16" start="4521" end="4528">
+                <SYMBOL line1="47" col1="9" line2="47" col2="16" start="4521" end="4528">data_mat</SYMBOL>
+              </expr>
+              <LEFT_ASSIGN line1="47" col1="18" line2="47" col2="19" start="4530" end="4531">&lt;-</LEFT_ASSIGN>
+              <expr line1="47" col1="21" line2="47" col2="46" start="4533" end="4558">
+                <expr line1="47" col1="21" line2="47" col2="34" start="4533" end="4546">
+                  <SYMBOL_PACKAGE line1="47" col1="21" line2="47" col2="26" start="4533" end="4538">Matrix</SYMBOL_PACKAGE>
+                  <NS_GET line1="47" col1="27" line2="47" col2="28" start="4539" end="4540">::</NS_GET>
+                  <SYMBOL_FUNCTION_CALL line1="47" col1="29" line2="47" col2="34" start="4541" end="4546">readMM</SYMBOL_FUNCTION_CALL>
+                </expr>
+                <OP-LEFT-PAREN line1="47" col1="35" line2="47" col2="35" start="4547" end="4547">(</OP-LEFT-PAREN>
+                <expr line1="47" col1="36" line2="47" col2="45" start="4548" end="4557">
+                  <SYMBOL line1="47" col1="36" line2="47" col2="45" start="4548" end="4557">matrix.loc</SYMBOL>
+                </expr>
+                <OP-RIGHT-PAREN line1="47" col1="46" line2="47" col2="46" start="4558" end="4558">)</OP-RIGHT-PAREN>
+              </expr>
+            </expr>
+            <expr line1="48" col1="9" line2="48" col2="45" start="4617" end="4653">
+              <expr line1="48" col1="9" line2="48" col2="16" start="4617" end="4624">
+                <SYMBOL line1="48" col1="9" line2="48" col2="16" start="4617" end="4624">data_mat</SYMBOL>
+              </expr>
+              <LEFT_ASSIGN line1="48" col1="18" line2="48" col2="19" start="4626" end="4627">&lt;-</LEFT_ASSIGN>
+              <expr line1="48" col1="21" line2="48" col2="45" start="4629" end="4653">
+                <expr line1="48" col1="21" line2="48" col2="22" start="4629" end="4630">
+                  <SYMBOL_FUNCTION_CALL line1="48" col1="21" line2="48" col2="22" start="4629" end="4630">as</SYMBOL_FUNCTION_CALL>
+                </expr>
+                <OP-LEFT-PAREN line1="48" col1="23" line2="48" col2="23" start="4631" end="4631">(</OP-LEFT-PAREN>
+                <expr line1="48" col1="24" line2="48" col2="31" start="4632" end="4639">
+                  <SYMBOL line1="48" col1="24" line2="48" col2="31" start="4632" end="4639">data_mat</SYMBOL>
+                </expr>
+                <OP-COMMA line1="48" col1="32" line2="48" col2="32" start="4640" end="4640">,</OP-COMMA>
+                <expr line1="48" col1="34" line2="48" col2="44" start="4642" end="4652">
+                  <STR_CONST line1="48" col1="34" line2="48" col2="44" start="4642" end="4652">"dgCMatrix"</STR_CONST>
+                </expr>
+                <OP-RIGHT-PAREN line1="48" col1="45" line2="48" col2="45" start="4653" end="4653">)</OP-RIGHT-PAREN>
+              </expr>
+            </expr>
+            <expr line1="49" col1="9" line2="50" col2="70" start="4713" end="4870">
+              <expr line1="49" col1="9" line2="49" col2="18" start="4713" end="4722">
+                <SYMBOL line1="49" col1="9" line2="49" col2="18" start="4713" end="4722">cell.names</SYMBOL>
+              </expr>
+              <LEFT_ASSIGN line1="49" col1="20" line2="49" col2="21" start="4724" end="4725">&lt;-</LEFT_ASSIGN>
+              <expr line1="49" col1="23" line2="50" col2="70" start="4727" end="4870">
+                <expr line1="49" col1="23" line2="50" col2="65" start="4727" end="4865">
+                  <expr line1="49" col1="23" line2="49" col2="39" start="4727" end="4743">
+                    <SYMBOL_PACKAGE line1="49" col1="23" line2="49" col2="27" start="4727" end="4731">utils</SYMBOL_PACKAGE>
+                    <NS_GET line1="49" col1="28" line2="49" col2="29" start="4732" end="4733">::</NS_GET>
+                    <SYMBOL_FUNCTION_CALL line1="49" col1="30" line2="49" col2="39" start="4734" end="4743">read.table</SYMBOL_FUNCTION_CALL>
+                  </expr>
+                  <OP-LEFT-PAREN line1="49" col1="40" line2="49" col2="40" start="4744" end="4744">(</OP-LEFT-PAREN>
+                  <expr line1="49" col1="41" line2="49" col2="51" start="4745" end="4755">
+                    <SYMBOL line1="49" col1="41" line2="49" col2="51" start="4745" end="4755">barcode.loc</SYMBOL>
+                  </expr>
+                  <OP-COMMA line1="49" col1="52" line2="49" col2="52" start="4756" end="4756">,</OP-COMMA>
+                  <SYMBOL_SUB line1="49" col1="54" line2="49" col2="59" start="4758" end="4763">header</SYMBOL_SUB>
+                  <EQ_SUB line1="49" col1="61" line2="49" col2="61" start="4765" end="4765">=</EQ_SUB>
+                  <expr line1="49" col1="63" line2="49" col2="67" start="4767" end="4771">
+                    <NUM_CONST line1="49" col1="63" line2="49" col2="67" start="4767" end="4771">FALSE</NUM_CONST>
+                  </expr>
+                  <OP-COMMA line1="49" col1="68" line2="49" col2="68" start="4772" end="4772">,</OP-COMMA>
+                  <SYMBOL_SUB line1="50" col1="41" line2="50" col2="50" start="4841" end="4850">colClasses</SYMBOL_SUB>
+                  <EQ_SUB line1="50" col1="52" line2="50" col2="52" start="4852" end="4852">=</EQ_SUB>
+                  <expr line1="50" col1="54" line2="50" col2="64" start="4854" end="4864">
+                    <STR_CONST line1="50" col1="54" line2="50" col2="64" start="4854" end="4864">"character"</STR_CONST>
+                  </expr>
+                  <OP-RIGHT-PAREN line1="50" col1="65" line2="50" col2="65" start="4865" end="4865">)</OP-RIGHT-PAREN>
+                </expr>
+                <LBB line1="50" col1="66" line2="50" col2="67" start="4866" end="4867">[[</LBB>
+                <expr line1="50" col1="68" line2="50" col2="68" start="4868" end="4868">
+                  <NUM_CONST line1="50" col1="68" line2="50" col2="68" start="4868" end="4868">1</NUM_CONST>
+                </expr>
+                <OP-RIGHT-BRACKET line1="50" col1="69" line2="50" col2="69" start="4869" end="4869">]</OP-RIGHT-BRACKET>
+                <OP-RIGHT-BRACKET line1="50" col1="70" line2="50" col2="70" start="4870" end="4870">]</OP-RIGHT-BRACKET>
+              </expr>
+            </expr>
+            <COMMENT line1="52" col1="9" line2="52" col2="25" start="5001" end="5017">## define filters</COMMENT>
+            <expr line1="53" col1="9" line2="57" col2="9" start="5097" end="5481">
+              <IF line1="53" col1="9" line2="53" col2="10" start="5097" end="5098">if</IF>
+              <OP-LEFT-PAREN line1="53" col1="12" line2="53" col2="12" start="5100" end="5100">(</OP-LEFT-PAREN>
+              <expr line1="53" col1="13" line2="53" col2="43" start="5101" end="5131">
+                <OP-EXCLAMATION line1="53" col1="13" line2="53" col2="13" start="5101" end="5101">!</OP-EXCLAMATION>
+                <expr line1="53" col1="14" line2="53" col2="43" start="5102" end="5131">
+                  <expr line1="53" col1="14" line2="53" col2="20" start="5102" end="5108">
+                    <SYMBOL_FUNCTION_CALL line1="53" col1="14" line2="53" col2="20" start="5102" end="5108">is.null</SYMBOL_FUNCTION_CALL>
+                  </expr>
+                  <OP-LEFT-PAREN line1="53" col1="21" line2="53" col2="21" start="5109" end="5109">(</OP-LEFT-PAREN>
+                  <expr line1="53" col1="22" line2="53" col2="42" start="5110" end="5130">
+                    <SYMBOL line1="53" col1="22" line2="53" col2="42" start="5110" end="5130">min_total_cell_counts</SYMBOL>
+                  </expr>
+                  <OP-RIGHT-PAREN line1="53" col1="43" line2="53" col2="43" start="5131" end="5131">)</OP-RIGHT-PAREN>
+                </expr>
+              </expr>
+              <OP-RIGHT-PAREN line1="53" col1="44" line2="53" col2="44" start="5132" end="5132">)</OP-RIGHT-PAREN>
+              <expr line1="53" col1="46" line2="57" col2="9" start="5134" end="5481">
+                <OP-LEFT-BRACE line1="53" col1="46" line2="53" col2="46" start="5134" end="5134">{</OP-LEFT-BRACE>
+                <expr line1="54" col1="13" line2="54" col2="71" start="5197" end="5255">
+                  <expr line1="54" col1="13" line2="54" col2="24" start="5197" end="5208">
+                    <SYMBOL line1="54" col1="13" line2="54" col2="24" start="5197" end="5208">keep_barcode</SYMBOL>
+                  </expr>
+                  <LEFT_ASSIGN line1="54" col1="26" line2="54" col2="27" start="5210" end="5211">&lt;-</LEFT_ASSIGN>
+                  <expr line1="54" col1="29" line2="54" col2="71" start="5213" end="5255">
+                    <expr line1="54" col1="29" line2="54" col2="46" start="5213" end="5230">
+                      <expr line1="54" col1="29" line2="54" col2="36" start="5213" end="5220">
+                        <SYMBOL_FUNCTION_CALL line1="54" col1="29" line2="54" col2="36" start="5213" end="5220">.colSums</SYMBOL_FUNCTION_CALL>
+                      </expr>
+                      <OP-LEFT-PAREN line1="54" col1="37" line2="54" col2="37" start="5221" end="5221">(</OP-LEFT-PAREN>
+                      <expr line1="54" col1="38" line2="54" col2="45" start="5222" end="5229">
+                        <SYMBOL line1="54" col1="38" line2="54" col2="45" start="5222" end="5229">data_mat</SYMBOL>
+                      </expr>
+                      <OP-RIGHT-PAREN line1="54" col1="46" line2="54" col2="46" start="5230" end="5230">)</OP-RIGHT-PAREN>
+                    </expr>
+                    <GE line1="54" col1="48" line2="54" col2="49" start="5232" end="5233">&gt;=</GE>
+                    <expr line1="54" col1="51" line2="54" col2="71" start="5235" end="5255">
+                      <SYMBOL line1="54" col1="51" line2="54" col2="71" start="5235" end="5255">min_total_cell_counts</SYMBOL>
+                    </expr>
+                  </expr>
+                </expr>
+                <expr line1="55" col1="13" line2="55" col2="48" start="5293" end="5328">
+                  <expr line1="55" col1="13" line2="55" col2="20" start="5293" end="5300">
+                    <SYMBOL line1="55" col1="13" line2="55" col2="20" start="5293" end="5300">data_mat</SYMBOL>
+                  </expr>
+                  <LEFT_ASSIGN line1="55" col1="22" line2="55" col2="23" start="5302" end="5303">&lt;-</LEFT_ASSIGN>
+                  <expr line1="55" col1="25" line2="55" col2="48" start="5305" end="5328">
+                    <expr line1="55" col1="25" line2="55" col2="32" start="5305" end="5312">
+                      <SYMBOL line1="55" col1="25" line2="55" col2="32" start="5305" end="5312">data_mat</SYMBOL>
+                    </expr>
+                    <OP-LEFT-BRACKET line1="55" col1="33" line2="55" col2="33" start="5313" end="5313">[</OP-LEFT-BRACKET>
+                    <OP-COMMA line1="55" col1="34" line2="55" col2="34" start="5314" end="5314">,</OP-COMMA>
+                    <expr line1="55" col1="36" line2="55" col2="47" start="5316" end="5327">
+                      <SYMBOL line1="55" col1="36" line2="55" col2="47" start="5316" end="5327">keep_barcode</SYMBOL>
+                    </expr>
+                    <OP-RIGHT-BRACKET line1="55" col1="48" line2="55" col2="48" start="5328" end="5328">]</OP-RIGHT-BRACKET>
+                  </expr>
+                </expr>
+                <expr line1="56" col1="13" line2="56" col2="50" start="5389" end="5426">
+                  <expr line1="56" col1="13" line2="56" col2="22" start="5389" end="5398">
+                    <SYMBOL line1="56" col1="13" line2="56" col2="22" start="5389" end="5398">cell.names</SYMBOL>
+                  </expr>
+                  <LEFT_ASSIGN line1="56" col1="24" line2="56" col2="25" start="5400" end="5401">&lt;-</LEFT_ASSIGN>
+                  <expr line1="56" col1="27" line2="56" col2="50" start="5403" end="5426">
+                    <expr line1="56" col1="27" line2="56" col2="36" start="5403" end="5412">
+                      <SYMBOL line1="56" col1="27" line2="56" col2="36" start="5403" end="5412">cell.names</SYMBOL>
+                    </expr>
+                    <OP-LEFT-BRACKET line1="56" col1="37" line2="56" col2="37" start="5413" end="5413">[</OP-LEFT-BRACKET>
+                    <expr line1="56" col1="38" line2="56" col2="49" start="5414" end="5425">
+                      <SYMBOL line1="56" col1="38" line2="56" col2="49" start="5414" end="5425">keep_barcode</SYMBOL>
+                    </expr>
+                    <OP-RIGHT-BRACKET line1="56" col1="50" line2="56" col2="50" start="5426" end="5426">]</OP-RIGHT-BRACKET>
+                  </expr>
+                </expr>
+                <OP-RIGHT-BRACE line1="57" col1="9" line2="57" col2="9" start="5481" end="5481">}</OP-RIGHT-BRACE>
+              </expr>
+            </expr>
+            <expr line1="59" col1="9" line2="59" col2="20" start="5673" end="5684">
+              <expr line1="59" col1="9" line2="59" col2="15" start="5673" end="5679">
+                <SYMBOL line1="59" col1="9" line2="59" col2="15" start="5673" end="5679">dataset</SYMBOL>
+              </expr>
+              <LEFT_ASSIGN line1="59" col1="17" line2="59" col2="18" start="5681" end="5682">&lt;-</LEFT_ASSIGN>
+              <expr line1="59" col1="20" line2="59" col2="20" start="5684" end="5684">
+                <SYMBOL line1="59" col1="20" line2="59" col2="20" start="5684" end="5684">i</SYMBOL>
+              </expr>
+            </expr>
+            <expr line1="60" col1="9" line2="62" col2="9" start="5769" end="5961">
+              <IF line1="60" col1="9" line2="60" col2="10" start="5769" end="5770">if</IF>
+              <OP-LEFT-PAREN line1="60" col1="12" line2="60" col2="12" start="5772" end="5772">(</OP-LEFT-PAREN>
+              <expr line1="60" col1="13" line2="60" col2="37" start="5773" end="5797">
+                <OP-EXCLAMATION line1="60" col1="13" line2="60" col2="13" start="5773" end="5773">!</OP-EXCLAMATION>
+                <expr line1="60" col1="14" line2="60" col2="37" start="5774" end="5797">
+                  <expr line1="60" col1="14" line2="60" col2="20" start="5774" end="5780">
+                    <SYMBOL_FUNCTION_CALL line1="60" col1="14" line2="60" col2="20" start="5774" end="5780">is.null</SYMBOL_FUNCTION_CALL>
+                  </expr>
+                  <OP-LEFT-PAREN line1="60" col1="21" line2="60" col2="21" start="5781" end="5781">(</OP-LEFT-PAREN>
+                  <expr line1="60" col1="22" line2="60" col2="36" start="5782" end="5796">
+                    <expr line1="60" col1="22" line2="60" col2="26" start="5782" end="5786">
+                      <SYMBOL_FUNCTION_CALL line1="60" col1="22" line2="60" col2="26" start="5782" end="5786">names</SYMBOL_FUNCTION_CALL>
+                    </expr>
+                    <OP-LEFT-PAREN line1="60" col1="27" line2="60" col2="27" start="5787" end="5787">(</OP-LEFT-PAREN>
+                    <expr line1="60" col1="28" line2="60" col2="35" start="5788" end="5795">
+                      <SYMBOL line1="60" col1="28" line2="60" col2="35" start="5788" end="5795">data_dir</SYMBOL>
+                    </expr>
+                    <OP-RIGHT-PAREN line1="60" col1="36" line2="60" col2="36" start="5796" end="5796">)</OP-RIGHT-PAREN>
+                  </expr>
+                  <OP-RIGHT-PAREN line1="60" col1="37" line2="60" col2="37" start="5797" end="5797">)</OP-RIGHT-PAREN>
+                </expr>
+              </expr>
+              <OP-RIGHT-PAREN line1="60" col1="38" line2="60" col2="38" start="5798" end="5798">)</OP-RIGHT-PAREN>
+              <expr line1="60" col1="40" line2="62" col2="9" start="5800" end="5961">
+                <OP-LEFT-BRACE line1="60" col1="40" line2="60" col2="40" start="5800" end="5800">{</OP-LEFT-BRACE>
+                <expr line1="61" col1="13" line2="61" col2="41" start="5869" end="5897">
+                  <expr line1="61" col1="13" line2="61" col2="19" start="5869" end="5875">
+                    <SYMBOL line1="61" col1="13" line2="61" col2="19" start="5869" end="5875">dataset</SYMBOL>
+                  </expr>
+                  <LEFT_ASSIGN line1="61" col1="21" line2="61" col2="22" start="5877" end="5878">&lt;-</LEFT_ASSIGN>
+                  <expr line1="61" col1="24" line2="61" col2="41" start="5880" end="5897">
+                    <expr line1="61" col1="24" line2="61" col2="38" start="5880" end="5894">
+                      <expr line1="61" col1="24" line2="61" col2="28" start="5880" end="5884">
+                        <SYMBOL_FUNCTION_CALL line1="61" col1="24" line2="61" col2="28" start="5880" end="5884">names</SYMBOL_FUNCTION_CALL>
+                      </expr>
+                      <OP-LEFT-PAREN line1="61" col1="29" line2="61" col2="29" start="5885" end="5885">(</OP-LEFT-PAREN>
+                      <expr line1="61" col1="30" line2="61" col2="37" start="5886" end="5893">
+                        <SYMBOL line1="61" col1="30" line2="61" col2="37" start="5886" end="5893">data_dir</SYMBOL>
+                      </expr>
+                      <OP-RIGHT-PAREN line1="61" col1="38" line2="61" col2="38" start="5894" end="5894">)</OP-RIGHT-PAREN>
+                    </expr>
+                    <OP-LEFT-BRACKET line1="61" col1="39" line2="61" col2="39" start="5895" end="5895">[</OP-LEFT-BRACKET>
+                    <expr line1="61" col1="40" line2="61" col2="40" start="5896" end="5896">
+                      <SYMBOL line1="61" col1="40" line2="61" col2="40" start="5896" end="5896">i</SYMBOL>
+                    </expr>
+                    <OP-RIGHT-BRACKET line1="61" col1="41" line2="61" col2="41" start="5897" end="5897">]</OP-RIGHT-BRACKET>
+                  </expr>
+                </expr>
+                <OP-RIGHT-BRACE line1="62" col1="9" line2="62" col2="9" start="5961" end="5961">}</OP-RIGHT-BRACE>
+              </expr>
+            </expr>
+            <expr line1="64" col1="9" line2="64" col2="34" start="6153" end="6178">
+              <expr line1="64" col1="9" line2="64" col2="22" start="6153" end="6166">
+                <expr line1="64" col1="9" line2="64" col2="17" start="6153" end="6161">
+                  <SYMBOL line1="64" col1="9" line2="64" col2="17" start="6153" end="6161">full_data</SYMBOL>
+                </expr>
+                <LBB line1="64" col1="18" line2="64" col2="19" start="6162" end="6163">[[</LBB>
+                <expr line1="64" col1="20" line2="64" col2="20" start="6164" end="6164">
+                  <SYMBOL line1="64" col1="20" line2="64" col2="20" start="6164" end="6164">i</SYMBOL>
+                </expr>
+                <OP-RIGHT-BRACKET line1="64" col1="21" line2="64" col2="21" start="6165" end="6165">]</OP-RIGHT-BRACKET>
+                <OP-RIGHT-BRACKET line1="64" col1="22" line2="64" col2="22" start="6166" end="6166">]</OP-RIGHT-BRACKET>
+              </expr>
+              <LEFT_ASSIGN line1="64" col1="24" line2="64" col2="25" start="6168" end="6169">&lt;-</LEFT_ASSIGN>
+              <expr line1="64" col1="27" line2="64" col2="34" start="6171" end="6178">
+                <SYMBOL line1="64" col1="27" line2="64" col2="34" start="6171" end="6178">data_mat</SYMBOL>
+              </expr>
+            </expr>
+            <expr line1="65" col1="9" line2="66" col2="74" start="6249" end="6410">
+              <expr line1="65" col1="9" line2="65" col2="27" start="6249" end="6267">
+                <expr line1="65" col1="9" line2="65" col2="22" start="6249" end="6262">
+                  <SYMBOL line1="65" col1="9" line2="65" col2="22" start="6249" end="6262">gene_info_list</SYMBOL>
+                </expr>
+                <LBB line1="65" col1="23" line2="65" col2="24" start="6263" end="6264">[[</LBB>
+                <expr line1="65" col1="25" line2="65" col2="25" start="6265" end="6265">
+                  <SYMBOL line1="65" col1="25" line2="65" col2="25" start="6265" end="6265">i</SYMBOL>
+                </expr>
+                <OP-RIGHT-BRACKET line1="65" col1="26" line2="65" col2="26" start="6266" end="6266">]</OP-RIGHT-BRACKET>
+                <OP-RIGHT-BRACKET line1="65" col1="27" line2="65" col2="27" start="6267" end="6267">]</OP-RIGHT-BRACKET>
+              </expr>
+              <LEFT_ASSIGN line1="65" col1="29" line2="65" col2="30" start="6269" end="6270">&lt;-</LEFT_ASSIGN>
+              <expr line1="65" col1="32" line2="66" col2="74" start="6272" end="6410">
+                <expr line1="65" col1="32" line2="65" col2="48" start="6272" end="6288">
+                  <SYMBOL_PACKAGE line1="65" col1="32" line2="65" col2="36" start="6272" end="6276">utils</SYMBOL_PACKAGE>
+                  <NS_GET line1="65" col1="37" line2="65" col2="38" start="6277" end="6278">::</NS_GET>
+                  <SYMBOL_FUNCTION_CALL line1="65" col1="39" line2="65" col2="48" start="6279" end="6288">read.table</SYMBOL_FUNCTION_CALL>
+                </expr>
+                <OP-LEFT-PAREN line1="65" col1="49" line2="65" col2="49" start="6289" end="6289">(</OP-LEFT-PAREN>
+                <expr line1="65" col1="50" line2="65" col2="57" start="6290" end="6297">
+                  <SYMBOL line1="65" col1="50" line2="65" col2="57" start="6290" end="6297">gene.loc</SYMBOL>
+                </expr>
+                <OP-COMMA line1="65" col1="58" line2="65" col2="58" start="6298" end="6298">,</OP-COMMA>
+                <SYMBOL_SUB line1="65" col1="60" line2="65" col2="65" start="6300" end="6305">header</SYMBOL_SUB>
+                <EQ_SUB line1="65" col1="67" line2="65" col2="67" start="6307" end="6307">=</EQ_SUB>
+                <expr line1="65" col1="69" line2="65" col2="73" start="6309" end="6313">
+                  <NUM_CONST line1="65" col1="69" line2="65" col2="73" start="6309" end="6313">FALSE</NUM_CONST>
+                </expr>
+                <OP-COMMA line1="65" col1="74" line2="65" col2="74" start="6314" end="6314">,</OP-COMMA>
+                <SYMBOL_SUB line1="66" col1="50" line2="66" col2="59" start="6386" end="6395">colClasses</SYMBOL_SUB>
+                <EQ_SUB line1="66" col1="61" line2="66" col2="61" start="6397" end="6397">=</EQ_SUB>
+                <expr line1="66" col1="63" line2="66" col2="73" start="6399" end="6409">
+                  <STR_CONST line1="66" col1="63" line2="66" col2="73" start="6399" end="6409">"character"</STR_CONST>
+                </expr>
+                <OP-RIGHT-PAREN line1="66" col1="74" line2="66" col2="74" start="6410" end="6410">)</OP-RIGHT-PAREN>
+              </expr>
+            </expr>
+            <expr line1="67" col1="9" line2="68" col2="62" start="6441" end="6590">
+              <expr line1="67" col1="9" line2="67" col2="27" start="6441" end="6459">
+                <expr line1="67" col1="9" line2="67" col2="22" start="6441" end="6454">
+                  <SYMBOL line1="67" col1="9" line2="67" col2="22" start="6441" end="6454">cell_info_list</SYMBOL>
+                </expr>
+                <LBB line1="67" col1="23" line2="67" col2="24" start="6455" end="6456">[[</LBB>
+                <expr line1="67" col1="25" line2="67" col2="25" start="6457" end="6457">
+                  <SYMBOL line1="67" col1="25" line2="67" col2="25" start="6457" end="6457">i</SYMBOL>
+                </expr>
+                <OP-RIGHT-BRACKET line1="67" col1="26" line2="67" col2="26" start="6458" end="6458">]</OP-RIGHT-BRACKET>
+                <OP-RIGHT-BRACKET line1="67" col1="27" line2="67" col2="27" start="6459" end="6459">]</OP-RIGHT-BRACKET>
+              </expr>
+              <LEFT_ASSIGN line1="67" col1="29" line2="67" col2="30" start="6461" end="6462">&lt;-</LEFT_ASSIGN>
+              <expr line1="67" col1="32" line2="68" col2="62" start="6464" end="6590">
+                <expr line1="67" col1="32" line2="67" col2="40" start="6464" end="6472">
+                  <SYMBOL_FUNCTION_CALL line1="67" col1="32" line2="67" col2="40" start="6464" end="6472">DataFrame</SYMBOL_FUNCTION_CALL>
+                </expr>
+                <OP-LEFT-PAREN line1="67" col1="41" line2="67" col2="41" start="6473" end="6473">(</OP-LEFT-PAREN>
+                <SYMBOL_SUB line1="67" col1="42" line2="67" col2="48" start="6474" end="6480">dataset</SYMBOL_SUB>
+                <EQ_SUB line1="67" col1="50" line2="67" col2="50" start="6482" end="6482">=</EQ_SUB>
+                <expr line1="67" col1="52" line2="67" col2="58" start="6484" end="6490">
+                  <SYMBOL line1="67" col1="52" line2="67" col2="58" start="6484" end="6490">dataset</SYMBOL>
+                </expr>
+                <OP-COMMA line1="67" col1="59" line2="67" col2="59" start="6491" end="6491">,</OP-COMMA>
+                <SYMBOL_SUB line1="68" col1="42" line2="68" col2="48" start="6570" end="6576">barcode</SYMBOL_SUB>
+                <EQ_SUB line1="68" col1="50" line2="68" col2="50" start="6578" end="6578">=</EQ_SUB>
+                <expr line1="68" col1="52" line2="68" col2="61" start="6580" end="6589">
+                  <SYMBOL line1="68" col1="52" line2="68" col2="61" start="6580" end="6589">cell.names</SYMBOL>
+                </expr>
+                <OP-RIGHT-PAREN line1="68" col1="62" line2="68" col2="62" start="6590" end="6590">)</OP-RIGHT-PAREN>
+              </expr>
+            </expr>
+            <OP-RIGHT-BRACE line1="69" col1="5" line2="69" col2="5" start="6629" end="6629">}</OP-RIGHT-BRACE>
+          </expr>
+        </expr>
+        <COMMENT line1="71" col1="5" line2="71" col2="32" start="6821" end="6848"># Checking gene uniqueness. </COMMENT>
+        <expr line1="72" col1="5" line2="74" col2="5" start="6917" end="7109">
+          <IF line1="72" col1="5" line2="72" col2="6" start="6917" end="6918">if</IF>
+          <OP-LEFT-PAREN line1="72" col1="8" line2="72" col2="8" start="6920" end="6920">(</OP-LEFT-PAREN>
+          <expr line1="72" col1="9" line2="72" col2="57" start="6921" end="6969">
+            <expr line1="72" col1="9" line2="72" col2="17" start="6921" end="6929">
+              <expr line1="72" col1="9" line2="72" col2="13" start="6921" end="6925">
+                <SYMBOL line1="72" col1="9" line2="72" col2="13" start="6921" end="6925">nsets</SYMBOL>
+              </expr>
+              <GT line1="72" col1="15" line2="72" col2="15" start="6927" end="6927">&gt;</GT>
+              <expr line1="72" col1="17" line2="72" col2="17" start="6929" end="6929">
+                <NUM_CONST line1="72" col1="17" line2="72" col2="17" start="6929" end="6929">1</NUM_CONST>
+              </expr>
+            </expr>
+            <AND2 line1="72" col1="19" line2="72" col2="20" start="6931" end="6932">&amp;&amp;</AND2>
+            <expr line1="72" col1="22" line2="72" col2="57" start="6934" end="6969">
+              <expr line1="72" col1="22" line2="72" col2="51" start="6934" end="6963">
+                <expr line1="72" col1="22" line2="72" col2="27" start="6934" end="6939">
+                  <SYMBOL_FUNCTION_CALL line1="72" col1="22" line2="72" col2="27" start="6934" end="6939">length</SYMBOL_FUNCTION_CALL>
+                </expr>
+                <OP-LEFT-PAREN line1="72" col1="28" line2="72" col2="28" start="6940" end="6940">(</OP-LEFT-PAREN>
+                <expr line1="72" col1="29" line2="72" col2="50" start="6941" end="6962">
+                  <expr line1="72" col1="29" line2="72" col2="34" start="6941" end="6946">
+                    <SYMBOL_FUNCTION_CALL line1="72" col1="29" line2="72" col2="34" start="6941" end="6946">unique</SYMBOL_FUNCTION_CALL>
+                  </expr>
+                  <OP-LEFT-PAREN line1="72" col1="35" line2="72" col2="35" start="6947" end="6947">(</OP-LEFT-PAREN>
+                  <expr line1="72" col1="36" line2="72" col2="49" start="6948" end="6961">
+                    <SYMBOL line1="72" col1="36" line2="72" col2="49" start="6948" end="6961">gene_info_list</SYMBOL>
+                  </expr>
+                  <OP-RIGHT-PAREN line1="72" col1="50" line2="72" col2="50" start="6962" end="6962">)</OP-RIGHT-PAREN>
+                </expr>
+                <OP-RIGHT-PAREN line1="72" col1="51" line2="72" col2="51" start="6963" end="6963">)</OP-RIGHT-PAREN>
+              </expr>
+              <NE line1="72" col1="53" line2="72" col2="54" start="6965" end="6966">!=</NE>
+              <expr line1="72" col1="56" line2="72" col2="57" start="6968" end="6969">
+                <NUM_CONST line1="72" col1="56" line2="72" col2="57" start="6968" end="6969">1L</NUM_CONST>
+              </expr>
+            </expr>
+          </expr>
+          <OP-RIGHT-PAREN line1="72" col1="58" line2="72" col2="58" start="6970" end="6970">)</OP-RIGHT-PAREN>
+          <expr line1="72" col1="60" line2="74" col2="5" start="6972" end="7109">
+            <OP-LEFT-BRACE line1="72" col1="60" line2="72" col2="60" start="6972" end="6972">{</OP-LEFT-BRACE>
+            <expr line1="73" col1="9" line2="73" col2="53" start="7017" end="7061">
+              <expr line1="73" col1="9" line2="73" col2="12" start="7017" end="7020">
+                <SYMBOL_FUNCTION_CALL line1="73" col1="9" line2="73" col2="12" start="7017" end="7020">stop</SYMBOL_FUNCTION_CALL>
+              </expr>
+              <OP-LEFT-PAREN line1="73" col1="13" line2="73" col2="13" start="7021" end="7021">(</OP-LEFT-PAREN>
+              <expr line1="73" col1="14" line2="73" col2="52" start="7022" end="7060">
+                <STR_CONST line1="73" col1="14" line2="73" col2="52" start="7022" end="7060">"gene information differs between runs"</STR_CONST>
+              </expr>
+              <OP-RIGHT-PAREN line1="73" col1="53" line2="73" col2="53" start="7061" end="7061">)</OP-RIGHT-PAREN>
+            </expr>
+            <OP-RIGHT-BRACE line1="74" col1="5" line2="74" col2="5" start="7109" end="7109">}</OP-RIGHT-BRACE>
+          </expr>
+        </expr>
+        <expr line1="75" col1="5" line2="75" col2="36" start="7205" end="7236">
+          <expr line1="75" col1="5" line2="75" col2="13" start="7205" end="7213">
+            <SYMBOL line1="75" col1="5" line2="75" col2="13" start="7205" end="7213">gene_info</SYMBOL>
+          </expr>
+          <LEFT_ASSIGN line1="75" col1="15" line2="75" col2="16" start="7215" end="7216">&lt;-</LEFT_ASSIGN>
+          <expr line1="75" col1="18" line2="75" col2="36" start="7218" end="7236">
+            <expr line1="75" col1="18" line2="75" col2="31" start="7218" end="7231">
+              <SYMBOL line1="75" col1="18" line2="75" col2="31" start="7218" end="7231">gene_info_list</SYMBOL>
+            </expr>
+            <LBB line1="75" col1="32" line2="75" col2="33" start="7232" end="7233">[[</LBB>
+            <expr line1="75" col1="34" line2="75" col2="34" start="7234" end="7234">
+              <NUM_CONST line1="75" col1="34" line2="75" col2="34" start="7234" end="7234">1</NUM_CONST>
+            </expr>
+            <OP-RIGHT-BRACKET line1="75" col1="35" line2="75" col2="35" start="7235" end="7235">]</OP-RIGHT-BRACKET>
+            <OP-RIGHT-BRACKET line1="75" col1="36" line2="75" col2="36" start="7236" end="7236">]</OP-RIGHT-BRACKET>
+          </expr>
+        </expr>
+        <expr line1="76" col1="5" line2="76" col2="44" start="7301" end="7340">
+          <expr line1="76" col1="5" line2="76" col2="23" start="7301" end="7319">
+            <expr line1="76" col1="5" line2="76" col2="12" start="7301" end="7308">
+              <SYMBOL_FUNCTION_CALL line1="76" col1="5" line2="76" col2="12" start="7301" end="7308">colnames</SYMBOL_FUNCTION_CALL>
+            </expr>
+            <OP-LEFT-PAREN line1="76" col1="13" line2="76" col2="13" start="7309" end="7309">(</OP-LEFT-PAREN>
+            <expr line1="76" col1="14" line2="76" col2="22" start="7310" end="7318">
+              <SYMBOL line1="76" col1="14" line2="76" col2="22" start="7310" end="7318">gene_info</SYMBOL>
+            </expr>
+            <OP-RIGHT-PAREN line1="76" col1="23" line2="76" col2="23" start="7319" end="7319">)</OP-RIGHT-PAREN>
+          </expr>
+          <LEFT_ASSIGN line1="76" col1="25" line2="76" col2="26" start="7321" end="7322">&lt;-</LEFT_ASSIGN>
+          <expr line1="76" col1="28" line2="76" col2="44" start="7324" end="7340">
+            <expr line1="76" col1="28" line2="76" col2="28" start="7324" end="7324">
+              <SYMBOL_FUNCTION_CALL line1="76" col1="28" line2="76" col2="28" start="7324" end="7324">c</SYMBOL_FUNCTION_CALL>
+            </expr>
+            <OP-LEFT-PAREN line1="76" col1="29" line2="76" col2="29" start="7325" end="7325">(</OP-LEFT-PAREN>
+            <expr line1="76" col1="30" line2="76" col2="33" start="7326" end="7329">
+              <STR_CONST line1="76" col1="30" line2="76" col2="33" start="7326" end="7329">"id"</STR_CONST>
+            </expr>
+            <OP-COMMA line1="76" col1="34" line2="76" col2="34" start="7330" end="7330">,</OP-COMMA>
+            <expr line1="76" col1="36" line2="76" col2="43" start="7332" end="7339">
+              <STR_CONST line1="76" col1="36" line2="76" col2="43" start="7332" end="7339">"symbol"</STR_CONST>
+            </expr>
+            <OP-RIGHT-PAREN line1="76" col1="44" line2="76" col2="44" start="7340" end="7340">)</OP-RIGHT-PAREN>
+          </expr>
+        </expr>
+        <expr line1="77" col1="5" line2="77" col2="39" start="7397" end="7431">
+          <expr line1="77" col1="5" line2="77" col2="23" start="7397" end="7415">
+            <expr line1="77" col1="5" line2="77" col2="12" start="7397" end="7404">
+              <SYMBOL_FUNCTION_CALL line1="77" col1="5" line2="77" col2="12" start="7397" end="7404">rownames</SYMBOL_FUNCTION_CALL>
+            </expr>
+            <OP-LEFT-PAREN line1="77" col1="13" line2="77" col2="13" start="7405" end="7405">(</OP-LEFT-PAREN>
+            <expr line1="77" col1="14" line2="77" col2="22" start="7406" end="7414">
+              <SYMBOL line1="77" col1="14" line2="77" col2="22" start="7406" end="7414">gene_info</SYMBOL>
+            </expr>
+            <OP-RIGHT-PAREN line1="77" col1="23" line2="77" col2="23" start="7415" end="7415">)</OP-RIGHT-PAREN>
+          </expr>
+          <LEFT_ASSIGN line1="77" col1="25" line2="77" col2="26" start="7417" end="7418">&lt;-</LEFT_ASSIGN>
+          <expr line1="77" col1="28" line2="77" col2="39" start="7420" end="7431">
+            <expr line1="77" col1="28" line2="77" col2="36" start="7420" end="7428">
+              <SYMBOL line1="77" col1="28" line2="77" col2="36" start="7420" end="7428">gene_info</SYMBOL>
+            </expr>
+            <OP-DOLLAR line1="77" col1="37" line2="77" col2="37" start="7429" end="7429">$</OP-DOLLAR>
+            <SYMBOL line1="77" col1="38" line2="77" col2="39" start="7430" end="7431">id</SYMBOL>
+          </expr>
+        </expr>
+        <COMMENT line1="79" col1="5" line2="79" col2="35" start="7589" end="7619"># Forming the full data matrix.</COMMENT>
+        <expr line1="80" col1="5" line2="80" col2="42" start="7685" end="7722">
+          <expr line1="80" col1="5" line2="80" col2="13" start="7685" end="7693">
+            <SYMBOL line1="80" col1="5" line2="80" col2="13" start="7685" end="7693">full_data</SYMBOL>
+          </expr>
+          <LEFT_ASSIGN line1="80" col1="15" line2="80" col2="16" start="7695" end="7696">&lt;-</LEFT_ASSIGN>
+          <expr line1="80" col1="18" line2="80" col2="42" start="7698" end="7722">
+            <expr line1="80" col1="18" line2="80" col2="24" start="7698" end="7704">
+              <SYMBOL_FUNCTION_CALL line1="80" col1="18" line2="80" col2="24" start="7698" end="7704">do.call</SYMBOL_FUNCTION_CALL>
+            </expr>
+            <OP-LEFT-PAREN line1="80" col1="25" line2="80" col2="25" start="7705" end="7705">(</OP-LEFT-PAREN>
+            <expr line1="80" col1="26" line2="80" col2="30" start="7706" end="7710">
+              <SYMBOL line1="80" col1="26" line2="80" col2="30" start="7706" end="7710">cbind</SYMBOL>
+            </expr>
+            <OP-COMMA line1="80" col1="31" line2="80" col2="31" start="7711" end="7711">,</OP-COMMA>
+            <expr line1="80" col1="33" line2="80" col2="41" start="7713" end="7721">
+              <SYMBOL line1="80" col1="33" line2="80" col2="41" start="7713" end="7721">full_data</SYMBOL>
+            </expr>
+            <OP-RIGHT-PAREN line1="80" col1="42" line2="80" col2="42" start="7722" end="7722">)</OP-RIGHT-PAREN>
+          </expr>
+        </expr>
+        <expr line1="81" col1="5" line2="81" col2="39" start="7781" end="7815">
+          <expr line1="81" col1="5" line2="81" col2="23" start="7781" end="7799">
+            <expr line1="81" col1="5" line2="81" col2="12" start="7781" end="7788">
+              <SYMBOL_FUNCTION_CALL line1="81" col1="5" line2="81" col2="12" start="7781" end="7788">rownames</SYMBOL_FUNCTION_CALL>
+            </expr>
+            <OP-LEFT-PAREN line1="81" col1="13" line2="81" col2="13" start="7789" end="7789">(</OP-LEFT-PAREN>
+            <expr line1="81" col1="14" line2="81" col2="22" start="7790" end="7798">
+              <SYMBOL line1="81" col1="14" line2="81" col2="22" start="7790" end="7798">full_data</SYMBOL>
+            </expr>
+            <OP-RIGHT-PAREN line1="81" col1="23" line2="81" col2="23" start="7799" end="7799">)</OP-RIGHT-PAREN>
+          </expr>
+          <LEFT_ASSIGN line1="81" col1="25" line2="81" col2="26" start="7801" end="7802">&lt;-</LEFT_ASSIGN>
+          <expr line1="81" col1="28" line2="81" col2="39" start="7804" end="7815">
+            <expr line1="81" col1="28" line2="81" col2="36" start="7804" end="7812">
+              <SYMBOL line1="81" col1="28" line2="81" col2="36" start="7804" end="7812">gene_info</SYMBOL>
+            </expr>
+            <OP-DOLLAR line1="81" col1="37" line2="81" col2="37" start="7813" end="7813">$</OP-DOLLAR>
+            <SYMBOL line1="81" col1="38" line2="81" col2="39" start="7814" end="7815">id</SYMBOL>
+          </expr>
+        </expr>
+        <COMMENT line1="83" col1="5" line2="83" col2="43" start="7973" end="8011"># Applying some filtering if requested.</COMMENT>
+        <expr line1="84" col1="5" line2="88" col2="5" start="8069" end="8453">
+          <IF line1="84" col1="5" line2="84" col2="6" start="8069" end="8070">if</IF>
+          <OP-LEFT-PAREN line1="84" col1="8" line2="84" col2="8" start="8072" end="8072">(</OP-LEFT-PAREN>
+          <expr line1="84" col1="9" line2="84" col2="38" start="8073" end="8102">
+            <OP-EXCLAMATION line1="84" col1="9" line2="84" col2="9" start="8073" end="8073">!</OP-EXCLAMATION>
+            <expr line1="84" col1="10" line2="84" col2="38" start="8074" end="8102">
+              <expr line1="84" col1="10" line2="84" col2="16" start="8074" end="8080">
+                <SYMBOL_FUNCTION_CALL line1="84" col1="10" line2="84" col2="16" start="8074" end="8080">is.null</SYMBOL_FUNCTION_CALL>
+              </expr>
+              <OP-LEFT-PAREN line1="84" col1="17" line2="84" col2="17" start="8081" end="8081">(</OP-LEFT-PAREN>
+              <expr line1="84" col1="18" line2="84" col2="37" start="8082" end="8101">
+                <SYMBOL line1="84" col1="18" line2="84" col2="37" start="8082" end="8101">min_mean_gene_counts</SYMBOL>
+              </expr>
+              <OP-RIGHT-PAREN line1="84" col1="38" line2="84" col2="38" start="8102" end="8102">)</OP-RIGHT-PAREN>
+            </expr>
+          </expr>
+          <OP-RIGHT-PAREN line1="84" col1="39" line2="84" col2="39" start="8103" end="8103">)</OP-RIGHT-PAREN>
+          <expr line1="84" col1="41" line2="88" col2="5" start="8105" end="8453">
+            <OP-LEFT-BRACE line1="84" col1="41" line2="84" col2="41" start="8105" end="8105">{</OP-LEFT-BRACE>
+            <expr line1="85" col1="9" line2="85" col2="63" start="8169" end="8223">
+              <expr line1="85" col1="9" line2="85" col2="17" start="8169" end="8177">
+                <SYMBOL line1="85" col1="9" line2="85" col2="17" start="8169" end="8177">keep_gene</SYMBOL>
+              </expr>
+              <LEFT_ASSIGN line1="85" col1="19" line2="85" col2="20" start="8179" end="8180">&lt;-</LEFT_ASSIGN>
+              <expr line1="85" col1="22" line2="85" col2="63" start="8182" end="8223">
+                <expr line1="85" col1="22" line2="85" col2="39" start="8182" end="8199">
+                  <expr line1="85" col1="22" line2="85" col2="29" start="8182" end="8189">
+                    <SYMBOL_FUNCTION_CALL line1="85" col1="22" line2="85" col2="29" start="8182" end="8189">.rowSums</SYMBOL_FUNCTION_CALL>
+                  </expr>
+                  <OP-LEFT-PAREN line1="85" col1="30" line2="85" col2="30" start="8190" end="8190">(</OP-LEFT-PAREN>
+                  <expr line1="85" col1="31" line2="85" col2="38" start="8191" end="8198">
+                    <SYMBOL line1="85" col1="31" line2="85" col2="38" start="8191" end="8198">data_mat</SYMBOL>
+                  </expr>
+                  <OP-RIGHT-PAREN line1="85" col1="39" line2="85" col2="39" start="8199" end="8199">)</OP-RIGHT-PAREN>
+                </expr>
+                <GE line1="85" col1="41" line2="85" col2="42" start="8201" end="8202">&gt;=</GE>
+                <expr line1="85" col1="44" line2="85" col2="63" start="8204" end="8223">
+                  <SYMBOL line1="85" col1="44" line2="85" col2="63" start="8204" end="8223">min_mean_gene_counts</SYMBOL>
+                </expr>
+              </expr>
+            </expr>
+            <expr line1="86" col1="9" line2="86" col2="42" start="8265" end="8298">
+              <expr line1="86" col1="9" line2="86" col2="17" start="8265" end="8273">
+                <SYMBOL line1="86" col1="9" line2="86" col2="17" start="8265" end="8273">full_data</SYMBOL>
+              </expr>
+              <LEFT_ASSIGN line1="86" col1="19" line2="86" col2="20" start="8275" end="8276">&lt;-</LEFT_ASSIGN>
+              <expr line1="86" col1="22" line2="86" col2="42" start="8278" end="8298">
+                <expr line1="86" col1="22" line2="86" col2="30" start="8278" end="8286">
+                  <SYMBOL line1="86" col1="22" line2="86" col2="30" start="8278" end="8286">full_data</SYMBOL>
+                </expr>
+                <OP-LEFT-BRACKET line1="86" col1="31" line2="86" col2="31" start="8287" end="8287">[</OP-LEFT-BRACKET>
+                <expr line1="86" col1="32" line2="86" col2="40" start="8288" end="8296">
+                  <SYMBOL line1="86" col1="32" line2="86" col2="40" start="8288" end="8296">keep_gene</SYMBOL>
+                </expr>
+                <OP-COMMA line1="86" col1="41" line2="86" col2="41" start="8297" end="8297">,</OP-COMMA>
+                <OP-RIGHT-BRACKET line1="86" col1="42" line2="86" col2="42" start="8298" end="8298">]</OP-RIGHT-BRACKET>
+              </expr>
+            </expr>
+            <expr line1="87" col1="9" line2="87" col2="42" start="8361" end="8394">
+              <expr line1="87" col1="9" line2="87" col2="17" start="8361" end="8369">
+                <SYMBOL line1="87" col1="9" line2="87" col2="17" start="8361" end="8369">gene_info</SYMBOL>
+              </expr>
+              <LEFT_ASSIGN line1="87" col1="19" line2="87" col2="20" start="8371" end="8372">&lt;-</LEFT_ASSIGN>
+              <expr line1="87" col1="22" line2="87" col2="42" start="8374" end="8394">
+                <expr line1="87" col1="22" line2="87" col2="30" start="8374" end="8382">
+                  <SYMBOL line1="87" col1="22" line2="87" col2="30" start="8374" end="8382">gene_info</SYMBOL>
+                </expr>
+                <OP-LEFT-BRACKET line1="87" col1="31" line2="87" col2="31" start="8383" end="8383">[</OP-LEFT-BRACKET>
+                <expr line1="87" col1="32" line2="87" col2="40" start="8384" end="8392">
+                  <SYMBOL line1="87" col1="32" line2="87" col2="40" start="8384" end="8392">keep_gene</SYMBOL>
+                </expr>
+                <OP-COMMA line1="87" col1="41" line2="87" col2="41" start="8393" end="8393">,</OP-COMMA>
+                <OP-RIGHT-BRACKET line1="87" col1="42" line2="87" col2="42" start="8394" end="8394">]</OP-RIGHT-BRACKET>
+              </expr>
+            </expr>
+            <OP-RIGHT-BRACE line1="88" col1="5" line2="88" col2="5" start="8453" end="8453">}</OP-RIGHT-BRACE>
+          </expr>
+        </expr>
+        <COMMENT line1="90" col1="5" line2="90" col2="95" start="8645" end="8735"># Adding the cell data (only using as colnames if there is only 1 set - guaranteed unique).</COMMENT>
+        <expr line1="91" col1="5" line2="91" col2="47" start="8741" end="8783">
+          <expr line1="91" col1="5" line2="91" col2="13" start="8741" end="8749">
+            <SYMBOL line1="91" col1="5" line2="91" col2="13" start="8741" end="8749">cell_info</SYMBOL>
+          </expr>
+          <LEFT_ASSIGN line1="91" col1="15" line2="91" col2="16" start="8751" end="8752">&lt;-</LEFT_ASSIGN>
+          <expr line1="91" col1="18" line2="91" col2="47" start="8754" end="8783">
+            <expr line1="91" col1="18" line2="91" col2="24" start="8754" end="8760">
+              <SYMBOL_FUNCTION_CALL line1="91" col1="18" line2="91" col2="24" start="8754" end="8760">do.call</SYMBOL_FUNCTION_CALL>
+            </expr>
+            <OP-LEFT-PAREN line1="91" col1="25" line2="91" col2="25" start="8761" end="8761">(</OP-LEFT-PAREN>
+            <expr line1="91" col1="26" line2="91" col2="30" start="8762" end="8766">
+              <SYMBOL line1="91" col1="26" line2="91" col2="30" start="8762" end="8766">rbind</SYMBOL>
+            </expr>
+            <OP-COMMA line1="91" col1="31" line2="91" col2="31" start="8767" end="8767">,</OP-COMMA>
+            <expr line1="91" col1="33" line2="91" col2="46" start="8769" end="8782">
+              <SYMBOL line1="91" col1="33" line2="91" col2="46" start="8769" end="8782">cell_info_list</SYMBOL>
+            </expr>
+            <OP-RIGHT-PAREN line1="91" col1="47" line2="91" col2="47" start="8783" end="8783">)</OP-RIGHT-PAREN>
+          </expr>
+        </expr>
+        <expr line1="92" col1="5" line2="94" col2="5" start="8837" end="9029">
+          <IF line1="92" col1="5" line2="92" col2="6" start="8837" end="8838">if</IF>
+          <OP-LEFT-PAREN line1="92" col1="8" line2="92" col2="8" start="8840" end="8840">(</OP-LEFT-PAREN>
+          <expr line1="92" col1="9" line2="92" col2="19" start="8841" end="8851">
+            <expr line1="92" col1="9" line2="92" col2="13" start="8841" end="8845">
+              <SYMBOL line1="92" col1="9" line2="92" col2="13" start="8841" end="8845">nsets</SYMBOL>
+            </expr>
+            <EQ line1="92" col1="15" line2="92" col2="16" start="8847" end="8848">==</EQ>
+            <expr line1="92" col1="18" line2="92" col2="19" start="8850" end="8851">
+              <NUM_CONST line1="92" col1="18" line2="92" col2="19" start="8850" end="8851">1L</NUM_CONST>
+            </expr>
+          </expr>
+          <OP-RIGHT-PAREN line1="92" col1="20" line2="92" col2="20" start="8852" end="8852">)</OP-RIGHT-PAREN>
+          <expr line1="92" col1="22" line2="94" col2="5" start="8854" end="9029">
+            <OP-LEFT-BRACE line1="92" col1="22" line2="92" col2="22" start="8854" end="8854">{</OP-LEFT-BRACE>
+            <expr line1="93" col1="9" line2="93" col2="48" start="8937" end="8976">
+              <expr line1="93" col1="9" line2="93" col2="27" start="8937" end="8955">
+                <expr line1="93" col1="9" line2="93" col2="16" start="8937" end="8944">
+                  <SYMBOL_FUNCTION_CALL line1="93" col1="9" line2="93" col2="16" start="8937" end="8944">colnames</SYMBOL_FUNCTION_CALL>
+                </expr>
+                <OP-LEFT-PAREN line1="93" col1="17" line2="93" col2="17" start="8945" end="8945">(</OP-LEFT-PAREN>
+                <expr line1="93" col1="18" line2="93" col2="26" start="8946" end="8954">
+                  <SYMBOL line1="93" col1="18" line2="93" col2="26" start="8946" end="8954">full_data</SYMBOL>
+                </expr>
+                <OP-RIGHT-PAREN line1="93" col1="27" line2="93" col2="27" start="8955" end="8955">)</OP-RIGHT-PAREN>
+              </expr>
+              <LEFT_ASSIGN line1="93" col1="29" line2="93" col2="30" start="8957" end="8958">&lt;-</LEFT_ASSIGN>
+              <expr line1="93" col1="32" line2="93" col2="48" start="8960" end="8976">
+                <expr line1="93" col1="32" line2="93" col2="40" start="8960" end="8968">
+                  <SYMBOL line1="93" col1="32" line2="93" col2="40" start="8960" end="8968">cell_info</SYMBOL>
+                </expr>
+                <OP-DOLLAR line1="93" col1="41" line2="93" col2="41" start="8969" end="8969">$</OP-DOLLAR>
+                <SYMBOL line1="93" col1="42" line2="93" col2="48" start="8970" end="8976">barcode</SYMBOL>
+              </expr>
+            </expr>
+            <OP-RIGHT-BRACE line1="94" col1="5" line2="94" col2="5" start="9029" end="9029">}</OP-RIGHT-BRACE>
+          </expr>
+        </expr>
+        <expr line1="95" col1="5" line2="96" col2="45" start="9125" end="9261">
+          <expr line1="95" col1="5" line2="95" col2="24" start="9125" end="9144">
+            <SYMBOL_FUNCTION_CALL line1="95" col1="5" line2="95" col2="24" start="9125" end="9144">SingleCellExperiment</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="95" col1="25" line2="95" col2="25" start="9145" end="9145">(</OP-LEFT-PAREN>
+          <expr line1="95" col1="26" line2="95" col2="49" start="9146" end="9169">
+            <expr line1="95" col1="26" line2="95" col2="29" start="9146" end="9149">
+              <SYMBOL_FUNCTION_CALL line1="95" col1="26" line2="95" col2="29" start="9146" end="9149">list</SYMBOL_FUNCTION_CALL>
+            </expr>
+            <OP-LEFT-PAREN line1="95" col1="30" line2="95" col2="30" start="9150" end="9150">(</OP-LEFT-PAREN>
+            <SYMBOL_SUB line1="95" col1="31" line2="95" col2="36" start="9151" end="9156">counts</SYMBOL_SUB>
+            <EQ_SUB line1="95" col1="38" line2="95" col2="38" start="9158" end="9158">=</EQ_SUB>
+            <expr line1="95" col1="40" line2="95" col2="48" start="9160" end="9168">
+              <SYMBOL line1="95" col1="40" line2="95" col2="48" start="9160" end="9168">full_data</SYMBOL>
+            </expr>
+            <OP-RIGHT-PAREN line1="95" col1="49" line2="95" col2="49" start="9169" end="9169">)</OP-RIGHT-PAREN>
+          </expr>
+          <OP-COMMA line1="95" col1="50" line2="95" col2="50" start="9170" end="9170">,</OP-COMMA>
+          <SYMBOL_SUB line1="95" col1="52" line2="95" col2="58" start="9172" end="9178">rowData</SYMBOL_SUB>
+          <EQ_SUB line1="95" col1="60" line2="95" col2="60" start="9180" end="9180">=</EQ_SUB>
+          <expr line1="95" col1="62" line2="95" col2="70" start="9182" end="9190">
+            <SYMBOL line1="95" col1="62" line2="95" col2="70" start="9182" end="9190">gene_info</SYMBOL>
+          </expr>
+          <OP-COMMA line1="95" col1="71" line2="95" col2="71" start="9191" end="9191">,</OP-COMMA>
+          <SYMBOL_SUB line1="96" col1="26" line2="96" col2="32" start="9242" end="9248">colData</SYMBOL_SUB>
+          <EQ_SUB line1="96" col1="34" line2="96" col2="34" start="9250" end="9250">=</EQ_SUB>
+          <expr line1="96" col1="36" line2="96" col2="44" start="9252" end="9260">
+            <SYMBOL line1="96" col1="36" line2="96" col2="44" start="9252" end="9260">cell_info</SYMBOL>
+          </expr>
+          <OP-RIGHT-PAREN line1="96" col1="45" line2="96" col2="45" start="9261" end="9261">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="97" col1="1" line2="97" col2="1" start="9313" end="9313">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+  </expr>
+  <COMMENT line1="100" col1="1" line2="100" col2="25" start="9601" end="9625">#' @rdname read10xResults</COMMENT>
+  <COMMENT line1="101" col1="1" line2="101" col2="10" start="9697" end="9706">#' @export</COMMENT>
+  <expr line1="102" col1="1" line2="104" col2="1" start="9793" end="9985">
+    <expr line1="102" col1="1" line2="102" col2="14" start="9793" end="9806">
+      <SYMBOL line1="102" col1="1" line2="102" col2="14" start="9793" end="9806">read10XResults</SYMBOL>
+    </expr>
+    <LEFT_ASSIGN line1="102" col1="16" line2="102" col2="17" start="9808" end="9809">&lt;-</LEFT_ASSIGN>
+    <expr line1="102" col1="19" line2="104" col2="1" start="9811" end="9985">
+      <FUNCTION line1="102" col1="19" line2="102" col2="26" start="9811" end="9818">function</FUNCTION>
+      <OP-LEFT-PAREN line1="102" col1="27" line2="102" col2="27" start="9819" end="9819">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="102" col1="28" line2="102" col2="30" start="9820" end="9822">...</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="102" col1="31" line2="102" col2="31" start="9823" end="9823">)</OP-RIGHT-PAREN>
+      <expr line1="102" col1="33" line2="104" col2="1" start="9825" end="9985">
+        <OP-LEFT-BRACE line1="102" col1="33" line2="102" col2="33" start="9825" end="9825">{</OP-LEFT-BRACE>
+        <expr line1="103" col1="5" line2="103" col2="23" start="9893" end="9911">
+          <expr line1="103" col1="5" line2="103" col2="18" start="9893" end="9906">
+            <SYMBOL_FUNCTION_CALL line1="103" col1="5" line2="103" col2="18" start="9893" end="9906">read10xResults</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="103" col1="19" line2="103" col2="19" start="9907" end="9907">(</OP-LEFT-PAREN>
+          <expr line1="103" col1="20" line2="103" col2="22" start="9908" end="9910">
+            <SYMBOL line1="103" col1="20" line2="103" col2="22" start="9908" end="9910">...</SYMBOL>
+          </expr>
+          <OP-RIGHT-PAREN line1="103" col1="23" line2="103" col2="23" start="9911" end="9911">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="104" col1="1" line2="104" col2="1" start="9985" end="9985">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+  </expr>
+  <COMMENT line1="107" col1="1" line2="107" col2="28" start="10273" end="10300">#' Downsample a count matrix</COMMENT>
+  <COMMENT line1="108" col1="1" line2="108" col2="3" start="10369" end="10371">#' </COMMENT>
+  <COMMENT line1="109" col1="1" line2="109" col2="53" start="10465" end="10517">#' Downsample a count matrix to a desired proportion.</COMMENT>
+  <COMMENT line1="110" col1="1" line2="110" col2="3" start="10561" end="10563">#' </COMMENT>
+  <COMMENT line1="111" col1="1" line2="111" col2="28" start="10657" end="10684">#' @param x matrix of counts</COMMENT>
+  <COMMENT line1="112" col1="1" line2="112" col2="75" start="10753" end="10827">#' @param prop numeric scalar or vector of length \code{ncol(x)} in [0, 1] </COMMENT>
+  <COMMENT line1="113" col1="1" line2="113" col2="41" start="10849" end="10889">#' indicating the downsampling proportion</COMMENT>
+  <COMMENT line1="114" col1="1" line2="114" col2="3" start="10945" end="10947">#' </COMMENT>
+  <COMMENT line1="115" col1="1" line2="115" col2="78" start="11041" end="11118">#' @details Given multiple 10X batches of very different sequencing depths, it</COMMENT>
+  <COMMENT line1="116" col1="1" line2="116" col2="79" start="11137" end="11215">#' can be beneficial to downsample the deepest batches to match the coverage of</COMMENT>
+  <COMMENT line1="117" col1="1" line2="117" col2="78" start="11233" end="11310">#' the shallowest batches. This avoids differences in technical noise that can</COMMENT>
+  <COMMENT line1="118" col1="1" line2="118" col2="30" start="11329" end="11358">#' drive clustering by batch. </COMMENT>
+  <COMMENT line1="119" col1="1" line2="119" col2="3" start="11425" end="11427">#' </COMMENT>
+  <COMMENT line1="120" col1="1" line2="120" col2="78" start="11521" end="11598">#' Downsampling without replacement is performed on the counts in each cell to</COMMENT>
+  <COMMENT line1="121" col1="1" line2="121" col2="78" start="11617" end="11694">#' generate the output matrix. Each count in the returned matrix is guaranteed</COMMENT>
+  <COMMENT line1="122" col1="1" line2="122" col2="71" start="11713" end="11783">#' to be smaller than the original value in \code{x}. This provides an </COMMENT>
+  <COMMENT line1="123" col1="1" line2="123" col2="70" start="11809" end="11878">#' alternative to downsampling in the CellRanger \code{aggr} function.</COMMENT>
+  <COMMENT line1="124" col1="1" line2="124" col2="3" start="11905" end="11907">#' </COMMENT>
+  <COMMENT line1="125" col1="1" line2="125" col2="50" start="12001" end="12050">#' @return an integer matrix of downsampled counts</COMMENT>
+  <COMMENT line1="126" col1="1" line2="126" col2="3" start="12097" end="12099">#' </COMMENT>
+  <COMMENT line1="127" col1="1" line2="127" col2="10" start="12193" end="12202">#' @export</COMMENT>
+  <COMMENT line1="128" col1="1" line2="128" col2="13" start="12289" end="12301">#' @examples </COMMENT>
+  <COMMENT line1="129" col1="1" line2="129" col2="69" start="12385" end="12453">#' sce10x &lt;- read10xResults(system.file("extdata", package="scater"))</COMMENT>
+  <COMMENT line1="130" col1="1" line2="130" col2="62" start="12481" end="12542">#' downsampled &lt;- downsampleCounts(counts(sce10x), prop = 0.5)</COMMENT>
+  <COMMENT line1="131" col1="1" line2="131" col2="3" start="12577" end="12579">#' </COMMENT>
+  <expr line1="132" col1="1" line2="135" col2="1" start="12673" end="12961">
+    <expr line1="132" col1="1" line2="132" col2="16" start="12673" end="12688">
+      <SYMBOL line1="132" col1="1" line2="132" col2="16" start="12673" end="12688">downsampleCounts</SYMBOL>
+    </expr>
+    <LEFT_ASSIGN line1="132" col1="18" line2="132" col2="19" start="12690" end="12691">&lt;-</LEFT_ASSIGN>
+    <expr line1="132" col1="21" line2="135" col2="1" start="12693" end="12961">
+      <FUNCTION line1="132" col1="21" line2="132" col2="28" start="12693" end="12700">function</FUNCTION>
+      <OP-LEFT-PAREN line1="132" col1="29" line2="132" col2="29" start="12701" end="12701">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="132" col1="30" line2="132" col2="30" start="12702" end="12702">x</SYMBOL_FORMALS>
+      <OP-COMMA line1="132" col1="31" line2="132" col2="31" start="12703" end="12703">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="132" col1="33" line2="132" col2="36" start="12705" end="12708">prop</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="132" col1="37" line2="132" col2="37" start="12709" end="12709">)</OP-RIGHT-PAREN>
+      <expr line1="132" col1="39" line2="135" col2="1" start="12711" end="12961">
+        <OP-LEFT-BRACE line1="132" col1="39" line2="132" col2="39" start="12711" end="12711">{</OP-LEFT-BRACE>
+        <expr line1="133" col1="5" line2="133" col2="43" start="12773" end="12811">
+          <expr line1="133" col1="5" line2="133" col2="8" start="12773" end="12776">
+            <SYMBOL line1="133" col1="5" line2="133" col2="8" start="12773" end="12776">prop</SYMBOL>
+          </expr>
+          <LEFT_ASSIGN line1="133" col1="10" line2="133" col2="11" start="12778" end="12779">&lt;-</LEFT_ASSIGN>
+          <expr line1="133" col1="13" line2="133" col2="43" start="12781" end="12811">
+            <expr line1="133" col1="13" line2="133" col2="15" start="12781" end="12783">
+              <SYMBOL_FUNCTION_CALL line1="133" col1="13" line2="133" col2="15" start="12781" end="12783">rep</SYMBOL_FUNCTION_CALL>
+            </expr>
+            <OP-LEFT-PAREN line1="133" col1="16" line2="133" col2="16" start="12784" end="12784">(</OP-LEFT-PAREN>
+            <expr line1="133" col1="17" line2="133" col2="20" start="12785" end="12788">
+              <SYMBOL line1="133" col1="17" line2="133" col2="20" start="12785" end="12788">prop</SYMBOL>
+            </expr>
+            <OP-COMMA line1="133" col1="21" line2="133" col2="21" start="12789" end="12789">,</OP-COMMA>
+            <SYMBOL_SUB line1="133" col1="23" line2="133" col2="32" start="12791" end="12800">length.out</SYMBOL_SUB>
+            <EQ_SUB line1="133" col1="34" line2="133" col2="34" start="12802" end="12802">=</EQ_SUB>
+            <expr line1="133" col1="36" line2="133" col2="42" start="12804" end="12810">
+              <expr line1="133" col1="36" line2="133" col2="39" start="12804" end="12807">
+                <SYMBOL_FUNCTION_CALL line1="133" col1="36" line2="133" col2="39" start="12804" end="12807">ncol</SYMBOL_FUNCTION_CALL>
+              </expr>
+              <OP-LEFT-PAREN line1="133" col1="40" line2="133" col2="40" start="12808" end="12808">(</OP-LEFT-PAREN>
+              <expr line1="133" col1="41" line2="133" col2="41" start="12809" end="12809">
+                <SYMBOL line1="133" col1="41" line2="133" col2="41" start="12809" end="12809">x</SYMBOL>
+              </expr>
+              <OP-RIGHT-PAREN line1="133" col1="42" line2="133" col2="42" start="12810" end="12810">)</OP-RIGHT-PAREN>
+            </expr>
+            <OP-RIGHT-PAREN line1="133" col1="43" line2="133" col2="43" start="12811" end="12811">)</OP-RIGHT-PAREN>
+          </expr>
+        </expr>
+        <expr line1="134" col1="5" line2="134" col2="41" start="12869" end="12905">
+          <expr line1="134" col1="5" line2="134" col2="9" start="12869" end="12873">
+            <SYMBOL_FUNCTION_CALL line1="134" col1="5" line2="134" col2="9" start="12869" end="12873">.Call</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="134" col1="10" line2="134" col2="10" start="12874" end="12874">(</OP-LEFT-PAREN>
+          <expr line1="134" col1="11" line2="134" col2="31" start="12875" end="12895">
+            <SYMBOL line1="134" col1="11" line2="134" col2="31" start="12875" end="12895">cxx_downsample_matrix</SYMBOL>
+          </expr>
+          <OP-COMMA line1="134" col1="32" line2="134" col2="32" start="12896" end="12896">,</OP-COMMA>
+          <expr line1="134" col1="34" line2="134" col2="34" start="12898" end="12898">
+            <SYMBOL line1="134" col1="34" line2="134" col2="34" start="12898" end="12898">x</SYMBOL>
+          </expr>
+          <OP-COMMA line1="134" col1="35" line2="134" col2="35" start="12899" end="12899">,</OP-COMMA>
+          <expr line1="134" col1="37" line2="134" col2="40" start="12901" end="12904">
+            <SYMBOL line1="134" col1="37" line2="134" col2="40" start="12901" end="12904">prop</SYMBOL>
+          </expr>
+          <OP-RIGHT-PAREN line1="134" col1="41" line2="134" col2="41" start="12905" end="12905">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="135" col1="1" line2="135" col2="1" start="12961" end="12961">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+  </expr>
+</exprlist>
+

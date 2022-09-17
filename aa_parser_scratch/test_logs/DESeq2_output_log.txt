@@ -1,0 +1,86 @@
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  deseq2_release_3_14 deseq2_master
+
+{
+    "package": "DESeq2",
+    "release_versions": "deseq2_release_3_14 deseq2_master",
+    "old_release_number": 0,
+    "new_release_number": 1,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 1,
+    "parameter_additions": 0,
+    "parameter_renames": 1,
+    "parameter_default_changes": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "vst",
+    "representation": "vst",
+    "parameters": "function ( q , alpha ) ( 2 * asinh ( sqrt ( alpha * q ) ) - log ( alpha ) - log ( 4 ) ) / log ( 2 )",
+    "filename": "helper.txt"
+  },
+  "new_function": {
+    "name": "vst",
+    "representation": "vst",
+    "parameters": "function ( object , blind = TRUE , nsub = 1000 , fitType = \"parametric\" )",
+    "filename": "vst.txt"
+  }
+}
+
+
+
+##########
+Added Parameters
+##########
+
+
+
+##########
+Renamed Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "vst",
+    "representation": "vst",
+    "parameters": "function ( object , blind = TRUE , nsub = 1000 , fitType = \"parametric\" )",
+    "filename": "vst.txt"
+  },
+  "new_function": {
+    "name": "vst",
+    "representation": "vst",
+    "parameters": "function ( q , alpha ) ( 2 * asinh ( sqrt ( alpha * q ) ) - log ( alpha ) - log ( 4 ) ) / log ( 2 )",
+    "filename": "helper.txt"
+  }
+}
+
+
+
+##########
+Parameter Default Value Changes
+##########
+

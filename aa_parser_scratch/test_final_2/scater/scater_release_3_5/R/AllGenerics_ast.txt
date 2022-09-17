@@ -1,0 +1,1973 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<exprlist>
+  <COMMENT line1="1" col1="1" line2="1" col2="32" start="89" end="120">### defining all generic methods</COMMENT>
+  <COMMENT line1="3" col1="1" line2="3" col2="20" start="265" end="284">#' @name cellNames&lt;-</COMMENT>
+  <COMMENT line1="4" col1="1" line2="4" col2="10" start="353" end="362">#' @export</COMMENT>
+  <COMMENT line1="5" col1="1" line2="5" col2="19" start="441" end="459">#' @docType methods</COMMENT>
+  <COMMENT line1="6" col1="1" line2="6" col2="20" start="529" end="548">#' @rdname cellNames</COMMENT>
+  <expr line1="7" col1="1" line2="7" col2="83" start="617" end="699">
+    <expr line1="7" col1="1" line2="7" col2="10" start="617" end="626">
+      <SYMBOL_FUNCTION_CALL line1="7" col1="1" line2="7" col2="10" start="617" end="626">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="7" col1="11" line2="7" col2="11" start="627" end="627">(</OP-LEFT-PAREN>
+    <expr line1="7" col1="12" line2="7" col2="24" start="628" end="640">
+      <STR_CONST line1="7" col1="12" line2="7" col2="24" start="628" end="640">"cellNames&lt;-"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="7" col1="25" line2="7" col2="25" start="641" end="641">,</OP-COMMA>
+    <expr line1="7" col1="27" line2="7" col2="82" start="643" end="698">
+      <FUNCTION line1="7" col1="27" line2="7" col2="34" start="643" end="650">function</FUNCTION>
+      <OP-LEFT-PAREN line1="7" col1="35" line2="7" col2="35" start="651" end="651">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="7" col1="36" line2="7" col2="41" start="652" end="657">object</SYMBOL_FORMALS>
+      <OP-COMMA line1="7" col1="42" line2="7" col2="42" start="658" end="658">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="7" col1="44" line2="7" col2="48" start="660" end="664">value</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="7" col1="49" line2="7" col2="49" start="665" end="665">)</OP-RIGHT-PAREN>
+      <expr line1="7" col1="51" line2="7" col2="82" start="667" end="698">
+        <OP-LEFT-BRACE line1="7" col1="51" line2="7" col2="51" start="667" end="667">{</OP-LEFT-BRACE>
+        <expr line1="7" col1="52" line2="7" col2="81" start="668" end="697">
+          <expr line1="7" col1="52" line2="7" col2="66" start="668" end="682">
+            <SYMBOL_FUNCTION_CALL line1="7" col1="52" line2="7" col2="66" start="668" end="682">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="7" col1="67" line2="7" col2="67" start="683" end="683">(</OP-LEFT-PAREN>
+          <expr line1="7" col1="68" line2="7" col2="80" start="684" end="696">
+            <STR_CONST line1="7" col1="68" line2="7" col2="80" start="684" end="696">"cellNames&lt;-"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="7" col1="81" line2="7" col2="81" start="697" end="697">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="7" col1="82" line2="7" col2="82" start="698" end="698">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="7" col1="83" line2="7" col2="83" start="699" end="699">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="9" col1="1" line2="9" col2="18" start="793" end="810">#' @name get_exprs</COMMENT>
+  <COMMENT line1="10" col1="1" line2="10" col2="10" start="881" end="890">#' @export</COMMENT>
+  <COMMENT line1="11" col1="1" line2="11" col2="19" start="969" end="987">#' @docType methods</COMMENT>
+  <COMMENT line1="12" col1="1" line2="12" col2="40" start="1057" end="1096">#' @return a matrix of expression values</COMMENT>
+  <COMMENT line1="13" col1="1" line2="13" col2="20" start="1145" end="1164">#' @rdname get_exprs</COMMENT>
+  <expr line1="14" col1="1" line2="15" col2="34" start="1233" end="1354">
+    <expr line1="14" col1="1" line2="14" col2="10" start="1233" end="1242">
+      <SYMBOL_FUNCTION_CALL line1="14" col1="1" line2="14" col2="10" start="1233" end="1242">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="14" col1="11" line2="14" col2="11" start="1243" end="1243">(</OP-LEFT-PAREN>
+    <expr line1="14" col1="12" line2="14" col2="22" start="1244" end="1254">
+      <STR_CONST line1="14" col1="12" line2="14" col2="22" start="1244" end="1254">"get_exprs"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="14" col1="23" line2="14" col2="23" start="1255" end="1255">,</OP-COMMA>
+    <expr line1="14" col1="25" line2="15" col2="33" start="1257" end="1353">
+      <FUNCTION line1="14" col1="25" line2="14" col2="32" start="1257" end="1264">function</FUNCTION>
+      <OP-LEFT-PAREN line1="14" col1="33" line2="14" col2="33" start="1265" end="1265">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="14" col1="34" line2="14" col2="39" start="1266" end="1271">object</SYMBOL_FORMALS>
+      <OP-COMMA line1="14" col1="40" line2="14" col2="40" start="1272" end="1272">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="14" col1="42" line2="14" col2="53" start="1274" end="1285">exprs_values</SYMBOL_FORMALS>
+      <OP-COMMA line1="14" col1="54" line2="14" col2="54" start="1286" end="1286">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="14" col1="56" line2="14" col2="58" start="1288" end="1290">...</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="14" col1="59" line2="14" col2="59" start="1291" end="1291">)</OP-RIGHT-PAREN>
+      <expr line1="14" col1="61" line2="15" col2="33" start="1293" end="1353">
+        <OP-LEFT-BRACE line1="14" col1="61" line2="14" col2="61" start="1293" end="1293">{</OP-LEFT-BRACE>
+        <expr line1="15" col1="5" line2="15" col2="32" start="1325" end="1352">
+          <expr line1="15" col1="5" line2="15" col2="19" start="1325" end="1339">
+            <SYMBOL_FUNCTION_CALL line1="15" col1="5" line2="15" col2="19" start="1325" end="1339">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="15" col1="20" line2="15" col2="20" start="1340" end="1340">(</OP-LEFT-PAREN>
+          <expr line1="15" col1="21" line2="15" col2="31" start="1341" end="1351">
+            <STR_CONST line1="15" col1="21" line2="15" col2="31" start="1341" end="1351">"get_exprs"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="15" col1="32" line2="15" col2="32" start="1352" end="1352">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="15" col1="33" line2="15" col2="33" start="1353" end="1353">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="15" col1="34" line2="15" col2="34" start="1354" end="1354">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="17" col1="1" line2="17" col2="20" start="1497" end="1516">#' @name set_exprs&lt;-</COMMENT>
+  <COMMENT line1="18" col1="1" line2="18" col2="10" start="1585" end="1594">#' @export</COMMENT>
+  <COMMENT line1="19" col1="1" line2="19" col2="19" start="1673" end="1691">#' @docType methods</COMMENT>
+  <COMMENT line1="20" col1="1" line2="20" col2="62" start="1761" end="1822">#' @return NULL, but adds expression data to the SCESet object</COMMENT>
+  <COMMENT line1="21" col1="1" line2="21" col2="20" start="1849" end="1868">#' @rdname set_exprs</COMMENT>
+  <expr line1="22" col1="1" line2="23" col2="36" start="1937" end="2060">
+    <expr line1="22" col1="1" line2="22" col2="10" start="1937" end="1946">
+      <SYMBOL_FUNCTION_CALL line1="22" col1="1" line2="22" col2="10" start="1937" end="1946">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="22" col1="11" line2="22" col2="11" start="1947" end="1947">(</OP-LEFT-PAREN>
+    <expr line1="22" col1="12" line2="22" col2="24" start="1948" end="1960">
+      <STR_CONST line1="22" col1="12" line2="22" col2="24" start="1948" end="1960">"set_exprs&lt;-"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="22" col1="25" line2="22" col2="25" start="1961" end="1961">,</OP-COMMA>
+    <expr line1="22" col1="27" line2="23" col2="35" start="1963" end="2059">
+      <FUNCTION line1="22" col1="27" line2="22" col2="34" start="1963" end="1970">function</FUNCTION>
+      <OP-LEFT-PAREN line1="22" col1="35" line2="22" col2="35" start="1971" end="1971">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="22" col1="36" line2="22" col2="41" start="1972" end="1977">object</SYMBOL_FORMALS>
+      <OP-COMMA line1="22" col1="42" line2="22" col2="42" start="1978" end="1978">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="22" col1="44" line2="22" col2="47" start="1980" end="1983">name</SYMBOL_FORMALS>
+      <OP-COMMA line1="22" col1="48" line2="22" col2="48" start="1984" end="1984">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="22" col1="50" line2="22" col2="54" start="1986" end="1990">value</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="22" col1="55" line2="22" col2="55" start="1991" end="1991">)</OP-RIGHT-PAREN>
+      <expr line1="22" col1="57" line2="23" col2="35" start="1993" end="2059">
+        <OP-LEFT-BRACE line1="22" col1="57" line2="22" col2="57" start="1993" end="1993">{</OP-LEFT-BRACE>
+        <expr line1="23" col1="5" line2="23" col2="34" start="2029" end="2058">
+          <expr line1="23" col1="5" line2="23" col2="19" start="2029" end="2043">
+            <SYMBOL_FUNCTION_CALL line1="23" col1="5" line2="23" col2="19" start="2029" end="2043">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="23" col1="20" line2="23" col2="20" start="2044" end="2044">(</OP-LEFT-PAREN>
+          <expr line1="23" col1="21" line2="23" col2="33" start="2045" end="2057">
+            <STR_CONST line1="23" col1="21" line2="23" col2="33" start="2045" end="2057">"set_exprs&lt;-"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="23" col1="34" line2="23" col2="34" start="2058" end="2058">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="23" col1="35" line2="23" col2="35" start="2059" end="2059">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="23" col1="36" line2="23" col2="36" start="2060" end="2060">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="25" col1="1" line2="25" col2="17" start="2201" end="2217">#' @name is_exprs</COMMENT>
+  <COMMENT line1="26" col1="1" line2="26" col2="10" start="2289" end="2298">#' @export</COMMENT>
+  <COMMENT line1="27" col1="1" line2="27" col2="19" start="2377" end="2395">#' @docType methods</COMMENT>
+  <COMMENT line1="28" col1="1" line2="28" col2="77" start="2465" end="2541">#' @return a logical matrix indicating if observations are "expressed" or not</COMMENT>
+  <COMMENT line1="29" col1="1" line2="29" col2="19" start="2553" end="2571">#' @rdname is_exprs</COMMENT>
+  <expr line1="30" col1="1" line2="30" col2="70" start="2641" end="2710">
+    <expr line1="30" col1="1" line2="30" col2="10" start="2641" end="2650">
+      <SYMBOL_FUNCTION_CALL line1="30" col1="1" line2="30" col2="10" start="2641" end="2650">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="30" col1="11" line2="30" col2="11" start="2651" end="2651">(</OP-LEFT-PAREN>
+    <expr line1="30" col1="12" line2="30" col2="21" start="2652" end="2661">
+      <STR_CONST line1="30" col1="12" line2="30" col2="21" start="2652" end="2661">"is_exprs"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="30" col1="22" line2="30" col2="22" start="2662" end="2662">,</OP-COMMA>
+    <expr line1="30" col1="24" line2="30" col2="69" start="2664" end="2709">
+      <FUNCTION line1="30" col1="24" line2="30" col2="31" start="2664" end="2671">function</FUNCTION>
+      <OP-LEFT-PAREN line1="30" col1="32" line2="30" col2="32" start="2672" end="2672">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="30" col1="33" line2="30" col2="38" start="2673" end="2678">object</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="30" col1="39" line2="30" col2="39" start="2679" end="2679">)</OP-RIGHT-PAREN>
+      <expr line1="30" col1="41" line2="30" col2="69" start="2681" end="2709">
+        <OP-LEFT-BRACE line1="30" col1="41" line2="30" col2="41" start="2681" end="2681">{</OP-LEFT-BRACE>
+        <expr line1="30" col1="42" line2="30" col2="68" start="2682" end="2708">
+          <expr line1="30" col1="42" line2="30" col2="56" start="2682" end="2696">
+            <SYMBOL_FUNCTION_CALL line1="30" col1="42" line2="30" col2="56" start="2682" end="2696">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="30" col1="57" line2="30" col2="57" start="2697" end="2697">(</OP-LEFT-PAREN>
+          <expr line1="30" col1="58" line2="30" col2="67" start="2698" end="2707">
+            <STR_CONST line1="30" col1="58" line2="30" col2="67" start="2698" end="2707">"is_exprs"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="30" col1="68" line2="30" col2="68" start="2708" end="2708">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="30" col1="69" line2="30" col2="69" start="2709" end="2709">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="30" col1="70" line2="30" col2="70" start="2710" end="2710">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="32" col1="1" line2="32" col2="19" start="2817" end="2835">#' @name is_exprs&lt;-</COMMENT>
+  <COMMENT line1="33" col1="1" line2="33" col2="10" start="2905" end="2914">#' @export</COMMENT>
+  <COMMENT line1="34" col1="1" line2="34" col2="19" start="2993" end="3011">#' @docType methods</COMMENT>
+  <COMMENT line1="35" col1="1" line2="35" col2="19" start="3081" end="3099">#' @rdname is_exprs</COMMENT>
+  <expr line1="36" col1="1" line2="37" col2="35" start="3169" end="3291">
+    <expr line1="36" col1="1" line2="36" col2="10" start="3169" end="3178">
+      <SYMBOL_FUNCTION_CALL line1="36" col1="1" line2="36" col2="10" start="3169" end="3178">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="36" col1="11" line2="36" col2="11" start="3179" end="3179">(</OP-LEFT-PAREN>
+    <expr line1="36" col1="12" line2="36" col2="23" start="3180" end="3191">
+      <STR_CONST line1="36" col1="12" line2="36" col2="23" start="3180" end="3191">"is_exprs&lt;-"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="36" col1="24" line2="36" col2="24" start="3192" end="3192">,</OP-COMMA>
+    <expr line1="36" col1="26" line2="37" col2="34" start="3194" end="3290">
+      <FUNCTION line1="36" col1="26" line2="36" col2="33" start="3194" end="3201">function</FUNCTION>
+      <OP-LEFT-PAREN line1="36" col1="34" line2="36" col2="34" start="3202" end="3202">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="36" col1="35" line2="36" col2="40" start="3203" end="3208">object</SYMBOL_FORMALS>
+      <OP-COMMA line1="36" col1="41" line2="36" col2="41" start="3209" end="3209">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="36" col1="43" line2="36" col2="47" start="3211" end="3215">value</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="36" col1="48" line2="36" col2="48" start="3216" end="3216">)</OP-RIGHT-PAREN>
+      <expr line1="36" col1="50" line2="37" col2="34" start="3218" end="3290">
+        <OP-LEFT-BRACE line1="36" col1="50" line2="36" col2="50" start="3218" end="3218">{</OP-LEFT-BRACE>
+        <expr line1="37" col1="5" line2="37" col2="33" start="3261" end="3289">
+          <expr line1="37" col1="5" line2="37" col2="19" start="3261" end="3275">
+            <SYMBOL_FUNCTION_CALL line1="37" col1="5" line2="37" col2="19" start="3261" end="3275">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="37" col1="20" line2="37" col2="20" start="3276" end="3276">(</OP-LEFT-PAREN>
+          <expr line1="37" col1="21" line2="37" col2="32" start="3277" end="3288">
+            <STR_CONST line1="37" col1="21" line2="37" col2="32" start="3277" end="3288">"is_exprs&lt;-"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="37" col1="33" line2="37" col2="33" start="3289" end="3289">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="37" col1="34" line2="37" col2="34" start="3290" end="3290">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="37" col1="35" line2="37" col2="35" start="3291" end="3291">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="40" col1="1" line2="40" col2="19" start="3521" end="3539">#' @name norm_exprs</COMMENT>
+  <COMMENT line1="41" col1="1" line2="41" col2="10" start="3609" end="3618">#' @export</COMMENT>
+  <COMMENT line1="42" col1="1" line2="42" col2="19" start="3697" end="3715">#' @docType methods</COMMENT>
+  <COMMENT line1="43" col1="1" line2="43" col2="49" start="3785" end="3833">#' @return a matrix of normalised expression data</COMMENT>
+  <COMMENT line1="44" col1="1" line2="44" col2="21" start="3873" end="3893">#' @rdname norm_exprs</COMMENT>
+  <expr line1="45" col1="1" line2="45" col2="74" start="3961" end="4034">
+    <expr line1="45" col1="1" line2="45" col2="10" start="3961" end="3970">
+      <SYMBOL_FUNCTION_CALL line1="45" col1="1" line2="45" col2="10" start="3961" end="3970">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="45" col1="11" line2="45" col2="11" start="3971" end="3971">(</OP-LEFT-PAREN>
+    <expr line1="45" col1="12" line2="45" col2="23" start="3972" end="3983">
+      <STR_CONST line1="45" col1="12" line2="45" col2="23" start="3972" end="3983">"norm_exprs"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="45" col1="24" line2="45" col2="24" start="3984" end="3984">,</OP-COMMA>
+    <expr line1="45" col1="26" line2="45" col2="73" start="3986" end="4033">
+      <FUNCTION line1="45" col1="26" line2="45" col2="33" start="3986" end="3993">function</FUNCTION>
+      <OP-LEFT-PAREN line1="45" col1="34" line2="45" col2="34" start="3994" end="3994">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="45" col1="35" line2="45" col2="40" start="3995" end="4000">object</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="45" col1="41" line2="45" col2="41" start="4001" end="4001">)</OP-RIGHT-PAREN>
+      <expr line1="45" col1="43" line2="45" col2="73" start="4003" end="4033">
+        <OP-LEFT-BRACE line1="45" col1="43" line2="45" col2="43" start="4003" end="4003">{</OP-LEFT-BRACE>
+        <expr line1="45" col1="44" line2="45" col2="72" start="4004" end="4032">
+          <expr line1="45" col1="44" line2="45" col2="58" start="4004" end="4018">
+            <SYMBOL_FUNCTION_CALL line1="45" col1="44" line2="45" col2="58" start="4004" end="4018">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="45" col1="59" line2="45" col2="59" start="4019" end="4019">(</OP-LEFT-PAREN>
+          <expr line1="45" col1="60" line2="45" col2="71" start="4020" end="4031">
+            <STR_CONST line1="45" col1="60" line2="45" col2="71" start="4020" end="4031">"norm_exprs"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="45" col1="72" line2="45" col2="72" start="4032" end="4032">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="45" col1="73" line2="45" col2="73" start="4033" end="4033">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="45" col1="74" line2="45" col2="74" start="4034" end="4034">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="47" col1="1" line2="47" col2="21" start="4137" end="4157">#' @name norm_exprs&lt;-</COMMENT>
+  <COMMENT line1="48" col1="1" line2="48" col2="10" start="4225" end="4234">#' @export</COMMENT>
+  <COMMENT line1="49" col1="1" line2="49" col2="19" start="4313" end="4331">#' @docType methods</COMMENT>
+  <COMMENT line1="50" col1="1" line2="50" col2="21" start="4401" end="4421">#' @rdname norm_exprs</COMMENT>
+  <expr line1="51" col1="1" line2="51" col2="85" start="4489" end="4573">
+    <expr line1="51" col1="1" line2="51" col2="10" start="4489" end="4498">
+      <SYMBOL_FUNCTION_CALL line1="51" col1="1" line2="51" col2="10" start="4489" end="4498">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="51" col1="11" line2="51" col2="11" start="4499" end="4499">(</OP-LEFT-PAREN>
+    <expr line1="51" col1="12" line2="51" col2="25" start="4500" end="4513">
+      <STR_CONST line1="51" col1="12" line2="51" col2="25" start="4500" end="4513">"norm_exprs&lt;-"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="51" col1="26" line2="51" col2="26" start="4514" end="4514">,</OP-COMMA>
+    <expr line1="51" col1="28" line2="51" col2="84" start="4516" end="4572">
+      <FUNCTION line1="51" col1="28" line2="51" col2="35" start="4516" end="4523">function</FUNCTION>
+      <OP-LEFT-PAREN line1="51" col1="36" line2="51" col2="36" start="4524" end="4524">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="51" col1="37" line2="51" col2="42" start="4525" end="4530">object</SYMBOL_FORMALS>
+      <OP-COMMA line1="51" col1="43" line2="51" col2="43" start="4531" end="4531">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="51" col1="45" line2="51" col2="49" start="4533" end="4537">value</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="51" col1="50" line2="51" col2="50" start="4538" end="4538">)</OP-RIGHT-PAREN>
+      <expr line1="51" col1="52" line2="51" col2="84" start="4540" end="4572">
+        <OP-LEFT-BRACE line1="51" col1="52" line2="51" col2="52" start="4540" end="4540">{</OP-LEFT-BRACE>
+        <expr line1="51" col1="53" line2="51" col2="83" start="4541" end="4571">
+          <expr line1="51" col1="53" line2="51" col2="67" start="4541" end="4555">
+            <SYMBOL_FUNCTION_CALL line1="51" col1="53" line2="51" col2="67" start="4541" end="4555">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="51" col1="68" line2="51" col2="68" start="4556" end="4556">(</OP-LEFT-PAREN>
+          <expr line1="51" col1="69" line2="51" col2="82" start="4557" end="4570">
+            <STR_CONST line1="51" col1="69" line2="51" col2="82" start="4557" end="4570">"norm_exprs&lt;-"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="51" col1="83" line2="51" col2="83" start="4571" end="4571">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="51" col1="84" line2="51" col2="84" start="4572" end="4572">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="51" col1="85" line2="51" col2="85" start="4573" end="4573">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="53" col1="1" line2="53" col2="20" start="4665" end="4684">#' @name stand_exprs</COMMENT>
+  <COMMENT line1="54" col1="1" line2="54" col2="10" start="4753" end="4762">#' @export</COMMENT>
+  <COMMENT line1="55" col1="1" line2="55" col2="19" start="4841" end="4859">#' @docType methods</COMMENT>
+  <COMMENT line1="56" col1="1" line2="56" col2="52" start="4929" end="4980">#' @return a matrix of standardised expressiond data</COMMENT>
+  <COMMENT line1="57" col1="1" line2="57" col2="22" start="5017" end="5038">#' @rdname stand_exprs</COMMENT>
+  <expr line1="58" col1="1" line2="58" col2="76" start="5105" end="5180">
+    <expr line1="58" col1="1" line2="58" col2="10" start="5105" end="5114">
+      <SYMBOL_FUNCTION_CALL line1="58" col1="1" line2="58" col2="10" start="5105" end="5114">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="58" col1="11" line2="58" col2="11" start="5115" end="5115">(</OP-LEFT-PAREN>
+    <expr line1="58" col1="12" line2="58" col2="24" start="5116" end="5128">
+      <STR_CONST line1="58" col1="12" line2="58" col2="24" start="5116" end="5128">"stand_exprs"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="58" col1="25" line2="58" col2="25" start="5129" end="5129">,</OP-COMMA>
+    <expr line1="58" col1="27" line2="58" col2="75" start="5131" end="5179">
+      <FUNCTION line1="58" col1="27" line2="58" col2="34" start="5131" end="5138">function</FUNCTION>
+      <OP-LEFT-PAREN line1="58" col1="35" line2="58" col2="35" start="5139" end="5139">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="58" col1="36" line2="58" col2="41" start="5140" end="5145">object</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="58" col1="42" line2="58" col2="42" start="5146" end="5146">)</OP-RIGHT-PAREN>
+      <expr line1="58" col1="44" line2="58" col2="75" start="5148" end="5179">
+        <OP-LEFT-BRACE line1="58" col1="44" line2="58" col2="44" start="5148" end="5148">{</OP-LEFT-BRACE>
+        <expr line1="58" col1="45" line2="58" col2="74" start="5149" end="5178">
+          <expr line1="58" col1="45" line2="58" col2="59" start="5149" end="5163">
+            <SYMBOL_FUNCTION_CALL line1="58" col1="45" line2="58" col2="59" start="5149" end="5163">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="58" col1="60" line2="58" col2="60" start="5164" end="5164">(</OP-LEFT-PAREN>
+          <expr line1="58" col1="61" line2="58" col2="73" start="5165" end="5177">
+            <STR_CONST line1="58" col1="61" line2="58" col2="73" start="5165" end="5177">"stand_exprs"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="58" col1="74" line2="58" col2="74" start="5178" end="5178">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="58" col1="75" line2="58" col2="75" start="5179" end="5179">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="58" col1="76" line2="58" col2="76" start="5180" end="5180">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="60" col1="1" line2="60" col2="22" start="5281" end="5302">#' @name stand_exprs&lt;-</COMMENT>
+  <COMMENT line1="61" col1="1" line2="61" col2="10" start="5369" end="5378">#' @export</COMMENT>
+  <COMMENT line1="62" col1="1" line2="62" col2="19" start="5457" end="5475">#' @docType methods</COMMENT>
+  <COMMENT line1="63" col1="1" line2="63" col2="22" start="5545" end="5566">#' @rdname stand_exprs</COMMENT>
+  <expr line1="64" col1="1" line2="64" col2="87" start="5633" end="5719">
+    <expr line1="64" col1="1" line2="64" col2="10" start="5633" end="5642">
+      <SYMBOL_FUNCTION_CALL line1="64" col1="1" line2="64" col2="10" start="5633" end="5642">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="64" col1="11" line2="64" col2="11" start="5643" end="5643">(</OP-LEFT-PAREN>
+    <expr line1="64" col1="12" line2="64" col2="26" start="5644" end="5658">
+      <STR_CONST line1="64" col1="12" line2="64" col2="26" start="5644" end="5658">"stand_exprs&lt;-"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="64" col1="27" line2="64" col2="27" start="5659" end="5659">,</OP-COMMA>
+    <expr line1="64" col1="29" line2="64" col2="86" start="5661" end="5718">
+      <FUNCTION line1="64" col1="29" line2="64" col2="36" start="5661" end="5668">function</FUNCTION>
+      <OP-LEFT-PAREN line1="64" col1="37" line2="64" col2="37" start="5669" end="5669">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="64" col1="38" line2="64" col2="43" start="5670" end="5675">object</SYMBOL_FORMALS>
+      <OP-COMMA line1="64" col1="44" line2="64" col2="44" start="5676" end="5676">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="64" col1="46" line2="64" col2="50" start="5678" end="5682">value</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="64" col1="51" line2="64" col2="51" start="5683" end="5683">)</OP-RIGHT-PAREN>
+      <expr line1="64" col1="53" line2="64" col2="86" start="5685" end="5718">
+        <OP-LEFT-BRACE line1="64" col1="53" line2="64" col2="53" start="5685" end="5685">{</OP-LEFT-BRACE>
+        <expr line1="64" col1="54" line2="64" col2="85" start="5686" end="5717">
+          <expr line1="64" col1="54" line2="64" col2="68" start="5686" end="5700">
+            <SYMBOL_FUNCTION_CALL line1="64" col1="54" line2="64" col2="68" start="5686" end="5700">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="64" col1="69" line2="64" col2="69" start="5701" end="5701">(</OP-LEFT-PAREN>
+          <expr line1="64" col1="70" line2="64" col2="84" start="5702" end="5716">
+            <STR_CONST line1="64" col1="70" line2="64" col2="84" start="5702" end="5716">"stand_exprs&lt;-"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="64" col1="85" line2="64" col2="85" start="5717" end="5717">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="64" col1="86" line2="64" col2="86" start="5718" end="5718">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="64" col1="87" line2="64" col2="87" start="5719" end="5719">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="67" col1="1" line2="67" col2="12" start="5897" end="5908">#' @name tpm</COMMENT>
+  <COMMENT line1="68" col1="1" line2="68" col2="10" start="5985" end="5994">#' @export</COMMENT>
+  <COMMENT line1="69" col1="1" line2="69" col2="19" start="6073" end="6091">#' @docType methods</COMMENT>
+  <COMMENT line1="70" col1="1" line2="70" col2="51" start="6161" end="6211">#' @return a matrix of transcripts-per-million data</COMMENT>
+  <COMMENT line1="71" col1="1" line2="71" col2="14" start="6249" end="6262">#' @rdname tpm</COMMENT>
+  <expr line1="72" col1="1" line2="72" col2="60" start="6337" end="6396">
+    <expr line1="72" col1="1" line2="72" col2="10" start="6337" end="6346">
+      <SYMBOL_FUNCTION_CALL line1="72" col1="1" line2="72" col2="10" start="6337" end="6346">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="72" col1="11" line2="72" col2="11" start="6347" end="6347">(</OP-LEFT-PAREN>
+    <expr line1="72" col1="12" line2="72" col2="16" start="6348" end="6352">
+      <STR_CONST line1="72" col1="12" line2="72" col2="16" start="6348" end="6352">"tpm"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="72" col1="17" line2="72" col2="17" start="6353" end="6353">,</OP-COMMA>
+    <expr line1="72" col1="19" line2="72" col2="59" start="6355" end="6395">
+      <FUNCTION line1="72" col1="19" line2="72" col2="26" start="6355" end="6362">function</FUNCTION>
+      <OP-LEFT-PAREN line1="72" col1="27" line2="72" col2="27" start="6363" end="6363">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="72" col1="28" line2="72" col2="33" start="6364" end="6369">object</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="72" col1="34" line2="72" col2="34" start="6370" end="6370">)</OP-RIGHT-PAREN>
+      <expr line1="72" col1="36" line2="72" col2="59" start="6372" end="6395">
+        <OP-LEFT-BRACE line1="72" col1="36" line2="72" col2="36" start="6372" end="6372">{</OP-LEFT-BRACE>
+        <expr line1="72" col1="37" line2="72" col2="58" start="6373" end="6394">
+          <expr line1="72" col1="37" line2="72" col2="51" start="6373" end="6387">
+            <SYMBOL_FUNCTION_CALL line1="72" col1="37" line2="72" col2="51" start="6373" end="6387">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="72" col1="52" line2="72" col2="52" start="6388" end="6388">(</OP-LEFT-PAREN>
+          <expr line1="72" col1="53" line2="72" col2="57" start="6389" end="6393">
+            <STR_CONST line1="72" col1="53" line2="72" col2="57" start="6389" end="6393">"tpm"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="72" col1="58" line2="72" col2="58" start="6394" end="6394">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="72" col1="59" line2="72" col2="59" start="6395" end="6395">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="72" col1="60" line2="72" col2="60" start="6396" end="6396">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="74" col1="1" line2="74" col2="14" start="6513" end="6526">#' @name tpm&lt;-</COMMENT>
+  <COMMENT line1="75" col1="1" line2="75" col2="10" start="6601" end="6610">#' @export</COMMENT>
+  <COMMENT line1="76" col1="1" line2="76" col2="19" start="6689" end="6707">#' @docType methods</COMMENT>
+  <COMMENT line1="77" col1="1" line2="77" col2="14" start="6777" end="6790">#' @rdname tpm</COMMENT>
+  <expr line1="78" col1="1" line2="78" col2="71" start="6865" end="6935">
+    <expr line1="78" col1="1" line2="78" col2="10" start="6865" end="6874">
+      <SYMBOL_FUNCTION_CALL line1="78" col1="1" line2="78" col2="10" start="6865" end="6874">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="78" col1="11" line2="78" col2="11" start="6875" end="6875">(</OP-LEFT-PAREN>
+    <expr line1="78" col1="12" line2="78" col2="18" start="6876" end="6882">
+      <STR_CONST line1="78" col1="12" line2="78" col2="18" start="6876" end="6882">"tpm&lt;-"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="78" col1="19" line2="78" col2="19" start="6883" end="6883">,</OP-COMMA>
+    <expr line1="78" col1="21" line2="78" col2="70" start="6885" end="6934">
+      <FUNCTION line1="78" col1="21" line2="78" col2="28" start="6885" end="6892">function</FUNCTION>
+      <OP-LEFT-PAREN line1="78" col1="29" line2="78" col2="29" start="6893" end="6893">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="78" col1="30" line2="78" col2="35" start="6894" end="6899">object</SYMBOL_FORMALS>
+      <OP-COMMA line1="78" col1="36" line2="78" col2="36" start="6900" end="6900">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="78" col1="38" line2="78" col2="42" start="6902" end="6906">value</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="78" col1="43" line2="78" col2="43" start="6907" end="6907">)</OP-RIGHT-PAREN>
+      <expr line1="78" col1="45" line2="78" col2="70" start="6909" end="6934">
+        <OP-LEFT-BRACE line1="78" col1="45" line2="78" col2="45" start="6909" end="6909">{</OP-LEFT-BRACE>
+        <expr line1="78" col1="46" line2="78" col2="69" start="6910" end="6933">
+          <expr line1="78" col1="46" line2="78" col2="60" start="6910" end="6924">
+            <SYMBOL_FUNCTION_CALL line1="78" col1="46" line2="78" col2="60" start="6910" end="6924">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="78" col1="61" line2="78" col2="61" start="6925" end="6925">(</OP-LEFT-PAREN>
+          <expr line1="78" col1="62" line2="78" col2="68" start="6926" end="6932">
+            <STR_CONST line1="78" col1="62" line2="78" col2="68" start="6926" end="6932">"tpm&lt;-"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="78" col1="69" line2="78" col2="69" start="6933" end="6933">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="78" col1="70" line2="78" col2="70" start="6934" end="6934">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="78" col1="71" line2="78" col2="71" start="6935" end="6935">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="80" col1="1" line2="80" col2="12" start="7041" end="7052">#' @name cpm</COMMENT>
+  <COMMENT line1="81" col1="1" line2="81" col2="10" start="7129" end="7138">#' @export</COMMENT>
+  <COMMENT line1="82" col1="1" line2="82" col2="19" start="7217" end="7235">#' @docType methods</COMMENT>
+  <COMMENT line1="83" col1="1" line2="83" col2="48" start="7305" end="7352">#' @return a matrix of counts-per-million values</COMMENT>
+  <COMMENT line1="84" col1="1" line2="84" col2="14" start="7393" end="7406">#' @rdname cpm</COMMENT>
+  <expr line1="85" col1="1" line2="85" col2="60" start="7481" end="7540">
+    <expr line1="85" col1="1" line2="85" col2="10" start="7481" end="7490">
+      <SYMBOL_FUNCTION_CALL line1="85" col1="1" line2="85" col2="10" start="7481" end="7490">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="85" col1="11" line2="85" col2="11" start="7491" end="7491">(</OP-LEFT-PAREN>
+    <expr line1="85" col1="12" line2="85" col2="16" start="7492" end="7496">
+      <STR_CONST line1="85" col1="12" line2="85" col2="16" start="7492" end="7496">"cpm"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="85" col1="17" line2="85" col2="17" start="7497" end="7497">,</OP-COMMA>
+    <expr line1="85" col1="19" line2="85" col2="59" start="7499" end="7539">
+      <FUNCTION line1="85" col1="19" line2="85" col2="26" start="7499" end="7506">function</FUNCTION>
+      <OP-LEFT-PAREN line1="85" col1="27" line2="85" col2="27" start="7507" end="7507">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="85" col1="28" line2="85" col2="33" start="7508" end="7513">object</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="85" col1="34" line2="85" col2="34" start="7514" end="7514">)</OP-RIGHT-PAREN>
+      <expr line1="85" col1="36" line2="85" col2="59" start="7516" end="7539">
+        <OP-LEFT-BRACE line1="85" col1="36" line2="85" col2="36" start="7516" end="7516">{</OP-LEFT-BRACE>
+        <expr line1="85" col1="37" line2="85" col2="58" start="7517" end="7538">
+          <expr line1="85" col1="37" line2="85" col2="51" start="7517" end="7531">
+            <SYMBOL_FUNCTION_CALL line1="85" col1="37" line2="85" col2="51" start="7517" end="7531">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="85" col1="52" line2="85" col2="52" start="7532" end="7532">(</OP-LEFT-PAREN>
+          <expr line1="85" col1="53" line2="85" col2="57" start="7533" end="7537">
+            <STR_CONST line1="85" col1="53" line2="85" col2="57" start="7533" end="7537">"cpm"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="85" col1="58" line2="85" col2="58" start="7538" end="7538">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="85" col1="59" line2="85" col2="59" start="7539" end="7539">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="85" col1="60" line2="85" col2="60" start="7540" end="7540">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="87" col1="1" line2="87" col2="14" start="7657" end="7670">#' @name cpm&lt;-</COMMENT>
+  <COMMENT line1="88" col1="1" line2="88" col2="10" start="7745" end="7754">#' @export</COMMENT>
+  <COMMENT line1="89" col1="1" line2="89" col2="19" start="7833" end="7851">#' @docType methods</COMMENT>
+  <COMMENT line1="90" col1="1" line2="90" col2="14" start="7921" end="7934">#' @rdname cpm</COMMENT>
+  <expr line1="91" col1="1" line2="91" col2="71" start="8009" end="8079">
+    <expr line1="91" col1="1" line2="91" col2="10" start="8009" end="8018">
+      <SYMBOL_FUNCTION_CALL line1="91" col1="1" line2="91" col2="10" start="8009" end="8018">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="91" col1="11" line2="91" col2="11" start="8019" end="8019">(</OP-LEFT-PAREN>
+    <expr line1="91" col1="12" line2="91" col2="18" start="8020" end="8026">
+      <STR_CONST line1="91" col1="12" line2="91" col2="18" start="8020" end="8026">"cpm&lt;-"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="91" col1="19" line2="91" col2="19" start="8027" end="8027">,</OP-COMMA>
+    <expr line1="91" col1="21" line2="91" col2="70" start="8029" end="8078">
+      <FUNCTION line1="91" col1="21" line2="91" col2="28" start="8029" end="8036">function</FUNCTION>
+      <OP-LEFT-PAREN line1="91" col1="29" line2="91" col2="29" start="8037" end="8037">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="91" col1="30" line2="91" col2="35" start="8038" end="8043">object</SYMBOL_FORMALS>
+      <OP-COMMA line1="91" col1="36" line2="91" col2="36" start="8044" end="8044">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="91" col1="38" line2="91" col2="42" start="8046" end="8050">value</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="91" col1="43" line2="91" col2="43" start="8051" end="8051">)</OP-RIGHT-PAREN>
+      <expr line1="91" col1="45" line2="91" col2="70" start="8053" end="8078">
+        <OP-LEFT-BRACE line1="91" col1="45" line2="91" col2="45" start="8053" end="8053">{</OP-LEFT-BRACE>
+        <expr line1="91" col1="46" line2="91" col2="69" start="8054" end="8077">
+          <expr line1="91" col1="46" line2="91" col2="60" start="8054" end="8068">
+            <SYMBOL_FUNCTION_CALL line1="91" col1="46" line2="91" col2="60" start="8054" end="8068">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="91" col1="61" line2="91" col2="61" start="8069" end="8069">(</OP-LEFT-PAREN>
+          <expr line1="91" col1="62" line2="91" col2="68" start="8070" end="8076">
+            <STR_CONST line1="91" col1="62" line2="91" col2="68" start="8070" end="8076">"cpm&lt;-"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="91" col1="69" line2="91" col2="69" start="8077" end="8077">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="91" col1="70" line2="91" col2="70" start="8078" end="8078">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="91" col1="71" line2="91" col2="71" start="8079" end="8079">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="93" col1="1" line2="93" col2="13" start="8185" end="8197">#' @name fpkm</COMMENT>
+  <COMMENT line1="94" col1="1" line2="94" col2="10" start="8273" end="8282">#' @export</COMMENT>
+  <COMMENT line1="95" col1="1" line2="95" col2="19" start="8361" end="8379">#' @docType methods</COMMENT>
+  <COMMENT line1="96" col1="1" line2="96" col2="34" start="8449" end="8482">#' @return a matrix of FPKM values</COMMENT>
+  <COMMENT line1="97" col1="1" line2="97" col2="15" start="8537" end="8551">#' @rdname fpkm</COMMENT>
+  <expr line1="98" col1="1" line2="98" col2="62" start="8625" end="8686">
+    <expr line1="98" col1="1" line2="98" col2="10" start="8625" end="8634">
+      <SYMBOL_FUNCTION_CALL line1="98" col1="1" line2="98" col2="10" start="8625" end="8634">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="98" col1="11" line2="98" col2="11" start="8635" end="8635">(</OP-LEFT-PAREN>
+    <expr line1="98" col1="12" line2="98" col2="17" start="8636" end="8641">
+      <STR_CONST line1="98" col1="12" line2="98" col2="17" start="8636" end="8641">"fpkm"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="98" col1="18" line2="98" col2="18" start="8642" end="8642">,</OP-COMMA>
+    <expr line1="98" col1="20" line2="98" col2="61" start="8644" end="8685">
+      <FUNCTION line1="98" col1="20" line2="98" col2="27" start="8644" end="8651">function</FUNCTION>
+      <OP-LEFT-PAREN line1="98" col1="28" line2="98" col2="28" start="8652" end="8652">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="98" col1="29" line2="98" col2="34" start="8653" end="8658">object</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="98" col1="35" line2="98" col2="35" start="8659" end="8659">)</OP-RIGHT-PAREN>
+      <expr line1="98" col1="37" line2="98" col2="61" start="8661" end="8685">
+        <OP-LEFT-BRACE line1="98" col1="37" line2="98" col2="37" start="8661" end="8661">{</OP-LEFT-BRACE>
+        <expr line1="98" col1="38" line2="98" col2="60" start="8662" end="8684">
+          <expr line1="98" col1="38" line2="98" col2="52" start="8662" end="8676">
+            <SYMBOL_FUNCTION_CALL line1="98" col1="38" line2="98" col2="52" start="8662" end="8676">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="98" col1="53" line2="98" col2="53" start="8677" end="8677">(</OP-LEFT-PAREN>
+          <expr line1="98" col1="54" line2="98" col2="59" start="8678" end="8683">
+            <STR_CONST line1="98" col1="54" line2="98" col2="59" start="8678" end="8683">"fpkm"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="98" col1="60" line2="98" col2="60" start="8684" end="8684">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="98" col1="61" line2="98" col2="61" start="8685" end="8685">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="98" col1="62" line2="98" col2="62" start="8686" end="8686">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="100" col1="1" line2="100" col2="15" start="8801" end="8815">#' @name fpkm&lt;-</COMMENT>
+  <COMMENT line1="101" col1="1" line2="101" col2="10" start="8889" end="8898">#' @export</COMMENT>
+  <COMMENT line1="102" col1="1" line2="102" col2="19" start="8977" end="8995">#' @docType methods</COMMENT>
+  <COMMENT line1="103" col1="1" line2="103" col2="15" start="9065" end="9079">#' @rdname fpkm</COMMENT>
+  <expr line1="104" col1="1" line2="104" col2="73" start="9153" end="9225">
+    <expr line1="104" col1="1" line2="104" col2="10" start="9153" end="9162">
+      <SYMBOL_FUNCTION_CALL line1="104" col1="1" line2="104" col2="10" start="9153" end="9162">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="104" col1="11" line2="104" col2="11" start="9163" end="9163">(</OP-LEFT-PAREN>
+    <expr line1="104" col1="12" line2="104" col2="19" start="9164" end="9171">
+      <STR_CONST line1="104" col1="12" line2="104" col2="19" start="9164" end="9171">"fpkm&lt;-"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="104" col1="20" line2="104" col2="20" start="9172" end="9172">,</OP-COMMA>
+    <expr line1="104" col1="22" line2="104" col2="72" start="9174" end="9224">
+      <FUNCTION line1="104" col1="22" line2="104" col2="29" start="9174" end="9181">function</FUNCTION>
+      <OP-LEFT-PAREN line1="104" col1="30" line2="104" col2="30" start="9182" end="9182">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="104" col1="31" line2="104" col2="36" start="9183" end="9188">object</SYMBOL_FORMALS>
+      <OP-COMMA line1="104" col1="37" line2="104" col2="37" start="9189" end="9189">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="104" col1="39" line2="104" col2="43" start="9191" end="9195">value</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="104" col1="44" line2="104" col2="44" start="9196" end="9196">)</OP-RIGHT-PAREN>
+      <expr line1="104" col1="46" line2="104" col2="72" start="9198" end="9224">
+        <OP-LEFT-BRACE line1="104" col1="46" line2="104" col2="46" start="9198" end="9198">{</OP-LEFT-BRACE>
+        <expr line1="104" col1="47" line2="104" col2="71" start="9199" end="9223">
+          <expr line1="104" col1="47" line2="104" col2="61" start="9199" end="9213">
+            <SYMBOL_FUNCTION_CALL line1="104" col1="47" line2="104" col2="61" start="9199" end="9213">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="104" col1="62" line2="104" col2="62" start="9214" end="9214">(</OP-LEFT-PAREN>
+          <expr line1="104" col1="63" line2="104" col2="70" start="9215" end="9222">
+            <STR_CONST line1="104" col1="63" line2="104" col2="70" start="9215" end="9222">"fpkm&lt;-"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="104" col1="71" line2="104" col2="71" start="9223" end="9223">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="104" col1="72" line2="104" col2="72" start="9224" end="9224">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="104" col1="73" line2="104" col2="73" start="9225" end="9225">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="106" col1="1" line2="106" col2="20" start="9329" end="9348">#' @name norm_counts</COMMENT>
+  <COMMENT line1="107" col1="1" line2="107" col2="10" start="9417" end="9426">#' @export</COMMENT>
+  <COMMENT line1="108" col1="1" line2="108" col2="19" start="9505" end="9523">#' @docType methods</COMMENT>
+  <COMMENT line1="109" col1="1" line2="109" col2="44" start="9593" end="9636">#' @return a matrix of normalised count data</COMMENT>
+  <COMMENT line1="110" col1="1" line2="110" col2="22" start="9681" end="9702">#' @rdname norm_counts</COMMENT>
+  <expr line1="111" col1="1" line2="111" col2="76" start="9769" end="9844">
+    <expr line1="111" col1="1" line2="111" col2="10" start="9769" end="9778">
+      <SYMBOL_FUNCTION_CALL line1="111" col1="1" line2="111" col2="10" start="9769" end="9778">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="111" col1="11" line2="111" col2="11" start="9779" end="9779">(</OP-LEFT-PAREN>
+    <expr line1="111" col1="12" line2="111" col2="24" start="9780" end="9792">
+      <STR_CONST line1="111" col1="12" line2="111" col2="24" start="9780" end="9792">"norm_counts"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="111" col1="25" line2="111" col2="25" start="9793" end="9793">,</OP-COMMA>
+    <expr line1="111" col1="27" line2="111" col2="75" start="9795" end="9843">
+      <FUNCTION line1="111" col1="27" line2="111" col2="34" start="9795" end="9802">function</FUNCTION>
+      <OP-LEFT-PAREN line1="111" col1="35" line2="111" col2="35" start="9803" end="9803">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="111" col1="36" line2="111" col2="41" start="9804" end="9809">object</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="111" col1="42" line2="111" col2="42" start="9810" end="9810">)</OP-RIGHT-PAREN>
+      <expr line1="111" col1="44" line2="111" col2="75" start="9812" end="9843">
+        <OP-LEFT-BRACE line1="111" col1="44" line2="111" col2="44" start="9812" end="9812">{</OP-LEFT-BRACE>
+        <expr line1="111" col1="45" line2="111" col2="74" start="9813" end="9842">
+          <expr line1="111" col1="45" line2="111" col2="59" start="9813" end="9827">
+            <SYMBOL_FUNCTION_CALL line1="111" col1="45" line2="111" col2="59" start="9813" end="9827">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="111" col1="60" line2="111" col2="60" start="9828" end="9828">(</OP-LEFT-PAREN>
+          <expr line1="111" col1="61" line2="111" col2="73" start="9829" end="9841">
+            <STR_CONST line1="111" col1="61" line2="111" col2="73" start="9829" end="9841">"norm_counts"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="111" col1="74" line2="111" col2="74" start="9842" end="9842">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="111" col1="75" line2="111" col2="75" start="9843" end="9843">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="111" col1="76" line2="111" col2="76" start="9844" end="9844">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="113" col1="1" line2="113" col2="22" start="9945" end="9966">#' @name norm_counts&lt;-</COMMENT>
+  <COMMENT line1="114" col1="1" line2="114" col2="10" start="10033" end="10042">#' @export</COMMENT>
+  <COMMENT line1="115" col1="1" line2="115" col2="19" start="10121" end="10139">#' @docType methods</COMMENT>
+  <COMMENT line1="116" col1="1" line2="116" col2="22" start="10209" end="10230">#' @rdname norm_counts</COMMENT>
+  <expr line1="117" col1="1" line2="117" col2="87" start="10297" end="10383">
+    <expr line1="117" col1="1" line2="117" col2="10" start="10297" end="10306">
+      <SYMBOL_FUNCTION_CALL line1="117" col1="1" line2="117" col2="10" start="10297" end="10306">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="117" col1="11" line2="117" col2="11" start="10307" end="10307">(</OP-LEFT-PAREN>
+    <expr line1="117" col1="12" line2="117" col2="26" start="10308" end="10322">
+      <STR_CONST line1="117" col1="12" line2="117" col2="26" start="10308" end="10322">"norm_counts&lt;-"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="117" col1="27" line2="117" col2="27" start="10323" end="10323">,</OP-COMMA>
+    <expr line1="117" col1="29" line2="117" col2="86" start="10325" end="10382">
+      <FUNCTION line1="117" col1="29" line2="117" col2="36" start="10325" end="10332">function</FUNCTION>
+      <OP-LEFT-PAREN line1="117" col1="37" line2="117" col2="37" start="10333" end="10333">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="117" col1="38" line2="117" col2="43" start="10334" end="10339">object</SYMBOL_FORMALS>
+      <OP-COMMA line1="117" col1="44" line2="117" col2="44" start="10340" end="10340">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="117" col1="46" line2="117" col2="50" start="10342" end="10346">value</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="117" col1="51" line2="117" col2="51" start="10347" end="10347">)</OP-RIGHT-PAREN>
+      <expr line1="117" col1="53" line2="117" col2="86" start="10349" end="10382">
+        <OP-LEFT-BRACE line1="117" col1="53" line2="117" col2="53" start="10349" end="10349">{</OP-LEFT-BRACE>
+        <expr line1="117" col1="54" line2="117" col2="85" start="10350" end="10381">
+          <expr line1="117" col1="54" line2="117" col2="68" start="10350" end="10364">
+            <SYMBOL_FUNCTION_CALL line1="117" col1="54" line2="117" col2="68" start="10350" end="10364">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="117" col1="69" line2="117" col2="69" start="10365" end="10365">(</OP-LEFT-PAREN>
+          <expr line1="117" col1="70" line2="117" col2="84" start="10366" end="10380">
+            <STR_CONST line1="117" col1="70" line2="117" col2="84" start="10366" end="10380">"norm_counts&lt;-"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="117" col1="85" line2="117" col2="85" start="10381" end="10381">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="117" col1="86" line2="117" col2="86" start="10382" end="10382">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="117" col1="87" line2="117" col2="87" start="10383" end="10383">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="119" col1="1" line2="119" col2="17" start="10473" end="10489">#' @name norm_tpm</COMMENT>
+  <COMMENT line1="120" col1="1" line2="120" col2="10" start="10561" end="10570">#' @export</COMMENT>
+  <COMMENT line1="121" col1="1" line2="121" col2="19" start="10649" end="10667">#' @docType methods</COMMENT>
+  <COMMENT line1="122" col1="1" line2="122" col2="62" start="10737" end="10798">#' @return a matrix of normalised transcripts-per-million data</COMMENT>
+  <COMMENT line1="123" col1="1" line2="123" col2="19" start="10825" end="10843">#' @rdname norm_tpm</COMMENT>
+  <expr line1="124" col1="1" line2="124" col2="70" start="10913" end="10982">
+    <expr line1="124" col1="1" line2="124" col2="10" start="10913" end="10922">
+      <SYMBOL_FUNCTION_CALL line1="124" col1="1" line2="124" col2="10" start="10913" end="10922">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="124" col1="11" line2="124" col2="11" start="10923" end="10923">(</OP-LEFT-PAREN>
+    <expr line1="124" col1="12" line2="124" col2="21" start="10924" end="10933">
+      <STR_CONST line1="124" col1="12" line2="124" col2="21" start="10924" end="10933">"norm_tpm"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="124" col1="22" line2="124" col2="22" start="10934" end="10934">,</OP-COMMA>
+    <expr line1="124" col1="24" line2="124" col2="69" start="10936" end="10981">
+      <FUNCTION line1="124" col1="24" line2="124" col2="31" start="10936" end="10943">function</FUNCTION>
+      <OP-LEFT-PAREN line1="124" col1="32" line2="124" col2="32" start="10944" end="10944">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="124" col1="33" line2="124" col2="38" start="10945" end="10950">object</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="124" col1="39" line2="124" col2="39" start="10951" end="10951">)</OP-RIGHT-PAREN>
+      <expr line1="124" col1="41" line2="124" col2="69" start="10953" end="10981">
+        <OP-LEFT-BRACE line1="124" col1="41" line2="124" col2="41" start="10953" end="10953">{</OP-LEFT-BRACE>
+        <expr line1="124" col1="42" line2="124" col2="68" start="10954" end="10980">
+          <expr line1="124" col1="42" line2="124" col2="56" start="10954" end="10968">
+            <SYMBOL_FUNCTION_CALL line1="124" col1="42" line2="124" col2="56" start="10954" end="10968">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="124" col1="57" line2="124" col2="57" start="10969" end="10969">(</OP-LEFT-PAREN>
+          <expr line1="124" col1="58" line2="124" col2="67" start="10970" end="10979">
+            <STR_CONST line1="124" col1="58" line2="124" col2="67" start="10970" end="10979">"norm_tpm"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="124" col1="68" line2="124" col2="68" start="10980" end="10980">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="124" col1="69" line2="124" col2="69" start="10981" end="10981">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="124" col1="70" line2="124" col2="70" start="10982" end="10982">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="126" col1="1" line2="126" col2="19" start="11089" end="11107">#' @name norm_tpm&lt;-</COMMENT>
+  <COMMENT line1="127" col1="1" line2="127" col2="10" start="11177" end="11186">#' @export</COMMENT>
+  <COMMENT line1="128" col1="1" line2="128" col2="19" start="11265" end="11283">#' @docType methods</COMMENT>
+  <COMMENT line1="129" col1="1" line2="129" col2="19" start="11353" end="11371">#' @rdname norm_tpm</COMMENT>
+  <expr line1="130" col1="1" line2="130" col2="81" start="11441" end="11521">
+    <expr line1="130" col1="1" line2="130" col2="10" start="11441" end="11450">
+      <SYMBOL_FUNCTION_CALL line1="130" col1="1" line2="130" col2="10" start="11441" end="11450">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="130" col1="11" line2="130" col2="11" start="11451" end="11451">(</OP-LEFT-PAREN>
+    <expr line1="130" col1="12" line2="130" col2="23" start="11452" end="11463">
+      <STR_CONST line1="130" col1="12" line2="130" col2="23" start="11452" end="11463">"norm_tpm&lt;-"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="130" col1="24" line2="130" col2="24" start="11464" end="11464">,</OP-COMMA>
+    <expr line1="130" col1="26" line2="130" col2="80" start="11466" end="11520">
+      <FUNCTION line1="130" col1="26" line2="130" col2="33" start="11466" end="11473">function</FUNCTION>
+      <OP-LEFT-PAREN line1="130" col1="34" line2="130" col2="34" start="11474" end="11474">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="130" col1="35" line2="130" col2="40" start="11475" end="11480">object</SYMBOL_FORMALS>
+      <OP-COMMA line1="130" col1="41" line2="130" col2="41" start="11481" end="11481">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="130" col1="43" line2="130" col2="47" start="11483" end="11487">value</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="130" col1="48" line2="130" col2="48" start="11488" end="11488">)</OP-RIGHT-PAREN>
+      <expr line1="130" col1="50" line2="130" col2="80" start="11490" end="11520">
+        <OP-LEFT-BRACE line1="130" col1="50" line2="130" col2="50" start="11490" end="11490">{</OP-LEFT-BRACE>
+        <expr line1="130" col1="51" line2="130" col2="79" start="11491" end="11519">
+          <expr line1="130" col1="51" line2="130" col2="65" start="11491" end="11505">
+            <SYMBOL_FUNCTION_CALL line1="130" col1="51" line2="130" col2="65" start="11491" end="11505">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="130" col1="66" line2="130" col2="66" start="11506" end="11506">(</OP-LEFT-PAREN>
+          <expr line1="130" col1="67" line2="130" col2="78" start="11507" end="11518">
+            <STR_CONST line1="130" col1="67" line2="130" col2="78" start="11507" end="11518">"norm_tpm&lt;-"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="130" col1="79" line2="130" col2="79" start="11519" end="11519">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="130" col1="80" line2="130" col2="80" start="11520" end="11520">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="130" col1="81" line2="130" col2="81" start="11521" end="11521">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="132" col1="1" line2="132" col2="17" start="11617" end="11633">#' @name norm_cpm</COMMENT>
+  <COMMENT line1="133" col1="1" line2="133" col2="10" start="11705" end="11714">#' @export</COMMENT>
+  <COMMENT line1="134" col1="1" line2="134" col2="19" start="11793" end="11811">#' @docType methods</COMMENT>
+  <COMMENT line1="135" col1="1" line2="135" col2="57" start="11881" end="11937">#' @return a matrix of normalised counts-per-million data</COMMENT>
+  <COMMENT line1="136" col1="1" line2="136" col2="19" start="11969" end="11987">#' @rdname norm_cpm</COMMENT>
+  <expr line1="137" col1="1" line2="137" col2="70" start="12057" end="12126">
+    <expr line1="137" col1="1" line2="137" col2="10" start="12057" end="12066">
+      <SYMBOL_FUNCTION_CALL line1="137" col1="1" line2="137" col2="10" start="12057" end="12066">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="137" col1="11" line2="137" col2="11" start="12067" end="12067">(</OP-LEFT-PAREN>
+    <expr line1="137" col1="12" line2="137" col2="21" start="12068" end="12077">
+      <STR_CONST line1="137" col1="12" line2="137" col2="21" start="12068" end="12077">"norm_cpm"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="137" col1="22" line2="137" col2="22" start="12078" end="12078">,</OP-COMMA>
+    <expr line1="137" col1="24" line2="137" col2="69" start="12080" end="12125">
+      <FUNCTION line1="137" col1="24" line2="137" col2="31" start="12080" end="12087">function</FUNCTION>
+      <OP-LEFT-PAREN line1="137" col1="32" line2="137" col2="32" start="12088" end="12088">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="137" col1="33" line2="137" col2="38" start="12089" end="12094">object</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="137" col1="39" line2="137" col2="39" start="12095" end="12095">)</OP-RIGHT-PAREN>
+      <expr line1="137" col1="41" line2="137" col2="69" start="12097" end="12125">
+        <OP-LEFT-BRACE line1="137" col1="41" line2="137" col2="41" start="12097" end="12097">{</OP-LEFT-BRACE>
+        <expr line1="137" col1="42" line2="137" col2="68" start="12098" end="12124">
+          <expr line1="137" col1="42" line2="137" col2="56" start="12098" end="12112">
+            <SYMBOL_FUNCTION_CALL line1="137" col1="42" line2="137" col2="56" start="12098" end="12112">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="137" col1="57" line2="137" col2="57" start="12113" end="12113">(</OP-LEFT-PAREN>
+          <expr line1="137" col1="58" line2="137" col2="67" start="12114" end="12123">
+            <STR_CONST line1="137" col1="58" line2="137" col2="67" start="12114" end="12123">"norm_cpm"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="137" col1="68" line2="137" col2="68" start="12124" end="12124">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="137" col1="69" line2="137" col2="69" start="12125" end="12125">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="137" col1="70" line2="137" col2="70" start="12126" end="12126">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="139" col1="1" line2="139" col2="19" start="12233" end="12251">#' @name norm_cpm&lt;-</COMMENT>
+  <COMMENT line1="140" col1="1" line2="140" col2="10" start="12321" end="12330">#' @export</COMMENT>
+  <COMMENT line1="141" col1="1" line2="141" col2="19" start="12409" end="12427">#' @docType methods</COMMENT>
+  <COMMENT line1="142" col1="1" line2="142" col2="19" start="12497" end="12515">#' @rdname norm_cpm</COMMENT>
+  <expr line1="143" col1="1" line2="143" col2="81" start="12585" end="12665">
+    <expr line1="143" col1="1" line2="143" col2="10" start="12585" end="12594">
+      <SYMBOL_FUNCTION_CALL line1="143" col1="1" line2="143" col2="10" start="12585" end="12594">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="143" col1="11" line2="143" col2="11" start="12595" end="12595">(</OP-LEFT-PAREN>
+    <expr line1="143" col1="12" line2="143" col2="23" start="12596" end="12607">
+      <STR_CONST line1="143" col1="12" line2="143" col2="23" start="12596" end="12607">"norm_cpm&lt;-"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="143" col1="24" line2="143" col2="24" start="12608" end="12608">,</OP-COMMA>
+    <expr line1="143" col1="26" line2="143" col2="80" start="12610" end="12664">
+      <FUNCTION line1="143" col1="26" line2="143" col2="33" start="12610" end="12617">function</FUNCTION>
+      <OP-LEFT-PAREN line1="143" col1="34" line2="143" col2="34" start="12618" end="12618">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="143" col1="35" line2="143" col2="40" start="12619" end="12624">object</SYMBOL_FORMALS>
+      <OP-COMMA line1="143" col1="41" line2="143" col2="41" start="12625" end="12625">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="143" col1="43" line2="143" col2="47" start="12627" end="12631">value</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="143" col1="48" line2="143" col2="48" start="12632" end="12632">)</OP-RIGHT-PAREN>
+      <expr line1="143" col1="50" line2="143" col2="80" start="12634" end="12664">
+        <OP-LEFT-BRACE line1="143" col1="50" line2="143" col2="50" start="12634" end="12634">{</OP-LEFT-BRACE>
+        <expr line1="143" col1="51" line2="143" col2="79" start="12635" end="12663">
+          <expr line1="143" col1="51" line2="143" col2="65" start="12635" end="12649">
+            <SYMBOL_FUNCTION_CALL line1="143" col1="51" line2="143" col2="65" start="12635" end="12649">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="143" col1="66" line2="143" col2="66" start="12650" end="12650">(</OP-LEFT-PAREN>
+          <expr line1="143" col1="67" line2="143" col2="78" start="12651" end="12662">
+            <STR_CONST line1="143" col1="67" line2="143" col2="78" start="12651" end="12662">"norm_cpm&lt;-"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="143" col1="79" line2="143" col2="79" start="12663" end="12663">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="143" col1="80" line2="143" col2="80" start="12664" end="12664">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="143" col1="81" line2="143" col2="81" start="12665" end="12665">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="145" col1="1" line2="145" col2="18" start="12761" end="12778">#' @name norm_fpkm</COMMENT>
+  <COMMENT line1="146" col1="1" line2="146" col2="10" start="12849" end="12858">#' @export</COMMENT>
+  <COMMENT line1="147" col1="1" line2="147" col2="19" start="12937" end="12955">#' @docType methods</COMMENT>
+  <COMMENT line1="148" col1="1" line2="148" col2="43" start="13025" end="13067">#' @return a matrix of normalised FPKM data</COMMENT>
+  <COMMENT line1="149" col1="1" line2="149" col2="20" start="13113" end="13132">#' @rdname norm_fpkm</COMMENT>
+  <expr line1="150" col1="1" line2="150" col2="72" start="13201" end="13272">
+    <expr line1="150" col1="1" line2="150" col2="10" start="13201" end="13210">
+      <SYMBOL_FUNCTION_CALL line1="150" col1="1" line2="150" col2="10" start="13201" end="13210">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="150" col1="11" line2="150" col2="11" start="13211" end="13211">(</OP-LEFT-PAREN>
+    <expr line1="150" col1="12" line2="150" col2="22" start="13212" end="13222">
+      <STR_CONST line1="150" col1="12" line2="150" col2="22" start="13212" end="13222">"norm_fpkm"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="150" col1="23" line2="150" col2="23" start="13223" end="13223">,</OP-COMMA>
+    <expr line1="150" col1="25" line2="150" col2="71" start="13225" end="13271">
+      <FUNCTION line1="150" col1="25" line2="150" col2="32" start="13225" end="13232">function</FUNCTION>
+      <OP-LEFT-PAREN line1="150" col1="33" line2="150" col2="33" start="13233" end="13233">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="150" col1="34" line2="150" col2="39" start="13234" end="13239">object</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="150" col1="40" line2="150" col2="40" start="13240" end="13240">)</OP-RIGHT-PAREN>
+      <expr line1="150" col1="42" line2="150" col2="71" start="13242" end="13271">
+        <OP-LEFT-BRACE line1="150" col1="42" line2="150" col2="42" start="13242" end="13242">{</OP-LEFT-BRACE>
+        <expr line1="150" col1="43" line2="150" col2="70" start="13243" end="13270">
+          <expr line1="150" col1="43" line2="150" col2="57" start="13243" end="13257">
+            <SYMBOL_FUNCTION_CALL line1="150" col1="43" line2="150" col2="57" start="13243" end="13257">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="150" col1="58" line2="150" col2="58" start="13258" end="13258">(</OP-LEFT-PAREN>
+          <expr line1="150" col1="59" line2="150" col2="69" start="13259" end="13269">
+            <STR_CONST line1="150" col1="59" line2="150" col2="69" start="13259" end="13269">"norm_fpkm"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="150" col1="70" line2="150" col2="70" start="13270" end="13270">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="150" col1="71" line2="150" col2="71" start="13271" end="13271">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="150" col1="72" line2="150" col2="72" start="13272" end="13272">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="152" col1="1" line2="152" col2="20" start="13377" end="13396">#' @name norm_fpkm&lt;-</COMMENT>
+  <COMMENT line1="153" col1="1" line2="153" col2="10" start="13465" end="13474">#' @export</COMMENT>
+  <COMMENT line1="154" col1="1" line2="154" col2="19" start="13553" end="13571">#' @docType methods</COMMENT>
+  <COMMENT line1="155" col1="1" line2="155" col2="20" start="13641" end="13660">#' @rdname norm_fpkm</COMMENT>
+  <expr line1="156" col1="1" line2="156" col2="83" start="13729" end="13811">
+    <expr line1="156" col1="1" line2="156" col2="10" start="13729" end="13738">
+      <SYMBOL_FUNCTION_CALL line1="156" col1="1" line2="156" col2="10" start="13729" end="13738">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="156" col1="11" line2="156" col2="11" start="13739" end="13739">(</OP-LEFT-PAREN>
+    <expr line1="156" col1="12" line2="156" col2="24" start="13740" end="13752">
+      <STR_CONST line1="156" col1="12" line2="156" col2="24" start="13740" end="13752">"norm_fpkm&lt;-"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="156" col1="25" line2="156" col2="25" start="13753" end="13753">,</OP-COMMA>
+    <expr line1="156" col1="27" line2="156" col2="82" start="13755" end="13810">
+      <FUNCTION line1="156" col1="27" line2="156" col2="34" start="13755" end="13762">function</FUNCTION>
+      <OP-LEFT-PAREN line1="156" col1="35" line2="156" col2="35" start="13763" end="13763">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="156" col1="36" line2="156" col2="41" start="13764" end="13769">object</SYMBOL_FORMALS>
+      <OP-COMMA line1="156" col1="42" line2="156" col2="42" start="13770" end="13770">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="156" col1="44" line2="156" col2="48" start="13772" end="13776">value</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="156" col1="49" line2="156" col2="49" start="13777" end="13777">)</OP-RIGHT-PAREN>
+      <expr line1="156" col1="51" line2="156" col2="82" start="13779" end="13810">
+        <OP-LEFT-BRACE line1="156" col1="51" line2="156" col2="51" start="13779" end="13779">{</OP-LEFT-BRACE>
+        <expr line1="156" col1="52" line2="156" col2="81" start="13780" end="13809">
+          <expr line1="156" col1="52" line2="156" col2="66" start="13780" end="13794">
+            <SYMBOL_FUNCTION_CALL line1="156" col1="52" line2="156" col2="66" start="13780" end="13794">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="156" col1="67" line2="156" col2="67" start="13795" end="13795">(</OP-LEFT-PAREN>
+          <expr line1="156" col1="68" line2="156" col2="80" start="13796" end="13808">
+            <STR_CONST line1="156" col1="68" line2="156" col2="80" start="13796" end="13808">"norm_fpkm&lt;-"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="156" col1="81" line2="156" col2="81" start="13809" end="13809">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="156" col1="82" line2="156" col2="82" start="13810" end="13810">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="156" col1="83" line2="156" col2="83" start="13811" end="13811">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="158" col1="1" line2="158" col2="19" start="13905" end="13923">#' @name bootstraps</COMMENT>
+  <COMMENT line1="159" col1="1" line2="159" col2="10" start="13993" end="14002">#' @export</COMMENT>
+  <COMMENT line1="160" col1="1" line2="160" col2="19" start="14081" end="14099">#' @docType methods</COMMENT>
+  <COMMENT line1="161" col1="1" line2="161" col2="21" start="14169" end="14189">#' @rdname bootstraps</COMMENT>
+  <expr line1="162" col1="1" line2="162" col2="74" start="14257" end="14330">
+    <expr line1="162" col1="1" line2="162" col2="10" start="14257" end="14266">
+      <SYMBOL_FUNCTION_CALL line1="162" col1="1" line2="162" col2="10" start="14257" end="14266">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="162" col1="11" line2="162" col2="11" start="14267" end="14267">(</OP-LEFT-PAREN>
+    <expr line1="162" col1="12" line2="162" col2="23" start="14268" end="14279">
+      <STR_CONST line1="162" col1="12" line2="162" col2="23" start="14268" end="14279">"bootstraps"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="162" col1="24" line2="162" col2="24" start="14280" end="14280">,</OP-COMMA>
+    <expr line1="162" col1="26" line2="162" col2="73" start="14282" end="14329">
+      <FUNCTION line1="162" col1="26" line2="162" col2="33" start="14282" end="14289">function</FUNCTION>
+      <OP-LEFT-PAREN line1="162" col1="34" line2="162" col2="34" start="14290" end="14290">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="162" col1="35" line2="162" col2="40" start="14291" end="14296">object</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="162" col1="41" line2="162" col2="41" start="14297" end="14297">)</OP-RIGHT-PAREN>
+      <expr line1="162" col1="43" line2="162" col2="73" start="14299" end="14329">
+        <OP-LEFT-BRACE line1="162" col1="43" line2="162" col2="43" start="14299" end="14299">{</OP-LEFT-BRACE>
+        <expr line1="162" col1="44" line2="162" col2="72" start="14300" end="14328">
+          <expr line1="162" col1="44" line2="162" col2="58" start="14300" end="14314">
+            <SYMBOL_FUNCTION_CALL line1="162" col1="44" line2="162" col2="58" start="14300" end="14314">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="162" col1="59" line2="162" col2="59" start="14315" end="14315">(</OP-LEFT-PAREN>
+          <expr line1="162" col1="60" line2="162" col2="71" start="14316" end="14327">
+            <STR_CONST line1="162" col1="60" line2="162" col2="71" start="14316" end="14327">"bootstraps"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="162" col1="72" line2="162" col2="72" start="14328" end="14328">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="162" col1="73" line2="162" col2="73" start="14329" end="14329">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="162" col1="74" line2="162" col2="74" start="14330" end="14330">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="164" col1="1" line2="164" col2="21" start="14433" end="14453">#' @name bootstraps&lt;-</COMMENT>
+  <COMMENT line1="165" col1="1" line2="165" col2="10" start="14521" end="14530">#' @export</COMMENT>
+  <COMMENT line1="166" col1="1" line2="166" col2="19" start="14609" end="14627">#' @docType methods</COMMENT>
+  <COMMENT line1="167" col1="1" line2="167" col2="21" start="14697" end="14717">#' @rdname bootstraps</COMMENT>
+  <expr line1="168" col1="1" line2="168" col2="85" start="14785" end="14869">
+    <expr line1="168" col1="1" line2="168" col2="10" start="14785" end="14794">
+      <SYMBOL_FUNCTION_CALL line1="168" col1="1" line2="168" col2="10" start="14785" end="14794">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="168" col1="11" line2="168" col2="11" start="14795" end="14795">(</OP-LEFT-PAREN>
+    <expr line1="168" col1="12" line2="168" col2="25" start="14796" end="14809">
+      <STR_CONST line1="168" col1="12" line2="168" col2="25" start="14796" end="14809">"bootstraps&lt;-"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="168" col1="26" line2="168" col2="26" start="14810" end="14810">,</OP-COMMA>
+    <expr line1="168" col1="28" line2="168" col2="84" start="14812" end="14868">
+      <FUNCTION line1="168" col1="28" line2="168" col2="35" start="14812" end="14819">function</FUNCTION>
+      <OP-LEFT-PAREN line1="168" col1="36" line2="168" col2="36" start="14820" end="14820">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="168" col1="37" line2="168" col2="42" start="14821" end="14826">object</SYMBOL_FORMALS>
+      <OP-COMMA line1="168" col1="43" line2="168" col2="43" start="14827" end="14827">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="168" col1="45" line2="168" col2="49" start="14829" end="14833">value</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="168" col1="50" line2="168" col2="50" start="14834" end="14834">)</OP-RIGHT-PAREN>
+      <expr line1="168" col1="52" line2="168" col2="84" start="14836" end="14868">
+        <OP-LEFT-BRACE line1="168" col1="52" line2="168" col2="52" start="14836" end="14836">{</OP-LEFT-BRACE>
+        <expr line1="168" col1="53" line2="168" col2="83" start="14837" end="14867">
+          <expr line1="168" col1="53" line2="168" col2="67" start="14837" end="14851">
+            <SYMBOL_FUNCTION_CALL line1="168" col1="53" line2="168" col2="67" start="14837" end="14851">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="168" col1="68" line2="168" col2="68" start="14852" end="14852">(</OP-LEFT-PAREN>
+          <expr line1="168" col1="69" line2="168" col2="82" start="14853" end="14866">
+            <STR_CONST line1="168" col1="69" line2="168" col2="82" start="14853" end="14866">"bootstraps&lt;-"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="168" col1="83" line2="168" col2="83" start="14867" end="14867">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="168" col1="84" line2="168" col2="84" start="14868" end="14868">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="168" col1="85" line2="168" col2="85" start="14869" end="14869">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="170" col1="1" line2="170" col2="30" start="14961" end="14990">#' @name cellPairwiseDistances</COMMENT>
+  <COMMENT line1="171" col1="1" line2="171" col2="10" start="15049" end="15058">#' @export</COMMENT>
+  <COMMENT line1="172" col1="1" line2="172" col2="19" start="15137" end="15155">#' @docType methods</COMMENT>
+  <COMMENT line1="173" col1="1" line2="173" col2="32" start="15225" end="15256">#' @rdname cellPairwiseDistances</COMMENT>
+  <expr line1="174" col1="1" line2="176" col2="6" start="15313" end="15494">
+    <expr line1="174" col1="1" line2="174" col2="10" start="15313" end="15322">
+      <SYMBOL_FUNCTION_CALL line1="174" col1="1" line2="174" col2="10" start="15313" end="15322">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="174" col1="11" line2="174" col2="11" start="15323" end="15323">(</OP-LEFT-PAREN>
+    <expr line1="174" col1="12" line2="174" col2="34" start="15324" end="15346">
+      <STR_CONST line1="174" col1="12" line2="174" col2="34" start="15324" end="15346">"cellPairwiseDistances"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="174" col1="35" line2="174" col2="35" start="15347" end="15347">,</OP-COMMA>
+    <expr line1="174" col1="37" line2="176" col2="5" start="15349" end="15493">
+      <FUNCTION line1="174" col1="37" line2="174" col2="44" start="15349" end="15356">function</FUNCTION>
+      <OP-LEFT-PAREN line1="174" col1="45" line2="174" col2="45" start="15357" end="15357">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="174" col1="46" line2="174" col2="51" start="15358" end="15363">object</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="174" col1="52" line2="174" col2="52" start="15364" end="15364">)</OP-RIGHT-PAREN>
+      <expr line1="174" col1="54" line2="176" col2="5" start="15366" end="15493">
+        <OP-LEFT-BRACE line1="174" col1="54" line2="174" col2="54" start="15366" end="15366">{</OP-LEFT-BRACE>
+        <expr line1="175" col1="5" line2="175" col2="44" start="15405" end="15444">
+          <expr line1="175" col1="5" line2="175" col2="19" start="15405" end="15419">
+            <SYMBOL_FUNCTION_CALL line1="175" col1="5" line2="175" col2="19" start="15405" end="15419">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="175" col1="20" line2="175" col2="20" start="15420" end="15420">(</OP-LEFT-PAREN>
+          <expr line1="175" col1="21" line2="175" col2="43" start="15421" end="15443">
+            <STR_CONST line1="175" col1="21" line2="175" col2="43" start="15421" end="15443">"cellPairwiseDistances"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="175" col1="44" line2="175" col2="44" start="15444" end="15444">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="176" col1="5" line2="176" col2="5" start="15493" end="15493">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="176" col1="6" line2="176" col2="6" start="15494" end="15494">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="178" col1="1" line2="178" col2="32" start="15665" end="15696">#' @name cellPairwiseDistances&lt;-</COMMENT>
+  <COMMENT line1="179" col1="1" line2="179" col2="10" start="15753" end="15762">#' @export</COMMENT>
+  <COMMENT line1="180" col1="1" line2="180" col2="19" start="15841" end="15859">#' @docType methods</COMMENT>
+  <COMMENT line1="181" col1="1" line2="181" col2="32" start="15929" end="15960">#' @rdname cellPairwiseDistances</COMMENT>
+  <expr line1="182" col1="1" line2="184" col2="6" start="16017" end="16198">
+    <expr line1="182" col1="1" line2="182" col2="10" start="16017" end="16026">
+      <SYMBOL_FUNCTION_CALL line1="182" col1="1" line2="182" col2="10" start="16017" end="16026">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="182" col1="11" line2="182" col2="11" start="16027" end="16027">(</OP-LEFT-PAREN>
+    <expr line1="182" col1="12" line2="182" col2="36" start="16028" end="16052">
+      <STR_CONST line1="182" col1="12" line2="182" col2="36" start="16028" end="16052">"cellPairwiseDistances&lt;-"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="182" col1="37" line2="182" col2="37" start="16053" end="16053">,</OP-COMMA>
+    <expr line1="182" col1="39" line2="184" col2="5" start="16055" end="16197">
+      <FUNCTION line1="182" col1="39" line2="182" col2="46" start="16055" end="16062">function</FUNCTION>
+      <OP-LEFT-PAREN line1="182" col1="47" line2="182" col2="47" start="16063" end="16063">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="182" col1="48" line2="182" col2="53" start="16064" end="16069">object</SYMBOL_FORMALS>
+      <OP-COMMA line1="182" col1="54" line2="182" col2="54" start="16070" end="16070">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="182" col1="56" line2="182" col2="60" start="16072" end="16076">value</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="182" col1="61" line2="182" col2="61" start="16077" end="16077">)</OP-RIGHT-PAREN>
+      <expr line1="182" col1="63" line2="184" col2="5" start="16079" end="16197">
+        <OP-LEFT-BRACE line1="182" col1="63" line2="182" col2="63" start="16079" end="16079">{</OP-LEFT-BRACE>
+        <expr line1="183" col1="5" line2="183" col2="46" start="16109" end="16150">
+          <expr line1="183" col1="5" line2="183" col2="19" start="16109" end="16123">
+            <SYMBOL_FUNCTION_CALL line1="183" col1="5" line2="183" col2="19" start="16109" end="16123">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="183" col1="20" line2="183" col2="20" start="16124" end="16124">(</OP-LEFT-PAREN>
+          <expr line1="183" col1="21" line2="183" col2="45" start="16125" end="16149">
+            <STR_CONST line1="183" col1="21" line2="183" col2="45" start="16125" end="16149">"cellPairwiseDistances&lt;-"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="183" col1="46" line2="183" col2="46" start="16150" end="16150">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="184" col1="5" line2="184" col2="5" start="16197" end="16197">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="184" col1="6" line2="184" col2="6" start="16198" end="16198">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="187" col1="1" line2="187" col2="17" start="16457" end="16473">#' @name cellDist</COMMENT>
+  <COMMENT line1="188" col1="1" line2="188" col2="10" start="16545" end="16554">#' @export</COMMENT>
+  <COMMENT line1="189" col1="1" line2="189" col2="19" start="16633" end="16651">#' @docType methods</COMMENT>
+  <COMMENT line1="190" col1="1" line2="190" col2="32" start="16721" end="16752">#' @rdname cellPairwiseDistances</COMMENT>
+  <expr line1="191" col1="1" line2="193" col2="2" start="16809" end="16986">
+    <expr line1="191" col1="1" line2="191" col2="10" start="16809" end="16818">
+      <SYMBOL_FUNCTION_CALL line1="191" col1="1" line2="191" col2="10" start="16809" end="16818">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="191" col1="11" line2="191" col2="11" start="16819" end="16819">(</OP-LEFT-PAREN>
+    <expr line1="191" col1="12" line2="191" col2="21" start="16820" end="16829">
+      <STR_CONST line1="191" col1="12" line2="191" col2="21" start="16820" end="16829">"cellDist"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="191" col1="22" line2="191" col2="22" start="16830" end="16830">,</OP-COMMA>
+    <expr line1="191" col1="24" line2="193" col2="1" start="16832" end="16985">
+      <FUNCTION line1="191" col1="24" line2="191" col2="31" start="16832" end="16839">function</FUNCTION>
+      <OP-LEFT-PAREN line1="191" col1="32" line2="191" col2="32" start="16840" end="16840">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="191" col1="33" line2="191" col2="38" start="16841" end="16846">object</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="191" col1="39" line2="191" col2="39" start="16847" end="16847">)</OP-RIGHT-PAREN>
+      <expr line1="191" col1="41" line2="193" col2="1" start="16849" end="16985">
+        <OP-LEFT-BRACE line1="191" col1="41" line2="191" col2="41" start="16849" end="16849">{</OP-LEFT-BRACE>
+        <expr line1="192" col1="5" line2="192" col2="31" start="16901" end="16927">
+          <expr line1="192" col1="5" line2="192" col2="19" start="16901" end="16915">
+            <SYMBOL_FUNCTION_CALL line1="192" col1="5" line2="192" col2="19" start="16901" end="16915">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="192" col1="20" line2="192" col2="20" start="16916" end="16916">(</OP-LEFT-PAREN>
+          <expr line1="192" col1="21" line2="192" col2="30" start="16917" end="16926">
+            <STR_CONST line1="192" col1="21" line2="192" col2="30" start="16917" end="16926">"cellDist"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="192" col1="31" line2="192" col2="31" start="16927" end="16927">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="193" col1="1" line2="193" col2="1" start="16985" end="16985">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="193" col1="2" line2="193" col2="2" start="16986" end="16986">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="195" col1="1" line2="195" col2="19" start="17161" end="17179">#' @name cellDist&lt;-</COMMENT>
+  <COMMENT line1="196" col1="1" line2="196" col2="10" start="17249" end="17258">#' @export</COMMENT>
+  <COMMENT line1="197" col1="1" line2="197" col2="19" start="17337" end="17355">#' @docType methods</COMMENT>
+  <COMMENT line1="198" col1="1" line2="198" col2="32" start="17425" end="17456">#' @rdname cellPairwiseDistances</COMMENT>
+  <expr line1="199" col1="1" line2="201" col2="2" start="17513" end="17690">
+    <expr line1="199" col1="1" line2="199" col2="10" start="17513" end="17522">
+      <SYMBOL_FUNCTION_CALL line1="199" col1="1" line2="199" col2="10" start="17513" end="17522">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="199" col1="11" line2="199" col2="11" start="17523" end="17523">(</OP-LEFT-PAREN>
+    <expr line1="199" col1="12" line2="199" col2="23" start="17524" end="17535">
+      <STR_CONST line1="199" col1="12" line2="199" col2="23" start="17524" end="17535">"cellDist&lt;-"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="199" col1="24" line2="199" col2="24" start="17536" end="17536">,</OP-COMMA>
+    <expr line1="199" col1="26" line2="201" col2="1" start="17538" end="17689">
+      <FUNCTION line1="199" col1="26" line2="199" col2="33" start="17538" end="17545">function</FUNCTION>
+      <OP-LEFT-PAREN line1="199" col1="34" line2="199" col2="34" start="17546" end="17546">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="199" col1="35" line2="199" col2="40" start="17547" end="17552">object</SYMBOL_FORMALS>
+      <OP-COMMA line1="199" col1="41" line2="199" col2="41" start="17553" end="17553">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="199" col1="43" line2="199" col2="47" start="17555" end="17559">value</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="199" col1="48" line2="199" col2="48" start="17560" end="17560">)</OP-RIGHT-PAREN>
+      <expr line1="199" col1="50" line2="201" col2="1" start="17562" end="17689">
+        <OP-LEFT-BRACE line1="199" col1="50" line2="199" col2="50" start="17562" end="17562">{</OP-LEFT-BRACE>
+        <expr line1="200" col1="5" line2="200" col2="33" start="17605" end="17633">
+          <expr line1="200" col1="5" line2="200" col2="19" start="17605" end="17619">
+            <SYMBOL_FUNCTION_CALL line1="200" col1="5" line2="200" col2="19" start="17605" end="17619">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="200" col1="20" line2="200" col2="20" start="17620" end="17620">(</OP-LEFT-PAREN>
+          <expr line1="200" col1="21" line2="200" col2="32" start="17621" end="17632">
+            <STR_CONST line1="200" col1="21" line2="200" col2="32" start="17621" end="17632">"cellDist&lt;-"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="200" col1="33" line2="200" col2="33" start="17633" end="17633">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="201" col1="1" line2="201" col2="1" start="17689" end="17689">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="201" col1="2" line2="201" col2="2" start="17690" end="17690">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="204" col1="1" line2="204" col2="33" start="17953" end="17985">#' @name featurePairwiseDistances</COMMENT>
+  <COMMENT line1="205" col1="1" line2="205" col2="10" start="18041" end="18050">#' @export</COMMENT>
+  <COMMENT line1="206" col1="1" line2="206" col2="19" start="18129" end="18147">#' @docType methods</COMMENT>
+  <COMMENT line1="207" col1="1" line2="207" col2="35" start="18217" end="18251">#' @rdname featurePairwiseDistances</COMMENT>
+  <expr line1="208" col1="1" line2="210" col2="2" start="18305" end="18482">
+    <expr line1="208" col1="1" line2="208" col2="10" start="18305" end="18314">
+      <SYMBOL_FUNCTION_CALL line1="208" col1="1" line2="208" col2="10" start="18305" end="18314">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="208" col1="11" line2="208" col2="11" start="18315" end="18315">(</OP-LEFT-PAREN>
+    <expr line1="208" col1="12" line2="208" col2="37" start="18316" end="18341">
+      <STR_CONST line1="208" col1="12" line2="208" col2="37" start="18316" end="18341">"featurePairwiseDistances"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="208" col1="38" line2="208" col2="38" start="18342" end="18342">,</OP-COMMA>
+    <expr line1="208" col1="40" line2="210" col2="1" start="18344" end="18481">
+      <FUNCTION line1="208" col1="40" line2="208" col2="47" start="18344" end="18351">function</FUNCTION>
+      <OP-LEFT-PAREN line1="208" col1="48" line2="208" col2="48" start="18352" end="18352">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="208" col1="49" line2="208" col2="54" start="18353" end="18358">object</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="208" col1="55" line2="208" col2="55" start="18359" end="18359">)</OP-RIGHT-PAREN>
+      <expr line1="208" col1="57" line2="210" col2="1" start="18361" end="18481">
+        <OP-LEFT-BRACE line1="208" col1="57" line2="208" col2="57" start="18361" end="18361">{</OP-LEFT-BRACE>
+        <expr line1="209" col1="5" line2="209" col2="47" start="18397" end="18439">
+          <expr line1="209" col1="5" line2="209" col2="19" start="18397" end="18411">
+            <SYMBOL_FUNCTION_CALL line1="209" col1="5" line2="209" col2="19" start="18397" end="18411">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="209" col1="20" line2="209" col2="20" start="18412" end="18412">(</OP-LEFT-PAREN>
+          <expr line1="209" col1="21" line2="209" col2="46" start="18413" end="18438">
+            <STR_CONST line1="209" col1="21" line2="209" col2="46" start="18413" end="18438">"featurePairwiseDistances"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="209" col1="47" line2="209" col2="47" start="18439" end="18439">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="210" col1="1" line2="210" col2="1" start="18481" end="18481">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="210" col1="2" line2="210" col2="2" start="18482" end="18482">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="212" col1="1" line2="212" col2="35" start="18657" end="18691">#' @name featurePairwiseDistances&lt;-</COMMENT>
+  <COMMENT line1="213" col1="1" line2="213" col2="10" start="18745" end="18754">#' @export</COMMENT>
+  <COMMENT line1="214" col1="1" line2="214" col2="19" start="18833" end="18851">#' @docType methods</COMMENT>
+  <COMMENT line1="215" col1="1" line2="215" col2="35" start="18921" end="18955">#' @rdname featurePairwiseDistances</COMMENT>
+  <expr line1="216" col1="1" line2="218" col2="2" start="19009" end="19186">
+    <expr line1="216" col1="1" line2="216" col2="10" start="19009" end="19018">
+      <SYMBOL_FUNCTION_CALL line1="216" col1="1" line2="216" col2="10" start="19009" end="19018">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="216" col1="11" line2="216" col2="11" start="19019" end="19019">(</OP-LEFT-PAREN>
+    <expr line1="216" col1="12" line2="216" col2="39" start="19020" end="19047">
+      <STR_CONST line1="216" col1="12" line2="216" col2="39" start="19020" end="19047">"featurePairwiseDistances&lt;-"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="216" col1="40" line2="216" col2="40" start="19048" end="19048">,</OP-COMMA>
+    <expr line1="216" col1="42" line2="218" col2="1" start="19050" end="19185">
+      <FUNCTION line1="216" col1="42" line2="216" col2="49" start="19050" end="19057">function</FUNCTION>
+      <OP-LEFT-PAREN line1="216" col1="50" line2="216" col2="50" start="19058" end="19058">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="216" col1="51" line2="216" col2="56" start="19059" end="19064">object</SYMBOL_FORMALS>
+      <OP-COMMA line1="216" col1="57" line2="216" col2="57" start="19065" end="19065">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="216" col1="59" line2="216" col2="63" start="19067" end="19071">value</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="216" col1="64" line2="216" col2="64" start="19072" end="19072">)</OP-RIGHT-PAREN>
+      <expr line1="216" col1="66" line2="218" col2="1" start="19074" end="19185">
+        <OP-LEFT-BRACE line1="216" col1="66" line2="216" col2="66" start="19074" end="19074">{</OP-LEFT-BRACE>
+        <expr line1="217" col1="5" line2="217" col2="49" start="19101" end="19145">
+          <expr line1="217" col1="5" line2="217" col2="19" start="19101" end="19115">
+            <SYMBOL_FUNCTION_CALL line1="217" col1="5" line2="217" col2="19" start="19101" end="19115">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="217" col1="20" line2="217" col2="20" start="19116" end="19116">(</OP-LEFT-PAREN>
+          <expr line1="217" col1="21" line2="217" col2="48" start="19117" end="19144">
+            <STR_CONST line1="217" col1="21" line2="217" col2="48" start="19117" end="19144">"featurePairwiseDistances&lt;-"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="217" col1="49" line2="217" col2="49" start="19145" end="19145">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="218" col1="1" line2="218" col2="1" start="19185" end="19185">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="218" col1="2" line2="218" col2="2" start="19186" end="19186">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="221" col1="1" line2="221" col2="17" start="19449" end="19465">#' @name featDist</COMMENT>
+  <COMMENT line1="222" col1="1" line2="222" col2="10" start="19537" end="19546">#' @export</COMMENT>
+  <COMMENT line1="223" col1="1" line2="223" col2="19" start="19625" end="19643">#' @docType methods</COMMENT>
+  <COMMENT line1="224" col1="1" line2="224" col2="35" start="19713" end="19747">#' @rdname featurePairwiseDistances</COMMENT>
+  <expr line1="225" col1="1" line2="227" col2="2" start="19801" end="19978">
+    <expr line1="225" col1="1" line2="225" col2="10" start="19801" end="19810">
+      <SYMBOL_FUNCTION_CALL line1="225" col1="1" line2="225" col2="10" start="19801" end="19810">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="225" col1="11" line2="225" col2="11" start="19811" end="19811">(</OP-LEFT-PAREN>
+    <expr line1="225" col1="12" line2="225" col2="21" start="19812" end="19821">
+      <STR_CONST line1="225" col1="12" line2="225" col2="21" start="19812" end="19821">"featDist"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="225" col1="22" line2="225" col2="22" start="19822" end="19822">,</OP-COMMA>
+    <expr line1="225" col1="24" line2="227" col2="1" start="19824" end="19977">
+      <FUNCTION line1="225" col1="24" line2="225" col2="31" start="19824" end="19831">function</FUNCTION>
+      <OP-LEFT-PAREN line1="225" col1="32" line2="225" col2="32" start="19832" end="19832">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="225" col1="33" line2="225" col2="38" start="19833" end="19838">object</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="225" col1="39" line2="225" col2="39" start="19839" end="19839">)</OP-RIGHT-PAREN>
+      <expr line1="225" col1="41" line2="227" col2="1" start="19841" end="19977">
+        <OP-LEFT-BRACE line1="225" col1="41" line2="225" col2="41" start="19841" end="19841">{</OP-LEFT-BRACE>
+        <expr line1="226" col1="5" line2="226" col2="31" start="19893" end="19919">
+          <expr line1="226" col1="5" line2="226" col2="19" start="19893" end="19907">
+            <SYMBOL_FUNCTION_CALL line1="226" col1="5" line2="226" col2="19" start="19893" end="19907">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="226" col1="20" line2="226" col2="20" start="19908" end="19908">(</OP-LEFT-PAREN>
+          <expr line1="226" col1="21" line2="226" col2="30" start="19909" end="19918">
+            <STR_CONST line1="226" col1="21" line2="226" col2="30" start="19909" end="19918">"featDist"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="226" col1="31" line2="226" col2="31" start="19919" end="19919">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="227" col1="1" line2="227" col2="1" start="19977" end="19977">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="227" col1="2" line2="227" col2="2" start="19978" end="19978">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="229" col1="1" line2="229" col2="19" start="20153" end="20171">#' @name featDist&lt;-</COMMENT>
+  <COMMENT line1="230" col1="1" line2="230" col2="10" start="20241" end="20250">#' @export</COMMENT>
+  <COMMENT line1="231" col1="1" line2="231" col2="19" start="20329" end="20347">#' @docType methods</COMMENT>
+  <COMMENT line1="232" col1="1" line2="232" col2="35" start="20417" end="20451">#' @rdname featurePairwiseDistances</COMMENT>
+  <expr line1="233" col1="1" line2="235" col2="2" start="20505" end="20682">
+    <expr line1="233" col1="1" line2="233" col2="10" start="20505" end="20514">
+      <SYMBOL_FUNCTION_CALL line1="233" col1="1" line2="233" col2="10" start="20505" end="20514">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="233" col1="11" line2="233" col2="11" start="20515" end="20515">(</OP-LEFT-PAREN>
+    <expr line1="233" col1="12" line2="233" col2="23" start="20516" end="20527">
+      <STR_CONST line1="233" col1="12" line2="233" col2="23" start="20516" end="20527">"featDist&lt;-"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="233" col1="24" line2="233" col2="24" start="20528" end="20528">,</OP-COMMA>
+    <expr line1="233" col1="26" line2="235" col2="1" start="20530" end="20681">
+      <FUNCTION line1="233" col1="26" line2="233" col2="33" start="20530" end="20537">function</FUNCTION>
+      <OP-LEFT-PAREN line1="233" col1="34" line2="233" col2="34" start="20538" end="20538">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="233" col1="35" line2="233" col2="40" start="20539" end="20544">object</SYMBOL_FORMALS>
+      <OP-COMMA line1="233" col1="41" line2="233" col2="41" start="20545" end="20545">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="233" col1="43" line2="233" col2="47" start="20547" end="20551">value</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="233" col1="48" line2="233" col2="48" start="20552" end="20552">)</OP-RIGHT-PAREN>
+      <expr line1="233" col1="50" line2="235" col2="1" start="20554" end="20681">
+        <OP-LEFT-BRACE line1="233" col1="50" line2="233" col2="50" start="20554" end="20554">{</OP-LEFT-BRACE>
+        <expr line1="234" col1="5" line2="234" col2="33" start="20597" end="20625">
+          <expr line1="234" col1="5" line2="234" col2="19" start="20597" end="20611">
+            <SYMBOL_FUNCTION_CALL line1="234" col1="5" line2="234" col2="19" start="20597" end="20611">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="234" col1="20" line2="234" col2="20" start="20612" end="20612">(</OP-LEFT-PAREN>
+          <expr line1="234" col1="21" line2="234" col2="32" start="20613" end="20624">
+            <STR_CONST line1="234" col1="21" line2="234" col2="32" start="20613" end="20624">"featDist&lt;-"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="234" col1="33" line2="234" col2="33" start="20625" end="20625">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="235" col1="1" line2="235" col2="1" start="20681" end="20681">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="235" col1="2" line2="235" col2="2" start="20682" end="20682">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="237" col1="1" line2="237" col2="27" start="20857" end="20883">#' @name featureControlInfo</COMMENT>
+  <COMMENT line1="238" col1="1" line2="238" col2="10" start="20945" end="20954">#' @export</COMMENT>
+  <COMMENT line1="239" col1="1" line2="239" col2="19" start="21033" end="21051">#' @docType methods</COMMENT>
+  <COMMENT line1="240" col1="1" line2="240" col2="30" start="21121" end="21150">#' @rdname featureControlInfo </COMMENT>
+  <expr line1="241" col1="1" line2="243" col2="2" start="21209" end="21386">
+    <expr line1="241" col1="1" line2="241" col2="10" start="21209" end="21218">
+      <SYMBOL_FUNCTION_CALL line1="241" col1="1" line2="241" col2="10" start="21209" end="21218">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="241" col1="11" line2="241" col2="11" start="21219" end="21219">(</OP-LEFT-PAREN>
+    <expr line1="241" col1="12" line2="241" col2="31" start="21220" end="21239">
+      <STR_CONST line1="241" col1="12" line2="241" col2="31" start="21220" end="21239">"featureControlInfo"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="241" col1="32" line2="241" col2="32" start="21240" end="21240">,</OP-COMMA>
+    <expr line1="241" col1="34" line2="243" col2="1" start="21242" end="21385">
+      <FUNCTION line1="241" col1="34" line2="241" col2="41" start="21242" end="21249">function</FUNCTION>
+      <OP-LEFT-PAREN line1="241" col1="42" line2="241" col2="42" start="21250" end="21250">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="241" col1="43" line2="241" col2="48" start="21251" end="21256">object</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="241" col1="49" line2="241" col2="49" start="21257" end="21257">)</OP-RIGHT-PAREN>
+      <expr line1="241" col1="51" line2="243" col2="1" start="21259" end="21385">
+        <OP-LEFT-BRACE line1="241" col1="51" line2="241" col2="51" start="21259" end="21259">{</OP-LEFT-BRACE>
+        <expr line1="242" col1="5" line2="242" col2="41" start="21301" end="21337">
+          <expr line1="242" col1="5" line2="242" col2="19" start="21301" end="21315">
+            <SYMBOL_FUNCTION_CALL line1="242" col1="5" line2="242" col2="19" start="21301" end="21315">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="242" col1="20" line2="242" col2="20" start="21316" end="21316">(</OP-LEFT-PAREN>
+          <expr line1="242" col1="21" line2="242" col2="40" start="21317" end="21336">
+            <STR_CONST line1="242" col1="21" line2="242" col2="40" start="21317" end="21336">"featureControlInfo"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="242" col1="41" line2="242" col2="41" start="21337" end="21337">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="243" col1="1" line2="243" col2="1" start="21385" end="21385">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="243" col1="2" line2="243" col2="2" start="21386" end="21386">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="245" col1="1" line2="245" col2="29" start="21561" end="21589">#' @name featureControlInfo&lt;-</COMMENT>
+  <COMMENT line1="246" col1="1" line2="246" col2="10" start="21649" end="21658">#' @export</COMMENT>
+  <COMMENT line1="247" col1="1" line2="247" col2="19" start="21737" end="21755">#' @docType methods</COMMENT>
+  <COMMENT line1="248" col1="1" line2="248" col2="29" start="21825" end="21853">#' @rdname featureControlInfo</COMMENT>
+  <expr line1="249" col1="1" line2="251" col2="2" start="21913" end="22090">
+    <expr line1="249" col1="1" line2="249" col2="10" start="21913" end="21922">
+      <SYMBOL_FUNCTION_CALL line1="249" col1="1" line2="249" col2="10" start="21913" end="21922">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="249" col1="11" line2="249" col2="11" start="21923" end="21923">(</OP-LEFT-PAREN>
+    <expr line1="249" col1="12" line2="249" col2="33" start="21924" end="21945">
+      <STR_CONST line1="249" col1="12" line2="249" col2="33" start="21924" end="21945">"featureControlInfo&lt;-"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="249" col1="34" line2="249" col2="34" start="21946" end="21946">,</OP-COMMA>
+    <expr line1="249" col1="36" line2="251" col2="1" start="21948" end="22089">
+      <FUNCTION line1="249" col1="36" line2="249" col2="43" start="21948" end="21955">function</FUNCTION>
+      <OP-LEFT-PAREN line1="249" col1="44" line2="249" col2="44" start="21956" end="21956">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="249" col1="45" line2="249" col2="50" start="21957" end="21962">object</SYMBOL_FORMALS>
+      <OP-COMMA line1="249" col1="51" line2="249" col2="51" start="21963" end="21963">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="249" col1="53" line2="249" col2="57" start="21965" end="21969">value</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="249" col1="58" line2="249" col2="58" start="21970" end="21970">)</OP-RIGHT-PAREN>
+      <expr line1="249" col1="60" line2="251" col2="1" start="21972" end="22089">
+        <OP-LEFT-BRACE line1="249" col1="60" line2="249" col2="60" start="21972" end="21972">{</OP-LEFT-BRACE>
+        <expr line1="250" col1="5" line2="250" col2="43" start="22005" end="22043">
+          <expr line1="250" col1="5" line2="250" col2="19" start="22005" end="22019">
+            <SYMBOL_FUNCTION_CALL line1="250" col1="5" line2="250" col2="19" start="22005" end="22019">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="250" col1="20" line2="250" col2="20" start="22020" end="22020">(</OP-LEFT-PAREN>
+          <expr line1="250" col1="21" line2="250" col2="42" start="22021" end="22042">
+            <STR_CONST line1="250" col1="21" line2="250" col2="42" start="22021" end="22042">"featureControlInfo&lt;-"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="250" col1="43" line2="250" col2="43" start="22043" end="22043">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="251" col1="1" line2="251" col2="1" start="22089" end="22089">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="251" col1="2" line2="251" col2="2" start="22090" end="22090">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="254" col1="1" line2="254" col2="25" start="22353" end="22377">#' @name reducedDimension</COMMENT>
+  <COMMENT line1="255" col1="1" line2="255" col2="10" start="22441" end="22450">#' @export</COMMENT>
+  <COMMENT line1="256" col1="1" line2="256" col2="19" start="22529" end="22547">#' @docType methods</COMMENT>
+  <COMMENT line1="257" col1="1" line2="257" col2="27" start="22617" end="22643">#' @rdname reducedDimension</COMMENT>
+  <expr line1="258" col1="1" line2="260" col2="2" start="22705" end="22882">
+    <expr line1="258" col1="1" line2="258" col2="10" start="22705" end="22714">
+      <SYMBOL_FUNCTION_CALL line1="258" col1="1" line2="258" col2="10" start="22705" end="22714">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="258" col1="11" line2="258" col2="11" start="22715" end="22715">(</OP-LEFT-PAREN>
+    <expr line1="258" col1="12" line2="258" col2="29" start="22716" end="22733">
+      <STR_CONST line1="258" col1="12" line2="258" col2="29" start="22716" end="22733">"reducedDimension"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="258" col1="30" line2="258" col2="30" start="22734" end="22734">,</OP-COMMA>
+    <expr line1="258" col1="32" line2="260" col2="1" start="22736" end="22881">
+      <FUNCTION line1="258" col1="32" line2="258" col2="39" start="22736" end="22743">function</FUNCTION>
+      <OP-LEFT-PAREN line1="258" col1="40" line2="258" col2="40" start="22744" end="22744">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="258" col1="41" line2="258" col2="46" start="22745" end="22750">object</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="258" col1="47" line2="258" col2="47" start="22751" end="22751">)</OP-RIGHT-PAREN>
+      <expr line1="258" col1="49" line2="260" col2="1" start="22753" end="22881">
+        <OP-LEFT-BRACE line1="258" col1="49" line2="258" col2="49" start="22753" end="22753">{</OP-LEFT-BRACE>
+        <expr line1="259" col1="5" line2="259" col2="39" start="22797" end="22831">
+          <expr line1="259" col1="5" line2="259" col2="19" start="22797" end="22811">
+            <SYMBOL_FUNCTION_CALL line1="259" col1="5" line2="259" col2="19" start="22797" end="22811">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="259" col1="20" line2="259" col2="20" start="22812" end="22812">(</OP-LEFT-PAREN>
+          <expr line1="259" col1="21" line2="259" col2="38" start="22813" end="22830">
+            <STR_CONST line1="259" col1="21" line2="259" col2="38" start="22813" end="22830">"reducedDimension"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="259" col1="39" line2="259" col2="39" start="22831" end="22831">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="260" col1="1" line2="260" col2="1" start="22881" end="22881">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="260" col1="2" line2="260" col2="2" start="22882" end="22882">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="262" col1="1" line2="262" col2="27" start="23057" end="23083">#' @name reducedDimension&lt;-</COMMENT>
+  <COMMENT line1="263" col1="1" line2="263" col2="10" start="23145" end="23154">#' @export</COMMENT>
+  <COMMENT line1="264" col1="1" line2="264" col2="19" start="23233" end="23251">#' @docType methods</COMMENT>
+  <COMMENT line1="265" col1="1" line2="265" col2="27" start="23321" end="23347">#' @rdname reducedDimension</COMMENT>
+  <expr line1="266" col1="1" line2="268" col2="2" start="23409" end="23586">
+    <expr line1="266" col1="1" line2="266" col2="10" start="23409" end="23418">
+      <SYMBOL_FUNCTION_CALL line1="266" col1="1" line2="266" col2="10" start="23409" end="23418">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="266" col1="11" line2="266" col2="11" start="23419" end="23419">(</OP-LEFT-PAREN>
+    <expr line1="266" col1="12" line2="266" col2="31" start="23420" end="23439">
+      <STR_CONST line1="266" col1="12" line2="266" col2="31" start="23420" end="23439">"reducedDimension&lt;-"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="266" col1="32" line2="266" col2="32" start="23440" end="23440">,</OP-COMMA>
+    <expr line1="266" col1="34" line2="268" col2="1" start="23442" end="23585">
+      <FUNCTION line1="266" col1="34" line2="266" col2="41" start="23442" end="23449">function</FUNCTION>
+      <OP-LEFT-PAREN line1="266" col1="42" line2="266" col2="42" start="23450" end="23450">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="266" col1="43" line2="266" col2="48" start="23451" end="23456">object</SYMBOL_FORMALS>
+      <OP-COMMA line1="266" col1="49" line2="266" col2="49" start="23457" end="23457">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="266" col1="51" line2="266" col2="55" start="23459" end="23463">value</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="266" col1="56" line2="266" col2="56" start="23464" end="23464">)</OP-RIGHT-PAREN>
+      <expr line1="266" col1="58" line2="268" col2="1" start="23466" end="23585">
+        <OP-LEFT-BRACE line1="266" col1="58" line2="266" col2="58" start="23466" end="23466">{</OP-LEFT-BRACE>
+        <expr line1="267" col1="5" line2="267" col2="41" start="23501" end="23537">
+          <expr line1="267" col1="5" line2="267" col2="19" start="23501" end="23515">
+            <SYMBOL_FUNCTION_CALL line1="267" col1="5" line2="267" col2="19" start="23501" end="23515">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="267" col1="20" line2="267" col2="20" start="23516" end="23516">(</OP-LEFT-PAREN>
+          <expr line1="267" col1="21" line2="267" col2="40" start="23517" end="23536">
+            <STR_CONST line1="267" col1="21" line2="267" col2="40" start="23517" end="23536">"reducedDimension&lt;-"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="267" col1="41" line2="267" col2="41" start="23537" end="23537">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="268" col1="1" line2="268" col2="1" start="23585" end="23585">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="268" col1="2" line2="268" col2="2" start="23586" end="23586">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="271" col1="1" line2="271" col2="15" start="23849" end="23863">#' @name redDim</COMMENT>
+  <COMMENT line1="272" col1="1" line2="272" col2="10" start="23937" end="23946">#' @export</COMMENT>
+  <COMMENT line1="273" col1="1" line2="273" col2="19" start="24025" end="24043">#' @docType methods</COMMENT>
+  <COMMENT line1="274" col1="1" line2="274" col2="27" start="24113" end="24139">#' @rdname reducedDimension</COMMENT>
+  <expr line1="275" col1="1" line2="277" col2="2" start="24201" end="24378">
+    <expr line1="275" col1="1" line2="275" col2="10" start="24201" end="24210">
+      <SYMBOL_FUNCTION_CALL line1="275" col1="1" line2="275" col2="10" start="24201" end="24210">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="275" col1="11" line2="275" col2="11" start="24211" end="24211">(</OP-LEFT-PAREN>
+    <expr line1="275" col1="12" line2="275" col2="19" start="24212" end="24219">
+      <STR_CONST line1="275" col1="12" line2="275" col2="19" start="24212" end="24219">"redDim"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="275" col1="20" line2="275" col2="20" start="24220" end="24220">,</OP-COMMA>
+    <expr line1="275" col1="22" line2="277" col2="1" start="24222" end="24377">
+      <FUNCTION line1="275" col1="22" line2="275" col2="29" start="24222" end="24229">function</FUNCTION>
+      <OP-LEFT-PAREN line1="275" col1="30" line2="275" col2="30" start="24230" end="24230">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="275" col1="31" line2="275" col2="36" start="24231" end="24236">object</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="275" col1="37" line2="275" col2="37" start="24237" end="24237">)</OP-RIGHT-PAREN>
+      <expr line1="275" col1="39" line2="277" col2="1" start="24239" end="24377">
+        <OP-LEFT-BRACE line1="275" col1="39" line2="275" col2="39" start="24239" end="24239">{</OP-LEFT-BRACE>
+        <expr line1="276" col1="5" line2="276" col2="29" start="24293" end="24317">
+          <expr line1="276" col1="5" line2="276" col2="19" start="24293" end="24307">
+            <SYMBOL_FUNCTION_CALL line1="276" col1="5" line2="276" col2="19" start="24293" end="24307">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="276" col1="20" line2="276" col2="20" start="24308" end="24308">(</OP-LEFT-PAREN>
+          <expr line1="276" col1="21" line2="276" col2="28" start="24309" end="24316">
+            <STR_CONST line1="276" col1="21" line2="276" col2="28" start="24309" end="24316">"redDim"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="276" col1="29" line2="276" col2="29" start="24317" end="24317">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="277" col1="1" line2="277" col2="1" start="24377" end="24377">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="277" col1="2" line2="277" col2="2" start="24378" end="24378">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="279" col1="1" line2="279" col2="17" start="24553" end="24569">#' @name redDim&lt;-</COMMENT>
+  <COMMENT line1="280" col1="1" line2="280" col2="10" start="24641" end="24650">#' @export</COMMENT>
+  <COMMENT line1="281" col1="1" line2="281" col2="19" start="24729" end="24747">#' @docType methods</COMMENT>
+  <COMMENT line1="282" col1="1" line2="282" col2="27" start="24817" end="24843">#' @rdname reducedDimension</COMMENT>
+  <expr line1="283" col1="1" line2="285" col2="2" start="24905" end="25082">
+    <expr line1="283" col1="1" line2="283" col2="10" start="24905" end="24914">
+      <SYMBOL_FUNCTION_CALL line1="283" col1="1" line2="283" col2="10" start="24905" end="24914">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="283" col1="11" line2="283" col2="11" start="24915" end="24915">(</OP-LEFT-PAREN>
+    <expr line1="283" col1="12" line2="283" col2="21" start="24916" end="24925">
+      <STR_CONST line1="283" col1="12" line2="283" col2="21" start="24916" end="24925">"redDim&lt;-"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="283" col1="22" line2="283" col2="22" start="24926" end="24926">,</OP-COMMA>
+    <expr line1="283" col1="24" line2="285" col2="1" start="24928" end="25081">
+      <FUNCTION line1="283" col1="24" line2="283" col2="31" start="24928" end="24935">function</FUNCTION>
+      <OP-LEFT-PAREN line1="283" col1="32" line2="283" col2="32" start="24936" end="24936">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="283" col1="33" line2="283" col2="38" start="24937" end="24942">object</SYMBOL_FORMALS>
+      <OP-COMMA line1="283" col1="39" line2="283" col2="39" start="24943" end="24943">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="283" col1="41" line2="283" col2="45" start="24945" end="24949">value</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="283" col1="46" line2="283" col2="46" start="24950" end="24950">)</OP-RIGHT-PAREN>
+      <expr line1="283" col1="48" line2="285" col2="1" start="24952" end="25081">
+        <OP-LEFT-BRACE line1="283" col1="48" line2="283" col2="48" start="24952" end="24952">{</OP-LEFT-BRACE>
+        <expr line1="284" col1="5" line2="284" col2="31" start="24997" end="25023">
+          <expr line1="284" col1="5" line2="284" col2="19" start="24997" end="25011">
+            <SYMBOL_FUNCTION_CALL line1="284" col1="5" line2="284" col2="19" start="24997" end="25011">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="284" col1="20" line2="284" col2="20" start="25012" end="25012">(</OP-LEFT-PAREN>
+          <expr line1="284" col1="21" line2="284" col2="30" start="25013" end="25022">
+            <STR_CONST line1="284" col1="21" line2="284" col2="30" start="25013" end="25022">"redDim&lt;-"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="284" col1="31" line2="284" col2="31" start="25023" end="25023">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="285" col1="1" line2="285" col2="1" start="25081" end="25081">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="285" col1="2" line2="285" col2="2" start="25082" end="25082">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="287" col1="1" line2="287" col2="23" start="25257" end="25279">#' @name plotReducedDim</COMMENT>
+  <COMMENT line1="288" col1="1" line2="288" col2="10" start="25345" end="25354">#' @export</COMMENT>
+  <COMMENT line1="289" col1="1" line2="289" col2="19" start="25433" end="25451">#' @docType methods</COMMENT>
+  <COMMENT line1="290" col1="1" line2="290" col2="25" start="25521" end="25545">#' @rdname plotReducedDim</COMMENT>
+  <expr line1="291" col1="1" line2="293" col2="2" start="25609" end="25786">
+    <expr line1="291" col1="1" line2="291" col2="10" start="25609" end="25618">
+      <SYMBOL_FUNCTION_CALL line1="291" col1="1" line2="291" col2="10" start="25609" end="25618">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="291" col1="11" line2="291" col2="11" start="25619" end="25619">(</OP-LEFT-PAREN>
+    <expr line1="291" col1="12" line2="291" col2="27" start="25620" end="25635">
+      <STR_CONST line1="291" col1="12" line2="291" col2="27" start="25620" end="25635">"plotReducedDim"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="291" col1="28" line2="291" col2="28" start="25636" end="25636">,</OP-COMMA>
+    <expr line1="291" col1="30" line2="293" col2="1" start="25638" end="25785">
+      <FUNCTION line1="291" col1="30" line2="291" col2="37" start="25638" end="25645">function</FUNCTION>
+      <OP-LEFT-PAREN line1="291" col1="38" line2="291" col2="38" start="25646" end="25646">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="291" col1="39" line2="291" col2="44" start="25647" end="25652">object</SYMBOL_FORMALS>
+      <OP-COMMA line1="291" col1="45" line2="291" col2="45" start="25653" end="25653">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="291" col1="47" line2="291" col2="49" start="25655" end="25657">...</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="291" col1="50" line2="291" col2="50" start="25658" end="25658">)</OP-RIGHT-PAREN>
+      <expr line1="291" col1="52" line2="293" col2="1" start="25660" end="25785">
+        <OP-LEFT-BRACE line1="291" col1="52" line2="291" col2="52" start="25660" end="25660">{</OP-LEFT-BRACE>
+        <expr line1="292" col1="5" line2="292" col2="37" start="25701" end="25733">
+          <expr line1="292" col1="5" line2="292" col2="19" start="25701" end="25715">
+            <SYMBOL_FUNCTION_CALL line1="292" col1="5" line2="292" col2="19" start="25701" end="25715">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="292" col1="20" line2="292" col2="20" start="25716" end="25716">(</OP-LEFT-PAREN>
+          <expr line1="292" col1="21" line2="292" col2="36" start="25717" end="25732">
+            <STR_CONST line1="292" col1="21" line2="292" col2="36" start="25717" end="25732">"plotReducedDim"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="292" col1="37" line2="292" col2="37" start="25733" end="25733">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="293" col1="1" line2="293" col2="1" start="25785" end="25785">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="293" col1="2" line2="293" col2="2" start="25786" end="25786">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="295" col1="1" line2="295" col2="23" start="25961" end="25983">#' @name plotExpression</COMMENT>
+  <COMMENT line1="296" col1="1" line2="296" col2="10" start="26049" end="26058">#' @export</COMMENT>
+  <COMMENT line1="297" col1="1" line2="297" col2="19" start="26137" end="26155">#' @docType methods</COMMENT>
+  <COMMENT line1="298" col1="1" line2="298" col2="25" start="26225" end="26249">#' @rdname plotExpression</COMMENT>
+  <expr line1="299" col1="1" line2="301" col2="2" start="26313" end="26490">
+    <expr line1="299" col1="1" line2="299" col2="10" start="26313" end="26322">
+      <SYMBOL_FUNCTION_CALL line1="299" col1="1" line2="299" col2="10" start="26313" end="26322">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="299" col1="11" line2="299" col2="11" start="26323" end="26323">(</OP-LEFT-PAREN>
+    <expr line1="299" col1="12" line2="299" col2="27" start="26324" end="26339">
+      <STR_CONST line1="299" col1="12" line2="299" col2="27" start="26324" end="26339">"plotExpression"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="299" col1="28" line2="299" col2="28" start="26340" end="26340">,</OP-COMMA>
+    <expr line1="299" col1="30" line2="301" col2="1" start="26342" end="26489">
+      <FUNCTION line1="299" col1="30" line2="299" col2="37" start="26342" end="26349">function</FUNCTION>
+      <OP-LEFT-PAREN line1="299" col1="38" line2="299" col2="38" start="26350" end="26350">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="299" col1="39" line2="299" col2="44" start="26351" end="26356">object</SYMBOL_FORMALS>
+      <OP-COMMA line1="299" col1="45" line2="299" col2="45" start="26357" end="26357">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="299" col1="47" line2="299" col2="49" start="26359" end="26361">...</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="299" col1="50" line2="299" col2="50" start="26362" end="26362">)</OP-RIGHT-PAREN>
+      <expr line1="299" col1="52" line2="301" col2="1" start="26364" end="26489">
+        <OP-LEFT-BRACE line1="299" col1="52" line2="299" col2="52" start="26364" end="26364">{</OP-LEFT-BRACE>
+        <expr line1="300" col1="5" line2="300" col2="37" start="26405" end="26437">
+          <expr line1="300" col1="5" line2="300" col2="19" start="26405" end="26419">
+            <SYMBOL_FUNCTION_CALL line1="300" col1="5" line2="300" col2="19" start="26405" end="26419">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="300" col1="20" line2="300" col2="20" start="26420" end="26420">(</OP-LEFT-PAREN>
+          <expr line1="300" col1="21" line2="300" col2="36" start="26421" end="26436">
+            <STR_CONST line1="300" col1="21" line2="300" col2="36" start="26421" end="26436">"plotExpression"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="300" col1="37" line2="300" col2="37" start="26437" end="26437">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="301" col1="1" line2="301" col2="1" start="26489" end="26489">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="301" col1="2" line2="301" col2="2" start="26490" end="26490">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="304" col1="1" line2="304" col2="18" start="26753" end="26770"># #' @name plotPCA</COMMENT>
+  <COMMENT line1="305" col1="1" line2="305" col2="12" start="26841" end="26852"># #' @export</COMMENT>
+  <COMMENT line1="306" col1="1" line2="306" col2="21" start="26929" end="26949"># #' @docType methods</COMMENT>
+  <COMMENT line1="307" col1="1" line2="307" col2="20" start="27017" end="27036"># #' @rdname plotPCA</COMMENT>
+  <COMMENT line1="308" col1="1" line2="308" col2="32" start="27105" end="27136"># if ( !isGeneric("plotPCA") ) {</COMMENT>
+  <COMMENT line1="309" col1="1" line2="309" col2="77" start="27193" end="27269">#     ## plotPCA is a generic in BiocGenerics_0.14.0 in R 3.2.0 - for earlier</COMMENT>
+  <COMMENT line1="310" col1="1" line2="310" col2="54" start="27281" end="27334">#     ## versions need to manually add it as a generic</COMMENT>
+  <COMMENT line1="311" col1="1" line2="311" col2="51" start="27369" end="27419">#     setGeneric("plotPCA", function(object, ...) {</COMMENT>
+  <COMMENT line1="312" col1="1" line2="312" col2="36" start="27457" end="27492">#         standardGeneric("plotPCA")</COMMENT>
+  <COMMENT line1="313" col1="1" line2="313" col2="8" start="27545" end="27552">#     })</COMMENT>
+  <COMMENT line1="314" col1="1" line2="314" col2="3" start="27633" end="27635"># }</COMMENT>
+  <COMMENT line1="316" col1="1" line2="316" col2="17" start="27809" end="27825">#' @name plotTSNE</COMMENT>
+  <COMMENT line1="317" col1="1" line2="317" col2="10" start="27897" end="27906">#' @export</COMMENT>
+  <COMMENT line1="318" col1="1" line2="318" col2="19" start="27985" end="28003">#' @docType methods</COMMENT>
+  <COMMENT line1="319" col1="1" line2="319" col2="19" start="28073" end="28091">#' @rdname plotTSNE</COMMENT>
+  <expr line1="320" col1="1" line2="322" col2="2" start="28161" end="28338">
+    <expr line1="320" col1="1" line2="320" col2="10" start="28161" end="28170">
+      <SYMBOL_FUNCTION_CALL line1="320" col1="1" line2="320" col2="10" start="28161" end="28170">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="320" col1="11" line2="320" col2="11" start="28171" end="28171">(</OP-LEFT-PAREN>
+    <expr line1="320" col1="12" line2="320" col2="21" start="28172" end="28181">
+      <STR_CONST line1="320" col1="12" line2="320" col2="21" start="28172" end="28181">"plotTSNE"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="320" col1="22" line2="320" col2="22" start="28182" end="28182">,</OP-COMMA>
+    <expr line1="320" col1="24" line2="322" col2="1" start="28184" end="28337">
+      <FUNCTION line1="320" col1="24" line2="320" col2="31" start="28184" end="28191">function</FUNCTION>
+      <OP-LEFT-PAREN line1="320" col1="32" line2="320" col2="32" start="28192" end="28192">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="320" col1="33" line2="320" col2="38" start="28193" end="28198">object</SYMBOL_FORMALS>
+      <OP-COMMA line1="320" col1="39" line2="320" col2="39" start="28199" end="28199">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="320" col1="41" line2="320" col2="43" start="28201" end="28203">...</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="320" col1="44" line2="320" col2="44" start="28204" end="28204">)</OP-RIGHT-PAREN>
+      <expr line1="320" col1="46" line2="322" col2="1" start="28206" end="28337">
+        <OP-LEFT-BRACE line1="320" col1="46" line2="320" col2="46" start="28206" end="28206">{</OP-LEFT-BRACE>
+        <expr line1="321" col1="5" line2="321" col2="31" start="28253" end="28279">
+          <expr line1="321" col1="5" line2="321" col2="19" start="28253" end="28267">
+            <SYMBOL_FUNCTION_CALL line1="321" col1="5" line2="321" col2="19" start="28253" end="28267">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="321" col1="20" line2="321" col2="20" start="28268" end="28268">(</OP-LEFT-PAREN>
+          <expr line1="321" col1="21" line2="321" col2="30" start="28269" end="28278">
+            <STR_CONST line1="321" col1="21" line2="321" col2="30" start="28269" end="28278">"plotTSNE"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="321" col1="31" line2="321" col2="31" start="28279" end="28279">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="322" col1="1" line2="322" col2="1" start="28337" end="28337">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="322" col1="2" line2="322" col2="2" start="28338" end="28338">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="324" col1="1" line2="324" col2="25" start="28513" end="28537">#' @name plotDiffusionMap</COMMENT>
+  <COMMENT line1="325" col1="1" line2="325" col2="10" start="28601" end="28610">#' @export</COMMENT>
+  <COMMENT line1="326" col1="1" line2="326" col2="19" start="28689" end="28707">#' @docType methods</COMMENT>
+  <COMMENT line1="327" col1="1" line2="327" col2="27" start="28777" end="28803">#' @rdname plotDiffusionMap</COMMENT>
+  <expr line1="328" col1="1" line2="330" col2="2" start="28865" end="29042">
+    <expr line1="328" col1="1" line2="328" col2="10" start="28865" end="28874">
+      <SYMBOL_FUNCTION_CALL line1="328" col1="1" line2="328" col2="10" start="28865" end="28874">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="328" col1="11" line2="328" col2="11" start="28875" end="28875">(</OP-LEFT-PAREN>
+    <expr line1="328" col1="12" line2="328" col2="29" start="28876" end="28893">
+      <STR_CONST line1="328" col1="12" line2="328" col2="29" start="28876" end="28893">"plotDiffusionMap"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="328" col1="30" line2="328" col2="30" start="28894" end="28894">,</OP-COMMA>
+    <expr line1="328" col1="32" line2="330" col2="1" start="28896" end="29041">
+      <FUNCTION line1="328" col1="32" line2="328" col2="39" start="28896" end="28903">function</FUNCTION>
+      <OP-LEFT-PAREN line1="328" col1="40" line2="328" col2="40" start="28904" end="28904">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="328" col1="41" line2="328" col2="46" start="28905" end="28910">object</SYMBOL_FORMALS>
+      <OP-COMMA line1="328" col1="47" line2="328" col2="47" start="28911" end="28911">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="328" col1="49" line2="328" col2="51" start="28913" end="28915">...</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="328" col1="52" line2="328" col2="52" start="28916" end="28916">)</OP-RIGHT-PAREN>
+      <expr line1="328" col1="54" line2="330" col2="1" start="28918" end="29041">
+        <OP-LEFT-BRACE line1="328" col1="54" line2="328" col2="54" start="28918" end="28918">{</OP-LEFT-BRACE>
+        <expr line1="329" col1="5" line2="329" col2="39" start="28957" end="28991">
+          <expr line1="329" col1="5" line2="329" col2="19" start="28957" end="28971">
+            <SYMBOL_FUNCTION_CALL line1="329" col1="5" line2="329" col2="19" start="28957" end="28971">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="329" col1="20" line2="329" col2="20" start="28972" end="28972">(</OP-LEFT-PAREN>
+          <expr line1="329" col1="21" line2="329" col2="38" start="28973" end="28990">
+            <STR_CONST line1="329" col1="21" line2="329" col2="38" start="28973" end="28990">"plotDiffusionMap"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="329" col1="39" line2="329" col2="39" start="28991" end="28991">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="330" col1="1" line2="330" col2="1" start="29041" end="29041">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="330" col1="2" line2="330" col2="2" start="29042" end="29042">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="332" col1="1" line2="332" col2="16" start="29217" end="29232">#' @name plotMDS</COMMENT>
+  <COMMENT line1="333" col1="1" line2="333" col2="10" start="29305" end="29314">#' @export</COMMENT>
+  <COMMENT line1="334" col1="1" line2="334" col2="19" start="29393" end="29411">#' @docType methods</COMMENT>
+  <COMMENT line1="335" col1="1" line2="335" col2="18" start="29481" end="29498">#' @rdname plotMDS</COMMENT>
+  <expr line1="336" col1="1" line2="338" col2="2" start="29569" end="29746">
+    <expr line1="336" col1="1" line2="336" col2="10" start="29569" end="29578">
+      <SYMBOL_FUNCTION_CALL line1="336" col1="1" line2="336" col2="10" start="29569" end="29578">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="336" col1="11" line2="336" col2="11" start="29579" end="29579">(</OP-LEFT-PAREN>
+    <expr line1="336" col1="12" line2="336" col2="20" start="29580" end="29588">
+      <STR_CONST line1="336" col1="12" line2="336" col2="20" start="29580" end="29588">"plotMDS"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="336" col1="21" line2="336" col2="21" start="29589" end="29589">,</OP-COMMA>
+    <expr line1="336" col1="23" line2="338" col2="1" start="29591" end="29745">
+      <FUNCTION line1="336" col1="23" line2="336" col2="30" start="29591" end="29598">function</FUNCTION>
+      <OP-LEFT-PAREN line1="336" col1="31" line2="336" col2="31" start="29599" end="29599">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="336" col1="32" line2="336" col2="37" start="29600" end="29605">object</SYMBOL_FORMALS>
+      <OP-COMMA line1="336" col1="38" line2="336" col2="38" start="29606" end="29606">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="336" col1="40" line2="336" col2="42" start="29608" end="29610">...</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="336" col1="43" line2="336" col2="43" start="29611" end="29611">)</OP-RIGHT-PAREN>
+      <expr line1="336" col1="45" line2="338" col2="1" start="29613" end="29745">
+        <OP-LEFT-BRACE line1="336" col1="45" line2="336" col2="45" start="29613" end="29613">{</OP-LEFT-BRACE>
+        <expr line1="337" col1="5" line2="337" col2="30" start="29661" end="29686">
+          <expr line1="337" col1="5" line2="337" col2="19" start="29661" end="29675">
+            <SYMBOL_FUNCTION_CALL line1="337" col1="5" line2="337" col2="19" start="29661" end="29675">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="337" col1="20" line2="337" col2="20" start="29676" end="29676">(</OP-LEFT-PAREN>
+          <expr line1="337" col1="21" line2="337" col2="29" start="29677" end="29685">
+            <STR_CONST line1="337" col1="21" line2="337" col2="29" start="29677" end="29685">"plotMDS"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="337" col1="30" line2="337" col2="30" start="29686" end="29686">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="338" col1="1" line2="338" col2="1" start="29745" end="29745">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="338" col1="2" line2="338" col2="2" start="29746" end="29746">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="340" col1="1" line2="340" col2="28" start="29921" end="29948">## dplyr-style verb genetics</COMMENT>
+  <COMMENT line1="342" col1="1" line2="342" col2="15" start="30097" end="30111">#' @name mutate</COMMENT>
+  <COMMENT line1="343" col1="1" line2="343" col2="17" start="30185" end="30201">#' @rdname mutate</COMMENT>
+  <COMMENT line1="344" col1="1" line2="344" col2="19" start="30273" end="30291">#' @docType methods</COMMENT>
+  <COMMENT line1="345" col1="1" line2="345" col2="10" start="30361" end="30370">#' @export</COMMENT>
+  <expr line1="346" col1="1" line2="347" col2="29" start="30449" end="30565">
+    <expr line1="346" col1="1" line2="346" col2="10" start="30449" end="30458">
+      <SYMBOL_FUNCTION_CALL line1="346" col1="1" line2="346" col2="10" start="30449" end="30458">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="346" col1="11" line2="346" col2="11" start="30459" end="30459">(</OP-LEFT-PAREN>
+    <expr line1="346" col1="12" line2="346" col2="19" start="30460" end="30467">
+      <STR_CONST line1="346" col1="12" line2="346" col2="19" start="30460" end="30467">"mutate"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="346" col1="20" line2="346" col2="20" start="30468" end="30468">,</OP-COMMA>
+    <expr line1="346" col1="22" line2="347" col2="28" start="30470" end="30564">
+      <FUNCTION line1="346" col1="22" line2="346" col2="29" start="30470" end="30477">function</FUNCTION>
+      <OP-LEFT-PAREN line1="346" col1="30" line2="346" col2="30" start="30478" end="30478">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="346" col1="31" line2="346" col2="36" start="30479" end="30484">object</SYMBOL_FORMALS>
+      <OP-COMMA line1="346" col1="37" line2="346" col2="37" start="30485" end="30485">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="346" col1="39" line2="346" col2="41" start="30487" end="30489">...</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="346" col1="42" line2="346" col2="42" start="30490" end="30490">)</OP-RIGHT-PAREN>
+      <expr line1="346" col1="44" line2="347" col2="28" start="30492" end="30564">
+        <OP-LEFT-BRACE line1="346" col1="44" line2="346" col2="44" start="30492" end="30492">{</OP-LEFT-BRACE>
+        <expr line1="347" col1="3" line2="347" col2="27" start="30539" end="30563">
+          <expr line1="347" col1="3" line2="347" col2="17" start="30539" end="30553">
+            <SYMBOL_FUNCTION_CALL line1="347" col1="3" line2="347" col2="17" start="30539" end="30553">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="347" col1="18" line2="347" col2="18" start="30554" end="30554">(</OP-LEFT-PAREN>
+          <expr line1="347" col1="19" line2="347" col2="26" start="30555" end="30562">
+            <STR_CONST line1="347" col1="19" line2="347" col2="26" start="30555" end="30562">"mutate"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="347" col1="27" line2="347" col2="27" start="30563" end="30563">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="347" col1="28" line2="347" col2="28" start="30564" end="30564">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="347" col1="29" line2="347" col2="29" start="30565" end="30565">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="349" col1="1" line2="349" col2="15" start="30713" end="30727">#' @name rename</COMMENT>
+  <COMMENT line1="350" col1="1" line2="350" col2="17" start="30801" end="30817">#' @rdname rename</COMMENT>
+  <COMMENT line1="351" col1="1" line2="351" col2="19" start="30889" end="30907">#' @docType methods</COMMENT>
+  <COMMENT line1="352" col1="1" line2="352" col2="10" start="30977" end="30986">#' @export</COMMENT>
+  <expr line1="353" col1="1" line2="354" col2="29" start="31065" end="31181">
+    <expr line1="353" col1="1" line2="353" col2="10" start="31065" end="31074">
+      <SYMBOL_FUNCTION_CALL line1="353" col1="1" line2="353" col2="10" start="31065" end="31074">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="353" col1="11" line2="353" col2="11" start="31075" end="31075">(</OP-LEFT-PAREN>
+    <expr line1="353" col1="12" line2="353" col2="19" start="31076" end="31083">
+      <STR_CONST line1="353" col1="12" line2="353" col2="19" start="31076" end="31083">"rename"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="353" col1="20" line2="353" col2="20" start="31084" end="31084">,</OP-COMMA>
+    <expr line1="353" col1="22" line2="354" col2="28" start="31086" end="31180">
+      <FUNCTION line1="353" col1="22" line2="353" col2="29" start="31086" end="31093">function</FUNCTION>
+      <OP-LEFT-PAREN line1="353" col1="30" line2="353" col2="30" start="31094" end="31094">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="353" col1="31" line2="353" col2="36" start="31095" end="31100">object</SYMBOL_FORMALS>
+      <OP-COMMA line1="353" col1="37" line2="353" col2="37" start="31101" end="31101">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="353" col1="39" line2="353" col2="41" start="31103" end="31105">...</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="353" col1="42" line2="353" col2="42" start="31106" end="31106">)</OP-RIGHT-PAREN>
+      <expr line1="353" col1="44" line2="354" col2="28" start="31108" end="31180">
+        <OP-LEFT-BRACE line1="353" col1="44" line2="353" col2="44" start="31108" end="31108">{</OP-LEFT-BRACE>
+        <expr line1="354" col1="3" line2="354" col2="27" start="31155" end="31179">
+          <expr line1="354" col1="3" line2="354" col2="17" start="31155" end="31169">
+            <SYMBOL_FUNCTION_CALL line1="354" col1="3" line2="354" col2="17" start="31155" end="31169">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="354" col1="18" line2="354" col2="18" start="31170" end="31170">(</OP-LEFT-PAREN>
+          <expr line1="354" col1="19" line2="354" col2="26" start="31171" end="31178">
+            <STR_CONST line1="354" col1="19" line2="354" col2="26" start="31171" end="31178">"rename"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="354" col1="27" line2="354" col2="27" start="31179" end="31179">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="354" col1="28" line2="354" col2="28" start="31180" end="31180">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="354" col1="29" line2="354" col2="29" start="31181" end="31181">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="356" col1="1" line2="356" col2="15" start="31329" end="31343">#' @name filter</COMMENT>
+  <COMMENT line1="357" col1="1" line2="357" col2="17" start="31417" end="31433">#' @rdname filter</COMMENT>
+  <COMMENT line1="358" col1="1" line2="358" col2="19" start="31505" end="31523">#' @docType methods</COMMENT>
+  <COMMENT line1="359" col1="1" line2="359" col2="10" start="31593" end="31602">#' @export</COMMENT>
+  <expr line1="360" col1="1" line2="361" col2="29" start="31681" end="31797">
+    <expr line1="360" col1="1" line2="360" col2="10" start="31681" end="31690">
+      <SYMBOL_FUNCTION_CALL line1="360" col1="1" line2="360" col2="10" start="31681" end="31690">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="360" col1="11" line2="360" col2="11" start="31691" end="31691">(</OP-LEFT-PAREN>
+    <expr line1="360" col1="12" line2="360" col2="19" start="31692" end="31699">
+      <STR_CONST line1="360" col1="12" line2="360" col2="19" start="31692" end="31699">"filter"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="360" col1="20" line2="360" col2="20" start="31700" end="31700">,</OP-COMMA>
+    <expr line1="360" col1="22" line2="361" col2="28" start="31702" end="31796">
+      <FUNCTION line1="360" col1="22" line2="360" col2="29" start="31702" end="31709">function</FUNCTION>
+      <OP-LEFT-PAREN line1="360" col1="30" line2="360" col2="30" start="31710" end="31710">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="360" col1="31" line2="360" col2="36" start="31711" end="31716">object</SYMBOL_FORMALS>
+      <OP-COMMA line1="360" col1="37" line2="360" col2="37" start="31717" end="31717">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="360" col1="39" line2="360" col2="41" start="31719" end="31721">...</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="360" col1="42" line2="360" col2="42" start="31722" end="31722">)</OP-RIGHT-PAREN>
+      <expr line1="360" col1="44" line2="361" col2="28" start="31724" end="31796">
+        <OP-LEFT-BRACE line1="360" col1="44" line2="360" col2="44" start="31724" end="31724">{</OP-LEFT-BRACE>
+        <expr line1="361" col1="3" line2="361" col2="27" start="31771" end="31795">
+          <expr line1="361" col1="3" line2="361" col2="17" start="31771" end="31785">
+            <SYMBOL_FUNCTION_CALL line1="361" col1="3" line2="361" col2="17" start="31771" end="31785">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="361" col1="18" line2="361" col2="18" start="31786" end="31786">(</OP-LEFT-PAREN>
+          <expr line1="361" col1="19" line2="361" col2="26" start="31787" end="31794">
+            <STR_CONST line1="361" col1="19" line2="361" col2="26" start="31787" end="31794">"filter"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="361" col1="27" line2="361" col2="27" start="31795" end="31795">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="361" col1="28" line2="361" col2="28" start="31796" end="31796">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="361" col1="29" line2="361" col2="29" start="31797" end="31797">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="363" col1="1" line2="363" col2="16" start="31945" end="31960">#' @name arrange</COMMENT>
+  <COMMENT line1="364" col1="1" line2="364" col2="18" start="32033" end="32050">#' @rdname arrange</COMMENT>
+  <COMMENT line1="365" col1="1" line2="365" col2="19" start="32121" end="32139">#' @docType methods</COMMENT>
+  <COMMENT line1="366" col1="1" line2="366" col2="10" start="32209" end="32218">#' @export</COMMENT>
+  <expr line1="367" col1="1" line2="368" col2="30" start="32297" end="32414">
+    <expr line1="367" col1="1" line2="367" col2="10" start="32297" end="32306">
+      <SYMBOL_FUNCTION_CALL line1="367" col1="1" line2="367" col2="10" start="32297" end="32306">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="367" col1="11" line2="367" col2="11" start="32307" end="32307">(</OP-LEFT-PAREN>
+    <expr line1="367" col1="12" line2="367" col2="20" start="32308" end="32316">
+      <STR_CONST line1="367" col1="12" line2="367" col2="20" start="32308" end="32316">"arrange"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="367" col1="21" line2="367" col2="21" start="32317" end="32317">,</OP-COMMA>
+    <expr line1="367" col1="23" line2="368" col2="29" start="32319" end="32413">
+      <FUNCTION line1="367" col1="23" line2="367" col2="30" start="32319" end="32326">function</FUNCTION>
+      <OP-LEFT-PAREN line1="367" col1="31" line2="367" col2="31" start="32327" end="32327">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="367" col1="32" line2="367" col2="37" start="32328" end="32333">object</SYMBOL_FORMALS>
+      <OP-COMMA line1="367" col1="38" line2="367" col2="38" start="32334" end="32334">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="367" col1="40" line2="367" col2="42" start="32336" end="32338">...</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="367" col1="43" line2="367" col2="43" start="32339" end="32339">)</OP-RIGHT-PAREN>
+      <expr line1="367" col1="45" line2="368" col2="29" start="32341" end="32413">
+        <OP-LEFT-BRACE line1="367" col1="45" line2="367" col2="45" start="32341" end="32341">{</OP-LEFT-BRACE>
+        <expr line1="368" col1="3" line2="368" col2="28" start="32387" end="32412">
+          <expr line1="368" col1="3" line2="368" col2="17" start="32387" end="32401">
+            <SYMBOL_FUNCTION_CALL line1="368" col1="3" line2="368" col2="17" start="32387" end="32401">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="368" col1="18" line2="368" col2="18" start="32402" end="32402">(</OP-LEFT-PAREN>
+          <expr line1="368" col1="19" line2="368" col2="27" start="32403" end="32411">
+            <STR_CONST line1="368" col1="19" line2="368" col2="27" start="32403" end="32411">"arrange"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="368" col1="28" line2="368" col2="28" start="32412" end="32412">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="368" col1="29" line2="368" col2="29" start="32413" end="32413">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="368" col1="30" line2="368" col2="30" start="32414" end="32414">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="370" col1="1" line2="370" col2="15" start="32561" end="32575">#' @name spikes</COMMENT>
+  <COMMENT line1="371" col1="1" line2="371" col2="17" start="32649" end="32665">#' @rdname spikes</COMMENT>
+  <COMMENT line1="372" col1="1" line2="372" col2="19" start="32737" end="32755">#' @docType methods</COMMENT>
+  <COMMENT line1="373" col1="1" line2="373" col2="10" start="32825" end="32834">#' @export</COMMENT>
+  <expr line1="374" col1="1" line2="374" col2="69" start="32913" end="32981">
+    <expr line1="374" col1="1" line2="374" col2="10" start="32913" end="32922">
+      <SYMBOL_FUNCTION_CALL line1="374" col1="1" line2="374" col2="10" start="32913" end="32922">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="374" col1="11" line2="374" col2="11" start="32923" end="32923">(</OP-LEFT-PAREN>
+    <expr line1="374" col1="12" line2="374" col2="19" start="32924" end="32931">
+      <STR_CONST line1="374" col1="12" line2="374" col2="19" start="32924" end="32931">"spikes"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="374" col1="20" line2="374" col2="20" start="32932" end="32932">,</OP-COMMA>
+    <expr line1="374" col1="22" line2="374" col2="68" start="32934" end="32980">
+      <FUNCTION line1="374" col1="22" line2="374" col2="29" start="32934" end="32941">function</FUNCTION>
+      <OP-LEFT-PAREN line1="374" col1="30" line2="374" col2="30" start="32942" end="32942">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="374" col1="31" line2="374" col2="36" start="32943" end="32948">object</SYMBOL_FORMALS>
+      <OP-COMMA line1="374" col1="37" line2="374" col2="37" start="32949" end="32949">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="374" col1="39" line2="374" col2="41" start="32951" end="32953">...</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="374" col1="42" line2="374" col2="42" start="32954" end="32954">)</OP-RIGHT-PAREN>
+      <expr line1="374" col1="44" line2="374" col2="68" start="32956" end="32980">
+        <expr line1="374" col1="44" line2="374" col2="58" start="32956" end="32970">
+          <SYMBOL_FUNCTION_CALL line1="374" col1="44" line2="374" col2="58" start="32956" end="32970">standardGeneric</SYMBOL_FUNCTION_CALL>
+        </expr>
+        <OP-LEFT-PAREN line1="374" col1="59" line2="374" col2="59" start="32971" end="32971">(</OP-LEFT-PAREN>
+        <expr line1="374" col1="60" line2="374" col2="67" start="32972" end="32979">
+          <STR_CONST line1="374" col1="60" line2="374" col2="67" start="32972" end="32979">"spikes"</STR_CONST>
+        </expr>
+        <OP-RIGHT-PAREN line1="374" col1="68" line2="374" col2="68" start="32980" end="32980">)</OP-RIGHT-PAREN>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="374" col1="69" line2="374" col2="69" start="32981" end="32981">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="376" col1="1" line2="376" col2="16" start="33089" end="33104">#' @name isSpike</COMMENT>
+  <COMMENT line1="377" col1="1" line2="377" col2="18" start="33177" end="33194">#' @rdname isSpike</COMMENT>
+  <COMMENT line1="378" col1="1" line2="378" col2="19" start="33265" end="33283">#' @docType methods</COMMENT>
+  <COMMENT line1="379" col1="1" line2="379" col2="10" start="33353" end="33362">#' @export</COMMENT>
+  <expr line1="380" col1="1" line2="380" col2="71" start="33441" end="33511">
+    <expr line1="380" col1="1" line2="380" col2="10" start="33441" end="33450">
+      <SYMBOL_FUNCTION_CALL line1="380" col1="1" line2="380" col2="10" start="33441" end="33450">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="380" col1="11" line2="380" col2="11" start="33451" end="33451">(</OP-LEFT-PAREN>
+    <expr line1="380" col1="12" line2="380" col2="20" start="33452" end="33460">
+      <STR_CONST line1="380" col1="12" line2="380" col2="20" start="33452" end="33460">"isSpike"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="380" col1="21" line2="380" col2="21" start="33461" end="33461">,</OP-COMMA>
+    <expr line1="380" col1="23" line2="380" col2="70" start="33463" end="33510">
+      <FUNCTION line1="380" col1="23" line2="380" col2="30" start="33463" end="33470">function</FUNCTION>
+      <OP-LEFT-PAREN line1="380" col1="31" line2="380" col2="31" start="33471" end="33471">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="380" col1="32" line2="380" col2="37" start="33472" end="33477">object</SYMBOL_FORMALS>
+      <OP-COMMA line1="380" col1="38" line2="380" col2="38" start="33478" end="33478">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="380" col1="40" line2="380" col2="42" start="33480" end="33482">...</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="380" col1="43" line2="380" col2="43" start="33483" end="33483">)</OP-RIGHT-PAREN>
+      <expr line1="380" col1="45" line2="380" col2="70" start="33485" end="33510">
+        <expr line1="380" col1="45" line2="380" col2="59" start="33485" end="33499">
+          <SYMBOL_FUNCTION_CALL line1="380" col1="45" line2="380" col2="59" start="33485" end="33499">standardGeneric</SYMBOL_FUNCTION_CALL>
+        </expr>
+        <OP-LEFT-PAREN line1="380" col1="60" line2="380" col2="60" start="33500" end="33500">(</OP-LEFT-PAREN>
+        <expr line1="380" col1="61" line2="380" col2="69" start="33501" end="33509">
+          <STR_CONST line1="380" col1="61" line2="380" col2="69" start="33501" end="33509">"isSpike"</STR_CONST>
+        </expr>
+        <OP-RIGHT-PAREN line1="380" col1="70" line2="380" col2="70" start="33510" end="33510">)</OP-RIGHT-PAREN>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="380" col1="71" line2="380" col2="71" start="33511" end="33511">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="382" col1="1" line2="382" col2="17" start="33617" end="33633">#' @name setSpike</COMMENT>
+  <COMMENT line1="383" col1="1" line2="383" col2="19" start="33705" end="33723">#' @rdname setSpike</COMMENT>
+  <COMMENT line1="384" col1="1" line2="384" col2="19" start="33793" end="33811">#' @docType methods</COMMENT>
+  <COMMENT line1="385" col1="1" line2="385" col2="10" start="33881" end="33890">#' @export</COMMENT>
+  <expr line1="386" col1="1" line2="386" col2="79" start="33969" end="34047">
+    <expr line1="386" col1="1" line2="386" col2="10" start="33969" end="33978">
+      <SYMBOL_FUNCTION_CALL line1="386" col1="1" line2="386" col2="10" start="33969" end="33978">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="386" col1="11" line2="386" col2="11" start="33979" end="33979">(</OP-LEFT-PAREN>
+    <expr line1="386" col1="12" line2="386" col2="23" start="33980" end="33991">
+      <STR_CONST line1="386" col1="12" line2="386" col2="23" start="33980" end="33991">"setSpike&lt;-"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="386" col1="24" line2="386" col2="24" start="33992" end="33992">,</OP-COMMA>
+    <expr line1="386" col1="26" line2="386" col2="78" start="33994" end="34046">
+      <FUNCTION line1="386" col1="26" line2="386" col2="33" start="33994" end="34001">function</FUNCTION>
+      <OP-LEFT-PAREN line1="386" col1="34" line2="386" col2="34" start="34002" end="34002">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="386" col1="35" line2="386" col2="40" start="34003" end="34008">object</SYMBOL_FORMALS>
+      <OP-COMMA line1="386" col1="41" line2="386" col2="41" start="34009" end="34009">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="386" col1="43" line2="386" col2="47" start="34011" end="34015">value</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="386" col1="48" line2="386" col2="48" start="34016" end="34016">)</OP-RIGHT-PAREN>
+      <expr line1="386" col1="50" line2="386" col2="78" start="34018" end="34046">
+        <expr line1="386" col1="50" line2="386" col2="64" start="34018" end="34032">
+          <SYMBOL_FUNCTION_CALL line1="386" col1="50" line2="386" col2="64" start="34018" end="34032">standardGeneric</SYMBOL_FUNCTION_CALL>
+        </expr>
+        <OP-LEFT-PAREN line1="386" col1="65" line2="386" col2="65" start="34033" end="34033">(</OP-LEFT-PAREN>
+        <expr line1="386" col1="66" line2="386" col2="77" start="34034" end="34045">
+          <STR_CONST line1="386" col1="66" line2="386" col2="77" start="34034" end="34045">"setSpike&lt;-"</STR_CONST>
+        </expr>
+        <OP-RIGHT-PAREN line1="386" col1="78" line2="386" col2="78" start="34046" end="34046">)</OP-RIGHT-PAREN>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="386" col1="79" line2="386" col2="79" start="34047" end="34047">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="388" col1="1" line2="388" col2="19" start="34145" end="34163">#' @name whichSpike</COMMENT>
+  <COMMENT line1="389" col1="1" line2="389" col2="21" start="34233" end="34253">#' @rdname whichSpike</COMMENT>
+  <COMMENT line1="390" col1="1" line2="390" col2="19" start="34321" end="34339">#' @docType methods</COMMENT>
+  <COMMENT line1="391" col1="1" line2="391" col2="10" start="34409" end="34418">#' @export</COMMENT>
+  <expr line1="392" col1="1" line2="392" col2="72" start="34497" end="34568">
+    <expr line1="392" col1="1" line2="392" col2="10" start="34497" end="34506">
+      <SYMBOL_FUNCTION_CALL line1="392" col1="1" line2="392" col2="10" start="34497" end="34506">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="392" col1="11" line2="392" col2="11" start="34507" end="34507">(</OP-LEFT-PAREN>
+    <expr line1="392" col1="12" line2="392" col2="23" start="34508" end="34519">
+      <STR_CONST line1="392" col1="12" line2="392" col2="23" start="34508" end="34519">"whichSpike"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="392" col1="24" line2="392" col2="24" start="34520" end="34520">,</OP-COMMA>
+    <expr line1="392" col1="26" line2="392" col2="71" start="34522" end="34567">
+      <FUNCTION line1="392" col1="26" line2="392" col2="33" start="34522" end="34529">function</FUNCTION>
+      <OP-LEFT-PAREN line1="392" col1="34" line2="392" col2="34" start="34530" end="34530">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="392" col1="35" line2="392" col2="40" start="34531" end="34536">object</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="392" col1="41" line2="392" col2="41" start="34537" end="34537">)</OP-RIGHT-PAREN>
+      <expr line1="392" col1="43" line2="392" col2="71" start="34539" end="34567">
+        <expr line1="392" col1="43" line2="392" col2="57" start="34539" end="34553">
+          <SYMBOL_FUNCTION_CALL line1="392" col1="43" line2="392" col2="57" start="34539" end="34553">standardGeneric</SYMBOL_FUNCTION_CALL>
+        </expr>
+        <OP-LEFT-PAREN line1="392" col1="58" line2="392" col2="58" start="34554" end="34554">(</OP-LEFT-PAREN>
+        <expr line1="392" col1="59" line2="392" col2="70" start="34555" end="34566">
+          <STR_CONST line1="392" col1="59" line2="392" col2="70" start="34555" end="34566">"whichSpike"</STR_CONST>
+        </expr>
+        <OP-RIGHT-PAREN line1="392" col1="71" line2="392" col2="71" start="34567" end="34567">)</OP-RIGHT-PAREN>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="392" col1="72" line2="392" col2="72" start="34568" end="34568">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="394" col1="1" line2="394" col2="16" start="34673" end="34688"># #' @name magic</COMMENT>
+  <COMMENT line1="395" col1="1" line2="395" col2="18" start="34761" end="34778"># #' @rdname magic</COMMENT>
+  <COMMENT line1="396" col1="1" line2="396" col2="21" start="34849" end="34869"># #' @docType methods</COMMENT>
+  <COMMENT line1="397" col1="1" line2="397" col2="13" start="34937" end="34949"># #' #@export</COMMENT>
+  <expr line1="398" col1="1" line2="398" col2="67" start="35025" end="35091">
+    <expr line1="398" col1="1" line2="398" col2="10" start="35025" end="35034">
+      <SYMBOL_FUNCTION_CALL line1="398" col1="1" line2="398" col2="10" start="35025" end="35034">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="398" col1="11" line2="398" col2="11" start="35035" end="35035">(</OP-LEFT-PAREN>
+    <expr line1="398" col1="12" line2="398" col2="18" start="35036" end="35042">
+      <STR_CONST line1="398" col1="12" line2="398" col2="18" start="35036" end="35042">"magic"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="398" col1="19" line2="398" col2="19" start="35043" end="35043">,</OP-COMMA>
+    <expr line1="398" col1="21" line2="398" col2="66" start="35045" end="35090">
+      <FUNCTION line1="398" col1="21" line2="398" col2="28" start="35045" end="35052">function</FUNCTION>
+      <OP-LEFT-PAREN line1="398" col1="29" line2="398" col2="29" start="35053" end="35053">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="398" col1="30" line2="398" col2="35" start="35054" end="35059">object</SYMBOL_FORMALS>
+      <OP-COMMA line1="398" col1="36" line2="398" col2="36" start="35060" end="35060">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="398" col1="38" line2="398" col2="40" start="35062" end="35064">...</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="398" col1="41" line2="398" col2="41" start="35065" end="35065">)</OP-RIGHT-PAREN>
+      <expr line1="398" col1="43" line2="398" col2="66" start="35067" end="35090">
+        <expr line1="398" col1="43" line2="398" col2="57" start="35067" end="35081">
+          <SYMBOL_FUNCTION_CALL line1="398" col1="43" line2="398" col2="57" start="35067" end="35081">standardGeneric</SYMBOL_FUNCTION_CALL>
+        </expr>
+        <OP-LEFT-PAREN line1="398" col1="58" line2="398" col2="58" start="35082" end="35082">(</OP-LEFT-PAREN>
+        <expr line1="398" col1="59" line2="398" col2="65" start="35083" end="35089">
+          <STR_CONST line1="398" col1="59" line2="398" col2="65" start="35083" end="35089">"magic"</STR_CONST>
+        </expr>
+        <OP-RIGHT-PAREN line1="398" col1="66" line2="398" col2="66" start="35090" end="35090">)</OP-RIGHT-PAREN>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="398" col1="67" line2="398" col2="67" start="35091" end="35091">)</OP-RIGHT-PAREN>
+  </expr>
+  <COMMENT line1="400" col1="1" line2="400" col2="16" start="35201" end="35216">#' @name plotRLE</COMMENT>
+  <COMMENT line1="401" col1="1" line2="401" col2="10" start="35289" end="35298">#' @export</COMMENT>
+  <COMMENT line1="402" col1="1" line2="402" col2="19" start="35377" end="35395">#' @docType methods</COMMENT>
+  <COMMENT line1="403" col1="1" line2="403" col2="18" start="35465" end="35482">#' @rdname plotRLE</COMMENT>
+  <expr line1="404" col1="1" line2="406" col2="2" start="35553" end="35730">
+    <expr line1="404" col1="1" line2="404" col2="10" start="35553" end="35562">
+      <SYMBOL_FUNCTION_CALL line1="404" col1="1" line2="404" col2="10" start="35553" end="35562">setGeneric</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="404" col1="11" line2="404" col2="11" start="35563" end="35563">(</OP-LEFT-PAREN>
+    <expr line1="404" col1="12" line2="404" col2="20" start="35564" end="35572">
+      <STR_CONST line1="404" col1="12" line2="404" col2="20" start="35564" end="35572">"plotRLE"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="404" col1="21" line2="404" col2="21" start="35573" end="35573">,</OP-COMMA>
+    <expr line1="404" col1="23" line2="406" col2="1" start="35575" end="35729">
+      <FUNCTION line1="404" col1="23" line2="404" col2="30" start="35575" end="35582">function</FUNCTION>
+      <OP-LEFT-PAREN line1="404" col1="31" line2="404" col2="31" start="35583" end="35583">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="404" col1="32" line2="404" col2="37" start="35584" end="35589">object</SYMBOL_FORMALS>
+      <OP-COMMA line1="404" col1="38" line2="404" col2="38" start="35590" end="35590">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="404" col1="40" line2="404" col2="42" start="35592" end="35594">...</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="404" col1="43" line2="404" col2="43" start="35595" end="35595">)</OP-RIGHT-PAREN>
+      <expr line1="404" col1="45" line2="406" col2="1" start="35597" end="35729">
+        <OP-LEFT-BRACE line1="404" col1="45" line2="404" col2="45" start="35597" end="35597">{</OP-LEFT-BRACE>
+        <expr line1="405" col1="5" line2="405" col2="30" start="35645" end="35670">
+          <expr line1="405" col1="5" line2="405" col2="19" start="35645" end="35659">
+            <SYMBOL_FUNCTION_CALL line1="405" col1="5" line2="405" col2="19" start="35645" end="35659">standardGeneric</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="405" col1="20" line2="405" col2="20" start="35660" end="35660">(</OP-LEFT-PAREN>
+          <expr line1="405" col1="21" line2="405" col2="29" start="35661" end="35669">
+            <STR_CONST line1="405" col1="21" line2="405" col2="29" start="35661" end="35669">"plotRLE"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="405" col1="30" line2="405" col2="30" start="35670" end="35670">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="406" col1="1" line2="406" col2="1" start="35729" end="35729">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+    <OP-RIGHT-PAREN line1="406" col1="2" line2="406" col2="2" start="35730" end="35730">)</OP-RIGHT-PAREN>
+  </expr>
+</exprlist>
+

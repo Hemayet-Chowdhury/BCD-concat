@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<exprlist>
+  <COMMENT line1="1" col1="1" line2="1" col2="35" start="82" end="116">#' Load in data from 10x experiment</COMMENT>
+  <COMMENT line1="2" col1="1" line2="2" col2="3" start="163" end="165">#' </COMMENT>
+  <COMMENT line1="3" col1="1" line2="3" col2="77" start="244" end="320">#' Creates a full or sparse matrix from a sparse data matrix provided by 10X </COMMENT>
+  <COMMENT line1="4" col1="1" line2="4" col2="12" start="325" end="336">#' genomics.</COMMENT>
+  <COMMENT line1="5" col1="1" line2="5" col2="3" start="406" end="408">#' </COMMENT>
+  <COMMENT line1="6" col1="1" line2="6" col2="71" start="487" end="557">#' @param data_dir Directory containing the matrix.mtx, genes.tsv, and </COMMENT>
+  <COMMENT line1="7" col1="1" line2="7" col2="80" start="568" end="647">#' barcodes.tsv files provided by 10x. A vector or named vector can be given in </COMMENT>
+  <COMMENT line1="8" col1="1" line2="8" col2="80" start="649" end="728">#' order to load several data directories. If a named vector is given, the cell </COMMENT>
+  <COMMENT line1="9" col1="1" line2="9" col2="48" start="730" end="777">#' barcode names will be prefixed with the name.</COMMENT>
+  <COMMENT line1="10" col1="1" line2="10" col2="79" start="811" end="889">#' @param min_total_cell_counts integer(1) threshold such that cells (barcodes)</COMMENT>
+  <COMMENT line1="11" col1="1" line2="11" col2="57" start="892" end="948">#' with total counts below the threshold are filtered out</COMMENT>
+  <COMMENT line1="12" col1="1" line2="12" col2="78" start="973" end="1050">#' @param min_mean_gene_counts numeric(1) threshold such that genes with mean </COMMENT>
+  <COMMENT line1="13" col1="1" line2="13" col2="47" start="1054" end="1100">#' counts below the threshold are filtered out.</COMMENT>
+  <COMMENT line1="14" col1="1" line2="14" col2="30" start="1135" end="1164">#' @param ... passed arguments</COMMENT>
+  <COMMENT line1="15" col1="1" line2="15" col2="3" start="1216" end="1218">#' </COMMENT>
+  <COMMENT line1="16" col1="1" line2="16" col2="73" start="1297" end="1369">#' @details This function calls \code{\link[DropletUtils]{read10xCounts}}</COMMENT>
+  <COMMENT line1="17" col1="1" line2="17" col2="76" start="1378" end="1453">#' from the \pkg{DropletUtils} package. It is deprecated and will be removed</COMMENT>
+  <COMMENT line1="18" col1="1" line2="18" col2="23" start="1459" end="1481">#' in the next release.</COMMENT>
+  <COMMENT line1="19" col1="1" line2="19" col2="3" start="1540" end="1542">#' </COMMENT>
+  <COMMENT line1="20" col1="1" line2="20" col2="78" start="1621" end="1698">#' @return Returns an SingleCellExperiment object with counts data stored as a</COMMENT>
+  <COMMENT line1="21" col1="1" line2="21" col2="79" start="1702" end="1780">#' sparse matrix. Rows are named with the gene name and columns are named with </COMMENT>
+  <COMMENT line1="22" col1="1" line2="22" col2="76" start="1783" end="1858">#' the cell barcode (if \code{data_dir} contains one element; otherwise the </COMMENT>
+  <COMMENT line1="23" col1="1" line2="23" col2="67" start="1864" end="1930">#' columns are unnamed to avoid problems with non-unique barcodes).</COMMENT>
+  <COMMENT line1="24" col1="1" line2="24" col2="3" start="1945" end="1947">#' </COMMENT>
+  <COMMENT line1="25" col1="1" line2="25" col2="17" start="2026" end="2042">#' @import Matrix</COMMENT>
+  <COMMENT line1="26" col1="1" line2="26" col2="25" start="2107" end="2131">#' @rdname read10xResults</COMMENT>
+  <COMMENT line1="27" col1="1" line2="27" col2="41" start="2188" end="2228">#' @aliases read10xResults read10XResults</COMMENT>
+  <COMMENT line1="28" col1="1" line2="28" col2="10" start="2269" end="2278">#' @export</COMMENT>
+  <COMMENT line1="29" col1="1" line2="29" col2="13" start="2350" end="2362">#' @examples </COMMENT>
+  <COMMENT line1="30" col1="1" line2="30" col2="69" start="2431" end="2499">#' sce10x &lt;- read10xResults(system.file("extdata", package="scater"))</COMMENT>
+  <COMMENT line1="31" col1="1" line2="31" col2="3" start="2512" end="2514">#' </COMMENT>
+  <expr line1="32" col1="1" line2="48" col2="1" start="2593" end="3889">
+    <expr line1="32" col1="1" line2="32" col2="14" start="2593" end="2606">
+      <SYMBOL line1="32" col1="1" line2="32" col2="14" start="2593" end="2606">read10xResults</SYMBOL>
+    </expr>
+    <LEFT_ASSIGN line1="32" col1="16" line2="32" col2="17" start="2608" end="2609">&lt;-</LEFT_ASSIGN>
+    <expr line1="32" col1="19" line2="48" col2="1" start="2611" end="3889">
+      <FUNCTION line1="32" col1="19" line2="32" col2="26" start="2611" end="2618">function</FUNCTION>
+      <OP-LEFT-PAREN line1="32" col1="27" line2="32" col2="27" start="2619" end="2619">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="32" col1="28" line2="32" col2="35" start="2620" end="2627">data_dir</SYMBOL_FORMALS>
+      <OP-COMMA line1="32" col1="36" line2="32" col2="36" start="2628" end="2628">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="32" col1="38" line2="32" col2="58" start="2630" end="2650">min_total_cell_counts</SYMBOL_FORMALS>
+      <EQ_FORMALS line1="32" col1="60" line2="32" col2="60" start="2652" end="2652">=</EQ_FORMALS>
+      <expr line1="32" col1="62" line2="32" col2="65" start="2654" end="2657">
+        <NULL_CONST line1="32" col1="62" line2="32" col2="65" start="2654" end="2657">NULL</NULL_CONST>
+      </expr>
+      <OP-COMMA line1="32" col1="66" line2="32" col2="66" start="2658" end="2658">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="33" col1="28" line2="33" col2="47" start="2701" end="2720">min_mean_gene_counts</SYMBOL_FORMALS>
+      <EQ_FORMALS line1="33" col1="49" line2="33" col2="49" start="2722" end="2722">=</EQ_FORMALS>
+      <expr line1="33" col1="51" line2="33" col2="54" start="2724" end="2727">
+        <NULL_CONST line1="33" col1="51" line2="33" col2="54" start="2724" end="2727">NULL</NULL_CONST>
+      </expr>
+      <OP-RIGHT-PAREN line1="33" col1="55" line2="33" col2="55" start="2728" end="2728">)</OP-RIGHT-PAREN>
+      <expr line1="33" col1="57" line2="48" col2="1" start="2730" end="3889">
+        <OP-LEFT-BRACE line1="33" col1="57" line2="33" col2="57" start="2730" end="2730">{</OP-LEFT-BRACE>
+        <expr line1="34" col1="5" line2="34" col2="46" start="2759" end="2800">
+          <expr line1="34" col1="5" line2="34" col2="15" start="2759" end="2769">
+            <SYMBOL_FUNCTION_CALL line1="34" col1="5" line2="34" col2="15" start="2759" end="2769">.Deprecated</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="34" col1="16" line2="34" col2="16" start="2770" end="2770">(</OP-LEFT-PAREN>
+          <expr line1="34" col1="17" line2="34" col2="45" start="2771" end="2799">
+            <STR_CONST line1="34" col1="17" line2="34" col2="45" start="2771" end="2799">"DropletUtils::read10xCounts"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="34" col1="46" line2="34" col2="46" start="2800" end="2800">)</OP-RIGHT-PAREN>
+        </expr>
+        <expr line1="35" col1="5" line2="35" col2="48" start="2840" end="2883">
+          <expr line1="35" col1="5" line2="35" col2="7" start="2840" end="2842">
+            <SYMBOL line1="35" col1="5" line2="35" col2="7" start="2840" end="2842">out</SYMBOL>
+          </expr>
+          <LEFT_ASSIGN line1="35" col1="9" line2="35" col2="10" start="2844" end="2845">&lt;-</LEFT_ASSIGN>
+          <expr line1="35" col1="12" line2="35" col2="48" start="2847" end="2883">
+            <expr line1="35" col1="12" line2="35" col2="38" start="2847" end="2873">
+              <SYMBOL_PACKAGE line1="35" col1="12" line2="35" col2="23" start="2847" end="2858">DropletUtils</SYMBOL_PACKAGE>
+              <NS_GET line1="35" col1="24" line2="35" col2="25" start="2859" end="2860">::</NS_GET>
+              <SYMBOL_FUNCTION_CALL line1="35" col1="26" line2="35" col2="38" start="2861" end="2873">read10xCounts</SYMBOL_FUNCTION_CALL>
+            </expr>
+            <OP-LEFT-PAREN line1="35" col1="39" line2="35" col2="39" start="2874" end="2874">(</OP-LEFT-PAREN>
+            <expr line1="35" col1="40" line2="35" col2="47" start="2875" end="2882">
+              <SYMBOL line1="35" col1="40" line2="35" col2="47" start="2875" end="2882">data_dir</SYMBOL>
+            </expr>
+            <OP-RIGHT-PAREN line1="35" col1="48" line2="35" col2="48" start="2883" end="2883">)</OP-RIGHT-PAREN>
+          </expr>
+        </expr>
+        <expr line1="37" col1="5" line2="40" col2="5" start="3002" end="3245">
+          <IF line1="37" col1="5" line2="37" col2="6" start="3002" end="3003">if</IF>
+          <OP-LEFT-PAREN line1="37" col1="8" line2="37" col2="8" start="3005" end="3005">(</OP-LEFT-PAREN>
+          <expr line1="37" col1="9" line2="37" col2="39" start="3006" end="3036">
+            <OP-EXCLAMATION line1="37" col1="9" line2="37" col2="9" start="3006" end="3006">!</OP-EXCLAMATION>
+            <expr line1="37" col1="10" line2="37" col2="39" start="3007" end="3036">
+              <expr line1="37" col1="10" line2="37" col2="16" start="3007" end="3013">
+                <SYMBOL_FUNCTION_CALL line1="37" col1="10" line2="37" col2="16" start="3007" end="3013">is.null</SYMBOL_FUNCTION_CALL>
+              </expr>
+              <OP-LEFT-PAREN line1="37" col1="17" line2="37" col2="17" start="3014" end="3014">(</OP-LEFT-PAREN>
+              <expr line1="37" col1="18" line2="37" col2="38" start="3015" end="3035">
+                <SYMBOL line1="37" col1="18" line2="37" col2="38" start="3015" end="3035">min_total_cell_counts</SYMBOL>
+              </expr>
+              <OP-RIGHT-PAREN line1="37" col1="39" line2="37" col2="39" start="3036" end="3036">)</OP-RIGHT-PAREN>
+            </expr>
+          </expr>
+          <OP-RIGHT-PAREN line1="37" col1="40" line2="37" col2="40" start="3037" end="3037">)</OP-RIGHT-PAREN>
+          <expr line1="37" col1="42" line2="40" col2="5" start="3039" end="3245">
+            <OP-LEFT-BRACE line1="37" col1="42" line2="37" col2="42" start="3039" end="3039">{</OP-LEFT-BRACE>
+            <expr line1="38" col1="9" line2="38" col2="67" start="3087" end="3145">
+              <expr line1="38" col1="9" line2="38" col2="17" start="3087" end="3095">
+                <SYMBOL line1="38" col1="9" line2="38" col2="17" start="3087" end="3095">keep_cell</SYMBOL>
+              </expr>
+              <LEFT_ASSIGN line1="38" col1="19" line2="38" col2="20" start="3097" end="3098">&lt;-</LEFT_ASSIGN>
+              <expr line1="38" col1="22" line2="38" col2="67" start="3100" end="3145">
+                <expr line1="38" col1="22" line2="38" col2="42" start="3100" end="3120">
+                  <expr line1="38" col1="22" line2="38" col2="29" start="3100" end="3107">
+                    <SYMBOL_FUNCTION_CALL line1="38" col1="22" line2="38" col2="29" start="3100" end="3107">.colSums</SYMBOL_FUNCTION_CALL>
+                  </expr>
+                  <OP-LEFT-PAREN line1="38" col1="30" line2="38" col2="30" start="3108" end="3108">(</OP-LEFT-PAREN>
+                  <expr line1="38" col1="31" line2="38" col2="41" start="3109" end="3119">
+                    <expr line1="38" col1="31" line2="38" col2="36" start="3109" end="3114">
+                      <SYMBOL_FUNCTION_CALL line1="38" col1="31" line2="38" col2="36" start="3109" end="3114">counts</SYMBOL_FUNCTION_CALL>
+                    </expr>
+                    <OP-LEFT-PAREN line1="38" col1="37" line2="38" col2="37" start="3115" end="3115">(</OP-LEFT-PAREN>
+                    <expr line1="38" col1="38" line2="38" col2="40" start="3116" end="3118">
+                      <SYMBOL line1="38" col1="38" line2="38" col2="40" start="3116" end="3118">out</SYMBOL>
+                    </expr>
+                    <OP-RIGHT-PAREN line1="38" col1="41" line2="38" col2="41" start="3119" end="3119">)</OP-RIGHT-PAREN>
+                  </expr>
+                  <OP-RIGHT-PAREN line1="38" col1="42" line2="38" col2="42" start="3120" end="3120">)</OP-RIGHT-PAREN>
+                </expr>
+                <GE line1="38" col1="44" line2="38" col2="45" start="3122" end="3123">&gt;=</GE>
+                <expr line1="38" col1="47" line2="38" col2="67" start="3125" end="3145">
+                  <SYMBOL line1="38" col1="47" line2="38" col2="67" start="3125" end="3145">min_total_cell_counts</SYMBOL>
+                </expr>
+              </expr>
+            </expr>
+            <expr line1="39" col1="9" line2="39" col2="30" start="3168" end="3189">
+              <expr line1="39" col1="9" line2="39" col2="11" start="3168" end="3170">
+                <SYMBOL line1="39" col1="9" line2="39" col2="11" start="3168" end="3170">out</SYMBOL>
+              </expr>
+              <LEFT_ASSIGN line1="39" col1="13" line2="39" col2="14" start="3172" end="3173">&lt;-</LEFT_ASSIGN>
+              <expr line1="39" col1="16" line2="39" col2="30" start="3175" end="3189">
+                <expr line1="39" col1="16" line2="39" col2="18" start="3175" end="3177">
+                  <SYMBOL line1="39" col1="16" line2="39" col2="18" start="3175" end="3177">out</SYMBOL>
+                </expr>
+                <OP-LEFT-BRACKET line1="39" col1="19" line2="39" col2="19" start="3178" end="3178">[</OP-LEFT-BRACKET>
+                <OP-COMMA line1="39" col1="20" line2="39" col2="20" start="3179" end="3179">,</OP-COMMA>
+                <expr line1="39" col1="21" line2="39" col2="29" start="3180" end="3188">
+                  <SYMBOL line1="39" col1="21" line2="39" col2="29" start="3180" end="3188">keep_cell</SYMBOL>
+                </expr>
+                <OP-RIGHT-BRACKET line1="39" col1="30" line2="39" col2="30" start="3189" end="3189">]</OP-RIGHT-BRACKET>
+              </expr>
+            </expr>
+            <OP-RIGHT-BRACE line1="40" col1="5" line2="40" col2="5" start="3245" end="3245">}</OP-RIGHT-BRACE>
+          </expr>
+        </expr>
+        <expr line1="42" col1="5" line2="45" col2="5" start="3407" end="3650">
+          <IF line1="42" col1="5" line2="42" col2="6" start="3407" end="3408">if</IF>
+          <OP-LEFT-PAREN line1="42" col1="8" line2="42" col2="8" start="3410" end="3410">(</OP-LEFT-PAREN>
+          <expr line1="42" col1="9" line2="42" col2="38" start="3411" end="3440">
+            <OP-EXCLAMATION line1="42" col1="9" line2="42" col2="9" start="3411" end="3411">!</OP-EXCLAMATION>
+            <expr line1="42" col1="10" line2="42" col2="38" start="3412" end="3440">
+              <expr line1="42" col1="10" line2="42" col2="16" start="3412" end="3418">
+                <SYMBOL_FUNCTION_CALL line1="42" col1="10" line2="42" col2="16" start="3412" end="3418">is.null</SYMBOL_FUNCTION_CALL>
+              </expr>
+              <OP-LEFT-PAREN line1="42" col1="17" line2="42" col2="17" start="3419" end="3419">(</OP-LEFT-PAREN>
+              <expr line1="42" col1="18" line2="42" col2="37" start="3420" end="3439">
+                <SYMBOL line1="42" col1="18" line2="42" col2="37" start="3420" end="3439">min_mean_gene_counts</SYMBOL>
+              </expr>
+              <OP-RIGHT-PAREN line1="42" col1="38" line2="42" col2="38" start="3440" end="3440">)</OP-RIGHT-PAREN>
+            </expr>
+          </expr>
+          <OP-RIGHT-PAREN line1="42" col1="39" line2="42" col2="39" start="3441" end="3441">)</OP-RIGHT-PAREN>
+          <expr line1="42" col1="41" line2="45" col2="5" start="3443" end="3650">
+            <OP-LEFT-BRACE line1="42" col1="41" line2="42" col2="41" start="3443" end="3443">{</OP-LEFT-BRACE>
+            <expr line1="43" col1="9" line2="43" col2="67" start="3492" end="3550">
+              <expr line1="43" col1="9" line2="43" col2="17" start="3492" end="3500">
+                <SYMBOL line1="43" col1="9" line2="43" col2="17" start="3492" end="3500">keep_gene</SYMBOL>
+              </expr>
+              <LEFT_ASSIGN line1="43" col1="19" line2="43" col2="20" start="3502" end="3503">&lt;-</LEFT_ASSIGN>
+              <expr line1="43" col1="22" line2="43" col2="67" start="3505" end="3550">
+                <expr line1="43" col1="22" line2="43" col2="43" start="3505" end="3526">
+                  <expr line1="43" col1="22" line2="43" col2="30" start="3505" end="3513">
+                    <SYMBOL_FUNCTION_CALL line1="43" col1="22" line2="43" col2="30" start="3505" end="3513">.rowMeans</SYMBOL_FUNCTION_CALL>
+                  </expr>
+                  <OP-LEFT-PAREN line1="43" col1="31" line2="43" col2="31" start="3514" end="3514">(</OP-LEFT-PAREN>
+                  <expr line1="43" col1="32" line2="43" col2="42" start="3515" end="3525">
+                    <expr line1="43" col1="32" line2="43" col2="37" start="3515" end="3520">
+                      <SYMBOL_FUNCTION_CALL line1="43" col1="32" line2="43" col2="37" start="3515" end="3520">counts</SYMBOL_FUNCTION_CALL>
+                    </expr>
+                    <OP-LEFT-PAREN line1="43" col1="38" line2="43" col2="38" start="3521" end="3521">(</OP-LEFT-PAREN>
+                    <expr line1="43" col1="39" line2="43" col2="41" start="3522" end="3524">
+                      <SYMBOL line1="43" col1="39" line2="43" col2="41" start="3522" end="3524">out</SYMBOL>
+                    </expr>
+                    <OP-RIGHT-PAREN line1="43" col1="42" line2="43" col2="42" start="3525" end="3525">)</OP-RIGHT-PAREN>
+                  </expr>
+                  <OP-RIGHT-PAREN line1="43" col1="43" line2="43" col2="43" start="3526" end="3526">)</OP-RIGHT-PAREN>
+                </expr>
+                <GE line1="43" col1="45" line2="43" col2="46" start="3528" end="3529">&gt;=</GE>
+                <expr line1="43" col1="48" line2="43" col2="67" start="3531" end="3550">
+                  <SYMBOL line1="43" col1="48" line2="43" col2="67" start="3531" end="3550">min_mean_gene_counts</SYMBOL>
+                </expr>
+              </expr>
+            </expr>
+            <expr line1="44" col1="9" line2="44" col2="30" start="3573" end="3594">
+              <expr line1="44" col1="9" line2="44" col2="11" start="3573" end="3575">
+                <SYMBOL line1="44" col1="9" line2="44" col2="11" start="3573" end="3575">out</SYMBOL>
+              </expr>
+              <LEFT_ASSIGN line1="44" col1="13" line2="44" col2="14" start="3577" end="3578">&lt;-</LEFT_ASSIGN>
+              <expr line1="44" col1="16" line2="44" col2="30" start="3580" end="3594">
+                <expr line1="44" col1="16" line2="44" col2="18" start="3580" end="3582">
+                  <SYMBOL line1="44" col1="16" line2="44" col2="18" start="3580" end="3582">out</SYMBOL>
+                </expr>
+                <OP-LEFT-BRACKET line1="44" col1="19" line2="44" col2="19" start="3583" end="3583">[</OP-LEFT-BRACKET>
+                <expr line1="44" col1="20" line2="44" col2="28" start="3584" end="3592">
+                  <SYMBOL line1="44" col1="20" line2="44" col2="28" start="3584" end="3592">keep_gene</SYMBOL>
+                </expr>
+                <OP-COMMA line1="44" col1="29" line2="44" col2="29" start="3593" end="3593">,</OP-COMMA>
+                <OP-RIGHT-BRACKET line1="44" col1="30" line2="44" col2="30" start="3594" end="3594">]</OP-RIGHT-BRACKET>
+              </expr>
+            </expr>
+            <OP-RIGHT-BRACE line1="45" col1="5" line2="45" col2="5" start="3650" end="3650">}</OP-RIGHT-BRACE>
+          </expr>
+        </expr>
+        <expr line1="47" col1="5" line2="47" col2="15" start="3812" end="3822">
+          <expr line1="47" col1="5" line2="47" col2="10" start="3812" end="3817">
+            <SYMBOL_FUNCTION_CALL line1="47" col1="5" line2="47" col2="10" start="3812" end="3817">return</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="47" col1="11" line2="47" col2="11" start="3818" end="3818">(</OP-LEFT-PAREN>
+          <expr line1="47" col1="12" line2="47" col2="14" start="3819" end="3821">
+            <SYMBOL line1="47" col1="12" line2="47" col2="14" start="3819" end="3821">out</SYMBOL>
+          </expr>
+          <OP-RIGHT-PAREN line1="47" col1="15" line2="47" col2="15" start="3822" end="3822">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="48" col1="1" line2="48" col2="1" start="3889" end="3889">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+  </expr>
+  <COMMENT line1="51" col1="1" line2="51" col2="25" start="4132" end="4156">#' @rdname read10xResults</COMMENT>
+  <COMMENT line1="52" col1="1" line2="52" col2="10" start="4213" end="4222">#' @export</COMMENT>
+  <expr line1="53" col1="1" line2="55" col2="1" start="4294" end="4456">
+    <expr line1="53" col1="1" line2="53" col2="14" start="4294" end="4307">
+      <SYMBOL line1="53" col1="1" line2="53" col2="14" start="4294" end="4307">read10XResults</SYMBOL>
+    </expr>
+    <LEFT_ASSIGN line1="53" col1="16" line2="53" col2="17" start="4309" end="4310">&lt;-</LEFT_ASSIGN>
+    <expr line1="53" col1="19" line2="55" col2="1" start="4312" end="4456">
+      <FUNCTION line1="53" col1="19" line2="53" col2="26" start="4312" end="4319">function</FUNCTION>
+      <OP-LEFT-PAREN line1="53" col1="27" line2="53" col2="27" start="4320" end="4320">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="53" col1="28" line2="53" col2="30" start="4321" end="4323">...</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="53" col1="31" line2="53" col2="31" start="4324" end="4324">)</OP-RIGHT-PAREN>
+      <expr line1="53" col1="33" line2="55" col2="1" start="4326" end="4456">
+        <OP-LEFT-BRACE line1="53" col1="33" line2="53" col2="33" start="4326" end="4326">{</OP-LEFT-BRACE>
+        <expr line1="54" col1="5" line2="54" col2="23" start="4379" end="4397">
+          <expr line1="54" col1="5" line2="54" col2="18" start="4379" end="4392">
+            <SYMBOL_FUNCTION_CALL line1="54" col1="5" line2="54" col2="18" start="4379" end="4392">read10xResults</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="54" col1="19" line2="54" col2="19" start="4393" end="4393">(</OP-LEFT-PAREN>
+          <expr line1="54" col1="20" line2="54" col2="22" start="4394" end="4396">
+            <SYMBOL line1="54" col1="20" line2="54" col2="22" start="4394" end="4396">...</SYMBOL>
+          </expr>
+          <OP-RIGHT-PAREN line1="54" col1="23" line2="54" col2="23" start="4397" end="4397">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="55" col1="1" line2="55" col2="1" start="4456" end="4456">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+  </expr>
+  <COMMENT line1="58" col1="1" line2="58" col2="28" start="4699" end="4726">#' Downsample a count matrix</COMMENT>
+  <COMMENT line1="59" col1="1" line2="59" col2="3" start="4780" end="4782">#' </COMMENT>
+  <COMMENT line1="60" col1="1" line2="60" col2="53" start="4861" end="4913">#' Downsample a count matrix to a desired proportion.</COMMENT>
+  <COMMENT line1="61" col1="1" line2="61" col2="3" start="4942" end="4944">#' </COMMENT>
+  <COMMENT line1="62" col1="1" line2="62" col2="28" start="5023" end="5050">#' @param x matrix of counts</COMMENT>
+  <COMMENT line1="63" col1="1" line2="63" col2="75" start="5104" end="5178">#' @param prop numeric scalar or vector of length \code{ncol(x)} in [0, 1] </COMMENT>
+  <COMMENT line1="64" col1="1" line2="64" col2="41" start="5185" end="5225">#' indicating the downsampling proportion</COMMENT>
+  <COMMENT line1="65" col1="1" line2="65" col2="3" start="5266" end="5268">#' </COMMENT>
+  <COMMENT line1="66" col1="1" line2="66" col2="77" start="5347" end="5423">#' @details This function calls \code{\link[DropletUtils]{downsampleMatrix}}.</COMMENT>
+  <COMMENT line1="67" col1="1" line2="67" col2="76" start="5428" end="5503">#' from the \pkg{DropletUtils} package. It is deprecated and will be removed</COMMENT>
+  <COMMENT line1="68" col1="1" line2="68" col2="23" start="5509" end="5531">#' in the next release.</COMMENT>
+  <COMMENT line1="69" col1="1" line2="69" col2="3" start="5590" end="5592">#' </COMMENT>
+  <COMMENT line1="70" col1="1" line2="70" col2="50" start="5671" end="5720">#' @return an integer matrix of downsampled counts</COMMENT>
+  <COMMENT line1="71" col1="1" line2="71" col2="3" start="5752" end="5754">#' </COMMENT>
+  <COMMENT line1="72" col1="1" line2="72" col2="10" start="5833" end="5842">#' @export</COMMENT>
+  <COMMENT line1="73" col1="1" line2="73" col2="13" start="5914" end="5926">#' @examples </COMMENT>
+  <COMMENT line1="74" col1="1" line2="74" col2="69" start="5995" end="6063">#' sce10x &lt;- read10xResults(system.file("extdata", package="scater"))</COMMENT>
+  <COMMENT line1="75" col1="1" line2="75" col2="62" start="6076" end="6137">#' downsampled &lt;- downsampleCounts(counts(sce10x), prop = 0.5)</COMMENT>
+  <COMMENT line1="76" col1="1" line2="76" col2="3" start="6157" end="6159">#' </COMMENT>
+  <expr line1="77" col1="1" line2="80" col2="1" start="6238" end="6481">
+    <expr line1="77" col1="1" line2="77" col2="16" start="6238" end="6253">
+      <SYMBOL line1="77" col1="1" line2="77" col2="16" start="6238" end="6253">downsampleCounts</SYMBOL>
+    </expr>
+    <LEFT_ASSIGN line1="77" col1="18" line2="77" col2="19" start="6255" end="6256">&lt;-</LEFT_ASSIGN>
+    <expr line1="77" col1="21" line2="80" col2="1" start="6258" end="6481">
+      <FUNCTION line1="77" col1="21" line2="77" col2="28" start="6258" end="6265">function</FUNCTION>
+      <OP-LEFT-PAREN line1="77" col1="29" line2="77" col2="29" start="6266" end="6266">(</OP-LEFT-PAREN>
+      <SYMBOL_FORMALS line1="77" col1="30" line2="77" col2="30" start="6267" end="6267">x</SYMBOL_FORMALS>
+      <OP-COMMA line1="77" col1="31" line2="77" col2="31" start="6268" end="6268">,</OP-COMMA>
+      <SYMBOL_FORMALS line1="77" col1="33" line2="77" col2="36" start="6270" end="6273">prop</SYMBOL_FORMALS>
+      <OP-RIGHT-PAREN line1="77" col1="37" line2="77" col2="37" start="6274" end="6274">)</OP-RIGHT-PAREN>
+      <expr line1="77" col1="39" line2="80" col2="1" start="6276" end="6481">
+        <OP-LEFT-BRACE line1="77" col1="39" line2="77" col2="39" start="6276" end="6276">{</OP-LEFT-BRACE>
+        <expr line1="78" col1="5" line2="78" col2="49" start="6323" end="6367">
+          <expr line1="78" col1="5" line2="78" col2="15" start="6323" end="6333">
+            <SYMBOL_FUNCTION_CALL line1="78" col1="5" line2="78" col2="15" start="6323" end="6333">.Deprecated</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="78" col1="16" line2="78" col2="16" start="6334" end="6334">(</OP-LEFT-PAREN>
+          <expr line1="78" col1="17" line2="78" col2="48" start="6335" end="6366">
+            <STR_CONST line1="78" col1="17" line2="78" col2="48" start="6335" end="6366">"DropletUtils::downsampleMatrix"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="78" col1="49" line2="78" col2="49" start="6367" end="6367">)</OP-RIGHT-PAREN>
+        </expr>
+        <expr line1="79" col1="5" line2="79" col2="43" start="6404" end="6442">
+          <expr line1="79" col1="5" line2="79" col2="34" start="6404" end="6433">
+            <SYMBOL_PACKAGE line1="79" col1="5" line2="79" col2="16" start="6404" end="6415">DropletUtils</SYMBOL_PACKAGE>
+            <NS_GET line1="79" col1="17" line2="79" col2="18" start="6416" end="6417">::</NS_GET>
+            <SYMBOL_FUNCTION_CALL line1="79" col1="19" line2="79" col2="34" start="6418" end="6433">downsampleMatrix</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="79" col1="35" line2="79" col2="35" start="6434" end="6434">(</OP-LEFT-PAREN>
+          <expr line1="79" col1="36" line2="79" col2="36" start="6435" end="6435">
+            <SYMBOL line1="79" col1="36" line2="79" col2="36" start="6435" end="6435">x</SYMBOL>
+          </expr>
+          <OP-COMMA line1="79" col1="37" line2="79" col2="37" start="6436" end="6436">,</OP-COMMA>
+          <expr line1="79" col1="39" line2="79" col2="42" start="6438" end="6441">
+            <SYMBOL line1="79" col1="39" line2="79" col2="42" start="6438" end="6441">prop</SYMBOL>
+          </expr>
+          <OP-RIGHT-PAREN line1="79" col1="43" line2="79" col2="43" start="6442" end="6442">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-BRACE line1="80" col1="1" line2="80" col2="1" start="6481" end="6481">}</OP-RIGHT-BRACE>
+      </expr>
+    </expr>
+  </expr>
+</exprlist>
+

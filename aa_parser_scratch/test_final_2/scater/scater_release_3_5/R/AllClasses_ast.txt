@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<exprlist>
+  <COMMENT line1="1" col1="1" line2="1" col2="46" start="99" end="144">### all classes defined for the scater package</COMMENT>
+  <COMMENT line1="3" col1="1" line2="3" col2="80" start="295" end="374">################################################################################</COMMENT>
+  <COMMENT line1="4" col1="1" line2="4" col2="29" start="393" end="421">### defining the SCESet class</COMMENT>
+  <COMMENT line1="6" col1="1" line2="6" col2="51" start="589" end="639">#' The "Single Cell Expression Set" (SCESet)  class</COMMENT>
+  <COMMENT line1="7" col1="1" line2="7" col2="2" start="687" end="688">#'</COMMENT>
+  <COMMENT line1="8" col1="1" line2="8" col2="77" start="785" end="861">#' S4 class and the main class used by scater to hold single cell expression </COMMENT>
+  <COMMENT line1="9" col1="1" line2="9" col2="67" start="883" end="949">#' data. SCESet extends the basic Bioconductor ExpressionSet class.</COMMENT>
+  <COMMENT line1="10" col1="1" line2="10" col2="2" start="981" end="982">#'</COMMENT>
+  <COMMENT line1="11" col1="1" line2="11" col2="64" start="1079" end="1142">#' This class is initialized from a matrix of expression values.</COMMENT>
+  <COMMENT line1="12" col1="1" line2="12" col2="3" start="1177" end="1179">#' </COMMENT>
+  <COMMENT line1="13" col1="1" line2="13" col2="79" start="1275" end="1353">#' Methods that operate on SCESet objects constitute the basic scater workflow.</COMMENT>
+  <COMMENT line1="14" col1="1" line2="14" col2="2" start="1373" end="1374">#'</COMMENT>
+  <COMMENT line1="15" col1="1" line2="15" col2="17" start="1471" end="1487">#'@section Slots:</COMMENT>
+  <COMMENT line1="16" col1="1" line2="16" col2="14" start="1569" end="1582">#'  \describe{</COMMENT>
+  <COMMENT line1="17" col1="1" line2="17" col2="90" start="1667" end="1756">#'    \item{\code{logExprsOffset}:}{Scalar of class \code{"numeric"}, providing an offset </COMMENT>
+  <COMMENT line1="18" col1="1" line2="18" col2="88" start="1765" end="1852">#'    applied to expression data in the `exprs` slot when undergoing log2-transformation</COMMENT>
+  <COMMENT line1="19" col1="1" line2="19" col2="44" start="1863" end="1906">#'    to avoid trying to take logs of zero.}</COMMENT>
+  <COMMENT line1="20" col1="1" line2="20" col2="75" start="1961" end="2035">#'    \item{\code{lowerDetectionLimit}:}{Scalar of class \code{"numeric"}, </COMMENT>
+  <COMMENT line1="21" col1="1" line2="21" col2="73" start="2059" end="2131">#'    giving the lower limit for an expression value to be classified as </COMMENT>
+  <COMMENT line1="22" col1="1" line2="22" col2="19" start="2157" end="2175">#'    "expressed".}</COMMENT>
+  <COMMENT line1="23" col1="1" line2="23" col2="77" start="2255" end="2331">#'    \item{\code{cellPairwiseDistances}:}{Matrix of class \code{"numeric"}, </COMMENT>
+  <COMMENT line1="24" col1="1" line2="24" col2="51" start="2353" end="2403">#'    containing pairwise distances between cells.}</COMMENT>
+  <COMMENT line1="25" col1="1" line2="25" col2="80" start="2451" end="2530">#'    \item{\code{featurePairwiseDistances}:}{Matrix of class \code{"numeric"}, </COMMENT>
+  <COMMENT line1="26" col1="1" line2="26" col2="54" start="2549" end="2602">#'    containing pairwise distances between features.}</COMMENT>
+  <COMMENT line1="27" col1="1" line2="27" col2="82" start="2647" end="2728">#'    \item{\code{reducedDimension}:}{Matrix of class \code{"numeric"}, containing</COMMENT>
+  <COMMENT line1="28" col1="1" line2="28" col2="80" start="2745" end="2824">#'    reduced-dimension coordinates for cells (generated, for example, by PCA).}</COMMENT>
+  <COMMENT line1="29" col1="1" line2="29" col2="80" start="2843" end="2922">#'    \item{\code{bootstraps}:}{Array of class \code{"numeric"} that can contain</COMMENT>
+  <COMMENT line1="30" col1="1" line2="30" col2="61" start="2941" end="3001">#'    bootstrap estimates of the expression or count values.}</COMMENT>
+  <COMMENT line1="31" col1="1" line2="31" col2="97" start="3039" end="3135">#'    \item{\code{sc3}:}{List containing results from consensus clustering from the SC3 package.}</COMMENT>
+  <COMMENT line1="32" col1="1" line2="32" col2="60" start="3137" end="3196">#'    \item{\code{featureControlInfo}:}{Data frame of class </COMMENT>
+  <COMMENT line1="33" col1="1" line2="33" col2="78" start="3235" end="3312">#'    \code{"AnnotatedDataFrame"} that can contain information/metadata about </COMMENT>
+  <COMMENT line1="34" col1="1" line2="34" col2="68" start="3333" end="3400">#'    sets of control features defined for the \code{SCESet} object.</COMMENT>
+  <COMMENT line1="35" col1="1" line2="35" col2="61" start="3431" end="3491">#'    bootstrap estimates of the expression or count values.}</COMMENT>
+  <COMMENT line1="36" col1="1" line2="36" col2="3" start="3529" end="3531">#'}</COMMENT>
+  <COMMENT line1="37" col1="1" line2="37" col2="15" start="3627" end="3641">#' @name SCESet</COMMENT>
+  <COMMENT line1="38" col1="1" line2="38" col2="17" start="3725" end="3741">#' @rdname SCESet</COMMENT>
+  <COMMENT line1="39" col1="1" line2="39" col2="39" start="3823" end="3861">#' @inheritParams Biobase ExpressionSet</COMMENT>
+  <COMMENT line1="40" col1="1" line2="40" col2="24" start="3921" end="3944">#' @aliases SCESet-class</COMMENT>
+  <COMMENT line1="41" col1="1" line2="41" col2="46" start="4019" end="4064">#' @references  Thanks to the Monocle package </COMMENT>
+  <COMMENT line1="42" col1="1" line2="42" col2="80" start="4117" end="4196">#' (github.com/cole-trapnell-lab/monocle-release/) for their CellDataSet class, </COMMENT>
+  <COMMENT line1="43" col1="1" line2="43" col2="58" start="4215" end="4272">#' which provided the inspiration and template for SCESet.</COMMENT>
+  <COMMENT line1="44" col1="1" line2="44" col2="22" start="4313" end="4334">#' @exportClass SCESet</COMMENT>
+  <expr line1="45" col1="1" line2="58" col2="1" start="4411" end="5685">
+    <expr line1="45" col1="1" line2="45" col2="8" start="4411" end="4418">
+      <SYMBOL_FUNCTION_CALL line1="45" col1="1" line2="45" col2="8" start="4411" end="4418">setClass</SYMBOL_FUNCTION_CALL>
+    </expr>
+    <OP-LEFT-PAREN line1="45" col1="9" line2="45" col2="9" start="4419" end="4419">(</OP-LEFT-PAREN>
+    <expr line1="45" col1="10" line2="45" col2="17" start="4420" end="4427">
+      <STR_CONST line1="45" col1="10" line2="45" col2="17" start="4420" end="4427">"SCESet"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="45" col1="18" line2="45" col2="18" start="4428" end="4428">,</OP-COMMA>
+    <SYMBOL_SUB line1="46" col1="10" line2="46" col2="17" start="4518" end="4525">contains</SYMBOL_SUB>
+    <EQ_SUB line1="46" col1="19" line2="46" col2="19" start="4527" end="4527">=</EQ_SUB>
+    <expr line1="46" col1="21" line2="46" col2="35" start="4529" end="4543">
+      <STR_CONST line1="46" col1="21" line2="46" col2="35" start="4529" end="4543">"ExpressionSet"</STR_CONST>
+    </expr>
+    <OP-COMMA line1="46" col1="36" line2="46" col2="36" start="4544" end="4544">,</OP-COMMA>
+    <SYMBOL_SUB line1="47" col1="10" line2="47" col2="14" start="4616" end="4620">slots</SYMBOL_SUB>
+    <EQ_SUB line1="47" col1="16" line2="47" col2="16" start="4622" end="4622">=</EQ_SUB>
+    <expr line1="47" col1="18" line2="54" col2="61" start="4624" end="5353">
+      <expr line1="47" col1="18" line2="47" col2="18" start="4624" end="4624">
+        <SYMBOL_FUNCTION_CALL line1="47" col1="18" line2="47" col2="18" start="4624" end="4624">c</SYMBOL_FUNCTION_CALL>
+      </expr>
+      <OP-LEFT-PAREN line1="47" col1="19" line2="47" col2="19" start="4625" end="4625">(</OP-LEFT-PAREN>
+      <SYMBOL_SUB line1="47" col1="20" line2="47" col2="33" start="4626" end="4639">logExprsOffset</SYMBOL_SUB>
+      <EQ_SUB line1="47" col1="35" line2="47" col2="35" start="4641" end="4641">=</EQ_SUB>
+      <expr line1="47" col1="37" line2="47" col2="45" start="4643" end="4651">
+        <STR_CONST line1="47" col1="37" line2="47" col2="45" start="4643" end="4651">"numeric"</STR_CONST>
+      </expr>
+      <OP-COMMA line1="47" col1="46" line2="47" col2="46" start="4652" end="4652">,</OP-COMMA>
+      <SYMBOL_SUB line1="48" col1="20" line2="48" col2="38" start="4724" end="4742">lowerDetectionLimit</SYMBOL_SUB>
+      <EQ_SUB line1="48" col1="40" line2="48" col2="40" start="4744" end="4744">=</EQ_SUB>
+      <expr line1="48" col1="42" line2="48" col2="50" start="4746" end="4754">
+        <STR_CONST line1="48" col1="42" line2="48" col2="50" start="4746" end="4754">"numeric"</STR_CONST>
+      </expr>
+      <OP-COMMA line1="48" col1="51" line2="48" col2="51" start="4755" end="4755">,</OP-COMMA>
+      <SYMBOL_SUB line1="49" col1="20" line2="49" col2="40" start="4822" end="4842">cellPairwiseDistances</SYMBOL_SUB>
+      <EQ_SUB line1="49" col1="42" line2="49" col2="42" start="4844" end="4844">=</EQ_SUB>
+      <expr line1="49" col1="44" line2="49" col2="49" start="4846" end="4851">
+        <STR_CONST line1="49" col1="44" line2="49" col2="49" start="4846" end="4851">"dist"</STR_CONST>
+      </expr>
+      <OP-COMMA line1="49" col1="50" line2="49" col2="50" start="4852" end="4852">,</OP-COMMA>
+      <SYMBOL_SUB line1="50" col1="20" line2="50" col2="43" start="4920" end="4943">featurePairwiseDistances</SYMBOL_SUB>
+      <EQ_SUB line1="50" col1="45" line2="50" col2="45" start="4945" end="4945">=</EQ_SUB>
+      <expr line1="50" col1="47" line2="50" col2="52" start="4947" end="4952">
+        <STR_CONST line1="50" col1="47" line2="50" col2="52" start="4947" end="4952">"dist"</STR_CONST>
+      </expr>
+      <OP-COMMA line1="50" col1="53" line2="50" col2="53" start="4953" end="4953">,</OP-COMMA>
+      <SYMBOL_SUB line1="51" col1="20" line2="51" col2="35" start="5018" end="5033">reducedDimension</SYMBOL_SUB>
+      <EQ_SUB line1="51" col1="37" line2="51" col2="37" start="5035" end="5035">=</EQ_SUB>
+      <expr line1="51" col1="39" line2="51" col2="46" start="5037" end="5044">
+        <STR_CONST line1="51" col1="39" line2="51" col2="46" start="5037" end="5044">"matrix"</STR_CONST>
+      </expr>
+      <OP-COMMA line1="51" col1="47" line2="51" col2="47" start="5045" end="5045">,</OP-COMMA>
+      <SYMBOL_SUB line1="52" col1="20" line2="52" col2="29" start="5116" end="5125">bootstraps</SYMBOL_SUB>
+      <EQ_SUB line1="52" col1="31" line2="52" col2="31" start="5127" end="5127">=</EQ_SUB>
+      <expr line1="52" col1="33" line2="52" col2="39" start="5129" end="5135">
+        <STR_CONST line1="52" col1="33" line2="52" col2="39" start="5129" end="5135">"array"</STR_CONST>
+      </expr>
+      <OP-COMMA line1="52" col1="40" line2="52" col2="40" start="5136" end="5136">,</OP-COMMA>
+      <SYMBOL_SUB line1="53" col1="20" line2="53" col2="22" start="5214" end="5216">sc3</SYMBOL_SUB>
+      <EQ_SUB line1="53" col1="24" line2="53" col2="24" start="5218" end="5218">=</EQ_SUB>
+      <expr line1="53" col1="26" line2="53" col2="31" start="5220" end="5225">
+        <STR_CONST line1="53" col1="26" line2="53" col2="31" start="5220" end="5225">"list"</STR_CONST>
+      </expr>
+      <OP-COMMA line1="53" col1="32" line2="53" col2="32" start="5226" end="5226">,</OP-COMMA>
+      <SYMBOL_SUB line1="54" col1="20" line2="54" col2="37" start="5312" end="5329">featureControlInfo</SYMBOL_SUB>
+      <EQ_SUB line1="54" col1="39" line2="54" col2="39" start="5331" end="5331">=</EQ_SUB>
+      <expr line1="54" col1="41" line2="54" col2="60" start="5333" end="5352">
+        <STR_CONST line1="54" col1="41" line2="54" col2="60" start="5333" end="5352">"AnnotatedDataFrame"</STR_CONST>
+      </expr>
+      <OP-RIGHT-PAREN line1="54" col1="61" line2="54" col2="61" start="5353" end="5353">)</OP-RIGHT-PAREN>
+    </expr>
+    <OP-COMMA line1="54" col1="62" line2="54" col2="62" start="5354" end="5354">,</OP-COMMA>
+    <SYMBOL_SUB line1="55" col1="10" line2="55" col2="18" start="5400" end="5408">prototype</SYMBOL_SUB>
+    <EQ_SUB line1="55" col1="20" line2="55" col2="20" start="5410" end="5410">=</EQ_SUB>
+    <expr line1="55" col1="22" line2="57" col2="67" start="5412" end="5653">
+      <expr line1="55" col1="22" line2="55" col2="30" start="5412" end="5420">
+        <SYMBOL_FUNCTION_CALL line1="55" col1="22" line2="55" col2="30" start="5412" end="5420">prototype</SYMBOL_FUNCTION_CALL>
+      </expr>
+      <OP-LEFT-PAREN line1="55" col1="31" line2="55" col2="31" start="5421" end="5421">(</OP-LEFT-PAREN>
+      <expr line1="55" col1="32" line2="57" col2="66" start="5422" end="5652">
+        <expr line1="55" col1="32" line2="55" col2="34" start="5422" end="5424">
+          <SYMBOL_FUNCTION_CALL line1="55" col1="32" line2="55" col2="34" start="5422" end="5424">new</SYMBOL_FUNCTION_CALL>
+        </expr>
+        <OP-LEFT-PAREN line1="55" col1="35" line2="55" col2="35" start="5425" end="5425">(</OP-LEFT-PAREN>
+        <expr line1="55" col1="36" line2="55" col2="53" start="5426" end="5443">
+          <STR_CONST line1="55" col1="36" line2="55" col2="53" start="5426" end="5443">"VersionedBiobase"</STR_CONST>
+        </expr>
+        <OP-COMMA line1="55" col1="54" line2="55" col2="54" start="5444" end="5444">,</OP-COMMA>
+        <SYMBOL_SUB line1="56" col1="36" line2="56" col2="43" start="5524" end="5531">versions</SYMBOL_SUB>
+        <EQ_SUB line1="56" col1="45" line2="56" col2="45" start="5533" end="5533">=</EQ_SUB>
+        <expr line1="56" col1="47" line2="57" col2="65" start="5535" end="5651">
+          <expr line1="56" col1="47" line2="56" col2="47" start="5535" end="5535">
+            <SYMBOL_FUNCTION_CALL line1="56" col1="47" line2="56" col2="47" start="5535" end="5535">c</SYMBOL_FUNCTION_CALL>
+          </expr>
+          <OP-LEFT-PAREN line1="56" col1="48" line2="56" col2="48" start="5536" end="5536">(</OP-LEFT-PAREN>
+          <expr line1="56" col1="49" line2="56" col2="77" start="5537" end="5565">
+            <expr line1="56" col1="49" line2="56" col2="60" start="5537" end="5548">
+              <SYMBOL_FUNCTION_CALL line1="56" col1="49" line2="56" col2="60" start="5537" end="5548">classVersion</SYMBOL_FUNCTION_CALL>
+            </expr>
+            <OP-LEFT-PAREN line1="56" col1="61" line2="56" col2="61" start="5549" end="5549">(</OP-LEFT-PAREN>
+            <expr line1="56" col1="62" line2="56" col2="76" start="5550" end="5564">
+              <STR_CONST line1="56" col1="62" line2="56" col2="76" start="5550" end="5564">"ExpressionSet"</STR_CONST>
+            </expr>
+            <OP-RIGHT-PAREN line1="56" col1="77" line2="56" col2="77" start="5565" end="5565">)</OP-RIGHT-PAREN>
+          </expr>
+          <OP-COMMA line1="56" col1="78" line2="56" col2="78" start="5566" end="5566">,</OP-COMMA>
+          <SYMBOL_SUB line1="57" col1="49" line2="57" col2="54" start="5635" end="5640">SCESet</SYMBOL_SUB>
+          <EQ_SUB line1="57" col1="56" line2="57" col2="56" start="5642" end="5642">=</EQ_SUB>
+          <expr line1="57" col1="58" line2="57" col2="64" start="5644" end="5650">
+            <STR_CONST line1="57" col1="58" line2="57" col2="64" start="5644" end="5650">"1.1.9"</STR_CONST>
+          </expr>
+          <OP-RIGHT-PAREN line1="57" col1="65" line2="57" col2="65" start="5651" end="5651">)</OP-RIGHT-PAREN>
+        </expr>
+        <OP-RIGHT-PAREN line1="57" col1="66" line2="57" col2="66" start="5652" end="5652">)</OP-RIGHT-PAREN>
+      </expr>
+      <OP-RIGHT-PAREN line1="57" col1="67" line2="57" col2="67" start="5653" end="5653">)</OP-RIGHT-PAREN>
+    </expr>
+    <OP-RIGHT-PAREN line1="58" col1="1" line2="58" col2="1" start="5685" end="5685">)</OP-RIGHT-PAREN>
+  </expr>
+</exprlist>
+

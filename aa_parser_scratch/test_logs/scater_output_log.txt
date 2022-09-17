@@ -3,115 +3,260 @@
 ###############################
 ###############################
 ###############################
-Checking Versions:  scater_release_3_5 scater_release_3_6
+Checking Versions:  scater_release_3_6 scater_release_3_7
 
 {
     "package": "scater",
-    "release_versions": "scater_release_3_5 scater_release_3_6",
-    "function_removals": 79,
-    "function_additions": 14
+    "release_versions": "scater_release_3_6 scater_release_3_7",
+    "old_release_number": 1,
+    "new_release_number": 2,
+    "function_removals": 7,
+    "function_additions": 5,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 12,
+    "parameter_default_changes": 0
 }
 
 ##########
 Functions Removed
 ##########
 
-cellDist<-
-cellNames<-
-cellPairwiseDistances<-
-cpm<-
-featDist<-
-featureControlInfo<-
-featurePairwiseDistances<-
-is_exprs<-
-norm_counts<-
-norm_cpm<-
-norm_fpkm<-
-norm_tpm<-
-redDim<-
-reducedDimension<-
-setSpike<-
-set_exprs<-
-tpm<-
-arrange.SCESet
-bootstraps.SCESet
-cellDist
-cellDistSCESet
-cellNames
-cellPairwiseDistances
-cellPairwiseDistances.SCESet
-counts.SCESet
-cpm
-cpmSCESet
-featDist
-featDistSCESet
-featureControlInfo
-featureControlInfo.SCESet
-featurePairwiseDistances
-featurePairwiseDistancesSCESet
-filter.SCESet
-fpkm.SCESet
-get_exprs
-get_exprs.SCESet
-isSpike
-is_exprs
-is_exprs.SCESet
-mergeSCESet
-mutate.SCESet
-norm_counts
-norm_counts.SCESet
-norm_cpm
-norm_cpm.SCESet
-norm_exprs.SCESet
-norm_fpkm
-norm_fpkm.SCESet
-norm_tpm
-norm_tpm.SCESet
-normalize.SCESet
-plotDiffusionMapSCESet
-plotExpressionSCESet
-plotMDSSCESet
-plotPCASCESet
-plotReducedDim.SCESet
-plotReducedDim.default
-plotSCESet
-redDim
-redDim.SCESet
-reducedDimension
-reducedDimension.SCESet
-rename.SCESet
-sizeFactors.SCESet
-spikes
-stand_exprs.SCESet
-tpm
-tpm.SCESet
-whichSpike
-writeSCESet
-[
-counts<-
-fData<-
-pData<-
-sizeFactors<-
-counts
-plot
-sizeFactors
+exprs
+fromCellDataSet
+newSCESet
+plotExpressionDefault
+plotMetadata
+plotReducedDimDefault
+toCellDataSet
 
 
 ##########
 Functions Added
 ##########
 
-downsampleCounts
-exprs
-normalizeSCE
-plotCellData
-plotColData
-plotPCASCE
-plotReducedDimDefault
-plotRowData
-plotScater
-read10xResults
-runDiffusionMap
-runPCA
-runTSNE
-toSingleCellExperiment
+centreSizeFactors
+librarySizeFactors
+plotHeatmap
+runMDS
+uniquifyFeatureNames
+
+
+##########
+Removed Parameters
+##########
+
+
+
+##########
+Added Parameters
+##########
+
+
+
+##########
+Renamed Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "calcIsExprs",
+    "representation": "calcIsExprs",
+    "parameters": "function ( object , lowerDetectionLimit = 0 , exprs_values = \"counts\" )",
+    "filename": "calculate-expression.txt"
+  },
+  "new_function": {
+    "name": "calcIsExprs",
+    "representation": "calcIsExprs",
+    "parameters": "function ( object , detection_limit = 0 , exprs_values = \"counts\" )",
+    "filename": "calculate-expression.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "nexprs",
+    "representation": "nexprs",
+    "parameters": "function ( object , lowerDetectionLimit = 0 , exprs_values = \"counts\" , byrow = FALSE , subset_row = NULL , subset_col = NULL )",
+    "filename": "calculate-expression.txt"
+  },
+  "new_function": {
+    "name": "nexprs",
+    "representation": "nexprs",
+    "parameters": "function ( object , detection_limit = 0 , exprs_values = \"counts\" , byrow = FALSE , subset_row = NULL , subset_col = NULL )",
+    "filename": "calculate-expression.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "calculateCPM",
+    "representation": "calculateCPM",
+    "parameters": "function ( object , use.size.factors = TRUE )",
+    "filename": "calculate-expression.txt"
+  },
+  "new_function": {
+    "name": "calculateCPM",
+    "representation": "calculateCPM",
+    "parameters": "function ( object , exprs_values = \"counts\" , use_size_factors = TRUE , size_factor_grouping = NULL , subset_row = NULL )",
+    "filename": "calculateCPM.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "calcAverage",
+    "representation": "calcAverage",
+    "parameters": "function ( object , size.factors = NULL )",
+    "filename": "calculate-expression.txt"
+  },
+  "new_function": {
+    "name": "calcAverage",
+    "representation": "calcAverage",
+    "parameters": "function ( object , exprs_values = \"counts\" , use_size_factors = TRUE , size_factor_grouping = NULL , subset_row = NULL )",
+    "filename": "calcAverage.txt"
+  }
+}
+
+4.
+{
+  "old_function": {
+    "name": "readKallistoResults",
+    "representation": "readKallistoResults",
+    "parameters": "function ( kallisto_log = NULL , samples = NULL , directories = NULL , read_h5 = FALSE , kallisto_version = \"current\" , logExprsOffset = 1 , verbose = TRUE )",
+    "filename": "kallisto-wrapper.txt"
+  },
+  "new_function": {
+    "name": "readKallistoResults",
+    "representation": "readKallistoResults",
+    "parameters": "function ( kallisto_log = NULL , samples = NULL , directories = NULL , read_h5 = FALSE , kallisto_version = \"current\" , verbose = TRUE )",
+    "filename": "kallisto-wrapper.txt"
+  }
+}
+
+5.
+{
+  "old_function": {
+    "name": "normalizeSCE",
+    "representation": "normalizeSCE",
+    "parameters": "function ( object , exprs_values = \"counts\" , return_log = TRUE , log_exprs_offset = NULL , centre_size_factors = TRUE , return_norm_as_exprs = TRUE )",
+    "filename": "normalisation.txt"
+  },
+  "new_function": {
+    "name": "normalizeSCE",
+    "representation": "normalizeSCE",
+    "parameters": "function ( object , exprs_values = \"counts\" , return_log = TRUE , log_exprs_offset = NULL , centre_size_factors = TRUE , size_factor_grouping = NULL )",
+    "filename": "normalizeSCE.txt"
+  }
+}
+
+6.
+{
+  "old_function": {
+    "name": "plotScater",
+    "representation": "plotScater",
+    "parameters": "function ( x , block1 = NULL , block2 = NULL , colour_by = NULL , nfeatures = 500 , exprs_values = \"counts\" , ncol = 3 , linewidth = 1.5 , theme_size = 10 )",
+    "filename": "plotting.txt"
+  },
+  "new_function": {
+    "name": "plotScater",
+    "representation": "plotScater",
+    "parameters": "function ( x , nfeatures = 500 , exprs_values = \"counts\" , colour_by = NULL , by_exprs_values = exprs_values , by_show_single = FALSE , block1 = NULL , block2 = NULL , ncol = 3 , line_width = 1.5 , theme_size = 10 )",
+    "filename": "plotScater.txt"
+  }
+}
+
+7.
+{
+  "old_function": {
+    "name": "plotPlatePosition",
+    "representation": "plotPlatePosition",
+    "parameters": "function ( object , plate_position = NULL , colour_by = NULL , x_position = NULL , y_position = NULL , exprs_values = \"logcounts\" , theme_size = 24 , legend = \"auto\" )",
+    "filename": "plotting.txt"
+  },
+  "new_function": {
+    "name": "plotPlatePosition",
+    "representation": "plotPlatePosition",
+    "parameters": "function ( object , plate_position = NULL , colour_by = NULL , size_by = NULL , shape_by = NULL , by_exprs_values = \"logcounts\" , by_show_single = FALSE , legend = TRUE , theme_size = 24 , alpha = 0.6 , size = 24 )",
+    "filename": "plotPlatePosition.txt"
+  }
+}
+
+8.
+{
+  "old_function": {
+    "name": "calculateQCMetrics",
+    "representation": "calculateQCMetrics",
+    "parameters": "function ( object , exprs_values = \"counts\" , feature_controls = NULL , cell_controls = NULL , nmads = 5 , pct_feature_controls_threshold = 80 )",
+    "filename": "qc.txt"
+  },
+  "new_function": {
+    "name": "calculateQCMetrics",
+    "representation": "calculateQCMetrics",
+    "parameters": "function ( object , exprs_values = \"counts\" , feature_controls = NULL , cell_controls = NULL , percent_top = c ( 50 , 100 , 200 , 500 ) , detection_limit = 0 , use_spikes = TRUE , compact = FALSE )",
+    "filename": "calculateQCMetrics.txt"
+  }
+}
+
+9.
+{
+  "old_function": {
+    "name": "isOutlier",
+    "representation": "isOutlier",
+    "parameters": "function ( metric , nmads = 5 , type = c ( \"both\" , \"lower\" , \"higher\" ) , log = FALSE , subset = NULL , batch = NULL , min.diff = NA )",
+    "filename": "qc.txt"
+  },
+  "new_function": {
+    "name": "isOutlier",
+    "representation": "isOutlier",
+    "parameters": "function ( metric , nmads = 5 , type = c ( \"both\" , \"lower\" , \"higher\" ) , log = FALSE , subset = NULL , batch = NULL , min_diff = NA )",
+    "filename": "isOutlier.txt"
+  }
+}
+
+10.
+{
+  "old_function": {
+    "name": "plotHighestExprs",
+    "representation": "plotHighestExprs",
+    "parameters": "function ( object , col_by_variable = \"total_features\" , n = 50 , drop_features = NULL , exprs_values = \"counts\" , feature_names_to_plot = NULL )",
+    "filename": "qc.txt"
+  },
+  "new_function": {
+    "name": "plotHighestExprs",
+    "representation": "plotHighestExprs",
+    "parameters": "function ( object , n = 50 , controls , colour_cells_by , drop_features = NULL , exprs_values = \"counts\" , by_exprs_values = exprs_values , by_show_single = TRUE , feature_names_to_plot = NULL , as_percentage = TRUE )",
+    "filename": "plotHighestExprs.txt"
+  }
+}
+
+11.
+{
+  "old_function": {
+    "name": "normalize",
+    "representation": "normalize",
+    "signature": "SingleCellExperiment",
+    "parameters": "function ( object , exprs_values = \"counts\" , return_log = TRUE , log_exprs_offset = NULL , centre_size_factors = TRUE , return_norm_as_exprs = TRUE )",
+    "replacementFunction": "normalizeSCE",
+    "filename": "normalisation.txt"
+  },
+  "new_function": {
+    "name": "normalize",
+    "representation": "normalize",
+    "signature": "SingleCellExperiment",
+    "parameters": "function ( object , exprs_values = \"counts\" , return_log = TRUE , log_exprs_offset = NULL , centre_size_factors = TRUE , size_factor_grouping = NULL )",
+    "replacementFunction": "normalizeSCE",
+    "filename": "normalizeSCE.txt"
+  }
+}
+
+
+
+##########
+Parameter Default Value Changes
+##########
+

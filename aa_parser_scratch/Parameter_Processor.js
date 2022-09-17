@@ -55,7 +55,29 @@ export function checkTripleDots(arr) {
 }
 
 export function checkParameterRemoval(arr_old, arr_new) {
-  return arr_new.length < arr_old.length;
+  let non_default_old = 0;
+  let non_default_new = 0;
+  for (let i = 0; i < arr_old.length; i++) {
+    if (!arr_old[i]?.value) non_default_old++;
+  }
+  for (let i = 0; i < arr_new.length; i++) {
+    if (!arr_new[i]?.value) non_default_new++;
+  }
+
+  return non_default_new < non_default_old;
+}
+
+export function checkParameterRemoval2(arr_old, arr_new) {
+  let new_set = new Set();
+  for (let i = 0; i < arr_new.length; i++) {
+    new_set.add(arr_new[i]?.name);
+  }
+  for (let i = 0; i < arr_old.length; i++) {
+    if (!new_set.has(arr_old[i]?.name)) {
+      return true;
+    }
+  }
+  return false;
 }
 
 export function checkParameterReorganization(arr_old, arr_new) {

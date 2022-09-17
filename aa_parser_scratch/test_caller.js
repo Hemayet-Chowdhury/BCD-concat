@@ -22,10 +22,12 @@ const log_writer = fs.createWriteStream(
 
 let compare_2_libraries = new Compare_2_libraries(
   "scater",
-  "./final_2/scater/scater_release_3_5",
-  "./final_2/scater/scater_release_3_6",
+  "./final_2/DESeq2/deseq2_release_3_14",
+  "./final_2/DESeq2/deseq2_master",
   log_writer
 );
-await compare_2_libraries.compare();
+let result_object = await compare_2_libraries.compare();
+console.log("late testing");
+console.log(result_object);
 
 //to do

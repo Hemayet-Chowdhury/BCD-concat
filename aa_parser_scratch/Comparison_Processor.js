@@ -2,6 +2,7 @@ import {
   checkDefaultChange,
   checkParameterAddition,
   checkParameterRemoval,
+  checkParameterRemoval2,
   checkParameterReorganization,
   checkTripleDots,
   nodifyParameters,
@@ -68,12 +69,12 @@ export class Comparison_Processor {
         let new_array = new_hash_list[common_key];
         for (let old_node of old_array) {
           if (!old_node.parameters) {
-            console.log("undefined params", old_node);
+            // console.log("undefined params", old_node);
             continue;
           }
           for (let new_node of new_array) {
             if (!new_node.parameters) {
-              console.log("undefined params", new_node);
+              //  console.log("undefined params", new_node);
               continue;
             }
             //parameter comparison starts

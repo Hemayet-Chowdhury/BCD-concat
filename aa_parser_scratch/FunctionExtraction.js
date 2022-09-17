@@ -48,38 +48,45 @@ export class FunctionExtraction {
       const xmlDocAstNew = await buildAst(cst, tokenVector);
       const { node_list, variant_node_list } = getNodesWrapper(xmlDocAstNew);
       node_list.forEach((node) => {
-        this.node_list.push(node);
+        let actual_filename = replaceAll(filename, "_ast", "");
+        let wrapper = { node: node, filename: actual_filename };
+        this.node_list.push(wrapper);
       });
       variant_node_list.forEach((node) => {
-        this.variant_node_list.push(node);
+        let actual_filename = replaceAll(filename, "_ast", "");
+        let wrapper = { node: node, filename: actual_filename };
+        this.variant_node_list.push(wrapper);
       });
     }
   }
 
   getAllFunctions() {
-    this.node_list.forEach((node) => {
-      let S3FunctionModel = getS3Functions(node);
+    this.node_list.forEach((wrapper) => {
+      let S3FunctionModel = getS3Functions(wrapper);
       if (S3FunctionModel) {
         this.all_functions.push(S3FunctionModel);
       }
 
-      let setMethodFunctionModel = getSetMethodFunctions(node);
+      let setMethodFunctionModel = getSetMethodFunctions(wrapper);
       if (setMethodFunctionModel) {
         this.all_functions.push(setMethodFunctionModel);
       }
 
-      let setReplaceMethodFunctionModel = getSetReplaceMethodFunctions(node);
+      let setReplaceMethodFunctionModel = getSetReplaceMethodFunctions(wrapper);
       if (setReplaceMethodFunctionModel) {
         this.all_functions.push(setReplaceMethodFunctionModel);
       }
+    });
 
-      let setMethodVariant2FunctionModel = getSetMethodVariant2Functions(node);
+    this.variant_node_list.forEach((wrapper) => {
+      let setMethodVariant2FunctionModel =
+        getSetMethodVariant2Functions(wrapper);
       if (setMethodVariant2FunctionModel) {
         this.all_functions.push(setMethodVariant2FunctionModel);
       }
 
       let setReplaceMethodVariant2FunctionsModel =
-        getSetReplaceMethodVariant2Functions(node);
+        getSetReplaceMethodVariant2Functions(wrapper);
       if (setReplaceMethodVariant2FunctionsModel) {
         this.all_functions.push(setReplaceMethodVariant2FunctionsModel);
       }
@@ -99,6 +106,35 @@ export class FunctionExtraction {
         this.all_functions_hash_list[functionNode.representation].push(
           functionNode
         );
+      }
+    });
+  }
+
+  fixReplacementFunctions() {
+    this.all_functions.forEach((functionModel) => {
+      if (functionModel.replacementFunction) {
+        let replacementFunction = functionModel.replacementFunction;
+        this.all_functions.forEach((searchModel) => {
+          if (searchModel.name == replacementFunction) {
+            functionModel.parameters = searchModel.parameters;
+          }
+        });
+      }
+    });
+  }
+  printReplacementFunctions() {
+    console.log("length of all_functions", this.all_functions.length);
+    this.all_functions.forEach((functionModel) => {
+      if (functionModel.replacementFunction) {
+        console.log(functionModel);
+      }
+    });
+  }
+
+  printSpecificFunction(name) {
+    this.all_functions.forEach((model) => {
+      if (model.name == name) {
+        console.log(model);
       }
     });
   }

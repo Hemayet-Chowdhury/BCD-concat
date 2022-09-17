@@ -19,6 +19,17 @@ export function stringifyGenericArray(arr) {
   return result;
 }
 
+export function stringifyParameterArray(arr) {
+  let res = "";
+  let index = 0;
+  arr.forEach((item) => {
+    res += index + ".\n";
+    res += JSON.stringify(item, null, 2) + "\n\n";
+    index++;
+  });
+  return res;
+}
+
 export function decorateString(str) {
   return "\n\n##########\n" + str + "\n##########\n\n";
 }
