@@ -54,6 +54,15 @@ export function checkTripleDots(arr) {
   return false;
 }
 
+export function checkDuplicateS3(arr) {
+  let count = 0;
+  for (let i = 0; i < arr.length; i++) {
+    let model = arr[i];
+    if (!model.signature) count++;
+  }
+  return count > 1;
+}
+
 export function checkParameterRemoval(arr_old, arr_new) {
   let non_default_old = 0;
   let non_default_new = 0;

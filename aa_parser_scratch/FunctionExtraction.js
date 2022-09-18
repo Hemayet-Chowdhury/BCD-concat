@@ -132,6 +132,7 @@ export class FunctionExtraction {
         this.all_functions.forEach((searchModel) => {
           if (searchModel.name == replacementFunction) {
             functionModel.parameters = searchModel.parameters;
+            functionModel.body = searchModel.body;
           }
         });
       }

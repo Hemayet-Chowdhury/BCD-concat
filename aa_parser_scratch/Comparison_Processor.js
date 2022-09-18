@@ -1,5 +1,6 @@
 import {
   checkDefaultChange,
+  checkDuplicateS3,
   checkParameterAddition,
   checkParameterRemoval,
   checkParameterRemoval2,
@@ -67,6 +68,8 @@ export class Comparison_Processor {
       if (new_hash_list.hasOwnProperty(common_key)) {
         let old_array = old_hash_list[common_key];
         let new_array = new_hash_list[common_key];
+        if (checkDuplicateS3(old_array) || checkDuplicateS3(new_array))
+          continue;
         for (let old_node of old_array) {
           if (!old_node.parameters) {
             // console.log("undefined params", old_node);
