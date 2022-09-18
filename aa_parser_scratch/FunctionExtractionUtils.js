@@ -9,6 +9,7 @@ export class FunctionModel {
     representation,
     signature,
     parameters,
+    body,
     replacementFunction,
     filename
   ) {
@@ -16,6 +17,7 @@ export class FunctionModel {
     this.representation = representation;
     this.signature = signature;
     this.parameters = parameters;
+    this.body = body;
     this.replacementFunction = replacementFunction;
     this.filename = filename;
   }
@@ -62,7 +64,7 @@ export function getAllTextRecursively(node) {
   let res = "";
   node.subElements.forEach((subElement) => {
     res +=
-      subElement.textContents[0].text.trim() +
+      subElement.textContents[0]?.text.trim() +
       " " +
       getAllTextRecursively(subElement);
   });
@@ -128,12 +130,18 @@ export function getS3Functions(wrapper) {
     let representation = functionName;
     let signature = undefined;
     let parameters = getParameterWrapper(node);
+    let body = undefined;
+    let body_node = getFunctionBodyParentNode(node);
+    if (body_node) {
+      body = getAllTextRecursively(body_node);
+    }
     let replacement_function = undefined;
     return new FunctionModel(
       functionName,
       representation,
       signature?.trim(),
       parameters,
+      body,
       replacement_function,
       filename
     );
@@ -154,6 +162,11 @@ export function getSetMethodFunctions(wrapper) {
     let raw_signature = getAllTextRecursively(node?.parent?.subElements[4]);
     let signature = replaceAll(raw_signature, '"', "");
     let parameters = getParameterWrapper(node);
+    let body = undefined;
+    let body_node = getFunctionBodyParentNode(node);
+    if (body_node) {
+      body = getAllTextRecursively(body_node);
+    }
     let replacement_function = undefined;
 
     return new FunctionModel(
@@ -161,6 +174,7 @@ export function getSetMethodFunctions(wrapper) {
       representation,
       signature?.trim(),
       parameters,
+      body,
       replacement_function,
       filename
     );
@@ -181,12 +195,18 @@ export function getSetReplaceMethodFunctions(wrapper) {
     let raw_signature = getAllTextRecursively(node?.parent?.subElements[4]);
     let signature = replaceAll(raw_signature, '"', "");
     let parameters = getParameterWrapper(node);
+    let body = undefined;
+    let body_node = getFunctionBodyParentNode(node);
+    if (body_node) {
+      body = getAllTextRecursively(body_node);
+    }
     let replacement_function = undefined;
     return new FunctionModel(
       functionName,
       representation,
       signature?.trim(),
       parameters,
+      body,
       replacement_function,
       filename
     );
@@ -206,6 +226,8 @@ export function getSetMethodVariant2Functions(wrapper) {
     let raw_signature = getAllTextRecursively(node?.subElements[4]);
     let signature = replaceAll(raw_signature, '"', "");
     let parameters = undefined;
+    let body = undefined;
+
     let replacement_function =
       node?.subElements[6].subElements[0].textContents[0].text;
     return new FunctionModel(
@@ -213,6 +235,7 @@ export function getSetMethodVariant2Functions(wrapper) {
       representation,
       signature?.trim(),
       parameters,
+      body,
       replacement_function,
       filename
     );
@@ -233,6 +256,7 @@ export function getSetReplaceMethodVariant2Functions(wrapper) {
     let raw_signature = getAllTextRecursively(node?.subElements[4]);
     let signature = replaceAll(raw_signature, '"', "");
     let parameters = undefined;
+    let body = undefined;
     let replacement_function =
       node?.subElements[6].subElements[0].textContents[0].text;
     return new FunctionModel(
@@ -240,6 +264,7 @@ export function getSetReplaceMethodVariant2Functions(wrapper) {
       representation,
       signature?.trim(),
       parameters,
+      body,
       replacement_function,
       filename
     );

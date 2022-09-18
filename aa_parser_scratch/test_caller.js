@@ -15,16 +15,19 @@ const fs = require("fs");
 
 import { Compare_2_libraries } from "./Compare_2_libraries.js";
 
-let package_name = "scater";
+let package_name = "single test";
 const log_writer = fs.createWriteStream(
   "./test_logs/" + package_name + "_output_log.txt"
 );
+let test_collection = undefined;
 
 let compare_2_libraries = new Compare_2_libraries(
-  "scater",
+  "single_test",
   "./final_2/DESeq2/deseq2_release_3_14",
   "./final_2/DESeq2/deseq2_master",
-  log_writer
+  log_writer,
+  1,
+  test_collection
 );
 let result_object = await compare_2_libraries.compare();
 console.log("late testing");

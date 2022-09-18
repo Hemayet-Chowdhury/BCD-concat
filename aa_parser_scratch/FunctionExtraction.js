@@ -21,6 +21,7 @@ import {
   getSetReplaceMethodVariant2Functions,
 } from "./FunctionExtractionUtils.js";
 import { replaceAll } from "../aa_namespace_parser/Namespace_Utils.js";
+import { splitSingleLine } from "./Parameter_Processor.js";
 
 export class FunctionExtraction {
   constructor(directory) {
@@ -110,6 +111,20 @@ export class FunctionExtraction {
     });
   }
 
+  postProcessSingleLineFunctions() {
+    this.all_functions.forEach((functionModel) => {
+      if (
+        !functionModel.replacementFunction &&
+        (!functionModel.body || functionModel.body == "")
+      ) {
+        let { param_part, body_part } = splitSingleLine(
+          functionModel.parameters
+        );
+        functionModel.parameters = param_part;
+        functionModel.body = body_part;
+      }
+    });
+  }
   fixReplacementFunctions() {
     this.all_functions.forEach((functionModel) => {
       if (functionModel.replacementFunction) {

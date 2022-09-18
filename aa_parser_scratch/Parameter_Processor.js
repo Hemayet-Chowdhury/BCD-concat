@@ -125,4 +125,38 @@ export function checkDefaultChange(arr_old, arr_new) {
   return false;
 }
 
+let test_str = "function ( q , shift ) log ( q + shift )";
+
+export function splitSingleLine(str) {
+  let flag = false;
+  let body_flag = false;
+  let param_part = "";
+  let body_part = "";
+  let bracket_count = 0;
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] == "(") {
+      flag = true;
+      bracket_count++;
+    }
+    if (str[i] == ")") {
+      bracket_count--;
+      if (flag == true && bracket_count < 1) {
+        body_flag = true;
+      }
+    }
+    if (body_flag == false) {
+      param_part += str[i];
+    }
+    if (body_flag == true) {
+      body_part += str[i];
+    }
+  }
+  let final_param = param_part + body_part[0];
+  let final_body = body_part.substring(1);
+  return {
+    param_part: final_param.trim(),
+    body_part: final_body.trim(),
+  };
+}
+
 //test removal and addition functions

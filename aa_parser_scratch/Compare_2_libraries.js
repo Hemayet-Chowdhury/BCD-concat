@@ -42,6 +42,7 @@ export class Compare_2_libraries {
       "old library function number ",
       old_library_object.all_functions.length
     );
+    old_library_object.postProcessSingleLineFunctions();
     //print all replacement functions
     old_library_object.fixReplacementFunctions();
 
@@ -50,6 +51,7 @@ export class Compare_2_libraries {
     let new_library_object = new FunctionExtraction(this.library_directory_new);
     await new_library_object.collectNodes();
     new_library_object.getAllFunctions();
+    new_library_object.postProcessSingleLineFunctions();
     new_library_object.fixReplacementFunctions();
     new_library_object.getFunctionsHashList();
 
@@ -190,7 +192,7 @@ export class Compare_2_libraries {
 
     this.log_writer.write(this.log_output);
 
-    await this.collection.insertOne(result_object);
+    // await this.collection.insertOne(result_object);
 
     return result_object;
   }
