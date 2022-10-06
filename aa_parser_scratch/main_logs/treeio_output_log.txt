@@ -1,0 +1,625 @@
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  treeio_release_3_5 treeio_release_3_6
+
+{
+    "package": "treeio",
+    "release_versions": "treeio_release_3_5 treeio_release_3_6",
+    "desc_release_old": "1.0.2",
+    "desc_release_new": "1.2.2",
+    "old_release_number": 0,
+    "new_release_number": 1,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  treeio_release_3_6 treeio_release_3_7
+
+{
+    "package": "treeio",
+    "release_versions": "treeio_release_3_6 treeio_release_3_7",
+    "desc_release_old": "1.2.2",
+    "desc_release_new": "1.4.3",
+    "old_release_number": 1,
+    "new_release_number": 2,
+    "function_removals": 9,
+    "function_additions": 43,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 2,
+    "total_count": 11
+}
+
+##########
+Functions Removed
+##########
+
+get.subs
+get.tipseq
+getRoot
+groupClade
+groupOTU
+pmlToSeq
+read.baseml
+show
+as.phylo.treedata
+
+
+##########
+Functions Added
+##########
+
+ancestor
+child
+data_frame
+full_join
+get.data
+is.rooted
+offspring
+parent
+read.astral
+read.fasta
+read.hyphy.seq
+read.iqtree
+read.jtree
+read.mrbayes
+read.nexus
+read.phylip.seq
+read.phylip.tree
+rename_taxa
+rootnode
+treedata
+write.beast
+write.jtree
+Nnode.treedata
+Ntip.treedata
+ancestor.phylo
+as.phylo.data.frame
+as.phylo.matrix
+as.phylo.tbl_df
+as.treedata.data.frame
+as.treedata.matrix
+as.treedata.tbl_df
+child.phylo
+full_join.treedata
+get.placements.jplace
+groupClade.phylo
+groupClade.treedata
+groupOTU.phylo
+groupOTU.treedata
+is.rooted.treedata
+offspring.phylo
+parent.phylo
+rootnode.phylo
+sibling.phylo
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "Ntip",
+    "representation": "Ntip",
+    "parameters": "function ( tree )",
+    "body": "{   phylo -   as.phylo (  tree )   length (   phylo $ tip.label ) } ",
+    "filename": "tree-utilities.txt"
+  },
+  "new_function": {
+    "name": "Ntip",
+    "representation": "Ntip",
+    "parameters": "function ( edge )",
+    "body": "{   tip -    edge [ ,  2 ] [  !    edge [ ,  2 ] %in%   edge [ ,  1 ] ]   length (  tip ) } ",
+    "filename": "write-beast.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "Nnode",
+    "representation": "Nnode",
+    "parameters": "function ( tree , internal.only = TRUE )",
+    "body": "{   phylo -   as.phylo (  tree )  if (  internal.only )   return (   phylo $ Nnode )    Ntip (  phylo ) +   phylo $ Nnode } ",
+    "filename": "tree-utilities.txt"
+  },
+  "new_function": {
+    "name": "Nnode",
+    "representation": "Nnode",
+    "parameters": "function ( edge )",
+    "body": "{   tip -    edge [ ,  2 ] [  !    edge [ ,  2 ] %in%   edge [ ,  1 ] ]   node -    edge [ ,  1 ] [  !    edge [ ,  1 ] %in%  tip ]   length (  node ) } ",
+    "filename": "write-beast.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  treeio_release_3_7 treeio_release_3_8
+
+{
+    "package": "treeio",
+    "release_versions": "treeio_release_3_7 treeio_release_3_8",
+    "desc_release_old": "1.4.3",
+    "desc_release_new": "1.6.2",
+    "old_release_number": 2,
+    "new_release_number": 3,
+    "function_removals": 0,
+    "function_additions": 3,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+tree_subset
+tree_subset.phylo
+tree_subset.treedata
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  treeio_release_3_8 treeio_release_3_9
+
+{
+    "package": "treeio",
+    "release_versions": "treeio_release_3_8 treeio_release_3_9",
+    "desc_release_old": "1.6.2",
+    "desc_release_new": "1.8.2",
+    "old_release_number": 3,
+    "new_release_number": 4,
+    "function_removals": 0,
+    "function_additions": 11,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+MRCA
+isTip
+rescale_tree
+write.nexus
+MRCA.phylo
+MRCA.treedata
+isTip.phylo
+isTip.tbl_tree
+isTip.treedata
+root.phylo
+root.treedata
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  treeio_release_3_9 treeio_release_3_11
+
+{
+    "package": "treeio",
+    "release_versions": "treeio_release_3_9 treeio_release_3_11",
+    "desc_release_old": "1.8.2",
+    "desc_release_new": "1.12.0",
+    "old_release_number": 4,
+    "new_release_number": 5,
+    "function_removals": 6,
+    "function_additions": 20,
+    "parameter_removals": 1,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 6
+}
+
+##########
+Functions Removed
+##########
+
+data_frame
+phyPML
+read.phyloT
+taxa_rename
+write.jplace
+print.beastList
+
+
+##########
+Functions Added
+##########
+
+as_tibble
+nodeid
+nodelab
+read.mega
+read.mega_tabular
+read.phyloxml
+root
+ancestor.treedata
+as.phylo.igraph
+as.treedata.pml
+child.treedata
+full_join.phylo
+nodeid.phylo
+nodeid.treedata
+nodelab.phylo
+nodelab.treedata
+offspring.treedata
+parent.treedata
+print.treedataList
+rootnode.treedata
+
+
+##########
+Removed Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "rename_taxa",
+    "representation": "rename_taxa",
+    "parameters": "function ( tree , data , key , value )",
+    "body": "{   phylo -   as.phylo (  tree )   key_var -   quo_name (   enexpr (  key ) )   value_var -   quo_name (   enexpr (  value ) )   idx -   match (   phylo $ tip.label ,   as.character (   data [[  key_var ] ] ) )    phylo $ tip.label -   as.character (    data [[  value_var ] ] [  idx ] )  if (  !   is (  tree ,  \"phylo\" ) )  {    tree @ phylo -  phylo } else  {   return (  phylo ) }   return (  tree ) } ",
+    "filename": "rename.txt"
+  },
+  "new_function": {
+    "name": "rename_taxa",
+    "representation": "rename_taxa",
+    "parameters": "function ( tree , data , key = 1 , value = 2 )",
+    "body": "{   phylo -   as.phylo (  tree )   key_var -   enexpr (  key )   value_var -   enexpr (  value )  if (  !   is.numeric (  key_var ) )   key_var -   quo_name (  key_var )  if (  !   is.numeric (  value_var ) )   value_var -   quo_name (  value_var )   idx -   match (   phylo $ tip.label ,   as.character (   data [[  key_var ] ] ) )  if (   anyNA (  idx ) )  {   stop (  \"taxa name not match, please check your input...\" ) }    phylo $ tip.label -   as.character (    data [[  value_var ] ] [  idx ] )  if (  !   is (  tree ,  \"phylo\" ) )  {    tree @ phylo -  phylo } else  {   return (  phylo ) }   return (  tree ) } ",
+    "filename": "rename.txt"
+  }
+}
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  treeio_release_3_11 treeio_release_3_12
+
+{
+    "package": "treeio",
+    "release_versions": "treeio_release_3_11 treeio_release_3_12",
+    "desc_release_old": "1.12.0",
+    "desc_release_new": "1.14.4",
+    "old_release_number": 5,
+    "new_release_number": 6,
+    "function_removals": 1,
+    "function_additions": 6,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+root.phylo
+
+
+##########
+Functions Added
+##########
+
+read.beast.newick
+read.treeqza
+write.beast.newick
+as.phylo.pvclust
+as.treedata.pvclust
+as_tibble.pvclust
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  treeio_release_3_12 treeio_release_3_13
+
+{
+    "package": "treeio",
+    "release_versions": "treeio_release_3_12 treeio_release_3_13",
+    "desc_release_old": "1.14.4",
+    "desc_release_new": "1.16.2",
+    "old_release_number": 6,
+    "new_release_number": 7,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  treeio_release_3_13 treeio_release_3_14
+
+{
+    "package": "treeio",
+    "release_versions": "treeio_release_3_13 treeio_release_3_14",
+    "desc_release_old": "1.16.2",
+    "desc_release_new": "1.18.1",
+    "old_release_number": 7,
+    "new_release_number": 8,
+    "function_removals": 0,
+    "function_additions": 4,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+as.ultrametric
+read.mcmctree
+as.ultrametric.phylo
+as.ultrametric.treedata
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  treeio_release_3_14 treeio_master
+
+{
+    "package": "treeio",
+    "release_versions": "treeio_release_3_14 treeio_master",
+    "desc_release_old": "1.18.1",
+    "desc_release_new": "1.19.1",
+    "old_release_number": 8,
+    "new_release_number": 9,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+

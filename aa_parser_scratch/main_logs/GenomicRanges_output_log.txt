@@ -1,0 +1,2693 @@
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicranges_release_2_6 genomicranges_release_2_7
+
+{
+    "package": "GenomicRanges",
+    "release_versions": "genomicranges_release_2_6 genomicranges_release_2_7",
+    "desc_release_old": "1.0.9",
+    "desc_release_new": "1.2.3",
+    "old_release_number": 0,
+    "new_release_number": 1,
+    "function_removals": 0,
+    "function_additions": 18,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+isCircular
+isCircular<-
+isCircularWithKnownLength
+Seqinfo
+seqinfo
+SummarizedExperiment
+assays
+assays<-
+assay
+assay<-
+rowData
+rowData<-
+colData
+colData<-
+exptData
+exptData<-
+dimnames
+dimnames<-
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicranges_release_2_7 genomicranges_release_2_8
+
+{
+    "package": "GenomicRanges",
+    "release_versions": "genomicranges_release_2_7 genomicranges_release_2_8",
+    "desc_release_old": "1.2.3",
+    "desc_release_new": "1.4.8",
+    "old_release_number": 1,
+    "new_release_number": 2,
+    "function_removals": 1,
+    "function_additions": 19,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+rev
+
+
+##########
+Functions Added
+##########
+
+seqinfo<-
+seqlevels
+seqlevels<-
+granges
+merge
+duplicated
+unique
+order
+sort
+rank
+==
+<=
+>=
+<
+>
+ngap
+precede
+follow
+countGenomicOverlaps
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicranges_release_2_8 genomicranges_release_2_9
+
+{
+    "package": "GenomicRanges",
+    "release_versions": "genomicranges_release_2_8 genomicranges_release_2_9",
+    "desc_release_old": "1.4.8",
+    "desc_release_new": "1.6.7",
+    "old_release_number": 2,
+    "new_release_number": 3,
+    "function_removals": 0,
+    "function_additions": 13,
+    "parameter_removals": 2,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 4,
+    "total_count": 4
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+genome
+genome<-
+GenomicRangesList
+makeGRangesListFromFeatureFragments
+Union
+IntersectionNotEmpty
+IntersectionStrict
+isDisjoint
+distance
+pgap
+keepSeqlevels
+renameSeqlevels
+summarizeOverlaps
+
+
+##########
+Removed Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "shift",
+    "representation": "shift",
+    "signature": "GenomicRanges",
+    "parameters": "function ( x , shift , use.names = TRUE )",
+    "body": "{   ranges -   shift (   ranges (  x ) ,  shift , use.names =  use.names )  if (  !   IRanges ::: anyMissing (   seqlengths (  x ) ) )  {    end (  x , check =  FALSE ) -   end (  ranges )    start (  x ) -   pmin.int (   start (  ranges ) ,   end (  x ) ) } else  {   x -   clone (  x , ranges =  ranges ) }  x } ",
+    "filename": "GenomicRanges-class.txt"
+  },
+  "new_function": {
+    "name": "shift",
+    "representation": "shift",
+    "signature": "GenomicRanges",
+    "parameters": "function ( x , shift = 0L , use.names = TRUE )",
+    "body": "{   ranges -   shift (   ranges (  x ) ,  shift , use.names =  use.names )  if (  !   IRanges ::: anyMissing (   seqlengths (  x ) ) )  {    end (  x , check =  FALSE ) -   end (  ranges )    start (  x ) -   pmin.int (   start (  ranges ) ,   end (  x ) ) } else  {   x -   clone (  x , ranges =  ranges ) }  x } ",
+    "filename": "GenomicRanges-class.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "shift",
+    "representation": "shift",
+    "signature": "GRangesList",
+    "parameters": "function ( x , shift , use.names = TRUE )",
+    "body": "{  if (   is (  shift ,  \"IntegerList\" ) )  {  if (     length (  shift ) !=   length (  x ) ||   any (    elementLengths (  shift ) !=   elementLengths (  x ) ) )  {   stop (  \"IntegerList 'shift' not of same dimension as 'x'\" ) }   shift -   unlist (  shift , use.names =  FALSE ) }    ranges (   x @ unlistData ) -   shift (    x @ unlistData @ ranges ,  shift , use.names =  use.names )  x } ",
+    "filename": "GRangesList-class.txt"
+  },
+  "new_function": {
+    "name": "shift",
+    "representation": "shift",
+    "signature": "GRangesList",
+    "parameters": "function ( x , shift = 0L , use.names = TRUE )",
+    "body": "{  if (   is (  shift ,  \"IntegerList\" ) )  {  if (     length (  shift ) !=   length (  x ) ||   any (    elementLengths (  shift ) !=   elementLengths (  x ) ) )  {   stop (  \"IntegerList 'shift' not of same dimension as 'x'\" ) }   shift -   unlist (  shift , use.names =  FALSE ) }    ranges (   x @ unlistData ) -   shift (    x @ unlistData @ ranges ,  shift , use.names =  use.names )  x } ",
+    "filename": "GRangesList-class.txt"
+  }
+}
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "seqinfo",
+    "representation": "seqinfo<-",
+    "signature": "GappedAlignments",
+    "parameters": "function ( x , new2old = NULL , value )",
+    "body": "{    x @ seqnames -   makeNewSeqnames (  x ,  new2old ,  value )    x @ seqinfo -  value   validObject (  x )  x } ",
+    "filename": "GappedAlignments-class.txt"
+  },
+  "new_function": {
+    "name": "seqinfo",
+    "representation": "seqinfo<-",
+    "signature": "GappedAlignments",
+    "parameters": "function ( x , new2old = NULL , force = FALSE , value )",
+    "body": "{  if (  !   is (  value ,  \"Seqinfo\" ) )   stop (  \"the supplied 'seqinfo' must be a Seqinfo object\" )   dangling_seqlevels -   getDanglingSeqlevels (  x , new2old =  new2old , force =  force ,   seqlevels (  value ) )  if (    length (  dangling_seqlevels ) !=  0L )   x -   x [  !  (    seqnames (  x ) %in%  dangling_seqlevels ) ]    x @ seqnames -   makeNewSeqnames (  x ,  new2old ,   seqlevels (  value ) )    x @ seqinfo -  value   validObject (  x )  x } ",
+    "filename": "GappedAlignments-class.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "seqinfo",
+    "representation": "seqinfo<-",
+    "signature": "GRangesList",
+    "parameters": "function ( x , new2old = NULL , value )",
+    "body": "{    seqinfo (   x @ unlistData , new2old =  new2old ) -  value  x } ",
+    "filename": "GRangesList-class.txt"
+  },
+  "new_function": {
+    "name": "seqinfo",
+    "representation": "seqinfo<-",
+    "signature": "GRangesList",
+    "parameters": "function ( x , new2old = NULL , force = FALSE , value )",
+    "body": "{  if (  !   is (  value ,  \"Seqinfo\" ) )   stop (  \"the supplied 'seqinfo' must be a Seqinfo object\" )   unlisted -   x @ unlistData   dangling_seqlevels -   getDanglingSeqlevels (  unlisted , new2old =  new2old , force =  force ,   seqlevels (  value ) )  if (    length (  dangling_seqlevels ) !=  0L )  {   dropme -   which (    seqnames (  unlisted ) %in%  dangling_seqlevels )   x -   x [  -   unique (   togroup (  x , j =  dropme ) ) ] }    seqinfo (   x @ unlistData , new2old =  new2old ) -  value  x } ",
+    "filename": "GRangesList-class.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "seqlevels",
+    "representation": "seqlevels<-",
+    "signature": "Seqinfo",
+    "parameters": "function ( x , value )",
+    "body": "{   mode -   getSeqlevelsReplacementMode (  value ,   seqlevels (  x ) )  if (   identical (  mode ,  -  2L ) )   return (   x [  value ] )  if (   identical (  mode ,  -  1L ) )  {    seqnames (  x ) -  value   return (  x ) }   new_seqlengths -    unname (   seqlengths (  x ) ) [  mode ]   new_isCircular -    unname (   isCircular (  x ) ) [  mode ]   Seqinfo (  value , seqlengths =  new_seqlengths , isCircular =  new_isCircular ) } ",
+    "filename": "Seqinfo-class.txt"
+  },
+  "new_function": {
+    "name": "seqlevels",
+    "representation": "seqlevels<-",
+    "signature": "Seqinfo",
+    "parameters": "function ( x , force = FALSE , value )",
+    "body": "{  if (  !   identical (  force ,  FALSE ) )   warning (  \"'force' is ignored in \\\"seqlevels ,  \"for Seqinfo objects\" )   mode -   getSeqlevelsReplacementMode (  value ,   seqlevels (  x ) )  if (   identical (  mode ,  -  2L ) )   return (   x [  value ] )  if (   identical (  mode ,  -  1L ) )  {    seqnames (  x ) -  value   return (  x ) }   new_seqlengths -    unname (   seqlengths (  x ) ) [  mode ]   new_isCircular -    unname (   isCircular (  x ) ) [  mode ]   new_genome -    unname (   genome (  x ) ) [  mode ]   Seqinfo ( seqnames =  value , seqlengths =  new_seqlengths , isCircular =  new_isCircular , genome =  new_genome ) } ",
+    "filename": "Seqinfo-class.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "seqlevels",
+    "representation": "seqlevels<-",
+    "signature": "ANY",
+    "parameters": "function ( x , value )",
+    "body": "{ ## Make the new Seqinfo object.   x_seqinfo -   seqinfo (  x )    seqlevels (  x_seqinfo ) -  value ## Map the new sequence levels to the old ones.   new2old -   getSeqlevelsReplacementMode (  value ,   seqlevels (  x ) )  if (   identical (  new2old ,  -  2L ) )  {   new2old -   match (  value ,   seqlevels (  x ) ) } else  if (   identical (  new2old ,  -  1L ) )  {   new2old -   seq_len (   length (  value ) ) } ## Do the replacement.    seqinfo (  x , new2old =  new2old ) -  x_seqinfo  x } ",
+    "filename": "seqinfo.txt"
+  },
+  "new_function": {
+    "name": "seqlevels",
+    "representation": "seqlevels<-",
+    "signature": "ANY",
+    "parameters": "function ( x , force = FALSE , value )",
+    "body": "{ ## Make the new Seqinfo object.   x_seqinfo -   seqinfo (  x )    seqlevels (  x_seqinfo ) -  value ## Map the new sequence levels to the old ones.   new2old -   getSeqlevelsReplacementMode (  value ,   seqlevels (  x ) )  if (   identical (  new2old ,  -  2L ) )  {   new2old -   match (  value ,   seqlevels (  x ) ) } else  if (   identical (  new2old ,  -  1L ) )  {   new2old -   seq_len (   length (  value ) ) } ## Do the replacement.    seqinfo (  x , new2old =  new2old , force =  force ) -  x_seqinfo  x } ",
+    "filename": "seqinfo.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicranges_release_2_9 genomicranges_release_2_11
+
+{
+    "package": "GenomicRanges",
+    "release_versions": "genomicranges_release_2_9 genomicranges_release_2_11",
+    "desc_release_old": "1.6.7",
+    "desc_release_new": "1.10.7",
+    "old_release_number": 3,
+    "new_release_number": 4,
+    "function_removals": 1,
+    "function_additions": 47,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 4,
+    "total_count": 5
+}
+
+##########
+Functions Removed
+##########
+
+isCircularWithKnownLength
+
+
+##########
+Functions Added
+##########
+
+phicoef
+constraint
+constraint<-
+checkConstraint
+makeSeqnameIds
+seqnameStyle
+seqnameStyle<-
+.DollarNames.GenomicRanges
+compare
+introns
+first
+last
+left
+right
+isProperPair
+GappedAlignmentPairs
+readGappedAlignmentPairs
+flipQuery
+selectEncodingWithCompatibleStrand
+isCompatibleWithSplicing
+isCompatibleWithSkippedExons
+extractSteppedExonRanks
+extractSpannedExonRanks
+extractSkippedExonRanks
+extractQueryStartInTranscript
+findCompatibleOverlaps
+countCompatibleOverlaps
+findSpliceOverlaps
+score
+mcols
+mcols<-
+$
+$<-
+values
+values<-
+[[
+[[<-
+splitAsListReturnedClass
+narrow
+Ops
+restrict
+disjointBins
+nearest
+distanceToNearest
+map
+encodeOverlaps
+updateObject
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "cigarToIRanges",
+    "representation": "cigarToIRanges",
+    "parameters": "function ( cigar , drop.D.ranges = FALSE , merge.ranges = TRUE )",
+    "body": "{  if (    is.factor (  cigar ) undefined   is.character (   levels (  cigar ) ) )   cigar -   as.vector (  cigar )  if (  !   isSingleString (  cigar ) )   stop (  \"'cigar' must be a single string\" )  if (  !   isTRUEorFALSE (  drop.D.ranges ) )   stop (  \"'drop.D.ranges' must be TRUE or FALSE\" )  if (  !   isTRUEorFALSE (  merge.ranges ) )   stop (  \"'merge.ranges' must be TRUE or FALSE\" )   .Call2 (  \"cigar_to_IRanges\" ,  cigar ,  drop.D.ranges ,  merge.ranges , PACKAGE =  \"GenomicRanges\" ) } ",
+    "filename": "cigar-utils.txt"
+  },
+  "new_function": {
+    "name": "cigarToIRanges",
+    "representation": "cigarToIRanges",
+    "parameters": "function ( cigar , drop.D.ranges = FALSE , drop.empty.ranges = FALSE , reduce.ranges = TRUE )",
+    "body": "{  if (    is.factor (  cigar ) undefined   is.character (   levels (  cigar ) ) )   cigar -   as.vector (  cigar )  if (  !   isSingleString (  cigar ) )   stop (  \"'cigar' must be a single string\" )  if (  !   isTRUEorFALSE (  drop.D.ranges ) )   stop (  \"'drop.D.ranges' must be TRUE or FALSE\" )  if (  !   isTRUEorFALSE (  drop.empty.ranges ) )   stop (  \"'drop.empty.ranges' must be TRUE or FALSE\" )  if (  !   isTRUEorFALSE (  reduce.ranges ) )   stop (  \"'reduce.ranges' must be TRUE or FALSE\" )   .Call2 (  \"cigar_to_IRanges\" ,  cigar ,  drop.D.ranges ,  drop.empty.ranges ,  reduce.ranges , PACKAGE =  \"GenomicRanges\" ) } ",
+    "filename": "cigar-utils.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "cigarToIRangesListByRName",
+    "representation": "cigarToIRangesListByRName",
+    "parameters": "function ( cigar , rname , pos , flag = NULL , drop.D.ranges = FALSE , merge.ranges = TRUE )",
+    "body": "{  if (  !   is.character (  cigar ) )  {  if (   !   is.factor (  cigar ) ||  !   is.character (   levels (  cigar ) ) )   stop (  \"'cigar' must be a character vector/factor\" )   cigar -   as.vector (  cigar ) }  if (   !   is.factor (  rname ) ||  !   is.character (   levels (  rname ) ) )  {  if (  !   is.character (  rname ) )   stop (  \"'rname' must be a character vector/factor\" )   rname -   as.factor (  rname ) }  if (  !   is.numeric (  pos ) )   stop (  \"'pos' must be a vector of integers\" )  if (  !   is.integer (  pos ) )   pos -   as.integer (  pos )  if (     length (  cigar ) !=   length (  rname ) ||    length (  cigar ) !=   length (  pos ) )   stop (  \"'cigar', 'rname' and 'pos' must have the same length\" )  if (  !   is.null (  flag ) )  {  if (  !   is.numeric (  flag ) )   stop (  \"'flag' must be NULL or a vector of integers\" )  if (  !   is.integer (  flag ) )   flag -   as.integer (  flag )  if (    length (  cigar ) !=   length (  flag ) )   stop (  \"'cigar' and 'flag' must have the same length\" ) }  if (  !   isTRUEorFALSE (  drop.D.ranges ) )   stop (  \"'drop.D.ranges' must be TRUE or FALSE\" )  if (  !   isTRUEorFALSE (  merge.ranges ) )   stop (  \"'merge.ranges' must be TRUE or FALSE\" )   C_ans -   .Call2 (  \"cigar_to_list_of_IRanges_by_rname\" ,  cigar ,  rname ,  pos ,  flag ,  drop.D.ranges ,  merge.ranges , PACKAGE =  \"GenomicRanges\" )  if (    length (  C_ans ) undefined  200L )   IRangesList (  C_ans , compress =  FALSE ) else   IRangesList (  C_ans , compress =  TRUE ) } ",
+    "filename": "cigar-utils.txt"
+  },
+  "new_function": {
+    "name": "cigarToIRangesListByRName",
+    "representation": "cigarToIRangesListByRName",
+    "parameters": "function ( cigar , rname , pos , flag = NULL , drop.D.ranges = FALSE , drop.empty.ranges = FALSE , reduce.ranges = TRUE )",
+    "body": "{  if (  !   is.character (  cigar ) )  {  if (   !   is.factor (  cigar ) ||  !   is.character (   levels (  cigar ) ) )   stop (  \"'cigar' must be a character vector/factor\" )   cigar -   as.vector (  cigar ) }  if (   !   is.factor (  rname ) ||  !   is.character (   levels (  rname ) ) )  {  if (  !   is.character (  rname ) )   stop (  \"'rname' must be a character vector/factor\" )   rname -   as.factor (  rname ) }  if (  !   is.numeric (  pos ) )   stop (  \"'pos' must be a vector of integers\" )  if (  !   is.integer (  pos ) )   pos -   as.integer (  pos )  if (     length (  cigar ) !=   length (  rname ) ||    length (  cigar ) !=   length (  pos ) )   stop (  \"'cigar', 'rname' and 'pos' must have the same length\" )  if (  !   is.null (  flag ) )  {  if (  !   is.numeric (  flag ) )   stop (  \"'flag' must be NULL or a vector of integers\" )  if (  !   is.integer (  flag ) )   flag -   as.integer (  flag )  if (    length (  cigar ) !=   length (  flag ) )   stop (  \"'cigar' and 'flag' must have the same length\" ) }  if (  !   isTRUEorFALSE (  drop.D.ranges ) )   stop (  \"'drop.D.ranges' must be TRUE or FALSE\" )  if (  !   isTRUEorFALSE (  drop.empty.ranges ) )   stop (  \"'drop.empty.ranges' must be TRUE or FALSE\" )  if (  !   isTRUEorFALSE (  reduce.ranges ) )   stop (  \"'reduce.ranges' must be TRUE or FALSE\" )   C_ans -   .Call2 (  \"cigar_to_list_of_IRanges_by_rname\" ,  cigar ,  rname ,  pos ,  flag ,  drop.D.ranges ,  drop.empty.ranges ,  reduce.ranges , PACKAGE =  \"GenomicRanges\" )  if (    length (  C_ans ) undefined  200L )   IRangesList (  C_ans , compress =  FALSE ) else   IRangesList (  C_ans , compress =  TRUE ) } ",
+    "filename": "cigar-utils.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "grglist",
+    "representation": "grglist",
+    "signature": "GappedAlignments",
+    "parameters": "function ( x , drop.D.ranges = FALSE )",
+    "body": ".GappedAlignmentsAsGRangesList ( rname ( x ) , rglist ( x , drop.D.ranges = drop.D.ranges ) , strand ( x ) , seqinfo ( x ) )",
+    "filename": "GappedAlignments-class.txt"
+  },
+  "new_function": {
+    "name": "grglist",
+    "representation": "grglist",
+    "signature": "GappedAlignments",
+    "parameters": "function ( x , order.as.in.query = FALSE , drop.D.ranges = FALSE )",
+    "body": "{   rgl -   rglist (  x , order.as.in.query =  order.as.in.query , drop.D.ranges =  drop.D.ranges )   .CompressedIRangesListToGRangesList (  rgl ,   seqnames (  x ) ,   strand (  x ) ,   seqinfo (  x ) ) } ",
+    "filename": "GappedAlignments-class.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "rglist",
+    "representation": "rglist",
+    "signature": "GappedAlignments",
+    "parameters": "function ( x , drop.D.ranges = FALSE )",
+    "body": "{   ans -   cigarToIRangesListByAlignment (   x @ cigar ,   x @ start , drop.D.ranges =  drop.D.ranges )    names (  ans ) -   names (  x )  ans } ",
+    "filename": "GappedAlignments-class.txt"
+  },
+  "new_function": {
+    "name": "rglist",
+    "representation": "rglist",
+    "signature": "GappedAlignments",
+    "parameters": "function ( x , order.as.in.query = FALSE , drop.D.ranges = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  order.as.in.query ) )   stop (  \"'reorder.ranges.from5to3' must be TRUE or FALSE\" )   ans -   cigarToIRangesListByAlignment (   x @ cigar ,   x @ start , drop.D.ranges =  drop.D.ranges )  if (  order.as.in.query )   ans -   revElements (  ans ,    strand (  x ) ==  \"-\" )    names (  ans ) -   names (  x )    mcols (  ans ) -   mcols (  x )  ans } ",
+    "filename": "GappedAlignments-class.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicranges_release_2_11 genomicranges_release_2_12
+
+{
+    "package": "GenomicRanges",
+    "release_versions": "genomicranges_release_2_11 genomicranges_release_2_12",
+    "desc_release_old": "1.10.7",
+    "desc_release_new": "1.12.5",
+    "old_release_number": 4,
+    "new_release_number": 5,
+    "function_removals": 9,
+    "function_additions": 9,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 10
+}
+
+##########
+Functions Removed
+##########
+
+constraint
+constraint<-
+grg
+countGenomicOverlaps
+unique
+>=
+<
+>
+dimnames
+
+
+##########
+Functions Added
+##########
+
+duplicated.GenomicRanges
+makeGAlignmentsListFromFeatureFragments
+GAlignmentsList
+readGAlignmentsList
+cbind
+rbind
+promoters
+overlapsAny
+subsetByOverlaps
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "reduce",
+    "representation": "reduce",
+    "signature": "GenomicRanges",
+    "parameters": "function ( x , drop.empty.ranges = FALSE , min.gapwidth = 1L , with.inframe.attrib = FALSE , ignore.strand = FALSE )",
+    "body": "{  if (  !   identical (  with.inframe.attrib ,  FALSE ) )   stop (  \"'with.inframe.attrib' argument not supported \" ,  \"when reducing a GenomicRanges object\" )  if (  !   isTRUEorFALSE (  ignore.strand ) )   stop (  \"'ignore.strand' must be TRUE or FALSE\" )  if (  ignore.strand )    strand (  x ) -  \"*\"   .interIntervalGenomicRanges2 (  x ,  reduce , drop.empty.ranges =  drop.empty.ranges , min.gapwidth =  min.gapwidth ) } ",
+    "filename": "inter-range-methods.txt"
+  },
+  "new_function": {
+    "name": "reduce",
+    "representation": "reduce",
+    "signature": "GenomicRanges",
+    "parameters": "function ( x , drop.empty.ranges = FALSE , min.gapwidth = 1L , with.mapping = FALSE , with.inframe.attrib = FALSE , ignore.strand = FALSE )",
+    "body": "{  if (  !   identical (  with.inframe.attrib ,  FALSE ) )   stop (  \"'with.inframe.attrib' argument not supported \" ,  \"when reducing a GenomicRanges object\" )  if (  !   isTRUEorFALSE (  ignore.strand ) )   stop (  \"'ignore.strand' must be TRUE or FALSE\" )  if (  ignore.strand )    strand (  x ) -  \"*\"   .interIntervalGenomicRanges2 (  x ,  reduce , drop.empty.ranges =  drop.empty.ranges , min.gapwidth =  min.gapwidth , with.mapping =  with.mapping ) } ",
+    "filename": "inter-range-methods.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicranges_release_2_12 genomicranges_release_2_13
+
+{
+    "package": "GenomicRanges",
+    "release_versions": "genomicranges_release_2_12 genomicranges_release_2_13",
+    "desc_release_old": "1.12.5",
+    "desc_release_new": "1.14.4",
+    "old_release_number": 5,
+    "new_release_number": 6,
+    "function_removals": 7,
+    "function_additions": 22,
+    "parameter_removals": 3,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 7
+}
+
+##########
+Functions Removed
+##########
+
+GappedAlignments
+readGappedAlignments
+GappedAlignmentPairs
+readGappedAlignmentPairs
+window
+seqselect
+seqselect<-
+
+
+##########
+Functions Added
+##########
+
+CIGAR_OPS
+explodeCigarOps
+explodeCigarOpLengths
+cigarRangesAlongReferenceSpace
+cigarRangesAlongQuerySpace
+cigarRangesAlongPairwiseSpace
+extractAlignmentRangesOnReference
+cigarWidthAlongReferenceSpace
+cigarWidthAlongQuerySpace
+cigarWidthAlongPairwiseSpace
+GIntervalTree
+makeGRangesFromDataFrame
+tileGenome
+GAlignments
+readGAlignments
+GAlignmentPairs
+readGAlignmentPairs
+dropSeqlevels
+restoreSeqlevels
+sortSeqlevels
+seqlevelsInUse
+seqlevels0
+
+
+##########
+Removed Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "cigarToIRangesListByAlignment",
+    "representation": "cigarToIRangesListByAlignment",
+    "parameters": "function ( cigar , pos , flag = NULL , drop.D.ranges = FALSE , drop.empty.ranges = FALSE , reduce.ranges = TRUE )",
+    "body": "{  if (  !   is.character (  cigar ) )  {  if (   !   is.factor (  cigar ) ||  !   is.character (   levels (  cigar ) ) )   stop (  \"'cigar' must be a character vector/factor\" )   cigar -   as.vector (  cigar ) }  if (  !   is.numeric (  pos ) )   stop (  \"'pos' must be a vector of integers\" )  if (  !   is.integer (  pos ) )   pos -   as.integer (  pos )  if (    length (  cigar ) !=   length (  pos ) )   stop (  \"'cigar' and 'pos' must have the same length\" )  if (  !   is.null (  flag ) )  {  if (  !   is.numeric (  flag ) )   stop (  \"'flag' must be NULL or a vector of integers\" )  if (  !   is.integer (  flag ) )   flag -   as.integer (  flag )  if (    length (  cigar ) !=   length (  flag ) )   stop (  \"'cigar' and 'flag' must have the same length\" ) }  if (  !   isTRUEorFALSE (  drop.D.ranges ) )   stop (  \"'drop.D.ranges' must be TRUE or FALSE\" )  if (  !   isTRUEorFALSE (  drop.empty.ranges ) )   stop (  \"'drop.empty.ranges' must be TRUE or FALSE\" )  if (  !   isTRUEorFALSE (  reduce.ranges ) )   stop (  \"'reduce.ranges' must be TRUE or FALSE\" )   .Call2 (  \"cigar_to_list_of_IRanges_by_alignment\" ,  cigar ,  pos ,  flag ,  drop.D.ranges ,  drop.empty.ranges ,  reduce.ranges , PACKAGE =  \"GenomicRanges\" ) } ",
+    "filename": "cigar-utils.txt"
+  },
+  "new_function": {
+    "name": "cigarToIRangesListByAlignment",
+    "representation": "cigarToIRangesListByAlignment",
+    "parameters": "function ( cigar , pos = 1L , flag = NULL , drop.D.ranges = FALSE , drop.empty.ranges = FALSE , reduce.ranges = TRUE )",
+    "body": "{   .Deprecated (  \"extractAlignmentRangesOnReference\" )  if (  !   isTRUEorFALSE (  drop.D.ranges ) )   stop (  \"'drop.D.ranges' must be TRUE or FALSE\" ) ## It doesn't really make sense to include \"I\" operations here since they ## don't generate coverage on the reference (they always produce zero-width ## ranges on the reference). Anyway, this is what ## cigarToIRangesListByAlignment() has been doing for a while.  if (  drop.D.ranges )  {   ops -   c (  \"M\" ,  \"=\" ,  \"X\" ,  \"I\" ) } else  {   ops -   c (  \"M\" ,  \"=\" ,  \"X\" ,  \"I\" ,  \"D\" ) }   cigarRangesAlongReferenceSpace (  cigar , flag =  flag , pos =  pos , ops =  ops , drop.empty.ranges =  drop.empty.ranges , reduce.ranges =  reduce.ranges ) } ",
+    "filename": "cigar-utils.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "cigarToIRangesListByRName",
+    "representation": "cigarToIRangesListByRName",
+    "parameters": "function ( cigar , rname , pos , flag = NULL , drop.D.ranges = FALSE , drop.empty.ranges = FALSE , reduce.ranges = TRUE )",
+    "body": "{  if (  !   is.character (  cigar ) )  {  if (   !   is.factor (  cigar ) ||  !   is.character (   levels (  cigar ) ) )   stop (  \"'cigar' must be a character vector/factor\" )   cigar -   as.vector (  cigar ) }  if (   !   is.factor (  rname ) ||  !   is.character (   levels (  rname ) ) )  {  if (  !   is.character (  rname ) )   stop (  \"'rname' must be a character vector/factor\" )   rname -   as.factor (  rname ) }  if (  !   is.numeric (  pos ) )   stop (  \"'pos' must be a vector of integers\" )  if (  !   is.integer (  pos ) )   pos -   as.integer (  pos )  if (     length (  cigar ) !=   length (  rname ) ||    length (  cigar ) !=   length (  pos ) )   stop (  \"'cigar', 'rname' and 'pos' must have the same length\" )  if (  !   is.null (  flag ) )  {  if (  !   is.numeric (  flag ) )   stop (  \"'flag' must be NULL or a vector of integers\" )  if (  !   is.integer (  flag ) )   flag -   as.integer (  flag )  if (    length (  cigar ) !=   length (  flag ) )   stop (  \"'cigar' and 'flag' must have the same length\" ) }  if (  !   isTRUEorFALSE (  drop.D.ranges ) )   stop (  \"'drop.D.ranges' must be TRUE or FALSE\" )  if (  !   isTRUEorFALSE (  drop.empty.ranges ) )   stop (  \"'drop.empty.ranges' must be TRUE or FALSE\" )  if (  !   isTRUEorFALSE (  reduce.ranges ) )   stop (  \"'reduce.ranges' must be TRUE or FALSE\" )   C_ans -   .Call2 (  \"cigar_to_list_of_IRanges_by_rname\" ,  cigar ,  rname ,  pos ,  flag ,  drop.D.ranges ,  drop.empty.ranges ,  reduce.ranges , PACKAGE =  \"GenomicRanges\" )  if (    length (  C_ans ) undefined  200L )   IRangesList (  C_ans , compress =  FALSE ) else   IRangesList (  C_ans , compress =  TRUE ) } ",
+    "filename": "cigar-utils.txt"
+  },
+  "new_function": {
+    "name": "cigarToIRangesListByRName",
+    "representation": "cigarToIRangesListByRName",
+    "parameters": "function ( cigar , rname , pos = 1L , flag = NULL , drop.D.ranges = FALSE , drop.empty.ranges = FALSE , reduce.ranges = TRUE )",
+    "body": "{   .Deprecated (  \"extractAlignmentRangesOnReference\" )  if (  !   is.factor (  rname ) )   stop (  \"'rname' must be a factor\" )  if (    length (  rname ) !=   length (  cigar ) )   stop (  \"'rname' must have the same length as 'cigar'\" )  if (  !   isTRUEorFALSE (  drop.D.ranges ) )   stop (  \"'drop.D.ranges' must be TRUE or FALSE\" ) ## It doesn't really make sense to include \"I\" operations here since they ## don't generate coverage on the reference (they always produce zero-width ## ranges on the reference). Anyway, this is what ## cigarToIRangesListByRName() has been doing for a while and the unit ## tests expect this.  if (  drop.D.ranges )  {   ops -   c (  \"M\" ,  \"=\" ,  \"X\" ,  \"I\" ) } else  {   ops -   c (  \"M\" ,  \"=\" ,  \"X\" ,  \"I\" ,  \"D\" ) }   cigarRangesAlongReferenceSpace (  cigar , flag =  flag , pos =  pos , f =  rname , ops =  ops , drop.empty.ranges =  drop.empty.ranges , reduce.ranges =  reduce.ranges ) } ",
+    "filename": "cigar-utils.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "queryLocs2refLocs",
+    "representation": "queryLocs2refLocs",
+    "parameters": "function ( qlocs , cigar , pos , flag = NULL )",
+    "body": "{   stop (  \"NOT IMPLEMENTED YET, SORRY!\" ) } ",
+    "filename": "cigar-utils.txt"
+  },
+  "new_function": {
+    "name": "queryLocs2refLocs",
+    "representation": "queryLocs2refLocs",
+    "parameters": "function ( qlocs , cigar , pos = 1L , flag = NULL )",
+    "body": "{   stop (  \"NOT IMPLEMENTED YET, SORRY!\" ) } ",
+    "filename": "cigar-utils.txt"
+  }
+}
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicranges_release_2_13 genomicranges_release_2_14
+
+{
+    "package": "GenomicRanges",
+    "release_versions": "genomicranges_release_2_13 genomicranges_release_2_14",
+    "desc_release_old": "1.14.4",
+    "desc_release_new": "1.16.4",
+    "old_release_number": 6,
+    "new_release_number": 7,
+    "function_removals": 60,
+    "function_additions": 7,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 61
+}
+
+##########
+Functions Removed
+##########
+
+validCigar
+CIGAR_OPS
+explodeCigarOps
+explodeCigarOpLengths
+cigarToRleList
+splitCigar
+cigarRangesAlongReferenceSpace
+cigarRangesAlongQuerySpace
+cigarRangesAlongPairwiseSpace
+extractAlignmentRangesOnReference
+cigarToIRanges
+cigarToIRangesListByAlignment
+cigarToIRangesListByRName
+cigarWidthAlongReferenceSpace
+cigarWidthAlongQuerySpace
+cigarWidthAlongPairwiseSpace
+cigarToWidth
+cigarToQWidth
+cigarNarrow
+cigarQNarrow
+cigarOpTable
+cigarToCigarTable
+summarizeCigarTable
+queryLoc2refLoc
+queryLocs2refLocs
+makeGAlignmentsListFromFeatureFragments
+GAlignments
+readGAlignments
+GAlignmentPairs
+readGAlignmentPairs
+GAlignmentsList
+readGAlignmentsList
+flipQuery
+selectEncodingWithCompatibleStrand
+extractQueryStartInTranscript
+countCompatibleOverlaps
+Union
+IntersectionNotEmpty
+IntersectionStrict
+rname
+rname<-
+cigar
+qwidth
+qnarrow
+introns
+first
+last
+left
+right
+isProperPair
+summarizeOverlaps
+isCompatibleWithSplicing
+isCompatibleWithSkippedExons
+extractSteppedExonRanks
+extractSpannedExonRanks
+extractSkippedExonRanks
+findCompatibleOverlaps
+findSpliceOverlaps
+%in%
+encodeOverlaps
+
+
+##########
+Functions Added
+##########
+
+sort.GenomicRanges
+keepStandardChromosomes
+relistToClass
+score<-
+tile
+subset
+seqlevelsStyle
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "reduce",
+    "representation": "reduce",
+    "signature": "GenomicRanges",
+    "parameters": "function ( x , drop.empty.ranges = FALSE , min.gapwidth = 1L , with.mapping = FALSE , with.inframe.attrib = FALSE , ignore.strand = FALSE )",
+    "body": "{  if (  !   identical (  with.inframe.attrib ,  FALSE ) )   stop (  \"'with.inframe.attrib' argument not supported \" ,  \"when reducing a GenomicRanges object\" )  if (  !   isTRUEorFALSE (  ignore.strand ) )   stop (  \"'ignore.strand' must be TRUE or FALSE\" )  if (  ignore.strand )    strand (  x ) -  \"*\"   .interIntervalGenomicRanges2 (  x ,  reduce , drop.empty.ranges =  drop.empty.ranges , min.gapwidth =  min.gapwidth , with.mapping =  with.mapping ) } ",
+    "filename": "inter-range-methods.txt"
+  },
+  "new_function": {
+    "name": "reduce",
+    "representation": "reduce",
+    "signature": "GenomicRanges",
+    "parameters": "function ( x , drop.empty.ranges = FALSE , min.gapwidth = 1L , with.revmap = FALSE , with.mapping = FALSE , with.inframe.attrib = FALSE , ignore.strand = FALSE )",
+    "body": "{  if (  !   identical (  with.inframe.attrib ,  FALSE ) )   stop (  \"'with.inframe.attrib' argument not supported \" ,  \"when reducing a GenomicRanges object\" )  if (  !   isTRUEorFALSE (  ignore.strand ) )   stop (  \"'ignore.strand' must be TRUE or FALSE\" )  if (  ignore.strand )    strand (  x ) -  \"*\"   .interIntervalGenomicRanges2 (  x ,  reduce , drop.empty.ranges =  drop.empty.ranges , min.gapwidth =  min.gapwidth , with.revmap =  with.revmap , with.mapping =  with.mapping ) } ",
+    "filename": "inter-range-methods.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicranges_release_2_14 genomicranges_release_3_1
+
+{
+    "package": "GenomicRanges",
+    "release_versions": "genomicranges_release_2_14 genomicranges_release_3_1",
+    "desc_release_old": "1.16.4",
+    "desc_release_new": "1.20.8",
+    "old_release_number": 7,
+    "new_release_number": 8,
+    "function_removals": 25,
+    "function_additions": 20,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 25,
+    "total_count": 50
+}
+
+##########
+Functions Removed
+##########
+
+makeSeqnameIds
+Seqinfo
+keepSeqlevels
+dropSeqlevels
+renameSeqlevels
+restoreSeqlevels
+keepStandardChromosomes
+seqlevels
+seqlevels<-
+sortSeqlevels
+seqlevelsInUse
+seqlevels0
+seqlengths
+seqlengths<-
+isCircular
+isCircular<-
+genome
+genome<-
+seqnameStyle
+seqnameStyle<-
+==
+<=
+splitAsListReturnedClass
+map
+seqlevelsStyle
+
+
+##########
+Functions Added
+##########
+
+GNCList
+isSmallGenome
+absoluteRanges
+relativeRanges
+.DollarNames.SummarizedExperiment
+makeSummarizedExperimentFromExpressionSet
+naiveRangeMapper
+geneRangeMapper
+probeRangeMapper
+rowRanges
+rowRanges<-
+assayNames
+assayNames<-
+as.character
+as.factor
+trim
+mapCoords
+pmapCoords
+subjectHits
+queryHits
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GenomicRanges ,  GIntervalTree )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" , \"equal\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , ignore.strand = FALSE )",
+    "body": "{  if (   any (   isCircular (  query ) , na.rm =  TRUE ) )   stop (  \"'GIntervalTree' not supported for circular sequences\" )  if (   !   isSingleNumber (  maxgap ) ||   maxgap undefined  0L )   stop (  \"'maxgap' must be a non-negative integer\" )   type -   match.arg (  type )   select -   match.arg (  select ) ## merge() also checks that 'query' and 'subject' are based on the ## same reference genome.   seqinfo -   merge (   seqinfo (  query ) ,   seqinfo (  subject ) )   qidx -   .GT_getIndex (  query )   qlist -   split (   unname (   ranges (  query ) ) ,   seqnames (  query ) )   hits -   findOverlaps (  qlist ,   subject @ ranges , maxgap =  maxgap , minoverlap =  minoverlap , type =  type , select =  \"all\" )   hits -   hits @ unlistData  if (   is (  hits ,  \"Hits\" ) )  {   .GT_reorderHits -  function ( rngidx , hits )  {  if (   length (  rngidx ) )  {   idx -   findOverlaps (  hits ,  rngidx , select =  \"first\" )   starts -   as.integer (   1 +   c (  0 ,    cumsum (   width (  rngidx ) ) [  -   length (  rngidx ) ] ) )   hits -     starts [  idx ] +  hits -    start (  rngidx ) [  idx ] }  hits }   new_queryHits -   .GT_reorderHits (  qidx ,   queryHits (  hits ) )   new_subjectHits -   .GT_reorderHits (   subject @ rngidx ,   subjectHits (  hits ) )   oo -   IRanges ::: orderIntegerPairs (  new_queryHits ,  new_subjectHits )    hits @ queryHits -   new_queryHits [  oo ]    hits @ subjectHits -   new_subjectHits [  oo ] } else  {   hits -   .GT_reorderValue (  qlist ,  hits ,  qidx ) }  if (  !  ignore.strand )  {   q_strand -   .strandAsSignedNumber (   strand (  query ) )   s_strand -   .strandAsSignedNumber (   strand (  subject ) )   compatible_strand -     q_strand [   queryHits (  hits ) ] *   s_strand [   subjectHits (  hits ) ] !=  -  1L   hits -   hits [  compatible_strand ] }   q_hits -   queryHits (  hits )   s_hits -   subjectHits (  hits )   q_len -   length (  query )   s_len -   length (  subject )  if (   select ==  \"arbitrary\" )  {   ans -   rep.int (  NA_integer_ ,  q_len )    ans [  q_hits ] -  s_hits   return (  ans ) }  if (   select ==  \"first\" )  {   ans -   rep.int (  NA_integer_ ,  q_len )   oo -   IRanges ::: orderIntegerPairs (  q_hits ,  s_hits , decreasing =  TRUE )    ans [   q_hits [  oo ] ] -   s_hits [  oo ]   return (  ans ) }   oo -   IRanges ::: orderIntegerPairs (  q_hits ,  s_hits )   q_hits -   q_hits [  oo ]   s_hits -   s_hits [  oo ]  if (   select ==  \"last\" )  {   ans -   rep.int (  NA_integer_ ,  q_len )    ans [  q_hits ] -  s_hits   return (  ans ) }   new2 (  \"Hits\" , queryHits =  q_hits , subjectHits =  s_hits , queryLength =  q_len , subjectLength =  s_len , check =  FALSE ) } ",
+    "filename": "findOverlaps-GIntervalTree-methods.txt"
+  },
+  "new_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GenomicRanges ,  GIntervalTree )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" , \"equal\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{  if (   any (   isCircular (  query ) , na.rm =  TRUE ) )   stop (  \"'GIntervalTree' not supported for circular sequences\" )  if (   !   isSingleNumber (  maxgap ) ||   maxgap undefined  0L )   stop (  \"'maxgap' must be a non-negative integer\" )   type -   match.arg (  type )   select -   match.arg (  select )   algorithm -   match.arg (  algorithm )  if (   algorithm !=  \"nclist\" )   warning (  \"'algorithm' is ignored when 'subject' \" ,  \"is a GIntervalTree object\" ) ## merge() also checks that 'query' and 'subject' are based on the ## same reference genome.   seqinfo -   merge (   seqinfo (  query ) ,   seqinfo (  subject ) )   qidx -   .GT_getIndex (  query )   qlist -   split (   unname (   ranges (  query ) ) ,   seqnames (  query ) )   hits -   findOverlaps (  qlist ,   subject @ ranges , maxgap =  maxgap , minoverlap =  minoverlap , type =  type , select =  \"all\" )   hits -   hits @ unlistData  if (   is (  hits ,  \"Hits\" ) )  {   .GT_reorderHits -  function ( rngidx , hits )  {  if (   length (  rngidx ) )  {   idx -   findOverlaps (  hits ,  rngidx , select =  \"first\" )   starts -   as.integer (   1 +   c (  0 ,    cumsum (   width (  rngidx ) ) [  -   length (  rngidx ) ] ) )   hits -     starts [  idx ] +  hits -    start (  rngidx ) [  idx ] }  hits }   new_queryHits -   .GT_reorderHits (  qidx ,   queryHits (  hits ) )   new_subjectHits -   .GT_reorderHits (   subject @ rngidx ,   subjectHits (  hits ) )   oo -   S4Vectors ::: orderIntegerPairs (  new_queryHits ,  new_subjectHits )    hits @ queryHits -   new_queryHits [  oo ]    hits @ subjectHits -   new_subjectHits [  oo ] } else  {   hits -   .GT_reorderValue (  qlist ,  hits ,  qidx ) }  if (  !  ignore.strand )  {   q_strand -   .strandAsSignedNumber (   strand (  query ) )   s_strand -   .strandAsSignedNumber (   strand (  subject ) )   compatible_strand -     q_strand [   queryHits (  hits ) ] *   s_strand [   subjectHits (  hits ) ] !=  -  1L   hits -   hits [  compatible_strand ] }   q_hits -   queryHits (  hits )   s_hits -   subjectHits (  hits )   q_len -   length (  query )   s_len -   length (  subject )  if (   select ==  \"arbitrary\" )  {   ans -   rep.int (  NA_integer_ ,  q_len )    ans [  q_hits ] -  s_hits   return (  ans ) }  if (   select ==  \"first\" )  {   ans -   rep.int (  NA_integer_ ,  q_len )   oo -   S4Vectors ::: orderIntegerPairs (  q_hits ,  s_hits , decreasing =  TRUE )    ans [   q_hits [  oo ] ] -   s_hits [  oo ]   return (  ans ) }   oo -   S4Vectors ::: orderIntegerPairs (  q_hits ,  s_hits )   q_hits -   q_hits [  oo ]   s_hits -   s_hits [  oo ]  if (   select ==  \"last\" )  {   ans -   rep.int (  NA_integer_ ,  q_len )    ans [  q_hits ] -  s_hits   return (  ans ) }   Hits (  q_hits ,  s_hits ,  q_len ,  s_len ) } ",
+    "filename": "findOverlaps-GIntervalTree-methods.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GenomicRanges ,  GenomicRanges )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" , \"equal\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , ignore.strand = FALSE )",
+    "body": "{  if (   !   isSingleNumber (  maxgap ) ||   maxgap undefined  0L )   stop (  \"'maxgap' must be a non-negative integer\" )   type -   match.arg (  type )   select -   match.arg (  select ) ## merge() also checks that 'query' and 'subject' are based on the ## same reference genome.   seqinfo -   merge (   seqinfo (  query ) ,   seqinfo (  subject ) )   q_len -   length (  query )   s_len -   length (  subject )   q_seqnames -   seqnames (  query )   s_seqnames -   seqnames (  subject )   q_splitranges -   splitRanges (  q_seqnames )   s_splitranges -   splitRanges (  s_seqnames )   q_seqlevels_nonempty -    names (  q_splitranges ) [    sapply (  q_splitranges ,  length ) undefined  0 ]   s_seqlevels_nonempty -    names (  s_splitranges ) [    sapply (  s_splitranges ,  length ) undefined  0 ]   q_ranges -   unname (   ranges (  query ) )   s_ranges -   unname (   ranges (  subject ) )  if (  ignore.strand )  {   q_strand -   rep.int (  1L ,  q_len )   s_strand -   rep.int (  1L ,  s_len ) } else  {   q_strand -   .strandAsSignedNumber (   strand (  query ) )   s_strand -   .strandAsSignedNumber (   strand (  subject ) ) }   common_seqlevels -   intersect (  q_seqlevels_nonempty ,  s_seqlevels_nonempty )   results -   lapply (  common_seqlevels ,  function ( seqlevel )  {  if (     isCircular (  seqinfo ) [  seqlevel ] %in%  TRUE )  {   circle.length -    seqlengths (  seqinfo ) [  seqlevel ] } else  {   circle.length -  NA }   q_idx -   q_splitranges [[  seqlevel ] ]   s_idx -   s_splitranges [[  seqlevel ] ]   hits -   .findOverlaps.circle (  circle.length ,   IRanges ::: extractROWS (  q_ranges ,  q_idx ) ,   IRanges ::: extractROWS (  s_ranges ,  s_idx ) ,  maxgap ,  minoverlap ,  type )   q_hits -   queryHits (  hits )   s_hits -   subjectHits (  hits )   compatible_strand -      IRanges ::: extractROWS (  q_strand ,  q_idx ) [  q_hits ] *    IRanges ::: extractROWS (  s_strand ,  s_idx ) [  s_hits ] !=  -  1L   hits -   hits [  compatible_strand ]   remapHits (  hits , query.map =   as.integer (  q_idx ) , new.queryLength =  q_len , subject.map =   as.integer (  s_idx ) , new.subjectLength =  s_len ) } ) ## Combine the results.   q_hits -   unlist (   lapply (  results ,  queryHits ) )  if (   is.null (  q_hits ) )   q_hits -   integer (  0 )   s_hits -   unlist (   lapply (  results ,  subjectHits ) )  if (   is.null (  s_hits ) )   s_hits -   integer (  0 )  if (   select ==  \"arbitrary\" )  {   ans -   rep.int (  NA_integer_ ,  q_len )    ans [  q_hits ] -  s_hits   return (  ans ) }  if (   select ==  \"first\" )  {   ans -   rep.int (  NA_integer_ ,  q_len )   oo -   IRanges ::: orderIntegerPairs (  q_hits ,  s_hits , decreasing =  TRUE )    ans [   q_hits [  oo ] ] -   s_hits [  oo ]   return (  ans ) }   oo -   IRanges ::: orderIntegerPairs (  q_hits ,  s_hits )   q_hits -   q_hits [  oo ]   s_hits -   s_hits [  oo ]  if (   select ==  \"last\" )  {   ans -   rep.int (  NA_integer_ ,  q_len )    ans [  q_hits ] -  s_hits   return (  ans ) }   new2 (  \"Hits\" , queryHits =  q_hits , subjectHits =  s_hits , queryLength =  q_len , subjectLength =  s_len , check =  FALSE ) } ",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GenomicRanges ,  GenomicRanges )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" , \"equal\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{   type -   match.arg (  type )   select -   match.arg (  select )   algorithm -   match.arg (  algorithm )  if (   algorithm ==  \"nclist\" )   FUN -  findOverlaps_GenomicRanges else   FUN -  findOverlaps_GenomicRanges_old   FUN (  query ,  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =  type , select =  select , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GRangesList ,  GenomicRanges )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" ) , ignore.strand = FALSE )",
+    "body": "{  if (   !   IRanges ::: isSingleNumber (  maxgap ) ||   maxgap undefined  0 )   stop (  \"'maxgap' must be a non-negative integer\" )   type -   match.arg (  type )   select -   match.arg (  select )   unlistQuery -   unlist (  query , use.names =  FALSE )   queryGroups -   togroup (  query )   ans -   findOverlaps (  unlistQuery ,  subject , maxgap =  maxgap , type =  type , select =  \"all\" , ignore.strand =  ignore.strand )   mm00 -   as.matrix (  ans )  if (    minoverlap undefined  1L undefined    nrow (  mm00 ) undefined  0L )  {   query1 -   queryGroups [   queryHits (  ans ) ]   subject0 -   unname (   mm00 [ ,  2L ] )   mm10 -   cbind ( queryHits =  query1 , subjectHits =  subject0 )   intrsct -   pintersect (    ranges (  unlistQuery ) [   queryHits (  ans ) ] ,    ranges (  subject ) [   subjectHits (  ans ) ] )   mm10 -   .updateMatchMatrix (  mm10 ,  intrsct ,  minoverlap )  if (   type ==  \"within\" )  { ## TODO: Call .makeGRL2GRmatchMatrix() and intersect the ## result with 'mm10'.   stop (  \"'type=\\\"within\\\"' is not yet supported \" ,  \"when 'minoverlap' ) } } else  {   mm10 -   .makeGRL2GRmatchMatrix (  mm00 ,   query @ partitioning ,   type ==  \"within\" ) } ## Only for sorting, rows are already unique. ## TODO: Optimize this (.cleanMatchMatrix is also extracting unique ## rows but this is not necessary since they are already unique).   mm10 -   .cleanMatchMatrix (  mm10 )  if (   select ==  \"all\" )  {   initialize (  ans , queryHits =   unname (   mm10 [ ,  1L ] ) , subjectHits =   unname (   mm10 [ ,  2L ] ) , queryLength =   length (  query ) , subjectLength =   length (  subject ) ) } else  {   IRanges ::: .hitsMatrixToVector (  mm10 ,   length (  query ) ) } } ",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GRangesList ,  GenomicRanges )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{  if (   !   isSingleNumber (  maxgap ) ||   maxgap undefined  0 )   stop (  \"'maxgap' must be a non-negative integer\" )   type -   match.arg (  type )   select -   match.arg (  select )   algorithm -   match.arg (  algorithm )   unlisted_query -   unlist (  query , use.names =  FALSE )   query_groups -   togroup (  query )   ans00 -   findOverlaps (  unlisted_query ,  subject , maxgap =  maxgap , type =  type , select =  \"all\" , algorithm =  algorithm , ignore.strand =  ignore.strand )  if (   minoverlap undefined  1L )  {   score -   .overlap_score (  ans00 ,  unlisted_query ,  subject )   score -   .aggregated_sum (  score ,   query_groups [   queryHits (  ans00 ) ] ,   subjectHits (  ans00 ) )    mcols (  ans00 ) -   DataFrame ( score =  score ) }  if (   type ==  \"within\" )  {   ans10 -   remapHits (  ans00 , query.map =  query_groups , new.queryLength =   length (  query ) , with.counts =  TRUE )   keep_idx -   which (     mcols (  ans10 ) [ ,  \"counts\" ] ==    elementLengths (  query ) [   queryHits (  ans10 ) ] )    mcols (  ans10 ) -  NULL   ans -   ans10 [  keep_idx ] } else  {   ans -   remapHits (  ans00 , query.map =  query_groups , new.queryLength =   length (  query ) ) }  if (   minoverlap undefined  1L )  {   keep_idx -   which (     mcols (  ans ) [ ,  \"score\" ] =  minoverlap )    mcols (  ans ) -  NULL   ans -   ans [  keep_idx ] }   selectHits (  ans , select =  select ) } ",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GenomicRanges ,  GRangesList )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" ) , ignore.strand = FALSE )",
+    "body": "{  if (   !   IRanges ::: isSingleNumber (  maxgap ) ||   maxgap undefined  0 )   stop (  \"'maxgap' must be a non-negative integer\" )   type -   match.arg (  type )   select -   match.arg (  select )   unlistSubject -   unlist (  subject , use.names =  FALSE )   subjectGroups -   togroup (  subject )  if (   type ==  \"start\" )  {   keep -   which (    IRanges ::: diffWithInitialZero (  subjectGroups ) !=  0L )   unlistSubject -   unlistSubject [  keep ]   subjectGroups -   subjectGroups [  keep ] } else  if (   type ==  \"end\" )  {   keep -    end (   subject @ partitioning ) [    elementLengths (  subject ) undefined  0L ]   unlistSubject -   unlistSubject [  keep ]   subjectGroups -   subjectGroups [  keep ] }   ans -   findOverlaps (  query ,  unlistSubject , maxgap =  maxgap , type =  type , select =  \"all\" , ignore.strand =  ignore.strand )   matchMatrix -   as.matrix (  ans )  if (    minoverlap undefined  1L undefined    nrow (  matchMatrix ) undefined  0 )  {    matchMatrix [ ,  2L ] -   subjectGroups [   subjectHits (  ans ) ]   intrsct -   pintersect (    ranges (  query ) [   queryHits (  ans ) ] ,   ranges (   unlistSubject [   subjectHits (  ans ) ] ) )   matchMatrix -   .updateMatchMatrix (  matchMatrix ,  intrsct ,  minoverlap ) } else  {    matchMatrix [ ,  2L ] -   subjectGroups [   matchMatrix [ ,  2L ] ]   matchMatrix -   .cleanMatchMatrix (  matchMatrix ) }  if (   select ==  \"all\" )  {   initialize (  ans , queryHits =   unname (   matchMatrix [ ,  1L ] ) , subjectHits =   unname (   matchMatrix [ ,  2L ] ) , queryLength =   length (  query ) , subjectLength =   length (  subject ) ) } else  {   IRanges ::: .hitsMatrixToVector (  matchMatrix ,   length (  query ) ) } } ",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GenomicRanges ,  GRangesList )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{  if (   !   isSingleNumber (  maxgap ) ||   maxgap undefined  0 )   stop (  \"'maxgap' must be a non-negative integer\" )   type -   match.arg (  type )   select -   match.arg (  select )   algorithm -   match.arg (  algorithm )   unlisted_subject -   unlist (  subject , use.names =  FALSE )   subject_groups -   togroup (  subject )  if (   type ==  \"start\" )  {   keep -   which (    S4Vectors ::: diffWithInitialZero (  subject_groups ) !=  0L )   unlisted_subject -   unlisted_subject [  keep ]   subject_groups -   subject_groups [  keep ] } else  if (   type ==  \"end\" )  {   keep -    end (   subject @ partitioning ) [    elementLengths (  subject ) undefined  0L ]   unlisted_subject -   unlisted_subject [  keep ]   subject_groups -   subject_groups [  keep ] }   ans00 -   findOverlaps (  query ,  unlisted_subject , maxgap =  maxgap , type =  type , select =  \"all\" , algorithm =  algorithm , ignore.strand =  ignore.strand )  if (   minoverlap undefined  1L )  {   score -   .overlap_score (  ans00 ,  query ,  unlisted_subject )   score -   .aggregated_sum (  score ,   queryHits (  ans00 ) ,   subject_groups [   subjectHits (  ans00 ) ] )    mcols (  ans00 ) -   DataFrame ( score =  score ) }   ans -   remapHits (  ans00 , subject.map =  subject_groups , new.subjectLength =   length (  subject ) )  if (   minoverlap undefined  1L )  {   keep_idx -   which (     mcols (  ans ) [ ,  \"score\" ] =  minoverlap )    mcols (  ans ) -  NULL   ans -   ans [  keep_idx ] }   selectHits (  ans , select =  select ) } ",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+4.
+{
+  "old_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GRangesList ,  GRangesList )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" ) , ignore.strand = FALSE )",
+    "body": "{  if (   !   IRanges ::: isSingleNumber (  maxgap ) ||   maxgap undefined  0 )   stop (  \"'maxgap' must be a non-negative integer\" )   type -   match.arg (  type )   select -   match.arg (  select )   unlistSubject -   unlist (  subject , use.names =  FALSE )   subjectGroups -   togroup (  subject )   unlistQuery -   unlist (  query , use.names =  FALSE )   queryGroups -   togroup (  query )  if (   type ==  \"start\" )  {   keep -   which (    IRanges ::: diffWithInitialZero (  subjectGroups ) !=  0L )   unlistSubject -   unlistSubject [  keep ]   subjectGroups -   subjectGroups [  keep ] } else  if (   type ==  \"end\" )  {   keep -    end (   subject @ partitioning ) [    elementLengths (  subject ) undefined  0L ]   unlistSubject -   unlistSubject [  keep ]   subjectGroups -   subjectGroups [  keep ] }   ans -   findOverlaps (  unlistQuery ,  unlistSubject , maxgap =  maxgap , type =  type , select =  \"all\" , ignore.strand =  ignore.strand )   mm00 -   as.matrix (  ans )  if (    minoverlap undefined  1L undefined    nrow (  mm00 ) undefined  0L )  {   query1 -   queryGroups [   queryHits (  ans ) ]   subject1 -   subjectGroups [   subjectHits (  ans ) ]   mm11 -   cbind ( queryHits =  query1 , subjectHits =  subject1 )   intrsct -   pintersect (    ranges (  unlistQuery ) [   queryHits (  ans ) ] ,    ranges (  unlistSubject ) [   subjectHits (  ans ) ] )   mm11 -   .updateMatchMatrix (  mm11 ,  intrsct ,  minoverlap )  if (   type ==  \"within\" )  { ## TODO: Call .makeGRL2GRLmatchMatrix() and intersect the ## result with 'mm11'.   stop (  \"'type=\\\"within\\\"' is not yet supported \" ,  \"when 'minoverlap' ) } } else  {   mm11 -   .makeGRL2GRLmatchMatrix (  mm00 ,   query @ partitioning ,   subject @ partitioning , type.is.within =   type ==  \"within\" ) } ## Only for sorting, rows are already unique. ## TODO: Optimize this (.cleanMatchMatrix is also extracting unique ## rows but this is not necessary since they are already unique).   mm11 -   .cleanMatchMatrix (  mm11 )  if (   select ==  \"all\" )  {   initialize (  ans , queryHits =   unname (   mm11 [ ,  1L ] ) , subjectHits =   unname (   mm11 [ ,  2L ] ) , queryLength =   length (  query ) , subjectLength =   length (  subject ) ) } else  {   IRanges ::: .hitsMatrixToVector (  mm11 ,   length (  query ) ) } } ",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GRangesList ,  GRangesList )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{  if (   !   isSingleNumber (  maxgap ) ||   maxgap undefined  0 )   stop (  \"'maxgap' must be a non-negative integer\" )   type -   match.arg (  type )   select -   match.arg (  select )   algorithm -   match.arg (  algorithm )   unlisted_query -   unlist (  query , use.names =  FALSE )   query_groups -   togroup (  query )   unlisted_subject -   unlist (  subject , use.names =  FALSE )   subject_groups -   togroup (  subject )  if (   type ==  \"start\" )  {   keep -   which (    S4Vectors ::: diffWithInitialZero (  subject_groups ) !=  0L )   unlisted_subject -   unlisted_subject [  keep ]   subject_groups -   subject_groups [  keep ] } else  if (   type ==  \"end\" )  {   keep -    end (   subject @ partitioning ) [    elementLengths (  subject ) undefined  0L ]   unlisted_subject -   unlisted_subject [  keep ]   subject_groups -   subject_groups [  keep ] }   ans00 -   findOverlaps (  unlisted_query ,  unlisted_subject , maxgap =  maxgap , type =  type , select =  \"all\" , algorithm =  algorithm , ignore.strand =  ignore.strand )  if (   minoverlap undefined  1L )  {   score -   .overlap_score (  ans00 ,  unlisted_query ,  unlisted_subject )   score -   .aggregated_sum (  score ,   query_groups [   queryHits (  ans00 ) ] ,   subject_groups [   subjectHits (  ans00 ) ] )    mcols (  ans00 ) -   DataFrame ( score =  score ) }  if (   type ==  \"within\" )  {   ans01 -   remapHits (  ans00 , subject.map =  subject_groups , new.subjectLength =   length (  subject ) )   ans11 -   remapHits (  ans01 , query.map =  query_groups , new.queryLength =   length (  query ) , with.counts =  TRUE )   keep_idx -   which (     mcols (  ans11 ) [ ,  \"counts\" ] ==    elementLengths (  query ) [   queryHits (  ans11 ) ] )    mcols (  ans11 ) -  NULL   ans -   ans11 [  keep_idx ] } else  {   ans -   remapHits (  ans00 , query.map =  query_groups , new.queryLength =   length (  query ) , subject.map =  subject_groups , new.subjectLength =   length (  subject ) ) }  if (   minoverlap undefined  1L )  {   keep_idx -   which (     mcols (  ans ) [ ,  \"score\" ] =  minoverlap )    mcols (  ans ) -  NULL   ans -   ans [  keep_idx ] }   selectHits (  ans , select =  select ) } ",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+5.
+{
+  "old_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  RangesList ,  GenomicRanges )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" ) , ignore.strand = FALSE )",
+    "body": "{   findOverlaps (   as (  query ,  \"GRanges\" ) , subject =  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  RangesList ,  GenomicRanges )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{   findOverlaps (   as (  query ,  \"GRanges\" ) ,  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+6.
+{
+  "old_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  RangesList ,  GRangesList )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" ) , ignore.strand = FALSE )",
+    "body": "{   findOverlaps (   as (  query ,  \"GRanges\" ) , subject =  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  RangesList ,  GRangesList )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{   findOverlaps (   as (  query ,  \"GRanges\" ) ,  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+7.
+{
+  "old_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GenomicRanges ,  RangesList )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" ) , ignore.strand = FALSE )",
+    "body": "{   findOverlaps (  query ,   as (  subject ,  \"GRanges\" ) , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GenomicRanges ,  RangesList )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{   findOverlaps (  query ,   as (  subject ,  \"GRanges\" ) , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+8.
+{
+  "old_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GRangesList ,  RangesList )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" ) , ignore.strand = FALSE )",
+    "body": "{   findOverlaps (  query ,   as (  subject ,  \"GRanges\" ) , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GRangesList ,  RangesList )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{   findOverlaps (  query ,   as (  subject ,  \"GRanges\" ) , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+9.
+{
+  "old_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  RangedData ,  GenomicRanges )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" ) , ignore.strand = FALSE )",
+    "body": "{ ## Calls \"findOverlaps\" method for c(\"RangesList\", \"GenomicRanges\") ## defined above.   findOverlaps (   ranges (  query ) , subject =  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  RangedData ,  GenomicRanges )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{ ## Calls \"findOverlaps\" method for c(\"RangesList\", \"GenomicRanges\") ## defined above.   findOverlaps (   ranges (  query ) ,  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+10.
+{
+  "old_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  RangedData ,  GRangesList )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" ) , ignore.strand = FALSE )",
+    "body": "{ ## Calls \"findOverlaps\" method for c(\"RangesList\", \"GRangesList\") ## defined above.   findOverlaps (   ranges (  query ) , subject =  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  RangedData ,  GRangesList )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{ ## Calls \"findOverlaps\" method for c(\"RangesList\", \"GRangesList\") ## defined above.   findOverlaps (   ranges (  query ) ,  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+11.
+{
+  "old_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GenomicRanges ,  RangedData )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" ) , ignore.strand = FALSE )",
+    "body": "{ ## Calls \"findOverlaps\" method for c(\"GenomicRanges\", \"RangesList\") ## defined above.   findOverlaps (  query ,   ranges (  subject ) , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GenomicRanges ,  RangedData )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{ ## Calls \"findOverlaps\" method for c(\"GenomicRanges\", \"RangesList\") ## defined above.   findOverlaps (  query ,   ranges (  subject ) , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+12.
+{
+  "old_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GRangesList ,  RangedData )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" ) , ignore.strand = FALSE )",
+    "body": "{ ## Calls \"findOverlaps\" method for c(\"GRangesList\", \"RangesList\") ## defined above.   findOverlaps (  query ,   ranges (  subject ) , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GRangesList ,  RangedData )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{ ## Calls \"findOverlaps\" method for c(\"GRangesList\", \"RangesList\") ## defined above.   findOverlaps (  query ,   ranges (  subject ) , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+13.
+{
+  "old_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  SummarizedExperiment ,  Vector )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" , \"equal\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , ignore.strand = FALSE )",
+    "body": "{   findOverlaps (   rowData (  query ) ,  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  SummarizedExperiment ,  Vector )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" , \"equal\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{   findOverlaps (   rowRanges (  query ) ,  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+14.
+{
+  "old_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  Vector ,  SummarizedExperiment )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" , \"equal\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , ignore.strand = FALSE )",
+    "body": "{   findOverlaps (  query ,   rowData (  subject ) , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  Vector ,  SummarizedExperiment )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" , \"equal\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{   findOverlaps (  query ,   rowRanges (  subject ) , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+15.
+{
+  "old_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  SummarizedExperiment ,  SummarizedExperiment )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" , \"equal\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , ignore.strand = FALSE )",
+    "body": "{   findOverlaps (   rowData (  query ) ,   rowData (  subject ) , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  SummarizedExperiment ,  SummarizedExperiment )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" , \"equal\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{   findOverlaps (   rowRanges (  query ) ,   rowRanges (  subject ) , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+16.
+{
+  "old_function": {
+    "name": "match",
+    "representation": "match",
+    "signature": "c (  GenomicRanges ,  GenomicRanges )",
+    "parameters": "function ( x , table , nomatch = NA_integer_ , incomparables = NULL , method = c ( \"auto\" , \"quick\" , \"hash\" ) , ignore.strand = FALSE , match.if.overlap = FALSE )",
+    "body": "{  if (  !   isSingleNumberOrNA (  nomatch ) )   stop (  \"'nomatch' must be a single number or NA\" )  if (  !   is.integer (  nomatch ) )   nomatch -   as.integer (  nomatch )  if (  !   is.null (  incomparables ) )   stop (  \"\\\"match\\\" method for GenomicRanges objects \" ,  \"only accepts 'incomparables=NULL'\" )  if (  !   isTRUEorFALSE (  ignore.strand ) )   stop (  \"'ignore.strand' must be TRUE or FALSE\" )  if (  !   isTRUEorFALSE (  match.if.overlap ) )   stop (  \"'match.if.overlap' must be TRUE or FALSE\" )  if (  match.if.overlap )  {   msg -   c (  \"  Starting with BioC 2.14, \" ,  \"match() on GRanges objects\\n  does not support \" ,  \"the 'match.if.overlap' argument anymore. Please use\\n\\n\" ,  \"    findOverlaps(x, table, select=\\\"first\\\", \" ,  \"ignore.strand=ignore.strand)\\n\\n\" ,  \"  if you need to do\\n\\n\" ,  \"    match(x, table, ignore.strand=ignore.strand, \" ,  \"match.if.overlap=TRUE)\" )   .Defunct ( msg =  msg )   ans -   findOverlaps (  x ,  table , select =  \"first\" , ignore.strand =  ignore.strand )  if (   !   is.na (  nomatch ) undefined   anyMissing (  ans ) )    ans [   is.na (  ans ) ] -  nomatch   return (  ans ) } ## Calling merge() is the way to check that 'x' and 'table' are based ## on the same reference genome.   merge (   seqinfo (  x ) ,   seqinfo (  table ) )   x_seqnames -   relevelSeqnamesForMatch (  x ,  table )  if (  ignore.strand )  {   x_strand -   integer (   length (  x ) )   table_strand -   integer (   length (  table ) ) } else  {   x_strand -   as.factor (   strand (  x ) )   table_strand -   as.factor (   strand (  table ) ) } ## Equivalent to (but faster than): ##     findOverlaps(x, table, type=\"equal\", select=\"first\") ## except when 'x' and 'table' both contain empty ranges.   IRanges ::: matchIntegerQuads (  x_seqnames ,  x_strand ,   start (  x ) ,   width (  x ) ,   as.factor (   seqnames (  table ) ) ,  table_strand ,   start (  table ) ,   width (  table ) , nomatch =  nomatch , method =  method ) } ",
+    "filename": "GenomicRanges-comparison.txt"
+  },
+  "new_function": {
+    "name": "match",
+    "representation": "match",
+    "signature": "c (  GenomicRanges ,  GenomicRanges )",
+    "parameters": "function ( x , table , nomatch = NA_integer_ , incomparables = NULL , method = c ( \"auto\" , \"quick\" , \"hash\" ) , ignore.strand = FALSE )",
+    "body": "{  if (  !   isSingleNumberOrNA (  nomatch ) )   stop (  \"'nomatch' must be a single number or NA\" )  if (  !   is.integer (  nomatch ) )   nomatch -   as.integer (  nomatch )  if (  !   is.null (  incomparables ) )   stop (  \"\\\"match\\\" method for GenomicRanges objects \" ,  \"only accepts 'incomparables=NULL'\" )  if (  !   isTRUEorFALSE (  ignore.strand ) )   stop (  \"'ignore.strand' must be TRUE or FALSE\" ) ## Calling merge() is the way to check that 'x' and 'table' are based ## on the same reference genome.   merge (   seqinfo (  x ) ,   seqinfo (  table ) )   x_seqnames -   relevelSeqnamesForMatch (  x ,  table )  if (  ignore.strand )  {   x_strand -   integer (   length (  x ) )   table_strand -   integer (   length (  table ) ) } else  {   x_strand -   as.factor (   strand (  x ) )   table_strand -   as.factor (   strand (  table ) ) } ## Equivalent to (but faster than): ##     findOverlaps(x, table, type=\"equal\", select=\"first\") ## except when 'x' and 'table' both contain empty ranges.   S4Vectors ::: matchIntegerQuads (  x_seqnames ,  x_strand ,   start (  x ) ,   width (  x ) ,   as.factor (   seqnames (  table ) ) ,  table_strand ,   start (  table ) ,   width (  table ) , nomatch =  nomatch , method =  method ) } ",
+    "filename": "GenomicRanges-comparison.txt"
+  }
+}
+
+17.
+{
+  "old_function": {
+    "name": "reduce",
+    "representation": "reduce",
+    "signature": "GenomicRanges",
+    "parameters": "function ( x , drop.empty.ranges = FALSE , min.gapwidth = 1L , with.revmap = FALSE , with.mapping = FALSE , with.inframe.attrib = FALSE , ignore.strand = FALSE )",
+    "body": "{  if (  !   identical (  with.inframe.attrib ,  FALSE ) )   stop (  \"'with.inframe.attrib' argument not supported \" ,  \"when reducing a GenomicRanges object\" )  if (  !   isTRUEorFALSE (  ignore.strand ) )   stop (  \"'ignore.strand' must be TRUE or FALSE\" )  if (  ignore.strand )    strand (  x ) -  \"*\"   .interIntervalGenomicRanges2 (  x ,  reduce , drop.empty.ranges =  drop.empty.ranges , min.gapwidth =  min.gapwidth , with.revmap =  with.revmap , with.mapping =  with.mapping ) } ",
+    "filename": "inter-range-methods.txt"
+  },
+  "new_function": {
+    "name": "reduce",
+    "representation": "reduce",
+    "signature": "GenomicRanges",
+    "parameters": "function ( x , drop.empty.ranges = FALSE , min.gapwidth = 1L , with.revmap = FALSE , with.inframe.attrib = FALSE , ignore.strand = FALSE )",
+    "body": "{  if (  !   identical (  with.inframe.attrib ,  FALSE ) )   stop (  \"'with.inframe.attrib' argument not supported \" ,  \"when reducing a GenomicRanges object\" )  if (  !   isTRUEorFALSE (  ignore.strand ) )   stop (  \"'ignore.strand' must be TRUE or FALSE\" )  if (  ignore.strand )    strand (  x ) -  \"*\"   .interIntervalGenomicRanges2 (  x ,  reduce , drop.empty.ranges =  drop.empty.ranges , min.gapwidth =  min.gapwidth , with.revmap =  with.revmap ) } ",
+    "filename": "inter-range-methods.txt"
+  }
+}
+
+18.
+{
+  "old_function": {
+    "name": "overlapsAny",
+    "representation": "overlapsAny",
+    "signature": "sig",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" , \"equal\" ) , ignore.strand = FALSE )",
+    "body": "{  !   is.na (   findOverlaps (  query ,  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =  \"first\" , ignore.strand =  ignore.strand ) ) } ",
+    "replacementFunction": "overlapsAny.definition",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "overlapsAny",
+    "representation": "overlapsAny",
+    "signature": "sig",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" , \"equal\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{  !   is.na (   findOverlaps (  query ,  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =  \"arbitrary\" , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand ) ) } ",
+    "replacementFunction": "overlapsAny.definition",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+19.
+{
+  "old_function": {
+    "name": "subsetByOverlaps",
+    "representation": "subsetByOverlaps",
+    "signature": "sig",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" , \"equal\" ) , ignore.strand = FALSE )",
+    "body": "{   i -  !   is.na (   findOverlaps (  query ,  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =  \"first\" , ignore.strand =  ignore.strand ) )   query [   seqsplit (  i ,   space (  query ) , drop =  FALSE ) ] } ",
+    "replacementFunction": ".subsetByOverlaps.definition2",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "subsetByOverlaps",
+    "representation": "subsetByOverlaps",
+    "signature": "sig",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" , \"equal\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{   i -   overlapsAny (  query ,  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand )   query [   splitAsList (  i ,   space (  query ) , drop =  FALSE ) ] } ",
+    "replacementFunction": ".subsetByOverlaps.definition2",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+20.
+{
+  "old_function": {
+    "name": "subsetByOverlaps",
+    "representation": "subsetByOverlaps",
+    "signature": "sig",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" , \"equal\" ) , ignore.strand = FALSE )",
+    "body": "{   i -  !   is.na (   findOverlaps (  query ,  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =  \"first\" , ignore.strand =  ignore.strand ) )   query [   seqsplit (  i ,   space (  query ) , drop =  FALSE ) ] } ",
+    "replacementFunction": ".subsetByOverlaps.definition2",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "subsetByOverlaps",
+    "representation": "subsetByOverlaps",
+    "signature": "sig",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" , \"equal\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{   i -   overlapsAny (  query ,  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand )   extractROWS (  query ,  i ) } ",
+    "replacementFunction": "subsetByOverlaps.definition1",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+21.
+{
+  "old_function": {
+    "name": "subsetByOverlaps",
+    "representation": "subsetByOverlaps",
+    "signature": "sig",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" , \"equal\" ) , ignore.strand = FALSE )",
+    "body": "{   query [  !   is.na (   findOverlaps (  query ,  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =  \"first\" , ignore.strand =  ignore.strand ) ) , ] } ",
+    "replacementFunction": ".subsetByOverlaps.definition3",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "subsetByOverlaps",
+    "representation": "subsetByOverlaps",
+    "signature": "sig",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" , \"equal\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{   i -   overlapsAny (  query ,  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand )   query [   splitAsList (  i ,   space (  query ) , drop =  FALSE ) ] } ",
+    "replacementFunction": ".subsetByOverlaps.definition2",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+22.
+{
+  "old_function": {
+    "name": "subsetByOverlaps",
+    "representation": "subsetByOverlaps",
+    "signature": "sig",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" , \"equal\" ) , ignore.strand = FALSE )",
+    "body": "{   query [  !   is.na (   findOverlaps (  query ,  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =  \"first\" , ignore.strand =  ignore.strand ) ) , ] } ",
+    "replacementFunction": ".subsetByOverlaps.definition3",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "subsetByOverlaps",
+    "representation": "subsetByOverlaps",
+    "signature": "sig",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" , \"equal\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{   i -   overlapsAny (  query ,  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand )   extractROWS (  query ,  i ) } ",
+    "replacementFunction": "subsetByOverlaps.definition1",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+23.
+{
+  "old_function": {
+    "name": "subsetByOverlaps",
+    "representation": "subsetByOverlaps",
+    "signature": "sig",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" , \"equal\" ) , ignore.strand = FALSE )",
+    "body": "{   query [  !   is.na (   findOverlaps (  query ,  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =  \"first\" , ignore.strand =  ignore.strand ) ) ] } ",
+    "replacementFunction": "subsetByOverlaps.definition1",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "subsetByOverlaps",
+    "representation": "subsetByOverlaps",
+    "signature": "sig",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" , \"equal\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{   i -   overlapsAny (  query ,  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand )   query [   splitAsList (  i ,   space (  query ) , drop =  FALSE ) ] } ",
+    "replacementFunction": ".subsetByOverlaps.definition2",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+24.
+{
+  "old_function": {
+    "name": "subsetByOverlaps",
+    "representation": "subsetByOverlaps",
+    "signature": "sig",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" , \"equal\" ) , ignore.strand = FALSE )",
+    "body": "{   query [  !   is.na (   findOverlaps (  query ,  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =  \"first\" , ignore.strand =  ignore.strand ) ) ] } ",
+    "replacementFunction": "subsetByOverlaps.definition1",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "subsetByOverlaps",
+    "representation": "subsetByOverlaps",
+    "signature": "sig",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" , \"equal\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{   i -   overlapsAny (  query ,  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand )   extractROWS (  query ,  i ) } ",
+    "replacementFunction": "subsetByOverlaps.definition1",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicranges_release_3_1 genomicranges_release_3_2
+
+{
+    "package": "GenomicRanges",
+    "release_versions": "genomicranges_release_3_1 genomicranges_release_3_2",
+    "desc_release_old": "1.20.8",
+    "desc_release_new": "1.22.4",
+    "old_release_number": 8,
+    "new_release_number": 9,
+    "function_removals": 4,
+    "function_additions": 4,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 4
+}
+
+##########
+Functions Removed
+##########
+
+makeSummarizedExperimentFromExpressionSet
+naiveRangeMapper
+geneRangeMapper
+probeRangeMapper
+
+
+##########
+Functions Added
+##########
+
+bindAsGRanges
+mcolAsRleList
+binnedAverage
+is.unsorted
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicranges_release_3_2 genomicranges_release_3_3
+
+{
+    "package": "GenomicRanges",
+    "release_versions": "genomicranges_release_3_2 genomicranges_release_3_3",
+    "desc_release_old": "1.22.4",
+    "desc_release_new": "1.24.3",
+    "old_release_number": 9,
+    "new_release_number": 10,
+    "function_removals": 27,
+    "function_additions": 5,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 13,
+    "total_count": 40
+}
+
+##########
+Functions Removed
+##########
+
+GIntervalTree
+rowData
+rowData<-
+.DollarNames.SummarizedExperiment
+SummarizedExperiment
+exptData
+exptData<-
+rowRanges
+rowRanges<-
+colData
+colData<-
+assays
+assays<-
+assay
+assay<-
+assayNames
+assayNames<-
+dimnames<-
+cbind
+rbind
+compare
+overlapsAny
+subsetByOverlaps
+mapCoords
+pmapCoords
+subjectHits
+queryHits
+
+
+##########
+Functions Added
+##########
+
+GPos
+pos
+invertStrand
+selfmatch
+pcompare
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "ranges",
+    "representation": "ranges",
+    "signature": "GNCList",
+    "parameters": "function ( x , use.mcols = FALSE )",
+    "body": "ranges ( granges ( x ) )",
+    "filename": "GNCList-class.txt"
+  },
+  "new_function": {
+    "name": "ranges",
+    "representation": "ranges",
+    "signature": "GNCList",
+    "parameters": "function ( x , use.names = TRUE , use.mcols = FALSE )",
+    "body": "ranges ( granges ( x , use.names = use.names , use.mcols = use.mcols ) , use.names = TRUE , use.mcols = use.mcols )",
+    "filename": "GNCList-class.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "ranges",
+    "representation": "ranges",
+    "signature": "GRanges",
+    "parameters": "function ( x , use.mcols = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  use.mcols ) )   stop (  \"'use.mcols' must be TRUE or FALSE\" )   ans -   x @ ranges  if (  use.mcols )    mcols (  ans ) -   mcols (  x )  ans } ",
+    "filename": "GRanges-class.txt"
+  },
+  "new_function": {
+    "name": "ranges",
+    "representation": "ranges",
+    "signature": "GRanges",
+    "parameters": "function ( x , use.names = TRUE , use.mcols = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  use.names ) )   stop (  \"'use.names' must be TRUE or FALSE\" )  if (  !   isTRUEorFALSE (  use.mcols ) )   stop (  \"'use.mcols' must be TRUE or FALSE\" )   ans -   x @ ranges  if (  !  use.names )    names (  ans ) -  NULL  if (  use.mcols )    mcols (  ans ) -   mcols (  x )  ans } ",
+    "filename": "GRanges-class.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "ranges",
+    "representation": "ranges",
+    "signature": "GRangesList",
+    "parameters": "function ( x , use.mcols = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  use.mcols ) )   stop (  \"'use.mcols' must be TRUE or FALSE\" )   unlisted_x -   unlist (  x , use.names =  FALSE )   unlisted_ans -   unlisted_x @ ranges  if (  use.mcols )    mcols (  unlisted_ans ) -   mcols (  unlisted_x )   ans -   relist (  unlisted_ans ,  x )  if (  use.mcols )    mcols (  ans ) -   mcols (  x )  ans } ",
+    "filename": "GRangesList-class.txt"
+  },
+  "new_function": {
+    "name": "ranges",
+    "representation": "ranges",
+    "signature": "GRangesList",
+    "parameters": "function ( x , use.names = TRUE , use.mcols = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  use.names ) )   stop (  \"'use.names' must be TRUE or FALSE\" )  if (  !   isTRUEorFALSE (  use.mcols ) )   stop (  \"'use.mcols' must be TRUE or FALSE\" )   unlisted_x -   unlist (  x , use.names =  FALSE )   unlisted_ans -   unlisted_x @ ranges  if (  use.mcols )    mcols (  unlisted_ans ) -   mcols (  unlisted_x )   ans -   relist (  unlisted_ans ,  x )  if (  !  use.names )    names (  ans ) -  NULL  if (  use.mcols )    mcols (  ans ) -   mcols (  x )  ans } ",
+    "filename": "GRangesList-class.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GenomicRanges ,  GenomicRanges )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" , \"equal\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{   type -   match.arg (  type )   select -   match.arg (  select )   algorithm -   match.arg (  algorithm )  if (   algorithm ==  \"nclist\" )   FUN -  findOverlaps_GenomicRanges else   FUN -  findOverlaps_GenomicRanges_old   FUN (  query ,  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =  type , select =  select , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GenomicRanges ,  GenomicRanges )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" , \"equal\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , ignore.strand = FALSE )",
+    "body": "{   type -   match.arg (  type )   select -   match.arg (  select )   findOverlaps_GNCList (  query ,  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =  type , select =  select , ignore.strand =  ignore.strand ) } ",
+    "replacementFunction": "findOverlaps_GenomicRanges",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+4.
+{
+  "old_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GRangesList ,  GRangesList )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{  if (   !   isSingleNumber (  maxgap ) ||   maxgap undefined  0 )   stop (  \"'maxgap' must be a non-negative integer\" )   type -   match.arg (  type )   select -   match.arg (  select )   algorithm -   match.arg (  algorithm )   unlisted_query -   unlist (  query , use.names =  FALSE )   query_groups -   togroup (  query )   unlisted_subject -   unlist (  subject , use.names =  FALSE )   subject_groups -   togroup (  subject )  if (   type ==  \"start\" )  {   keep -   which (    S4Vectors ::: diffWithInitialZero (  subject_groups ) !=  0L )   unlisted_subject -   unlisted_subject [  keep ]   subject_groups -   subject_groups [  keep ] } else  if (   type ==  \"end\" )  {   keep -    end (   subject @ partitioning ) [    elementLengths (  subject ) undefined  0L ]   unlisted_subject -   unlisted_subject [  keep ]   subject_groups -   subject_groups [  keep ] }   ans00 -   findOverlaps (  unlisted_query ,  unlisted_subject , maxgap =  maxgap , type =  type , select =  \"all\" , algorithm =  algorithm , ignore.strand =  ignore.strand )  if (   minoverlap undefined  1L )  {   score -   .overlap_score (  ans00 ,  unlisted_query ,  unlisted_subject )   score -   .aggregated_sum (  score ,   query_groups [   queryHits (  ans00 ) ] ,   subject_groups [   subjectHits (  ans00 ) ] )    mcols (  ans00 ) -   DataFrame ( score =  score ) }  if (   type ==  \"within\" )  {   ans01 -   remapHits (  ans00 , subject.map =  subject_groups , new.subjectLength =   length (  subject ) )   ans11 -   remapHits (  ans01 , query.map =  query_groups , new.queryLength =   length (  query ) , with.counts =  TRUE )   keep_idx -   which (     mcols (  ans11 ) [ ,  \"counts\" ] ==    elementLengths (  query ) [   queryHits (  ans11 ) ] )    mcols (  ans11 ) -  NULL   ans -   ans11 [  keep_idx ] } else  {   ans -   remapHits (  ans00 , query.map =  query_groups , new.queryLength =   length (  query ) , subject.map =  subject_groups , new.subjectLength =   length (  subject ) ) }  if (   minoverlap undefined  1L )  {   keep_idx -   which (     mcols (  ans ) [ ,  \"score\" ] =  minoverlap )    mcols (  ans ) -  NULL   ans -   ans [  keep_idx ] }   selectHits (  ans , select =  select ) } ",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GRangesList ,  GRangesList )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , ignore.strand = FALSE )",
+    "body": "{  if (   !   isSingleNumber (  maxgap ) ||   maxgap undefined  0 )   stop (  \"'maxgap' must be a non-negative integer\" )   type -   match.arg (  type )   select -   match.arg (  select )   unlisted_query -   unlist (  query , use.names =  FALSE )   query_groups -   togroup (   PartitioningByWidth (  query ) )   unlisted_subject -   unlist (  subject , use.names =  FALSE )   subject_groups -   togroup (   PartitioningByWidth (  subject ) )  if (   type ==  \"start\" )  {   keep -   which (    S4Vectors ::: diffWithInitialZero (  subject_groups ) !=  0L )   unlisted_subject -   unlisted_subject [  keep ]   subject_groups -   subject_groups [  keep ] } else  if (   type ==  \"end\" )  {   keep -    end (   subject @ partitioning ) [    elementNROWS (  subject ) undefined  0L ]   unlisted_subject -   unlisted_subject [  keep ]   subject_groups -   subject_groups [  keep ] }   ans00 -   findOverlaps (  unlisted_query ,  unlisted_subject , maxgap =  maxgap , type =  type , select =  \"all\" , ignore.strand =  ignore.strand )  if (   minoverlap undefined  1L )  {   score -   .overlap_score (  ans00 ,  unlisted_query ,  unlisted_subject )   score -   .aggregated_sum (  score ,   query_groups [   queryHits (  ans00 ) ] ,   subject_groups [   subjectHits (  ans00 ) ] )    mcols (  ans00 ) -   DataFrame ( score =  score ) }  if (   type ==  \"within\" )  {   ans01 -   remapHits (  ans00 , Rnodes.remapping =  subject_groups , new.nRnode =   length (  subject ) )   ans11 -   remapHits (  ans01 , Lnodes.remapping =  query_groups , new.nLnode =   length (  query ) , with.counts =  TRUE )   keep_idx -   which (     mcols (  ans11 ) [ ,  \"counts\" ] ==    elementNROWS (  query ) [   queryHits (  ans11 ) ] )    mcols (  ans11 ) -  NULL   ans -   ans11 [  keep_idx ] } else  {   ans -   remapHits (  ans00 , Lnodes.remapping =  query_groups , new.nLnode =   length (  query ) , Rnodes.remapping =  subject_groups , new.nRnode =   length (  subject ) ) }  if (   minoverlap undefined  1L )  {   keep_idx -   which (     mcols (  ans ) [ ,  \"score\" ] =  minoverlap )    mcols (  ans ) -  NULL   ans -   ans [  keep_idx ] }   selectHits (  ans , select =  select ) } ",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+5.
+{
+  "old_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GRangesList ,  GenomicRanges )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{  if (   !   isSingleNumber (  maxgap ) ||   maxgap undefined  0 )   stop (  \"'maxgap' must be a non-negative integer\" )   type -   match.arg (  type )   select -   match.arg (  select )   algorithm -   match.arg (  algorithm )   unlisted_query -   unlist (  query , use.names =  FALSE )   query_groups -   togroup (  query )   ans00 -   findOverlaps (  unlisted_query ,  subject , maxgap =  maxgap , type =  type , select =  \"all\" , algorithm =  algorithm , ignore.strand =  ignore.strand )  if (   minoverlap undefined  1L )  {   score -   .overlap_score (  ans00 ,  unlisted_query ,  subject )   score -   .aggregated_sum (  score ,   query_groups [   queryHits (  ans00 ) ] ,   subjectHits (  ans00 ) )    mcols (  ans00 ) -   DataFrame ( score =  score ) }  if (   type ==  \"within\" )  {   ans10 -   remapHits (  ans00 , query.map =  query_groups , new.queryLength =   length (  query ) , with.counts =  TRUE )   keep_idx -   which (     mcols (  ans10 ) [ ,  \"counts\" ] ==    elementLengths (  query ) [   queryHits (  ans10 ) ] )    mcols (  ans10 ) -  NULL   ans -   ans10 [  keep_idx ] } else  {   ans -   remapHits (  ans00 , query.map =  query_groups , new.queryLength =   length (  query ) ) }  if (   minoverlap undefined  1L )  {   keep_idx -   which (     mcols (  ans ) [ ,  \"score\" ] =  minoverlap )    mcols (  ans ) -  NULL   ans -   ans [  keep_idx ] }   selectHits (  ans , select =  select ) } ",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GRangesList ,  GenomicRanges )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , ignore.strand = FALSE )",
+    "body": "{  if (   !   isSingleNumber (  maxgap ) ||   maxgap undefined  0 )   stop (  \"'maxgap' must be a non-negative integer\" )   type -   match.arg (  type )   select -   match.arg (  select )   unlisted_query -   unlist (  query , use.names =  FALSE )   query_groups -   togroup (   PartitioningByWidth (  query ) )   ans00 -   findOverlaps (  unlisted_query ,  subject , maxgap =  maxgap , type =  type , select =  \"all\" , ignore.strand =  ignore.strand )  if (   minoverlap undefined  1L )  {   score -   .overlap_score (  ans00 ,  unlisted_query ,  subject )   score -   .aggregated_sum (  score ,   query_groups [   queryHits (  ans00 ) ] ,   subjectHits (  ans00 ) )    mcols (  ans00 ) -   DataFrame ( score =  score ) }  if (   type ==  \"within\" )  {   ans10 -   remapHits (  ans00 , Lnodes.remapping =  query_groups , new.nLnode =   length (  query ) , with.counts =  TRUE )   keep_idx -   which (     mcols (  ans10 ) [ ,  \"counts\" ] ==    elementNROWS (  query ) [   queryHits (  ans10 ) ] )    mcols (  ans10 ) -  NULL   ans -   ans10 [  keep_idx ] } else  {   ans -   remapHits (  ans00 , Lnodes.remapping =  query_groups , new.nLnode =   length (  query ) ) }  if (   minoverlap undefined  1L )  {   keep_idx -   which (     mcols (  ans ) [ ,  \"score\" ] =  minoverlap )    mcols (  ans ) -  NULL   ans -   ans [  keep_idx ] }   selectHits (  ans , select =  select ) } ",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+6.
+{
+  "old_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GenomicRanges ,  GRangesList )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{  if (   !   isSingleNumber (  maxgap ) ||   maxgap undefined  0 )   stop (  \"'maxgap' must be a non-negative integer\" )   type -   match.arg (  type )   select -   match.arg (  select )   algorithm -   match.arg (  algorithm )   unlisted_subject -   unlist (  subject , use.names =  FALSE )   subject_groups -   togroup (  subject )  if (   type ==  \"start\" )  {   keep -   which (    S4Vectors ::: diffWithInitialZero (  subject_groups ) !=  0L )   unlisted_subject -   unlisted_subject [  keep ]   subject_groups -   subject_groups [  keep ] } else  if (   type ==  \"end\" )  {   keep -    end (   subject @ partitioning ) [    elementLengths (  subject ) undefined  0L ]   unlisted_subject -   unlisted_subject [  keep ]   subject_groups -   subject_groups [  keep ] }   ans00 -   findOverlaps (  query ,  unlisted_subject , maxgap =  maxgap , type =  type , select =  \"all\" , algorithm =  algorithm , ignore.strand =  ignore.strand )  if (   minoverlap undefined  1L )  {   score -   .overlap_score (  ans00 ,  query ,  unlisted_subject )   score -   .aggregated_sum (  score ,   queryHits (  ans00 ) ,   subject_groups [   subjectHits (  ans00 ) ] )    mcols (  ans00 ) -   DataFrame ( score =  score ) }   ans -   remapHits (  ans00 , subject.map =  subject_groups , new.subjectLength =   length (  subject ) )  if (   minoverlap undefined  1L )  {   keep_idx -   which (     mcols (  ans ) [ ,  \"score\" ] =  minoverlap )    mcols (  ans ) -  NULL   ans -   ans [  keep_idx ] }   selectHits (  ans , select =  select ) } ",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GenomicRanges ,  GRangesList )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , ignore.strand = FALSE )",
+    "body": "{  if (   !   isSingleNumber (  maxgap ) ||   maxgap undefined  0 )   stop (  \"'maxgap' must be a non-negative integer\" )   type -   match.arg (  type )   select -   match.arg (  select )   unlisted_subject -   unlist (  subject , use.names =  FALSE )   subject_groups -   togroup (   PartitioningByWidth (  subject ) )  if (   type ==  \"start\" )  {   keep -   which (    S4Vectors ::: diffWithInitialZero (  subject_groups ) !=  0L )   unlisted_subject -   unlisted_subject [  keep ]   subject_groups -   subject_groups [  keep ] } else  if (   type ==  \"end\" )  {   keep -    end (   subject @ partitioning ) [    elementNROWS (  subject ) undefined  0L ]   unlisted_subject -   unlisted_subject [  keep ]   subject_groups -   subject_groups [  keep ] }   ans00 -   findOverlaps (  query ,  unlisted_subject , maxgap =  maxgap , type =  type , select =  \"all\" , ignore.strand =  ignore.strand )  if (   minoverlap undefined  1L )  {   score -   .overlap_score (  ans00 ,  query ,  unlisted_subject )   score -   .aggregated_sum (  score ,   queryHits (  ans00 ) ,   subject_groups [   subjectHits (  ans00 ) ] )    mcols (  ans00 ) -   DataFrame ( score =  score ) }   ans -   remapHits (  ans00 , Rnodes.remapping =  subject_groups , new.nRnode =   length (  subject ) )  if (   minoverlap undefined  1L )  {   keep_idx -   which (     mcols (  ans ) [ ,  \"score\" ] =  minoverlap )    mcols (  ans ) -  NULL   ans -   ans [  keep_idx ] }   selectHits (  ans , select =  select ) } ",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+7.
+{
+  "old_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  RangedData ,  GenomicRanges )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{ ## Calls \"findOverlaps\" method for c(\"RangesList\", \"GenomicRanges\") ## defined above.   findOverlaps (   ranges (  query ) ,  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  RangedData ,  GenomicRanges )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , ignore.strand = FALSE )",
+    "body": "{ ## Calls \"findOverlaps\" method for c(\"GenomicRanges\", \"GenomicRanges\") ## defined above.   findOverlaps (   as (  query ,  \"GRanges\" ) ,  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+8.
+{
+  "old_function": {
+    "name": "countOverlaps",
+    "representation": "countOverlaps",
+    "signature": "c (  GenomicRanges ,  GenomicRanges )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" , \"equal\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{   type -   match.arg (  type )   algorithm -   match.arg (  algorithm )  if (   algorithm ==  \"nclist\" )  {   countOverlaps_GenomicRanges (  query ,  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =  type , ignore.strand =  ignore.strand ) } else  {   countOverlaps.definition (  query ,  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =  type , algorithm =  algorithm , ignore.strand =  ignore.strand ) } } ",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "countOverlaps",
+    "representation": "countOverlaps",
+    "signature": "c (  GenomicRanges ,  GenomicRanges )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" , \"equal\" ) , ignore.strand = FALSE )",
+    "body": "{   type -   match.arg (  type )   ans -   findOverlaps_GNCList (  query ,  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =  type , select =  \"count\" , ignore.strand =  ignore.strand )    names (  ans ) -   names (  query )  ans } ",
+    "replacementFunction": "countOverlaps_GenomicRanges",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+9.
+{
+  "old_function": {
+    "name": "granges",
+    "representation": "granges",
+    "signature": "GenomicRanges",
+    "parameters": "function ( x , use.mcols = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  use.mcols ) )   stop (  \"'use.mcols' must be TRUE or FALSE\" )   ans -   GRanges (   seqnames (  x ) ,   ranges (  x ) ,   strand (  x ) , seqinfo =   seqinfo (  x ) )  if (  use.mcols )    mcols (  ans ) -   cbind (   extraColumnSlotsAsDF (  x ) ,   mcols (  x ) )  ans } ",
+    "filename": "GenomicRanges-class.txt"
+  },
+  "new_function": {
+    "name": "granges",
+    "representation": "granges",
+    "signature": "GenomicRanges",
+    "parameters": "function ( x , use.names = TRUE , use.mcols = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  use.mcols ) )   stop (  \"'use.mcols' must be TRUE or FALSE\" )   ans -   GRanges (   seqnames (  x ) ,   ranges (  x , use.names =  use.names ) ,   strand (  x ) , seqinfo =   seqinfo (  x ) )  if (  use.mcols )    mcols (  ans ) -   cbind (   extraColumnSlotsAsDF (  x ) ,   mcols (  x ) )  ans } ",
+    "filename": "GRanges-class.txt"
+  }
+}
+
+10.
+{
+  "old_function": {
+    "name": "granges",
+    "representation": "granges",
+    "signature": "GNCList",
+    "parameters": "function ( x , use.mcols = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  use.mcols ) )   stop (  \"'use.mcols' must be TRUE or FALSE\" )   ans -   x @ granges  if (  use.mcols )    mcols (  ans ) -   mcols (  x )  ans } ",
+    "filename": "GNCList-class.txt"
+  },
+  "new_function": {
+    "name": "granges",
+    "representation": "granges",
+    "signature": "GNCList",
+    "parameters": "function ( x , use.names = TRUE , use.mcols = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  use.names ) )   stop (  \"'use.names' must be TRUE or FALSE\" )  if (  !   isTRUEorFALSE (  use.mcols ) )   stop (  \"'use.mcols' must be TRUE or FALSE\" )   ans -   x @ granges  if (  !  use.names )    names (  ans ) -  NULL  if (  use.mcols )    mcols (  ans ) -   mcols (  x )  ans } ",
+    "filename": "GNCList-class.txt"
+  }
+}
+
+11.
+{
+  "old_function": {
+    "name": "nearest",
+    "representation": "nearest",
+    "signature": "c (  GenomicRanges ,  GenomicRanges )",
+    "parameters": "function ( x , subject , select = c ( \"arbitrary\" , \"all\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{   select -   match.arg (  select )   .nearest (  x ,  subject , select =  select , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "nearest-methods.txt"
+  },
+  "new_function": {
+    "name": "nearest",
+    "representation": "nearest",
+    "signature": "c (  GenomicRanges ,  GenomicRanges )",
+    "parameters": "function ( x , subject , select = c ( \"arbitrary\" , \"all\" ) , ignore.strand = FALSE )",
+    "body": "{   select -   match.arg (  select )   .nearest (  x ,  subject , select =  select , ignore.strand =  ignore.strand ) } ",
+    "filename": "nearest-methods.txt"
+  }
+}
+
+12.
+{
+  "old_function": {
+    "name": "nearest",
+    "representation": "nearest",
+    "signature": "c (  GenomicRanges ,  missing )",
+    "parameters": "function ( x , subject , select = c ( \"arbitrary\" , \"all\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{   select -   match.arg (  select )   .nearest (  x ,  x , select =  select , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand , ignoreSelf =  TRUE ) } ",
+    "filename": "nearest-methods.txt"
+  },
+  "new_function": {
+    "name": "nearest",
+    "representation": "nearest",
+    "signature": "c (  GenomicRanges ,  missing )",
+    "parameters": "function ( x , subject , select = c ( \"arbitrary\" , \"all\" ) , ignore.strand = FALSE )",
+    "body": "{   select -   match.arg (  select )   .nearest (  x ,  x , select =  select , ignore.strand =  ignore.strand , drop.self =  TRUE ) } ",
+    "filename": "nearest-methods.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicranges_release_3_3 genomicranges_release_3_4
+
+{
+    "package": "GenomicRanges",
+    "release_versions": "genomicranges_release_3_3 genomicranges_release_3_4",
+    "desc_release_old": "1.24.3",
+    "desc_release_new": "1.26.4",
+    "old_release_number": 10,
+    "new_release_number": 11,
+    "function_removals": 0,
+    "function_additions": 4,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 3,
+    "total_count": 3
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+summary.GenomicRanges
+makeGRangesListFromDataFrame
+summary
+slidingWindows
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "reduce",
+    "representation": "reduce",
+    "signature": "GRangesList",
+    "parameters": "function ( x , drop.empty.ranges = FALSE , min.gapwidth = 1L , with.inframe.attrib = FALSE , ignore.strand = FALSE )",
+    "body": "{  if (  !   identical (  with.inframe.attrib ,  FALSE ) )   stop (  \"'with.inframe.attrib' argument is not supported \" ,  \"when reducing a GRangesList object\" )   gr -   deconstructGRLintoGR (  x ) ## \"reduce\" method for GRanges objects is fast.   gr2 -   callGeneric (  gr , drop.empty.ranges =  drop.empty.ranges , min.gapwidth =  min.gapwidth , ignore.strand =  ignore.strand )   reconstructGRLfromGR (  gr2 ,  x ) } ",
+    "filename": "inter-range-methods.txt"
+  },
+  "new_function": {
+    "name": "reduce",
+    "representation": "reduce",
+    "signature": "GRangesList",
+    "parameters": "function ( x , drop.empty.ranges = FALSE , min.gapwidth = 1L , with.revmap = FALSE , with.inframe.attrib = FALSE , ignore.strand = FALSE )",
+    "body": "{  if (  !   identical (  with.inframe.attrib ,  FALSE ) )   stop (  \"'with.inframe.attrib' argument is not supported \" ,  \"when reducing a GRangesList object\" )   gr -   deconstructGRLintoGR (  x )   gr2 -   callGeneric (  gr , drop.empty.ranges =  drop.empty.ranges , min.gapwidth =  min.gapwidth , with.revmap =  with.revmap , ignore.strand =  ignore.strand )   ans -   reconstructGRLfromGR (  gr2 ,  x ) ## Localize 'revmap'.  if (  with.revmap )  {   unlisted_ans -   unlist (  ans , use.names =  FALSE )     mcols (  unlisted_ans ) $ revmap -   IRanges ::: global2local_revmap (    mcols (  unlisted_ans ) $ revmap ,  ans ,  x )   ans -   relist (  unlisted_ans ,  ans ) }  ans } ",
+    "filename": "inter-range-methods.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "disjoin",
+    "representation": "disjoin",
+    "signature": "GenomicRanges",
+    "parameters": "function ( x , ignore.strand = FALSE )",
+    "body": "{   rgl -   deconstructGRintoRGL (  x , ignore.strand =  ignore.strand , drop =  TRUE )   rgl2 -   callGeneric (  rgl )   reconstructGRfromRGL (  rgl2 ,  x ) } ",
+    "filename": "inter-range-methods.txt"
+  },
+  "new_function": {
+    "name": "disjoin",
+    "representation": "disjoin",
+    "signature": "GenomicRanges",
+    "parameters": "function ( x , with.revmap = FALSE , ignore.strand = FALSE )",
+    "body": "{   rgl -   deconstructGRintoRGL (  x , with.revmap =  with.revmap , ignore.strand =  ignore.strand , drop =  TRUE )   rgl2 -   callGeneric (  rgl , with.revmap =  with.revmap )  if (  with.revmap )   rgl2 -   .fix_inner_revmap_mcol (  rgl2 ,  rgl )   reconstructGRfromRGL (  rgl2 ,  x ) } ",
+    "filename": "inter-range-methods.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "disjoin",
+    "representation": "disjoin",
+    "signature": "GRangesList",
+    "parameters": "function ( x , ignore.strand = FALSE )",
+    "body": "{   gr -   deconstructGRLintoGR (  x )   gr2 -   callGeneric (  gr , ignore.strand =  ignore.strand )   reconstructGRLfromGR (  gr2 ,  x ) } ",
+    "filename": "inter-range-methods.txt"
+  },
+  "new_function": {
+    "name": "disjoin",
+    "representation": "disjoin",
+    "signature": "GRangesList",
+    "parameters": "function ( x , with.revmap = FALSE , ignore.strand = FALSE )",
+    "body": "{   gr -   deconstructGRLintoGR (  x )   gr2 -   callGeneric (  gr , with.revmap =  with.revmap , ignore.strand =  ignore.strand )   ans -   reconstructGRLfromGR (  gr2 ,  x ) ## Localize 'revmap'.  if (  with.revmap )  {   unlisted_ans -   unlist (  ans , use.names =  FALSE )     mcols (  unlisted_ans ) $ revmap -   IRanges ::: global2local_revmap (    mcols (  unlisted_ans ) $ revmap ,  ans ,  x )   ans -   relist (  unlisted_ans ,  ans ) }  ans } ",
+    "filename": "inter-range-methods.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicranges_release_3_4 genomicranges_release_3_5
+
+{
+    "package": "GenomicRanges",
+    "release_versions": "genomicranges_release_3_4 genomicranges_release_3_5",
+    "desc_release_old": "1.26.4",
+    "desc_release_new": "1.28.6",
+    "old_release_number": 11,
+    "new_release_number": 12,
+    "function_removals": 1,
+    "function_additions": 1,
+    "parameter_removals": 1,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 4,
+    "total_count": 5
+}
+
+##########
+Functions Removed
+##########
+
+ngap
+
+
+##########
+Functions Added
+##########
+
+.DollarNames.GRanges
+
+
+##########
+Removed Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": ".DollarNames.GenomicRanges",
+    "representation": ".DollarNames.GenomicRanges",
+    "parameters": "function ( x , pattern )",
+    "body": "grep ( pattern , names ( mcols ( x ) ) , value = TRUE )",
+    "filename": "GenomicRanges-class.txt"
+  },
+  "new_function": {
+    "name": ".DollarNames.GenomicRanges",
+    "representation": ".DollarNames.GenomicRanges",
+    "parameters": "function ( x , pattern = \"\" )",
+    "body": "grep ( pattern , names ( mcols ( x ) ) , value = TRUE )",
+    "filename": "GenomicRanges-class.txt"
+  }
+}
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "seqinfo",
+    "representation": "seqinfo<-",
+    "signature": "GenomicRanges",
+    "parameters": "function ( x , new2old = NULL , force = FALSE , value )",
+    "body": "{  if (  !   is (  value ,  \"Seqinfo\" ) )   stop (  \"the supplied 'seqinfo' must be a Seqinfo object\" )   dangling_seqlevels -   GenomeInfoDb ::: getDanglingSeqlevels (  x , new2old =  new2old , force =  force ,   seqlevels (  value ) )  if (    length (  dangling_seqlevels ) !=  0L )   x -   x [  !  (    seqnames (  x ) %in%  dangling_seqlevels ) ]   old_seqinfo -   seqinfo (  x )   new_seqnames -   GenomeInfoDb ::: makeNewSeqnames (  x , new2old =  new2old ,   seqlevels (  value ) )   x -   update (  x , seqnames =  new_seqnames , seqinfo =  value , check =  FALSE )   geom_has_changed -   GenomeInfoDb ::: sequenceGeometryHasChanged (   seqinfo (  x ) ,  old_seqinfo , new2old =  new2old )  if (   any (  geom_has_changed , na.rm =  TRUE ) )  {   msg -   valid.GenomicRanges.seqinfo (  x , suggest.trim =  TRUE )  if (  !   is.null (  msg ) )   stop (  msg ) }  x } ",
+    "filename": "GenomicRanges-class.txt"
+  },
+  "new_function": {
+    "name": "seqinfo",
+    "representation": "seqinfo<-",
+    "signature": "GenomicRanges",
+    "parameters": "function ( x , new2old = NULL , force = FALSE , pruning.mode = c ( \"error\" , \"coarse\" , \"fine\" , \"tidy\" ) , value )",
+    "body": "{   pruning.mode -   match.arg (  pruning.mode )  if (   pruning.mode ==  \"fine\" )   stop (   wmsg (  \"\\\"fine\\\" pruning mode not supported on \" ,   class (  x ) ,  \" objects\" ) )  if (  !   is (  value ,  \"Seqinfo\" ) )   stop (  \"the supplied 'seqinfo' must be a Seqinfo object\" )   dangling_seqlevels -   GenomeInfoDb ::: getDanglingSeqlevels (  x , new2old =  new2old , force =  force , pruning.mode =  pruning.mode ,   seqlevels (  value ) )  if (    length (  dangling_seqlevels ) !=  0L )  { ## Prune 'x'.   non_dangling_range -  !  (    seqnames (  x ) %in%  dangling_seqlevels )   x -   x [  non_dangling_range ] }   old_seqinfo -   seqinfo (  x )   new_seqnames -   GenomeInfoDb ::: makeNewSeqnames (  x , new2old =  new2old ,   seqlevels (  value ) )   x -   update (  x , seqnames =  new_seqnames , seqinfo =  value , check =  FALSE )   geom_has_changed -   GenomeInfoDb ::: sequenceGeometryHasChanged (   seqinfo (  x ) ,  old_seqinfo , new2old =  new2old )  if (   any (  geom_has_changed , na.rm =  TRUE ) )  {   msg -   valid.GenomicRanges.seqinfo (  x , suggest.trim =  TRUE )  if (  !   is.null (  msg ) )   stop (  msg ) }  x } ",
+    "replacementFunction": "set_GenomicRanges_seqinfo",
+    "filename": "GenomicRanges-class.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "seqinfo",
+    "representation": "seqinfo<-",
+    "signature": "GPos",
+    "parameters": "function ( x , new2old = NULL , force = FALSE , value )",
+    "body": "{   new_pos_runs -   callGeneric (   x @ pos_runs , new2old =  new2old , force =  force ,  value )    x @ pos_runs -   .stitch_GenomicRanges (  new_pos_runs )  x } ",
+    "filename": "GPos-class.txt"
+  },
+  "new_function": {
+    "name": "seqinfo",
+    "representation": "seqinfo<-",
+    "signature": "GPos",
+    "parameters": "function ( x , new2old = NULL , force = FALSE , pruning.mode = c ( \"error\" , \"coarse\" , \"fine\" , \"tidy\" ) , value )",
+    "body": "{   new_pos_runs -   callGeneric (   x @ pos_runs , new2old =  new2old , force =  force , pruning.mode =  pruning.mode ,  value )    x @ pos_runs -   .stitch_GenomicRanges (  new_pos_runs )  x } ",
+    "filename": "GPos-class.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "seqinfo",
+    "representation": "seqinfo<-",
+    "signature": "GRangesList",
+    "parameters": "function ( x , new2old = NULL , force = FALSE , value )",
+    "body": "{  if (  !   is (  value ,  \"Seqinfo\" ) )   stop (  \"the supplied 'seqinfo' must be a Seqinfo object\" )   dangling_seqlevels -   GenomeInfoDb ::: getDanglingSeqlevels (  x , new2old =  new2old , force =  force ,   seqlevels (  value ) )  if (    length (  dangling_seqlevels ) !=  0L )  {   dropme -   which (    seqnames (   x @ unlistData ) %in%  dangling_seqlevels )   x -   x [  -   unique (   togroup (   PartitioningByWidth (  x ) , j =  dropme ) ) ] }    seqinfo (   x @ unlistData , new2old =  new2old ) -  value  x } ",
+    "replacementFunction": "replaceSeqinfoList",
+    "filename": "GRangesList-class.txt"
+  },
+  "new_function": {
+    "name": "seqinfo",
+    "representation": "seqinfo<-",
+    "signature": "GRangesList",
+    "parameters": "function ( x , new2old = NULL , force = FALSE , pruning.mode = c ( \"error\" , \"coarse\" , \"fine\" , \"tidy\" ) , value )",
+    "body": "{   pruning.mode -   match.arg (  pruning.mode )  if (  !   is (  value ,  \"Seqinfo\" ) )   stop (  \"the supplied 'seqinfo' must be a Seqinfo object\" )   dangling_seqlevels -   GenomeInfoDb ::: getDanglingSeqlevels (  x , new2old =  new2old , force =  force , pruning.mode =  pruning.mode ,   seqlevels (  value ) )  if (    length (  dangling_seqlevels ) !=  0L )  { ## Prune 'x'.   non_dangling_range -  !  (    seqnames (  x ) %in%  dangling_seqlevels )  if (   pruning.mode ==  \"coarse\" )  {   x -   x [   all (  non_dangling_range ) ] } else  {   x -   x [  non_dangling_range ] # \"fine\" pruning  if (   pruning.mode ==  \"tidy\" )  { ## Remove list elements that became empty because of \"fine\" ## pruning.   x -   x [    any (  non_dangling_range ) |    elementNROWS (  non_dangling_range ) ==  0L ] } } }    seqinfo (   x @ unlistData , new2old =  new2old ) -  value  x } ",
+    "replacementFunction": "set_GRangesList_seqinfo",
+    "filename": "GRangesList-class.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "duplicated",
+    "representation": "duplicated",
+    "signature": "GenomicRanges",
+    "parameters": "function ( x , incomparables = FALSE , fromLast = FALSE , method = c ( \"auto\" , \"quick\" , \"hash\" ) )",
+    "body": "{  if (  !   identical (  incomparables ,  FALSE ) )   stop (  \"\\\"duplicated\\\" method for GenomicRanges objects \" ,  \"only accepts 'incomparables=FALSE'\" )   duplicatedIntegerQuads (   as.factor (   seqnames (  x ) ) ,   as.factor (   strand (  x ) ) ,   start (  x ) ,   width (  x ) , fromLast =  fromLast , method =  method ) } ",
+    "replacementFunction": ".duplicated.GenomicRanges",
+    "filename": "GenomicRanges-comparison.txt"
+  },
+  "new_function": {
+    "name": "duplicated",
+    "representation": "duplicated",
+    "signature": "GenomicRanges",
+    "parameters": "function ( x , incomparables = FALSE , fromLast = FALSE , nmax = NA , method = c ( \"auto\" , \"quick\" , \"hash\" ) )",
+    "body": "{  if (  !   identical (  incomparables ,  FALSE ) )   stop (  \"\\\"duplicated\\\" method for GenomicRanges objects \" ,  \"only accepts 'incomparables=FALSE'\" )   duplicatedIntegerQuads (   as.factor (   seqnames (  x ) ) ,   as.factor (   strand (  x ) ) ,   start (  x ) ,   width (  x ) , fromLast =  fromLast , method =  method ) } ",
+    "replacementFunction": ".duplicated.GenomicRanges",
+    "filename": "GenomicRanges-comparison.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicranges_release_3_5 genomicranges_release_3_6
+
+{
+    "package": "GenomicRanges",
+    "release_versions": "genomicranges_release_3_5 genomicranges_release_3_6",
+    "desc_release_old": "1.28.6",
+    "desc_release_new": "1.30.3",
+    "old_release_number": 12,
+    "new_release_number": 13,
+    "function_removals": 1,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 2,
+    "total_count": 3
+}
+
+##########
+Functions Removed
+##########
+
+subset
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "seqinfo",
+    "representation": "seqinfo<-",
+    "signature": "GenomicRanges",
+    "parameters": "function ( x , new2old = NULL , force = FALSE , pruning.mode = c ( \"error\" , \"coarse\" , \"fine\" , \"tidy\" ) , value )",
+    "body": "{   pruning.mode -   match.arg (  pruning.mode )  if (   pruning.mode ==  \"fine\" )   stop (   wmsg (  \"\\\"fine\\\" pruning mode not supported on \" ,   class (  x ) ,  \" objects\" ) )  if (  !   is (  value ,  \"Seqinfo\" ) )   stop (  \"the supplied 'seqinfo' must be a Seqinfo object\" )   dangling_seqlevels -   GenomeInfoDb ::: getDanglingSeqlevels (  x , new2old =  new2old , force =  force , pruning.mode =  pruning.mode ,   seqlevels (  value ) )  if (    length (  dangling_seqlevels ) !=  0L )  { ## Prune 'x'.   non_dangling_range -  !  (    seqnames (  x ) %in%  dangling_seqlevels )   x -   x [  non_dangling_range ] }   old_seqinfo -   seqinfo (  x )   new_seqnames -   GenomeInfoDb ::: makeNewSeqnames (  x , new2old =  new2old ,   seqlevels (  value ) )   x -   update (  x , seqnames =  new_seqnames , seqinfo =  value , check =  FALSE )   geom_has_changed -   GenomeInfoDb ::: sequenceGeometryHasChanged (   seqinfo (  x ) ,  old_seqinfo , new2old =  new2old )  if (   any (  geom_has_changed , na.rm =  TRUE ) )  {   msg -   valid.GenomicRanges.seqinfo (  x , suggest.trim =  TRUE )  if (  !   is.null (  msg ) )   stop (  msg ) }  x } ",
+    "replacementFunction": "set_GenomicRanges_seqinfo",
+    "filename": "GenomicRanges-class.txt"
+  },
+  "new_function": {
+    "name": "seqinfo",
+    "representation": "seqinfo<-",
+    "signature": "GenomicRanges",
+    "parameters": "function ( x , new2old = NULL , pruning.mode = c ( \"error\" , \"coarse\" , \"fine\" , \"tidy\" ) , value )",
+    "body": "{   pruning.mode -   match.arg (  pruning.mode )  if (   pruning.mode ==  \"fine\" )   stop (   wmsg (  \"\\\"fine\\\" pruning mode not supported on \" ,   class (  x ) ,  \" objects\" ) )  if (  !   is (  value ,  \"Seqinfo\" ) )   stop (  \"the supplied 'seqinfo' must be a Seqinfo object\" )   dangling_seqlevels -   GenomeInfoDb ::: getDanglingSeqlevels (  x , new2old =  new2old , pruning.mode =  pruning.mode ,   seqlevels (  value ) )  if (    length (  dangling_seqlevels ) !=  0L )  { ## Prune 'x'.   non_dangling_range -  !  (    seqnames (  x ) %in%  dangling_seqlevels )   x -   x [  non_dangling_range ] }   old_seqinfo -   seqinfo (  x )   new_seqnames -   GenomeInfoDb ::: makeNewSeqnames (  x , new2old =  new2old ,   seqlevels (  value ) )   x -   update (  x , seqnames =  new_seqnames , seqinfo =  value , check =  FALSE )   geom_has_changed -   GenomeInfoDb ::: sequenceGeometryHasChanged (   seqinfo (  x ) ,  old_seqinfo , new2old =  new2old )  if (   any (  geom_has_changed , na.rm =  TRUE ) )  {   msg -   valid.GenomicRanges.seqinfo (  x , suggest.trim =  TRUE )  if (  !   is.null (  msg ) )   stop (  msg ) }  x } ",
+    "replacementFunction": "set_GenomicRanges_seqinfo",
+    "filename": "GenomicRanges-class.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "seqinfo",
+    "representation": "seqinfo<-",
+    "signature": "GRangesList",
+    "parameters": "function ( x , new2old = NULL , force = FALSE , pruning.mode = c ( \"error\" , \"coarse\" , \"fine\" , \"tidy\" ) , value )",
+    "body": "{   pruning.mode -   match.arg (  pruning.mode )  if (  !   is (  value ,  \"Seqinfo\" ) )   stop (  \"the supplied 'seqinfo' must be a Seqinfo object\" )   dangling_seqlevels -   GenomeInfoDb ::: getDanglingSeqlevels (  x , new2old =  new2old , force =  force , pruning.mode =  pruning.mode ,   seqlevels (  value ) )  if (    length (  dangling_seqlevels ) !=  0L )  { ## Prune 'x'.   non_dangling_range -  !  (    seqnames (  x ) %in%  dangling_seqlevels )  if (   pruning.mode ==  \"coarse\" )  {   x -   x [   all (  non_dangling_range ) ] } else  {   x -   x [  non_dangling_range ] # \"fine\" pruning  if (   pruning.mode ==  \"tidy\" )  { ## Remove list elements that became empty because of \"fine\" ## pruning.   x -   x [    any (  non_dangling_range ) |    elementNROWS (  non_dangling_range ) ==  0L ] } } }    seqinfo (   x @ unlistData , new2old =  new2old ) -  value  x } ",
+    "replacementFunction": "set_GRangesList_seqinfo",
+    "filename": "GRangesList-class.txt"
+  },
+  "new_function": {
+    "name": "seqinfo",
+    "representation": "seqinfo<-",
+    "signature": "GRangesList",
+    "parameters": "function ( x , new2old = NULL , pruning.mode = c ( \"error\" , \"coarse\" , \"fine\" , \"tidy\" ) , value )",
+    "body": "{   pruning.mode -   match.arg (  pruning.mode )  if (  !   is (  value ,  \"Seqinfo\" ) )   stop (  \"the supplied 'seqinfo' must be a Seqinfo object\" )   dangling_seqlevels -   GenomeInfoDb ::: getDanglingSeqlevels (  x , new2old =  new2old , pruning.mode =  pruning.mode ,   seqlevels (  value ) )  if (    length (  dangling_seqlevels ) !=  0L )  { ## Prune 'x'.   non_dangling_range -  !  (    seqnames (  x ) %in%  dangling_seqlevels )  if (   pruning.mode ==  \"coarse\" )  {   x -   x [   all (  non_dangling_range ) ] } else  {   x -   x [  non_dangling_range ] # \"fine\" pruning  if (   pruning.mode ==  \"tidy\" )  { ## Remove list elements that became empty because of \"fine\" ## pruning.   x -   x [    any (  non_dangling_range ) |    elementNROWS (  non_dangling_range ) ==  0L ] } } }    seqinfo (   x @ unlistData , new2old =  new2old ) -  value  x } ",
+    "replacementFunction": "set_GRangesList_seqinfo",
+    "filename": "GRangesList-class.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicranges_release_3_6 genomicranges_release_3_7
+
+{
+    "package": "GenomicRanges",
+    "release_versions": "genomicranges_release_3_6 genomicranges_release_3_7",
+    "desc_release_old": "1.30.3",
+    "desc_release_new": "1.32.7",
+    "old_release_number": 13,
+    "new_release_number": 14,
+    "function_removals": 3,
+    "function_additions": 6,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 3
+}
+
+##########
+Functions Removed
+##########
+
+[[
+[[<-
+c
+
+
+##########
+Functions Added
+##########
+
+sort.GRangesList
+update
+concatenateObjects
+parallelSlotNames
+windows
+update_ranges
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicranges_release_3_7 genomicranges_release_3_8
+
+{
+    "package": "GenomicRanges",
+    "release_versions": "genomicranges_release_3_7 genomicranges_release_3_8",
+    "desc_release_old": "1.32.7",
+    "desc_release_new": "1.34.0",
+    "old_release_number": 14,
+    "new_release_number": 15,
+    "function_removals": 1,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+concatenateObjects
+
+
+##########
+Functions Added
+##########
+
+bindROWS
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicranges_release_3_8 genomicranges_release_3_9
+
+{
+    "package": "GenomicRanges",
+    "release_versions": "genomicranges_release_3_8 genomicranges_release_3_9",
+    "desc_release_old": "1.34.0",
+    "desc_release_new": "1.36.1",
+    "old_release_number": 15,
+    "new_release_number": 16,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicranges_release_3_9 genomicranges_release_3_11
+
+{
+    "package": "GenomicRanges",
+    "release_versions": "genomicranges_release_3_9 genomicranges_release_3_11",
+    "desc_release_old": "1.36.1",
+    "desc_release_new": "1.40.0",
+    "old_release_number": 16,
+    "new_release_number": 17,
+    "function_removals": 1,
+    "function_additions": 6,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+parallelSlotNames
+
+
+##########
+Functions Added
+##########
+
+as.data.frame.GPos
+summary.GPos
+from_GPos_to_GRanges
+GRangesFactor
+vertical_slot_names
+FactorToClass
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicranges_release_3_11 genomicranges_release_3_12
+
+{
+    "package": "GenomicRanges",
+    "release_versions": "genomicranges_release_3_11 genomicranges_release_3_12",
+    "desc_release_old": "1.40.0",
+    "desc_release_new": "1.42.0",
+    "old_release_number": 17,
+    "new_release_number": 18,
+    "function_removals": 1,
+    "function_additions": 2,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+vertical_slot_names
+
+
+##########
+Functions Added
+##########
+
+parallel_slot_names
+nearestKNeighbors
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicranges_release_3_12 genomicranges_release_3_13
+
+{
+    "package": "GenomicRanges",
+    "release_versions": "genomicranges_release_3_12 genomicranges_release_3_13",
+    "desc_release_old": "1.42.0",
+    "desc_release_new": "1.44.0",
+    "old_release_number": 18,
+    "new_release_number": 19,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicranges_release_3_13 genomicranges_release_3_14
+
+{
+    "package": "GenomicRanges",
+    "release_versions": "genomicranges_release_3_13 genomicranges_release_3_14",
+    "desc_release_old": "1.44.0",
+    "desc_release_new": "1.46.1",
+    "old_release_number": 19,
+    "new_release_number": 20,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicranges_release_3_14 genomicranges_master
+
+{
+    "package": "GenomicRanges",
+    "release_versions": "genomicranges_release_3_14 genomicranges_master",
+    "desc_release_old": "1.46.1",
+    "desc_release_new": "1.47.6",
+    "old_release_number": 20,
+    "new_release_number": 21,
+    "function_removals": 1,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+GenomicRangesList
+
+
+##########
+Functions Added
+##########
+
+subtract
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+

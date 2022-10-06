@@ -1,0 +1,2164 @@
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  ebimage_release_1_8 ebimage_release_1_9
+
+{
+    "package": "EBImage",
+    "release_versions": "ebimage_release_1_8 ebimage_release_1_9",
+    "desc_release_old": "1.2.2",
+    "desc_release_new": "1.6.1",
+    "old_release_number": 0,
+    "new_release_number": 1,
+    "function_removals": 13,
+    "function_additions": 27,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 20,
+    "total_count": 33
+}
+
+##########
+Functions Removed
+##########
+
+Image2D
+Image3D
+copyImageHeader
+copyImage
+adaptThresh
+sampleImage
+scaleImage
+objectCount
+minMax
+as.integer
+as.double
+correctType
+isCorrectType
+
+
+##########
+Functions Added
+##########
+
+Image
+sample.image
+zoom.image
+trim
+wsObjects
+wsPaint
+wsImages
+mErode
+mDilate
+mOpen
+mClose
+mKernel
+draw
+DrawableCircle
+DrawableLine
+DrawableRect
+DrawableEllipse
+DrawableText
+assert
+copy
+print
+plot.image
+toX11char
+add2RGB
+sub2RGB
+scale2RGB
+tile
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "blur",
+    "representation": "blur",
+    "parameters": "function ( x , radius = 1 , sigma = 0.5 , modify = FALSE )",
+    "body": "{   .notImageError (  x )   param =   as.double (   c (  radius ,  sigma ) )   filter =   as.integer (  2 )  if (  !  modify )  {   x =   copyImage (  x )   return (   .CallEBImage (  \"stdFilter2D\" ,  x ,  filter ,  param ) ) } else # original data modified   invisible (   .CallEBImage (  \"stdFilter2D\" ,  x ,  filter ,  param ) ) } ",
+    "filename": "filters2D.magick.txt"
+  },
+  "new_function": {
+    "name": "blur",
+    "representation": "blur",
+    "parameters": "function ( x , radius = 1 , sigma = 0.5 )",
+    "body": "{   .blur (  x ,  radius ,  sigma , modify =  FALSE ) } ",
+    "filename": "flt.magick.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "contrast",
+    "representation": "contrast",
+    "parameters": "function ( x , sharpen , modify = FALSE )",
+    "body": "{   .notImageError (  x )  if (   missing (  sharpen ) )   stop (  \"argument 'sharpen' is essential\" )   param =   as.double (  sharpen )   filter =   as.integer (  3 )  if (  !  modify )  {   x =   copyImage (  x )   return (   .CallEBImage (  \"stdFilter2D\" ,  x ,  filter ,  param ) ) } else # original data modified   invisible (   .CallEBImage (  \"stdFilter2D\" ,  x ,  filter ,  param ) ) } ",
+    "filename": "filters2D.magick.txt"
+  },
+  "new_function": {
+    "name": "contrast",
+    "representation": "contrast",
+    "parameters": "function ( x , sharpen )",
+    "body": "{   .contrast (  x ,  sharpen , modify =  FALSE ) } ",
+    "filename": "flt.magick.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "despeckle",
+    "representation": "despeckle",
+    "parameters": "function ( x , modify = FALSE )",
+    "body": "{   .notImageError (  x )   filter =   as.integer (  4 )  if (  !  modify )  {   x =   copyImage (  x )   return (   .CallEBImage (  \"stdFilter2D\" ,  x ,  filter ,  NULL ) ) } else # original data modified   invisible (   .CallEBImage (  \"stdFilter2D\" ,  x ,  filter ,  NULL ) ) } ",
+    "filename": "filters2D.magick.txt"
+  },
+  "new_function": {
+    "name": "despeckle",
+    "representation": "despeckle",
+    "parameters": "function ( x )",
+    "body": "{   .despeckle (  x , modify =  FALSE ) } ",
+    "filename": "flt.magick.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "edge",
+    "representation": "edge",
+    "parameters": "function ( x , radius = 1 , modify = FALSE )",
+    "body": "{   .notImageError (  x )   param =   as.double (  radius )   filter =   as.integer (  5 )  if (  !  modify )  {   x =   copyImage (  x )   return (   .CallEBImage (  \"stdFilter2D\" ,  x ,  filter ,  param ) ) } else # original data modified   invisible (   .CallEBImage (  \"stdFilter2D\" ,  x ,  filter ,  param ) ) } ",
+    "filename": "filters2D.magick.txt"
+  },
+  "new_function": {
+    "name": "edge",
+    "representation": "edge",
+    "parameters": "function ( x , radius = 1 )",
+    "body": "{   .edge (  x ,  radius ) } ",
+    "filename": "flt.magick.txt"
+  }
+}
+
+4.
+{
+  "old_function": {
+    "name": "enhance",
+    "representation": "enhance",
+    "parameters": "function ( x , modify = FALSE )",
+    "body": "{   .notImageError (  x )   filter =   as.integer (  6 )  if (  !  modify )  {   x =   copyImage (  x )   return (   .CallEBImage (  \"stdFilter2D\" ,  x ,  filter ,  NULL ) ) } else # original data modified   invisible (   .CallEBImage (  \"stdFilter2D\" ,  x ,  filter ,  NULL ) ) } ",
+    "filename": "filters2D.magick.txt"
+  },
+  "new_function": {
+    "name": "enhance",
+    "representation": "enhance",
+    "parameters": "function ( x )",
+    "body": "{   .enhance (  x , modify =  FALSE ) } ",
+    "filename": "flt.magick.txt"
+  }
+}
+
+5.
+{
+  "old_function": {
+    "name": "equalize",
+    "representation": "equalize",
+    "parameters": "function ( x , modify = FALSE )",
+    "body": "{   .notImageError (  x )   filter =   as.integer (  7 )  if (  !  modify )  {   x =   copyImage (  x )   return (   .CallEBImage (  \"stdFilter2D\" ,  x ,  filter ,  NULL ) ) } else # original data modified   invisible (   .CallEBImage (  \"stdFilter2D\" ,  x ,  filter ,  NULL ) ) } ",
+    "filename": "filters2D.magick.txt"
+  },
+  "new_function": {
+    "name": "equalize",
+    "representation": "equalize",
+    "parameters": "function ( x )",
+    "body": "{   .equalize (  x , modify =  FALSE ) } ",
+    "filename": "flt.magick.txt"
+  }
+}
+
+6.
+{
+  "old_function": {
+    "name": "colorGamma",
+    "representation": "colorGamma",
+    "parameters": "function ( x , level , modify = FALSE )",
+    "body": "{   .notImageError (  x )  if (   missing (  level ) )   stop (  \"argument 'level' is essential\" )   param =   as.double (  level )   filter =   as.integer (  10 )  if (  !  modify )  {   x =   copyImage (  x )   return (   .CallEBImage (  \"stdFilter2D\" ,  x ,  filter ,  param ) ) } else # original data modified   invisible (   .CallEBImage (  \"stdFilter2D\" ,  x ,  filter ,  param ) ) } ",
+    "filename": "filters2D.magick.txt"
+  },
+  "new_function": {
+    "name": "colorGamma",
+    "representation": "colorGamma",
+    "parameters": "function ( x , level )",
+    "body": "{   .colorGamma (  x ,  level , modify =  FALSE ) } ",
+    "filename": "flt.magick.txt"
+  }
+}
+
+7.
+{
+  "old_function": {
+    "name": "gaussFilter",
+    "representation": "gaussFilter",
+    "parameters": "function ( x , width = 1 , sigma = 0.5 , modify = FALSE )",
+    "body": "{   .notImageError (  x )   param =   as.double (   c (  width ,  sigma ) )   filter =   as.integer (  11 )  if (  !  modify )  {   x =   copyImage (  x )   return (   .CallEBImage (  \"stdFilter2D\" ,  x ,  filter ,  param ) ) } else   invisible (   .CallEBImage (  \"stdFilter2D\" ,  x ,  filter ,  param ) ) } ",
+    "filename": "filters2D.magick.txt"
+  },
+  "new_function": {
+    "name": "gaussFilter",
+    "representation": "gaussFilter",
+    "parameters": "function ( x , width = 1 , sigma = 0.5 )",
+    "body": "{   .gaussFilter (  x ,  width ,  sigma , modify =  FALSE ) } ",
+    "filename": "flt.magick.txt"
+  }
+}
+
+8.
+{
+  "old_function": {
+    "name": "medianFilter",
+    "representation": "medianFilter",
+    "parameters": "function ( x , radius = 2 , modify = FALSE )",
+    "body": "{   .notImageError (  x )   param =   as.double (  radius )   filter =   as.integer (  12 )  if (  !  modify )  {   x =   copyImage (  x )   return (   .CallEBImage (  \"stdFilter2D\" ,  x ,  filter ,  param ) ) } else # original data modified   invisible (   .CallEBImage (  \"stdFilter2D\" ,  x ,  filter ,  param ) ) } ",
+    "filename": "filters2D.magick.txt"
+  },
+  "new_function": {
+    "name": "medianFilter",
+    "representation": "medianFilter",
+    "parameters": "function ( x , radius = 2 )",
+    "body": "{   .medianFilter (  x ,  radius , modify =  FALSE ) } ",
+    "filename": "flt.magick.txt"
+  }
+}
+
+9.
+{
+  "old_function": {
+    "name": "mod",
+    "representation": "mod",
+    "parameters": "function ( x , brightness = 1 , saturation = 1 , hue = 1 , modify = FALSE )",
+    "body": "{   .notImageError (  x )   param =   as.double (   c (  brightness ,  saturation ,  hue ) )   filter =   as.integer (  13 )  if (  !  modify )  {   x =   copyImage (  x )   return (   .CallEBImage (  \"stdFilter2D\" ,  x ,  filter ,  param ) ) } else # original data modified   invisible (   .CallEBImage (  \"stdFilter2D\" ,  x ,  filter ,  param ) ) } ",
+    "filename": "filters2D.magick.txt"
+  },
+  "new_function": {
+    "name": "mod",
+    "representation": "mod",
+    "parameters": "function ( x , brightness = 1 , saturation = 1 , hue = 1 )",
+    "body": "{   .mod (  x ,  brightness ,  saturation ,  hue , modify =  FALSE ) } ",
+    "filename": "flt.magick.txt"
+  }
+}
+
+10.
+{
+  "old_function": {
+    "name": "reduceNoise",
+    "representation": "reduceNoise",
+    "parameters": "function ( x , order = NULL , modify = FALSE )",
+    "body": "{   .notImageError (  x )  if (   is.null (  order ) )   order =  -  1   param =   as.double (  order )   filter =   as.integer (  14 )  if (  !  modify )  {   x =   copyImage (  x )   return (   .CallEBImage (  \"stdFilter2D\" ,  x ,  filter ,  param ) ) } else # original data modified   invisible (   .CallEBImage (  \"stdFilter2D\" ,  x ,  filter ,  param ) ) } ",
+    "filename": "filters2D.magick.txt"
+  },
+  "new_function": {
+    "name": "reduceNoise",
+    "representation": "reduceNoise",
+    "parameters": "function ( x , order = NULL )",
+    "body": "{   .reduceNoise (  x ,  order , modify =  FALSE ) } ",
+    "filename": "flt.magick.txt"
+  }
+}
+
+11.
+{
+  "old_function": {
+    "name": "segment",
+    "representation": "segment",
+    "parameters": "function ( x , cluster = 1 , smooth = 1.5 , modify = FALSE )",
+    "body": "{   .notImageError (  x )   param =   as.double (   c (  cluster ,  smooth ) )   filter =   as.integer (  18 )  if (  !  modify )  {   x =   copyImage (  x )   return (   .CallEBImage (  \"stdFilter2D\" ,  x ,  filter ,  param ) ) } else # original data modified   invisible (   .CallEBImage (  \"stdFilter2D\" ,  x ,  filter ,  param ) ) } ",
+    "filename": "filters2D.magick.txt"
+  },
+  "new_function": {
+    "name": "segment",
+    "representation": "segment",
+    "parameters": "function ( x , cluster = 1 , smooth = 1.5 )",
+    "body": "{   .segment (  x ,  cluster ,  smooth , modify =  FALSE ) } ",
+    "filename": "flt.magick.txt"
+  }
+}
+
+12.
+{
+  "old_function": {
+    "name": "shade",
+    "representation": "shade",
+    "parameters": "function ( x , azimuth = 30 , elevation = 30 , shading = FALSE , modify = FALSE )",
+    "body": "{   .notImageError (  x )   param =   as.double (   c (  azimuth ,  elevation ) )   filter =   as.integer (  19 )  if (  !  modify )  {   x =   copyImage (  x )   return (   .CallEBImage (  \"stdFilter2D\" ,  x ,  filter ,  param ) ) } else # original data modified   invisible (   .CallEBImage (  \"stdFilter2D\" ,  x ,  filter ,  param ) ) } ",
+    "filename": "filters2D.magick.txt"
+  },
+  "new_function": {
+    "name": "shade",
+    "representation": "shade",
+    "parameters": "function ( x , azimuth = 30 , elevation = 30 , shading = FALSE )",
+    "body": "{   .shade (  x ,  azimuth ,  elevation ,  shading , modify =  FALSE ) } ",
+    "filename": "flt.magick.txt"
+  }
+}
+
+13.
+{
+  "old_function": {
+    "name": "sharpen",
+    "representation": "sharpen",
+    "parameters": "function ( x , radius = 1 , sigma = 0.5 , modify = FALSE )",
+    "body": "{   .notImageError (  x )   param =   as.double (   c (  radius ,  sigma ) )   filter =   as.integer (  20 )  if (  !  modify )  {   x =   copyImage (  x )   return (   .CallEBImage (  \"stdFilter2D\" ,  x ,  filter ,  param ) ) } else # original data modified   invisible (   .CallEBImage (  \"stdFilter2D\" ,  x ,  filter ,  param ) ) } ",
+    "filename": "filters2D.magick.txt"
+  },
+  "new_function": {
+    "name": "sharpen",
+    "representation": "sharpen",
+    "parameters": "function ( x , radius = 1 , sigma = 0.5 )",
+    "body": "{   .sharpen (  x ,  radius ,  sigma , modify =  FALSE ) } ",
+    "filename": "flt.magick.txt"
+  }
+}
+
+14.
+{
+  "old_function": {
+    "name": "solarize",
+    "representation": "solarize",
+    "parameters": "function ( x , factor = 50 , modify = FALSE )",
+    "body": "{   .notImageError (  x )   param =   as.double (  factor )   filter =   as.integer (  21 )  if (  !  modify )  {   x =   copyImage (  x )   return (   .CallEBImage (  \"stdFilter2D\" ,  x ,  filter ,  param ) ) } else # original data modified   invisible (   .CallEBImage (  \"stdFilter2D\" ,  x ,  filter ,  param ) ) } ",
+    "filename": "filters2D.magick.txt"
+  },
+  "new_function": {
+    "name": "solarize",
+    "representation": "solarize",
+    "parameters": "function ( x , factor = 50 )",
+    "body": "{   .solarize (  x ,  factor , modify =  FALSE ) } ",
+    "filename": "flt.magick.txt"
+  }
+}
+
+15.
+{
+  "old_function": {
+    "name": "spread",
+    "representation": "spread",
+    "parameters": "function ( x , amount = 3 , modify = FALSE )",
+    "body": "{   .notImageError (  x )   param =   as.double (  amount )   filter =   as.integer (  22 )  if (  !  modify )  {   x =   copyImage (  x )   return (   .CallEBImage (  \"stdFilter2D\" ,  x ,  filter ,  param ) ) } else # original data modified   invisible (   .CallEBImage (  \"stdFilter2D\" ,  x ,  filter ,  param ) ) } ",
+    "filename": "filters2D.magick.txt"
+  },
+  "new_function": {
+    "name": "spread",
+    "representation": "spread",
+    "parameters": "function ( x , amount = 3 )",
+    "body": "{   .spread (  x ,  amount , modify =  FALSE ) } ",
+    "filename": "flt.magick.txt"
+  }
+}
+
+16.
+{
+  "old_function": {
+    "name": "unsharpMask",
+    "representation": "unsharpMask",
+    "parameters": "function ( x , radius = 2 , sigma = 0.5 , amount = 5 , threshold = 2 , modify = FALSE )",
+    "body": "{   .notImageError (  x )   param =   as.double (   c (  radius ,  sigma ,  amount ,  threshold ) )   filter =   as.integer (  23 )  if (  !  modify )  {   x =   copyImage (  x )   return (   .CallEBImage (  \"stdFilter2D\" ,  x ,  filter ,  param ) ) } else # original data modified   invisible (   .CallEBImage (  \"stdFilter2D\" ,  x ,  filter ,  param ) ) } ",
+    "filename": "filters2D.magick.txt"
+  },
+  "new_function": {
+    "name": "unsharpMask",
+    "representation": "unsharpMask",
+    "parameters": "function ( x , radius = 2 , sigma = 0.5 , amount = 5 , threshold = 2 )",
+    "body": "{   .unsharpMask (  x ,  radius ,  sigma ,  amount ,  threshold , modify =  FALSE ) } ",
+    "filename": "flt.magick.txt"
+  }
+}
+
+17.
+{
+  "old_function": {
+    "name": "noise",
+    "representation": "noise",
+    "parameters": "function ( x , type = \"gaussian\" , modify = FALSE )",
+    "body": "{   .notImageError (  x )   param =   as.double (   switch (  type , \"uniform\" =  1 , \"gaussian\" =  2 , \"multi\" =  3 , \"impulse\" =  4 , \"laplace\" =  5 , \"poisson\" =  6 ,  2 ) )   filter =   as.integer (  24 )  if (  !  modify )  {   x =   copyImage (  x )   return (   .CallEBImage (  \"stdFilter2D\" ,  x ,  filter ,  param ) ) } else # original data modified   invisible (   .CallEBImage (  \"stdFilter2D\" ,  x ,  filter ,  param ) ) } ",
+    "filename": "filters2D.magick.txt"
+  },
+  "new_function": {
+    "name": "noise",
+    "representation": "noise",
+    "parameters": "function ( x , type = \"gaussian\" )",
+    "body": "{   .noise (  x ,  type , modify =  FALSE ) } ",
+    "filename": "flt.magick.txt"
+  }
+}
+
+18.
+{
+  "old_function": {
+    "name": "distMap",
+    "representation": "distMap",
+    "parameters": "function ( x , alg = \"EBImage\" , modify = FALSE )",
+    "body": "{   .notImageError (  x )  if (   x @ rgb )   stop (  \"cannot apply Distance Map algorithm onto RGB images\" )   ialg =   as.integer (   grep (  alg ,   c (  \"EBImage\" ,  \"Lotufo_Zampirolli\" ) ) )  if (    length (  ialg ) ==  0 )   stop (   sprintf (  \"Invalid algorithm 'alg'=%s.\" ,  alg ) )  if (    length (  ialg ) undefined  2 )   stop (   sprintf (  \"Specification of algorithm 'alg'=%s is ambiguous.\" ,  alg ) ) # 060105-01 TODO  if (  !  modify )  {   x =   copyImage (  x )   return (   .CallEBImage (  \"distMap\" ,  x ,  ialg ) ) } else   invisible (   .CallEBImage (  \"distMap\" ,  x ,  ialg ) ) } ",
+    "filename": "filters2D.txt"
+  },
+  "new_function": {
+    "name": "distMap",
+    "representation": "distMap",
+    "parameters": "function ( x , alg = \"LotufoZampirolli\" )",
+    "body": "{   .distMap (  x ,  alg , modify =  FALSE ) } ",
+    "filename": "flt.distmap.txt"
+  }
+}
+
+19.
+{
+  "old_function": {
+    "name": "thresh",
+    "representation": "thresh",
+    "parameters": "function ( x , width = 20 , height = 20 , offset = 0.05 , preprocess = FALSE , modify = FALSE )",
+    "body": "{   .notImageError (  x )   param =   as.double (   c (  width ,  height ,  offset ) )  if (  !  modify )  {  if (  preprocess )   x =   gaussFilter (   normalize (  x ) ,  4 ,  2 ) else   x =   copyImage (  x )   return (   .CallEBImage (  \"adaptiveThreshold\" ,  x ,  param ) ) } else  { # original data modified  if (  preprocess )  {   normalize (  x , modify =  TRUE )   gaussFilter (  x ,  4 ,  2 , modify =  TRUE ) }   invisible (   .CallEBImage (  \"adaptiveThreshold\" ,  x ,  param ) ) } } ",
+    "filename": "filters2D.txt"
+  },
+  "new_function": {
+    "name": "thresh",
+    "representation": "thresh",
+    "parameters": "function ( x , width = 20 , height = 20 , offset = 0.05 , preprocess = FALSE )",
+    "body": "{   .thresh (  x ,  width ,  height ,  offset ,  preprocess , modify =  FALSE ) } ",
+    "filename": "flt.thresh.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  ebimage_release_1_9 ebimage_release_2_1
+
+{
+    "package": "EBImage",
+    "release_versions": "ebimage_release_1_9 ebimage_release_2_1",
+    "desc_release_old": "1.6.1",
+    "desc_release_new": "2.2.0",
+    "old_release_number": 1,
+    "new_release_number": 2,
+    "function_removals": 47,
+    "function_additions": 77,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 47
+}
+
+##########
+Functions Removed
+##########
+
+ping.image
+colorGamma
+gaussFilter
+medianFilter
+mod
+reduceNoise
+sample.image
+zoom.image
+shade
+solarize
+trim
+spread
+unsharpMask
+distMap
+wsObjects
+wsPaint
+wsImages
+mErode
+mDilate
+mOpen
+mClose
+mKernel
+draw
+DrawableCircle
+DrawableLine
+DrawableRect
+DrawableEllipse
+DrawableText
+updateEBImage
+updateEBImageDev
+channels
+as.array
+summary
+print
+plot.image
+toGray
+toRGB
+toX11char
+toRed
+toGreen
+toBlue
+getRed
+getGreen
+getBlue
+add2RGB
+sub2RGB
+scale2RGB
+
+
+##########
+Functions Added
+##########
+
+is.Image
+stopIfNotImage
+TrueColor
+Grayscale
+morphKern
+print.Image
+print.IndexedImage
+median.Image
+drawfont
+readImage
+chooseImage
+choose.image
+animate
+header
+combine
+writeImage
+channel
+as.Image
+Arith
+colorMode
+colorMode<-
+fileName
+fileName<-
+compression
+compression<-
+resolution
+resolution<-
+imageData
+imageData<-
+gblur
+denoise
+cgamma
+mediansmooth
+resize
+resample
+umask
+athresh
+cthresh
+affinet
+modulate
+negate
+normalize2
+fill
+flip
+flop
+erode
+dilate
+opening
+closing
+distmap
+watershed
+paintObjects
+matchObjects
+stackObjects
+rmObjects
+propagate
+image
+hist
+cmoments
+smoments
+rmoments
+moments
+drawtext
+features
+getFeatures
+hullFeatures
+edgeProfile
+edgeFeatures
+haralickMatrix
+haralickFeatures
+zernikeMoments
+hull.features
+edge.profile
+edge.features
+haralick.matrix
+haralick.features
+zernike.moments
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  ebimage_release_2_1 ebimage_release_2_2
+
+{
+    "package": "EBImage",
+    "release_versions": "ebimage_release_2_1 ebimage_release_2_2",
+    "desc_release_old": "2.2.0",
+    "desc_release_new": "2.4.0",
+    "old_release_number": 2,
+    "new_release_number": 3,
+    "function_removals": 1,
+    "function_additions": 11,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+fill
+
+
+##########
+Functions Added
+##########
+
+rgbImage
+mkball
+mkbox
+channelMix
+untile
+filter2
+sharpen2
+reenumerate
+floodFill
+fillHull
+frameDist
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  ebimage_release_2_2 ebimage_release_2_3
+
+{
+    "package": "EBImage",
+    "release_versions": "ebimage_release_2_2 ebimage_release_2_3",
+    "desc_release_old": "2.4.0",
+    "desc_release_new": "2.6.0",
+    "old_release_number": 3,
+    "new_release_number": 4,
+    "function_removals": 1,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+sharpen2
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  ebimage_release_2_3 ebimage_release_2_4
+
+{
+    "package": "EBImage",
+    "release_versions": "ebimage_release_2_3 ebimage_release_2_4",
+    "desc_release_old": "2.6.0",
+    "desc_release_new": "3.0.5",
+    "old_release_number": 4,
+    "new_release_number": 5,
+    "function_removals": 21,
+    "function_additions": 9,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 21
+}
+
+##########
+Functions Removed
+##########
+
+print.IndexedImage
+read.image
+choose.image
+copy
+show
+Arith
+fileName
+fileName<-
+compression
+compression<-
+resolution
+resolution<-
+image
+features
+write.image
+hull.features
+edge.profile
+edge.features
+haralick.matrix
+haralick.features
+zernike.moments
+
+
+##########
+Functions Added
+##########
+
+Color
+getNumberOfFrames
+translate
+bwlabel
+ocontour
+quantile.Image
+makeBrush
+Ops
+'show'
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  ebimage_release_2_4 ebimage_release_2_5
+
+{
+    "package": "EBImage",
+    "release_versions": "ebimage_release_2_4 ebimage_release_2_5",
+    "desc_release_old": "3.0.5",
+    "desc_release_new": "3.2.0",
+    "old_release_number": 5,
+    "new_release_number": 6,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  ebimage_release_2_5 ebimage_release_2_6
+
+{
+    "package": "EBImage",
+    "release_versions": "ebimage_release_2_5 ebimage_release_2_6",
+    "desc_release_old": "3.2.0",
+    "desc_release_new": "3.4.0",
+    "old_release_number": 6,
+    "new_release_number": 7,
+    "function_removals": 28,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 28
+}
+
+##########
+Functions Removed
+##########
+
+frameDist
+matchObjects
+stopIfNotImage
+morphKern
+mkbox
+mkball
+header
+assert
+chooseImage
+resample
+sharpen
+umask
+modulate
+negate
+affinet
+normalize2
+noise
+mediansmooth
+cgamma
+enhance
+denoise
+contrast
+despeckle
+edge
+segment
+cthresh
+athresh
+channelMix
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  ebimage_release_2_6 ebimage_release_2_7
+
+{
+    "package": "EBImage",
+    "release_versions": "ebimage_release_2_6 ebimage_release_2_7",
+    "desc_release_old": "3.4.0",
+    "desc_release_new": "3.6.0",
+    "old_release_number": 7,
+    "new_release_number": 8,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+drawCircle
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  ebimage_release_2_7 ebimage_release_2_8
+
+{
+    "package": "EBImage",
+    "release_versions": "ebimage_release_2_7 ebimage_release_2_8",
+    "desc_release_old": "3.6.0",
+    "desc_release_new": "3.8.0",
+    "old_release_number": 8,
+    "new_release_number": 9,
+    "function_removals": 0,
+    "function_additions": 2,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+as.raster.Image
+getFrame
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  ebimage_release_2_8 ebimage_release_2_9
+
+{
+    "package": "EBImage",
+    "release_versions": "ebimage_release_2_8 ebimage_release_2_9",
+    "desc_release_old": "3.8.0",
+    "desc_release_new": "3.10.0",
+    "old_release_number": 9,
+    "new_release_number": 10,
+    "function_removals": 1,
+    "function_additions": 7,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+TrueColor
+
+
+##########
+Functions Added
+##########
+
+affine
+computeFeatures
+computeFeatures.basic
+computeFeatures.shape
+computeFeatures.moment
+computeFeatures.haralick
+standardExpandRef
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  ebimage_release_2_9 ebimage_release_2_11
+
+{
+    "package": "EBImage",
+    "release_versions": "ebimage_release_2_9 ebimage_release_2_11",
+    "desc_release_old": "3.10.0",
+    "desc_release_new": "4.0.0",
+    "old_release_number": 10,
+    "new_release_number": 11,
+    "function_removals": 2,
+    "function_additions": 10,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+animate
+'show'
+
+
+##########
+Functions Added
+##########
+
+transpose
+medianFilter
+erodeGreyScale
+dilateGreyScale
+openingGreyScale
+closingGreyScale
+whiteTopHatGreyScale
+blackTopHatGreyScale
+selfcomplementaryTopHatGreyScale
+show
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  ebimage_release_2_11 ebimage_release_2_12
+
+{
+    "package": "EBImage",
+    "release_versions": "ebimage_release_2_11 ebimage_release_2_12",
+    "desc_release_old": "4.0.0",
+    "desc_release_new": "4.2.1",
+    "old_release_number": 11,
+    "new_release_number": 12,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+localCurvature
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  ebimage_release_2_12 ebimage_release_2_13
+
+{
+    "package": "EBImage",
+    "release_versions": "ebimage_release_2_12 ebimage_release_2_13",
+    "desc_release_old": "4.2.1",
+    "desc_release_new": "4.4.0",
+    "old_release_number": 12,
+    "new_release_number": 13,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+colorLabels
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  ebimage_release_2_13 ebimage_release_2_14
+
+{
+    "package": "EBImage",
+    "release_versions": "ebimage_release_2_13 ebimage_release_2_14",
+    "desc_release_old": "4.4.0",
+    "desc_release_new": "4.6.0",
+    "old_release_number": 13,
+    "new_release_number": 14,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+toRGB
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  ebimage_release_2_14 ebimage_release_3_1
+
+{
+    "package": "EBImage",
+    "release_versions": "ebimage_release_2_14 ebimage_release_3_1",
+    "desc_release_old": "4.6.0",
+    "desc_release_new": "4.10.1",
+    "old_release_number": 14,
+    "new_release_number": 15,
+    "function_removals": 7,
+    "function_additions": 14,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 7
+}
+
+##########
+Functions Removed
+##########
+
+erodeGreyScale
+dilateGreyScale
+openingGreyScale
+closingGreyScale
+whiteTopHatGreyScale
+blackTopHatGreyScale
+selfcomplementaryTopHatGreyScale
+
+
+##########
+Functions Added
+##########
+
+getFrames
+numberOfFrames
+otsu
+erodeGrayscale
+dilateGrayscale
+openingGrayscale
+closingGrayscale
+whiteTopHatGrayscale
+blackTopHatGrayscale
+selfcomplementaryTopHatGrayscale
+Math2
+as.array.Image
+as.Image.Image
+as.Image.default
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  ebimage_release_3_1 ebimage_release_3_2
+
+{
+    "package": "EBImage",
+    "release_versions": "ebimage_release_3_1 ebimage_release_3_2",
+    "desc_release_old": "4.10.1",
+    "desc_release_new": "4.12.2",
+    "old_release_number": 15,
+    "new_release_number": 16,
+    "function_removals": 21,
+    "function_additions": 13,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 21
+}
+
+##########
+Functions Removed
+##########
+
+erodeGrayscale
+dilateGrayscale
+openingGrayscale
+closingGrayscale
+whiteTopHatGrayscale
+blackTopHatGrayscale
+selfcomplementaryTopHatGrayscale
+blur
+drawtext
+drawfont
+getFeatures
+hullFeatures
+zernikeMoments
+edgeProfile
+edgeFeatures
+haralickFeatures
+haralickMatrix
+moments
+cmoments
+smoments
+rmoments
+
+
+##########
+Functions Added
+##########
+
+whiteTopHat
+blackTopHat
+selfComplementaryTopHat
+gblob
+erodeGreyScale
+dilateGreyScale
+openingGreyScale
+closingGreyScale
+whiteTopHatGreyScale
+blackTopHatGreyScale
+selfcomplementaryTopHatGreyScale
+image
+log
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  ebimage_release_3_2 ebimage_release_3_3
+
+{
+    "package": "EBImage",
+    "release_versions": "ebimage_release_3_2 ebimage_release_3_3",
+    "desc_release_old": "4.12.2",
+    "desc_release_new": "4.14.2",
+    "old_release_number": 16,
+    "new_release_number": 17,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+colormap
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  ebimage_release_3_3 ebimage_release_3_4
+
+{
+    "package": "EBImage",
+    "release_versions": "ebimage_release_3_3 ebimage_release_3_4",
+    "desc_release_old": "4.14.2",
+    "desc_release_new": "4.16.0",
+    "old_release_number": 17,
+    "new_release_number": 18,
+    "function_removals": 1,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+getNumberOfFrames
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  ebimage_release_3_4 ebimage_release_3_5
+
+{
+    "package": "EBImage",
+    "release_versions": "ebimage_release_3_4 ebimage_release_3_5",
+    "desc_release_old": "4.16.0",
+    "desc_release_new": "4.18.3",
+    "old_release_number": 18,
+    "new_release_number": 19,
+    "function_removals": 7,
+    "function_additions": 2,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 8
+}
+
+##########
+Functions Removed
+##########
+
+erodeGreyScale
+dilateGreyScale
+openingGreyScale
+closingGreyScale
+whiteTopHatGreyScale
+blackTopHatGreyScale
+selfcomplementaryTopHatGreyScale
+
+
+##########
+Functions Added
+##########
+
+clahe
+plot.Image
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "transpose",
+    "representation": "transpose",
+    "parameters": "function ( x , coerce = FALSE )",
+    "body": "{   validImage (  x )   dims =   seq_along (   dim (  x ) )    dims [   1 :  2 ] =   c (   2 :  1 )   y =   aperm (  x ,  dims )  if (   (  !  coerce ) undefined   is.Image (  x ) )  {    x @ .Data =  y  x } else  y } ",
+    "filename": "spatial.txt"
+  },
+  "new_function": {
+    "name": "transpose",
+    "representation": "transpose",
+    "parameters": "function ( x )",
+    "body": "{   .Call (  C_transpose ,  x ) } ",
+    "filename": "spatial.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  ebimage_release_3_5 ebimage_release_3_6
+
+{
+    "package": "EBImage",
+    "release_versions": "ebimage_release_3_5 ebimage_release_3_6",
+    "desc_release_old": "4.18.3",
+    "desc_release_new": "4.20.1",
+    "old_release_number": 19,
+    "new_release_number": 20,
+    "function_removals": 0,
+    "function_additions": 3,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+displayOutput
+renderDisplay
+abind
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  ebimage_release_3_6 ebimage_release_3_7
+
+{
+    "package": "EBImage",
+    "release_versions": "ebimage_release_3_6 ebimage_release_3_7",
+    "desc_release_old": "4.20.1",
+    "desc_release_new": "4.22.1",
+    "old_release_number": 20,
+    "new_release_number": 21,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  ebimage_release_3_7 ebimage_release_3_8
+
+{
+    "package": "EBImage",
+    "release_versions": "ebimage_release_3_7 ebimage_release_3_8",
+    "desc_release_old": "4.22.1",
+    "desc_release_new": "4.24.0",
+    "old_release_number": 21,
+    "new_release_number": 22,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  ebimage_release_3_8 ebimage_release_3_9
+
+{
+    "package": "EBImage",
+    "release_versions": "ebimage_release_3_8 ebimage_release_3_9",
+    "desc_release_old": "4.24.0",
+    "desc_release_new": "4.26.0",
+    "old_release_number": 22,
+    "new_release_number": 23,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  ebimage_release_3_9 ebimage_release_3_11
+
+{
+    "package": "EBImage",
+    "release_versions": "ebimage_release_3_9 ebimage_release_3_11",
+    "desc_release_old": "4.26.0",
+    "desc_release_new": "4.30.0",
+    "old_release_number": 23,
+    "new_release_number": 24,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  ebimage_release_3_11 ebimage_release_3_12
+
+{
+    "package": "EBImage",
+    "release_versions": "ebimage_release_3_11 ebimage_release_3_12",
+    "desc_release_old": "4.30.0",
+    "desc_release_new": "4.32.0",
+    "old_release_number": 24,
+    "new_release_number": 25,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  ebimage_release_3_12 ebimage_release_3_13
+
+{
+    "package": "EBImage",
+    "release_versions": "ebimage_release_3_12 ebimage_release_3_13",
+    "desc_release_old": "4.32.0",
+    "desc_release_new": "4.34.0",
+    "old_release_number": 25,
+    "new_release_number": 26,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  ebimage_release_3_13 ebimage_release_3_14
+
+{
+    "package": "EBImage",
+    "release_versions": "ebimage_release_3_13 ebimage_release_3_14",
+    "desc_release_old": "4.34.0",
+    "desc_release_new": "4.36.0",
+    "old_release_number": 26,
+    "new_release_number": 27,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  ebimage_release_3_14 ebimage_master
+
+{
+    "package": "EBImage",
+    "release_versions": "ebimage_release_3_14 ebimage_master",
+    "desc_release_old": "4.36.0",
+    "desc_release_new": "4.37.0",
+    "old_release_number": 27,
+    "new_release_number": 28,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+

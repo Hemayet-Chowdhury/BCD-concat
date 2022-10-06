@@ -15,16 +15,16 @@ const fs = require("fs");
 
 import { Compare_2_libraries } from "./Compare_2_libraries.js";
 
-let package_name = "single test";
+let package_name = "single test_new";
 const log_writer = fs.createWriteStream(
   "./test_logs/" + package_name + "_output_log.txt"
 );
 let test_collection = undefined;
 
 let compare_2_libraries = new Compare_2_libraries(
-  "single_test",
-  "./final_2/DESeq2/deseq2_release_3_14",
-  "./final_2/DESeq2/deseq2_master",
+  "single_test_new",
+  "./final_2/scater/scater_release_3_5",
+  "./final_2/scater/scater_release_3_6",
   log_writer,
   1,
   test_collection

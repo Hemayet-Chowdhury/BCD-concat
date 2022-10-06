@@ -1,0 +1,1196 @@
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  hdf5array_release_3_3 hdf5array_release_3_4
+
+{
+    "package": "HDF5Array",
+    "release_versions": "hdf5array_release_3_3 hdf5array_release_3_4",
+    "desc_release_old": "1.0.2",
+    "desc_release_new": "1.2.1",
+    "old_release_number": 0,
+    "new_release_number": 1,
+    "function_removals": 0,
+    "function_additions": 18,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+as.data.frame.DelayedArray
+split.DelayedArray
+writeHDF5Dataset
+as.data.frame
+split
+is.finite
+is.infinite
+is.nan
+which
+nchar
+tolower
+toupper
+dlogis
+plogis
+qlogis
+splitAsList
+arbind
+acbind
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  hdf5array_release_3_4 hdf5array_release_3_5
+
+{
+    "package": "HDF5Array",
+    "release_versions": "hdf5array_release_3_4 hdf5array_release_3_5",
+    "desc_release_old": "1.2.1",
+    "desc_release_new": "1.4.8",
+    "old_release_number": 1,
+    "new_release_number": 2,
+    "function_removals": 52,
+    "function_additions": 13,
+    "parameter_removals": 2,
+    "parameter_additions": 1,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 3,
+    "total_count": 55
+}
+
+##########
+Functions Removed
+##########
+
+as.array.DelayedArray
+as.data.frame.DelayedArray
+as.matrix.DelayedArray
+as.vector.DelayedArray
+mean.DelayedArray
+split.DelayedArray
+HDF5Dataset
+pmax2
+pmin2
+apply
+length
+names
+names<-
+dim<-
+dimnames<-
+as.array
+as.vector
+as.matrix
+as.data.frame
+[
+[[
+drop
+t
+c
+split
+is.na
+is.finite
+is.infinite
+is.nan
+!
+anyNA
+which
+mean
+round
+signif
+rowSums
+colSums
+rowMeans
+colMeans
+nchar
+tolower
+toupper
+show
+dlogis
+plogis
+qlogis
+cbind
+rbind
+isEmpty
+splitAsList
+arbind
+acbind
+
+
+##########
+Functions Added
+##########
+
+HDF5ArraySeed
+setHDF5DumpDir
+getHDF5DumpDir
+getHDF5DumpChunkDim
+setHDF5DumpCompressionLevel
+getHDF5DumpCompressionLevel
+appendDatasetCreationToHDF5DumpLog
+showHDF5DumpLog
+HDF5RealizationSink
+writeHDF5Array
+subset_seed_as_array
+matrixClass
+write_to_sink
+
+
+##########
+Removed Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "getHDF5DumpFile",
+    "representation": "getHDF5DumpFile",
+    "parameters": "function ( )",
+    "body": "get ( \"file\" , envir = .HDF5_dump_settings_envir )",
+    "filename": "setHDF5DumpFile.txt"
+  },
+  "new_function": {
+    "name": "getHDF5DumpFile",
+    "representation": "getHDF5DumpFile",
+    "parameters": "function ( for.use = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  for.use ) )   stop (  \"'for.use' must be TRUE or FALSE\" )   file -   try (   .get_dump_specfile ( ) , silent =  TRUE )  if (   is (  file ,  \"try-error\" ) )   file -   .get_dump_autofile ( increment =  for.use )  file } ",
+    "filename": "dump-management.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "getHDF5DumpName",
+    "representation": "getHDF5DumpName",
+    "parameters": "function ( )",
+    "body": "{   name -   try (   get (  \"name\" , envir =  .HDF5_dump_settings_envir ) , silent =  TRUE )  if (   is (  name ,  \"try-error\" ) )  {   auto_inc_ID -   get (  \"auto_inc_ID\" , envir =  .HDF5_dump_settings_envir )   name -   sprintf (  \"/HDF5ArrayDataset%05d\" ,  auto_inc_ID ) }  name } ",
+    "filename": "setHDF5DumpFile.txt"
+  },
+  "new_function": {
+    "name": "getHDF5DumpName",
+    "representation": "getHDF5DumpName",
+    "parameters": "function ( for.use = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  for.use ) )   stop (  \"'for.use' must be TRUE or FALSE\" )   name -   try (   .get_dump_specname ( ) , silent =  TRUE )  if (   is (  name ,  \"try-error\" ) )  {   name -   .get_dump_autoname ( increment =  for.use ) } else  if (  for.use )  { ## If the dump file is a user-specified file, we switch back to ## automatic dump names.   file -   try (   .get_dump_specfile ( ) , silent =  TRUE )  if (  !   is (  file ,  \"try-error\" ) )   .set_dump_autonames_mode ( ) }  name } ",
+    "filename": "dump-management.txt"
+  }
+}
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "setHDF5DumpFile",
+    "representation": "setHDF5DumpFile",
+    "parameters": "function ( file = paste0 ( tempfile ( ) , \".h5\" ) )",
+    "body": "{  if (  !   isSingleString (  file ) )   stop (   wmsg (  \"'file' must be a single string specifying the path \" ,  \"to the current output HDF5 file, that is, to the HDF5 \" ,  \"file where all newly created datasets shall be written\" ) )  if (   file.exists (  file ) )  {   show_content -  TRUE } else  {   h5createFile (  file )   show_content -  FALSE } ## If h5ls() fails (e.g. file exists but is not HDF5), \"file\" setting must ## remain untouched.   content -   h5ls (  file )   assign (  \"file\" ,  file , envir =  .HDF5_dump_settings_envir )  if (  show_content )   return (  content )   return (   invisible (  content ) ) } ",
+    "filename": "setHDF5DumpFile.txt"
+  },
+  "new_function": {
+    "name": "setHDF5DumpFile",
+    "representation": "setHDF5DumpFile",
+    "parameters": "function ( file )",
+    "body": "{  if (   missing (  file ) )  {   .set_dump_autofiles_mode ( )   file -   .get_dump_autofile ( ) } else  {  if (   !   isSingleString (  file ) ||   file ==  \"\" )   stop (  \"'file' must be a non-empty string\" )  if (   has_trailing_slash (  file ) )  {   setHDF5DumpDir (  file )   file -   .get_dump_autofile ( ) } else  {   file -   .set_dump_specfile (  file ) } }   file_content -   h5ls (  file )  if (    nrow (  file_content ) ==  0L )   return (   invisible (  file_content ) )  file_content } ",
+    "filename": "dump-management.txt"
+  }
+}
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "setHDF5DumpFile",
+    "representation": "setHDF5DumpFile",
+    "parameters": "function ( file = paste0 ( tempfile ( ) , \".h5\" ) )",
+    "body": "{  if (  !   isSingleString (  file ) )   stop (   wmsg (  \"'file' must be a single string specifying the path \" ,  \"to the current output HDF5 file, that is, to the HDF5 \" ,  \"file where all newly created datasets shall be written\" ) )  if (   file.exists (  file ) )  {   show_content -  TRUE } else  {   h5createFile (  file )   show_content -  FALSE } ## If h5ls() fails (e.g. file exists but is not HDF5), \"file\" setting must ## remain untouched.   content -   h5ls (  file )   assign (  \"file\" ,  file , envir =  .HDF5_dump_settings_envir )  if (  show_content )   return (  content )   return (   invisible (  content ) ) } ",
+    "filename": "setHDF5DumpFile.txt"
+  },
+  "new_function": {
+    "name": "setHDF5DumpFile",
+    "representation": "setHDF5DumpFile",
+    "parameters": "function ( file )",
+    "body": "{  if (   missing (  file ) )  {   .set_dump_autofiles_mode ( )   file -   .get_dump_autofile ( ) } else  {  if (   !   isSingleString (  file ) ||   file ==  \"\" )   stop (  \"'file' must be a non-empty string\" )  if (   has_trailing_slash (  file ) )  {   setHDF5DumpDir (  file )   file -   .get_dump_autofile ( ) } else  {   file -   .set_dump_specfile (  file ) } }   file_content -   h5ls (  file )  if (    nrow (  file_content ) ==  0L )   return (   invisible (  file_content ) )  file_content } ",
+    "filename": "dump-management.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "getHDF5DumpFile",
+    "representation": "getHDF5DumpFile",
+    "parameters": "function ( )",
+    "body": "get ( \"file\" , envir = .HDF5_dump_settings_envir )",
+    "filename": "setHDF5DumpFile.txt"
+  },
+  "new_function": {
+    "name": "getHDF5DumpFile",
+    "representation": "getHDF5DumpFile",
+    "parameters": "function ( for.use = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  for.use ) )   stop (  \"'for.use' must be TRUE or FALSE\" )   file -   try (   .get_dump_specfile ( ) , silent =  TRUE )  if (   is (  file ,  \"try-error\" ) )   file -   .get_dump_autofile ( increment =  for.use )  file } ",
+    "filename": "dump-management.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "getHDF5DumpName",
+    "representation": "getHDF5DumpName",
+    "parameters": "function ( )",
+    "body": "{   name -   try (   get (  \"name\" , envir =  .HDF5_dump_settings_envir ) , silent =  TRUE )  if (   is (  name ,  \"try-error\" ) )  {   auto_inc_ID -   get (  \"auto_inc_ID\" , envir =  .HDF5_dump_settings_envir )   name -   sprintf (  \"/HDF5ArrayDataset%05d\" ,  auto_inc_ID ) }  name } ",
+    "filename": "setHDF5DumpFile.txt"
+  },
+  "new_function": {
+    "name": "getHDF5DumpName",
+    "representation": "getHDF5DumpName",
+    "parameters": "function ( for.use = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  for.use ) )   stop (  \"'for.use' must be TRUE or FALSE\" )   name -   try (   .get_dump_specname ( ) , silent =  TRUE )  if (   is (  name ,  \"try-error\" ) )  {   name -   .get_dump_autoname ( increment =  for.use ) } else  if (  for.use )  { ## If the dump file is a user-specified file, we switch back to ## automatic dump names.   file -   try (   .get_dump_specfile ( ) , silent =  TRUE )  if (  !   is (  file ,  \"try-error\" ) )   .set_dump_autonames_mode ( ) }  name } ",
+    "filename": "dump-management.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  hdf5array_release_3_5 hdf5array_release_3_6
+
+{
+    "package": "HDF5Array",
+    "release_versions": "hdf5array_release_3_5 hdf5array_release_3_6",
+    "desc_release_old": "1.4.8",
+    "desc_release_new": "1.6.0",
+    "old_release_number": 2,
+    "new_release_number": 3,
+    "function_removals": 1,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+write_to_sink
+
+
+##########
+Functions Added
+##########
+
+write_block_to_sink
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  hdf5array_release_3_6 hdf5array_release_3_7
+
+{
+    "package": "HDF5Array",
+    "release_versions": "hdf5array_release_3_6 hdf5array_release_3_7",
+    "desc_release_old": "1.6.0",
+    "desc_release_new": "1.8.1",
+    "old_release_number": 3,
+    "new_release_number": 4,
+    "function_removals": 2,
+    "function_additions": 5,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 6,
+    "total_count": 8
+}
+
+##########
+Functions Removed
+##########
+
+writeHDF5Dataset
+subset_seed_as_array
+
+
+##########
+Functions Added
+##########
+
+saveHDF5SummarizedExperiment
+loadHDF5SummarizedExperiment
+path
+path<-
+extract_array
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "setHDF5DumpFile",
+    "representation": "setHDF5DumpFile",
+    "parameters": "function ( file )",
+    "body": "{  if (   missing (  file ) )  {   .set_dump_autofiles_mode ( )   file -   .get_dump_autofile ( ) } else  {  if (   !   isSingleString (  file ) ||   file ==  \"\" )   stop (  \"'file' must be a non-empty string\" )  if (   has_trailing_slash (  file ) )  {   setHDF5DumpDir (  file )   file -   .get_dump_autofile ( ) } else  {   file -   .set_dump_specfile (  file ) } }   file_content -   h5ls (  file )  if (    nrow (  file_content ) ==  0L )   return (   invisible (  file_content ) )  file_content } ",
+    "filename": "dump-management.txt"
+  },
+  "new_function": {
+    "name": "setHDF5DumpFile",
+    "representation": "setHDF5DumpFile",
+    "parameters": "function ( filepath )",
+    "body": "{  if (   missing (  filepath ) )  {   .set_dump_autofiles_mode ( )   filepath -   .get_dump_autofile ( ) } else  {  if (   !   isSingleString (  filepath ) ||   filepath ==  \"\" )   stop (  \"'filepath' must be a non-empty string\" )  if (   has_trailing_slash (  filepath ) )  {   setHDF5DumpDir (  filepath )   filepath -   .get_dump_autofile ( ) } else  {   filepath -   .set_dump_specfile (  filepath ) } }   file_content -   h5ls (  filepath )  if (    nrow (  file_content ) ==  0L )   return (   invisible (  file_content ) )  file_content } ",
+    "filename": "dump-management.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "appendDatasetCreationToHDF5DumpLog",
+    "representation": "appendDatasetCreationToHDF5DumpLog",
+    "parameters": "function ( file , name , dim , type , chunk_dim , level )",
+    "body": "{   logfile -   get_HDF5_dump_logfile ( )   locked_path -   lock_file (  logfile )   on.exit (   unlock_file (  logfile ) )   counter -   .get_dataset_creation_global_counter ( increment =  TRUE )   dims -   paste0 (  dim , collapse =  \"x\" )   chunk_dims -   paste0 (  chunk_dim , collapse =  \"x\" )   cat (   as.character (   Sys.time ( ) ) ,  counter ,  file ,  name ,  dims ,  type ,  chunk_dims ,  level , sep =  \"\\t\" , file =  locked_path , append =  TRUE )   cat (  \"\\n\" , file =  locked_path , append =  TRUE ) } ",
+    "filename": "dump-management.txt"
+  },
+  "new_function": {
+    "name": "appendDatasetCreationToHDF5DumpLog",
+    "representation": "appendDatasetCreationToHDF5DumpLog",
+    "parameters": "function ( filepath , name , dim , type , chunkdim , level )",
+    "body": "{   logfile -   get_HDF5_dump_logfile ( )   locked_path -   lock_file (  logfile )   on.exit (   unlock_file (  logfile ) )   counter -   .get_dataset_creation_global_counter ( increment =  TRUE )   dims -   paste0 (  dim , collapse =  \"x\" )   chunkdims -   paste0 (  chunkdim , collapse =  \"x\" )   cat (   as.character (   Sys.time ( ) ) ,  counter ,  filepath ,  name ,  dims ,  type ,  chunkdims ,  level , sep =  \"\\t\" , file =  locked_path , append =  TRUE )   cat (  \"\\n\" , file =  locked_path , append =  TRUE ) } ",
+    "filename": "dump-management.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "HDF5ArraySeed",
+    "representation": "HDF5ArraySeed",
+    "parameters": "function ( file , name , type = NA )",
+    "body": "{  if (  !   isSingleString (  file ) )   stop (   wmsg (  \"'file' must be a single string specifying the path to \" ,  \"the HDF5 file where the dataset is located\" ) )   file -   file_path_as_absolute (  file )  if (  !   isSingleString (  name ) )   stop (   wmsg (  \"'name' must be a single string specifying the name \" ,  \"of the dataset in the HDF5 file\" ) )  if (   name ==  \"\" )   stop (   wmsg (  \"'name' cannot be the empty string\" ) )  if (  !   isSingleStringOrNA (  type ) )   stop (  \"'type' must be a single string or NA\" )   dim -   .get_h5dataset_dim (  file ,  name )  if (   any (   dim ==  0L ) )  {  if (   is.na (  type ) )   stop (   wmsg (  \"This HDF5 dataset is empty! Don't know how to \" ,  \"determine the type of an empty HDF5 dataset at the \" ,  \"moment. Please use the 'type' argument to help me \" ,  \"(see '?HDF5Array' for more information).\" ) )   first_val -    match.fun (  type ) (  1 ) # fake value  if (  !   is.atomic (  first_val ) )   stop (   wmsg (  \"invalid type: \" ,  type ) ) } else  {   first_val -   .read_h5dataset_first_val (  file ,  name ,   length (  dim ) )   detected_type -   typeof (  first_val )  if (  !  (    is.na (  type ) ||   type ==  detected_type ) )   warning (   wmsg (  \"The type specified via the 'type' argument (\" ,  type ,  \") doesn't match the type of this HDF5 \" ,  \"dataset (\" ,  detected_type ,  \"). Ignoring the \" ,  \"former.\" ) ) }   new2 (  \"HDF5ArraySeed\" , file =  file , name =  name , dim =  dim , first_val =  first_val ) } ",
+    "filename": "HDF5Array-class.txt"
+  },
+  "new_function": {
+    "name": "HDF5ArraySeed",
+    "representation": "HDF5ArraySeed",
+    "parameters": "function ( filepath , name , type = NA )",
+    "body": "{   filepath -   .normarg_path (  filepath ,  \"'filepath'\" )  if (  !   isSingleString (  name ) )   stop (   wmsg (  \"'name' must be a single string specifying the name \" ,  \"of the dataset in the HDF5 file\" ) )  if (   name ==  \"\" )   stop (   wmsg (  \"'name' cannot be the empty string\" ) )  if (  !   isSingleStringOrNA (  type ) )   stop (  \"'type' must be a single string or NA\" )   dim -   h5dim (  filepath ,  name )  if (   any (   dim ==  0L ) )  {  if (   is.na (  type ) )   stop (   wmsg (  \"This HDF5 dataset is empty! Don't know how to \" ,  \"determine the type of an empty HDF5 dataset at the \" ,  \"moment. Please use the 'type' argument to help me \" ,  \"(see '?HDF5Array' for more information).\" ) )   first_val -    match.fun (  type ) (  1 ) # fake value  if (  !   is.atomic (  first_val ) )   stop (   wmsg (  \"invalid type: \" ,  type ) ) } else  {   first_val -   .read_h5dataset_first_val (  filepath ,  name ,   length (  dim ) )   detected_type -   typeof (  first_val )  if (  !  (    is.na (  type ) ||   type ==  detected_type ) )   warning (   wmsg (  \"The type specified via the 'type' argument (\" ,  type ,  \") doesn't match the type of this HDF5 \" ,  \"dataset (\" ,  detected_type ,  \"). Ignoring the \" ,  \"former.\" ) ) }   chunkdim -   h5chunkdim (  filepath ,  name , adjust =  TRUE )   new2 (  \"HDF5ArraySeed\" , filepath =  filepath , name =  name , dim =  dim , first_val =  first_val , chunkdim =  chunkdim ) } ",
+    "filename": "HDF5Array-class.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "HDF5Array",
+    "representation": "HDF5Array",
+    "parameters": "function ( file , name , type = NA )",
+    "body": "{  if (   is (  file ,  \"HDF5ArraySeed\" ) )  {  if (  !  (    missing (  name ) undefined   identical (  type ,  NA ) ) )   stop (   wmsg (  \"HDF5Array() must be called with a single argument \" ,  \"when passed a HDF5ArraySeed object\" ) )   seed -  file } else  {   seed -   HDF5ArraySeed (  file ,  name , type =  type ) }   DelayedArray (  seed ) } ",
+    "filename": "HDF5Array-class.txt"
+  },
+  "new_function": {
+    "name": "HDF5Array",
+    "representation": "HDF5Array",
+    "parameters": "function ( filepath , name , type = NA )",
+    "body": "{  if (   is (  filepath ,  \"HDF5ArraySeed\" ) )  {  if (  !  (    missing (  name ) undefined   identical (  type ,  NA ) ) )   stop (   wmsg (  \"HDF5Array() must be called with a single argument \" ,  \"when passed an HDF5ArraySeed object\" ) )   seed -  filepath } else  {   seed -   HDF5ArraySeed (  filepath ,  name , type =  type ) }   DelayedArray (  seed ) } ",
+    "filename": "HDF5Array-class.txt"
+  }
+}
+
+4.
+{
+  "old_function": {
+    "name": "HDF5RealizationSink",
+    "representation": "HDF5RealizationSink",
+    "parameters": "function ( dim , dimnames = NULL , type = \"double\" , file = NULL , name = NULL , chunk_dim = NULL , level = NULL )",
+    "body": "{  if (   is.null (  file ) )  {   file -   getHDF5DumpFile ( for.use =  TRUE ) } else  {   file -   normalize_dump_file (  file ) }  if (   is.null (  name ) )  {   name -   getHDF5DumpName ( for.use =  TRUE ) } else  {   name -   normalize_dump_name (  name ) }  if (   is.null (  chunk_dim ) )  {   chunk_dim -   getHDF5DumpChunkDim (  dim ,  type ) } else  {   chunk_dim -   as.integer (  chunk_dim ) }  if (   is.null (  level ) )  {   level -   getHDF5DumpCompressionLevel ( ) } else  {   level -   normalize_compression_level (  level ) }   h5createDataset2 (  file ,  name ,  dim ,  type ,  chunk_dim ,  level )   appendDatasetCreationToHDF5DumpLog (  file ,  name ,  dim ,  type ,  chunk_dim ,  level )  if (   is.null (  dimnames ) )  {   dimnames -   vector (  \"list\" ,   length (  dim ) ) } else  { ## TODO: Write the dimnames to the HDF5 file. }   new2 (  \"HDF5RealizationSink\" , dim =  dim , dimnames =  dimnames , type =  type , file =  file , name =  name , chunk_dim =  chunk_dim ) } ",
+    "filename": "writeHDF5Array.txt"
+  },
+  "new_function": {
+    "name": "HDF5RealizationSink",
+    "representation": "HDF5RealizationSink",
+    "parameters": "function ( dim , dimnames = NULL , type = \"double\" , filepath = NULL , name = NULL , chunkdim = NULL , level = NULL )",
+    "body": "{  if (   is.null (  filepath ) )  {   filepath -   getHDF5DumpFile ( for.use =  TRUE ) } else  {   filepath -   normalize_dump_filepath (  filepath ) }  if (   is.null (  name ) )  {   name -   getHDF5DumpName ( for.use =  TRUE ) } else  {   name -   normalize_dump_name (  name ) }  if (   is.null (  chunkdim ) )  {   chunkdim -   getHDF5DumpChunkDim (  dim ,  type ) } else  {   chunkdim -   as.integer (  chunkdim ) }  if (   is.null (  level ) )  {   level -   getHDF5DumpCompressionLevel ( ) } else  {   level -   normalize_compression_level (  level ) }   h5createDataset2 (  filepath ,  name ,  dim ,  type ,  chunkdim ,  level )   appendDatasetCreationToHDF5DumpLog (  filepath ,  name ,  dim ,  type ,  chunkdim ,  level )  if (   is.null (  dimnames ) )  {   dimnames -   vector (  \"list\" ,   length (  dim ) ) } else  { ## TODO: Write the dimnames to the HDF5 file. }   new2 (  \"HDF5RealizationSink\" , dim =  dim , dimnames =  dimnames , type =  type , filepath =  filepath , name =  name , chunkdim =  chunkdim ) } ",
+    "filename": "writeHDF5Array.txt"
+  }
+}
+
+5.
+{
+  "old_function": {
+    "name": "writeHDF5Array",
+    "representation": "writeHDF5Array",
+    "parameters": "function ( x , file = NULL , name = NULL , chunk_dim = NULL , level = NULL , verbose = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  verbose ) )   stop (  \"'verbose' must be TRUE or FALSE\" )   sink -   HDF5RealizationSink (   dim (  x ) ,   dimnames (  x ) ,   type (  x ) , file =  file , name =  name , chunk_dim =  chunk_dim , level =  level )  if (  verbose )  {   old_verbose -   DelayedArray ::: set_verbose_block_processing (  verbose )   on.exit (   DelayedArray ::: set_verbose_block_processing (  old_verbose ) ) }   write_array_to_sink (  x ,  sink )   as (  sink ,  \"HDF5Array\" ) } ",
+    "filename": "writeHDF5Array.txt"
+  },
+  "new_function": {
+    "name": "writeHDF5Array",
+    "representation": "writeHDF5Array",
+    "parameters": "function ( x , filepath = NULL , name = NULL , chunkdim = NULL , level = NULL , verbose = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  verbose ) )   stop (  \"'verbose' must be TRUE or FALSE\" )   sink -   HDF5RealizationSink (   dim (  x ) ,   dimnames (  x ) ,   type (  x ) , filepath =  filepath , name =  name , chunkdim =  chunkdim , level =  level )  if (  verbose )  {   old_verbose -   DelayedArray ::: set_verbose_block_processing (  verbose )   on.exit (   DelayedArray ::: set_verbose_block_processing (  old_verbose ) ) }   write_array_to_sink (  x ,  sink )   as (  sink ,  \"HDF5Array\" ) } ",
+    "filename": "writeHDF5Array.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  hdf5array_release_3_7 hdf5array_release_3_8
+
+{
+    "package": "HDF5Array",
+    "release_versions": "hdf5array_release_3_7 hdf5array_release_3_8",
+    "desc_release_old": "1.8.1",
+    "desc_release_new": "1.10.1",
+    "old_release_number": 4,
+    "new_release_number": 5,
+    "function_removals": 1,
+    "function_additions": 18,
+    "parameter_removals": 1,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+write_block_to_sink
+
+
+##########
+Functions Added
+##########
+
+setHDF5DumpChunkLength
+getHDF5DumpChunkLength
+setHDF5DumpChunkShape
+getHDF5DumpChunkShape
+TENxMatrixSeed
+TENxMatrix
+TENxRealizationSink
+writeTENxMatrix
+extractNonzeroDataByCol
+type
+sparsity
+is_sparse
+extract_sparse_array
+read_sparse_block
+write_sparse_block
+write_block
+chunkdim
+close
+
+
+##########
+Removed Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "getHDF5DumpChunkDim",
+    "representation": "getHDF5DumpChunkDim",
+    "parameters": "function ( dim , type , ratio = 75 )",
+    "body": "{   max_block_len -   DelayedArray ::: get_max_block_length (  type )   chunk_len -   as.integer (   ceiling (   max_block_len /  ratio ) ) ## 'max_block_len' must be a multiple of 'chunk_len'.   stopifnot (    max_block_len %%  chunk_len ==  0L )   DelayedArray ::: get_spacings_for_linear_capped_length_blocks (  dim ,  chunk_len ) } ",
+    "filename": "dump-management.txt"
+  },
+  "new_function": {
+    "name": "getHDF5DumpChunkDim",
+    "representation": "getHDF5DumpChunkDim",
+    "parameters": "function ( dim )",
+    "body": "{   chunk_len -   getHDF5DumpChunkLength ( )   chunk_shape -   getHDF5DumpChunkShape ( )   makeCappedVolumeBox (  chunk_len ,  dim ,  chunk_shape ) } ",
+    "filename": "dump-management.txt"
+  }
+}
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "getHDF5DumpChunkDim",
+    "representation": "getHDF5DumpChunkDim",
+    "parameters": "function ( dim , type , ratio = 75 )",
+    "body": "{   max_block_len -   DelayedArray ::: get_max_block_length (  type )   chunk_len -   as.integer (   ceiling (   max_block_len /  ratio ) ) ## 'max_block_len' must be a multiple of 'chunk_len'.   stopifnot (    max_block_len %%  chunk_len ==  0L )   DelayedArray ::: get_spacings_for_linear_capped_length_blocks (  dim ,  chunk_len ) } ",
+    "filename": "dump-management.txt"
+  },
+  "new_function": {
+    "name": "getHDF5DumpChunkDim",
+    "representation": "getHDF5DumpChunkDim",
+    "parameters": "function ( dim )",
+    "body": "{   chunk_len -   getHDF5DumpChunkLength ( )   chunk_shape -   getHDF5DumpChunkShape ( )   makeCappedVolumeBox (  chunk_len ,  dim ,  chunk_shape ) } ",
+    "filename": "dump-management.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  hdf5array_release_3_8 hdf5array_release_3_9
+
+{
+    "package": "HDF5Array",
+    "release_versions": "hdf5array_release_3_8 hdf5array_release_3_9",
+    "desc_release_old": "1.10.1",
+    "desc_release_new": "1.12.3",
+    "old_release_number": 5,
+    "new_release_number": 6,
+    "function_removals": 0,
+    "function_additions": 3,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+get_h5mread_returned_type
+h5mread
+quickResaveHDF5SummarizedExperiment
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "saveHDF5SummarizedExperiment",
+    "representation": "saveHDF5SummarizedExperiment",
+    "parameters": "function ( x , dir = \"my_h5_se\" , replace = FALSE , chunkdim = NULL , level = NULL , verbose = FALSE )",
+    "body": "{   library (  SummarizedExperiment )  if (  !   is (  x ,  \"SummarizedExperiment\" ) )   stop (  \"'x' must be a SummarizedExperiment object\" )  if (  !   isSingleString (  dir ) )   stop (   wmsg (  \"'dir' must be a single string specifying the path \" ,  \"to the directory where to save the \" ,   class (  x ) ,  \" object (the directory will be created)\" ) )  if (  !   isTRUEorFALSE (  replace ) )   stop (  \"'replace' must be TRUE or FALSE\" )  if (  !   isTRUEorFALSE (  verbose ) )   stop (  \"'verbose' must be TRUE or FALSE\" )   .create_dir (  dir ,  replace )   h5_path -   file.path (  dir ,  \"assays.h5\" )    x @ assays -   .write_h5_assays (   x @ assays ,  h5_path ,  chunkdim ,  level ,  verbose )   rds_path -   file.path (  dir ,  \"se.rds\" )   ans -  x    x @ assays -   .shorten_h5_paths (   x @ assays )   saveRDS (  x , file =  rds_path )   invisible (  ans ) } ",
+    "filename": "saveHDF5SummarizedExperiment.txt"
+  },
+  "new_function": {
+    "name": "saveHDF5SummarizedExperiment",
+    "representation": "saveHDF5SummarizedExperiment",
+    "parameters": "function ( x , dir = \"my_h5_se\" , prefix = \"\" , replace = FALSE , chunkdim = NULL , level = NULL , verbose = FALSE )",
+    "body": "{   .load_SummarizedExperiment_package ( )  if (  !   is (  x ,  \"SummarizedExperiment\" ) )   stop (   wmsg (  \"'x' must be a SummarizedExperiment object\" ) )  if (  !   isSingleString (  dir ) )   stop (   wmsg (  \"'dir' must be a single string specifying the path \" ,  \"to the directory where to save the \" ,   class (  x ) ,  \" object (the directory will be created if needed)\" ) )  if (  !   isSingleString (  prefix ) )   stop (   wmsg (  \"'prefix' must be a single string\" ) )  if (  !   isTRUEorFALSE (  replace ) )   stop (   wmsg (  \"'replace' must be TRUE or FALSE\" ) )  if (  !   dir.exists (  dir ) )  {   .create_dir (  dir ) } else  if (   prefix ==  \"\" )  {   .replace_dir (  dir ,  replace ) }   rds_path -   file.path (  dir ,   paste0 (  prefix ,  .SE_RDS_BASENAME ) )   h5_path -   file.path (  dir ,   paste0 (  prefix ,  .ASSAYS_H5_BASENAME ) )  if (   prefix !=  \"\" )   .check_and_delete_files (  rds_path ,  h5_path ,  replace )   .write_HDF5SummarizedExperiment (  x , rds_path =  rds_path , h5_path =  h5_path , chunkdim =  chunkdim , level =  level , verbose =  verbose ) } ",
+    "filename": "saveHDF5SummarizedExperiment.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  hdf5array_release_3_9 hdf5array_release_3_11
+
+{
+    "package": "HDF5Array",
+    "release_versions": "hdf5array_release_3_9 hdf5array_release_3_11",
+    "desc_release_old": "1.12.3",
+    "desc_release_new": "1.16.1",
+    "old_release_number": 6,
+    "new_release_number": 7,
+    "function_removals": 0,
+    "function_additions": 10,
+    "parameter_removals": 1,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 2,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+H5DSetDescriptor
+destroy_H5DSetDescriptor
+h5mread_from_reshaped
+set_h5dimnames
+get_h5dimnames
+h5writeDimnames
+h5readDimnames
+ReshapedHDF5ArraySeed
+ReshapedHDF5Array
+show
+
+
+##########
+Removed Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "h5mread",
+    "representation": "h5mread",
+    "parameters": "function ( filepath , name , starts , counts = NULL , noreduce = FALSE , as.integer = FALSE , method = 0L )",
+    "body": "{   stopifnot (   is.list (  starts ) )  if (   is.null (  counts ) )  { ## Round the 'starts'.   starts0 -   lapply (  starts ,  function ( start )  {  if (   is.null (  start ) )   return (  NULL )  if (  !   is.numeric (  start ) )   stop (   wmsg (  \"each list element in 'starts' must \" ,  \"be NULL or a numeric vector\" ) )  if (  !   is.integer (  start ) )   start -   round (  start )  start } )   ok -   vapply (  starts0 ,  function ( start )    is.null (  start ) ||   isStrictlySorted (  start ) ,   logical (  1 ) )   starts -   lapply (   seq_along (  starts0 ) ,  function ( i )  {   start -   starts0 [[  i ] ]  if (   ok [[  i ] ] )   return (  start )   unique (   sort (  start ) ) } ) }   ans -   .Call (  \"C_h5mread\" ,  filepath ,  name ,  starts ,  counts ,  noreduce ,  as.integer ,  method , PACKAGE =  \"HDF5Array\" )  if (  !   is.null (  counts ) )   return (  ans )   Nindex -   lapply (   seq_along (  starts0 ) ,  function ( i )  {  if (   ok [[  i ] ] )   return (  NULL )   match (   starts0 [[  i ] ] ,   starts [[  i ] ] ) } )   DelayedArray ::: subset_by_Nindex (  ans ,  Nindex , drop =  FALSE ) } ",
+    "filename": "h5mread.txt"
+  },
+  "new_function": {
+    "name": "h5mread",
+    "representation": "h5mread",
+    "parameters": "function ( filepath , name , starts = NULL , counts = NULL , noreduce = FALSE , as.integer = FALSE , method = 0L )",
+    "body": "{  if (   is.null (  starts ) )  {  if (  !   is.null (  counts ) )   stop (   wmsg (  \"'counts' must be NULL when 'starts' is NULL\" ) ) } else  if (   is.list (  starts ) )  {   order_starts -    is.null (  counts ) undefined  !   all (   S4Vectors ::: sapply_isNULL (  starts ) )  if (  order_starts )  { ## Round the 'starts'.   starts0 -   lapply (  starts ,  function ( start )  {  if (   is.null (  start ) )   return (  NULL )  if (  !   is.numeric (  start ) )   stop (   wmsg (  \"each list element in 'starts' must \" ,  \"be NULL or a numeric vector\" ) )  if (  !   is.integer (  start ) )   start -   round (  start )  start } )   ok -   vapply (  starts0 ,  function ( start0 )    is.null (  start0 ) ||   isStrictlySorted (  start0 ) ,   logical (  1 ) )   order_starts -  !   all (  ok )  if (  order_starts )  {   starts -   lapply (   seq_along (  starts0 ) ,  function ( i )  {   start0 -   starts0 [[  i ] ]  if (   ok [[  i ] ] )   return (  start0 )   unique (   sort (  start0 ) ) } ) } else  {   starts -  starts0 } } } else  {   stop (   wmsg (  \"'starts' must be a list (or NULL)\" ) ) }   ans -   .Call2 (  \"C_h5mread\" ,  filepath ,  name ,  starts ,  counts ,  noreduce ,  as.integer ,  method , PACKAGE =  \"HDF5Array\" )  if (    is.null (  starts ) ||  !  order_starts )   return (  ans )   Nindex -   lapply (   seq_along (  starts0 ) ,  function ( i )  {  if (   ok [[  i ] ] )   return (  NULL )   match (   starts0 [[  i ] ] ,   starts [[  i ] ] ) } )   DelayedArray ::: subset_by_Nindex (  ans ,  Nindex , drop =  FALSE ) } ",
+    "filename": "h5mread.txt"
+  }
+}
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "HDF5RealizationSink",
+    "representation": "HDF5RealizationSink",
+    "parameters": "function ( dim , dimnames = NULL , type = \"double\" , filepath = NULL , name = NULL , chunkdim = NULL , level = NULL )",
+    "body": "{  if (   is.null (  filepath ) )  {   filepath -   getHDF5DumpFile ( for.use =  TRUE ) } else  {   filepath -   normalize_dump_filepath (  filepath ) }  if (   is.null (  name ) )  {   name -   getHDF5DumpName ( for.use =  TRUE ) } else  {   name -   normalize_dump_name (  name ) }  if (   is.null (  chunkdim ) )  { ## TODO: Pass 'x' instead of 'dim' to getHDF5DumpChunkDim() and modify ## getHDF5DumpChunkDim() to return 'chunkdim(x)' if it's not NULL. ## See TODO comment in dump-management.R   chunkdim -   getHDF5DumpChunkDim (  dim ) } else  {   chunkdim -   .normarg_chunkdim (  chunkdim ,  dim ) }  if (   is.null (  level ) )  {   level -   getHDF5DumpCompressionLevel ( ) } else  {   level -   normalize_compression_level (  level ) }   create_and_log_HDF5_dataset (  filepath ,  name ,  dim , type =  type , chunkdim =  chunkdim , level =  level )  if (   is.null (  dimnames ) )  {   dimnames -   vector (  \"list\" ,   length (  dim ) ) } else  { ## TODO: Write the dimnames to the HDF5 file. }   new2 (  \"HDF5RealizationSink\" , dim =  dim , dimnames =  dimnames , type =  type , filepath =  filepath , name =  name , chunkdim =  chunkdim ) } ",
+    "filename": "writeHDF5Array.txt"
+  },
+  "new_function": {
+    "name": "HDF5RealizationSink",
+    "representation": "HDF5RealizationSink",
+    "parameters": "function ( dim , dimnames = NULL , type = \"double\" , filepath = NULL , name = NULL , H5type = NULL , size = NULL , chunkdim = NULL , level = NULL )",
+    "body": "{  if (   is.null (  filepath ) )  {   filepath -   getHDF5DumpFile ( for.use =  TRUE ) } else  {   filepath -   normalize_dump_filepath (  filepath ) }  if (   is.null (  name ) )  {   name -   getHDF5DumpName ( for.use =  TRUE ) } else  {   name -   normalize_dump_name (  name ) }  if (   is.null (  chunkdim ) )  { ## TODO: Pass 'x' instead of 'dim' to getHDF5DumpChunkDim() and modify ## getHDF5DumpChunkDim() to return 'chunkdim(x)' if it's not NULL. ## See TODO comment in dump-management.R   chunkdim -   getHDF5DumpChunkDim (  dim ) } else  if (    isSingleNumber (  chunkdim ) undefined   chunkdim ==  0 )  {   chunkdim -  NULL # no chunking } else  {   chunkdim -   .normarg_chunkdim (  chunkdim ,  dim ) }  if (   is.null (  level ) )  {  if (   is.null (  chunkdim ) )  {   level -  0L } else  {   level -   getHDF5DumpCompressionLevel ( ) } } else  {   level -   normalize_compression_level (  level ) }   create_and_log_HDF5_dataset (  filepath ,  name ,  dim , type =  type , H5type =  H5type , size =  size , chunkdim =  chunkdim , level =  level )  if (   is.null (  dimnames ) )  {   dimnames -   vector (  \"list\" ,   length (  dim ) ) } else  {   h5writeDimnames (  dimnames ,  filepath ,  name ) }   new2 (  \"HDF5RealizationSink\" , dim =  dim , dimnames =  dimnames , type =  type , filepath =  filepath , name =  name , chunkdim =  chunkdim ) } ",
+    "filename": "writeHDF5Array.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "writeHDF5Array",
+    "representation": "writeHDF5Array",
+    "parameters": "function ( x , filepath = NULL , name = NULL , chunkdim = NULL , level = NULL , verbose = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  verbose ) )   stop (  \"'verbose' must be TRUE or FALSE\" )   sink -   HDF5RealizationSink (   dim (  x ) ,   dimnames (  x ) ,   type (  x ) , filepath =  filepath , name =  name , chunkdim =  chunkdim , level =  level )  if (  verbose )  {   old_verbose -   DelayedArray ::: set_verbose_block_processing (  verbose )   on.exit (   DelayedArray ::: set_verbose_block_processing (  old_verbose ) ) }   BLOCK_write_to_sink (  x ,  sink )   as (  sink ,  \"HDF5Array\" ) } ",
+    "filename": "writeHDF5Array.txt"
+  },
+  "new_function": {
+    "name": "writeHDF5Array",
+    "representation": "writeHDF5Array",
+    "parameters": "function ( x , filepath = NULL , name = NULL , H5type = NULL , chunkdim = NULL , level = NULL , with.dimnames = FALSE , verbose = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  with.dimnames ) )   stop (  \"'with.dimnames' must be TRUE or FALSE\" )  if (  !   isTRUEorFALSE (  verbose ) )   stop (  \"'verbose' must be TRUE or FALSE\" )   sink_dimnames -  if (  with.dimnames )   dimnames (  x ) else  NULL ## compute_max_string_size() will trigger block processing if 'x' is a ## DelayedArray object of type \"character\", so it could take a while.   size -   compute_max_string_size (  x )   sink -   HDF5RealizationSink (   dim (  x ) ,  sink_dimnames ,   type (  x ) , filepath =  filepath , name =  name , H5type =  H5type , size =  size , chunkdim =  chunkdim , level =  level )  if (  verbose )  {   old_verbose -   DelayedArray ::: set_verbose_block_processing (  verbose )   on.exit (   DelayedArray ::: set_verbose_block_processing (  old_verbose ) ) }   BLOCK_write_to_sink (  x ,  sink )   as (  sink ,  \"HDF5Array\" ) } ",
+    "filename": "writeHDF5Array.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  hdf5array_release_3_11 hdf5array_release_3_12
+
+{
+    "package": "HDF5Array",
+    "release_versions": "hdf5array_release_3_11 hdf5array_release_3_12",
+    "desc_release_old": "1.16.1",
+    "desc_release_new": "1.18.1",
+    "old_release_number": 7,
+    "new_release_number": 8,
+    "function_removals": 1,
+    "function_additions": 2,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 8,
+    "total_count": 9
+}
+
+##########
+Functions Removed
+##########
+
+write_sparse_block
+
+
+##########
+Functions Added
+##########
+
+updateObject
+is_sparse<-
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "h5mread",
+    "representation": "h5mread",
+    "parameters": "function ( filepath , name , starts = NULL , counts = NULL , noreduce = FALSE , as.integer = FALSE , method = 0L )",
+    "body": "{  if (   is.null (  starts ) )  {  if (  !   is.null (  counts ) )   stop (   wmsg (  \"'counts' must be NULL when 'starts' is NULL\" ) ) } else  if (   is.list (  starts ) )  {   order_starts -    is.null (  counts ) undefined  !   all (   S4Vectors ::: sapply_isNULL (  starts ) )  if (  order_starts )  { ## Round the 'starts'.   starts0 -   lapply (  starts ,  function ( start )  {  if (   is.null (  start ) )   return (  NULL )  if (  !   is.numeric (  start ) )   stop (   wmsg (  \"each list element in 'starts' must \" ,  \"be NULL or a numeric vector\" ) )  if (  !   is.integer (  start ) )   start -   round (  start )  start } )   ok -   vapply (  starts0 ,  function ( start0 )    is.null (  start0 ) ||   isStrictlySorted (  start0 ) ,   logical (  1 ) )   order_starts -  !   all (  ok )  if (  order_starts )  {   starts -   lapply (   seq_along (  starts0 ) ,  function ( i )  {   start0 -   starts0 [[  i ] ]  if (   ok [[  i ] ] )   return (  start0 )   unique (   sort (  start0 ) ) } ) } else  {   starts -  starts0 } } } else  {   stop (   wmsg (  \"'starts' must be a list (or NULL)\" ) ) }   ans -   .Call2 (  \"C_h5mread\" ,  filepath ,  name ,  starts ,  counts ,  noreduce ,  as.integer ,  method , PACKAGE =  \"HDF5Array\" )  if (    is.null (  starts ) ||  !  order_starts )   return (  ans )   Nindex -   lapply (   seq_along (  starts0 ) ,  function ( i )  {  if (   ok [[  i ] ] )   return (  NULL )   match (   starts0 [[  i ] ] ,   starts [[  i ] ] ) } )   DelayedArray ::: subset_by_Nindex (  ans ,  Nindex , drop =  FALSE ) } ",
+    "filename": "h5mread.txt"
+  },
+  "new_function": {
+    "name": "h5mread",
+    "representation": "h5mread",
+    "parameters": "function ( filepath , name , starts = NULL , counts = NULL , noreduce = FALSE , as.integer = FALSE , as.sparse = FALSE , method = 0L )",
+    "body": "{   filepath -   normarg_path (  filepath ,  \"'filepath'\" ,  \"HDF5 dataset\" )  if (  !   isSingleString (  name ) )   stop (   wmsg (  \"'name' must be a single string specifying \" ,  \"the name of the dataset in the HDF5 file\" ) )  if (   name ==  \"\" )   stop (   wmsg (  \"'name' cannot be the empty string\" ) )  if (  !   isTRUEorFALSE (  as.sparse ) )   stop (   wmsg (  \"'as.sparse' must be TRUE or FALSE\" ) )  if (   is.null (  starts ) )  {  if (  !   is.null (  counts ) )   stop (   wmsg (  \"'counts' must be NULL when 'starts' is NULL\" ) ) } else  if (   is.list (  starts ) )  {   order_starts -    is.null (  counts ) undefined  !   all (   S4Vectors ::: sapply_isNULL (  starts ) )  if (  order_starts )  { ## Round the 'starts'.   starts0 -   lapply (  starts ,  function ( start )  {  if (   is.null (  start ) )   return (  NULL )  if (  !   is.numeric (  start ) )   stop (   wmsg (  \"each list element in 'starts' must \" ,  \"be NULL or a numeric vector\" ) )  if (  !   is.integer (  start ) )   start -   round (  start )  start } )   ok -   vapply (  starts0 ,  function ( start0 )    is.null (  start0 ) ||   isStrictlySorted (  start0 ) ,   logical (  1 ) )   order_starts -  !   all (  ok )  if (  order_starts )  {   starts -   lapply (   seq_along (  starts0 ) ,  function ( i )  {   start0 -   starts0 [[  i ] ]  if (   ok [[  i ] ] )   return (  start0 )   start0 -   sort (  start0 )   start -   unique (  start0 )  if (   as.sparse undefined    length (  start ) !=   length (  start0 ) )   stop (   wmsg (  \"when 'as.sparse' is TRUE, list \" ,  \"elements in 'starts' are not allowed \" ,  \"to contain duplicates\" ) )  start } ) } else  {   starts -  starts0 } } } else  {   stop (   wmsg (  \"'starts' must be a list (or NULL)\" ) ) } ## C_h5mread() will return an ordinary array if 'as.sparse' is FALSE, ## or 'list(nzindex, nzdata, ans_dim)' if it's TRUE.   ans -   .Call2 (  \"C_h5mread\" ,  filepath ,  name ,  starts ,  counts ,  noreduce ,  as.integer ,  as.sparse ,  method , PACKAGE =  \"HDF5Array\" )  if (  as.sparse )   ans -   SparseArraySeed (   ans [[  3L ] ] ,   ans [[  1L ] ] ,   ans [[  2L ] ] , check =  FALSE )  if (    is.null (  starts ) ||  !  order_starts )   return (  ans )   index -   lapply (   seq_along (  starts0 ) ,  function ( i )  {  if (   ok [[  i ] ] )   return (  NULL )   match (   starts0 [[  i ] ] ,   starts [[  i ] ] ) } )  if (  as.sparse )  {   extract_sparse_array (  ans ,  index ) } else  {   extract_array (  ans ,  index ) } } ",
+    "filename": "h5mread.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "HDF5Array",
+    "representation": "HDF5Array",
+    "parameters": "function ( filepath , name , type = NA )",
+    "body": "{  if (   is (  filepath ,  \"HDF5ArraySeed\" ) )  {  if (  !  (    missing (  name ) undefined   identical (  type ,  NA ) ) )   stop (   wmsg (  \"HDF5Array() must be called with a single argument \" ,  \"when passed an HDF5ArraySeed object\" ) )   seed -  filepath } else  {   seed -   HDF5ArraySeed (  filepath ,  name , type =  type ) }   DelayedArray (  seed ) } ",
+    "filename": "HDF5Array-class.txt"
+  },
+  "new_function": {
+    "name": "HDF5Array",
+    "representation": "HDF5Array",
+    "parameters": "function ( filepath , name , as.sparse = FALSE , type = NA )",
+    "body": "{  if (   is (  filepath ,  \"HDF5ArraySeed\" ) )  {  if (  !  (     missing (  name ) undefined   identical (  as.sparse ,  FALSE ) undefined   identical (  type ,  NA ) ) )   stop (   wmsg (  \"HDF5Array() must be called with a single argument \" ,  \"when passed an HDF5ArraySeed object\" ) )   seed -  filepath } else  {   seed -   HDF5ArraySeed (  filepath ,  name , as.sparse =  as.sparse , type =  type ) }   DelayedArray (  seed ) } ",
+    "filename": "HDF5Array-class.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "HDF5ArraySeed",
+    "representation": "HDF5ArraySeed",
+    "parameters": "function ( filepath , name , type = NA )",
+    "body": "{ ## Check 'filepath'.   filepath -   normarg_path (  filepath ,  \"'filepath'\" ,  \"HDF5 dataset\" ) ## Check 'name'.  if (  !   isSingleString (  name ) )   stop (   wmsg (  \"'name' must be a single string specifying \" ,  \"the name of the dataset in the HDF5 file\" ) )  if (   name ==  \"\" )   stop (   wmsg (  \"'name' cannot be the empty string\" ) ) ## Check 'type'  if (  !   isSingleStringOrNA (  type ) )   stop (   wmsg (  \"'type' must be a single string or NA\" ) )  if (   is.na (  type ) )  {   type -   as.character (  type ) } else  if (   type !=  \"list\" )  {   tmp -   try (   vector (  type ) , silent =  TRUE )  if (    inherits (  tmp ,  \"try-error\" ) ||  !   is.atomic (  tmp ) )   stop (   wmsg (  \"'type' must be an R atomic type \" ,  \"(e.g. \\\"integer\\\") or \\\"list\\\"\" ) ) }   dim -   h5dim (  filepath ,  name )   chunkdim -   h5chunkdim (  filepath ,  name , adjust =  TRUE )   first_val -   .read_h5dataset_first_val (  filepath ,  name ,  dim )   new2 (  \"HDF5ArraySeed\" , filepath =  filepath , name =  name , type =  type , dim =  dim , chunkdim =  chunkdim , first_val =  first_val ) } ",
+    "filename": "HDF5ArraySeed-class.txt"
+  },
+  "new_function": {
+    "name": "HDF5ArraySeed",
+    "representation": "HDF5ArraySeed",
+    "parameters": "function ( filepath , name , as.sparse = FALSE , type = NA )",
+    "body": "{ ## Check 'filepath'.   filepath -   normarg_path (  filepath ,  \"'filepath'\" ,  \"HDF5 dataset\" ) ## Check 'name'.  if (  !   isSingleString (  name ) )   stop (   wmsg (  \"'name' must be a single string specifying \" ,  \"the name of the dataset in the HDF5 file\" ) )  if (   name ==  \"\" )   stop (   wmsg (  \"'name' cannot be the empty string\" ) ) ## Check 'as.sparse'.  if (  !   isTRUEorFALSE (  as.sparse ) )   stop (   wmsg (  \"'as.sparse' must be TRUE or FALSE\" ) ) ## Check 'type'  if (  !   isSingleStringOrNA (  type ) )   stop (   wmsg (  \"'type' must be a single string or NA\" ) )  if (   is.na (  type ) )  {   type -   as.character (  type ) } else  if (   type !=  \"list\" )  {   tmp -   try (   vector (  type ) , silent =  TRUE )  if (    inherits (  tmp ,  \"try-error\" ) ||  !   is.atomic (  tmp ) )   stop (   wmsg (  \"'type' must be an R atomic type \" ,  \"(e.g. \\\"integer\\\") or \\\"list\\\"\" ) ) }   dim -   h5dim (  filepath ,  name )   chunkdim -   h5chunkdim (  filepath ,  name , adjust =  TRUE )   first_val -   .read_h5dataset_first_val (  filepath ,  name ,  dim )   new2 (  \"HDF5ArraySeed\" , filepath =  filepath , name =  name , as_sparse =  as.sparse , type =  type , dim =  dim , chunkdim =  chunkdim , first_val =  first_val ) } ",
+    "filename": "HDF5ArraySeed-class.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "saveHDF5SummarizedExperiment",
+    "representation": "saveHDF5SummarizedExperiment",
+    "parameters": "function ( x , dir = \"my_h5_se\" , prefix = \"\" , replace = FALSE , chunkdim = NULL , level = NULL , verbose = FALSE )",
+    "body": "{   .load_SummarizedExperiment_package ( )  if (  !   is (  x ,  \"SummarizedExperiment\" ) )   stop (   wmsg (  \"'x' must be a SummarizedExperiment object\" ) )  if (  !   isSingleString (  dir ) )   stop (   wmsg (  \"'dir' must be a single string specifying the path \" ,  \"to the directory where to save the \" ,   class (  x ) ,  \" object (the directory will be created if needed)\" ) )  if (  !   isSingleString (  prefix ) )   stop (   wmsg (  \"'prefix' must be a single string\" ) )  if (  !   isTRUEorFALSE (  replace ) )   stop (   wmsg (  \"'replace' must be TRUE or FALSE\" ) )  if (  !   dir.exists (  dir ) )  {   .create_dir (  dir ) } else  if (   prefix ==  \"\" )  {   .replace_dir (  dir ,  replace ) }   rds_path -   file.path (  dir ,   paste0 (  prefix ,  .SE_RDS_BASENAME ) )   h5_path -   file.path (  dir ,   paste0 (  prefix ,  .ASSAYS_H5_BASENAME ) )  if (   prefix !=  \"\" )   .check_and_delete_files (  rds_path ,  h5_path ,  replace )   .write_HDF5SummarizedExperiment (  x , rds_path =  rds_path , h5_path =  h5_path , chunkdim =  chunkdim , level =  level , verbose =  verbose ) } ",
+    "filename": "saveHDF5SummarizedExperiment.txt"
+  },
+  "new_function": {
+    "name": "saveHDF5SummarizedExperiment",
+    "representation": "saveHDF5SummarizedExperiment",
+    "parameters": "function ( x , dir = \"my_h5_se\" , prefix = \"\" , replace = FALSE , chunkdim = NULL , level = NULL , as.sparse = NA , verbose = NA )",
+    "body": "{   .load_SummarizedExperiment_package ( )  if (  !   is (  x ,  \"SummarizedExperiment\" ) )   stop (   wmsg (  \"'x' must be a SummarizedExperiment object\" ) )  if (  !   isSingleString (  dir ) )   stop (   wmsg (  \"'dir' must be a single string specifying the path \" ,  \"to the directory where to save the \" ,   class (  x ) ,  \" object (the directory will be created if needed)\" ) )  if (  !   isSingleString (  prefix ) )   stop (   wmsg (  \"'prefix' must be a single string\" ) )  if (  !   isTRUEorFALSE (  replace ) )   stop (   wmsg (  \"'replace' must be TRUE or FALSE\" ) )   verbose -   DelayedArray ::: normarg_verbose (  verbose )  if (  !   dir.exists (  dir ) )  {   .create_dir (  dir ) } else  if (   prefix ==  \"\" )  {   .replace_dir (  dir ,  replace ) }   rds_path -   file.path (  dir ,   paste0 (  prefix ,  .SE_RDS_BASENAME ) )   h5_path -   file.path (  dir ,   paste0 (  prefix ,  .ASSAYS_H5_BASENAME ) )  if (   prefix !=  \"\" )   .check_and_delete_files (  rds_path ,  h5_path ,  replace )   .write_HDF5SummarizedExperiment (  x , rds_path =  rds_path , h5_path =  h5_path , chunkdim =  chunkdim , level =  level , as.sparse =  as.sparse , verbose =  verbose ) } ",
+    "filename": "saveHDF5SummarizedExperiment.txt"
+  }
+}
+
+4.
+{
+  "old_function": {
+    "name": "HDF5RealizationSink",
+    "representation": "HDF5RealizationSink",
+    "parameters": "function ( dim , dimnames = NULL , type = \"double\" , filepath = NULL , name = NULL , H5type = NULL , size = NULL , chunkdim = NULL , level = NULL )",
+    "body": "{  if (   is.null (  filepath ) )  {   filepath -   getHDF5DumpFile ( for.use =  TRUE ) } else  {   filepath -   normalize_dump_filepath (  filepath ) }  if (   is.null (  name ) )  {   name -   getHDF5DumpName ( for.use =  TRUE ) } else  {   name -   normalize_dump_name (  name ) }  if (   is.null (  chunkdim ) )  { ## TODO: Pass 'x' instead of 'dim' to getHDF5DumpChunkDim() and modify ## getHDF5DumpChunkDim() to return 'chunkdim(x)' if it's not NULL. ## See TODO comment in dump-management.R   chunkdim -   getHDF5DumpChunkDim (  dim ) } else  if (    isSingleNumber (  chunkdim ) undefined   chunkdim ==  0 )  {   chunkdim -  NULL # no chunking } else  {   chunkdim -   .normarg_chunkdim (  chunkdim ,  dim ) }  if (   is.null (  level ) )  {  if (   is.null (  chunkdim ) )  {   level -  0L } else  {   level -   getHDF5DumpCompressionLevel ( ) } } else  {   level -   normalize_compression_level (  level ) }   create_and_log_HDF5_dataset (  filepath ,  name ,  dim , type =  type , H5type =  H5type , size =  size , chunkdim =  chunkdim , level =  level )  if (   is.null (  dimnames ) )  {   dimnames -   vector (  \"list\" ,   length (  dim ) ) } else  {   h5writeDimnames (  dimnames ,  filepath ,  name ) }   new2 (  \"HDF5RealizationSink\" , dim =  dim , dimnames =  dimnames , type =  type , filepath =  filepath , name =  name , chunkdim =  chunkdim ) } ",
+    "filename": "writeHDF5Array.txt"
+  },
+  "new_function": {
+    "name": "HDF5RealizationSink",
+    "representation": "HDF5RealizationSink",
+    "parameters": "function ( dim , dimnames = NULL , type = \"double\" , as.sparse = FALSE , filepath = NULL , name = NULL , H5type = NULL , size = NULL , chunkdim = NULL , level = NULL )",
+    "body": "{  if (  !   isTRUEorFALSE (  as.sparse ) )   stop (   wmsg (  \"'as.sparse' must be TRUE or FALSE\" ) )  if (   is.null (  filepath ) )  {   filepath -   getHDF5DumpFile ( for.use =  TRUE ) } else  {   filepath -   normalize_dump_filepath (  filepath ) }  if (   is.null (  name ) )  {   name -   getHDF5DumpName ( for.use =  TRUE ) } else  {   name -   normalize_dump_name (  name ) }  if (   is.null (  chunkdim ) )  { ## TODO: Pass 'x' instead of 'dim' to getHDF5DumpChunkDim() and modify ## getHDF5DumpChunkDim() to return 'chunkdim(x)' if it's not NULL. ## See TODO comment in dump-management.R   chunkdim -   getHDF5DumpChunkDim (  dim ) } else  if (    isSingleNumber (  chunkdim ) undefined   chunkdim ==  0 )  {   chunkdim -  NULL # no chunking } else  {   chunkdim -   .normarg_chunkdim (  chunkdim ,  dim ) }  if (   is.null (  level ) )  {  if (   is.null (  chunkdim ) )  {   level -  0L } else  {   level -   getHDF5DumpCompressionLevel ( ) } } else  {   level -   normalize_compression_level (  level ) }   create_and_log_HDF5_dataset (  filepath ,  name ,  dim , type =  type , H5type =  H5type , size =  size , chunkdim =  chunkdim , level =  level )  if (   is.null (  dimnames ) )  {   dimnames -   vector (  \"list\" ,   length (  dim ) ) } else  {   h5writeDimnames (  dimnames ,  filepath ,  name ) }   new2 (  \"HDF5RealizationSink\" , dim =  dim , dimnames =  dimnames , type =  type , as_sparse =  as.sparse , filepath =  filepath , name =  name , chunkdim =  chunkdim ) } ",
+    "filename": "writeHDF5Array.txt"
+  }
+}
+
+5.
+{
+  "old_function": {
+    "name": "write_block",
+    "representation": "write_block",
+    "signature": "HDF5RealizationSink",
+    "parameters": "function ( x , viewport , block )",
+    "body": "{   h5write (  block ,   x @ filepath ,   x @ name , start =   start (  viewport ) , count =   width (  viewport ) ) } ",
+    "filename": "writeHDF5Array.txt"
+  },
+  "new_function": {
+    "name": "write_block",
+    "representation": "write_block",
+    "signature": "HDF5RealizationSink",
+    "parameters": "function ( sink , viewport , block )",
+    "body": "{  if (  !   is.array (  block ) )   block -   as.array (  block )   h5write (  block ,   sink @ filepath ,   sink @ name , start =   start (  viewport ) , count =   width (  viewport ) )  sink } ",
+    "filename": "writeHDF5Array.txt"
+  }
+}
+
+6.
+{
+  "old_function": {
+    "name": "write_block",
+    "representation": "write_block",
+    "signature": "TENxRealizationSink",
+    "parameters": "function ( x , viewport , block )",
+    "body": "{   sparse_block -   dense2sparse (  block )   write_sparse_block (  x ,  viewport ,  sparse_block ) } ",
+    "filename": "writeTENxMatrix.txt"
+  },
+  "new_function": {
+    "name": "write_block",
+    "representation": "write_block",
+    "signature": "TENxRealizationSink",
+    "parameters": "function ( sink , viewport , block )",
+    "body": "{   .check_viewport (  viewport ,  sink )  if (  !   is (  block ,  \"SparseArraySeed\" ) )   block -   as (  block ,  \"SparseArraySeed\" ) ## Append the nonzero data.   new_data_len1 -   .append_data (   sink @ filepath ,   sink @ group ,   block @ nzdata ) ## Append the 0-based row indices of the nonzero data.   new_data_len2 -   .append_row_indices (   sink @ filepath ,   sink @ group ,     block @ nzindex [ ,  1L ] -  1L )   stopifnot (   new_data_len2 ==  new_data_len1 ) # sanity check ## Append the \"indptr\" values.   new_data_len3 -   .append_indptr (   sink @ filepath ,   sink @ group ,    block @ nzindex [ ,  2L ] ,   ncol (  viewport ) )   stopifnot (   new_data_len3 ==  new_data_len1 ) # sanity check  sink } ",
+    "filename": "writeTENxMatrix.txt"
+  }
+}
+
+7.
+{
+  "old_function": {
+    "name": "writeHDF5Array",
+    "representation": "writeHDF5Array",
+    "parameters": "function ( x , filepath = NULL , name = NULL , H5type = NULL , chunkdim = NULL , level = NULL , with.dimnames = FALSE , verbose = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  with.dimnames ) )   stop (  \"'with.dimnames' must be TRUE or FALSE\" )  if (  !   isTRUEorFALSE (  verbose ) )   stop (  \"'verbose' must be TRUE or FALSE\" )   sink_dimnames -  if (  with.dimnames )   dimnames (  x ) else  NULL ## compute_max_string_size() will trigger block processing if 'x' is a ## DelayedArray object of type \"character\", so it could take a while.   size -   compute_max_string_size (  x )   sink -   HDF5RealizationSink (   dim (  x ) ,  sink_dimnames ,   type (  x ) , filepath =  filepath , name =  name , H5type =  H5type , size =  size , chunkdim =  chunkdim , level =  level )  if (  verbose )  {   old_verbose -   DelayedArray ::: set_verbose_block_processing (  verbose )   on.exit (   DelayedArray ::: set_verbose_block_processing (  old_verbose ) ) }   BLOCK_write_to_sink (  x ,  sink )   as (  sink ,  \"HDF5Array\" ) } ",
+    "filename": "writeHDF5Array.txt"
+  },
+  "new_function": {
+    "name": "writeHDF5Array",
+    "representation": "writeHDF5Array",
+    "parameters": "function ( x , filepath = NULL , name = NULL , H5type = NULL , chunkdim = NULL , level = NULL , as.sparse = NA , with.dimnames = FALSE , verbose = NA )",
+    "body": "{  if (  !  (    is.logical (  as.sparse ) undefined    length (  as.sparse ) ==  1L ) )   stop (   wmsg (  \"'as.sparse' must be NA, TRUE or FALSE\" ) )  if (  !   isTRUEorFALSE (  with.dimnames ) )   stop (  \"'with.dimnames' must be TRUE or FALSE\" )   verbose -   DelayedArray ::: normarg_verbose (  verbose )  if (   is.na (  as.sparse ) )   as.sparse -   is_sparse (  x )   sink_dimnames -  if (  with.dimnames )   dimnames (  x ) else  NULL ## compute_max_string_size() will trigger block processing if 'x' is a ## DelayedArray object of type \"character\", so it could take a while.   size -   compute_max_string_size (  x )   sink -   HDF5RealizationSink (   dim (  x ) ,  sink_dimnames ,   type (  x ) ,  as.sparse , filepath =  filepath , name =  name , H5type =  H5type , size =  size , chunkdim =  chunkdim , level =  level )   sink -   BLOCK_write_to_sink (  sink ,  x , verbose =  verbose )   as (  sink ,  \"HDF5Array\" ) } ",
+    "filename": "writeHDF5Array.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  hdf5array_release_3_12 hdf5array_release_3_13
+
+{
+    "package": "HDF5Array",
+    "release_versions": "hdf5array_release_3_12 hdf5array_release_3_13",
+    "desc_release_old": "1.18.1",
+    "desc_release_new": "1.20.0",
+    "old_release_number": 8,
+    "new_release_number": 9,
+    "function_removals": 0,
+    "function_additions": 25,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+close.H5FileID
+close.H5File
+open.H5FileID
+open.H5File
+t.CSC_H5SparseMatrixSeed
+t.CSR_H5SparseMatrixSeed
+t.CSC_H5ADMatrixSeed
+t.CSR_H5ADMatrixSeed
+H5FileID
+H5File
+h5ls
+H5SparseMatrixSeed
+H5SparseMatrix
+H5ADMatrixSeed
+H5ADMatrix
+extractNonzeroDataByRow
+shorten_assay2h5_links
+restore_absolute_assay2h5_links
+validate_HDF5ArraySeed_dataset_geometry
+write_h5_assays
+create_dir
+replace_dir
+check_and_delete_files
+stop_if_bad_dir
+t
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  hdf5array_release_3_13 hdf5array_release_3_14
+
+{
+    "package": "HDF5Array",
+    "release_versions": "hdf5array_release_3_13 hdf5array_release_3_14",
+    "desc_release_old": "1.20.0",
+    "desc_release_new": "1.22.1",
+    "old_release_number": 9,
+    "new_release_number": 10,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  hdf5array_release_3_14 hdf5array_master
+
+{
+    "package": "HDF5Array",
+    "release_versions": "hdf5array_release_3_14 hdf5array_master",
+    "desc_release_old": "1.22.1",
+    "desc_release_new": "1.23.2",
+    "old_release_number": 10,
+    "new_release_number": 11,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+

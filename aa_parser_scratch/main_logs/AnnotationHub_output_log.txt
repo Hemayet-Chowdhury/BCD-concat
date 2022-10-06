@@ -1,0 +1,929 @@
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationhub_release_2_12 annotationhub_release_2_13
+
+{
+    "package": "AnnotationHub",
+    "release_versions": "annotationhub_release_2_12 annotationhub_release_2_13",
+    "desc_release_old": "1.0.2",
+    "desc_release_new": "1.2.0",
+    "old_release_number": 0,
+    "new_release_number": 1,
+    "function_removals": 1,
+    "function_additions": 4,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+cols
+
+
+##########
+Functions Added
+##########
+
+ahinfo
+[
+as.list
+columns
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationhub_release_2_13 annotationhub_release_2_14
+
+{
+    "package": "AnnotationHub",
+    "release_versions": "annotationhub_release_2_13 annotationhub_release_2_14",
+    "desc_release_old": "1.2.0",
+    "desc_release_new": "1.4.0",
+    "old_release_number": 1,
+    "new_release_number": 2,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+display
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationhub_release_2_14 annotationhub_release_3_1
+
+{
+    "package": "AnnotationHub",
+    "release_versions": "annotationhub_release_2_14 annotationhub_release_3_1",
+    "desc_release_old": "1.4.0",
+    "desc_release_new": "2.0.4",
+    "old_release_number": 2,
+    "new_release_number": 3,
+    "function_removals": 14,
+    "function_additions": 9,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 14
+}
+
+##########
+Functions Removed
+##########
+
+ahinfo
+as.list
+filters
+filters<-
+hubCache<-
+hubResource
+keys
+keytypes
+columns
+metadata
+snapshotPaths
+snapshotUrl
+snapshotUrls
+snapshotVersion
+
+
+##########
+Functions Added
+##########
+
+cache
+cache<-
+hubOption
+setHubOption
+mcols
+query
+subset
+dbconn
+dbfile
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationhub_release_3_1 annotationhub_release_3_2
+
+{
+    "package": "AnnotationHub",
+    "release_versions": "annotationhub_release_3_1 annotationhub_release_3_2",
+    "desc_release_old": "2.0.4",
+    "desc_release_new": "2.2.5",
+    "old_release_number": 3,
+    "new_release_number": 4,
+    "function_removals": 0,
+    "function_additions": 5,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+removeCache
+as.list
+c
+fileName
+as.list.AnnotationHub
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationhub_release_3_2 annotationhub_release_3_3
+
+{
+    "package": "AnnotationHub",
+    "release_versions": "annotationhub_release_3_2 annotationhub_release_3_3",
+    "desc_release_old": "2.2.5",
+    "desc_release_new": "2.4.3",
+    "old_release_number": 4,
+    "new_release_number": 5,
+    "function_removals": 4,
+    "function_additions": 12,
+    "parameter_removals": 0,
+    "parameter_additions": 1,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 5
+}
+
+##########
+Functions Removed
+##########
+
+hubOption
+setHubOption
+.DollarNames.AnnotationHub
+as.list.AnnotationHub
+
+
+##########
+Functions Added
+##########
+
+hubDate
+getHub
+package
+.Hub
+getAnnotationHubOption
+setAnnotationHubOption
+.httr_proxy
+.hub_option_key
+.db_close
+recordStatus
+.DollarNames.Hub
+as.list.Hub
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "removeCache",
+    "representation": "removeCache",
+    "parameters": "function ( x = hubCache ( ) )",
+    "body": "{   rv =  TRUE   reply -   .ask (  \"Delete cache file\" ,   c (  \"y\" ,  \"n\" ) )  if (   reply ==  \"y\" )  {   rv -   tryCatch (  {   .db_close ( )  if (   file.exists (  x ) )  {   status -   unlink (  x , recursive =  TRUE , force =  TRUE )  if (   status ==  1 )   stop (  \"'unlink()' failed to remove directory\" ) }  TRUE } , error =  function ( err )  {   warning (  \"'clearCache()' failed\" ,  \"\\n  database: \" ,   sQuote (  x ) ,  \"\\n  reason: \" ,   conditionMessage (  err ) , call. =  FALSE )  FALSE } ) } else   rv -  FALSE  rv } ",
+    "filename": "cache.txt"
+  },
+  "new_function": {
+    "name": "removeCache",
+    "representation": "removeCache",
+    "parameters": "function ( x )",
+    "body": "{   reply -   .ask (  \"Delete cache file\" ,   c (  \"y\" ,  \"n\" ) )   cache -   hubCache (  x )  if (   reply ==  \"y\" )  {   rv -   tryCatch (  {  if (   file.exists (  cache ) )  {   status -   unlink (  cache , recursive =  TRUE , force =  TRUE )  if (   status ==  1 )   stop (  \"'unlink()' failed to remove directory\" ) }  TRUE } , error =  function ( err )  {   warning (  \"'clearCache()' failed\" ,  \"\\n  database: \" ,   sQuote (  cache ) ,  \"\\n  reason: \" ,   conditionMessage (  err ) , call. =  FALSE )  FALSE } ) } else   rv -  FALSE  rv } ",
+    "filename": "cache-utils.txt"
+  }
+}
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "removeCache",
+    "representation": "removeCache",
+    "parameters": "function ( x = hubCache ( ) )",
+    "body": "{   rv =  TRUE   reply -   .ask (  \"Delete cache file\" ,   c (  \"y\" ,  \"n\" ) )  if (   reply ==  \"y\" )  {   rv -   tryCatch (  {   .db_close ( )  if (   file.exists (  x ) )  {   status -   unlink (  x , recursive =  TRUE , force =  TRUE )  if (   status ==  1 )   stop (  \"'unlink()' failed to remove directory\" ) }  TRUE } , error =  function ( err )  {   warning (  \"'clearCache()' failed\" ,  \"\\n  database: \" ,   sQuote (  x ) ,  \"\\n  reason: \" ,   conditionMessage (  err ) , call. =  FALSE )  FALSE } ) } else   rv -  FALSE  rv } ",
+    "filename": "cache.txt"
+  },
+  "new_function": {
+    "name": "removeCache",
+    "representation": "removeCache",
+    "parameters": "function ( x )",
+    "body": "{   reply -   .ask (  \"Delete cache file\" ,   c (  \"y\" ,  \"n\" ) )   cache -   hubCache (  x )  if (   reply ==  \"y\" )  {   rv -   tryCatch (  {  if (   file.exists (  cache ) )  {   status -   unlink (  cache , recursive =  TRUE , force =  TRUE )  if (   status ==  1 )   stop (  \"'unlink()' failed to remove directory\" ) }  TRUE } , error =  function ( err )  {   warning (  \"'clearCache()' failed\" ,  \"\\n  database: \" ,   sQuote (  cache ) ,  \"\\n  reason: \" ,   conditionMessage (  err ) , call. =  FALSE )  FALSE } ) } else   rv -  FALSE  rv } ",
+    "filename": "cache-utils.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationhub_release_3_3 annotationhub_release_3_4
+
+{
+    "package": "AnnotationHub",
+    "release_versions": "annotationhub_release_3_3 annotationhub_release_3_4",
+    "desc_release_old": "2.4.3",
+    "desc_release_new": "2.6.5",
+    "old_release_number": 5,
+    "new_release_number": 6,
+    "function_removals": 0,
+    "function_additions": 2,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+listResources
+loadResources
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationhub_release_3_4 annotationhub_release_3_5
+
+{
+    "package": "AnnotationHub",
+    "release_versions": "annotationhub_release_3_4 annotationhub_release_3_5",
+    "desc_release_old": "2.6.5",
+    "desc_release_new": "2.8.3",
+    "old_release_number": 6,
+    "new_release_number": 7,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationhub_release_3_5 annotationhub_release_3_6
+
+{
+    "package": "AnnotationHub",
+    "release_versions": "annotationhub_release_3_5 annotationhub_release_3_6",
+    "desc_release_old": "2.8.3",
+    "desc_release_new": "2.10.1",
+    "old_release_number": 7,
+    "new_release_number": 8,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+readMetadataFromCsv
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationhub_release_3_6 annotationhub_release_3_7
+
+{
+    "package": "AnnotationHub",
+    "release_versions": "annotationhub_release_3_6 annotationhub_release_3_7",
+    "desc_release_old": "2.10.1",
+    "desc_release_new": "2.12.1",
+    "old_release_number": 8,
+    "new_release_number": 9,
+    "function_removals": 1,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+readMetadataFromCsv
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationhub_release_3_7 annotationhub_release_3_8
+
+{
+    "package": "AnnotationHub",
+    "release_versions": "annotationhub_release_3_7 annotationhub_release_3_8",
+    "desc_release_old": "2.12.1",
+    "desc_release_new": "2.14.5",
+    "old_release_number": 9,
+    "new_release_number": 10,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationhub_release_3_8 annotationhub_release_3_9
+
+{
+    "package": "AnnotationHub",
+    "release_versions": "annotationhub_release_3_8 annotationhub_release_3_9",
+    "desc_release_old": "2.14.5",
+    "desc_release_new": "2.16.1",
+    "old_release_number": 10,
+    "new_release_number": 11,
+    "function_removals": 0,
+    "function_additions": 5,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+convertHub
+isLocalHub
+isLocalHub<-
+getInfoOnIds
+DispatchClassList
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationhub_release_3_9 annotationhub_release_3_11
+
+{
+    "package": "AnnotationHub",
+    "release_versions": "annotationhub_release_3_9 annotationhub_release_3_11",
+    "desc_release_old": "2.16.1",
+    "desc_release_new": "2.20.2",
+    "old_release_number": 11,
+    "new_release_number": 12,
+    "function_removals": 0,
+    "function_additions": 2,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+removeResources
+refreshHub
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationhub_release_3_11 annotationhub_release_3_12
+
+{
+    "package": "AnnotationHub",
+    "release_versions": "annotationhub_release_3_11 annotationhub_release_3_12",
+    "desc_release_old": "2.20.2",
+    "desc_release_new": "2.22.1",
+    "old_release_number": 12,
+    "new_release_number": 13,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationhub_release_3_12 annotationhub_release_3_13
+
+{
+    "package": "AnnotationHub",
+    "release_versions": "annotationhub_release_3_12 annotationhub_release_3_13",
+    "desc_release_old": "2.22.1",
+    "desc_release_new": "3.0.2",
+    "old_release_number": 13,
+    "new_release_number": 14,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationhub_release_3_13 annotationhub_release_3_14
+
+{
+    "package": "AnnotationHub",
+    "release_versions": "annotationhub_release_3_13 annotationhub_release_3_14",
+    "desc_release_old": "3.0.2",
+    "desc_release_new": "3.2.2",
+    "old_release_number": 14,
+    "new_release_number": 15,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationhub_release_3_14 annotationhub_master
+
+{
+    "package": "AnnotationHub",
+    "release_versions": "annotationhub_release_3_14 annotationhub_master",
+    "desc_release_old": "3.2.2",
+    "desc_release_new": "3.3.9",
+    "old_release_number": 15,
+    "new_release_number": 16,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+

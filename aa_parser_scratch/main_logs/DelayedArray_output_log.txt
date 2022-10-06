@@ -1,0 +1,1143 @@
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  delayedarray_release_3_5 delayedarray_release_3_6
+
+{
+    "package": "DelayedArray",
+    "release_versions": "delayedarray_release_3_5 delayedarray_release_3_6",
+    "desc_release_old": "0.2.7",
+    "desc_release_new": "0.4.1",
+    "old_release_number": 0,
+    "new_release_number": 1,
+    "function_removals": 5,
+    "function_additions": 28,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 5
+}
+
+##########
+Functions Removed
+##########
+
+ArrayBlocks
+RealizationSink
+arrayRealizationSink
+RleRealizationSink
+write_to_sink
+
+
+##########
+Functions Added
+##########
+
+as.character.ArrayGrid
+ArrayViewport
+makeNindexFromArrayViewport
+ArrayArbitraryGrid
+ArrayRegularGrid
+write_array_to_sink
+refdim
+isLinear
+chunk_dim
+write_block_to_sink
+[<-
+lengths
+as.logical
+as.integer
+as.numeric
+as.complex
+as.character
+as.raw
+dbinom
+pbinom
+qbinom
+dpois
+ppois
+qpois
+ranges
+start
+end
+width
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  delayedarray_release_3_6 delayedarray_release_3_7
+
+{
+    "package": "DelayedArray",
+    "release_versions": "delayedarray_release_3_6 delayedarray_release_3_7",
+    "desc_release_old": "0.4.1",
+    "desc_release_new": "0.6.6",
+    "old_release_number": 1,
+    "new_release_number": 2,
+    "function_removals": 13,
+    "function_additions": 50,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 13
+}
+
+##########
+Functions Removed
+##########
+
+as.array.DelayedArray
+as.character.DelayedArray
+as.complex.DelayedArray
+as.data.frame.DelayedArray
+as.integer.DelayedArray
+as.logical.DelayedArray
+as.matrix.DelayedArray
+as.numeric.DelayedArray
+as.raw.DelayedArray
+as.vector.DelayedArray
+ArrayArbitraryGrid
+ArrayRegularGrid
+subset_seed_as_array
+
+
+##########
+Functions Added
+##########
+
+aperm.DelayedArray
+as.array.Array
+as.character.Array
+as.complex.Array
+as.data.frame.Array
+as.integer.Array
+as.logical.Array
+as.matrix.Array
+as.numeric.Array
+as.raw.Array
+as.vector.Array
+summary.DelayedOp
+summary.DelayedSubset
+summary.DelayedAperm
+summary.DelayedUnaryIsoOp
+summary.DelayedDimnames
+summary.DelayedNaryIsoOp
+summary.DelayedAbind
+t.DelayedMatrix
+ArbitraryArrayGrid
+RegularArrayGrid
+showtree
+contentIsPristine
+new_DelayedArray
+getDefaultBPPARAM
+setDefaultBPPARAM
+defaultGrid
+blockApply
+effectiveGrid
+currentBlockId
+currentViewport
+extract_array
+chunkdim
+isNoOp
+simplify
+netSubsetAndAperm
+nseed
+seed<-
+aperm
+sweep
+sub
+gsub
+dnorm
+pnorm
+qnorm
+summary
+grepl
+path
+path<-
+updateObject
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  delayedarray_release_3_7 delayedarray_release_3_8
+
+{
+    "package": "DelayedArray",
+    "release_versions": "delayedarray_release_3_7 delayedarray_release_3_8",
+    "desc_release_old": "0.6.6",
+    "desc_release_new": "0.8.0",
+    "old_release_number": 2,
+    "new_release_number": 3,
+    "function_removals": 9,
+    "function_additions": 51,
+    "parameter_removals": 0,
+    "parameter_additions": 1,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 10
+}
+
+##########
+Functions Removed
+##########
+
+summary.DelayedUnaryIsoOp
+t.DelayedMatrix
+getDefaultBPPARAM
+setDefaultBPPARAM
+defaultGrid
+write_array_to_sink
+isNoOp
+chunk_dim
+write_block_to_sink
+
+
+##########
+Functions Added
+##########
+
+aperm.ArbitraryArrayGrid
+aperm.RegularArrayGrid
+aperm.SparseArraySeed
+as.array.SparseArraySeed
+as.matrix.SparseArraySeed
+range.DelayedArray
+summary.DelayedUnaryIsoOpStack
+summary.DelayedUnaryIsoOpWithArgs
+t.Array
+unique.DelayedArray
+linearInd
+SparseArraySeed
+dense2sparse
+sparse2dense
+makeCappedVolumeBox
+makeRegularArrayGridOfCappedLengthViewports
+setAutoBlockSize
+getAutoBlockSize
+get_type_size
+getAutoBlockLength
+setAutoBlockShape
+getAutoBlockShape
+blockGrid
+rowGrid
+colGrid
+setAutoGridMaker
+getAutoGridMaker
+setAutoBPPARAM
+getAutoBPPARAM
+blockReduce
+BLOCK_write_to_sink
+RealizationSink
+maxlength
+downsample
+aind
+nzdata
+sparsity
+is_sparse
+extract_sparse_array
+read_block
+write_block
+read_sparse_block
+write_sparse_block
+mapToGrid
+mapToRef
+is_noop
+chunkGrid
+unique
+dims
+table
+showAsCell
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "as.character",
+    "representation": "as.character",
+    "signature": "ArrayGrid",
+    "parameters": "function ( x , with.brackets = FALSE )",
+    "body": "{   data -   vapply (  x ,  function ( viewport )   make_string_from_ArrayViewport (  viewport , with.brackets =  with.brackets ) ,   character (  1 ) )   array (  data ,   dim (  x ) ) } ",
+    "replacementFunction": ".as.character.ArrayGrid",
+    "filename": "ArrayGrid-class.txt"
+  },
+  "new_function": {
+    "name": "as.character",
+    "representation": "as.character",
+    "signature": "ArrayGrid",
+    "parameters": "function ( x , collapse = \",\" , with.brackets = FALSE )",
+    "body": "{   data -   vapply (  x ,  function ( viewport )   make_string_from_ArrayViewport (  viewport , collapse =  collapse , with.brackets =  with.brackets ) ,   character (  1 ) , USE.NAMES =  FALSE )   array (  data ,   dim (  x ) ) } ",
+    "replacementFunction": ".as.character.ArrayGrid",
+    "filename": "ArrayGrid-class.txt"
+  }
+}
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "as.character",
+    "representation": "as.character",
+    "signature": "ArrayGrid",
+    "parameters": "function ( x , with.brackets = FALSE )",
+    "body": "{   data -   vapply (  x ,  function ( viewport )   make_string_from_ArrayViewport (  viewport , with.brackets =  with.brackets ) ,   character (  1 ) )   array (  data ,   dim (  x ) ) } ",
+    "replacementFunction": ".as.character.ArrayGrid",
+    "filename": "ArrayGrid-class.txt"
+  },
+  "new_function": {
+    "name": "as.character",
+    "representation": "as.character",
+    "signature": "ArrayGrid",
+    "parameters": "function ( x , collapse = \",\" , with.brackets = FALSE )",
+    "body": "{   data -   vapply (  x ,  function ( viewport )   make_string_from_ArrayViewport (  viewport , collapse =  collapse , with.brackets =  with.brackets ) ,   character (  1 ) , USE.NAMES =  FALSE )   array (  data ,   dim (  x ) ) } ",
+    "replacementFunction": ".as.character.ArrayGrid",
+    "filename": "ArrayGrid-class.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  delayedarray_release_3_8 delayedarray_release_3_9
+
+{
+    "package": "DelayedArray",
+    "release_versions": "delayedarray_release_3_8 delayedarray_release_3_9",
+    "desc_release_old": "0.8.0",
+    "desc_release_new": "0.10.0",
+    "old_release_number": 3,
+    "new_release_number": 4,
+    "function_removals": 0,
+    "function_additions": 8,
+    "parameter_removals": 0,
+    "parameter_additions": 1,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+rowsum.DelayedMatrix
+multGrids
+seedApply
+modify_seeds
+rowsum
+colsum
+crossprod
+tcrossprod
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "RleArray",
+    "representation": "RleArray",
+    "parameters": "function ( rle , dim , dimnames = NULL , chunksize = NULL )",
+    "body": "{  if (   is (  rle ,  \"RleArraySeed\" ) )  {  if (  !  (     missing (  dim ) undefined   is.null (  dimnames ) undefined   is.null (  chunksize ) ) )   stop (   wmsg (  \"RleArray() must be called with a single argument \" ,  \"when passed an RleArraySeed object\" ) )   seed -  rle } else  {   seed -   RleArraySeed (  rle ,  dim , dimnames =  dimnames , chunksize =  chunksize ) }   DelayedArray (  seed ) } ",
+    "filename": "RleArray-class.txt"
+  },
+  "new_function": {
+    "name": "RleArray",
+    "representation": "RleArray",
+    "parameters": "function ( data , dim , dimnames , chunksize = NULL )",
+    "body": "{  if (   is (  data ,  \"RleArraySeed\" ) )  {  if (  !  (     missing (  dim ) undefined   missing (  dimnames ) undefined   is.null (  chunksize ) ) )   stop (   wmsg (  \"RleArray() must be called with a single argument \" ,  \"when passed an RleArraySeed object\" ) )   seed -  data } else  {   seed -   RleArraySeed (  data ,  dim ,  dimnames , chunksize =  chunksize ) }   DelayedArray (  seed ) } ",
+    "filename": "RleArray-class.txt"
+  }
+}
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "RleArray",
+    "representation": "RleArray",
+    "parameters": "function ( rle , dim , dimnames = NULL , chunksize = NULL )",
+    "body": "{  if (   is (  rle ,  \"RleArraySeed\" ) )  {  if (  !  (     missing (  dim ) undefined   is.null (  dimnames ) undefined   is.null (  chunksize ) ) )   stop (   wmsg (  \"RleArray() must be called with a single argument \" ,  \"when passed an RleArraySeed object\" ) )   seed -  rle } else  {   seed -   RleArraySeed (  rle ,  dim , dimnames =  dimnames , chunksize =  chunksize ) }   DelayedArray (  seed ) } ",
+    "filename": "RleArray-class.txt"
+  },
+  "new_function": {
+    "name": "RleArray",
+    "representation": "RleArray",
+    "parameters": "function ( data , dim , dimnames , chunksize = NULL )",
+    "body": "{  if (   is (  data ,  \"RleArraySeed\" ) )  {  if (  !  (     missing (  dim ) undefined   missing (  dimnames ) undefined   is.null (  chunksize ) ) )   stop (   wmsg (  \"RleArray() must be called with a single argument \" ,  \"when passed an RleArraySeed object\" ) )   seed -  data } else  {   seed -   RleArraySeed (  data ,  dim ,  dimnames , chunksize =  chunksize ) }   DelayedArray (  seed ) } ",
+    "filename": "RleArray-class.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  delayedarray_release_3_9 delayedarray_release_3_11
+
+{
+    "package": "DelayedArray",
+    "release_versions": "delayedarray_release_3_9 delayedarray_release_3_11",
+    "desc_release_old": "0.10.0",
+    "desc_release_new": "0.14.1",
+    "old_release_number": 4,
+    "new_release_number": 5,
+    "function_removals": 1,
+    "function_additions": 6,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 3,
+    "total_count": 4
+}
+
+##########
+Functions Removed
+##########
+
+aind
+
+
+##########
+Functions Added
+##########
+
+rowsum.dgCMatrix
+Lindex2Mindex
+Mindex2Lindex
+isPristine
+nzindex
+type<-
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "mapToGrid",
+    "representation": "mapToGrid",
+    "signature": "ArbitraryArrayGrid",
+    "parameters": "function ( aind , grid , linear = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  linear ) )   stop (  \"'linear' must be TRUE or FALSE\" )   ndim -   length (   grid @ tickmarks )   aind -   normarg_aind (  aind ,  ndim )   major -   lapply (   seq_len (  ndim ) ,  function ( along )  {   1L +   findInterval (   aind [ ,  along ] ,     grid @ tickmarks [[  along ] ] +  1L ) } )   minor -   lapply (   seq_len (  ndim ) ,  function ( along )  {   tm -    grid @ tickmarks [[  along ] ]   tm_len -   length (  tm )  if (   tm_len ==  0L )   return (   rep.int (  NA_integer_ ,   nrow (  aind ) ) )   offset -   c (  0L ,   tm [  -  tm_len ] )    aind [ ,  along ] -   offset [   major [[  along ] ] ] } )   major -   do.call (  cbind ,  major )   minor -   do.call (  cbind ,  minor )   .major_minor_as_list (  major ,  minor ,  grid , linear =  linear ) } ",
+    "filename": "mapToGrid.txt"
+  },
+  "new_function": {
+    "name": "mapToGrid",
+    "representation": "mapToGrid",
+    "signature": "ArbitraryArrayGrid",
+    "parameters": "function ( Mindex , grid , linear = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  linear ) )   stop (  \"'linear' must be TRUE or FALSE\" )   ndim -   length (   grid @ tickmarks )   Mindex -   .normarg_Mindex (  Mindex ,  ndim )   major -   lapply (   seq_len (  ndim ) ,  function ( along )  {   1L +   findInterval (   Mindex [ ,  along ] ,     grid @ tickmarks [[  along ] ] +  1L ) } )   minor -   lapply (   seq_len (  ndim ) ,  function ( along )  {   tm -    grid @ tickmarks [[  along ] ]   tm_len -   length (  tm )  if (   tm_len ==  0L )   return (   rep.int (  NA_integer_ ,   nrow (  Mindex ) ) )   offset -   c (  0L ,   tm [  -  tm_len ] )    Mindex [ ,  along ] -   offset [   major [[  along ] ] ] } )   major -   do.call (  cbind ,  major )   minor -   do.call (  cbind ,  minor )   .major_minor_as_list (  major ,  minor ,  grid , linear =  linear ) } ",
+    "filename": "mapToGrid.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "mapToGrid",
+    "representation": "mapToGrid",
+    "signature": "RegularArrayGrid",
+    "parameters": "function ( aind , grid , linear = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  linear ) )   stop (  \"'linear' must be TRUE or FALSE\" )   ndim -   length (   grid @ spacings )   aind -   normarg_aind (  aind ,  ndim )   d -   rep (   grid @ spacings , each =   nrow (  aind ) )   aind0 -   aind -  1L # 0-based indices   major -   1L +   aind0 %/%  d   minor -   1L +   aind0 %%  d   .major_minor_as_list (  major ,  minor ,  grid , linear =  linear ) } ",
+    "filename": "mapToGrid.txt"
+  },
+  "new_function": {
+    "name": "mapToGrid",
+    "representation": "mapToGrid",
+    "signature": "RegularArrayGrid",
+    "parameters": "function ( Mindex , grid , linear = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  linear ) )   stop (  \"'linear' must be TRUE or FALSE\" )   ndim -   length (   grid @ spacings )   Mindex -   .normarg_Mindex (  Mindex ,  ndim )   d -   rep (   grid @ spacings , each =   nrow (  Mindex ) )   Mindex0 -   Mindex -  1L # 0-based indices   major -   1L +   Mindex0 %/%  d   minor -   1L +   Mindex0 %%  d   .major_minor_as_list (  major ,  minor ,  grid , linear =  linear ) } ",
+    "filename": "mapToGrid.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "SparseArraySeed",
+    "representation": "SparseArraySeed",
+    "parameters": "function ( dim , aind = NULL , nzdata = NULL , check = TRUE )",
+    "body": "{  if (  !   is.numeric (  dim ) )   stop (   wmsg (  \"'dim' must be an integer vector\" ) )  if (  !   is.integer (  dim ) )   dim -   as.integer (  dim )  if (   is.null (  aind ) )  {  if (  !   is.null (  nzdata ) )   stop (   wmsg (  \"'nzdata' must be NULL when 'aind' is NULL\" ) )   aind -   matrix (   integer (  0 ) , ncol =   length (  dim ) )   nzdata -   integer (  0 ) } else  {  if (  !   is.matrix (  aind ) )   stop (   wmsg (  \"'aind' must be a matrix\" ) )  if (    storage.mode (  aind ) ==  \"double\" )    storage.mode (  aind ) -  \"integer\"  if (  !   is.null (   dimnames (  aind ) ) )    dimnames (  aind ) -  NULL   nzdata -   .normarg_nzdata (  nzdata ,   nrow (  aind ) ) }   new2 (  \"SparseArraySeed\" , dim =  dim , aind =  aind , nzdata =  nzdata , check =  check ) } ",
+    "filename": "SparseArraySeed-class.txt"
+  },
+  "new_function": {
+    "name": "SparseArraySeed",
+    "representation": "SparseArraySeed",
+    "parameters": "function ( dim , nzindex = NULL , nzdata = NULL , check = TRUE )",
+    "body": "{  if (  !   is.numeric (  dim ) )   stop (   wmsg (  \"'dim' must be an integer vector\" ) )  if (  !   is.integer (  dim ) )   dim -   as.integer (  dim )  if (   is.null (  nzindex ) )  {  if (  !   is.null (  nzdata ) )   stop (   wmsg (  \"'nzdata' must be NULL when 'nzindex' is NULL\" ) )   nzindex -   Lindex2Mindex (   integer (  0 ) ,  dim )   nzdata -   integer (  0 ) } else  {  if (  !   is.matrix (  nzindex ) )   stop (   wmsg (  \"'nzindex' must be a matrix\" ) )  if (    storage.mode (  nzindex ) ==  \"double\" )    storage.mode (  nzindex ) -  \"integer\"  if (  !   is.null (   dimnames (  nzindex ) ) )    dimnames (  nzindex ) -  NULL   nzdata -   .normarg_nzdata (  nzdata ,   nrow (  nzindex ) ) }   new2 (  \"SparseArraySeed\" , dim =  dim , nzindex =  nzindex , nzdata =  nzdata , check =  check ) } ",
+    "filename": "SparseArraySeed-class.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  delayedarray_release_3_11 delayedarray_release_3_12
+
+{
+    "package": "DelayedArray",
+    "release_versions": "delayedarray_release_3_11 delayedarray_release_3_12",
+    "desc_release_old": "0.14.1",
+    "desc_release_new": "0.16.3",
+    "old_release_number": 5,
+    "new_release_number": 6,
+    "function_removals": 1,
+    "function_additions": 13,
+    "parameter_removals": 3,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 14,
+    "total_count": 15
+}
+
+##########
+Functions Removed
+##########
+
+write_sparse_block
+
+
+##########
+Functions Added
+##########
+
+mean.SparseArraySeed
+range.SparseArraySeed
+defaultAutoGrid
+rowAutoGrid
+colAutoGrid
+defaultMultAutoGrids
+set_grid_context
+viewportApply
+viewportReduce
+getAutoRealizationBackend
+setAutoRealizationBackend
+AutoRealizationSink
+is_sparse<-
+
+
+##########
+Removed Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "effectiveGrid",
+    "representation": "effectiveGrid",
+    "parameters": "function ( block )",
+    "body": "{  if (  !   is.array (  block ) )   stop (  \"'block' must be an ordinary array\" )  if (  !  (   \"from_grid\" %in%   names (   attributes (  block ) ) ) )   stop (   wmsg (  \"'block' has no \\\"from_grid\\\" attribute. \" ,  \"Was effectiveGrid() called in a blockApply() loop?\" ) )   attr (  block ,  \"from_grid\" , exact =  TRUE ) } ",
+    "filename": "blockApply.txt"
+  },
+  "new_function": {
+    "name": "effectiveGrid",
+    "representation": "effectiveGrid",
+    "parameters": "function ( envir = parent.frame ( 2 ) )",
+    "body": "{   envir -   .backward_compat (  envir ,  \"effectiveGrid\" )   effective_grid -   try (   get (  \".effective_grid\" , envir =  envir , inherits =  FALSE ) , silent =  TRUE )  if (   inherits (  effective_grid ,  \"try-error\" ) )   stop (   wmsg (  .grid_context_not_found ) ,  \"\\n\\n  \" ,   wmsg (   .explain_proper_use (  \"effectiveGrid\" ) ) ,  \"\\n\\n  \" ,   wmsg (  .suggest_set_grid_context ) )  effective_grid } ",
+    "filename": "blockApply.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "currentBlockId",
+    "representation": "currentBlockId",
+    "parameters": "function ( block )",
+    "body": "{  if (  !   is.array (  block ) )   stop (  \"'block' must be an ordinary array\" )  if (  !  (   \"block_id\" %in%   names (   attributes (  block ) ) ) )   stop (   wmsg (  \"'block' has no \\\"block_id\\\" attribute. \" ,  \"Was currentBlockId() called in a blockApply() loop?\" ) )   attr (  block ,  \"block_id\" , exact =  TRUE ) } ",
+    "filename": "blockApply.txt"
+  },
+  "new_function": {
+    "name": "currentBlockId",
+    "representation": "currentBlockId",
+    "parameters": "function ( envir = parent.frame ( 2 ) )",
+    "body": "{   envir -   .backward_compat (  envir ,  \"currentBlockId\" )   current_block_id -   try (   get (  \".current_block_id\" , envir =  envir , inherits =  FALSE ) , silent =  TRUE )  if (   inherits (  current_block_id ,  \"try-error\" ) )   stop (   wmsg (  .grid_context_not_found ) ,  \"\\n\\n  \" ,   wmsg (   .explain_proper_use (  \"currentBlockId\" ) ) ,  \"\\n\\n  \" ,   wmsg (  .suggest_set_grid_context ) )  current_block_id } ",
+    "filename": "blockApply.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "currentViewport",
+    "representation": "currentViewport",
+    "parameters": "function ( block )",
+    "body": "effectiveGrid ( block ) [[ currentBlockId ( block ) ] ]",
+    "filename": "blockApply.txt"
+  },
+  "new_function": {
+    "name": "currentViewport",
+    "representation": "currentViewport",
+    "parameters": "function ( envir = parent.frame ( 2 ) )",
+    "body": "{   envir -   .backward_compat (  envir ,  \"currentViewport\" )   effective_grid -   try (   effectiveGrid (  envir ) , silent =  TRUE )  if (   inherits (  effective_grid ,  \"try-error\" ) )   stop (   wmsg (  .grid_context_not_found ) ,  \"\\n\\n  \" ,   wmsg (   .explain_proper_use (  \"currentViewport\" ) ) ,  \"\\n\\n  \" ,   wmsg (  .suggest_set_grid_context ) )   effective_grid [[   currentBlockId (  envir ) ] ] } ",
+    "filename": "blockApply.txt"
+  }
+}
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "effectiveGrid",
+    "representation": "effectiveGrid",
+    "parameters": "function ( block )",
+    "body": "{  if (  !   is.array (  block ) )   stop (  \"'block' must be an ordinary array\" )  if (  !  (   \"from_grid\" %in%   names (   attributes (  block ) ) ) )   stop (   wmsg (  \"'block' has no \\\"from_grid\\\" attribute. \" ,  \"Was effectiveGrid() called in a blockApply() loop?\" ) )   attr (  block ,  \"from_grid\" , exact =  TRUE ) } ",
+    "filename": "blockApply.txt"
+  },
+  "new_function": {
+    "name": "effectiveGrid",
+    "representation": "effectiveGrid",
+    "parameters": "function ( envir = parent.frame ( 2 ) )",
+    "body": "{   envir -   .backward_compat (  envir ,  \"effectiveGrid\" )   effective_grid -   try (   get (  \".effective_grid\" , envir =  envir , inherits =  FALSE ) , silent =  TRUE )  if (   inherits (  effective_grid ,  \"try-error\" ) )   stop (   wmsg (  .grid_context_not_found ) ,  \"\\n\\n  \" ,   wmsg (   .explain_proper_use (  \"effectiveGrid\" ) ) ,  \"\\n\\n  \" ,   wmsg (  .suggest_set_grid_context ) )  effective_grid } ",
+    "filename": "blockApply.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "currentBlockId",
+    "representation": "currentBlockId",
+    "parameters": "function ( block )",
+    "body": "{  if (  !   is.array (  block ) )   stop (  \"'block' must be an ordinary array\" )  if (  !  (   \"block_id\" %in%   names (   attributes (  block ) ) ) )   stop (   wmsg (  \"'block' has no \\\"block_id\\\" attribute. \" ,  \"Was currentBlockId() called in a blockApply() loop?\" ) )   attr (  block ,  \"block_id\" , exact =  TRUE ) } ",
+    "filename": "blockApply.txt"
+  },
+  "new_function": {
+    "name": "currentBlockId",
+    "representation": "currentBlockId",
+    "parameters": "function ( envir = parent.frame ( 2 ) )",
+    "body": "{   envir -   .backward_compat (  envir ,  \"currentBlockId\" )   current_block_id -   try (   get (  \".current_block_id\" , envir =  envir , inherits =  FALSE ) , silent =  TRUE )  if (   inherits (  current_block_id ,  \"try-error\" ) )   stop (   wmsg (  .grid_context_not_found ) ,  \"\\n\\n  \" ,   wmsg (   .explain_proper_use (  \"currentBlockId\" ) ) ,  \"\\n\\n  \" ,   wmsg (  .suggest_set_grid_context ) )  current_block_id } ",
+    "filename": "blockApply.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "currentViewport",
+    "representation": "currentViewport",
+    "parameters": "function ( block )",
+    "body": "effectiveGrid ( block ) [[ currentBlockId ( block ) ] ]",
+    "filename": "blockApply.txt"
+  },
+  "new_function": {
+    "name": "currentViewport",
+    "representation": "currentViewport",
+    "parameters": "function ( envir = parent.frame ( 2 ) )",
+    "body": "{   envir -   .backward_compat (  envir ,  \"currentViewport\" )   effective_grid -   try (   effectiveGrid (  envir ) , silent =  TRUE )  if (   inherits (  effective_grid ,  \"try-error\" ) )   stop (   wmsg (  .grid_context_not_found ) ,  \"\\n\\n  \" ,   wmsg (   .explain_proper_use (  \"currentViewport\" ) ) ,  \"\\n\\n  \" ,   wmsg (  .suggest_set_grid_context ) )   effective_grid [[   currentBlockId (  envir ) ] ] } ",
+    "filename": "blockApply.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "write_block",
+    "representation": "write_block",
+    "signature": "ANY",
+    "parameters": "function ( x , viewport , block )",
+    "body": "{   Nindex -   makeNindexFromArrayViewport (  viewport )   replace_by_Nindex (  x ,  Nindex ,  block ) } ",
+    "filename": "read_block.txt"
+  },
+  "new_function": {
+    "name": "write_block",
+    "representation": "write_block",
+    "signature": "ANY",
+    "parameters": "function ( sink , viewport , block )",
+    "body": "{  if (   is (  block ,  \"SparseArraySeed\" ) )   block -   sparse2dense (  block )   Nindex -   makeNindexFromArrayViewport (  viewport )   replace_by_Nindex (  sink ,  Nindex ,  block ) } ",
+    "filename": "write_block.txt"
+  }
+}
+
+4.
+{
+  "old_function": {
+    "name": "write_block",
+    "representation": "write_block",
+    "signature": "arrayRealizationSink",
+    "parameters": "function ( x , viewport , block )",
+    "body": "{   result -   .get_arrayRealizationSink_result (  x )   result -   write_block (  result ,  viewport ,  block )   .set_arrayRealizationSink_result (  x ,  result ) } ",
+    "filename": "RealizationSink-class.txt"
+  },
+  "new_function": {
+    "name": "write_block",
+    "representation": "write_block",
+    "signature": "arrayRealizationSink",
+    "parameters": "function ( sink , viewport , block )",
+    "body": "{   result -   .get_arrayRealizationSink_result (  sink )   result -   write_block (  result ,  viewport ,  block )   .set_arrayRealizationSink_result (  sink ,  result ) } ",
+    "filename": "write_block.txt"
+  }
+}
+
+5.
+{
+  "old_function": {
+    "name": "write_block",
+    "representation": "write_block",
+    "signature": "RleRealizationSink",
+    "parameters": "function ( x , viewport , block )",
+    "body": "{ ## 'viewport' is ignored!   append_Rle_to_sink (   Rle (  block ) ,  x ) } ",
+    "filename": "RleArray-class.txt"
+  },
+  "new_function": {
+    "name": "write_block",
+    "representation": "write_block",
+    "signature": "RleRealizationSink",
+    "parameters": "function ( sink , viewport , block )",
+    "body": "{ ## 'viewport' is ignored!   append_Rle_to_sink (   Rle (  block ) ,  sink )  sink } ",
+    "filename": "RleArray-class.txt"
+  }
+}
+
+6.
+{
+  "old_function": {
+    "name": "BLOCK_write_to_sink",
+    "representation": "BLOCK_write_to_sink",
+    "parameters": "function ( x , sink )",
+    "body": "{   stopifnot (   identical (   dim (  x ) ,   dim (  sink ) ) ) ## 'x' and 'sink' might both have their physical chunks but we must ## choose a grid that is compatible with the physical chunks of 'sink'. ## Calling 'blockGrid()' on 'sink' will produce such grid. ## Note that it might be beneficial to use a grid that is also compatible ## with the physical chunks of 'x' so we might want to come up with a ## dedicated utility for that e.g. 'blockGrid2(sink, x)'. ## Also by using block.shape=\"first-dim-grows-first\" in the call below ## we'll get a grid that guarentees linear writing to the sink in case ## 'chunkdim(sink)' is NULL.   grid -   blockGrid (  sink , block.shape =  \"first-dim-grows-first\" )   nblock -   length (  grid )   x_is_sparse -   is_sparse (  x )  for  ( bid in   seq_len (  nblock ) )  {   viewport -   grid [[  bid ] ]  if (  x_is_sparse )  {  if (   get_verbose_block_processing ( ) )   message (  \"Realizing sparse block \" ,  bid ,  \"/\" ,  nblock ,  \" ... \" , appendLF =  FALSE )   sparse_block -   read_sparse_block (  x ,  viewport )  if (   get_verbose_block_processing ( ) )   message (  \"OK, writing it ... \" , appendLF =  FALSE )   write_sparse_block (  sink ,  viewport ,  sparse_block )  if (   get_verbose_block_processing ( ) )   message (  \"OK\" ) } else  {  if (   get_verbose_block_processing ( ) )   message (  \"Realizing block \" ,  bid ,  \"/\" ,  nblock ,  \" ... \" , appendLF =  FALSE )   block -   read_block (  x ,  viewport )  if (   get_verbose_block_processing ( ) )   message (  \"OK, writing it ... \" , appendLF =  FALSE )   write_block (  sink ,  viewport ,  block )  if (   get_verbose_block_processing ( ) )   message (  \"OK\" ) } }  sink } ",
+    "filename": "realize.txt"
+  },
+  "new_function": {
+    "name": "BLOCK_write_to_sink",
+    "representation": "BLOCK_write_to_sink",
+    "parameters": "function ( sink , x , verbose = NA )",
+    "body": "{   stopifnot (   identical (   dim (  x ) ,   dim (  sink ) ) )   verbose -   normarg_verbose (  verbose ) ## 'x' and 'sink' might both have their physical chunks but we must ## choose a grid that is compatible with the physical chunks of 'sink'. ## Calling 'defaultAutoGrid()' on 'sink' will produce such grid. ## Note that it might be beneficial to use a grid that is also compatible ## with the physical chunks of 'x' so we might want to come up with a ## dedicated utility for that e.g. 'defaultAutoGrid2(sink, x)'. ## Also by using block.shape=\"first-dim-grows-first\" in the call below ## we'll get a grid that guarentees linear writing to the sink in case ## 'chunkdim(sink)' is NULL.   grid -   defaultAutoGrid (  sink , block.shape =  \"first-dim-grows-first\" )   FUN -  function ( viewport , sink , x , verbose , verbose_read_block )  {   effective_grid -   effectiveGrid ( )   current_block_id -   currentBlockId ( )  if (  verbose )  {   x_is_sparse -   is_sparse (  x )   nblock -   length (  effective_grid )   block -   verbose_read_block (  x ,  viewport ,  x_is_sparse , as.sparse =  NA ,  current_block_id ,  nblock ) } else  {   block -   read_block (  x ,  viewport , as.sparse =  NA ) }  if (  verbose )   message (  \"\\\\ Writing it ... \" , appendLF =  FALSE )   sink -   write_block (  sink ,  viewport ,  block )  if (  verbose )   message (  \"OK\" )  sink }   viewportReduce (  FUN ,  grid ,  sink ,  x ,  verbose ,  verbose_read_block , verbose =  FALSE ) } ",
+    "filename": "realize.txt"
+  }
+}
+
+7.
+{
+  "old_function": {
+    "name": "SparseArraySeed",
+    "representation": "SparseArraySeed",
+    "parameters": "function ( dim , nzindex = NULL , nzdata = NULL , check = TRUE )",
+    "body": "{  if (  !   is.numeric (  dim ) )   stop (   wmsg (  \"'dim' must be an integer vector\" ) )  if (  !   is.integer (  dim ) )   dim -   as.integer (  dim )  if (   is.null (  nzindex ) )  {  if (  !   is.null (  nzdata ) )   stop (   wmsg (  \"'nzdata' must be NULL when 'nzindex' is NULL\" ) )   nzindex -   Lindex2Mindex (   integer (  0 ) ,  dim )   nzdata -   integer (  0 ) } else  {  if (  !   is.matrix (  nzindex ) )   stop (   wmsg (  \"'nzindex' must be a matrix\" ) )  if (    storage.mode (  nzindex ) ==  \"double\" )    storage.mode (  nzindex ) -  \"integer\"  if (  !   is.null (   dimnames (  nzindex ) ) )    dimnames (  nzindex ) -  NULL   nzdata -   .normarg_nzdata (  nzdata ,   nrow (  nzindex ) ) }   new2 (  \"SparseArraySeed\" , dim =  dim , nzindex =  nzindex , nzdata =  nzdata , check =  check ) } ",
+    "filename": "SparseArraySeed-class.txt"
+  },
+  "new_function": {
+    "name": "SparseArraySeed",
+    "representation": "SparseArraySeed",
+    "parameters": "function ( dim , nzindex = NULL , nzdata = NULL , dimnames = NULL , check = TRUE )",
+    "body": "{  if (  !   is.numeric (  dim ) )   stop (   wmsg (  \"'dim' must be an integer vector\" ) )  if (  !   is.integer (  dim ) )   dim -   as.integer (  dim )  if (   is.null (  nzindex ) )  {  if (   is.null (  nzdata ) )  {   nzdata -   logical (  0 ) # vector() } else  if (  !  (    is.vector (  nzdata ) undefined    length (  nzdata ) ==  0L ) )  {   stop (   wmsg (  \"'nzdata' must be NULL or a vector of length 0 \" ,  \"when 'nzindex' is NULL\" ) ) }   nzindex -   matrix (   integer (  0 ) , ncol =   length (  dim ) ) } else  {  if (  !   is.matrix (  nzindex ) )   stop (   wmsg (  \"'nzindex' must be a matrix\" ) )  if (    storage.mode (  nzindex ) ==  \"double\" )    storage.mode (  nzindex ) -  \"integer\"  if (  !   is.null (   dimnames (  nzindex ) ) )    dimnames (  nzindex ) -  NULL   nzdata -   .normarg_nzdata (  nzdata ,   nrow (  nzindex ) ) }   dimnames -   normarg_dimnames (  dimnames ,  dim )   new2 (  \"SparseArraySeed\" , dim =  dim , nzindex =  nzindex , nzdata =  nzdata , dimnames =  dimnames , check =  check ) } ",
+    "filename": "SparseArraySeed-class.txt"
+  }
+}
+
+8.
+{
+  "old_function": {
+    "name": "rowMaxs",
+    "representation": "rowMaxs",
+    "signature": "DelayedMatrix",
+    "parameters": "function ( x , rows = NULL , cols = NULL , na.rm = FALSE , dim. = dim ( x ) )",
+    "body": "{   .check_rows_cols (  rows ,  cols ,  \"rowMaxs\" )   .BLOCK_row_summary (  rowMaxs ,  x , na.rm =  na.rm ) } ",
+    "replacementFunction": ".rowMaxs_DelayedMatrix",
+    "filename": "DelayedMatrix-stats.txt"
+  },
+  "new_function": {
+    "name": "rowMaxs",
+    "representation": "rowMaxs",
+    "signature": "DelayedMatrix",
+    "parameters": "function ( x , rows = NULL , cols = NULL , na.rm = FALSE )",
+    "body": "{   .check_rows_cols (  rows ,  cols ,  \"rowMaxs\" ) #.BLOCK_row_summary(\"rowMaxs\", x, na.rm=na.rm)   .BLOCK_rowMaxs (  x , na.rm =  na.rm ) } ",
+    "replacementFunction": ".rowMaxs_DelayedMatrix",
+    "filename": "DelayedMatrix-stats.txt"
+  }
+}
+
+9.
+{
+  "old_function": {
+    "name": "colMaxs",
+    "representation": "colMaxs",
+    "signature": "DelayedMatrix",
+    "parameters": "function ( x , rows = NULL , cols = NULL , na.rm = FALSE , dim. = dim ( x ) )",
+    "body": "{   .check_rows_cols (  rows ,  cols ,  \"colMaxs\" )   .BLOCK_row_summary (  rowMaxs ,   t (  x ) , na.rm =  na.rm ) } ",
+    "replacementFunction": ".colMaxs_DelayedMatrix",
+    "filename": "DelayedMatrix-stats.txt"
+  },
+  "new_function": {
+    "name": "colMaxs",
+    "representation": "colMaxs",
+    "signature": "DelayedMatrix",
+    "parameters": "function ( x , rows = NULL , cols = NULL , na.rm = FALSE )",
+    "body": "{   .check_rows_cols (  rows ,  cols ,  \"colMaxs\" ) #.BLOCK_row_summary(\"rowMaxs\", t(x), na.rm=na.rm)   .BLOCK_colMaxs (  x , na.rm =  na.rm ) } ",
+    "replacementFunction": ".colMaxs_DelayedMatrix",
+    "filename": "DelayedMatrix-stats.txt"
+  }
+}
+
+10.
+{
+  "old_function": {
+    "name": "rowMins",
+    "representation": "rowMins",
+    "signature": "DelayedMatrix",
+    "parameters": "function ( x , rows = NULL , cols = NULL , na.rm = FALSE , dim. = dim ( x ) )",
+    "body": "{   .check_rows_cols (  rows ,  cols ,  \"rowMins\" )   .BLOCK_row_summary (  rowMins ,  x , na.rm =  na.rm ) } ",
+    "replacementFunction": ".rowMins_DelayedMatrix",
+    "filename": "DelayedMatrix-stats.txt"
+  },
+  "new_function": {
+    "name": "rowMins",
+    "representation": "rowMins",
+    "signature": "DelayedMatrix",
+    "parameters": "function ( x , rows = NULL , cols = NULL , na.rm = FALSE )",
+    "body": "{   .check_rows_cols (  rows ,  cols ,  \"rowMins\" ) #.BLOCK_row_summary(\"rowMins\", x, na.rm=na.rm)   .BLOCK_rowMins (  x , na.rm =  na.rm ) } ",
+    "replacementFunction": ".rowMins_DelayedMatrix",
+    "filename": "DelayedMatrix-stats.txt"
+  }
+}
+
+11.
+{
+  "old_function": {
+    "name": "colMins",
+    "representation": "colMins",
+    "signature": "DelayedMatrix",
+    "parameters": "function ( x , rows = NULL , cols = NULL , na.rm = FALSE , dim. = dim ( x ) )",
+    "body": "{   .check_rows_cols (  rows ,  cols ,  \"colMins\" )   .BLOCK_row_summary (  rowMins ,   t (  x ) , na.rm =  na.rm ) } ",
+    "replacementFunction": ".colMins_DelayedMatrix",
+    "filename": "DelayedMatrix-stats.txt"
+  },
+  "new_function": {
+    "name": "colMins",
+    "representation": "colMins",
+    "signature": "DelayedMatrix",
+    "parameters": "function ( x , rows = NULL , cols = NULL , na.rm = FALSE )",
+    "body": "{   .check_rows_cols (  rows ,  cols ,  \"colMins\" ) #.BLOCK_row_summary(\"rowMins\", t(x), na.rm=na.rm)   .BLOCK_colMins (  x , na.rm =  na.rm ) } ",
+    "replacementFunction": ".colMins_DelayedMatrix",
+    "filename": "DelayedMatrix-stats.txt"
+  }
+}
+
+12.
+{
+  "old_function": {
+    "name": "rowRanges",
+    "representation": "rowRanges",
+    "signature": "DelayedMatrix",
+    "parameters": "function ( x , rows = NULL , cols = NULL , na.rm = FALSE , dim. = dim ( x ) )",
+    "body": "{   .check_rows_cols (  rows ,  cols ,  \"rowRanges\" )   .BLOCK_rowRanges (  x , na.rm =  na.rm ) } ",
+    "replacementFunction": ".rowRanges_DelayedMatrix",
+    "filename": "DelayedMatrix-stats.txt"
+  },
+  "new_function": {
+    "name": "rowRanges",
+    "representation": "rowRanges",
+    "signature": "DelayedMatrix",
+    "parameters": "function ( x , rows = NULL , cols = NULL , na.rm = FALSE )",
+    "body": "{   .check_rows_cols (  rows ,  cols ,  \"rowRanges\" )   .BLOCK_rowRanges (  x , na.rm =  na.rm ) } ",
+    "replacementFunction": ".rowRanges_DelayedMatrix",
+    "filename": "DelayedMatrix-stats.txt"
+  }
+}
+
+13.
+{
+  "old_function": {
+    "name": "colRanges",
+    "representation": "colRanges",
+    "signature": "DelayedMatrix",
+    "parameters": "function ( x , rows = NULL , cols = NULL , na.rm = FALSE , dim. = dim ( x ) )",
+    "body": "{   .check_rows_cols (  rows ,  cols ,  \"colRanges\" )   .BLOCK_rowRanges (   t (  x ) , na.rm =  na.rm ) } ",
+    "replacementFunction": ".colRanges_DelayedMatrix",
+    "filename": "DelayedMatrix-stats.txt"
+  },
+  "new_function": {
+    "name": "colRanges",
+    "representation": "colRanges",
+    "signature": "DelayedMatrix",
+    "parameters": "function ( x , rows = NULL , cols = NULL , na.rm = FALSE )",
+    "body": "{   .check_rows_cols (  rows ,  cols ,  \"colRanges\" )   .BLOCK_rowRanges (   t (  x ) , na.rm =  na.rm ) } ",
+    "replacementFunction": ".colRanges_DelayedMatrix",
+    "filename": "DelayedMatrix-stats.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  delayedarray_release_3_12 delayedarray_release_3_13
+
+{
+    "package": "DelayedArray",
+    "release_versions": "delayedarray_release_3_12 delayedarray_release_3_13",
+    "desc_release_old": "0.16.3",
+    "desc_release_new": "0.18.0",
+    "old_release_number": 6,
+    "new_release_number": 7,
+    "function_removals": 1,
+    "function_additions": 14,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+summary.DelayedDimnames
+
+
+##########
+Functions Added
+##########
+
+aperm.DummyArrayGrid
+scale.DelayedMatrix
+summary.DelayedSetDimnames
+DummyArrayViewport
+DummyArrayGrid
+defaultSinkAutoGrid
+gridApply
+gridReduce
+sinkApply
+ConstantArray
+ConstantArraySeed
+scale
+log
+%*%
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  delayedarray_release_3_13 delayedarray_release_3_14
+
+{
+    "package": "DelayedArray",
+    "release_versions": "delayedarray_release_3_13 delayedarray_release_3_14",
+    "desc_release_old": "0.18.0",
+    "desc_release_new": "0.20.0",
+    "old_release_number": 7,
+    "new_release_number": 8,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+bindROWS
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  delayedarray_release_3_14 delayedarray_master
+
+{
+    "package": "DelayedArray",
+    "release_versions": "delayedarray_release_3_14 delayedarray_master",
+    "desc_release_old": "0.20.0",
+    "desc_release_new": "0.21.2",
+    "old_release_number": 8,
+    "new_release_number": 9,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+

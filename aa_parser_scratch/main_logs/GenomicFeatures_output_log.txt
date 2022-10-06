@@ -1,0 +1,2061 @@
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicfeatures_release_2_5 genomicfeatures_release_2_6
+
+{
+    "package": "GenomicFeatures",
+    "release_versions": "genomicfeatures_release_2_5 genomicfeatures_release_2_6",
+    "desc_release_old": "0.2.0",
+    "desc_release_new": "1.0.10",
+    "old_release_number": 0,
+    "new_release_number": 1,
+    "function_removals": 1,
+    "function_additions": 24,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 3,
+    "total_count": 4
+}
+
+##########
+Functions Removed
+##########
+
+introns
+
+
+##########
+Functions Added
+##########
+
+transcripts_deprecated
+exons_deprecated
+introns_deprecated
+makeTranscriptDb
+supportedUCSCtables
+makeTranscriptDbFromUCSC
+makeTranscriptDbFromBiomart
+saveFeatures
+loadFeatures
+as.list
+cds
+transcriptsByOverlaps
+exonsByOverlaps
+cdsByOverlaps
+id2name
+transcriptsBy
+exonsBy
+cdsBy
+intronsByTranscript
+fiveUTRsByTranscript
+threeUTRsByTranscript
+seqnames
+seqlengths
+show
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "extractTranscriptsFromGenome",
+    "representation": "extractTranscriptsFromGenome",
+    "parameters": "function ( genome , genes )",
+    "body": "{  if (  !   is (  genome ,  \"BSgenome\" ) )   stop (  \"'genome' must be a BSgenome object\" )   REQUIRED_COLS -   c (  \"name\" ,  \"chrom\" ,  \"strand\" ,  \"exonStarts\" ,  \"exonEnds\" )  if (   !   is.data.frame (  genes ) ||  !   all (   REQUIRED_COLS %in%   names (  genes ) ) )   stop (  \"'genes' must be a data.frame with columns: \" ,   paste (  REQUIRED_COLS , collapse =  \", \" ) ) ## The 3 lists below have identical names (the REFSEQnames)   REFSEQnames2strand -   split (   genes $ strand ,   genes $ chrom , drop =  TRUE )   REFSEQnames2exonStarts -   split (   genes $ exonStarts ,   genes $ chrom , drop =  TRUE )   REFSEQnames2exonEnds -   split (   genes $ exonEnds ,   genes $ chrom , drop =  TRUE )   REFSEQnames -   names (  REFSEQnames2strand ) # REFSEQnames has no duplicates   extractTranscriptSeqsFromREFSEQ -  function ( REFSEQname )  {   subject -   genome [[  REFSEQname ] ]    masks (  subject ) -  NULL   REFSEQ_exonStarts -   REFSEQnames2exonStarts [[  REFSEQname ] ]   REFSEQ_exonEnds -   REFSEQnames2exonEnds [[  REFSEQname ] ]   REFSEQ_strand -   REFSEQnames2strand [[  REFSEQname ] ]   transcripts -   extractTranscripts (  subject ,  REFSEQ_exonStarts ,  REFSEQ_exonEnds ,  REFSEQ_strand , reorder.exons.on.minus.strand =  TRUE )   as.character (  transcripts ) }   REFSEQnames2seqs -   lapply (  REFSEQnames ,  extractTranscriptSeqsFromREFSEQ )   ans -   unsplit (  REFSEQnames2seqs ,   genes $ chrom , drop =  TRUE )    names (  ans ) -   genes $ name   DNAStringSet (  ans ) } ",
+    "filename": "extractTranscriptsFromGenome.txt"
+  },
+  "new_function": {
+    "name": "extractTranscriptsFromGenome",
+    "representation": "extractTranscriptsFromGenome",
+    "parameters": "function ( genome , txdb , use.names = TRUE )",
+    "body": "{  if (  !   is (  genome ,  \"BSgenome\" ) )   stop (  \"'genome' must be a BSgenome object\" )  if (   is.data.frame (  txdb ) )  {   ucsc_txlist -   .makeUCSCTxListFromUCSCTxTable (  txdb )   reorder.exons -  TRUE } else  {  if (   is (  txdb ,  \"TranscriptDb\" ) )  {   txdb -   exonsBy (  txdb , use.names =  use.names ) } else  if (  !   is (  txdb ,  \"GRangesList\" ) )   stop (  \"'txdb' must be a TranscriptDb object, a GRangesList \" ,  \"object, or a data frame\" )   ucsc_txlist -   .makeUCSCTxListFromGRangesList (  txdb , reorder.exons.on.minus.strand =  FALSE )   reorder.exons -  FALSE }   .extractTranscriptsFromGenomeAndUCSCTxList (  genome ,  ucsc_txlist ,  reorder.exons ) } ",
+    "filename": "extractTranscriptsFromGenome.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "transcripts",
+    "representation": "transcripts",
+    "parameters": "function ( genes , proximal = 500L , distal = 10000L )",
+    "body": "{   transcript -   IRanges (   genes $ txStart ,   genes $ txEnd ) # some have multiple exons, CDS, etc   notdup -  !   duplicated (   genes [   c (  \"chrom\" ,  \"txStart\" ,  \"txEnd\" ) ] )   transcript -   transcript [  notdup ] ## direction of transcription depends on strand (but UCSC is only by +)   pos -     genes $ strand [  notdup ] ==  \"+\"   starts -   ifelse (  pos ,   start (  transcript ) ,   end (  transcript ) )   ends -   ifelse (  pos ,   end (  transcript ) ,   start (  transcript ) )   proximal -   ifelse (  pos ,  proximal ,  -  proximal )   distal -   ifelse (  pos ,  distal ,  -  distal )   offset -   ifelse (  pos ,  1L ,  -  1L )   rangebind -  function ( x , y )   IRanges (   pmin.int (  x ,  y ) ,   pmax.int (  x ,  y ) ) ## [start-proximal,start+proximal-1]   promoter -   rangebind (   starts -  proximal ,    starts +  proximal -  offset ) ## [end-proximal+1,end+proximal]   threeprime -   rangebind (    ends -  proximal +  offset ,   ends +  proximal ) ## [start-distal,start-proximal-1]   upstream -   rangebind (   starts -  distal ,    starts -  proximal -  offset ) ## [end+proximal+1, end+distal]   downstream -   rangebind (    ends +  proximal +  offset ,   ends +  distal )   RangedData (  transcript , gene =    genes $ name [  notdup ] , promoter =  promoter , threeprime =  threeprime , upstream =  upstream , downstream =  downstream , space =    genes $ chrom [  notdup ] ) } ",
+    "filename": "regions.txt"
+  },
+  "new_function": {
+    "name": "transcripts",
+    "representation": "transcripts",
+    "parameters": "function ( txdb , vals = NULL , columns = c ( \"tx_id\" , \"tx_name\" ) )",
+    "body": "{ ## check to see if user wanted deprecated function  if (   is.data.frame (  txdb ) )   stop (  \"Please use 'transcripts_deprecated' for older data.frame-based transcript metadata.\" ) ## check that txdb is a TranscriptDb object  if (  !   is (  txdb ,  \"TranscriptDb\" ) )   stop (  \"'txdb' must be a TranscriptDb object\" ) ## check the vals argument   validValNames -   c (  \"gene_id\" ,  \"tx_id\" ,  \"tx_name\" ,  \"tx_chrom\" ,  \"tx_strand\" )  if (   !   is.null (  vals ) undefined  (    !   is.list (  vals ) ||   is.null (   names (  vals ) ) ||  !   all (    names (  vals ) %in%  validValNames ) ) )  {   stop (  \"'vals' must be NULL or a list with names being a combination of \" ,   paste (   dQuote (  validValNames ) , collapse =  \", \" ) ) }   whichId -   which (    names (  vals ) ==  \"tx_id\" )  if (    length (  whichId ) undefined  0 )  {     names (  vals ) [  whichId ] -  \"transcript._tx_id\" } ## check the columns argument   validColumns -   c (  \"tx_id\" ,  \"tx_name\" ,  \"gene_id\" ,  \"exon_id\" ,  \"cds_id\" )  if (     length (  columns ) undefined  0 undefined  (   !   is.character (  columns ) ||  !   all (   columns %in%  validColumns ) ) )  {   stop (  \"'columns' must be NULL or a combination of \" ,   paste (   dQuote (  validColumns ) , collapse =  \", \" ) ) } ## create SQL query  if (   \"tx_name\" %in%  columns )   optionalColumn -  \", tx_name\" else   optionalColumn -  \"\"  if (   \"gene_id\" %in%   names (  vals ) )   optionalLeftJoin -  \"LEFT JOIN gene ON transcript._tx_id=gene._tx_id\" else   optionalLeftJoin -  \"\"   sql -   paste (  \"SELECT tx_chrom, tx_start, tx_end, tx_strand,\" ,  \"transcript._tx_id AS tx_id\" ,  optionalColumn ,  \"FROM transcript\" ,  optionalLeftJoin ,   .sqlWhereIn (  vals ) ,  \"ORDER BY tx_chrom, tx_strand, tx_start, tx_end\" )  if (   getOption (  \"verbose\" ,  FALSE ) )   cat (  \"SQL QUERY: \" ,  sql ,  \"\\n\\n\" , sep =  \"\" ) ## get the data from the database   ans -   dbEasyQuery (   txdbConn (  txdb ) ,  sql )   seqlengths -   seqlengths (  txdb )   ans -   GRanges ( seqnames =   factor (   ans [[  \"tx_chrom\" ] ] , levels =   names (  seqlengths ) ) , ranges =   IRanges ( start =   ans [[  \"tx_start\" ] ] , end =   ans [[  \"tx_end\" ] ] ) , strand =   strand (   ans [[  \"tx_strand\" ] ] ) ,   ans [  -   c (   1 :  4 ) ] , seqlengths =  seqlengths )  if (     length (  ans ) undefined  0 undefined   any (    c (  \"gene_id\" ,  \"exon_id\" ,  \"cds_id\" ) %in%  columns ) )  {  if (   \"gene_id\" %in%  columns )  {     elementMetadata (  ans ) [[  \"gene_id\" ] ] -   .geneCharacterList (  txdb ,    elementMetadata (  ans ) [[  \"tx_id\" ] ] ) }  if (   \"exon_id\" %in%  columns )  {     elementMetadata (  ans ) [[  \"exon_id\" ] ] -   .exonORcdsIntegerList (  txdb ,    elementMetadata (  ans ) [[  \"tx_id\" ] ] ,  \"exon\" ) }  if (   \"cds_id\" %in%  columns )  {     elementMetadata (  ans ) [[  \"cds_id\" ] ] -   .exonORcdsIntegerList (  txdb ,    elementMetadata (  ans ) [[  \"tx_id\" ] ] ,  \"cds\" ) } }  if (  !  (   \"tx_id\" %in%  columns ) )     elementMetadata (  ans ) [[  \"tx_id\" ] ] -  NULL  ans } ",
+    "filename": "transcripts.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "exons",
+    "representation": "exons",
+    "parameters": "function ( genes )",
+    "body": "{   splitPos -  function ( pos )  {   as.integer (   unlist (   strsplit (   as.character (  pos ) ,  \",\" ) , use.names =  FALSE ) ) } ## [exon:start, exon:end]   RangedData (   IRanges (   splitPos (   genes $ exonStarts ) ,   splitPos (   genes $ exonEnds ) ) , gene =   rep (   genes $ name ,   genes $ exonCount ) , space =   rep (   genes $ chrom ,   genes $ exonCount ) ) } ",
+    "filename": "regions.txt"
+  },
+  "new_function": {
+    "name": "exons",
+    "representation": "exons",
+    "parameters": "function ( txdb , vals = NULL )",
+    "body": "{   .exonORcdsGRanges (  txdb , vals =  vals , type =  \"exon\" ) } ",
+    "filename": "transcripts.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicfeatures_release_2_6 genomicfeatures_release_2_7
+
+{
+    "package": "GenomicFeatures",
+    "release_versions": "genomicfeatures_release_2_6 genomicfeatures_release_2_7",
+    "desc_release_old": "1.0.10",
+    "desc_release_new": "1.2.5",
+    "old_release_number": 1,
+    "new_release_number": 2,
+    "function_removals": 0,
+    "function_additions": 5,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+DEFAULT_CIRC_SEQS
+getChromInfoFromUCSC
+getChromInfoFromBiomart
+metadata
+isCircular
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "makeTranscriptDbFromUCSC",
+    "representation": "makeTranscriptDbFromUCSC",
+    "parameters": "function ( genome = \"hg18\" , tablename = \"knownGene\" , transcript_ids = NULL , url = \"http://genome.ucsc.edu/cgi-bin/\" , goldenPath_url = \"http://hgdownload.cse.ucsc.edu/goldenPath\" )",
+    "body": "{  if (  !   isSingleString (  genome ) )   stop (  \"'genome' must be a single string\" )  if (  !   isSingleString (  tablename ) )   stop (  \"'tablename' must be a single string\" )   track -    supportedUCSCtables ( ) [  tablename ,  \"track\" ]  if (   is.na (  track ) )   stop (  \"table \\\"\" ,  tablename ,  \"\\\" is not supported\" )  if (  !   is.null (  transcript_ids ) )  {  if (   !   is.character (  transcript_ids ) ||   any (   is.na (  transcript_ids ) ) )   stop (  \"'transcript_ids' must be a character vector with no NAs\" ) }  if (  !   isSingleString (  url ) )   stop (  \"'url' must be a single string\" )  if (  !   isSingleString (  goldenPath_url ) )   stop (  \"'goldenPath_url' must be a single string\" ) ## Create an UCSC Genome Browser session.   session -   browserSession ( url =  url )    genome (  session ) -  genome   track_tables -   tableNames (   ucscTableQuery (  session , track =  track ) )  if (  !  (   tablename %in%  track_tables ) )   stop (  \"GenomicFeatures internal error: \" ,  tablename ,  \" table doesn't \" ,  \"exist or is not associated with \" ,  track ,  \" track. \" ,  \"Thank you for reporting this to the GenomicFeatures maintainer \" ,  \"or to the Bioconductor mailing list, and sorry for the \" ,  \"inconvenience.\" ) ## Download the transcript table.   message (  \"Download the \" ,  tablename ,  \" table ... \" , appendLF =  FALSE )   query -   ucscTableQuery (  session ,  track , table =  tablename , names =  transcript_ids )   ucsc_txtable -   getTable (  query )  if (    ncol (  ucsc_txtable ) undefined   length (  .UCSC_TXCOL2CLASS ) )   stop (  \"GenomicFeatures internal error: \" ,  tablename ,  \" table doesn't \" ,  \"exist, was corrupted during download, or doesn't contain \" ,  \"transcript information. \" ,  \"Thank you for reporting this to the GenomicFeatures maintainer \" ,  \"or to the Bioconductor mailing list, and sorry for the \" ,  \"inconvenience.\" )   message (  \"OK\" ) ## Download the tx_name-to-gene_id mapping.   txname2geneid -   .fetchTxName2GeneIdMappingFromUCSC (  session ,  track ,  tablename )   .makeTranscriptDbFromUCSCTxTable (  ucsc_txtable ,   txname2geneid $ genes ,  genome ,  tablename ,   txname2geneid $ gene_id_type , full_dataset =   is.null (  transcript_ids ) , goldenPath_url =  goldenPath_url ) } ",
+    "filename": "makeTranscriptDbFromUCSC.txt"
+  },
+  "new_function": {
+    "name": "makeTranscriptDbFromUCSC",
+    "representation": "makeTranscriptDbFromUCSC",
+    "parameters": "function ( genome = \"hg18\" , tablename = \"knownGene\" , transcript_ids = NULL , circ_seqs = DEFAULT_CIRC_SEQS , url = \"http://genome.ucsc.edu/cgi-bin/\" , goldenPath_url = \"http://hgdownload.cse.ucsc.edu/goldenPath\" )",
+    "body": "{  if (  !   isSingleString (  genome ) )   stop (  \"'genome' must be a single string\" )  if (  !   isSingleString (  tablename ) )   stop (  \"'tablename' must be a single string\" )   track -    supportedUCSCtables ( ) [  tablename ,  \"track\" ]  if (   is.na (  track ) )   stop (  \"table \\\"\" ,  tablename ,  \"\\\" is not supported\" )  if (  !   is.null (  transcript_ids ) )  {  if (   !   is.character (  transcript_ids ) ||   any (   is.na (  transcript_ids ) ) )   stop (  \"'transcript_ids' must be a character vector with no NAs\" ) }  if (  !   isSingleString (  url ) )   stop (  \"'url' must be a single string\" )  if (  !   isSingleString (  goldenPath_url ) )   stop (  \"'goldenPath_url' must be a single string\" ) ## Create an UCSC Genome Browser session.   session -   browserSession ( url =  url )    genome (  session ) -  genome   track_tables -   tableNames (   ucscTableQuery (  session , track =  track ) )  if (  !  (   tablename %in%  track_tables ) )   stop (  \"GenomicFeatures internal error: \" ,  tablename ,  \" table doesn't \" ,  \"exist or is not associated with \" ,  track ,  \" track. \" ,  \"Thank you for reporting this to the GenomicFeatures maintainer \" ,  \"or to the Bioconductor mailing list, and sorry for the \" ,  \"inconvenience.\" ) ## Download the transcript table.   message (  \"Download the \" ,  tablename ,  \" table ... \" , appendLF =  FALSE )   query -   ucscTableQuery (  session ,  track , table =  tablename , names =  transcript_ids )   ucsc_txtable -   getTable (  query )  if (    ncol (  ucsc_txtable ) undefined   length (  .UCSC_TXCOL2CLASS ) )   stop (  \"GenomicFeatures internal error: \" ,  tablename ,  \" table doesn't \" ,  \"exist, was corrupted during download, or doesn't contain \" ,  \"transcript information. \" ,  \"Thank you for reporting this to the GenomicFeatures maintainer \" ,  \"or to the Bioconductor mailing list, and sorry for the \" ,  \"inconvenience.\" )   message (  \"OK\" ) ## Download the tx_name-to-gene_id mapping.   txname2geneid -   .fetchTxName2GeneIdMappingFromUCSC (  session ,  track ,  tablename )   .makeTranscriptDbFromUCSCTxTable (  ucsc_txtable ,   txname2geneid $ genes ,  genome ,  tablename ,   txname2geneid $ gene_id_type , full_dataset =   is.null (  transcript_ids ) , circ_seqs =  circ_seqs , goldenPath_url =  goldenPath_url ) } ",
+    "filename": "makeTranscriptDbFromUCSC.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicfeatures_release_2_7 genomicfeatures_release_2_8
+
+{
+    "package": "GenomicFeatures",
+    "release_versions": "genomicfeatures_release_2_7 genomicfeatures_release_2_8",
+    "desc_release_old": "1.2.5",
+    "desc_release_new": "1.4.5",
+    "old_release_number": 2,
+    "new_release_number": 3,
+    "function_removals": 3,
+    "function_additions": 9,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 3
+}
+
+##########
+Functions Removed
+##########
+
+seqnames
+seqlengths
+isCircular
+
+
+##########
+Functions Added
+##########
+
+supportedUCSCFeatureDbTracks
+supportedUCSCFeatureDbTables
+UCSCFeatureDbTableSchema
+seqinfo
+transcriptWidths
+transcriptLocs2refLocs
+extractTranscripts
+makeFeatureDbFromUCSC
+features
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicfeatures_release_2_8 genomicfeatures_release_2_9
+
+{
+    "package": "GenomicFeatures",
+    "release_versions": "genomicfeatures_release_2_8 genomicfeatures_release_2_9",
+    "desc_release_old": "1.4.5",
+    "desc_release_new": "1.6.9",
+    "old_release_number": 3,
+    "new_release_number": 4,
+    "function_removals": 0,
+    "function_additions": 5,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+makeTxDbPackage
+makeTxDbPackageFromUCSC
+makeTxDbPackageFromBiomart
+isActiveSeq
+isActiveSeq<-
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicfeatures_release_2_9 genomicfeatures_release_2_11
+
+{
+    "package": "GenomicFeatures",
+    "release_versions": "genomicfeatures_release_2_9 genomicfeatures_release_2_11",
+    "desc_release_old": "1.6.9",
+    "desc_release_new": "1.10.2",
+    "old_release_number": 4,
+    "new_release_number": 5,
+    "function_removals": 0,
+    "function_additions": 13,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 3,
+    "total_count": 3
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+makeTranscriptDbFromGFF
+promoters
+microRNAs
+tRNAs
+sortExonsByRank
+makeFDbPackageFromUCSC
+supportedMiRBaseBuildValues
+getPromoterSeq
+seqinfo<-
+asBED
+asGFF
+determineDefaultSeqnameStyle
+findSpliceOverlaps
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "transcriptLocs2refLocs",
+    "representation": "transcriptLocs2refLocs",
+    "parameters": "function ( tlocs , exonStarts = list ( ) , exonEnds = list ( ) , strand = character ( 0 ) , reorder.exons.on.minus.strand = FALSE )",
+    "body": "{  if (  !   is.list (  tlocs ) )  {  if (  !   is (  tlocs ,  \"IntegerList\" ) )   stop (  \"'tlocs' must be a list of integer vectors \" ,  \"or an IntegerList object\" )   tlocs -   as.list (  tlocs ) }  if (   is (  exonStarts ,  \"RangesList\" ) )  {  if (  !   identical (  exonEnds ,   list ( ) ) )   stop (  \"'exonEnds' cannot be specified \" ,  \"when 'exonStarts' is a RangesList object\" )   exonEnds -   end (  exonStarts )   exonStarts -   start (  exonStarts ) }   exonStarts -   .normargExonStartsOrEnds (  exonStarts ,  \"exonStarts\" )   exonEnds -   .normargExonStartsOrEnds (  exonEnds ,  \"exonEnds\" )  if (   is.factor (  strand ) )   strand -   as.vector (  strand )  if (  !   is.character (  strand ) )   stop (  \"'strand' must be a character vector\" )  if (      length (  tlocs ) !=   length (  strand ) ||    length (  exonStarts ) !=   length (  strand ) ||    length (  exonEnds ) !=   length (  strand ) )   stop (  \"'tlocs', 'exonStarts', 'exonEnds' and 'strand' \" ,  \"must have the same length\" )  if (  !   isTRUEorFALSE (  reorder.exons.on.minus.strand ) )   stop (  \"'reorder.exons.on.minus.strand' must be TRUE or FALSE\" )   GenomicRanges ::: unsafe.transcriptLocs2refLocs (  tlocs ,  exonStarts ,  exonEnds ,  strand ,  reorder.exons.on.minus.strand ) } ",
+    "filename": "extractTranscriptsFromGenome.txt"
+  },
+  "new_function": {
+    "name": "transcriptLocs2refLocs",
+    "representation": "transcriptLocs2refLocs",
+    "parameters": "function ( tlocs , exonStarts = list ( ) , exonEnds = list ( ) , strand = character ( 0 ) , decreasing.rank.on.minus.strand = FALSE )",
+    "body": "{  if (  !   is.list (  tlocs ) )  {  if (  !   is (  tlocs ,  \"IntegerList\" ) )   stop (  \"'tlocs' must be a list of integer vectors \" ,  \"or an IntegerList object\" )   tlocs -   as.list (  tlocs ) }  if (   is (  exonStarts ,  \"RangesList\" ) )  {  if (  !   identical (  exonEnds ,   list ( ) ) )   stop (  \"'exonEnds' cannot be specified \" ,  \"when 'exonStarts' is a RangesList object\" )   exonEnds -   end (  exonStarts )   exonStarts -   start (  exonStarts ) }   exonStarts -   .normargExonStartsOrEnds (  exonStarts ,  \"exonStarts\" )   exonEnds -   .normargExonStartsOrEnds (  exonEnds ,  \"exonEnds\" )  if (   is.factor (  strand ) )   strand -   as.vector (  strand )  if (  !   is.character (  strand ) )   stop (  \"'strand' must be a character vector\" )  if (      length (  tlocs ) !=   length (  strand ) ||    length (  exonStarts ) !=   length (  strand ) ||    length (  exonEnds ) !=   length (  strand ) )   stop (  \"'tlocs', 'exonStarts', 'exonEnds' and 'strand' \" ,  \"must have the same length\" )  if (  !   isTRUEorFALSE (  decreasing.rank.on.minus.strand ) )   stop (  \"'decreasing.rank.on.minus.strand' must be TRUE or FALSE\" )   GenomicRanges ::: unsafe.transcriptLocs2refLocs (  tlocs ,  exonStarts ,  exonEnds ,  strand ,  decreasing.rank.on.minus.strand ) } ",
+    "filename": "extractTranscriptsFromGenome.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "extractTranscripts",
+    "representation": "extractTranscripts",
+    "parameters": "function ( x , exonStarts = list ( ) , exonEnds = list ( ) , strand = character ( 0 ) , reorder.exons.on.minus.strand = FALSE )",
+    "body": "{  if (  !   is (  x ,  \"DNAString\" ) )  {  if (  !   is (  x ,  \"MaskedDNAString\" ) )   stop (  \"'x' must be a DNAString object\" )    masks (  x ) -  NULL }  if (   is (  exonStarts ,  \"RangesList\" ) )  {  if (  !   identical (  exonEnds ,   list ( ) ) )   stop (  \"'exonEnds' cannot be specified \" ,  \"when 'exonStarts' is a RangesList object\" )   exonEnds -   end (  exonStarts )   exonStarts -   start (  exonStarts ) }   exonStarts -   .normargExonStartsOrEnds (  exonStarts ,  \"exonStarts\" )   exonEnds -   .normargExonStartsOrEnds (  exonEnds ,  \"exonEnds\" )  if (   is.factor (  strand ) )   strand -   as.vector (  strand )  if (  !   is.character (  strand ) )   stop (  \"'strand' must be a character vector\" )  if (     length (  exonStarts ) !=   length (  strand ) ||    length (  exonEnds ) !=   length (  strand ) )   stop (  \"'exonStarts', 'exonEnds' and 'strand' must have the same length\" )  if (  !   isTRUEorFALSE (  reorder.exons.on.minus.strand ) )   stop (  \"'reorder.exons.on.minus.strand' must be TRUE or FALSE\" )   lkup -   Biostrings ::: getDNAComplementLookup ( )   GenomicRanges ::: unsafe.extractTranscripts (  \"DNAStringSet\" ,  x ,  exonStarts ,  exonEnds ,  strand ,  reorder.exons.on.minus.strand ,  lkup ) } ",
+    "filename": "extractTranscriptsFromGenome.txt"
+  },
+  "new_function": {
+    "name": "extractTranscripts",
+    "representation": "extractTranscripts",
+    "parameters": "function ( x , exonStarts = list ( ) , exonEnds = list ( ) , strand = character ( 0 ) , decreasing.rank.on.minus.strand = FALSE )",
+    "body": "{  if (  !   is (  x ,  \"DNAString\" ) )  {  if (  !   is (  x ,  \"MaskedDNAString\" ) )   stop (  \"'x' must be a DNAString object\" )    masks (  x ) -  NULL }  if (   is (  exonStarts ,  \"RangesList\" ) )  {  if (  !   identical (  exonEnds ,   list ( ) ) )   stop (  \"'exonEnds' cannot be specified \" ,  \"when 'exonStarts' is a RangesList object\" )   exonEnds -   end (  exonStarts )   exonStarts -   start (  exonStarts ) }   exonStarts -   .normargExonStartsOrEnds (  exonStarts ,  \"exonStarts\" )   exonEnds -   .normargExonStartsOrEnds (  exonEnds ,  \"exonEnds\" )  if (   is.factor (  strand ) )   strand -   as.vector (  strand )  if (  !   is.character (  strand ) )   stop (  \"'strand' must be a character vector\" )  if (     length (  exonStarts ) !=   length (  strand ) ||    length (  exonEnds ) !=   length (  strand ) )   stop (  \"'exonStarts', 'exonEnds' and 'strand' must have the same length\" )  if (  !   isTRUEorFALSE (  decreasing.rank.on.minus.strand ) )   stop (  \"'decreasing.rank.on.minus.strand' must be TRUE or FALSE\" )   lkup -   Biostrings ::: getDNAComplementLookup ( )   GenomicRanges ::: unsafe.extractTranscripts (  \"DNAStringSet\" ,  x ,  exonStarts ,  exonEnds ,  strand ,  decreasing.rank.on.minus.strand ,  lkup ) } ",
+    "filename": "extractTranscriptsFromGenome.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "extractTranscriptsFromGenome",
+    "representation": "extractTranscriptsFromGenome",
+    "parameters": "function ( genome , txdb , use.names = TRUE )",
+    "body": "{  if (  !   is (  genome ,  \"BSgenome\" ) )   stop (  \"'genome' must be a BSgenome object\" )  if (   is.data.frame (  txdb ) )  {   ucsc_txlist -   .makeUCSCTxListFromUCSCTxTable (  txdb )   reorder.exons -  TRUE } else  {  if (   is (  txdb ,  \"TranscriptDb\" ) )  {   txdb -   exonsBy (  txdb , by =  \"tx\" , use.names =  use.names ) } else  if (  !   is (  txdb ,  \"GRangesList\" ) )   stop (  \"'txdb' must be a TranscriptDb object, a GRangesList \" ,  \"object, or a data frame\" )   ucsc_txlist -   .makeUCSCTxListFromGRangesList (  txdb , reorder.exons.on.minus.strand =  FALSE )   reorder.exons -  FALSE }   .extractTranscriptsFromGenomeAndUCSCTxList (  genome ,  ucsc_txlist ,  reorder.exons ) } ",
+    "filename": "extractTranscriptsFromGenome.txt"
+  },
+  "new_function": {
+    "name": "extractTranscriptsFromGenome",
+    "representation": "extractTranscriptsFromGenome",
+    "parameters": "function ( genome , txdb , decreasing.rank.on.minus.strand = FALSE , use.names = TRUE )",
+    "body": "{  if (  !   is (  genome ,  \"BSgenome\" ) )   stop (  \"'genome' must be a BSgenome object\" )  if (  !   isTRUEorFALSE (  decreasing.rank.on.minus.strand ) )   stop (  \"'decreasing.rank.on.minus.strand' must be TRUE or FALSE\" )  if (   is.data.frame (  txdb ) )  {   ucsc_txlist -   .makeUCSCTxListFromUCSCTxTable (  txdb ) } else  {  if (   is (  txdb ,  \"TranscriptDb\" ) )  {  if (  decreasing.rank.on.minus.strand )   stop (  \"'decreasing.rank.on.minus.strand' must be FALSE \" ,  \"when 'txdb' is a TranscriptDb object\" )   txdb -   exonsBy (  txdb , by =  \"tx\" , use.names =  use.names ) } else  if (  !   is (  txdb ,  \"GRangesList\" ) )   stop (  \"'txdb' must be a TranscriptDb object, a GRangesList \" ,  \"object, or a data frame\" )   ucsc_txlist -   .makeUCSCTxListFromGRangesList (  txdb ) }   .extractTranscriptsFromGenomeAndUCSCTxList (  genome ,  ucsc_txlist ,  decreasing.rank.on.minus.strand ) } ",
+    "filename": "extractTranscriptsFromGenome.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicfeatures_release_2_11 genomicfeatures_release_2_12
+
+{
+    "package": "GenomicFeatures",
+    "release_versions": "genomicfeatures_release_2_11 genomicfeatures_release_2_12",
+    "desc_release_old": "1.10.2",
+    "desc_release_new": "1.12.4",
+    "old_release_number": 5,
+    "new_release_number": 6,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 1,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "makeTranscriptDbFromGFF",
+    "representation": "makeTranscriptDbFromGFF",
+    "parameters": "function ( file , format = c ( \"gff3\" , \"gtf\" ) , exonRankAttributeName = NULL , gffGeneIdAttributeName = NULL , chrominfo , dataSource , species , circ_seqs = DEFAULT_CIRC_SEQS , miRBaseBuild = NULL )",
+    "body": "{ ## Some argument checking:  if (   missing (  dataSource ) )   stop (  \"No Datasource provided\" )  if (   missing (  species ) )   stop (  \"No species provided\" )   format -   match.arg (  format ) ## start by importing the relevant features from the specified file   feature.type -   c (  \"gene\" ,  \"mRNA\" ,  \"exon\" ,  \"CDS\" )   gff -   import (  file , format =  format , feature.type =  feature.type , asRangedData =  TRUE )  if (   format ==  \"gff3\" )  { ## check that we have ID, Parent  if (   all (    c (  \"ID\" ,  \"Parent\" ) %in%   colnames (  gff ) ) )  {   tables -   .prepareGFF3Tables (  gff ,  exonRankAttributeName ,  gffGeneIdAttributeName ) ## results come back in list like: tables$transctripts etc. } } else  if (   format ==  \"gtf\" )  { ## check that we have gene_id and transcript_id  if (   all (    c (  \"gene_id\" ,  \"transcript_id\" ) %in%   colnames (  gff ) ) )  {   tables -   .prepareGTFTables (  gff ,  exonRankAttributeName ) } } ## TODO: verify that I have all I really need for metadata ## build up the metadata   metadata -   .prepareGFFMetadata (  dataSource ,  species ,  miRBaseBuild ) ## If there is not chrominfo, then make one up best you can (no lengths)  if (   missing (  chrominfo ) )  {   message (  \"Now generating chrominfo from available sequence names. No chromosome length information is available.\" )   chroms -   unique (    tables [[  \"transcripts\" ] ] [[  \"tx_chrom\" ] ] )   chrominfo -   data.frame ( chrom =  chroms , length =   rep (  NA ,   length (  chroms ) ) , is_circular =   matchCircularity (  chroms ,  circ_seqs ) ) } ## call makeTranscriptDb   txdb -   makeTranscriptDb ( transcripts =   tables [[  \"transcripts\" ] ] , splicings =   tables [[  \"splicings\" ] ] , genes =   tables [[  \"genes\" ] ] , chrominfo =  chrominfo , metadata =  metadata )  txdb } ",
+    "filename": "makeTranscriptDbFromGFF.txt"
+  },
+  "new_function": {
+    "name": "makeTranscriptDbFromGFF",
+    "representation": "makeTranscriptDbFromGFF",
+    "parameters": "function ( file , format = c ( \"gff3\" , \"gtf\" ) , exonRankAttributeName = NULL , gffGeneIdAttributeName = NULL , chrominfo = NULL , dataSource = NA , species = NA , circ_seqs = DEFAULT_CIRC_SEQS , miRBaseBuild = NA )",
+    "body": "{   format -   match.arg (  format ) ## start by importing the relevant features from the specified file   feature.type -   c (  \"gene\" ,  \"mRNA\" ,  \"exon\" ,  \"CDS\" )   gff -   import (  file , format =  format , feature.type =  feature.type , asRangedData =  FALSE )  if (   format ==  \"gff3\" )  { ## check that we have ID, Parent  if (   all (    c (  \"ID\" ,  \"Parent\" ) %in%   colnames (   mcols (  gff ) ) ) )  {   tables -   .prepareGFF3Tables (  gff ,  exonRankAttributeName ,  gffGeneIdAttributeName ) ## results come back in list like: tables$transctripts etc. } } else  if (   format ==  \"gtf\" )  { ## check that we have gene_id and transcript_id  if (   all (    c (  \"gene_id\" ,  \"transcript_id\" ) %in%   colnames (   mcols (  gff ) ) ) )  {   tables -   .prepareGTFTables (  gff ,  exonRankAttributeName ) } } ## TODO: verify that I have all I really need for metadata ## build up the metadata   metadata -   .prepareGFFMetadata (  file ,  dataSource ,  species ,  miRBaseBuild ) ## If there is not chrominfo, then make one up best you can (no lengths)  if (   is.null (  chrominfo ) )  {   message (  \"Now generating chrominfo from available sequence names. No chromosome length information is available.\" )   chroms -   unique (    tables [[  \"transcripts\" ] ] [[  \"tx_chrom\" ] ] )   chrominfo -   data.frame ( chrom =  chroms , length =   rep (  NA ,   length (  chroms ) ) , is_circular =   matchCircularity (  chroms ,  circ_seqs ) ) } ## call makeTranscriptDb   txdb -   makeTranscriptDb ( transcripts =   tables [[  \"transcripts\" ] ] , splicings =   tables [[  \"splicings\" ] ] , genes =   tables [[  \"genes\" ] ] , chrominfo =  chrominfo , metadata =  metadata , reassign.ids =  TRUE )  txdb } ",
+    "filename": "makeTranscriptDbFromGFF.txt"
+  }
+}
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicfeatures_release_2_12 genomicfeatures_release_2_13
+
+{
+    "package": "GenomicFeatures",
+    "release_versions": "genomicfeatures_release_2_12 genomicfeatures_release_2_13",
+    "desc_release_old": "1.12.4",
+    "desc_release_new": "1.14.5",
+    "old_release_number": 6,
+    "new_release_number": 7,
+    "function_removals": 0,
+    "function_additions": 3,
+    "parameter_removals": 0,
+    "parameter_additions": 1,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+genes
+disjointExons
+distance
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "seqinfo",
+    "representation": "seqinfo<-",
+    "signature": "TranscriptDb",
+    "parameters": "function ( x , new2old = NULL , force = FALSE , value )",
+    "body": "{  if (  !   is (  value ,  \"Seqinfo\" ) )   stop (  \"the supplied 'seqinfo' must be a Seqinfo object\" )   IN_THIS_CONTEXT -   paste0 (  \"when replacing the 'seqinfo' \" ,  \"of a TranscriptDb object\" )  if (  !   identical (  force ,  FALSE ) )   stop (  \"'force' not supported \" ,  IN_THIS_CONTEXT )   x_seqinfo -   seqinfo (  x )  if (   is.null (  new2old ) )  {  if (  !   identical (  value ,  x_seqinfo ) )   stop (  \"'new2old' must be specified \" ,  IN_THIS_CONTEXT )   return (  x ) }  if (    length (  value ) !=   length (  x_seqinfo ) )   stop (  \"the supplied 'seqinfo' must have the same length \" ,  \"as the current 'seqinfo' \" ,  IN_THIS_CONTEXT )  if (  !   identical (  new2old ,   seq_len (   length (  value ) ) ) )   stop (  \"'new2old' must be NULL or \" ,  \"equal to 'seq_len(length(value))' \" ,  IN_THIS_CONTEXT )    seqnames (  x_seqinfo ) -   seqnames (  value )  if (  !   identical (  value ,  x_seqinfo ) )   stop (  \"the supplied and current 'seqinfo' can differ only \" ,  \"in their sequence names \" ,  IN_THIS_CONTEXT )    x $ .chrom -   seqnames (  value )  x } ",
+    "filename": "TranscriptDb-class.txt"
+  },
+  "new_function": {
+    "name": "seqinfo",
+    "representation": "seqinfo<-",
+    "signature": "TranscriptDb",
+    "parameters": "function ( x , new2old , force , value )",
+    "body": "{   .seqinfo.TranscriptDbReplace (  x , new2old =  new2old , force =  force ,  value ) } ",
+    "filename": "TranscriptDb-class.txt"
+  }
+}
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "seqinfo",
+    "representation": "seqinfo<-",
+    "signature": "TranscriptDb",
+    "parameters": "function ( x , new2old = NULL , force = FALSE , value )",
+    "body": "{  if (  !   is (  value ,  \"Seqinfo\" ) )   stop (  \"the supplied 'seqinfo' must be a Seqinfo object\" )   IN_THIS_CONTEXT -   paste0 (  \"when replacing the 'seqinfo' \" ,  \"of a TranscriptDb object\" )  if (  !   identical (  force ,  FALSE ) )   stop (  \"'force' not supported \" ,  IN_THIS_CONTEXT )   x_seqinfo -   seqinfo (  x )  if (   is.null (  new2old ) )  {  if (  !   identical (  value ,  x_seqinfo ) )   stop (  \"'new2old' must be specified \" ,  IN_THIS_CONTEXT )   return (  x ) }  if (    length (  value ) !=   length (  x_seqinfo ) )   stop (  \"the supplied 'seqinfo' must have the same length \" ,  \"as the current 'seqinfo' \" ,  IN_THIS_CONTEXT )  if (  !   identical (  new2old ,   seq_len (   length (  value ) ) ) )   stop (  \"'new2old' must be NULL or \" ,  \"equal to 'seq_len(length(value))' \" ,  IN_THIS_CONTEXT )    seqnames (  x_seqinfo ) -   seqnames (  value )  if (  !   identical (  value ,  x_seqinfo ) )   stop (  \"the supplied and current 'seqinfo' can differ only \" ,  \"in their sequence names \" ,  IN_THIS_CONTEXT )    x $ .chrom -   seqnames (  value )  x } ",
+    "filename": "TranscriptDb-class.txt"
+  },
+  "new_function": {
+    "name": "seqinfo",
+    "representation": "seqinfo<-",
+    "signature": "TranscriptDb",
+    "parameters": "function ( x , new2old , force , value )",
+    "body": "{   .seqinfo.TranscriptDbReplace (  x , new2old =  new2old , force =  force ,  value ) } ",
+    "filename": "TranscriptDb-class.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicfeatures_release_2_13 genomicfeatures_release_2_14
+
+{
+    "package": "GenomicFeatures",
+    "release_versions": "genomicfeatures_release_2_13 genomicfeatures_release_2_14",
+    "desc_release_old": "1.14.5",
+    "desc_release_new": "1.16.3",
+    "old_release_number": 7,
+    "new_release_number": 8,
+    "function_removals": 1,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+findSpliceOverlaps
+
+
+##########
+Functions Added
+##########
+
+extractTranscriptSeqs
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicfeatures_release_2_14 genomicfeatures_release_3_1
+
+{
+    "package": "GenomicFeatures",
+    "release_versions": "genomicfeatures_release_2_14 genomicfeatures_release_3_1",
+    "desc_release_old": "1.16.3",
+    "desc_release_new": "1.20.7",
+    "old_release_number": 8,
+    "new_release_number": 9,
+    "function_removals": 10,
+    "function_additions": 15,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 11
+}
+
+##########
+Functions Removed
+##########
+
+loadFeatures
+transcripts_deprecated
+exons_deprecated
+introns_deprecated
+extractTranscripts
+extractTranscriptsFromGenome
+determineDefaultSeqnameStyle
+saveFeatures
+metadata
+seqinfo<-
+
+
+##########
+Functions Added
+##########
+
+makeTxDb
+makeTxDbFromUCSC
+makeTxDbFromBiomart
+makeTxDbFromGRanges
+makeTxDbFromGFF
+transcriptLengths
+extractUpstreamSeqs
+mapToTranscripts
+pmapToTranscripts
+mapFromTranscripts
+pmapFromTranscripts
+species
+organism
+seqlevels0
+seqlevels<-
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "makeTxDbPackageFromBiomart",
+    "representation": "makeTxDbPackageFromBiomart",
+    "parameters": "function ( version , maintainer , author , destDir = \".\" , license = \"Artistic-2.0\" , biomart = \"ensembl\" , dataset = \"hsapiens_gene_ensembl\" , transcript_ids = NULL , circ_seqs = DEFAULT_CIRC_SEQS , miRBaseBuild = NA )",
+    "body": "{ ## checks  if (    missing (  version ) ||  !   isSingleString (  version ) )  {   stop (  \"'version' must be supplied as a single element\" ,  \" character vector.\" ) }  if (    missing (  maintainer ) ||  !   isSingleString (  maintainer ) )  {   stop (  \"'maintainer' must be supplied as a single element\" ,  \" character vector.\" ) }  if (    missing (  author ) ||  !   isSingleString (  author ) )  {   stop (  \"'author' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  destDir ) )  {   stop (  \"'destDir' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  license ) )  {   stop (  \"'license' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  biomart ) )  {   stop (  \"'biomart' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  dataset ) )  {   stop (  \"'dataset' must be supplied as a single element\" ,  \" character vector.\" ) }  if (   !   is.character (  circ_seqs ) ||    length (  circ_seqs ) undefined  1 )  {   stop (  \"'circ_seqs' must be supplied as a named character vector.\" ) }  if (  !   isSingleStringOrNA (  miRBaseBuild ) )  {   stop (  \"'miRBaseBuild' must be supplied as a single element\" ,  \" character vector or be NA.\" ) } ## Make the DB   txdb -   makeTranscriptDbFromBiomart ( biomart =  biomart , dataset =  dataset , transcript_ids =  transcript_ids , circ_seqs =  circ_seqs , miRBaseBuild =  miRBaseBuild ) ## Make the Package   makeTxDbPackage (  txdb , version =  version , maintainer =  maintainer , author =  author , destDir =  destDir , license =  license ) } ",
+    "filename": "makeTxDbPackage.txt"
+  },
+  "new_function": {
+    "name": "makeTxDbPackageFromBiomart",
+    "representation": "makeTxDbPackageFromBiomart",
+    "parameters": "function ( version , maintainer , author , destDir = \".\" , license = \"Artistic-2.0\" , biomart = \"ensembl\" , dataset = \"hsapiens_gene_ensembl\" , transcript_ids = NULL , circ_seqs = DEFAULT_CIRC_SEQS , filters = \"\" , id_prefix = \"ensembl_\" , host = \"www.biomart.org\" , port = 80 , miRBaseBuild = NA )",
+    "body": "{ ## checks  if (    missing (  version ) ||  !   isSingleString (  version ) )  {   stop (  \"'version' must be supplied as a single element\" ,  \" character vector.\" ) }  if (    missing (  maintainer ) ||  !   isSingleString (  maintainer ) )  {   stop (  \"'maintainer' must be supplied as a single element\" ,  \" character vector.\" ) }  if (    missing (  author ) ||  !   isSingleString (  author ) )  {   stop (  \"'author' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  destDir ) )  {   stop (  \"'destDir' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  license ) )  {   stop (  \"'license' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  biomart ) )  {   stop (  \"'biomart' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  dataset ) )  {   stop (  \"'dataset' must be supplied as a single element\" ,  \" character vector.\" ) }  if (   !   is.character (  circ_seqs ) ||    length (  circ_seqs ) undefined  1 )  {   stop (  \"'circ_seqs' must be supplied as a named character vector.\" ) }  if (  !   isSingleStringOrNA (  miRBaseBuild ) )  {   stop (  \"'miRBaseBuild' must be supplied as a single element\" ,  \" character vector or be NA.\" ) } ## Make the DB   txdb -   makeTxDbFromBiomart ( biomart =  biomart , dataset =  dataset , transcript_ids =  transcript_ids , circ_seqs =  circ_seqs , filters =  filters , id_prefix =  id_prefix , host =  host , port =  port , miRBaseBuild =  miRBaseBuild ) ## Make the Package   makeTxDbPackage (  txdb , version =  version , maintainer =  maintainer , author =  author , destDir =  destDir , license =  license ) } ",
+    "filename": "makeTxDbPackage.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicfeatures_release_3_1 genomicfeatures_release_3_2
+
+{
+    "package": "GenomicFeatures",
+    "release_versions": "genomicfeatures_release_3_1 genomicfeatures_release_3_2",
+    "desc_release_old": "1.20.7",
+    "desc_release_new": "1.22.13",
+    "old_release_number": 9,
+    "new_release_number": 10,
+    "function_removals": 1,
+    "function_additions": 2,
+    "parameter_removals": 1,
+    "parameter_additions": 1,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 6,
+    "total_count": 7
+}
+
+##########
+Functions Removed
+##########
+
+sortExonsByRank
+
+
+##########
+Functions Added
+##########
+
+coverageByTranscript
+pcoverageByTranscript
+
+
+##########
+Removed Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "supportedUCSCtables",
+    "representation": "supportedUCSCtables",
+    "parameters": "function ( )",
+    "body": "{   mat -   matrix (  .SUPPORTED_UCSC_TABLES , ncol =  3 , byrow =  TRUE )    colnames (  mat ) -   c (  \"tablename\" ,  \"track\" ,  \"subtrack\" )   data.frame ( track =   mat [ ,  \"track\" ] , subtrack =   mat [ ,  \"subtrack\" ] , row.names =   mat [ ,  \"tablename\" ] , stringsAsFactors =  FALSE ) } ",
+    "filename": "makeTxDbFromUCSC.txt"
+  },
+  "new_function": {
+    "name": "supportedUCSCtables",
+    "representation": "supportedUCSCtables",
+    "parameters": "function ( genome = \"hg19\" )",
+    "body": "{  if (  !   isSingleString (  genome ) )   stop (  \"'genome' must be a single string\" )   mat -   matrix (  .SUPPORTED_UCSC_TABLES , ncol =  3 , byrow =  TRUE )    colnames (  mat ) -   c (  \"tablename\" ,  \"track\" ,  \"subtrack\" )   ans -   data.frame ( track =   mat [ ,  \"track\" ] , subtrack =   mat [ ,  \"subtrack\" ] , row.names =   mat [ ,  \"tablename\" ] , stringsAsFactors =  FALSE )  if (   genome %in%   c (  \"hg17\" ,  \"hg16\" ,  \"mm8\" ,  \"mm7\" ,  \"rn3\" ) )  {     ans $ track [    rownames (  ans ) ==  \"knownGene\" ] -  \"Known Genes\" } else  if (   genome %in%  \"hg38\" )  {     ans $ track [    rownames (  ans ) ==  \"knownGene\" ] -  \"GENCODE v22\" }  ans } ",
+    "filename": "makeTxDbFromUCSC.txt"
+  }
+}
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "makeTxDbFromGFF",
+    "representation": "makeTxDbFromGFF",
+    "parameters": "function ( file , format = c ( \"auto\" , \"gff3\" , \"gtf\" ) , dataSource = NA , organism = NA , circ_seqs = DEFAULT_CIRC_SEQS , chrominfo = NULL , miRBaseBuild = NA , exonRankAttributeName = NA , gffGeneIdAttributeName = NA , useGenesAsTranscripts = FALSE , gffTxName = \"mRNA\" , species = NA )",
+    "body": "{ ## Raise error for a bunch of args that are defunct.  if (  !   identical (  exonRankAttributeName ,  NA ) )   .Deprecated ( msg =  \"'exonRankAttributeName' is ignored and deprecated\" )  if (  !   identical (  gffGeneIdAttributeName ,  NA ) )   .Deprecated ( msg =  \"'gffGeneIdAttributeName' is ignored and deprecated\" )  if (  !   identical (  useGenesAsTranscripts ,  FALSE ) )   .Deprecated ( msg =  \"'useGenesAsTranscripts' is ignored and deprecated\" )  if (  !   identical (  gffTxName ,  \"mRNA\" ) )   .Deprecated ( msg =  \"'gffTxName' is ignored and deprecated\" )  if (  !   identical (  species ,  NA ) )  {  if (  !   identical (  organism ,  NA ) )   stop (  \"only one of 'organism' or 'species' can be specified, \" ,  \"but not both\" )   msg -   c (  \"The 'species' argument is deprecated. \" ,  \"Please use 'organism' instead.\" )   .Deprecated ( msg =  msg )   organism -  species }   format -   match.arg (  format )  if (   format ==  \"auto\" )  {   format -   .detect_file_format (  file )  if (  !  (   format %in%   c (  \"gff3\" ,  \"gff\" ,  \"gtf\" ) ) )   stop (   wmsg (  \"Cannot detect whether 'file' is a GFF3 or GTF file. \" ,  \"Please use the 'format' argument to specify the \" ,  \"format (\\\"gff3\\\" or \\\"gtf\\\").\" ) ) }   message (  \"Import genomic features from the file as a GRanges object ... \" , appendLF =  FALSE )   gr -   import (  file , format =  format , feature.type =  GFF_FEATURE_TYPES )   gr -   .tidy_seqinfo (  gr ,  circ_seqs ,  chrominfo )   message (  \"OK\" )   metadata -   .prepareGFFMetadata (  file ,  dataSource ,  organism ,  miRBaseBuild )   message (  \"Make the TxDb object ... \" , appendLF =  FALSE )   txdb -   makeTxDbFromGRanges (  gr , metadata =  metadata )   message (  \"OK\" )  txdb } ",
+    "filename": "makeTxDbFromGFF.txt"
+  },
+  "new_function": {
+    "name": "makeTxDbFromGFF",
+    "representation": "makeTxDbFromGFF",
+    "parameters": "function ( file , format = c ( \"auto\" , \"gff3\" , \"gtf\" ) , dataSource = NA , organism = NA , taxonomyId = NA , circ_seqs = DEFAULT_CIRC_SEQS , chrominfo = NULL , miRBaseBuild = NA , dbxrefTag , exonRankAttributeName = NA , gffGeneIdAttributeName = NA , useGenesAsTranscripts = FALSE , gffTxName = \"mRNA\" , species = NA )",
+    "body": "{ ## Raise error for a bunch of args that are defunct.  if (  !   identical (  exonRankAttributeName ,  NA ) )   .Defunct ( msg =  \"the 'exonRankAttributeName' argument is defunct\" )  if (  !   identical (  gffGeneIdAttributeName ,  NA ) )   .Defunct ( msg =  \"the 'gffGeneIdAttributeName' argument is defunct\" )  if (  !   identical (  useGenesAsTranscripts ,  FALSE ) )   .Defunct ( msg =  \"the 'useGenesAsTranscripts' argument is defunct\" )  if (  !   identical (  gffTxName ,  \"mRNA\" ) )   .Defunct ( msg =  \"the 'gffTxName' argument is defunct\" )  if (  !   identical (  species ,  NA ) )   .Defunct ( msg =   wmsg (  \"The 'species' argument is defunct. \" ,  \"Please use 'organism' instead.\" ) )   format -   match.arg (  format )  if (   format ==  \"auto\" )  {   format -   .detect_file_format (  file )  if (  !  (   format %in%   c (  \"gff3\" ,  \"gff\" ,  \"gtf\" ) ) )   stop (   wmsg (  \"Cannot detect whether 'file' is a GFF3 or GTF file. \" ,  \"Please use the 'format' argument to specify the \" ,  \"format (\\\"gff3\\\" or \\\"gtf\\\").\" ) ) }  if (   format ==  \"gff3\" )  {   colnames -  GFF3_COLNAMES } else  if (   format ==  \"gtf\" )  {   colnames -  GTF_COLNAMES } else  { # format == \"gff\" ## We don't know a priori if the file is GFF3 or GTF. ## TODO: Maybe use sniffGFFVersion() to detect whether the file is ## GFF3 or GTF (maybe do this in .detect_file_format()).   colnames -   union (  GFF3_COLNAMES ,  GTF_COLNAMES ) }   message (  \"Import genomic features from the file as a GRanges object ... \" , appendLF =  FALSE )   gr -   import (  file , format =  format , colnames =  colnames , feature.type =  GFF_FEATURE_TYPES )   gr -   .tidy_seqinfo (  gr ,  circ_seqs ,  chrominfo )  if (  !   missing (  dbxrefTag ) )  {   gr -   .rename_by_dbxrefTag (  gr ,  dbxrefTag ) }   message (  \"OK\" )   metadata -   .prepareGFFMetadata (  file ,  dataSource ,  organism ,  taxonomyId ,  miRBaseBuild )   message (  \"Make the TxDb object ... \" , appendLF =  FALSE )   txdb -   makeTxDbFromGRanges (  gr , metadata =  metadata )   message (  \"OK\" )  txdb } ",
+    "filename": "makeTxDbFromGFF.txt"
+  }
+}
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "makeTxDbFromBiomart",
+    "representation": "makeTxDbFromBiomart",
+    "parameters": "function ( biomart = \"ensembl\" , dataset = \"hsapiens_gene_ensembl\" , transcript_ids = NULL , circ_seqs = DEFAULT_CIRC_SEQS , filters = \"\" , id_prefix = \"ensembl_\" , host = \"www.biomart.org\" , port = 80 , miRBaseBuild = NA )",
+    "body": "{   mart -   .useMart2 ( biomart =  biomart , dataset =  dataset , host =  host , port =  port )   id_prefix -   .normarg_id_prefix (  id_prefix )   filters -   .add_tx_id_filter (  filters ,  transcript_ids ,  id_prefix )   valid_filter_names -   listFilters (  mart , what =  \"name\" )   invalid_filter_names -   setdiff (   names (  filters ) ,  valid_filter_names )  if (    length (  invalid_filter_names ) !=  0L )  {   in1string -   paste0 (  invalid_filter_names , collapse =  \", \" )   stop (   wmsg (  \"Invalid filter name(s): \" ,  in1string ,  \"\\n\\nPlease use the listFilters() function from the \" ,  \"biomaRt package to get valid filter names.\" ) ) }   is_full_dataset -    length (  filters ) ==  0L   recognized_attribs -   recognizedBiomartAttribs (  id_prefix )   transcripts -   .makeBiomartTranscripts (  filters ,  mart ,  transcript_ids ,  recognized_attribs ,  id_prefix )   transcripts_tx_id -   transcripts $ tx_id    names (  transcripts_tx_id ) -   transcripts $ tx_name   chrominfo -   .makeBiomartChrominfo (  mart , extra_seqnames =   transcripts $ tx_chrom , circ_seqs =  circ_seqs ,  host ,  port )  if (  !  is_full_dataset )  {   keep_idx -   which (    chrominfo [ ,  \"chrom\" ] %in%   transcripts $ tx_chrom )   chrominfo -   chrominfo [  keep_idx , , drop =  FALSE ] }   splicings -   .makeBiomartSplicings (  filters ,  mart ,  transcripts_tx_id ,  recognized_attribs , id_prefix =  id_prefix ) ## Drop transcripts with UTR anomalies.   utr_anomaly -   splicings $ utr_anomaly  if (  !   is.null (  utr_anomaly ) )  {   invalid_tx -   unique (   splicings [   utr_anomaly !=  0L ,  \"tx_id\" ] )  if (    length (  invalid_tx ) !=  0L )  {   message (  \"Drop transcripts with UTR anomalies (\" ,   length (  invalid_tx ) ,  \" transcripts) ... \" , appendLF =  FALSE )   keep_idx1 -  !  (    transcripts $ tx_id %in%  invalid_tx )   transcripts -   transcripts [  keep_idx1 , ]   transcripts_tx_id -   transcripts_tx_id [  keep_idx1 ]   keep_idx2 -  !  (    splicings $ tx_id %in%  invalid_tx )   splicings -   splicings [  keep_idx2 , , drop =  FALSE ]   message (  \"OK\" ) }    splicings $ utr_anomaly -  NULL }   genes -   .makeBiomartGenes (  filters ,  mart ,  transcripts_tx_id ,  recognized_attribs ,  id_prefix )   metadata -   .prepareBiomartMetadata (  mart ,  is_full_dataset ,  host ,  port ,  miRBaseBuild )   message (  \"Make the TxDb object ... \" , appendLF =  FALSE )   txdb -   makeTxDb (  transcripts ,  splicings , genes =  genes , chrominfo =  chrominfo , metadata =  metadata , reassign.ids =  TRUE )   message (  \"OK\" )  txdb } ",
+    "filename": "makeTxDbFromBiomart.txt"
+  },
+  "new_function": {
+    "name": "makeTxDbFromBiomart",
+    "representation": "makeTxDbFromBiomart",
+    "parameters": "function ( biomart = \"ENSEMBL_MART_ENSEMBL\" , dataset = \"hsapiens_gene_ensembl\" , transcript_ids = NULL , circ_seqs = DEFAULT_CIRC_SEQS , filters = \"\" , id_prefix = \"ensembl_\" , host = \"www.ensembl.org\" , port = 80 , taxonomyId = NA , miRBaseBuild = NA )",
+    "body": "{   mart -   .useMart2 ( biomart =  biomart , dataset =  dataset , host =  host , port =  port )   id_prefix -   .normarg_id_prefix (  id_prefix )   filters -   .add_tx_id_filter (  filters ,  transcript_ids ,  id_prefix )   valid_filter_names -   listFilters (  mart , what =  \"name\" )   invalid_filter_names -   setdiff (   names (  filters ) ,  valid_filter_names )  if (    length (  invalid_filter_names ) !=  0L )  {   in1string -   paste0 (  invalid_filter_names , collapse =  \", \" )   stop (   wmsg (  \"Invalid filter name(s): \" ,  in1string ,  \"\\n\\nPlease use the listFilters() function from the \" ,  \"biomaRt package to get valid filter names.\" ) ) }   is_full_dataset -    length (  filters ) ==  0L   recognized_attribs -   recognizedBiomartAttribs (  id_prefix )   transcripts -   .makeBiomartTranscripts (  filters ,  mart ,  transcript_ids ,  recognized_attribs ,  id_prefix )   transcripts_tx_id -   transcripts $ tx_id    names (  transcripts_tx_id ) -   transcripts $ tx_name   chrominfo -   .makeBiomartChrominfo (  mart , extra_seqnames =   transcripts $ tx_chrom , circ_seqs =  circ_seqs ,  host ,  port )  if (  !  is_full_dataset )  {   keep_idx -   which (    chrominfo [ ,  \"chrom\" ] %in%   transcripts $ tx_chrom )   chrominfo -   chrominfo [  keep_idx , , drop =  FALSE ] }   splicings -   .makeBiomartSplicings (  filters ,  mart ,  transcripts_tx_id ,  recognized_attribs , id_prefix =  id_prefix ) ## Drop transcripts with UTR anomalies.   utr_anomaly -   splicings $ utr_anomaly  if (  !   is.null (  utr_anomaly ) )  {   invalid_tx -   unique (   splicings [   utr_anomaly !=  0L ,  \"tx_id\" ] )  if (    length (  invalid_tx ) !=  0L )  {   message (  \"Drop transcripts with UTR anomalies (\" ,   length (  invalid_tx ) ,  \" transcripts) ... \" , appendLF =  FALSE )   keep_idx1 -  !  (    transcripts $ tx_id %in%  invalid_tx )   transcripts -   transcripts [  keep_idx1 , ]   transcripts_tx_id -   transcripts_tx_id [  keep_idx1 ]   keep_idx2 -  !  (    splicings $ tx_id %in%  invalid_tx )   splicings -   splicings [  keep_idx2 , , drop =  FALSE ]   message (  \"OK\" ) }    splicings $ utr_anomaly -  NULL }   genes -   .makeBiomartGenes (  filters ,  mart ,  transcripts_tx_id ,  recognized_attribs ,  id_prefix )   metadata -   .prepareBiomartMetadata (  mart ,  is_full_dataset ,  host ,  port ,  taxonomyId ,  miRBaseBuild )   message (  \"Make the TxDb object ... \" , appendLF =  FALSE )   txdb -   makeTxDb (  transcripts ,  splicings , genes =  genes , chrominfo =  chrominfo , metadata =  metadata , reassign.ids =  TRUE )   message (  \"OK\" )  txdb } ",
+    "filename": "makeTxDbFromBiomart.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "makeTxDbFromGFF",
+    "representation": "makeTxDbFromGFF",
+    "parameters": "function ( file , format = c ( \"auto\" , \"gff3\" , \"gtf\" ) , dataSource = NA , organism = NA , circ_seqs = DEFAULT_CIRC_SEQS , chrominfo = NULL , miRBaseBuild = NA , exonRankAttributeName = NA , gffGeneIdAttributeName = NA , useGenesAsTranscripts = FALSE , gffTxName = \"mRNA\" , species = NA )",
+    "body": "{ ## Raise error for a bunch of args that are defunct.  if (  !   identical (  exonRankAttributeName ,  NA ) )   .Deprecated ( msg =  \"'exonRankAttributeName' is ignored and deprecated\" )  if (  !   identical (  gffGeneIdAttributeName ,  NA ) )   .Deprecated ( msg =  \"'gffGeneIdAttributeName' is ignored and deprecated\" )  if (  !   identical (  useGenesAsTranscripts ,  FALSE ) )   .Deprecated ( msg =  \"'useGenesAsTranscripts' is ignored and deprecated\" )  if (  !   identical (  gffTxName ,  \"mRNA\" ) )   .Deprecated ( msg =  \"'gffTxName' is ignored and deprecated\" )  if (  !   identical (  species ,  NA ) )  {  if (  !   identical (  organism ,  NA ) )   stop (  \"only one of 'organism' or 'species' can be specified, \" ,  \"but not both\" )   msg -   c (  \"The 'species' argument is deprecated. \" ,  \"Please use 'organism' instead.\" )   .Deprecated ( msg =  msg )   organism -  species }   format -   match.arg (  format )  if (   format ==  \"auto\" )  {   format -   .detect_file_format (  file )  if (  !  (   format %in%   c (  \"gff3\" ,  \"gff\" ,  \"gtf\" ) ) )   stop (   wmsg (  \"Cannot detect whether 'file' is a GFF3 or GTF file. \" ,  \"Please use the 'format' argument to specify the \" ,  \"format (\\\"gff3\\\" or \\\"gtf\\\").\" ) ) }   message (  \"Import genomic features from the file as a GRanges object ... \" , appendLF =  FALSE )   gr -   import (  file , format =  format , feature.type =  GFF_FEATURE_TYPES )   gr -   .tidy_seqinfo (  gr ,  circ_seqs ,  chrominfo )   message (  \"OK\" )   metadata -   .prepareGFFMetadata (  file ,  dataSource ,  organism ,  miRBaseBuild )   message (  \"Make the TxDb object ... \" , appendLF =  FALSE )   txdb -   makeTxDbFromGRanges (  gr , metadata =  metadata )   message (  \"OK\" )  txdb } ",
+    "filename": "makeTxDbFromGFF.txt"
+  },
+  "new_function": {
+    "name": "makeTxDbFromGFF",
+    "representation": "makeTxDbFromGFF",
+    "parameters": "function ( file , format = c ( \"auto\" , \"gff3\" , \"gtf\" ) , dataSource = NA , organism = NA , taxonomyId = NA , circ_seqs = DEFAULT_CIRC_SEQS , chrominfo = NULL , miRBaseBuild = NA , dbxrefTag , exonRankAttributeName = NA , gffGeneIdAttributeName = NA , useGenesAsTranscripts = FALSE , gffTxName = \"mRNA\" , species = NA )",
+    "body": "{ ## Raise error for a bunch of args that are defunct.  if (  !   identical (  exonRankAttributeName ,  NA ) )   .Defunct ( msg =  \"the 'exonRankAttributeName' argument is defunct\" )  if (  !   identical (  gffGeneIdAttributeName ,  NA ) )   .Defunct ( msg =  \"the 'gffGeneIdAttributeName' argument is defunct\" )  if (  !   identical (  useGenesAsTranscripts ,  FALSE ) )   .Defunct ( msg =  \"the 'useGenesAsTranscripts' argument is defunct\" )  if (  !   identical (  gffTxName ,  \"mRNA\" ) )   .Defunct ( msg =  \"the 'gffTxName' argument is defunct\" )  if (  !   identical (  species ,  NA ) )   .Defunct ( msg =   wmsg (  \"The 'species' argument is defunct. \" ,  \"Please use 'organism' instead.\" ) )   format -   match.arg (  format )  if (   format ==  \"auto\" )  {   format -   .detect_file_format (  file )  if (  !  (   format %in%   c (  \"gff3\" ,  \"gff\" ,  \"gtf\" ) ) )   stop (   wmsg (  \"Cannot detect whether 'file' is a GFF3 or GTF file. \" ,  \"Please use the 'format' argument to specify the \" ,  \"format (\\\"gff3\\\" or \\\"gtf\\\").\" ) ) }  if (   format ==  \"gff3\" )  {   colnames -  GFF3_COLNAMES } else  if (   format ==  \"gtf\" )  {   colnames -  GTF_COLNAMES } else  { # format == \"gff\" ## We don't know a priori if the file is GFF3 or GTF. ## TODO: Maybe use sniffGFFVersion() to detect whether the file is ## GFF3 or GTF (maybe do this in .detect_file_format()).   colnames -   union (  GFF3_COLNAMES ,  GTF_COLNAMES ) }   message (  \"Import genomic features from the file as a GRanges object ... \" , appendLF =  FALSE )   gr -   import (  file , format =  format , colnames =  colnames , feature.type =  GFF_FEATURE_TYPES )   gr -   .tidy_seqinfo (  gr ,  circ_seqs ,  chrominfo )  if (  !   missing (  dbxrefTag ) )  {   gr -   .rename_by_dbxrefTag (  gr ,  dbxrefTag ) }   message (  \"OK\" )   metadata -   .prepareGFFMetadata (  file ,  dataSource ,  organism ,  taxonomyId ,  miRBaseBuild )   message (  \"Make the TxDb object ... \" , appendLF =  FALSE )   txdb -   makeTxDbFromGRanges (  gr , metadata =  metadata )   message (  \"OK\" )  txdb } ",
+    "filename": "makeTxDbFromGFF.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "supportedUCSCtables",
+    "representation": "supportedUCSCtables",
+    "parameters": "function ( )",
+    "body": "{   mat -   matrix (  .SUPPORTED_UCSC_TABLES , ncol =  3 , byrow =  TRUE )    colnames (  mat ) -   c (  \"tablename\" ,  \"track\" ,  \"subtrack\" )   data.frame ( track =   mat [ ,  \"track\" ] , subtrack =   mat [ ,  \"subtrack\" ] , row.names =   mat [ ,  \"tablename\" ] , stringsAsFactors =  FALSE ) } ",
+    "filename": "makeTxDbFromUCSC.txt"
+  },
+  "new_function": {
+    "name": "supportedUCSCtables",
+    "representation": "supportedUCSCtables",
+    "parameters": "function ( genome = \"hg19\" )",
+    "body": "{  if (  !   isSingleString (  genome ) )   stop (  \"'genome' must be a single string\" )   mat -   matrix (  .SUPPORTED_UCSC_TABLES , ncol =  3 , byrow =  TRUE )    colnames (  mat ) -   c (  \"tablename\" ,  \"track\" ,  \"subtrack\" )   ans -   data.frame ( track =   mat [ ,  \"track\" ] , subtrack =   mat [ ,  \"subtrack\" ] , row.names =   mat [ ,  \"tablename\" ] , stringsAsFactors =  FALSE )  if (   genome %in%   c (  \"hg17\" ,  \"hg16\" ,  \"mm8\" ,  \"mm7\" ,  \"rn3\" ) )  {     ans $ track [    rownames (  ans ) ==  \"knownGene\" ] -  \"Known Genes\" } else  if (   genome %in%  \"hg38\" )  {     ans $ track [    rownames (  ans ) ==  \"knownGene\" ] -  \"GENCODE v22\" }  ans } ",
+    "filename": "makeTxDbFromUCSC.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "makeTxDbFromUCSC",
+    "representation": "makeTxDbFromUCSC",
+    "parameters": "function ( genome = \"hg19\" , tablename = \"knownGene\" , transcript_ids = NULL , circ_seqs = DEFAULT_CIRC_SEQS , url = \"http://genome.ucsc.edu/cgi-bin/\" , goldenPath_url = \"http://hgdownload.cse.ucsc.edu/goldenPath\" , miRBaseBuild = NA )",
+    "body": "{   track -   .tablename2track (  tablename ,  genome )  if (  !   is.null (  transcript_ids ) )  {  if (   !   is.character (  transcript_ids ) ||   any (   is.na (  transcript_ids ) ) )   stop (  \"'transcript_ids' must be a character vector with no NAs\" ) }  if (  !   isSingleString (  url ) )   stop (  \"'url' must be a single string\" )  if (  !   isSingleString (  goldenPath_url ) )   stop (  \"'goldenPath_url' must be a single string\" ) ## Create an UCSC Genome Browser session.   session -   browserSession ( url =  url )    genome (  session ) -  genome   track_tables -   tableNames (   ucscTableQuery (  session , track =  track ) )  if (  !  (   tablename %in%  track_tables ) )   stop (  \"GenomicFeatures internal error: \" ,  tablename ,  \" table doesn't \" ,  \"exist or is not associated with \" ,  track ,  \" track. \" ,  \"Thank you for reporting this to the GenomicFeatures maintainer \" ,  \"or to the Bioconductor mailing list, and sorry for the \" ,  \"inconvenience.\" ) ## Download the transcript table.   message (  \"Download the \" ,  tablename ,  \" table ... \" , appendLF =  FALSE )   query -   ucscTableQuery (  session ,  track , table =  tablename , names =  transcript_ids )   ucsc_txtable -   getTable (  query )  if (    ncol (  ucsc_txtable ) undefined   length (  .UCSC_TXCOL2CLASS ) )   stop (  \"GenomicFeatures internal error: \" ,  tablename ,  \" table doesn't \" ,  \"exist, was corrupted during download, or doesn't contain \" ,  \"transcript information. \" ,  \"Thank you for reporting this to the GenomicFeatures maintainer \" ,  \"or to the Bioconductor mailing list, and sorry for the \" ,  \"inconvenience.\" )   message (  \"OK\" ) ## Get the tx_name-to-gene_id mapping.   mapdef -   .howToGetTxName2GeneIdMapping (  tablename )  if (   is.null (  mapdef ) )  {   txname2geneid -   list ( genes =  NULL , gene_id_type =  \"no gene ids\" ) } else  if (   is.list (  mapdef ) )  {   txname2geneid -   .fetchTxName2GeneIdMappingFromUCSC (  session ,  track ,  tablename ,  mapdef ) } else  if (   is.character (  mapdef ) )  {   txname2geneid -   .extractTxName2GeneIdMappingFromUCSCTxTable (  ucsc_txtable ,  mapdef ) } else  {   stop (  \"GenomicFeatures internal error: invalid 'mapdef'\" ) }   .makeTxDbFromUCSCTxTable (  ucsc_txtable ,   txname2geneid $ genes ,  genome ,  tablename ,   txname2geneid $ gene_id_type , full_dataset =   is.null (  transcript_ids ) , circ_seqs =  circ_seqs , goldenPath_url =  goldenPath_url , miRBaseBuild =  miRBaseBuild ) } ",
+    "filename": "makeTxDbFromUCSC.txt"
+  },
+  "new_function": {
+    "name": "makeTxDbFromUCSC",
+    "representation": "makeTxDbFromUCSC",
+    "parameters": "function ( genome = \"hg19\" , tablename = \"knownGene\" , transcript_ids = NULL , circ_seqs = DEFAULT_CIRC_SEQS , url = \"http://genome.ucsc.edu/cgi-bin/\" , goldenPath_url = \"http://hgdownload.cse.ucsc.edu/goldenPath\" , taxonomyId = NA , miRBaseBuild = NA )",
+    "body": "{   track -   .tablename2track (  tablename ,  genome )  if (  !   is.null (  transcript_ids ) )  {  if (   !   is.character (  transcript_ids ) ||   any (   is.na (  transcript_ids ) ) )   stop (  \"'transcript_ids' must be a character vector with no NAs\" ) }  if (  !   isSingleString (  url ) )   stop (  \"'url' must be a single string\" )  if (  !   isSingleString (  goldenPath_url ) )   stop (  \"'goldenPath_url' must be a single string\" ) ## Create an UCSC Genome Browser session.   session -   browserSession ( url =  url )    genome (  session ) -  genome   track_tables -   tableNames (   ucscTableQuery (  session , track =  track ) )  if (  !  (   tablename %in%  track_tables ) )   stop (  \"GenomicFeatures internal error: \" ,  tablename ,  \" table doesn't \" ,  \"exist or is not associated with \" ,  track ,  \" track. \" ,  \"Thank you for reporting this to the GenomicFeatures maintainer \" ,  \"or to the Bioconductor mailing list, and sorry for the \" ,  \"inconvenience.\" ) ## Download the transcript table.   message (  \"Download the \" ,  tablename ,  \" table ... \" , appendLF =  FALSE )   query -   ucscTableQuery (  session ,  track , table =  tablename , names =  transcript_ids )   ucsc_txtable -   getTable (  query )  if (    ncol (  ucsc_txtable ) undefined   length (  .UCSC_TXCOL2CLASS ) )   stop (  \"GenomicFeatures internal error: \" ,  tablename ,  \" table doesn't \" ,  \"exist, was corrupted during download, or doesn't contain \" ,  \"transcript information. \" ,  \"Thank you for reporting this to the GenomicFeatures maintainer \" ,  \"or to the Bioconductor mailing list, and sorry for the \" ,  \"inconvenience.\" )   message (  \"OK\" ) ## Get the tx_name-to-gene_id mapping.   mapdef -   .howToGetTxName2GeneIdMapping (  tablename )  if (   is.null (  mapdef ) )  {   txname2geneid -   list ( genes =  NULL , gene_id_type =  \"no gene ids\" ) } else  if (   is.list (  mapdef ) )  {   txname2geneid -   .fetchTxName2GeneIdMappingFromUCSC (  session ,  track ,  tablename ,  mapdef ) } else  if (   is.character (  mapdef ) )  {   txname2geneid -   .extractTxName2GeneIdMappingFromUCSCTxTable (  ucsc_txtable ,  mapdef ) } else  {   stop (  \"GenomicFeatures internal error: invalid 'mapdef'\" ) }   .makeTxDbFromUCSCTxTable (  ucsc_txtable ,   txname2geneid $ genes ,  genome ,  tablename ,  track ,   txname2geneid $ gene_id_type , full_dataset =   is.null (  transcript_ids ) , circ_seqs =  circ_seqs , goldenPath_url =  goldenPath_url , taxonomyId =  taxonomyId , miRBaseBuild =  miRBaseBuild ) } ",
+    "filename": "makeTxDbFromUCSC.txt"
+  }
+}
+
+4.
+{
+  "old_function": {
+    "name": "makeTxDbPackageFromUCSC",
+    "representation": "makeTxDbPackageFromUCSC",
+    "parameters": "function ( version , maintainer , author , destDir = \".\" , license = \"Artistic-2.0\" , genome = \"hg19\" , tablename = \"knownGene\" , transcript_ids = NULL , circ_seqs = DEFAULT_CIRC_SEQS , url = \"http://genome.ucsc.edu/cgi-bin/\" , goldenPath_url = \"http://hgdownload.cse.ucsc.edu/goldenPath\" , miRBaseBuild = NA )",
+    "body": "{ ## checks  if (    missing (  version ) ||  !   isSingleString (  version ) )  {   stop (  \"'version' must be supplied as a single element\" ,  \" character vector.\" ) }  if (    missing (  version ) ||  !   isSingleString (  maintainer ) )  {   stop (  \"'maintainer' must be supplied as a single element\" ,  \" character vector.\" ) }  if (    missing (  version ) ||  !   isSingleString (  author ) )  {   stop (  \"'author' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  destDir ) )  {   stop (  \"'destDir' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  license ) )  {   stop (  \"'license' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  genome ) )  {   stop (  \"'genome' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  tablename ) )  {   stop (  \"'tablename' must be supplied as a single element\" ,  \" character vector.\" ) }  if (   !   is.character (  circ_seqs ) ||    length (  circ_seqs ) undefined  1 )  {   stop (  \"'circ_seqs' must be supplied as a named character vector.\" ) }  if (  !   isSingleString (  url ) )  {   stop (  \"'url' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  goldenPath_url ) )  {   stop (  \"'goldenPath_url' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleStringOrNA (  miRBaseBuild ) )  {   stop (  \"'miRBaseBuild' must be supplied as a single element\" ,  \" character vector or be NA.\" ) } ## Make the DB   txdb -   makeTxDbFromUCSC ( genome =  genome , tablename =  tablename , transcript_ids =  transcript_ids , circ_seqs =  circ_seqs , url =  url , goldenPath_url =  goldenPath_url , miRBaseBuild =  miRBaseBuild ) ## Make the Package   makeTxDbPackage (  txdb , version =  version , maintainer =  maintainer , author =  author , destDir =  destDir , license =  license ) } ",
+    "filename": "makeTxDbPackage.txt"
+  },
+  "new_function": {
+    "name": "makeTxDbPackageFromUCSC",
+    "representation": "makeTxDbPackageFromUCSC",
+    "parameters": "function ( version , maintainer , author , destDir = \".\" , license = \"Artistic-2.0\" , genome = \"hg19\" , tablename = \"knownGene\" , transcript_ids = NULL , circ_seqs = DEFAULT_CIRC_SEQS , url = \"http://genome.ucsc.edu/cgi-bin/\" , goldenPath_url = \"http://hgdownload.cse.ucsc.edu/goldenPath\" , taxonomyId = NA , miRBaseBuild = NA )",
+    "body": "{ ## checks  if (    missing (  version ) ||  !   isSingleString (  version ) )  {   stop (  \"'version' must be supplied as a single element\" ,  \" character vector.\" ) }  if (    missing (  version ) ||  !   isSingleString (  maintainer ) )  {   stop (  \"'maintainer' must be supplied as a single element\" ,  \" character vector.\" ) }  if (    missing (  version ) ||  !   isSingleString (  author ) )  {   stop (  \"'author' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  destDir ) )  {   stop (  \"'destDir' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  license ) )  {   stop (  \"'license' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  genome ) )  {   stop (  \"'genome' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  tablename ) )  {   stop (  \"'tablename' must be supplied as a single element\" ,  \" character vector.\" ) }  if (   !   is.character (  circ_seqs ) ||    length (  circ_seqs ) undefined  1 )  {   stop (  \"'circ_seqs' must be supplied as a named character vector.\" ) }  if (  !   isSingleString (  url ) )  {   stop (  \"'url' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  goldenPath_url ) )  {   stop (  \"'goldenPath_url' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleStringOrNA (  miRBaseBuild ) )  {   stop (  \"'miRBaseBuild' must be supplied as a single element\" ,  \" character vector or be NA.\" ) } ## Make the DB   txdb -   makeTxDbFromUCSC ( genome =  genome , tablename =  tablename , transcript_ids =  transcript_ids , circ_seqs =  circ_seqs , url =  url , goldenPath_url =  goldenPath_url , taxonomyId =  taxonomyId , miRBaseBuild =  miRBaseBuild ) ## Make the Package   makeTxDbPackage (  txdb , version =  version , maintainer =  maintainer , author =  author , destDir =  destDir , license =  license ) } ",
+    "filename": "makeTxDbPackage.txt"
+  }
+}
+
+5.
+{
+  "old_function": {
+    "name": "makeTxDbPackageFromBiomart",
+    "representation": "makeTxDbPackageFromBiomart",
+    "parameters": "function ( version , maintainer , author , destDir = \".\" , license = \"Artistic-2.0\" , biomart = \"ensembl\" , dataset = \"hsapiens_gene_ensembl\" , transcript_ids = NULL , circ_seqs = DEFAULT_CIRC_SEQS , filters = \"\" , id_prefix = \"ensembl_\" , host = \"www.biomart.org\" , port = 80 , miRBaseBuild = NA )",
+    "body": "{ ## checks  if (    missing (  version ) ||  !   isSingleString (  version ) )  {   stop (  \"'version' must be supplied as a single element\" ,  \" character vector.\" ) }  if (    missing (  maintainer ) ||  !   isSingleString (  maintainer ) )  {   stop (  \"'maintainer' must be supplied as a single element\" ,  \" character vector.\" ) }  if (    missing (  author ) ||  !   isSingleString (  author ) )  {   stop (  \"'author' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  destDir ) )  {   stop (  \"'destDir' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  license ) )  {   stop (  \"'license' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  biomart ) )  {   stop (  \"'biomart' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  dataset ) )  {   stop (  \"'dataset' must be supplied as a single element\" ,  \" character vector.\" ) }  if (   !   is.character (  circ_seqs ) ||    length (  circ_seqs ) undefined  1 )  {   stop (  \"'circ_seqs' must be supplied as a named character vector.\" ) }  if (  !   isSingleStringOrNA (  miRBaseBuild ) )  {   stop (  \"'miRBaseBuild' must be supplied as a single element\" ,  \" character vector or be NA.\" ) } ## Make the DB   txdb -   makeTxDbFromBiomart ( biomart =  biomart , dataset =  dataset , transcript_ids =  transcript_ids , circ_seqs =  circ_seqs , filters =  filters , id_prefix =  id_prefix , host =  host , port =  port , miRBaseBuild =  miRBaseBuild ) ## Make the Package   makeTxDbPackage (  txdb , version =  version , maintainer =  maintainer , author =  author , destDir =  destDir , license =  license ) } ",
+    "filename": "makeTxDbPackage.txt"
+  },
+  "new_function": {
+    "name": "makeTxDbPackageFromBiomart",
+    "representation": "makeTxDbPackageFromBiomart",
+    "parameters": "function ( version , maintainer , author , destDir = \".\" , license = \"Artistic-2.0\" , biomart = \"ENSEMBL_MART_ENSEMBL\" , dataset = \"hsapiens_gene_ensembl\" , transcript_ids = NULL , circ_seqs = DEFAULT_CIRC_SEQS , filters = \"\" , id_prefix = \"ensembl_\" , host = \"www.ensembl.org\" , port = 80 , taxonomyId = NA , miRBaseBuild = NA )",
+    "body": "{ ## checks  if (    missing (  version ) ||  !   isSingleString (  version ) )  {   stop (  \"'version' must be supplied as a single element\" ,  \" character vector.\" ) }  if (    missing (  maintainer ) ||  !   isSingleString (  maintainer ) )  {   stop (  \"'maintainer' must be supplied as a single element\" ,  \" character vector.\" ) }  if (    missing (  author ) ||  !   isSingleString (  author ) )  {   stop (  \"'author' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  destDir ) )  {   stop (  \"'destDir' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  license ) )  {   stop (  \"'license' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  biomart ) )  {   stop (  \"'biomart' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  dataset ) )  {   stop (  \"'dataset' must be supplied as a single element\" ,  \" character vector.\" ) }  if (   !   is.character (  circ_seqs ) ||    length (  circ_seqs ) undefined  1 )  {   stop (  \"'circ_seqs' must be supplied as a named character vector.\" ) }  if (  !   isSingleStringOrNA (  miRBaseBuild ) )  {   stop (  \"'miRBaseBuild' must be supplied as a single element\" ,  \" character vector or be NA.\" ) } ## Make the DB   txdb -   makeTxDbFromBiomart ( biomart =  biomart , dataset =  dataset , transcript_ids =  transcript_ids , circ_seqs =  circ_seqs , filters =  filters , id_prefix =  id_prefix , host =  host , port =  port , taxonomyId =  taxonomyId , miRBaseBuild =  miRBaseBuild ) ## Make the Package   makeTxDbPackage (  txdb , version =  version , maintainer =  maintainer , author =  author , destDir =  destDir , license =  license ) } ",
+    "filename": "makeTxDbPackage.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicfeatures_release_3_2 genomicfeatures_release_3_3
+
+{
+    "package": "GenomicFeatures",
+    "release_versions": "genomicfeatures_release_3_2 genomicfeatures_release_3_3",
+    "desc_release_old": "1.22.13",
+    "desc_release_new": "1.24.5",
+    "old_release_number": 10,
+    "new_release_number": 11,
+    "function_removals": 4,
+    "function_additions": 3,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 7,
+    "total_count": 11
+}
+
+##########
+Functions Removed
+##########
+
+makeTranscriptDb
+makeTranscriptDbFromUCSC
+makeTranscriptDbFromBiomart
+makeTranscriptDbFromGFF
+
+
+##########
+Functions Added
+##########
+
+makePackageName
+mapIdsToRanges
+mapRangesToIds
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "makeTxDbFromBiomart",
+    "representation": "makeTxDbFromBiomart",
+    "parameters": "function ( biomart = \"ENSEMBL_MART_ENSEMBL\" , dataset = \"hsapiens_gene_ensembl\" , transcript_ids = NULL , circ_seqs = DEFAULT_CIRC_SEQS , filters = \"\" , id_prefix = \"ensembl_\" , host = \"www.ensembl.org\" , port = 80 , taxonomyId = NA , miRBaseBuild = NA )",
+    "body": "{   mart -   .useMart2 ( biomart =  biomart , dataset =  dataset , host =  host , port =  port )   id_prefix -   .normarg_id_prefix (  id_prefix )   filters -   .add_tx_id_filter (  filters ,  transcript_ids ,  id_prefix )   valid_filter_names -   listFilters (  mart , what =  \"name\" )   invalid_filter_names -   setdiff (   names (  filters ) ,  valid_filter_names )  if (    length (  invalid_filter_names ) !=  0L )  {   in1string -   paste0 (  invalid_filter_names , collapse =  \", \" )   stop (   wmsg (  \"Invalid filter name(s): \" ,  in1string ,  \"\\n\\nPlease use the listFilters() function from the \" ,  \"biomaRt package to get valid filter names.\" ) ) }   is_full_dataset -    length (  filters ) ==  0L   recognized_attribs -   recognizedBiomartAttribs (  id_prefix )   transcripts -   .makeBiomartTranscripts (  filters ,  mart ,  transcript_ids ,  recognized_attribs ,  id_prefix )   transcripts_tx_id -   transcripts $ tx_id    names (  transcripts_tx_id ) -   transcripts $ tx_name   chrominfo -   .makeBiomartChrominfo (  mart , extra_seqnames =   transcripts $ tx_chrom , circ_seqs =  circ_seqs ,  host ,  port )  if (  !  is_full_dataset )  {   keep_idx -   which (    chrominfo [ ,  \"chrom\" ] %in%   transcripts $ tx_chrom )   chrominfo -   chrominfo [  keep_idx , , drop =  FALSE ] }   splicings -   .makeBiomartSplicings (  filters ,  mart ,  transcripts_tx_id ,  recognized_attribs , id_prefix =  id_prefix ) ## Drop transcripts with UTR anomalies.   utr_anomaly -   splicings $ utr_anomaly  if (  !   is.null (  utr_anomaly ) )  {   invalid_tx -   unique (   splicings [   utr_anomaly !=  0L ,  \"tx_id\" ] )  if (    length (  invalid_tx ) !=  0L )  {   message (  \"Drop transcripts with UTR anomalies (\" ,   length (  invalid_tx ) ,  \" transcripts) ... \" , appendLF =  FALSE )   keep_idx1 -  !  (    transcripts $ tx_id %in%  invalid_tx )   transcripts -   transcripts [  keep_idx1 , ]   transcripts_tx_id -   transcripts_tx_id [  keep_idx1 ]   keep_idx2 -  !  (    splicings $ tx_id %in%  invalid_tx )   splicings -   splicings [  keep_idx2 , , drop =  FALSE ]   message (  \"OK\" ) }    splicings $ utr_anomaly -  NULL }   genes -   .makeBiomartGenes (  filters ,  mart ,  transcripts_tx_id ,  recognized_attribs ,  id_prefix )   metadata -   .prepareBiomartMetadata (  mart ,  is_full_dataset ,  host ,  port ,  taxonomyId ,  miRBaseBuild )   message (  \"Make the TxDb object ... \" , appendLF =  FALSE )   txdb -   makeTxDb (  transcripts ,  splicings , genes =  genes , chrominfo =  chrominfo , metadata =  metadata , reassign.ids =  TRUE )   message (  \"OK\" )  txdb } ",
+    "filename": "makeTxDbFromBiomart.txt"
+  },
+  "new_function": {
+    "name": "makeTxDbFromBiomart",
+    "representation": "makeTxDbFromBiomart",
+    "parameters": "function ( biomart = \"ENSEMBL_MART_ENSEMBL\" , dataset = \"hsapiens_gene_ensembl\" , transcript_ids = NULL , circ_seqs = DEFAULT_CIRC_SEQS , filter = NULL , id_prefix = \"ensembl_\" , host = \"www.ensembl.org\" , port = 80 , taxonomyId = NA , miRBaseBuild = NA )",
+    "body": "{   mart -   .useMart2 ( biomart =  biomart , dataset =  dataset , host =  host , port =  port )   id_prefix -   .normarg_id_prefix (  id_prefix )   filter -   .add_tx_id_filter (  filter ,  transcript_ids ,  id_prefix )   valid_filter_names -   listFilters (  mart , what =  \"name\" )   invalid_filter_names -   setdiff (   names (  filter ) ,  valid_filter_names )  if (    length (  invalid_filter_names ) !=  0L )  {   in1string -   paste0 (  invalid_filter_names , collapse =  \", \" )   stop (   wmsg (  \"Invalid filter name(s): \" ,  in1string ,  \"\\n\\nPlease use the listFilters() function from the \" ,  \"biomaRt package to get valid filter names.\" ) ) }   is_full_dataset -    length (  filter ) ==  0L   recognized_attribs -   recognizedBiomartAttribs (  id_prefix )   transcripts -   .makeBiomartTranscripts (  filter ,  mart ,  transcript_ids ,  recognized_attribs ,  id_prefix )   transcripts_tx_id -   transcripts $ tx_id    names (  transcripts_tx_id ) -   transcripts $ tx_name   chrominfo -   .makeBiomartChrominfo (  mart , extra_seqnames =   transcripts $ tx_chrom , circ_seqs =  circ_seqs ,  host ,  port )  if (  !  is_full_dataset )  {   keep_idx -   which (    chrominfo [ ,  \"chrom\" ] %in%   transcripts $ tx_chrom )   chrominfo -   S4Vectors ::: extract_data_frame_rows (  chrominfo ,  keep_idx ) }   splicings -   .makeBiomartSplicings (  filter ,  mart ,  transcripts_tx_id ,  recognized_attribs , id_prefix =  id_prefix ) ## Drop transcripts with UTR anomalies.   utr_anomaly -   splicings $ utr_anomaly  if (  !   is.null (  utr_anomaly ) )  {   invalid_tx -   unique (   splicings [   utr_anomaly !=  0L ,  \"tx_id\" ] )  if (    length (  invalid_tx ) !=  0L )  {   message (  \"Drop transcripts with UTR anomalies (\" ,   length (  invalid_tx ) ,  \" transcripts) ... \" , appendLF =  FALSE )   keep_idx1 -  !  (    transcripts $ tx_id %in%  invalid_tx )   transcripts -   S4Vectors ::: extract_data_frame_rows (  transcripts ,  keep_idx1 )   transcripts_tx_id -   transcripts_tx_id [  keep_idx1 ]   keep_idx2 -  !  (    splicings $ tx_id %in%  invalid_tx )   splicings -   S4Vectors ::: extract_data_frame_rows (  splicings ,  keep_idx2 )   message (  \"OK\" ) }    splicings $ utr_anomaly -  NULL }   genes -   .makeBiomartGenes (  filter ,  mart ,  transcripts_tx_id ,  recognized_attribs ,  id_prefix )   metadata -   .prepareBiomartMetadata (  mart ,  is_full_dataset ,  host ,  port ,  taxonomyId ,  miRBaseBuild )   message (  \"Make the TxDb object ... \" , appendLF =  FALSE )   txdb -   makeTxDb (  transcripts ,  splicings , genes =  genes , chrominfo =  chrominfo , metadata =  metadata , reassign.ids =  TRUE )   message (  \"OK\" )  txdb } ",
+    "filename": "makeTxDbFromBiomart.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "makeTxDbFromGFF",
+    "representation": "makeTxDbFromGFF",
+    "parameters": "function ( file , format = c ( \"auto\" , \"gff3\" , \"gtf\" ) , dataSource = NA , organism = NA , taxonomyId = NA , circ_seqs = DEFAULT_CIRC_SEQS , chrominfo = NULL , miRBaseBuild = NA , dbxrefTag , exonRankAttributeName = NA , gffGeneIdAttributeName = NA , useGenesAsTranscripts = FALSE , gffTxName = \"mRNA\" , species = NA )",
+    "body": "{ ## Raise error for a bunch of args that are defunct.  if (  !   identical (  exonRankAttributeName ,  NA ) )   .Defunct ( msg =  \"the 'exonRankAttributeName' argument is defunct\" )  if (  !   identical (  gffGeneIdAttributeName ,  NA ) )   .Defunct ( msg =  \"the 'gffGeneIdAttributeName' argument is defunct\" )  if (  !   identical (  useGenesAsTranscripts ,  FALSE ) )   .Defunct ( msg =  \"the 'useGenesAsTranscripts' argument is defunct\" )  if (  !   identical (  gffTxName ,  \"mRNA\" ) )   .Defunct ( msg =  \"the 'gffTxName' argument is defunct\" )  if (  !   identical (  species ,  NA ) )   .Defunct ( msg =   wmsg (  \"The 'species' argument is defunct. \" ,  \"Please use 'organism' instead.\" ) )   format -   match.arg (  format )  if (   format ==  \"auto\" )  {   format -   .detect_file_format (  file )  if (  !  (   format %in%   c (  \"gff3\" ,  \"gff\" ,  \"gtf\" ) ) )   stop (   wmsg (  \"Cannot detect whether 'file' is a GFF3 or GTF file. \" ,  \"Please use the 'format' argument to specify the \" ,  \"format (\\\"gff3\\\" or \\\"gtf\\\").\" ) ) }  if (   format ==  \"gff3\" )  {   colnames -  GFF3_COLNAMES } else  if (   format ==  \"gtf\" )  {   colnames -  GTF_COLNAMES } else  { # format == \"gff\" ## We don't know a priori if the file is GFF3 or GTF. ## TODO: Maybe use sniffGFFVersion() to detect whether the file is ## GFF3 or GTF (maybe do this in .detect_file_format()).   colnames -   union (  GFF3_COLNAMES ,  GTF_COLNAMES ) }   message (  \"Import genomic features from the file as a GRanges object ... \" , appendLF =  FALSE )   gr -   import (  file , format =  format , colnames =  colnames , feature.type =  GFF_FEATURE_TYPES )   gr -   .tidy_seqinfo (  gr ,  circ_seqs ,  chrominfo )  if (  !   missing (  dbxrefTag ) )  {   gr -   .rename_by_dbxrefTag (  gr ,  dbxrefTag ) }   message (  \"OK\" )   metadata -   .prepareGFFMetadata (  file ,  dataSource ,  organism ,  taxonomyId ,  miRBaseBuild )   message (  \"Make the TxDb object ... \" , appendLF =  FALSE )   txdb -   makeTxDbFromGRanges (  gr , metadata =  metadata )   message (  \"OK\" )  txdb } ",
+    "filename": "makeTxDbFromGFF.txt"
+  },
+  "new_function": {
+    "name": "makeTxDbFromGFF",
+    "representation": "makeTxDbFromGFF",
+    "parameters": "function ( file , format = c ( \"auto\" , \"gff3\" , \"gtf\" ) , dataSource = NA , organism = NA , taxonomyId = NA , circ_seqs = DEFAULT_CIRC_SEQS , chrominfo = NULL , miRBaseBuild = NA , dbxrefTag )",
+    "body": "{   format -   match.arg (  format )  if (   format ==  \"auto\" )  {   format -   .detect_file_format (  file )  if (  !  (   format %in%   c (  \"gff3\" ,  \"gff\" ,  \"gtf\" ) ) )   stop (   wmsg (  \"Cannot detect whether 'file' is a GFF3 or GTF file. \" ,  \"Please use the 'format' argument to specify the \" ,  \"format (\\\"gff3\\\" or \\\"gtf\\\").\" ) ) }  if (   format ==  \"gff3\" )  {   colnames -  GFF3_COLNAMES } else  if (   format ==  \"gtf\" )  {   colnames -  GTF_COLNAMES } else  { # format == \"gff\" ## We don't know a priori if the file is GFF3 or GTF. ## TODO: Maybe use sniffGFFVersion() to detect whether the file is ## GFF3 or GTF (maybe do this in .detect_file_format()).   colnames -   union (  GFF3_COLNAMES ,  GTF_COLNAMES ) }   message (  \"Import genomic features from the file as a GRanges object ... \" , appendLF =  FALSE )   gr -   import (  file , format =  format , colnames =  colnames , feature.type =  GFF_FEATURE_TYPES )   gr -   .tidy_seqinfo (  gr ,  circ_seqs ,  chrominfo )  if (  !   missing (  dbxrefTag ) )  {   gr -   .rename_by_dbxrefTag (  gr ,  dbxrefTag ) }   message (  \"OK\" )   metadata -   .prepareGFFMetadata (  file ,  dataSource ,  organism ,  taxonomyId ,  miRBaseBuild )   message (  \"Make the TxDb object ... \" , appendLF =  FALSE )   txdb -   makeTxDbFromGRanges (  gr , metadata =  metadata )   message (  \"OK\" )  txdb } ",
+    "filename": "makeTxDbFromGFF.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "makeTxDbPackageFromBiomart",
+    "representation": "makeTxDbPackageFromBiomart",
+    "parameters": "function ( version , maintainer , author , destDir = \".\" , license = \"Artistic-2.0\" , biomart = \"ENSEMBL_MART_ENSEMBL\" , dataset = \"hsapiens_gene_ensembl\" , transcript_ids = NULL , circ_seqs = DEFAULT_CIRC_SEQS , filters = \"\" , id_prefix = \"ensembl_\" , host = \"www.ensembl.org\" , port = 80 , taxonomyId = NA , miRBaseBuild = NA )",
+    "body": "{ ## checks  if (    missing (  version ) ||  !   isSingleString (  version ) )  {   stop (  \"'version' must be supplied as a single element\" ,  \" character vector.\" ) }  if (    missing (  maintainer ) ||  !   isSingleString (  maintainer ) )  {   stop (  \"'maintainer' must be supplied as a single element\" ,  \" character vector.\" ) }  if (    missing (  author ) ||  !   isSingleString (  author ) )  {   stop (  \"'author' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  destDir ) )  {   stop (  \"'destDir' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  license ) )  {   stop (  \"'license' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  biomart ) )  {   stop (  \"'biomart' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  dataset ) )  {   stop (  \"'dataset' must be supplied as a single element\" ,  \" character vector.\" ) }  if (   !   is.character (  circ_seqs ) ||    length (  circ_seqs ) undefined  1 )  {   stop (  \"'circ_seqs' must be supplied as a named character vector.\" ) }  if (  !   isSingleStringOrNA (  miRBaseBuild ) )  {   stop (  \"'miRBaseBuild' must be supplied as a single element\" ,  \" character vector or be NA.\" ) } ## Make the DB   txdb -   makeTxDbFromBiomart ( biomart =  biomart , dataset =  dataset , transcript_ids =  transcript_ids , circ_seqs =  circ_seqs , filters =  filters , id_prefix =  id_prefix , host =  host , port =  port , taxonomyId =  taxonomyId , miRBaseBuild =  miRBaseBuild ) ## Make the Package   makeTxDbPackage (  txdb , version =  version , maintainer =  maintainer , author =  author , destDir =  destDir , license =  license ) } ",
+    "filename": "makeTxDbPackage.txt"
+  },
+  "new_function": {
+    "name": "makeTxDbPackageFromBiomart",
+    "representation": "makeTxDbPackageFromBiomart",
+    "parameters": "function ( version , maintainer , author , destDir = \".\" , license = \"Artistic-2.0\" , biomart = \"ENSEMBL_MART_ENSEMBL\" , dataset = \"hsapiens_gene_ensembl\" , transcript_ids = NULL , circ_seqs = DEFAULT_CIRC_SEQS , filter = NULL , id_prefix = \"ensembl_\" , host = \"www.ensembl.org\" , port = 80 , taxonomyId = NA , miRBaseBuild = NA )",
+    "body": "{ ## checks  if (    missing (  version ) ||  !   isSingleString (  version ) )  {   stop (  \"'version' must be supplied as a single element\" ,  \" character vector.\" ) }  if (    missing (  maintainer ) ||  !   isSingleString (  maintainer ) )  {   stop (  \"'maintainer' must be supplied as a single element\" ,  \" character vector.\" ) }  if (    missing (  author ) ||  !   isSingleString (  author ) )  {   stop (  \"'author' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  destDir ) )  {   stop (  \"'destDir' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  license ) )  {   stop (  \"'license' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  biomart ) )  {   stop (  \"'biomart' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  dataset ) )  {   stop (  \"'dataset' must be supplied as a single element\" ,  \" character vector.\" ) }  if (   !   is.character (  circ_seqs ) ||    length (  circ_seqs ) undefined  1 )  {   stop (  \"'circ_seqs' must be supplied as a named character vector.\" ) }  if (  !   isSingleStringOrNA (  miRBaseBuild ) )  {   stop (  \"'miRBaseBuild' must be supplied as a single element\" ,  \" character vector or be NA.\" ) } ## Make the DB   txdb -   makeTxDbFromBiomart ( biomart =  biomart , dataset =  dataset , transcript_ids =  transcript_ids , circ_seqs =  circ_seqs , filter =  filter , id_prefix =  id_prefix , host =  host , port =  port , taxonomyId =  taxonomyId , miRBaseBuild =  miRBaseBuild ) ## Make the Package   makeTxDbPackage (  txdb , version =  version , maintainer =  maintainer , author =  author , destDir =  destDir , license =  license ) } ",
+    "filename": "makeTxDbPackage.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "transcripts",
+    "representation": "transcripts",
+    "signature": "TxDb",
+    "parameters": "function ( x , vals = NULL , columns = c ( \"tx_id\" , \"tx_name\" ) )",
+    "body": ".extractFromTxDb ( x , \"transcript\" , columns = columns , vals = vals )",
+    "filename": "transcripts.txt"
+  },
+  "new_function": {
+    "name": "transcripts",
+    "representation": "transcripts",
+    "signature": "TxDb",
+    "parameters": "function ( x , columns = c ( \"tx_id\" , \"tx_name\" ) , filter = NULL , vals = NULL )",
+    "body": ".extractFromTxDb ( x , \"transcript\" , mcolumns = columns , filter = filter , vals = vals )",
+    "filename": "transcripts.txt"
+  }
+}
+
+4.
+{
+  "old_function": {
+    "name": "exons",
+    "representation": "exons",
+    "signature": "TxDb",
+    "parameters": "function ( x , vals = NULL , columns = \"exon_id\" )",
+    "body": ".extractFromTxDb ( x , \"exon\" , columns = columns , vals = vals )",
+    "filename": "transcripts.txt"
+  },
+  "new_function": {
+    "name": "exons",
+    "representation": "exons",
+    "signature": "TxDb",
+    "parameters": "function ( x , columns = \"exon_id\" , filter = NULL , vals = NULL )",
+    "body": ".extractFromTxDb ( x , \"exon\" , mcolumns = columns , filter = filter , vals = vals )",
+    "filename": "transcripts.txt"
+  }
+}
+
+5.
+{
+  "old_function": {
+    "name": "cds",
+    "representation": "cds",
+    "signature": "TxDb",
+    "parameters": "function ( x , vals = NULL , columns = \"cds_id\" )",
+    "body": ".extractFromTxDb ( x , \"cds\" , columns = columns , vals = vals )",
+    "filename": "transcripts.txt"
+  },
+  "new_function": {
+    "name": "cds",
+    "representation": "cds",
+    "signature": "TxDb",
+    "parameters": "function ( x , columns = \"cds_id\" , filter = NULL , vals = NULL )",
+    "body": ".extractFromTxDb ( x , \"cds\" , mcolumns = columns , filter = filter , vals = vals )",
+    "filename": "transcripts.txt"
+  }
+}
+
+6.
+{
+  "old_function": {
+    "name": "genes",
+    "representation": "genes",
+    "signature": "TxDb",
+    "parameters": "function ( x , vals = NULL , columns = \"gene_id\" , single.strand.genes.only = TRUE )",
+    "body": "{  if (  !   is.character (  columns ) )   stop (  \"'columns' must be a character vector\" )  if (  !   isTRUEorFALSE (  single.strand.genes.only ) )   stop (  \"'single.strand.genes.only' must be TRUE or FALSE\" )   columns2 -   union (  columns ,  \"gene_id\" )   tx -   transcripts (  x , vals =  vals , columns =  columns2 ) ## Unroll 'tx' along the 'gene_id' metadata column. ## Note that the number of genes per transcript will generally be 1 or 0. ## But we also want to handle the situation where it's ## when the same transcript is linked to more than 1 gene (because this ## may happen one day and is the reason behind the choice to represent ## the 'gene_id' as a CharacterList object instead of a character vector).   gene_id -    mcols (  tx ) [ ,  \"gene_id\" ]   ngene_per_tx -   elementLengths (  gene_id )   tx -   tx [   rep.int (   seq_along (  ngene_per_tx ) ,  ngene_per_tx ) ]     mcols (  tx ) $ gene_id -   unlist (  gene_id , use.names =  FALSE ) ## Split 'tx' by gene.   tx_by_gene -   split (  tx ,    mcols (  tx ) $ gene_id ) ## Turn inner mcols into outter mcols by relist()'ing them.   inner_mcols -    mcols (   tx_by_gene @ unlistData ) [  columns ]    mcols (   tx_by_gene @ unlistData ) -  NULL   outter_mcols -   .collapse_df (  inner_mcols ,  tx_by_gene )   gene_id -   outter_mcols $ gene_id  if (  !   is.null (  gene_id ) )  {   stopifnot (   identical (   names (  tx_by_gene ) ,   as.character (  gene_id ) ) )    outter_mcols $ gene_id -   names (  tx_by_gene ) }    mcols (  tx_by_gene ) -  outter_mcols ## Compute the gene ranges.   genes -   range (  tx_by_gene )  if (  !  single.strand.genes.only )   return (  genes )   keep_idx -   which (    elementLengths (  genes ) ==  1L )   genes -   genes [  keep_idx ]   ans -   unlist (  genes , use.names =  FALSE )    mcols (  ans ) -   mcols (  genes )    names (  ans ) -   names (  genes )  ans } ",
+    "replacementFunction": ".TxDb.genes",
+    "filename": "transcripts.txt"
+  },
+  "new_function": {
+    "name": "genes",
+    "representation": "genes",
+    "signature": "TxDb",
+    "parameters": "function ( x , columns = \"gene_id\" , filter = NULL , vals = NULL , single.strand.genes.only = TRUE )",
+    "body": "{  if (  !   is.character (  columns ) )   stop (  \"'columns' must be a character vector\" )  if (  !   isTRUEorFALSE (  single.strand.genes.only ) )   stop (  \"'single.strand.genes.only' must be TRUE or FALSE\" )   columns2 -   union (  columns ,  \"gene_id\" )   tx -   transcripts (  x , columns =  columns2 , filter =  filter , vals =  vals ) ## Unroll 'tx' along the 'gene_id' metadata column. ## Note that the number of genes per transcript will generally be 1 or 0. ## But we also want to handle the situation where it's ## when the same transcript is linked to more than 1 gene (because this ## may happen one day and is the reason behind the choice to represent ## the 'gene_id' as a CharacterList object instead of a character vector).   gene_id -    mcols (  tx ) [ ,  \"gene_id\" ]   ngene_per_tx -   elementNROWS (  gene_id )   tx -   tx [   rep.int (   seq_along (  ngene_per_tx ) ,  ngene_per_tx ) ]     mcols (  tx ) $ gene_id -   unlist (  gene_id , use.names =  FALSE ) ## Split 'tx' by gene.   tx_by_gene -   split (  tx ,    mcols (  tx ) $ gene_id ) ## Turn inner mcols into outter mcols by relist()'ing them.   inner_mcols -    mcols (   tx_by_gene @ unlistData ) [  columns ]    mcols (   tx_by_gene @ unlistData ) -  NULL   outter_mcols -   .collapse_df (  inner_mcols ,  tx_by_gene )   gene_id -   outter_mcols $ gene_id  if (  !   is.null (  gene_id ) )  {   stopifnot (   identical (   names (  tx_by_gene ) ,   as.character (  gene_id ) ) )    outter_mcols $ gene_id -   names (  tx_by_gene ) }    mcols (  tx_by_gene ) -  outter_mcols ## Compute the gene ranges.   genes -   range (  tx_by_gene )  if (  !  single.strand.genes.only )   return (  genes )   keep_idx -   which (    elementNROWS (  genes ) ==  1L )   genes -   genes [  keep_idx ]   ans -   unlist (  genes , use.names =  FALSE )    mcols (  ans ) -   mcols (  genes )    names (  ans ) -   names (  genes )  ans } ",
+    "replacementFunction": ".TxDb.genes",
+    "filename": "transcripts.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicfeatures_release_3_3 genomicfeatures_release_3_4
+
+{
+    "package": "GenomicFeatures",
+    "release_versions": "genomicfeatures_release_3_3 genomicfeatures_release_3_4",
+    "desc_release_old": "1.24.5",
+    "desc_release_new": "1.26.4",
+    "old_release_number": 11,
+    "new_release_number": 12,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+browseUCSCtrack
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicfeatures_release_3_4 genomicfeatures_release_3_5
+
+{
+    "package": "GenomicFeatures",
+    "release_versions": "genomicfeatures_release_3_4 genomicfeatures_release_3_5",
+    "desc_release_old": "1.26.4",
+    "desc_release_new": "1.28.5",
+    "old_release_number": 12,
+    "new_release_number": 13,
+    "function_removals": 0,
+    "function_additions": 2,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 6,
+    "total_count": 6
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+exonicParts
+intronicParts
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "makeTxDbFromGFF",
+    "representation": "makeTxDbFromGFF",
+    "parameters": "function ( file , format = c ( \"auto\" , \"gff3\" , \"gtf\" ) , dataSource = NA , organism = NA , taxonomyId = NA , circ_seqs = DEFAULT_CIRC_SEQS , chrominfo = NULL , miRBaseBuild = NA , dbxrefTag )",
+    "body": "{   format -   match.arg (  format )  if (   format ==  \"auto\" )  {   format -   .detect_file_format (  file )  if (  !  (   format %in%   c (  \"gff3\" ,  \"gff\" ,  \"gtf\" ) ) )   stop (   wmsg (  \"Cannot detect whether 'file' is a GFF3 or GTF file. \" ,  \"Please use the 'format' argument to specify the \" ,  \"format (\\\"gff3\\\" or \\\"gtf\\\").\" ) ) }  if (   format ==  \"gff3\" )  {   colnames -  GFF3_COLNAMES } else  if (   format ==  \"gtf\" )  {   colnames -  GTF_COLNAMES } else  { # format == \"gff\" ## We don't know a priori if the file is GFF3 or GTF. ## TODO: Maybe use sniffGFFVersion() to detect whether the file is ## GFF3 or GTF (maybe do this in .detect_file_format()).   colnames -   union (  GFF3_COLNAMES ,  GTF_COLNAMES ) }   message (  \"Import genomic features from the file as a GRanges object ... \" , appendLF =  FALSE )   gr -   import (  file , format =  format , colnames =  colnames , feature.type =  GFF_FEATURE_TYPES )   gr -   .tidy_seqinfo (  gr ,  circ_seqs ,  chrominfo )  if (  !   missing (  dbxrefTag ) )  {   gr -   .rename_by_dbxrefTag (  gr ,  dbxrefTag ) }   message (  \"OK\" )   metadata -   .prepareGFFMetadata (  file ,  dataSource ,  organism ,  taxonomyId ,  miRBaseBuild )   message (  \"Make the TxDb object ... \" , appendLF =  FALSE )   txdb -   makeTxDbFromGRanges (  gr , metadata =  metadata )   message (  \"OK\" )  txdb } ",
+    "filename": "makeTxDbFromGFF.txt"
+  },
+  "new_function": {
+    "name": "makeTxDbFromGFF",
+    "representation": "makeTxDbFromGFF",
+    "parameters": "function ( file , format = c ( \"auto\" , \"gff3\" , \"gtf\" ) , dataSource = NA , organism = NA , taxonomyId = NA , circ_seqs = DEFAULT_CIRC_SEQS , chrominfo = NULL , miRBaseBuild = NA , metadata = NULL , dbxrefTag )",
+    "body": "{   format -   match.arg (  format )  if (   format ==  \"auto\" )  {   format -   .detect_file_format (  file )  if (  !  (   format %in%   c (  \"gff3\" ,  \"gff\" ,  \"gtf\" ) ) )   stop (   wmsg (  \"Cannot detect whether 'file' is a GFF3 or GTF file. \" ,  \"Please use the 'format' argument to specify the \" ,  \"format (\\\"gff3\\\" or \\\"gtf\\\").\" ) ) }  if (   format ==  \"gff3\" )  {   colnames -  GFF3_COLNAMES } else  if (   format ==  \"gtf\" )  {   colnames -  GTF_COLNAMES } else  { # format == \"gff\" ## We don't know a priori if the file is GFF3 or GTF. ## TODO: Maybe use sniffGFFVersion() to detect whether the file is ## GFF3 or GTF (maybe do this in .detect_file_format()).   colnames -   union (  GFF3_COLNAMES ,  GTF_COLNAMES ) }   message (  \"Import genomic features from the file as a GRanges object ... \" , appendLF =  FALSE )   gr -   import (  file , format =  format , colnames =  colnames , feature.type =  GFF_FEATURE_TYPES )   gr -   .tidy_seqinfo (  gr ,  circ_seqs ,  chrominfo )  if (  !   missing (  dbxrefTag ) )  {   gr -   .rename_by_dbxrefTag (  gr ,  dbxrefTag ) }   message (  \"OK\" )   metadata -   .prepareGFFMetadata (  file ,  dataSource ,  organism ,  taxonomyId ,  miRBaseBuild ,  metadata )   message (  \"Make the TxDb object ... \" , appendLF =  FALSE )   txdb -   makeTxDbFromGRanges (  gr , metadata =  metadata )   message (  \"OK\" )  txdb } ",
+    "filename": "makeTxDbFromGFF.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "transcripts",
+    "representation": "transcripts",
+    "signature": "TxDb",
+    "parameters": "function ( x , columns = c ( \"tx_id\" , \"tx_name\" ) , filter = NULL , vals = NULL )",
+    "body": ".extractFromTxDb ( x , \"transcript\" , mcolumns = columns , filter = filter , vals = vals )",
+    "filename": "transcripts.txt"
+  },
+  "new_function": {
+    "name": "transcripts",
+    "representation": "transcripts",
+    "signature": "TxDb",
+    "parameters": "function ( x , columns = c ( \"tx_id\" , \"tx_name\" ) , filter = NULL )",
+    "body": ".extractFromTxDb ( x , \"transcript\" , mcolumns = columns , filter = filter )",
+    "filename": "transcripts.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "exons",
+    "representation": "exons",
+    "signature": "TxDb",
+    "parameters": "function ( x , columns = \"exon_id\" , filter = NULL , vals = NULL )",
+    "body": ".extractFromTxDb ( x , \"exon\" , mcolumns = columns , filter = filter , vals = vals )",
+    "filename": "transcripts.txt"
+  },
+  "new_function": {
+    "name": "exons",
+    "representation": "exons",
+    "signature": "TxDb",
+    "parameters": "function ( x , columns = \"exon_id\" , filter = NULL )",
+    "body": ".extractFromTxDb ( x , \"exon\" , mcolumns = columns , filter = filter )",
+    "filename": "transcripts.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "cds",
+    "representation": "cds",
+    "signature": "TxDb",
+    "parameters": "function ( x , columns = \"cds_id\" , filter = NULL , vals = NULL )",
+    "body": ".extractFromTxDb ( x , \"cds\" , mcolumns = columns , filter = filter , vals = vals )",
+    "filename": "transcripts.txt"
+  },
+  "new_function": {
+    "name": "cds",
+    "representation": "cds",
+    "signature": "TxDb",
+    "parameters": "function ( x , columns = \"cds_id\" , filter = NULL )",
+    "body": ".extractFromTxDb ( x , \"cds\" , mcolumns = columns , filter = filter )",
+    "filename": "transcripts.txt"
+  }
+}
+
+4.
+{
+  "old_function": {
+    "name": "genes",
+    "representation": "genes",
+    "signature": "TxDb",
+    "parameters": "function ( x , columns = \"gene_id\" , filter = NULL , vals = NULL , single.strand.genes.only = TRUE )",
+    "body": "{  if (  !   is.character (  columns ) )   stop (  \"'columns' must be a character vector\" )  if (  !   isTRUEorFALSE (  single.strand.genes.only ) )   stop (  \"'single.strand.genes.only' must be TRUE or FALSE\" )   columns2 -   union (  columns ,  \"gene_id\" )   tx -   transcripts (  x , columns =  columns2 , filter =  filter , vals =  vals ) ## Unroll 'tx' along the 'gene_id' metadata column. ## Note that the number of genes per transcript will generally be 1 or 0. ## But we also want to handle the situation where it's ## when the same transcript is linked to more than 1 gene (because this ## may happen one day and is the reason behind the choice to represent ## the 'gene_id' as a CharacterList object instead of a character vector).   gene_id -    mcols (  tx ) [ ,  \"gene_id\" ]   ngene_per_tx -   elementNROWS (  gene_id )   tx -   tx [   rep.int (   seq_along (  ngene_per_tx ) ,  ngene_per_tx ) ]     mcols (  tx ) $ gene_id -   unlist (  gene_id , use.names =  FALSE ) ## Split 'tx' by gene.   tx_by_gene -   split (  tx ,    mcols (  tx ) $ gene_id ) ## Turn inner mcols into outter mcols by relist()'ing them.   inner_mcols -    mcols (   tx_by_gene @ unlistData ) [  columns ]    mcols (   tx_by_gene @ unlistData ) -  NULL   outter_mcols -   .collapse_df (  inner_mcols ,  tx_by_gene )   gene_id -   outter_mcols $ gene_id  if (  !   is.null (  gene_id ) )  {   stopifnot (   identical (   names (  tx_by_gene ) ,   as.character (  gene_id ) ) )    outter_mcols $ gene_id -   names (  tx_by_gene ) }    mcols (  tx_by_gene ) -  outter_mcols ## Compute the gene ranges.   genes -   range (  tx_by_gene )  if (  !  single.strand.genes.only )   return (  genes )   keep_idx -   which (    elementNROWS (  genes ) ==  1L )   genes -   genes [  keep_idx ]   ans -   unlist (  genes , use.names =  FALSE )    mcols (  ans ) -   mcols (  genes )    names (  ans ) -   names (  genes )  ans } ",
+    "replacementFunction": ".TxDb.genes",
+    "filename": "transcripts.txt"
+  },
+  "new_function": {
+    "name": "genes",
+    "representation": "genes",
+    "signature": "TxDb",
+    "parameters": "function ( x , columns = \"gene_id\" , filter = NULL , single.strand.genes.only = TRUE )",
+    "body": "{  if (  !   is.character (  columns ) )   stop (  \"'columns' must be a character vector\" )  if (  !   isTRUEorFALSE (  single.strand.genes.only ) )   stop (  \"'single.strand.genes.only' must be TRUE or FALSE\" )   columns2 -   union (  columns ,  \"gene_id\" )   tx -   transcripts (  x , columns =  columns2 , filter =  filter ) ## Unroll 'tx' along the 'gene_id' metadata column. ## Note that the number of genes per transcript will generally be 1 or 0. ## But we also want to handle the situation where it's ## when the same transcript is linked to more than 1 gene (because this ## may happen one day and is the reason behind the choice to represent ## the 'gene_id' as a CharacterList object instead of a character vector).   gene_id -    mcols (  tx ) [ ,  \"gene_id\" ]   ngene_per_tx -   elementNROWS (  gene_id )   tx -   tx [   rep.int (   seq_along (  ngene_per_tx ) ,  ngene_per_tx ) ]     mcols (  tx ) $ gene_id -   unlist (  gene_id , use.names =  FALSE ) ## Split 'tx' by gene.   tx_by_gene -   split (  tx ,    mcols (  tx ) $ gene_id ) ## Turn inner mcols into outter mcols by relist()'ing them.   inner_mcols -    mcols (   tx_by_gene @ unlistData ) [  columns ]    mcols (   tx_by_gene @ unlistData ) -  NULL   outter_mcols -   .collapse_df (  inner_mcols ,  tx_by_gene )   gene_id -   outter_mcols $ gene_id  if (  !   is.null (  gene_id ) )  {   stopifnot (   identical (   names (  tx_by_gene ) ,   as.character (  gene_id ) ) )    outter_mcols $ gene_id -   names (  tx_by_gene ) }    mcols (  tx_by_gene ) -  outter_mcols ## Compute the gene ranges.   genes -   range (  tx_by_gene )  if (  !  single.strand.genes.only )   return (  genes )   keep_idx -   which (    elementNROWS (  genes ) ==  1L )   genes -   genes [  keep_idx ]   ans -   unlist (  genes , use.names =  FALSE )    mcols (  ans ) -   mcols (  genes )    names (  ans ) -   names (  genes )  ans } ",
+    "replacementFunction": ".TxDb.genes",
+    "filename": "transcripts.txt"
+  }
+}
+
+5.
+{
+  "old_function": {
+    "name": "seqlevels",
+    "representation": "seqlevels<-",
+    "signature": "TxDb",
+    "parameters": "function ( x , force = FALSE , value )",
+    "body": "{   x_seqlevels0 -   seqlevels0 (  x ) # \"real\" seqlevels (from the db)  if (   identical (  value ,  x_seqlevels0 ) )   return (    x $ initialize ( ) )   x_seqlevels -   seqlevels (  x ) ## First we compare the user-supplied seqlevels with 'x_seqlevels0' to ## detect the situation where the user intention is to subset the \"real\" ## seqlevels.   mode -   GenomeInfoDb ::: getSeqlevelsReplacementMode (  value ,  x_seqlevels0 )  if (   identical (  mode ,  -  2L ) )  { ## \"subsetting of the real seqlevels\" mode    x $ user_seqlevels -  value    x $ user2seqlevels0 -   match (  value ,  x_seqlevels0 )   return (  x ) } ## Then we compare the user-supplied seqlevels with the current user- ## defined seqlevels.   new2old -   GenomeInfoDb ::: getSeqlevelsReplacementMode (  value ,  x_seqlevels )  if (   identical (  new2old ,  -  3L ) )  { ## \"renaming of user-defined seqlevels\" mode    x $ user_seqlevels -  value   return (  x ) }  if (    identical (  new2old ,  -  2L ) ||   identical (  new2old ,  -  1L ) )  { ## \"subsetting of user-defined seqlevels\" mode   new2old -   match (  value ,  x_seqlevels ) }   user2seqlevels0 -    x $ user2seqlevels0 [  new2old ]   na_idx -   which (   is.na (  user2seqlevels0 ) )  if (    length (  na_idx ) !=  0L )  {    user2seqlevels0 [  na_idx ] -   match (   value [  na_idx ] ,  x_seqlevels0 )  if (   anyNA (  user2seqlevels0 ) )   stop (   wmsg (  \"adding seqlevels to a TxDb object is not supported\" ) )   any_dup -   anyDuplicated (  user2seqlevels0 )  if (  any_dup )  {   idx0 -   user2seqlevels0 [  any_dup ]   in1string -   paste (   value [   user2seqlevels0 ==  idx0 ] , collapse =  \", \" )   seqlevel0 -   x_seqlevels0 [  idx0 ]   stop (   wmsg (  \"more than one user-supplied seqlevels \" ,  \"(\" ,  in1string ,  \") refer to the same seqlevel \" ,  \"stored in the db (\" ,  seqlevel0 ,  \")\" ) ) } }    x $ user_seqlevels -   unname (  value )    x $ user2seqlevels0 -  user2seqlevels0  x } ",
+    "replacementFunction": ".set_TxDb_seqlevels",
+    "filename": "TxDb-class.txt"
+  },
+  "new_function": {
+    "name": "seqlevels",
+    "representation": "seqlevels<-",
+    "signature": "TxDb",
+    "parameters": "function ( x , force = FALSE , pruning.mode = c ( \"error\" , \"coarse\" , \"fine\" , \"tidy\" ) , value )",
+    "body": "{   x_seqlevels0 -   seqlevels0 (  x ) # \"real\" seqlevels (from the db)  if (   identical (  value ,  x_seqlevels0 ) )   return (    x $ initialize ( ) )   x_seqlevels -   seqlevels (  x ) ## First we compare the user-supplied seqlevels with 'x_seqlevels0' to ## detect the situation where the user intention is to subset the \"real\" ## seqlevels.   mode -   GenomeInfoDb ::: getSeqlevelsReplacementMode (  value ,  x_seqlevels0 )  if (   identical (  mode ,  -  2L ) )  { ## \"subsetting of the real seqlevels\" mode    x $ user_seqlevels -  value    x $ user2seqlevels0 -   match (  value ,  x_seqlevels0 )   return (  x ) } ## Then we compare the user-supplied seqlevels with the current user- ## defined seqlevels.   new2old -   GenomeInfoDb ::: getSeqlevelsReplacementMode (  value ,  x_seqlevels )  if (   identical (  new2old ,  -  3L ) )  { ## \"renaming of user-defined seqlevels\" mode    x $ user_seqlevels -  value   return (  x ) }  if (    identical (  new2old ,  -  2L ) ||   identical (  new2old ,  -  1L ) )  { ## \"subsetting of user-defined seqlevels\" mode   new2old -   match (  value ,  x_seqlevels ) }   user2seqlevels0 -    x $ user2seqlevels0 [  new2old ]   na_idx -   which (   is.na (  user2seqlevels0 ) )  if (    length (  na_idx ) !=  0L )  {    user2seqlevels0 [  na_idx ] -   match (   value [  na_idx ] ,  x_seqlevels0 )  if (   anyNA (  user2seqlevels0 ) )   stop (   wmsg (  \"adding seqlevels to a TxDb object is not supported\" ) )   any_dup -   anyDuplicated (  user2seqlevels0 )  if (  any_dup )  {   idx0 -   user2seqlevels0 [  any_dup ]   in1string -   paste (   value [   user2seqlevels0 ==  idx0 ] , collapse =  \", \" )   seqlevel0 -   x_seqlevels0 [  idx0 ]   stop (   wmsg (  \"more than one user-supplied seqlevels \" ,  \"(\" ,  in1string ,  \") refer to the same seqlevel \" ,  \"stored in the db (\" ,  seqlevel0 ,  \")\" ) ) } }    x $ user_seqlevels -   unname (  value )    x $ user2seqlevels0 -  user2seqlevels0  x } ",
+    "replacementFunction": ".set_TxDb_seqlevels",
+    "filename": "TxDb-class.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicfeatures_release_3_5 genomicfeatures_release_3_6
+
+{
+    "package": "GenomicFeatures",
+    "release_versions": "genomicfeatures_release_3_5 genomicfeatures_release_3_6",
+    "desc_release_old": "1.28.5",
+    "desc_release_new": "1.30.3",
+    "old_release_number": 13,
+    "new_release_number": 14,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+makeTxDbFromEnsembl
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "seqlevels",
+    "representation": "seqlevels<-",
+    "signature": "TxDb",
+    "parameters": "function ( x , force = FALSE , pruning.mode = c ( \"error\" , \"coarse\" , \"fine\" , \"tidy\" ) , value )",
+    "body": "{   x_seqlevels0 -   seqlevels0 (  x ) # \"real\" seqlevels (from the db)  if (   identical (  value ,  x_seqlevels0 ) )   return (    x $ initialize ( ) )   x_seqlevels -   seqlevels (  x ) ## First we compare the user-supplied seqlevels with 'x_seqlevels0' to ## detect the situation where the user intention is to subset the \"real\" ## seqlevels.   mode -   GenomeInfoDb ::: getSeqlevelsReplacementMode (  value ,  x_seqlevels0 )  if (   identical (  mode ,  -  2L ) )  { ## \"subsetting of the real seqlevels\" mode    x $ user_seqlevels -  value    x $ user2seqlevels0 -   match (  value ,  x_seqlevels0 )   return (  x ) } ## Then we compare the user-supplied seqlevels with the current user- ## defined seqlevels.   new2old -   GenomeInfoDb ::: getSeqlevelsReplacementMode (  value ,  x_seqlevels )  if (   identical (  new2old ,  -  3L ) )  { ## \"renaming of user-defined seqlevels\" mode    x $ user_seqlevels -  value   return (  x ) }  if (    identical (  new2old ,  -  2L ) ||   identical (  new2old ,  -  1L ) )  { ## \"subsetting of user-defined seqlevels\" mode   new2old -   match (  value ,  x_seqlevels ) }   user2seqlevels0 -    x $ user2seqlevels0 [  new2old ]   na_idx -   which (   is.na (  user2seqlevels0 ) )  if (    length (  na_idx ) !=  0L )  {    user2seqlevels0 [  na_idx ] -   match (   value [  na_idx ] ,  x_seqlevels0 )  if (   anyNA (  user2seqlevels0 ) )   stop (   wmsg (  \"adding seqlevels to a TxDb object is not supported\" ) )   any_dup -   anyDuplicated (  user2seqlevels0 )  if (  any_dup )  {   idx0 -   user2seqlevels0 [  any_dup ]   in1string -   paste (   value [   user2seqlevels0 ==  idx0 ] , collapse =  \", \" )   seqlevel0 -   x_seqlevels0 [  idx0 ]   stop (   wmsg (  \"more than one user-supplied seqlevels \" ,  \"(\" ,  in1string ,  \") refer to the same seqlevel \" ,  \"stored in the db (\" ,  seqlevel0 ,  \")\" ) ) } }    x $ user_seqlevels -   unname (  value )    x $ user2seqlevels0 -  user2seqlevels0  x } ",
+    "replacementFunction": ".set_TxDb_seqlevels",
+    "filename": "TxDb-class.txt"
+  },
+  "new_function": {
+    "name": "seqlevels",
+    "representation": "seqlevels<-",
+    "signature": "TxDb",
+    "parameters": "function ( x , pruning.mode = c ( \"error\" , \"coarse\" , \"fine\" , \"tidy\" ) , value )",
+    "body": "{   x_seqlevels0 -   seqlevels0 (  x ) # \"real\" seqlevels (from the db)  if (   identical (  value ,  x_seqlevels0 ) )   return (    x $ initialize ( ) )   x_seqlevels -   seqlevels (  x ) ## First we compare the user-supplied seqlevels with 'x_seqlevels0' to ## detect the situation where the user intention is to subset the \"real\" ## seqlevels.   mode -   GenomeInfoDb ::: getSeqlevelsReplacementMode (  value ,  x_seqlevels0 )  if (   identical (  mode ,  -  2L ) )  { ## \"subsetting of the real seqlevels\" mode    x $ user_seqlevels -  value    x $ user2seqlevels0 -   match (  value ,  x_seqlevels0 )   return (  x ) } ## Then we compare the user-supplied seqlevels with the current user- ## defined seqlevels.   new2old -   GenomeInfoDb ::: getSeqlevelsReplacementMode (  value ,  x_seqlevels )  if (   identical (  new2old ,  -  3L ) )  { ## \"renaming of user-defined seqlevels\" mode    x $ user_seqlevels -  value   return (  x ) }  if (    identical (  new2old ,  -  2L ) ||   identical (  new2old ,  -  1L ) )  { ## \"subsetting of user-defined seqlevels\" mode   new2old -   match (  value ,  x_seqlevels ) }   user2seqlevels0 -    x $ user2seqlevels0 [  new2old ]   na_idx -   which (   is.na (  user2seqlevels0 ) )  if (    length (  na_idx ) !=  0L )  {    user2seqlevels0 [  na_idx ] -   match (   value [  na_idx ] ,  x_seqlevels0 )  if (   anyNA (  user2seqlevels0 ) )   stop (   wmsg (  \"adding seqlevels to a TxDb object is not supported\" ) )   any_dup -   anyDuplicated (  user2seqlevels0 )  if (  any_dup )  {   idx0 -   user2seqlevels0 [  any_dup ]   in1string -   paste (   value [   user2seqlevels0 ==  idx0 ] , collapse =  \", \" )   seqlevel0 -   x_seqlevels0 [  idx0 ]   stop (   wmsg (  \"more than one user-supplied seqlevels \" ,  \"(\" ,  in1string ,  \") refer to the same seqlevel \" ,  \"stored in the db (\" ,  seqlevel0 ,  \")\" ) ) } }    x $ user_seqlevels -   unname (  value )    x $ user2seqlevels0 -  user2seqlevels0  x } ",
+    "replacementFunction": ".set_TxDb_seqlevels",
+    "filename": "TxDb-class.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicfeatures_release_3_6 genomicfeatures_release_3_7
+
+{
+    "package": "GenomicFeatures",
+    "release_versions": "genomicfeatures_release_3_6 genomicfeatures_release_3_7",
+    "desc_release_old": "1.30.3",
+    "desc_release_new": "1.32.3",
+    "old_release_number": 14,
+    "new_release_number": 15,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicfeatures_release_3_7 genomicfeatures_release_3_8
+
+{
+    "package": "GenomicFeatures",
+    "release_versions": "genomicfeatures_release_3_7 genomicfeatures_release_3_8",
+    "desc_release_old": "1.32.3",
+    "desc_release_new": "1.34.8",
+    "old_release_number": 15,
+    "new_release_number": 16,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicfeatures_release_3_8 genomicfeatures_release_3_9
+
+{
+    "package": "GenomicFeatures",
+    "release_versions": "genomicfeatures_release_3_8 genomicfeatures_release_3_9",
+    "desc_release_old": "1.34.8",
+    "desc_release_new": "1.36.4",
+    "old_release_number": 16,
+    "new_release_number": 17,
+    "function_removals": 0,
+    "function_additions": 3,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+tidyTranscripts
+tidyExons
+tidyIntrons
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicfeatures_release_3_9 genomicfeatures_release_3_11
+
+{
+    "package": "GenomicFeatures",
+    "release_versions": "genomicfeatures_release_3_9 genomicfeatures_release_3_11",
+    "desc_release_old": "1.36.4",
+    "desc_release_new": "1.40.1",
+    "old_release_number": 17,
+    "new_release_number": 18,
+    "function_removals": 2,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 4,
+    "total_count": 6
+}
+
+##########
+Functions Removed
+##########
+
+DEFAULT_CIRC_SEQS
+getChromInfoFromUCSC
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "makeFeatureDbFromUCSC",
+    "representation": "makeFeatureDbFromUCSC",
+    "parameters": "function ( genome , track , tablename , columns = UCSCFeatureDbTableSchema ( genome , track , tablename ) , url = \"http://genome.ucsc.edu/cgi-bin/\" , goldenPath_url = \"http://hgdownload.cse.ucsc.edu/goldenPath\" , chromCol = NULL , chromStartCol = NULL , chromEndCol = NULL , taxonomyId = NA )",
+    "body": "{  if (  !   isSingleString (  genome ) )   stop (  \"'genome' must be a single string\" )  if (  !   isSingleString (  track ) )   stop (  \"'track' must be a single string\" )  if (  !   isSingleString (  tablename ) )   stop (  \"'tablename' must be a single string\" ) ## Check the column names  if (    length (   names (  columns ) ) !=   length (   unique (   names (  columns ) ) ) )   stop (  \"The default field names are not unique for this table.\" ) ## Once we know the columns names are unique, we remove the default ones.   columns -   columns [  !  (    names (  columns ) %in%   names (  .UCSC_GENERICCOL2CLASS ) ) ] ## also have to remove any columns that are to be re-assigned!  if (    !   is.null (  chromCol ) ||  !   is.null (  chromStartCol ) ||  !   is.null (  chromEndCol ) )  { ## if I concatenate to a vector, the NULL values will be MIA = perfect   altCols -   c (  chromCol ,  chromStartCol ,  chromEndCol )   columns -   columns [  !  (    names (  columns ) %in%  altCols ) ] } ## Check other arguments  if (  !   isSingleString (  url ) )   stop (  \"'url' must be a single string\" )  if (  !   isSingleString (  goldenPath_url ) )   stop (  \"'goldenPath_url' must be a single string\" ) ## Create a UCSC Genome Browser session.   session -   browserSession ( url =  url )    genome (  session ) -  genome   track_tables -   tableNames (   ucscTableQuery (  session , track =  track ) )  if (  !  (   tablename %in%  track_tables ) )   stop (  \"GenomicFeatures internal error: \" ,  tablename ,  \" table doesn't \" ,  \"exist or is not associated with \" ,  track ,  \" track. \" ,  \"Thank you for reporting this to the GenomicFeatures maintainer \" ,  \"or to the Bioconductor mailing list, and sorry for the \" ,  \"inconvenience.\" ) ## Download the data table.   message (  \"Download the \" ,  tablename ,  \" table ... \" , appendLF =  FALSE )   query -   ucscTableQuery (  session ,  track , table =  tablename )   ucsc_table -   getTable (  query ) ## check that we have strand info, and if not, add some in   ucsc_table -   .addMissingStrandCols (  ucsc_table ) ## TODO: do any required substitutions (required column renames)   ucsc_table -   .checkAndRenamCols (  ucsc_table ,  chromCol ,  chromStartCol ,  chromEndCol ) ## check that we have at least the 5 columns of data  if (    ncol (  ucsc_table ) undefined    length (  .UCSC_GENERICCOL2CLASS ) +  1 )   stop (  \"GenomicFeatures internal error: \" ,  tablename ,  \" table doesn't \" ,  \"exist, was corrupted during download, or doesn't contain \" ,  \"sufficient information. \" ,  \"Thank you for reporting this to the GenomicFeatures maintainer \" ,  \"or to the Bioconductor mailing list, and sorry for the \" ,  \"inconvenience.\" )   message (  \"OK\" ) ## also check that our data CONTAINS the column names we need it to   message (  \"Checking that required Columns are present ... \" )  if (    length (   intersect (   colnames (  ucsc_table ) ,   names (  .UCSC_GENERICCOL2CLASS ) ) ) undefined  4 ) ## That means that some required cols are missing!   stop (  \"GenomicFeatures internal error: \" ,  tablename ,  \" table doesn't \" ,  \"contain a 'chrom', 'chromStart', or 'chromEnd' column and no \" ,  \"reasonable substitute has been designated via the 'chromCol'\" ,  \"'chromStartCol' or 'chromEndCol' arguments.  \" ,  \"If this is not possible, please report that fact to the \" ,  \"GenomicFeatures maintainer or to the Bioconductor mailing list. \" ,  \" Thank you.\" )   message (  \"OK\" ) ## Then adjust the chromStarts column (corrects for unusual UCSC counting)   ucsc_table -   .adjustchromStarts (  ucsc_table ) ## then make our table, but remember, we have to add new columns to our ## base table type 1st:   .UCSC_GENERICCOL2CLASS =   c (  .UCSC_GENERICCOL2CLASS ,  columns )   ucsc_table -   setDataFrameColClass (  ucsc_table ,  .UCSC_GENERICCOL2CLASS , drop.extra.cols =  TRUE ) ## ensure that the table columns conform to expectations   ucsc_table -   ucsc_table [ ,   names (  .UCSC_GENERICCOL2CLASS ) ] ## Compile some of the metadata   metadata -   .prepareUCSCFeatureMetadata (  genome ,  tablename ,  taxonomyId )   message (  \"Make the AnnoDb object ... \" )   makeFeatureDb ( data =  ucsc_table , tableName =  tablename , metadata =  metadata ,  columns ) } ",
+    "filename": "makeFeatureDbFromUCSC.txt"
+  },
+  "new_function": {
+    "name": "makeFeatureDbFromUCSC",
+    "representation": "makeFeatureDbFromUCSC",
+    "parameters": "function ( genome , track , tablename , columns = UCSCFeatureDbTableSchema ( genome , track , tablename ) , url = \"http://genome.ucsc.edu/cgi-bin/\" , goldenPath.url = getOption ( \"UCSC.goldenPath.url\" ) , chromCol = NULL , chromStartCol = NULL , chromEndCol = NULL , taxonomyId = NA )",
+    "body": "{  if (  !   isSingleString (  genome ) )   stop (  \"'genome' must be a single string\" )  if (  !   isSingleString (  track ) )   stop (  \"'track' must be a single string\" )  if (  !   isSingleString (  tablename ) )   stop (  \"'tablename' must be a single string\" ) ## Check the column names  if (    length (   names (  columns ) ) !=   length (   unique (   names (  columns ) ) ) )   stop (  \"The default field names are not unique for this table.\" ) ## Once we know the columns names are unique, we remove the default ones.   columns -   columns [  !  (    names (  columns ) %in%   names (  .UCSC_GENERICCOL2CLASS ) ) ] ## also have to remove any columns that are to be re-assigned!  if (    !   is.null (  chromCol ) ||  !   is.null (  chromStartCol ) ||  !   is.null (  chromEndCol ) )  { ## if I concatenate to a vector, the NULL values will be MIA = perfect   altCols -   c (  chromCol ,  chromStartCol ,  chromEndCol )   columns -   columns [  !  (    names (  columns ) %in%  altCols ) ] } ## Check other arguments  if (  !   isSingleString (  url ) )   stop (  \"'url' must be a single string\" )  if (  !   isSingleString (  goldenPath.url ) )   stop (  \"'goldenPath.url' must be a single string\" ) ## Create a UCSC Genome Browser session.   session -   browserSession ( url =  url )    genome (  session ) -  genome   track_tables -   tableNames (   ucscTableQuery (  session , track =  track ) )  if (  !  (   tablename %in%  track_tables ) )   stop (  \"GenomicFeatures internal error: \" ,  tablename ,  \" table doesn't \" ,  \"exist or is not associated with \" ,  track ,  \" track. \" ,  \"Thank you for reporting this to the GenomicFeatures maintainer \" ,  \"or to the Bioconductor mailing list, and sorry for the \" ,  \"inconvenience.\" ) ## Download the data table.   message (  \"Download the \" ,  tablename ,  \" table ... \" , appendLF =  FALSE )   query -   ucscTableQuery (  session ,  track , table =  tablename )   ucsc_table -   getTable (  query ) ## check that we have strand info, and if not, add some in   ucsc_table -   .addMissingStrandCols (  ucsc_table ) ## TODO: do any required substitutions (required column renames)   ucsc_table -   .checkAndRenamCols (  ucsc_table ,  chromCol ,  chromStartCol ,  chromEndCol ) ## check that we have at least the 5 columns of data  if (    ncol (  ucsc_table ) undefined    length (  .UCSC_GENERICCOL2CLASS ) +  1 )   stop (  \"GenomicFeatures internal error: \" ,  tablename ,  \" table doesn't \" ,  \"exist, was corrupted during download, or doesn't contain \" ,  \"sufficient information. \" ,  \"Thank you for reporting this to the GenomicFeatures maintainer \" ,  \"or to the Bioconductor mailing list, and sorry for the \" ,  \"inconvenience.\" )   message (  \"OK\" ) ## also check that our data CONTAINS the column names we need it to   message (  \"Checking that required Columns are present ... \" )  if (    length (   intersect (   colnames (  ucsc_table ) ,   names (  .UCSC_GENERICCOL2CLASS ) ) ) undefined  4 ) ## That means that some required cols are missing!   stop (  \"GenomicFeatures internal error: \" ,  tablename ,  \" table doesn't \" ,  \"contain a 'chrom', 'chromStart', or 'chromEnd' column and no \" ,  \"reasonable substitute has been designated via the 'chromCol'\" ,  \"'chromStartCol' or 'chromEndCol' arguments.  \" ,  \"If this is not possible, please report that fact to the \" ,  \"GenomicFeatures maintainer or to the Bioconductor mailing list. \" ,  \" Thank you.\" )   message (  \"OK\" ) ## Then adjust the chromStarts column (corrects for unusual UCSC counting)   ucsc_table -   .adjustchromStarts (  ucsc_table ) ## then make our table, but remember, we have to add new columns to our ## base table type 1st:   .UCSC_GENERICCOL2CLASS =   c (  .UCSC_GENERICCOL2CLASS ,  columns )   ucsc_table -   setDataFrameColClass (  ucsc_table ,  .UCSC_GENERICCOL2CLASS , drop.extra.cols =  TRUE ) ## ensure that the table columns conform to expectations   ucsc_table -   ucsc_table [ ,   names (  .UCSC_GENERICCOL2CLASS ) ] ## Compile some of the metadata   metadata -   .prepareUCSCFeatureMetadata (  genome ,  tablename ,  taxonomyId )   message (  \"Make the AnnoDb object ... \" )   makeFeatureDb ( data =  ucsc_table , tableName =  tablename , metadata =  metadata ,  columns ) } ",
+    "filename": "makeFeatureDbFromUCSC.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "makeTxDbFromUCSC",
+    "representation": "makeTxDbFromUCSC",
+    "parameters": "function ( genome = \"hg19\" , tablename = \"knownGene\" , transcript_ids = NULL , circ_seqs = DEFAULT_CIRC_SEQS , url = \"http://genome.ucsc.edu/cgi-bin/\" , goldenPath_url = \"http://hgdownload.cse.ucsc.edu/goldenPath\" , taxonomyId = NA , miRBaseBuild = NA )",
+    "body": "{  if (  !   requireNamespace (  \"RMariaDB\" , quietly =  TRUE ) )   stop (   wmsg (  \"Couldn't load the RMariaDB package. \" ,  \"You need to install the RMariaDB package \" ,  \"in order to use makeTxDbFromUCSC().\" ) )  if (  !   is.null (  transcript_ids ) )  {  if (   !   is.character (  transcript_ids ) ||   any (   is.na (  transcript_ids ) ) )   stop (  \"'transcript_ids' must be a character vector with no NAs\" ) }  if (  !   isSingleString (  url ) )   stop (  \"'url' must be a single string\" )  if (  !   isSingleString (  goldenPath_url ) )   stop (  \"'goldenPath_url' must be a single string\" ) ## Create an UCSC Genome Browser session.   session -   browserSession ( url =  url )    genome (  session ) -  genome   track -   .tablename2track (  tablename ,  session ) ## Download the transcript table.   ucsc_txtable -   .fetch_UCSC_txtable (   genome (  session ) ,  tablename , transcript_ids =  transcript_ids ) ## Get the tx_name-to-gene_id mapping.   mapdef -   .howToGetTxName2GeneIdMapping (  tablename )  if (   is.null (  mapdef ) )  {   txname2geneid -   list ( genes =  NULL , gene_id_type =  \"no gene ids\" ) } else  if (   is.list (  mapdef ) )  {   txname2geneid -   .fetchTxName2GeneIdMappingFromUCSC (  session ,  tablename ,  mapdef ) } else  if (   is.character (  mapdef ) )  {   txname2geneid -   .extractTxName2GeneIdMappingFromUCSCTxTable (  ucsc_txtable ,  mapdef ) } else  {   stop (  \"GenomicFeatures internal error: invalid 'mapdef'\" ) }   .makeTxDbFromUCSCTxTable (  ucsc_txtable ,   txname2geneid $ genes ,  genome ,  tablename ,  track ,   txname2geneid $ gene_id_type , full_dataset =   is.null (  transcript_ids ) , circ_seqs =  circ_seqs , goldenPath_url =  goldenPath_url , taxonomyId =  taxonomyId , miRBaseBuild =  miRBaseBuild ) } ",
+    "filename": "makeTxDbFromUCSC.txt"
+  },
+  "new_function": {
+    "name": "makeTxDbFromUCSC",
+    "representation": "makeTxDbFromUCSC",
+    "parameters": "function ( genome = \"hg19\" , tablename = \"knownGene\" , transcript_ids = NULL , circ_seqs = NULL , url = \"http://genome.ucsc.edu/cgi-bin/\" , goldenPath.url = getOption ( \"UCSC.goldenPath.url\" ) , taxonomyId = NA , miRBaseBuild = NA )",
+    "body": "{  if (  !   requireNamespace (  \"RMariaDB\" , quietly =  TRUE ) )   stop (   wmsg (  \"Couldn't load the RMariaDB package. \" ,  \"You need to install the RMariaDB package \" ,  \"in order to use makeTxDbFromUCSC().\" ) )  if (  !   is.null (  transcript_ids ) )  {  if (   !   is.character (  transcript_ids ) ||   any (   is.na (  transcript_ids ) ) )   stop (  \"'transcript_ids' must be a character vector with no NAs\" ) }  if (  !   isSingleString (  url ) )   stop (  \"'url' must be a single string\" )  if (  !   isSingleString (  goldenPath.url ) )   stop (  \"'goldenPath.url' must be a single string\" ) ## Create an UCSC Genome Browser session.   session -   browserSession ( url =  url )    genome (  session ) -  genome   track -   .tablename2track (  tablename ,  session ) ## Download the transcript table.   ucsc_txtable -   .fetch_UCSC_txtable (   genome (  session ) ,  tablename , transcript_ids =  transcript_ids ) ## Get the tx_name-to-gene_id mapping.   mapdef -   .get_txname2geneid_mapdef (  tablename )  if (   is.null (  mapdef ) )  {   txname2geneid -   list ( genes =  NULL , gene_id_type =  \"no gene ids\" ) } else  if (   is.list (  mapdef ) )  {   txname2geneid -   .fetch_txname2geneid_from_UCSC (   genome (  session ) ,  tablename ,  mapdef ) } else  if (   is.character (  mapdef ) )  {   txname2geneid -   .extract_txname2geneid_from_UCSC_txtable (  ucsc_txtable ,  mapdef ) } else  {   stop (  \"GenomicFeatures internal error: invalid 'mapdef'\" ) }   .make_TxDb_from_UCSC_txtable (  ucsc_txtable ,   txname2geneid $ genes ,  genome ,  tablename ,  track ,   txname2geneid $ gene_id_type , full_dataset =   is.null (  transcript_ids ) , circ_seqs =  circ_seqs , goldenPath.url =  goldenPath.url , taxonomyId =  taxonomyId , miRBaseBuild =  miRBaseBuild ) } ",
+    "filename": "makeTxDbFromUCSC.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "makeTxDbPackageFromUCSC",
+    "representation": "makeTxDbPackageFromUCSC",
+    "parameters": "function ( version , maintainer , author , destDir = \".\" , license = \"Artistic-2.0\" , genome = \"hg19\" , tablename = \"knownGene\" , transcript_ids = NULL , circ_seqs = DEFAULT_CIRC_SEQS , url = \"http://genome.ucsc.edu/cgi-bin/\" , goldenPath_url = \"http://hgdownload.cse.ucsc.edu/goldenPath\" , taxonomyId = NA , miRBaseBuild = NA )",
+    "body": "{ ## checks  if (    missing (  version ) ||  !   isSingleString (  version ) )  {   stop (  \"'version' must be supplied as a single element\" ,  \" character vector.\" ) }  if (    missing (  version ) ||  !   isSingleString (  maintainer ) )  {   stop (  \"'maintainer' must be supplied as a single element\" ,  \" character vector.\" ) }  if (    missing (  version ) ||  !   isSingleString (  author ) )  {   stop (  \"'author' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  destDir ) )  {   stop (  \"'destDir' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  license ) )  {   stop (  \"'license' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  genome ) )  {   stop (  \"'genome' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  tablename ) )  {   stop (  \"'tablename' must be supplied as a single element\" ,  \" character vector.\" ) }  if (   !   is.character (  circ_seqs ) ||    length (  circ_seqs ) undefined  1 )  {   stop (  \"'circ_seqs' must be supplied as a named character vector.\" ) }  if (  !   isSingleString (  url ) )  {   stop (  \"'url' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  goldenPath_url ) )  {   stop (  \"'goldenPath_url' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleStringOrNA (  miRBaseBuild ) )  {   stop (  \"'miRBaseBuild' must be supplied as a single element\" ,  \" character vector or be NA.\" ) } ## Make the DB   txdb -   makeTxDbFromUCSC ( genome =  genome , tablename =  tablename , transcript_ids =  transcript_ids , circ_seqs =  circ_seqs , url =  url , goldenPath_url =  goldenPath_url , taxonomyId =  taxonomyId , miRBaseBuild =  miRBaseBuild ) ## Make the Package   makeTxDbPackage (  txdb , version =  version , maintainer =  maintainer , author =  author , destDir =  destDir , license =  license ) } ",
+    "filename": "makeTxDbPackage.txt"
+  },
+  "new_function": {
+    "name": "makeTxDbPackageFromUCSC",
+    "representation": "makeTxDbPackageFromUCSC",
+    "parameters": "function ( version , maintainer , author , destDir = \".\" , license = \"Artistic-2.0\" , genome = \"hg19\" , tablename = \"knownGene\" , transcript_ids = NULL , circ_seqs = NULL , url = \"http://genome.ucsc.edu/cgi-bin/\" , goldenPath.url = getOption ( \"UCSC.goldenPath.url\" ) , taxonomyId = NA , miRBaseBuild = NA )",
+    "body": "{ ## checks  if (    missing (  version ) ||  !   isSingleString (  version ) )  {   stop (  \"'version' must be supplied as a single element\" ,  \" character vector.\" ) }  if (    missing (  version ) ||  !   isSingleString (  maintainer ) )  {   stop (  \"'maintainer' must be supplied as a single element\" ,  \" character vector.\" ) }  if (    missing (  version ) ||  !   isSingleString (  author ) )  {   stop (  \"'author' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  destDir ) )  {   stop (  \"'destDir' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  license ) )  {   stop (  \"'license' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  genome ) )  {   stop (  \"'genome' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  tablename ) )  {   stop (  \"'tablename' must be supplied as a single element\" ,  \" character vector.\" ) }  if (   !   is.character (  circ_seqs ) ||    length (  circ_seqs ) undefined  1 )  {   stop (  \"'circ_seqs' must be supplied as a named character vector.\" ) }  if (  !   isSingleString (  url ) )  {   stop (  \"'url' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  goldenPath.url ) )  {   stop (  \"'goldenPath.url' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleStringOrNA (  miRBaseBuild ) )  {   stop (  \"'miRBaseBuild' must be supplied as a single element\" ,  \" character vector or be NA.\" ) } ## Make the DB   txdb -   makeTxDbFromUCSC ( genome =  genome , tablename =  tablename , transcript_ids =  transcript_ids , circ_seqs =  circ_seqs , url =  url , goldenPath.url =  goldenPath.url , taxonomyId =  taxonomyId , miRBaseBuild =  miRBaseBuild ) ## Make the Package   makeTxDbPackage (  txdb , version =  version , maintainer =  maintainer , author =  author , destDir =  destDir , license =  license ) } ",
+    "filename": "makeTxDbPackage.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "makeFDbPackageFromUCSC",
+    "representation": "makeFDbPackageFromUCSC",
+    "parameters": "function ( version , maintainer , author , destDir = \".\" , license = \"Artistic-2.0\" , genome = \"hg19\" , track = \"tRNAs\" , tablename = \"tRNAs\" , columns = UCSCFeatureDbTableSchema ( genome , track , tablename ) , url = \"http://genome.ucsc.edu/cgi-bin/\" , goldenPath_url = \"http://hgdownload.cse.ucsc.edu/goldenPath\" , chromCol = NULL , chromStartCol = NULL , chromEndCol = NULL , taxonomyId = NA )",
+    "body": "{ ## checks  if (    missing (  author ) ||  !   isSingleString (  version ) )  {   stop (  \"'version' must be supplied as a single element\" ,  \" character vector.\" ) }  if (    missing (  author ) ||  !   isSingleString (  maintainer ) )  {   stop (  \"'maintainer' must be supplied as a single element\" ,  \" character vector.\" ) }  if (    missing (  author ) ||  !   isSingleString (  author ) )  {   stop (  \"'author' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  destDir ) )  {   stop (  \"'destDir' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  license ) )  {   stop (  \"'license' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  genome ) )  {   stop (  \"'genome' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  track ) )  {   stop (  \"'track' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  tablename ) )  {   stop (  \"'tablename' must be supplied as a single element\" ,  \" character vector.\" ) }  if (    !   is.character (  columns ) ||    length (  columns ) undefined  1 ||    length (   names (  columns ) ) ==  0 )  {   stop (  \"columns must be supplied as a named character vector.\" ) }  if (  !   isSingleString (  url ) )  {   stop (  \"'url' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  goldenPath_url ) )  {   stop (  \"'goldenPath_url' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  chromCol ) )  {   stop (  \"'chromCol' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  chromStartCol ) )  {   stop (  \"'chromStartCol' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  chromEndCol ) )  {   stop (  \"'chromEndCol' must be supplied as a single element\" ,  \" character vector.\" ) } ## make the fdb   fdb -   makeFeatureDbFromUCSC ( genome =  genome , track =  track , tablename =  tablename , columns =  columns , url =  url , goldenPath_url =  goldenPath_url , chromCol =  chromCol , chromStartCol =  chromStartCol , chromEndCol =  chromEndCol , taxonomyId =  taxonomyId ) ## Make the Package (recycle functions and templates from txdb)   makeTxDbPackage (  fdb , version =  version , maintainer =  maintainer , author =  author , destDir =  destDir , license =  license ) } ",
+    "filename": "makeTxDbPackage.txt"
+  },
+  "new_function": {
+    "name": "makeFDbPackageFromUCSC",
+    "representation": "makeFDbPackageFromUCSC",
+    "parameters": "function ( version , maintainer , author , destDir = \".\" , license = \"Artistic-2.0\" , genome = \"hg19\" , track = \"tRNAs\" , tablename = \"tRNAs\" , columns = UCSCFeatureDbTableSchema ( genome , track , tablename ) , url = \"http://genome.ucsc.edu/cgi-bin/\" , goldenPath.url = getOption ( \"UCSC.goldenPath.url\" ) , chromCol = NULL , chromStartCol = NULL , chromEndCol = NULL , taxonomyId = NA )",
+    "body": "{ ## checks  if (    missing (  author ) ||  !   isSingleString (  version ) )  {   stop (  \"'version' must be supplied as a single element\" ,  \" character vector.\" ) }  if (    missing (  author ) ||  !   isSingleString (  maintainer ) )  {   stop (  \"'maintainer' must be supplied as a single element\" ,  \" character vector.\" ) }  if (    missing (  author ) ||  !   isSingleString (  author ) )  {   stop (  \"'author' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  destDir ) )  {   stop (  \"'destDir' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  license ) )  {   stop (  \"'license' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  genome ) )  {   stop (  \"'genome' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  track ) )  {   stop (  \"'track' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  tablename ) )  {   stop (  \"'tablename' must be supplied as a single element\" ,  \" character vector.\" ) }  if (    !   is.character (  columns ) ||    length (  columns ) undefined  1 ||    length (   names (  columns ) ) ==  0 )  {   stop (  \"columns must be supplied as a named character vector.\" ) }  if (  !   isSingleString (  url ) )  {   stop (  \"'url' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  goldenPath.url ) )  {   stop (  \"'goldenPath.url' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  chromCol ) )  {   stop (  \"'chromCol' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  chromStartCol ) )  {   stop (  \"'chromStartCol' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  chromEndCol ) )  {   stop (  \"'chromEndCol' must be supplied as a single element\" ,  \" character vector.\" ) } ## make the fdb   fdb -   makeFeatureDbFromUCSC ( genome =  genome , track =  track , tablename =  tablename , columns =  columns , url =  url , goldenPath.url =  goldenPath.url , chromCol =  chromCol , chromStartCol =  chromStartCol , chromEndCol =  chromEndCol , taxonomyId =  taxonomyId ) ## Make the Package (recycle functions and templates from txdb)   makeTxDbPackage (  fdb , version =  version , maintainer =  maintainer , author =  author , destDir =  destDir , license =  license ) } ",
+    "filename": "makeTxDbPackage.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicfeatures_release_3_11 genomicfeatures_release_3_12
+
+{
+    "package": "GenomicFeatures",
+    "release_versions": "genomicfeatures_release_3_11 genomicfeatures_release_3_12",
+    "desc_release_old": "1.40.1",
+    "desc_release_new": "1.42.3",
+    "old_release_number": 18,
+    "new_release_number": 19,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicfeatures_release_3_12 genomicfeatures_release_3_13
+
+{
+    "package": "GenomicFeatures",
+    "release_versions": "genomicfeatures_release_3_12 genomicfeatures_release_3_13",
+    "desc_release_old": "1.42.3",
+    "desc_release_new": "1.44.2",
+    "old_release_number": 19,
+    "new_release_number": 20,
+    "function_removals": 1,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+species
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicfeatures_release_3_13 genomicfeatures_release_3_14
+
+{
+    "package": "GenomicFeatures",
+    "release_versions": "genomicfeatures_release_3_13 genomicfeatures_release_3_14",
+    "desc_release_old": "1.44.2",
+    "desc_release_new": "1.46.5",
+    "old_release_number": 20,
+    "new_release_number": 21,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicfeatures_release_3_14 genomicfeatures_master
+
+{
+    "package": "GenomicFeatures",
+    "release_versions": "genomicfeatures_release_3_14 genomicfeatures_master",
+    "desc_release_old": "1.46.5",
+    "desc_release_new": "1.47.12",
+    "old_release_number": 21,
+    "new_release_number": 22,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 3,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 3,
+    "total_count": 3
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+proteinToGenome
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "getChromInfoFromBiomart",
+    "representation": "getChromInfoFromBiomart",
+    "parameters": "function ( biomart = \"ENSEMBL_MART_ENSEMBL\" , dataset = \"hsapiens_gene_ensembl\" , id_prefix = \"ensembl_\" , host = \"www.ensembl.org\" , port = 80 )",
+    "body": "{   mart -   .useMart2 ( biomart =  biomart , dataset =  dataset , host =  host , port =  port )   id_prefix -   .normarg_id_prefix (  id_prefix )   recognized_attribs -   recognizedBiomartAttribs (  id_prefix )   transcripts -   .makeBiomartTranscripts (  NULL ,  mart , transcript_ids =  NULL ,  recognized_attribs ,  id_prefix )   chrominfo -   .makeBiomartChrominfo (  mart , extra_seqnames =   transcripts $ tx_chrom , host =  host , port =  port )   chrominfo [ ,   1 :  2 , drop =  FALSE ] } ",
+    "filename": "makeTxDbFromBiomart.txt"
+  },
+  "new_function": {
+    "name": "getChromInfoFromBiomart",
+    "representation": "getChromInfoFromBiomart",
+    "parameters": "function ( biomart = \"ENSEMBL_MART_ENSEMBL\" , dataset = \"hsapiens_gene_ensembl\" , id_prefix = \"ensembl_\" , host = \"https://www.ensembl.org\" , port )",
+    "body": "{  if (  !   missing (  port ) )   warning (  \"The 'port' argument is deprecated and will be ignored.\" )   mart -   .useMart2 ( biomart =  biomart , dataset =  dataset , host =  host )   id_prefix -   .normarg_id_prefix (  id_prefix )   recognized_attribs -   recognizedBiomartAttribs (  id_prefix )   transcripts -   .makeBiomartTranscripts (  NULL ,  mart , transcript_ids =  NULL ,  recognized_attribs ,  id_prefix )   chrominfo -   .makeBiomartChrominfo (  mart , extra_seqnames =   transcripts $ tx_chrom , host =  host )   chrominfo [ ,   1 :  2 , drop =  FALSE ] } ",
+    "filename": "makeTxDbFromBiomart.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "makeTxDbFromBiomart",
+    "representation": "makeTxDbFromBiomart",
+    "parameters": "function ( biomart = \"ENSEMBL_MART_ENSEMBL\" , dataset = \"hsapiens_gene_ensembl\" , transcript_ids = NULL , circ_seqs = NULL , filter = NULL , id_prefix = \"ensembl_\" , host = \"www.ensembl.org\" , port = 80 , taxonomyId = NA , miRBaseBuild = NA )",
+    "body": "{   mart -   .useMart2 ( biomart =  biomart , dataset =  dataset , host =  host , port =  port )   id_prefix -   .normarg_id_prefix (  id_prefix )   filter -   .add_tx_id_filter (  filter ,  transcript_ids ,  id_prefix )   valid_filter_names -   listFilters (  mart , what =  \"name\" )   invalid_filter_names -   setdiff (   names (  filter ) ,  valid_filter_names )  if (    length (  invalid_filter_names ) !=  0L )  {   in1string -   paste0 (  invalid_filter_names , collapse =  \", \" )   stop (   wmsg (  \"Invalid filter name(s): \" ,  in1string ,  \"\\n\\nPlease use the listFilters() function from the \" ,  \"biomaRt package to get valid filter names.\" ) ) }   is_full_dataset -    length (  filter ) ==  0L   recognized_attribs -   recognizedBiomartAttribs (  id_prefix )   transcripts -   .makeBiomartTranscripts (  filter ,  mart ,  transcript_ids ,  recognized_attribs ,  id_prefix )   transcripts_tx_id -   transcripts $ tx_id    names (  transcripts_tx_id ) -   transcripts $ tx_name   chrominfo -   .makeBiomartChrominfo (  mart , extra_seqnames =   transcripts $ tx_chrom , circ_seqs =  circ_seqs ,  host ,  port )  if (  !  is_full_dataset )  {   keep_idx -   which (    chrominfo [ ,  \"chrom\" ] %in%   transcripts $ tx_chrom )   chrominfo -   S4Vectors ::: extract_data_frame_rows (  chrominfo ,  keep_idx ) }   splicings -   .makeBiomartSplicings (  filter ,  mart ,  transcripts_tx_id ,  recognized_attribs , id_prefix =  id_prefix ) ## Drop transcripts with UTR anomalies.   utr_anomaly -   splicings $ utr_anomaly  if (  !   is.null (  utr_anomaly ) )  {   invalid_tx -   unique (   splicings [   utr_anomaly !=  0L ,  \"tx_id\" ] )  if (    length (  invalid_tx ) !=  0L )  {   message (  \"Drop transcripts with UTR anomalies (\" ,   length (  invalid_tx ) ,  \" transcripts) ... \" , appendLF =  FALSE )   keep_idx1 -  !  (    transcripts $ tx_id %in%  invalid_tx )   transcripts -   S4Vectors ::: extract_data_frame_rows (  transcripts ,  keep_idx1 )   transcripts_tx_id -   transcripts_tx_id [  keep_idx1 ]   keep_idx2 -  !  (    splicings $ tx_id %in%  invalid_tx )   splicings -   S4Vectors ::: extract_data_frame_rows (  splicings ,  keep_idx2 )   message (  \"OK\" ) }    splicings $ utr_anomaly -  NULL }   genes -   .makeBiomartGenes (  filter ,  mart ,  transcripts_tx_id ,  recognized_attribs ,  id_prefix )   metadata -   .prepareBiomartMetadata (  mart ,  is_full_dataset ,  host ,  port ,  taxonomyId ,  miRBaseBuild )   message (  \"Make the TxDb object ... \" , appendLF =  FALSE )   txdb -   makeTxDb (  transcripts ,  splicings , genes =  genes , chrominfo =  chrominfo , metadata =  metadata , reassign.ids =  TRUE )   message (  \"OK\" )  txdb } ",
+    "filename": "makeTxDbFromBiomart.txt"
+  },
+  "new_function": {
+    "name": "makeTxDbFromBiomart",
+    "representation": "makeTxDbFromBiomart",
+    "parameters": "function ( biomart = \"ENSEMBL_MART_ENSEMBL\" , dataset = \"hsapiens_gene_ensembl\" , transcript_ids = NULL , circ_seqs = NULL , filter = NULL , id_prefix = \"ensembl_\" , host = \"https://www.ensembl.org\" , port , taxonomyId = NA , miRBaseBuild = NA )",
+    "body": "{  if (  !   missing (  port ) )   warning (  \"The 'port' argument is deprecated and will be ignored.\" )   mart -   .useMart2 ( biomart =  biomart , dataset =  dataset , host =  host )   id_prefix -   .normarg_id_prefix (  id_prefix )   filter -   .add_tx_id_filter (  filter ,  transcript_ids ,  id_prefix )   valid_filter_names -   listFilters (  mart , what =  \"name\" )   invalid_filter_names -   setdiff (   names (  filter ) ,  valid_filter_names )  if (    length (  invalid_filter_names ) !=  0L )  {   in1string -   paste0 (  invalid_filter_names , collapse =  \", \" )   stop (   wmsg (  \"Invalid filter name(s): \" ,  in1string ,  \"\\n\\nPlease use the listFilters() function from the \" ,  \"biomaRt package to get valid filter names.\" ) ) }   is_full_dataset -    length (  filter ) ==  0L   recognized_attribs -   recognizedBiomartAttribs (  id_prefix )   transcripts -   .makeBiomartTranscripts (  filter ,  mart ,  transcript_ids ,  recognized_attribs ,  id_prefix )   transcripts_tx_id -   transcripts $ tx_id    names (  transcripts_tx_id ) -   transcripts $ tx_name   chrominfo -   .makeBiomartChrominfo (  mart , extra_seqnames =   transcripts $ tx_chrom , circ_seqs =  circ_seqs ,  host )  if (  !  is_full_dataset )  {   keep_idx -   which (    chrominfo [ ,  \"chrom\" ] %in%   transcripts $ tx_chrom )   chrominfo -   S4Vectors ::: extract_data_frame_rows (  chrominfo ,  keep_idx ) }   splicings -   .makeBiomartSplicings (  filter ,  mart ,  transcripts_tx_id ,  recognized_attribs , id_prefix =  id_prefix ) ## Drop transcripts with UTR anomalies.   utr_anomaly -   splicings $ utr_anomaly  if (  !   is.null (  utr_anomaly ) )  {   invalid_tx -   unique (   splicings [   utr_anomaly !=  0L ,  \"tx_id\" ] )  if (    length (  invalid_tx ) !=  0L )  {   message (  \"Drop transcripts with UTR anomalies (\" ,   length (  invalid_tx ) ,  \" transcripts) ... \" , appendLF =  FALSE )   keep_idx1 -  !  (    transcripts $ tx_id %in%  invalid_tx )   transcripts -   S4Vectors ::: extract_data_frame_rows (  transcripts ,  keep_idx1 )   transcripts_tx_id -   transcripts_tx_id [  keep_idx1 ]   keep_idx2 -  !  (    splicings $ tx_id %in%  invalid_tx )   splicings -   S4Vectors ::: extract_data_frame_rows (  splicings ,  keep_idx2 )   message (  \"OK\" ) }    splicings $ utr_anomaly -  NULL }   genes -   .makeBiomartGenes (  filter ,  mart ,  transcripts_tx_id ,  recognized_attribs ,  id_prefix )   metadata -   .prepareBiomartMetadata (  mart ,  is_full_dataset ,  host ,  taxonomyId ,  miRBaseBuild )   message (  \"Make the TxDb object ... \" , appendLF =  FALSE )   txdb -   makeTxDb (  transcripts ,  splicings , genes =  genes , chrominfo =  chrominfo , metadata =  metadata , reassign.ids =  TRUE )   message (  \"OK\" )  txdb } ",
+    "filename": "makeTxDbFromBiomart.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "makeTxDbPackageFromBiomart",
+    "representation": "makeTxDbPackageFromBiomart",
+    "parameters": "function ( version , maintainer , author , destDir = \".\" , license = \"Artistic-2.0\" , biomart = \"ENSEMBL_MART_ENSEMBL\" , dataset = \"hsapiens_gene_ensembl\" , transcript_ids = NULL , circ_seqs = NULL , filter = NULL , id_prefix = \"ensembl_\" , host = \"www.ensembl.org\" , port = 80 , taxonomyId = NA , miRBaseBuild = NA )",
+    "body": "{ ## checks  if (    missing (  version ) ||  !   isSingleString (  version ) )  {   stop (  \"'version' must be supplied as a single element\" ,  \" character vector.\" ) }  if (    missing (  maintainer ) ||  !   isSingleString (  maintainer ) )  {   stop (  \"'maintainer' must be supplied as a single element\" ,  \" character vector.\" ) }  if (    missing (  author ) ||  !   isSingleString (  author ) )  {   stop (  \"'author' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  destDir ) )  {   stop (  \"'destDir' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  license ) )  {   stop (  \"'license' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  biomart ) )  {   stop (  \"'biomart' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  dataset ) )  {   stop (  \"'dataset' must be supplied as a single element\" ,  \" character vector.\" ) }  if (   !   is.character (  circ_seqs ) ||    length (  circ_seqs ) undefined  1 )  {   stop (  \"'circ_seqs' must be supplied as a named character vector.\" ) }  if (  !   isSingleStringOrNA (  miRBaseBuild ) )  {   stop (  \"'miRBaseBuild' must be supplied as a single element\" ,  \" character vector or be NA.\" ) } ## Make the DB   txdb -   makeTxDbFromBiomart ( biomart =  biomart , dataset =  dataset , transcript_ids =  transcript_ids , circ_seqs =  circ_seqs , filter =  filter , id_prefix =  id_prefix , host =  host , port =  port , taxonomyId =  taxonomyId , miRBaseBuild =  miRBaseBuild ) ## Make the Package   makeTxDbPackage (  txdb , version =  version , maintainer =  maintainer , author =  author , destDir =  destDir , license =  license ) } ",
+    "filename": "makeTxDbPackage.txt"
+  },
+  "new_function": {
+    "name": "makeTxDbPackageFromBiomart",
+    "representation": "makeTxDbPackageFromBiomart",
+    "parameters": "function ( version , maintainer , author , destDir = \".\" , license = \"Artistic-2.0\" , biomart = \"ENSEMBL_MART_ENSEMBL\" , dataset = \"hsapiens_gene_ensembl\" , transcript_ids = NULL , circ_seqs = NULL , filter = NULL , id_prefix = \"ensembl_\" , host = \"https://www.ensembl.org\" , port , taxonomyId = NA , miRBaseBuild = NA )",
+    "body": "{ ## checks  if (    missing (  version ) ||  !   isSingleString (  version ) )  {   stop (  \"'version' must be supplied as a single element\" ,  \" character vector.\" ) }  if (    missing (  maintainer ) ||  !   isSingleString (  maintainer ) )  {   stop (  \"'maintainer' must be supplied as a single element\" ,  \" character vector.\" ) }  if (    missing (  author ) ||  !   isSingleString (  author ) )  {   stop (  \"'author' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  destDir ) )  {   stop (  \"'destDir' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  license ) )  {   stop (  \"'license' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  biomart ) )  {   stop (  \"'biomart' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  dataset ) )  {   stop (  \"'dataset' must be supplied as a single element\" ,  \" character vector.\" ) }  if (   !   is.character (  circ_seqs ) ||    length (  circ_seqs ) undefined  1 )  {   stop (  \"'circ_seqs' must be supplied as a named character vector.\" ) }  if (  !   isSingleStringOrNA (  miRBaseBuild ) )  {   stop (  \"'miRBaseBuild' must be supplied as a single element\" ,  \" character vector or be NA.\" ) }  if (  !   missing (  port ) )   warning (  \"The 'port' argument is deprecated and will be ignored.\" ) ## Make the DB   txdb -   makeTxDbFromBiomart ( biomart =  biomart , dataset =  dataset , transcript_ids =  transcript_ids , circ_seqs =  circ_seqs , filter =  filter , id_prefix =  id_prefix , host =  host , taxonomyId =  taxonomyId , miRBaseBuild =  miRBaseBuild ) ## Make the Package   makeTxDbPackage (  txdb , version =  version , maintainer =  maintainer , author =  author , destDir =  destDir , license =  license ) } ",
+    "filename": "makeTxDbPackage.txt"
+  }
+}
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "getChromInfoFromBiomart",
+    "representation": "getChromInfoFromBiomart",
+    "parameters": "function ( biomart = \"ENSEMBL_MART_ENSEMBL\" , dataset = \"hsapiens_gene_ensembl\" , id_prefix = \"ensembl_\" , host = \"www.ensembl.org\" , port = 80 )",
+    "body": "{   mart -   .useMart2 ( biomart =  biomart , dataset =  dataset , host =  host , port =  port )   id_prefix -   .normarg_id_prefix (  id_prefix )   recognized_attribs -   recognizedBiomartAttribs (  id_prefix )   transcripts -   .makeBiomartTranscripts (  NULL ,  mart , transcript_ids =  NULL ,  recognized_attribs ,  id_prefix )   chrominfo -   .makeBiomartChrominfo (  mart , extra_seqnames =   transcripts $ tx_chrom , host =  host , port =  port )   chrominfo [ ,   1 :  2 , drop =  FALSE ] } ",
+    "filename": "makeTxDbFromBiomart.txt"
+  },
+  "new_function": {
+    "name": "getChromInfoFromBiomart",
+    "representation": "getChromInfoFromBiomart",
+    "parameters": "function ( biomart = \"ENSEMBL_MART_ENSEMBL\" , dataset = \"hsapiens_gene_ensembl\" , id_prefix = \"ensembl_\" , host = \"https://www.ensembl.org\" , port )",
+    "body": "{  if (  !   missing (  port ) )   warning (  \"The 'port' argument is deprecated and will be ignored.\" )   mart -   .useMart2 ( biomart =  biomart , dataset =  dataset , host =  host )   id_prefix -   .normarg_id_prefix (  id_prefix )   recognized_attribs -   recognizedBiomartAttribs (  id_prefix )   transcripts -   .makeBiomartTranscripts (  NULL ,  mart , transcript_ids =  NULL ,  recognized_attribs ,  id_prefix )   chrominfo -   .makeBiomartChrominfo (  mart , extra_seqnames =   transcripts $ tx_chrom , host =  host )   chrominfo [ ,   1 :  2 , drop =  FALSE ] } ",
+    "filename": "makeTxDbFromBiomart.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "makeTxDbFromBiomart",
+    "representation": "makeTxDbFromBiomart",
+    "parameters": "function ( biomart = \"ENSEMBL_MART_ENSEMBL\" , dataset = \"hsapiens_gene_ensembl\" , transcript_ids = NULL , circ_seqs = NULL , filter = NULL , id_prefix = \"ensembl_\" , host = \"www.ensembl.org\" , port = 80 , taxonomyId = NA , miRBaseBuild = NA )",
+    "body": "{   mart -   .useMart2 ( biomart =  biomart , dataset =  dataset , host =  host , port =  port )   id_prefix -   .normarg_id_prefix (  id_prefix )   filter -   .add_tx_id_filter (  filter ,  transcript_ids ,  id_prefix )   valid_filter_names -   listFilters (  mart , what =  \"name\" )   invalid_filter_names -   setdiff (   names (  filter ) ,  valid_filter_names )  if (    length (  invalid_filter_names ) !=  0L )  {   in1string -   paste0 (  invalid_filter_names , collapse =  \", \" )   stop (   wmsg (  \"Invalid filter name(s): \" ,  in1string ,  \"\\n\\nPlease use the listFilters() function from the \" ,  \"biomaRt package to get valid filter names.\" ) ) }   is_full_dataset -    length (  filter ) ==  0L   recognized_attribs -   recognizedBiomartAttribs (  id_prefix )   transcripts -   .makeBiomartTranscripts (  filter ,  mart ,  transcript_ids ,  recognized_attribs ,  id_prefix )   transcripts_tx_id -   transcripts $ tx_id    names (  transcripts_tx_id ) -   transcripts $ tx_name   chrominfo -   .makeBiomartChrominfo (  mart , extra_seqnames =   transcripts $ tx_chrom , circ_seqs =  circ_seqs ,  host ,  port )  if (  !  is_full_dataset )  {   keep_idx -   which (    chrominfo [ ,  \"chrom\" ] %in%   transcripts $ tx_chrom )   chrominfo -   S4Vectors ::: extract_data_frame_rows (  chrominfo ,  keep_idx ) }   splicings -   .makeBiomartSplicings (  filter ,  mart ,  transcripts_tx_id ,  recognized_attribs , id_prefix =  id_prefix ) ## Drop transcripts with UTR anomalies.   utr_anomaly -   splicings $ utr_anomaly  if (  !   is.null (  utr_anomaly ) )  {   invalid_tx -   unique (   splicings [   utr_anomaly !=  0L ,  \"tx_id\" ] )  if (    length (  invalid_tx ) !=  0L )  {   message (  \"Drop transcripts with UTR anomalies (\" ,   length (  invalid_tx ) ,  \" transcripts) ... \" , appendLF =  FALSE )   keep_idx1 -  !  (    transcripts $ tx_id %in%  invalid_tx )   transcripts -   S4Vectors ::: extract_data_frame_rows (  transcripts ,  keep_idx1 )   transcripts_tx_id -   transcripts_tx_id [  keep_idx1 ]   keep_idx2 -  !  (    splicings $ tx_id %in%  invalid_tx )   splicings -   S4Vectors ::: extract_data_frame_rows (  splicings ,  keep_idx2 )   message (  \"OK\" ) }    splicings $ utr_anomaly -  NULL }   genes -   .makeBiomartGenes (  filter ,  mart ,  transcripts_tx_id ,  recognized_attribs ,  id_prefix )   metadata -   .prepareBiomartMetadata (  mart ,  is_full_dataset ,  host ,  port ,  taxonomyId ,  miRBaseBuild )   message (  \"Make the TxDb object ... \" , appendLF =  FALSE )   txdb -   makeTxDb (  transcripts ,  splicings , genes =  genes , chrominfo =  chrominfo , metadata =  metadata , reassign.ids =  TRUE )   message (  \"OK\" )  txdb } ",
+    "filename": "makeTxDbFromBiomart.txt"
+  },
+  "new_function": {
+    "name": "makeTxDbFromBiomart",
+    "representation": "makeTxDbFromBiomart",
+    "parameters": "function ( biomart = \"ENSEMBL_MART_ENSEMBL\" , dataset = \"hsapiens_gene_ensembl\" , transcript_ids = NULL , circ_seqs = NULL , filter = NULL , id_prefix = \"ensembl_\" , host = \"https://www.ensembl.org\" , port , taxonomyId = NA , miRBaseBuild = NA )",
+    "body": "{  if (  !   missing (  port ) )   warning (  \"The 'port' argument is deprecated and will be ignored.\" )   mart -   .useMart2 ( biomart =  biomart , dataset =  dataset , host =  host )   id_prefix -   .normarg_id_prefix (  id_prefix )   filter -   .add_tx_id_filter (  filter ,  transcript_ids ,  id_prefix )   valid_filter_names -   listFilters (  mart , what =  \"name\" )   invalid_filter_names -   setdiff (   names (  filter ) ,  valid_filter_names )  if (    length (  invalid_filter_names ) !=  0L )  {   in1string -   paste0 (  invalid_filter_names , collapse =  \", \" )   stop (   wmsg (  \"Invalid filter name(s): \" ,  in1string ,  \"\\n\\nPlease use the listFilters() function from the \" ,  \"biomaRt package to get valid filter names.\" ) ) }   is_full_dataset -    length (  filter ) ==  0L   recognized_attribs -   recognizedBiomartAttribs (  id_prefix )   transcripts -   .makeBiomartTranscripts (  filter ,  mart ,  transcript_ids ,  recognized_attribs ,  id_prefix )   transcripts_tx_id -   transcripts $ tx_id    names (  transcripts_tx_id ) -   transcripts $ tx_name   chrominfo -   .makeBiomartChrominfo (  mart , extra_seqnames =   transcripts $ tx_chrom , circ_seqs =  circ_seqs ,  host )  if (  !  is_full_dataset )  {   keep_idx -   which (    chrominfo [ ,  \"chrom\" ] %in%   transcripts $ tx_chrom )   chrominfo -   S4Vectors ::: extract_data_frame_rows (  chrominfo ,  keep_idx ) }   splicings -   .makeBiomartSplicings (  filter ,  mart ,  transcripts_tx_id ,  recognized_attribs , id_prefix =  id_prefix ) ## Drop transcripts with UTR anomalies.   utr_anomaly -   splicings $ utr_anomaly  if (  !   is.null (  utr_anomaly ) )  {   invalid_tx -   unique (   splicings [   utr_anomaly !=  0L ,  \"tx_id\" ] )  if (    length (  invalid_tx ) !=  0L )  {   message (  \"Drop transcripts with UTR anomalies (\" ,   length (  invalid_tx ) ,  \" transcripts) ... \" , appendLF =  FALSE )   keep_idx1 -  !  (    transcripts $ tx_id %in%  invalid_tx )   transcripts -   S4Vectors ::: extract_data_frame_rows (  transcripts ,  keep_idx1 )   transcripts_tx_id -   transcripts_tx_id [  keep_idx1 ]   keep_idx2 -  !  (    splicings $ tx_id %in%  invalid_tx )   splicings -   S4Vectors ::: extract_data_frame_rows (  splicings ,  keep_idx2 )   message (  \"OK\" ) }    splicings $ utr_anomaly -  NULL }   genes -   .makeBiomartGenes (  filter ,  mart ,  transcripts_tx_id ,  recognized_attribs ,  id_prefix )   metadata -   .prepareBiomartMetadata (  mart ,  is_full_dataset ,  host ,  taxonomyId ,  miRBaseBuild )   message (  \"Make the TxDb object ... \" , appendLF =  FALSE )   txdb -   makeTxDb (  transcripts ,  splicings , genes =  genes , chrominfo =  chrominfo , metadata =  metadata , reassign.ids =  TRUE )   message (  \"OK\" )  txdb } ",
+    "filename": "makeTxDbFromBiomart.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "makeTxDbPackageFromBiomart",
+    "representation": "makeTxDbPackageFromBiomart",
+    "parameters": "function ( version , maintainer , author , destDir = \".\" , license = \"Artistic-2.0\" , biomart = \"ENSEMBL_MART_ENSEMBL\" , dataset = \"hsapiens_gene_ensembl\" , transcript_ids = NULL , circ_seqs = NULL , filter = NULL , id_prefix = \"ensembl_\" , host = \"www.ensembl.org\" , port = 80 , taxonomyId = NA , miRBaseBuild = NA )",
+    "body": "{ ## checks  if (    missing (  version ) ||  !   isSingleString (  version ) )  {   stop (  \"'version' must be supplied as a single element\" ,  \" character vector.\" ) }  if (    missing (  maintainer ) ||  !   isSingleString (  maintainer ) )  {   stop (  \"'maintainer' must be supplied as a single element\" ,  \" character vector.\" ) }  if (    missing (  author ) ||  !   isSingleString (  author ) )  {   stop (  \"'author' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  destDir ) )  {   stop (  \"'destDir' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  license ) )  {   stop (  \"'license' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  biomart ) )  {   stop (  \"'biomart' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  dataset ) )  {   stop (  \"'dataset' must be supplied as a single element\" ,  \" character vector.\" ) }  if (   !   is.character (  circ_seqs ) ||    length (  circ_seqs ) undefined  1 )  {   stop (  \"'circ_seqs' must be supplied as a named character vector.\" ) }  if (  !   isSingleStringOrNA (  miRBaseBuild ) )  {   stop (  \"'miRBaseBuild' must be supplied as a single element\" ,  \" character vector or be NA.\" ) } ## Make the DB   txdb -   makeTxDbFromBiomart ( biomart =  biomart , dataset =  dataset , transcript_ids =  transcript_ids , circ_seqs =  circ_seqs , filter =  filter , id_prefix =  id_prefix , host =  host , port =  port , taxonomyId =  taxonomyId , miRBaseBuild =  miRBaseBuild ) ## Make the Package   makeTxDbPackage (  txdb , version =  version , maintainer =  maintainer , author =  author , destDir =  destDir , license =  license ) } ",
+    "filename": "makeTxDbPackage.txt"
+  },
+  "new_function": {
+    "name": "makeTxDbPackageFromBiomart",
+    "representation": "makeTxDbPackageFromBiomart",
+    "parameters": "function ( version , maintainer , author , destDir = \".\" , license = \"Artistic-2.0\" , biomart = \"ENSEMBL_MART_ENSEMBL\" , dataset = \"hsapiens_gene_ensembl\" , transcript_ids = NULL , circ_seqs = NULL , filter = NULL , id_prefix = \"ensembl_\" , host = \"https://www.ensembl.org\" , port , taxonomyId = NA , miRBaseBuild = NA )",
+    "body": "{ ## checks  if (    missing (  version ) ||  !   isSingleString (  version ) )  {   stop (  \"'version' must be supplied as a single element\" ,  \" character vector.\" ) }  if (    missing (  maintainer ) ||  !   isSingleString (  maintainer ) )  {   stop (  \"'maintainer' must be supplied as a single element\" ,  \" character vector.\" ) }  if (    missing (  author ) ||  !   isSingleString (  author ) )  {   stop (  \"'author' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  destDir ) )  {   stop (  \"'destDir' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  license ) )  {   stop (  \"'license' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  biomart ) )  {   stop (  \"'biomart' must be supplied as a single element\" ,  \" character vector.\" ) }  if (  !   isSingleString (  dataset ) )  {   stop (  \"'dataset' must be supplied as a single element\" ,  \" character vector.\" ) }  if (   !   is.character (  circ_seqs ) ||    length (  circ_seqs ) undefined  1 )  {   stop (  \"'circ_seqs' must be supplied as a named character vector.\" ) }  if (  !   isSingleStringOrNA (  miRBaseBuild ) )  {   stop (  \"'miRBaseBuild' must be supplied as a single element\" ,  \" character vector or be NA.\" ) }  if (  !   missing (  port ) )   warning (  \"The 'port' argument is deprecated and will be ignored.\" ) ## Make the DB   txdb -   makeTxDbFromBiomart ( biomart =  biomart , dataset =  dataset , transcript_ids =  transcript_ids , circ_seqs =  circ_seqs , filter =  filter , id_prefix =  id_prefix , host =  host , taxonomyId =  taxonomyId , miRBaseBuild =  miRBaseBuild ) ## Make the Package   makeTxDbPackage (  txdb , version =  version , maintainer =  maintainer , author =  author , destDir =  destDir , license =  license ) } ",
+    "filename": "makeTxDbPackage.txt"
+  }
+}
+

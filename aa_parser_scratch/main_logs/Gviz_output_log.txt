@@ -1,0 +1,989 @@
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  gviz_release_2_11 gviz_release_2_12
+
+{
+    "package": "Gviz",
+    "release_versions": "gviz_release_2_11 gviz_release_2_12",
+    "desc_release_old": "1.2.2",
+    "desc_release_new": "1.4.5",
+    "old_release_number": 0,
+    "new_release_number": 1,
+    "function_removals": 0,
+    "function_additions": 2,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+availableDefaultMapping
+consolidateTrack
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  gviz_release_2_12 gviz_release_2_13
+
+{
+    "package": "Gviz",
+    "release_versions": "gviz_release_2_12 gviz_release_2_13",
+    "desc_release_old": "1.4.5",
+    "desc_release_new": "1.6.0",
+    "old_release_number": 1,
+    "new_release_number": 2,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  gviz_release_2_13 gviz_release_2_14
+
+{
+    "package": "Gviz",
+    "release_versions": "gviz_release_2_13 gviz_release_2_14",
+    "desc_release_old": "1.6.0",
+    "desc_release_new": "1.8.5",
+    "old_release_number": 2,
+    "new_release_number": 3,
+    "function_removals": 0,
+    "function_additions": 5,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 2,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+AlignmentsTrack
+OverlayTrack
+HighlightTrack
+addScheme
+getScheme
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "identifier",
+    "representation": "identifier",
+    "signature": "AnnotationTrack",
+    "parameters": "function ( GdObject , lowest = FALSE , add.space = FALSE )",
+    "body": "{   id -  if (  lowest )   .getAnn (  GdObject ,  \"id\" ) else   group (  GdObject )  if (    !  lowest undefined  add.space undefined   .dpOrDefault (  GdObject ,  \".__hasAnno\" ,  TRUE ) )    id [   id !=  \"\" ] -   paste (   id [   id !=  \"\" ] ,  \"  \" , sep =  \"\" )   return (  id ) } ",
+    "filename": "Gviz-methods.txt"
+  },
+  "new_function": {
+    "name": "identifier",
+    "representation": "identifier",
+    "signature": "AnnotationTrack",
+    "parameters": "function ( GdObject , type = .dpOrDefault ( GdObject , \"groupAnnotation\" , \"group\" ) )",
+    "body": "{  if (   is.null (  type ) )  {   type -  \"group\" }   id -   switch (   as.character (  type ) , \"group\" =   group (  GdObject ) , \"id\" =   .getAnn (  GdObject ,  \"id\" ) , \"feature\" =   feature (  GdObject ) , \"lowest\" =   .getAnn (  GdObject ,  \"id\" ) ,   group (  GdObject ) )    id [   is.na (  id ) ] -  \"NA\"   return (  id ) } ",
+    "filename": "Gviz-methods.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "identifier",
+    "representation": "identifier",
+    "signature": "GeneRegionTrack",
+    "parameters": "function ( GdObject , lowest = FALSE , add.space = FALSE )",
+    "body": "{   id -  if (  lowest )   exon (  GdObject ) else  if (   .dpOrDefault (  GdObject ,  \"geneSymbols\" ,  TRUE ) )  {   symbol (  GdObject ) } else   gene (  GdObject )    id [   is.na (  id ) ] -  \"NA\"  if (    !  lowest undefined  add.space undefined   .dpOrDefault (  GdObject ,  \".__hasAnno\" ,  TRUE ) )    id [   id !=  \"\" ] -   paste (   id [   id !=  \"\" ] ,  \"  \" , sep =  \"\" )   return (  id ) } ",
+    "filename": "Gviz-methods.txt"
+  },
+  "new_function": {
+    "name": "identifier",
+    "representation": "identifier",
+    "signature": "GeneRegionTrack",
+    "parameters": "function ( GdObject , type = .dpOrDefault ( GdObject , \"transcriptAnnotation\" , \"symbol\" ) )",
+    "body": "{  if (   is.logical (  type ) )  {   type -   ifelse (  \"symbol\" ,  \"gene\" ,   type [  1 ] ) }  if (   is.null (  type ) )  {   type -  \"symbol\" }   id -   switch (   as.character (  type ) , \"symbol\" =   symbol (  GdObject ) , \"gene\" =   gene (  GdObject ) , \"transcript\" =   transcript (  GdObject ) , \"feature\" =   feature (  GdObject ) , \"exon\" =   exon (  GdObject ) , \"lowest\" =   exon (  GdObject ) ,   symbol (  GdObject ) )    id [   is.na (  id ) ] -  \"NA\"   return (  id ) } ",
+    "filename": "Gviz-methods.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  gviz_release_2_14 gviz_release_3_1
+
+{
+    "package": "Gviz",
+    "release_versions": "gviz_release_2_14 gviz_release_3_1",
+    "desc_release_old": "1.8.5",
+    "desc_release_new": "1.12.1",
+    "old_release_number": 3,
+    "new_release_number": 4,
+    "function_removals": 1,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 2,
+    "total_count": 3
+}
+
+##########
+Functions Removed
+##########
+
+elementMetadata<-
+
+
+##########
+Functions Added
+##########
+
+CustomTrack
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "displayPars",
+    "representation": "displayPars<-",
+    "signature": "signature (  DisplayPars ,  list )",
+    "parameters": "function ( x , value )",
+    "body": "{   x -   setPar (  x ,  value , interactive =  FALSE )   return (  x ) } ",
+    "filename": "AllClasses.txt"
+  },
+  "new_function": {
+    "name": "displayPars",
+    "representation": "displayPars<-",
+    "signature": "signature (  DisplayPars ,  list )",
+    "parameters": "function ( x , recursive = FALSE , value )",
+    "body": "{   x -   setPar (  x ,  value , interactive =  FALSE )   return (  x ) } ",
+    "filename": "AllClasses.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "displayPars",
+    "representation": "displayPars<-",
+    "signature": "signature (  GdObject ,  list )",
+    "parameters": "function ( x , value )",
+    "body": "{   x -   setPar (  x ,  value , interactive =  FALSE )   return (  x ) } ",
+    "filename": "AllClasses.txt"
+  },
+  "new_function": {
+    "name": "displayPars",
+    "representation": "displayPars<-",
+    "signature": "signature (  GdObject ,  list )",
+    "parameters": "function ( x , recursive = FALSE , value )",
+    "body": "{   x -   setPar (  x ,  value , interactive =  FALSE )   return (  x ) } ",
+    "filename": "AllClasses.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  gviz_release_3_1 gviz_release_3_2
+
+{
+    "package": "Gviz",
+    "release_versions": "gviz_release_3_1 gviz_release_3_2",
+    "desc_release_old": "1.12.1",
+    "desc_release_new": "1.14.7",
+    "old_release_number": 4,
+    "new_release_number": 5,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  gviz_release_3_2 gviz_release_3_3
+
+{
+    "package": "Gviz",
+    "release_versions": "gviz_release_3_2 gviz_release_3_3",
+    "desc_release_old": "1.14.7",
+    "desc_release_new": "1.16.5",
+    "old_release_number": 5,
+    "new_release_number": 6,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  gviz_release_3_3 gviz_release_3_4
+
+{
+    "package": "Gviz",
+    "release_versions": "gviz_release_3_3 gviz_release_3_4",
+    "desc_release_old": "1.16.5",
+    "desc_release_new": "1.18.2",
+    "old_release_number": 6,
+    "new_release_number": 7,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  gviz_release_3_4 gviz_release_3_5
+
+{
+    "package": "Gviz",
+    "release_versions": "gviz_release_3_4 gviz_release_3_5",
+    "desc_release_old": "1.18.2",
+    "desc_release_new": "1.20.0",
+    "old_release_number": 7,
+    "new_release_number": 8,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  gviz_release_3_5 gviz_release_3_6
+
+{
+    "package": "Gviz",
+    "release_versions": "gviz_release_3_5 gviz_release_3_6",
+    "desc_release_old": "1.20.0",
+    "desc_release_new": "1.22.3",
+    "old_release_number": 8,
+    "new_release_number": 9,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+drawAxis
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  gviz_release_3_6 gviz_release_3_7
+
+{
+    "package": "Gviz",
+    "release_versions": "gviz_release_3_6 gviz_release_3_7",
+    "desc_release_old": "1.22.3",
+    "desc_release_new": "1.24.0",
+    "old_release_number": 9,
+    "new_release_number": 10,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  gviz_release_3_7 gviz_release_3_8
+
+{
+    "package": "Gviz",
+    "release_versions": "gviz_release_3_7 gviz_release_3_8",
+    "desc_release_old": "1.24.0",
+    "desc_release_new": "1.26.5",
+    "old_release_number": 10,
+    "new_release_number": 11,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  gviz_release_3_8 gviz_release_3_9
+
+{
+    "package": "Gviz",
+    "release_versions": "gviz_release_3_8 gviz_release_3_9",
+    "desc_release_old": "1.26.5",
+    "desc_release_new": "1.28.3",
+    "old_release_number": 11,
+    "new_release_number": 12,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  gviz_release_3_9 gviz_release_3_11
+
+{
+    "package": "Gviz",
+    "release_versions": "gviz_release_3_9 gviz_release_3_11",
+    "desc_release_old": "1.28.3",
+    "desc_release_new": "1.32.0",
+    "old_release_number": 12,
+    "new_release_number": 13,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+RNASequenceTrack
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  gviz_release_3_11 gviz_release_3_12
+
+{
+    "package": "Gviz",
+    "release_versions": "gviz_release_3_11 gviz_release_3_12",
+    "desc_release_old": "1.32.0",
+    "desc_release_new": "1.34.1",
+    "old_release_number": 13,
+    "new_release_number": 14,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  gviz_release_3_12 gviz_release_3_13
+
+{
+    "package": "Gviz",
+    "release_versions": "gviz_release_3_12 gviz_release_3_13",
+    "desc_release_old": "1.34.1",
+    "desc_release_new": "1.36.2",
+    "old_release_number": 14,
+    "new_release_number": 15,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  gviz_release_3_13 gviz_release_3_14
+
+{
+    "package": "Gviz",
+    "release_versions": "gviz_release_3_13 gviz_release_3_14",
+    "desc_release_old": "1.36.2",
+    "desc_release_new": "1.38.3",
+    "old_release_number": 15,
+    "new_release_number": 16,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  gviz_release_3_14 gviz_master
+
+{
+    "package": "Gviz",
+    "release_versions": "gviz_release_3_14 gviz_master",
+    "desc_release_old": "1.38.3",
+    "desc_release_new": "1.39.5",
+    "old_release_number": 16,
+    "new_release_number": 17,
+    "function_removals": 10,
+    "function_additions": 4,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 10
+}
+
+##########
+Functions Removed
+##########
+
+AlignedReadTrack
+coerce
+coverage
+head
+names
+names<-
+ranges
+score
+subseq
+tail
+
+
+##########
+Functions Added
+##########
+
+imageMap<-
+setCoverage
+setStacks
+show
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+

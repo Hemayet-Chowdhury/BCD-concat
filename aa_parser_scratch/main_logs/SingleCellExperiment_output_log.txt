@@ -1,0 +1,677 @@
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  singlecellexperiment_release_3_6 singlecellexperiment_release_3_7
+
+{
+    "package": "SingleCellExperiment",
+    "release_versions": "singlecellexperiment_release_3_6 singlecellexperiment_release_3_7",
+    "desc_release_old": "1.0.0",
+    "desc_release_new": "1.2.0",
+    "old_release_number": 0,
+    "new_release_number": 1,
+    "function_removals": 0,
+    "function_additions": 28,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+factorData<-
+featureLoadings<-
+sampleFactors<-
+LinearEmbeddingMatrix
+clearSizeFactors
+clearSpikes
+factorData
+featureLoadings
+sampleFactors
+sizeFactorNames
+$
+$<-
+[
+[<-
+counts<-
+dimnames<-
+sizeFactors<-
+as.matrix
+cbind
+coerce
+counts
+dim
+dimnames
+rbind
+show
+sizeFactors
+subset
+as.matrix.LinearEmbeddingMatrix
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  singlecellexperiment_release_3_7 singlecellexperiment_release_3_8
+
+{
+    "package": "SingleCellExperiment",
+    "release_versions": "singlecellexperiment_release_3_7 singlecellexperiment_release_3_8",
+    "desc_release_old": "1.2.0",
+    "desc_release_new": "1.4.1",
+    "old_release_number": 1,
+    "new_release_number": 2,
+    "function_removals": 1,
+    "function_additions": 9,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+subset
+
+
+##########
+Functions Added
+##########
+
+int_colData<-
+int_elementMetadata<-
+int_metadata<-
+reducedDimNames<-
+weights<-
+int_colData
+int_elementMetadata
+int_metadata
+weights
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  singlecellexperiment_release_3_8 singlecellexperiment_release_3_9
+
+{
+    "package": "SingleCellExperiment",
+    "release_versions": "singlecellexperiment_release_3_8 singlecellexperiment_release_3_9",
+    "desc_release_old": "1.4.1",
+    "desc_release_new": "1.6.0",
+    "old_release_number": 2,
+    "new_release_number": 3,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  singlecellexperiment_release_3_9 singlecellexperiment_release_3_11
+
+{
+    "package": "SingleCellExperiment",
+    "release_versions": "singlecellexperiment_release_3_9 singlecellexperiment_release_3_11",
+    "desc_release_old": "1.6.0",
+    "desc_release_new": "1.10.1",
+    "old_release_number": 3,
+    "new_release_number": 4,
+    "function_removals": 6,
+    "function_additions": 12,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 7
+}
+
+##########
+Functions Removed
+##########
+
+isSpike<-
+clearSizeFactors
+clearSpikes
+isSpike
+sizeFactorNames
+spikeNames
+
+
+##########
+Functions Added
+##########
+
+altExp<-
+altExpNames<-
+altExps<-
+colLabels<-
+altExp
+altExpNames
+altExps
+colLabels
+removeAltExps
+splitAltExps
+swapAltExp
+updateObject
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "sizeFactors",
+    "representation": "sizeFactors",
+    "signature": "SingleCellExperiment",
+    "parameters": "function ( object , type = NULL )",
+    "body": "{   field -   .get_sf_field (  type )   return (    int_colData (  object ) [[  field ] ] ) } ",
+    "filename": "SCE-sizeFactors.txt"
+  },
+  "new_function": {
+    "name": "sizeFactors",
+    "representation": "sizeFactors",
+    "signature": "SingleCellExperiment",
+    "parameters": "function ( object , onAbsence = \"none\" )",
+    "body": "{   object -   updateObject (  object )   output -    colData (  object ) [[  .sf_field ] ]   .absent_action (  object , val =  output , fun =  \"sizeFactors\" , onAbsence =  onAbsence )  output } ",
+    "filename": "sizeFactors.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  singlecellexperiment_release_3_11 singlecellexperiment_release_3_12
+
+{
+    "package": "SingleCellExperiment",
+    "release_versions": "singlecellexperiment_release_3_11 singlecellexperiment_release_3_12",
+    "desc_release_old": "1.10.1",
+    "desc_release_new": "1.12.0",
+    "old_release_number": 4,
+    "new_release_number": 5,
+    "function_removals": 0,
+    "function_additions": 15,
+    "parameter_removals": 0,
+    "parameter_additions": 2,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 2,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+colPair<-
+colPairNames<-
+colPairs<-
+rowPair<-
+rowPairNames<-
+rowPairs<-
+rowSubset<-
+colPair
+colPairNames
+colPairs
+rowPair
+rowPairNames
+rowPairs
+rowSubset
+parallel_slot_names
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "altExp",
+    "representation": "altExp",
+    "signature": "c (  SingleCellExperiment ,  numeric )",
+    "parameters": "function ( x , e = 1 , withColData = FALSE )",
+    "body": "{   internals -   int_colData (  x )   out -   tryCatch (  {   .get_se (    internals [ ,  .alt_key ] [ ,  e ] ) } , error =  function ( err )  {   stop (  \"invalid subscript 'e' in 'altExp( ,   class (  x ) ,  \" ,   conditionMessage (  err ) ) } )  if (  withColData )  {    colData (  out ) -   colData (  x ) }    colnames (  out ) -   colnames (  x )  out } ",
+    "filename": "altExps.txt"
+  },
+  "new_function": {
+    "name": "altExp",
+    "representation": "altExp",
+    "signature": "c (  SingleCellExperiment ,  numeric )",
+    "parameters": "function ( x , e , withColData = FALSE )",
+    "body": "{   out -   .get_internal_integer (  x ,  e , getfun =  int_colData , key =  .alt_key , funstr =  \"altExp\" , substr =  \"e\" )   out -   .get_se (  out )  if (  withColData )  {    colData (  out ) -   colData (  x ) } else  {    colnames (  out ) -   colnames (  x ) }  out } ",
+    "filename": "altExps.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "reducedDim",
+    "representation": "reducedDim",
+    "signature": "c (  SingleCellExperiment ,  numeric )",
+    "parameters": "function ( x , type = 1 , withDimnames = TRUE )",
+    "body": "{   x -   updateObject (  x )   internals -    int_colData (  x ) [[  .red_key ] ]   out -   tryCatch (  {   internals [ ,  type ] } , error =  function ( err )  {   stop (  \"invalid subscript 'type' in 'reducedDim( ,   class (  x ) ,  \" ,   conditionMessage (  err ) ) } )  if (  withDimnames )  {    rownames (  out ) -   colnames (  x ) }  out } ",
+    "filename": "reducedDims.txt"
+  },
+  "new_function": {
+    "name": "reducedDim",
+    "representation": "reducedDim",
+    "signature": "c (  SingleCellExperiment ,  numeric )",
+    "parameters": "function ( x , type , withDimnames = TRUE )",
+    "body": "{   out -   .get_internal_integer (  x ,  type , getfun =  int_colData , key =  .red_key , funstr =  \"reducedDim\" , substr =  \"type\" )  if (  withDimnames )  {    rownames (  out ) -   colnames (  x ) }  out } ",
+    "filename": "reducedDims.txt"
+  }
+}
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "altExp",
+    "representation": "altExp",
+    "signature": "c (  SingleCellExperiment ,  numeric )",
+    "parameters": "function ( x , e = 1 , withColData = FALSE )",
+    "body": "{   internals -   int_colData (  x )   out -   tryCatch (  {   .get_se (    internals [ ,  .alt_key ] [ ,  e ] ) } , error =  function ( err )  {   stop (  \"invalid subscript 'e' in 'altExp( ,   class (  x ) ,  \" ,   conditionMessage (  err ) ) } )  if (  withColData )  {    colData (  out ) -   colData (  x ) }    colnames (  out ) -   colnames (  x )  out } ",
+    "filename": "altExps.txt"
+  },
+  "new_function": {
+    "name": "altExp",
+    "representation": "altExp",
+    "signature": "c (  SingleCellExperiment ,  numeric )",
+    "parameters": "function ( x , e , withColData = FALSE )",
+    "body": "{   out -   .get_internal_integer (  x ,  e , getfun =  int_colData , key =  .alt_key , funstr =  \"altExp\" , substr =  \"e\" )   out -   .get_se (  out )  if (  withColData )  {    colData (  out ) -   colData (  x ) } else  {    colnames (  out ) -   colnames (  x ) }  out } ",
+    "filename": "altExps.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "reducedDim",
+    "representation": "reducedDim",
+    "signature": "c (  SingleCellExperiment ,  numeric )",
+    "parameters": "function ( x , type = 1 , withDimnames = TRUE )",
+    "body": "{   x -   updateObject (  x )   internals -    int_colData (  x ) [[  .red_key ] ]   out -   tryCatch (  {   internals [ ,  type ] } , error =  function ( err )  {   stop (  \"invalid subscript 'type' in 'reducedDim( ,   class (  x ) ,  \" ,   conditionMessage (  err ) ) } )  if (  withDimnames )  {    rownames (  out ) -   colnames (  x ) }  out } ",
+    "filename": "reducedDims.txt"
+  },
+  "new_function": {
+    "name": "reducedDim",
+    "representation": "reducedDim",
+    "signature": "c (  SingleCellExperiment ,  numeric )",
+    "parameters": "function ( x , type , withDimnames = TRUE )",
+    "body": "{   out -   .get_internal_integer (  x ,  type , getfun =  int_colData , key =  .red_key , funstr =  \"reducedDim\" , substr =  \"type\" )  if (  withDimnames )  {    rownames (  out ) -   colnames (  x ) }  out } ",
+    "filename": "reducedDims.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  singlecellexperiment_release_3_12 singlecellexperiment_release_3_13
+
+{
+    "package": "SingleCellExperiment",
+    "release_versions": "singlecellexperiment_release_3_12 singlecellexperiment_release_3_13",
+    "desc_release_old": "1.12.0",
+    "desc_release_new": "1.14.1",
+    "old_release_number": 5,
+    "new_release_number": 6,
+    "function_removals": 0,
+    "function_additions": 9,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 4,
+    "total_count": 4
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+mainExpName<-
+applySCE
+mainExpName
+reduced.dim.matrix
+simplifyToSCE
+unsplitAltExps
+[.reduced.dim.matrix
+cbind.reduced.dim.matrix
+rbind.reduced.dim.matrix
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "altExps",
+    "representation": "altExps",
+    "signature": "SingleCellExperiment",
+    "parameters": "function ( x , withColData = FALSE )",
+    "body": "{   value -   .get_internal_all (  x , getfun =  int_colData , key =  .alt_key )   value -   endoapply (  value ,  .get_se )  if (  withColData )  {  for  ( i in   seq_along (  value ) )  {    colData (   value [[  i ] ] ) -   colData (  x ) } } else  {  for  ( i in   seq_along (  value ) )  {    colnames (   value [[  i ] ] ) -   colnames (  x ) } }  value } ",
+    "filename": "altExps.txt"
+  },
+  "new_function": {
+    "name": "altExps",
+    "representation": "altExps",
+    "signature": "SingleCellExperiment",
+    "parameters": "function ( x , withDimnames = TRUE , withColData = FALSE )",
+    "body": "{   value -   .get_internal_all (  x , getfun =  int_colData , key =  .alt_key )   value -   endoapply (  value ,  .get_se )  if (   withDimnames ||  withColData )  {  for  ( i in   seq_along (  value ) )  {    value [[  i ] ] -   .fill_altexps_info (  x ,   value [[  i ] ] , withDimnames =  withDimnames , withColData =  withColData ) } }  value } ",
+    "filename": "altExps.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "altExp",
+    "representation": "altExp",
+    "signature": "c (  SingleCellExperiment ,  missing )",
+    "parameters": "function ( x , e , withColData = FALSE )",
+    "body": "{   .get_internal_missing (  x , basefun =  altExp , namefun =  altExpNames , funstr =  \"altExp\" , withColData =  withColData ) } ",
+    "filename": "altExps.txt"
+  },
+  "new_function": {
+    "name": "altExp",
+    "representation": "altExp",
+    "signature": "c (  SingleCellExperiment ,  missing )",
+    "parameters": "function ( x , e , withDimnames = TRUE , withColData = FALSE )",
+    "body": "{   .get_internal_missing (  x , basefun =  altExp , namefun =  altExpNames , funstr =  \"altExp\" , withDimnames =  withDimnames , withColData =  withColData ) } ",
+    "filename": "altExps.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "altExp",
+    "representation": "altExp",
+    "signature": "c (  SingleCellExperiment ,  numeric )",
+    "parameters": "function ( x , e , withColData = FALSE )",
+    "body": "{   out -   .get_internal_integer (  x ,  e , getfun =  int_colData , key =  .alt_key , funstr =  \"altExp\" , substr =  \"e\" )   out -   .get_se (  out )  if (  withColData )  {    colData (  out ) -   colData (  x ) } else  {    colnames (  out ) -   colnames (  x ) }  out } ",
+    "filename": "altExps.txt"
+  },
+  "new_function": {
+    "name": "altExp",
+    "representation": "altExp",
+    "signature": "c (  SingleCellExperiment ,  numeric )",
+    "parameters": "function ( x , e , withDimnames = TRUE , withColData = FALSE )",
+    "body": "{   out -   .get_internal_integer (  x ,  e , getfun =  int_colData , key =  .alt_key , funstr =  \"altExp\" , substr =  \"e\" )   out -   .get_se (  out )   .fill_altexps_info (  x ,  out , withDimnames =  withDimnames , withColData =  withColData ) } ",
+    "filename": "altExps.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "altExp",
+    "representation": "altExp",
+    "signature": "c (  SingleCellExperiment ,  character )",
+    "parameters": "function ( x , e , withColData = FALSE )",
+    "body": "{   out -   .get_internal_character (  x ,  e , getfun =  int_colData , key =  .alt_key , funstr =  \"altExp\" , substr =  \"e\" , namestr =  \"altExpNames\" )   out -   .get_se (  out )  if (  withColData )  {    colData (  out ) -   colData (  x ) } else  {    colnames (  out ) -   colnames (  x ) }  out } ",
+    "filename": "altExps.txt"
+  },
+  "new_function": {
+    "name": "altExp",
+    "representation": "altExp",
+    "signature": "c (  SingleCellExperiment ,  character )",
+    "parameters": "function ( x , e , withDimnames = TRUE , withColData = FALSE )",
+    "body": "{   out -   .get_internal_character (  x ,  e , getfun =  int_colData , key =  .alt_key , funstr =  \"altExp\" , substr =  \"e\" , namestr =  \"altExpNames\" )   out -   .get_se (  out )   .fill_altexps_info (  x ,  out , withDimnames =  withDimnames , withColData =  withColData ) } ",
+    "filename": "altExps.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  singlecellexperiment_release_3_13 singlecellexperiment_release_3_14
+
+{
+    "package": "SingleCellExperiment",
+    "release_versions": "singlecellexperiment_release_3_13 singlecellexperiment_release_3_14",
+    "desc_release_old": "1.14.1",
+    "desc_release_new": "1.16.0",
+    "old_release_number": 6,
+    "new_release_number": 7,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+combineCols
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  singlecellexperiment_release_3_14 singlecellexperiment_master
+
+{
+    "package": "SingleCellExperiment",
+    "release_versions": "singlecellexperiment_release_3_14 singlecellexperiment_master",
+    "desc_release_old": "1.16.0",
+    "desc_release_new": "1.17.2",
+    "old_release_number": 7,
+    "new_release_number": 8,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+

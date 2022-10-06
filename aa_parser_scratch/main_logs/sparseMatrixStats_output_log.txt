@@ -1,0 +1,388 @@
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  sparsematrixstats_release_3_11 sparsematrixstats_release_3_12
+
+{
+    "package": "sparseMatrixStats",
+    "release_versions": "sparsematrixstats_release_3_11 sparsematrixstats_release_3_12",
+    "desc_release_old": "1.0.5",
+    "desc_release_new": "1.2.1",
+    "old_release_number": 0,
+    "new_release_number": 1,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 2,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "colRanks",
+    "representation": "colRanks",
+    "signature": "signature ( x =  dgCMatrix )",
+    "parameters": "function ( x , rows = NULL , cols = NULL , ties.method = c ( \"max\" , \"average\" , \"min\" ) , preserve.shape = FALSE , na.handling = c ( \"keep\" , \"last\" ) )",
+    "body": "{  if (  !   is.null (  rows ) )  {   x -   x [  rows , , drop =  FALSE ] }  if (  !   is.null (  cols ) )  {   x -   x [ ,  cols , drop =  FALSE ] }   ties.method -   match.arg (  ties.method ,   c (  \"max\" ,  \"average\" ,  \"min\" ) )   na.handling -   match.arg (  na.handling ,   c (  \"keep\" ,  \"last\" ) )  if (   ties.method ==  \"average\" )  {   dgCMatrix_colRanks_num (  x , ties_method =  ties.method , na_handling =  na.handling , preserve_shape =  preserve.shape ) } else  {   dgCMatrix_colRanks_int (  x , ties_method =  ties.method , na_handling =  na.handling , preserve_shape =  preserve.shape ) } } ",
+    "filename": "methods.txt"
+  },
+  "new_function": {
+    "name": "colRanks",
+    "representation": "colRanks",
+    "signature": "signature ( x =  dgCMatrix )",
+    "parameters": "function ( x , rows = NULL , cols = NULL , ties.method = c ( \"max\" , \"average\" , \"min\" ) , preserveShape = FALSE , na.handling = c ( \"keep\" , \"last\" ) )",
+    "body": "{  if (  !   is.null (  rows ) )  {   x -   x [  rows , , drop =  FALSE ] }  if (  !   is.null (  cols ) )  {   x -   x [ ,  cols , drop =  FALSE ] }   ties.method -   match.arg (  ties.method ,   c (  \"max\" ,  \"average\" ,  \"min\" ) )   na.handling -   match.arg (  na.handling ,   c (  \"keep\" ,  \"last\" ) )  if (   ties.method ==  \"average\" )  {   dgCMatrix_colRanks_num (  x , ties_method =  ties.method , na_handling =  na.handling , preserve_shape =  preserveShape ) } else  {   dgCMatrix_colRanks_int (  x , ties_method =  ties.method , na_handling =  na.handling , preserve_shape =  preserveShape ) } } ",
+    "filename": "methods.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "rowRanks",
+    "representation": "rowRanks",
+    "signature": "signature ( x =  dgCMatrix )",
+    "parameters": "function ( x , rows = NULL , cols = NULL , ties.method = c ( \"max\" , \"average\" , \"min\" ) , preserve.shape = TRUE , na.handling = c ( \"keep\" , \"last\" ) )",
+    "body": "{  if (  !   is.null (  rows ) )  {   x -   x [  rows , , drop =  FALSE ] }  if (  !   is.null (  cols ) )  {   x -   x [ ,  cols , drop =  FALSE ] }   colRanks (   t (  x ) , ties.method =  ties.method , preserve.shape =  !  preserve.shape , na.handling =  na.handling ) } ",
+    "filename": "methods_row.txt"
+  },
+  "new_function": {
+    "name": "rowRanks",
+    "representation": "rowRanks",
+    "signature": "signature ( x =  dgCMatrix )",
+    "parameters": "function ( x , rows = NULL , cols = NULL , ties.method = c ( \"max\" , \"average\" , \"min\" ) , preserveShape = TRUE , na.handling = c ( \"keep\" , \"last\" ) )",
+    "body": "{  if (  !   is.null (  rows ) )  {   x -   x [  rows , , drop =  FALSE ] }  if (  !   is.null (  cols ) )  {   x -   x [ ,  cols , drop =  FALSE ] }   colRanks (   t (  x ) , ties.method =  ties.method , preserveShape =  !  preserveShape , na.handling =  na.handling ) } ",
+    "filename": "methods_row.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  sparsematrixstats_release_3_12 sparsematrixstats_release_3_13
+
+{
+    "package": "sparseMatrixStats",
+    "release_versions": "sparsematrixstats_release_3_12 sparsematrixstats_release_3_13",
+    "desc_release_old": "1.2.1",
+    "desc_release_new": "1.4.2",
+    "old_release_number": 1,
+    "new_release_number": 2,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 6,
+    "total_count": 6
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "colMads",
+    "representation": "colMads",
+    "signature": "signature ( x =  dgCMatrix )",
+    "parameters": "function ( x , rows = NULL , cols = NULL , constant = 1.4826 , na.rm = FALSE )",
+    "body": "{  if (  !   is.null (  rows ) )  {   x -   x [  rows , , drop =  FALSE ] }  if (  !   is.null (  cols ) )  {   x -   x [ ,  cols , drop =  FALSE ] }   dgCMatrix_colMads (  x , na_rm =  na.rm , scale_factor =  constant ) } ",
+    "filename": "methods.txt"
+  },
+  "new_function": {
+    "name": "colMads",
+    "representation": "colMads",
+    "signature": "signature ( x =  dgCMatrix )",
+    "parameters": "function ( x , rows = NULL , cols = NULL , center = NULL , constant = 1.4826 , na.rm = FALSE , useNames = NA )",
+    "body": "{  if (  !   is.null (  rows ) )  {   x -   x [  rows , , drop =  FALSE ] }  if (  !   is.null (  cols ) )  {   x -   x [ ,  cols , drop =  FALSE ] }   set_result_names (   dgCMatrix_colMads (  x , na_rm =  na.rm , scale_factor =  constant , center =  center ) ,  useNames ) } ",
+    "filename": "methods.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "colOrderStats",
+    "representation": "colOrderStats",
+    "signature": "signature ( x =  dgCMatrix )",
+    "parameters": "function ( x , rows = NULL , cols = NULL , which = 1 , na.rm = FALSE )",
+    "body": "{  if (    which undefined  1 ||   which undefined   nrow (  x ) )  {   stop (  \"Argument 'which' is out of range.\" ) }  if (  !   is.null (  rows ) )  {   x -   x [  rows , , drop =  FALSE ] }  if (  !   is.null (  cols ) )  {   x -   x [ ,  cols , drop =  FALSE ] }   dgCMatrix_colOrderStats (  x , which =  which , na_rm =  na.rm ) } ",
+    "filename": "methods.txt"
+  },
+  "new_function": {
+    "name": "colOrderStats",
+    "representation": "colOrderStats",
+    "signature": "signature ( x =  dgCMatrix )",
+    "parameters": "function ( x , rows = NULL , cols = NULL , which = 1 , useNames = NA , na.rm = FALSE )",
+    "body": "{  if (    which undefined  1 ||   which undefined   nrow (  x ) )  {   stop (  \"Argument 'which' is out of range.\" ) }  if (  !   is.null (  rows ) )  {   x -   x [  rows , , drop =  FALSE ] }  if (  !   is.null (  cols ) )  {   x -   x [ ,  cols , drop =  FALSE ] }   set_result_names (   dgCMatrix_colOrderStats (  x , which =  which , na_rm =  na.rm ) ,  useNames ) } ",
+    "filename": "methods.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "colQuantiles",
+    "representation": "colQuantiles",
+    "signature": "signature ( x =  xgCMatrix )",
+    "parameters": "function ( x , rows = NULL , cols = NULL , probs = seq ( from = 0 , to = 1 , by = 0.25 ) , na.rm = FALSE , type = 7L , drop = TRUE )",
+    "body": "{  if (  !   is.null (  rows ) )  {   x -   x [  rows , , drop =  FALSE ] }  if (  !   is.null (  cols ) )  {   x -   x [ ,  cols , drop =  FALSE ] }  if (   type ==  7L )  {   mat -   dgCMatrix_colQuantiles (  x ,  probs , na_rm =  na.rm ) } else  {   mat -   t (   expand_and_reduce_sparse_matrix_to_matrix (  x , n_result_rows =   length (  probs ) ,  function ( values )  {  if (  na.rm )  {   values -   values [  !   is.na (  values ) ]   stats :: quantile (  values , probs =  probs , na.rm =  na.rm , names =  FALSE , type =  type ) } else  if (   any (   is.na (  values ) ) )  {   r -   rep (  NA_real_ ,   length (  probs ) )    storage.mode (  r ) -   typeof (  values )  r } else  {   stats :: quantile (  values , probs =  probs , na.rm =  na.rm , names =  FALSE , type =  type ) } } ) ) } # Add dim names   digits -   max (  2L ,   getOption (  \"digits\" ) )    colnames (  mat ) -   sprintf (  \"%.*g%%\" ,  digits ,   100 *  probs )    rownames (  mat ) -   colnames (  x )  if (   drop undefined    nrow (  mat ) ==  1 )  {   mat [  1 , ] } else  if (   drop undefined    ncol (  mat ) ==  1 )  {   mat [ ,  1 ] } else  {  mat } } ",
+    "filename": "methods.txt"
+  },
+  "new_function": {
+    "name": "colQuantiles",
+    "representation": "colQuantiles",
+    "signature": "signature ( x =  xgCMatrix )",
+    "parameters": "function ( x , rows = NULL , cols = NULL , probs = seq ( from = 0 , to = 1 , by = 0.25 ) , na.rm = FALSE , type = 7L , useNames = NA , drop = TRUE )",
+    "body": "{  if (  !   is.null (  rows ) )  {   x -   x [  rows , , drop =  FALSE ] }  if (  !   is.null (  cols ) )  {   x -   x [ ,  cols , drop =  FALSE ] }  if (   type ==  7L )  {   mat -   dgCMatrix_colQuantiles (  x ,  probs , na_rm =  na.rm ) } else  {   mat -   t (   expand_and_reduce_sparse_matrix_to_matrix (  x , n_result_rows =   length (  probs ) ,  function ( values )  {  if (  na.rm )  {   values -   values [  !   is.na (  values ) ]   stats :: quantile (  values , probs =  probs , na.rm =  na.rm , names =  FALSE , type =  type ) } else  if (   any (   is.na (  values ) ) )  {   r -   rep (  NA_real_ ,   length (  probs ) )    storage.mode (  r ) -   typeof (  values )  r } else  {   stats :: quantile (  values , probs =  probs , na.rm =  na.rm , names =  FALSE , type =  type ) } } ) ) } # Add dim names   digits -   max (  2L ,   getOption (  \"digits\" ) )    colnames (  mat ) -   sprintf (  \"%.*g%%\" ,  digits ,   100 *  probs )   mat -   set_result_rownames (  mat ,  useNames , default =  TRUE )  if (   drop undefined    nrow (  mat ) ==  1 )  {   mat [  1 , ] } else  if (   drop undefined    ncol (  mat ) ==  1 )  {   mat [ ,  1 ] } else  {  mat } } ",
+    "filename": "methods.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "rowMads",
+    "representation": "rowMads",
+    "signature": "signature ( x =  dgCMatrix )",
+    "parameters": "function ( x , rows = NULL , cols = NULL , constant = 1.4826 , na.rm = FALSE )",
+    "body": "{   colMads (   t (  x ) , rows =  cols , cols =  rows , constant =  constant , na.rm =  na.rm ) } ",
+    "filename": "methods_row.txt"
+  },
+  "new_function": {
+    "name": "rowMads",
+    "representation": "rowMads",
+    "signature": "signature ( x =  dgCMatrix )",
+    "parameters": "function ( x , rows = NULL , cols = NULL , center = NULL , constant = 1.4826 , na.rm = FALSE , useNames = NA )",
+    "body": "{   colMads (   t (  x ) , rows =  cols , cols =  rows , center =  center , constant =  constant , na.rm =  na.rm , useNames =  useNames ) } ",
+    "filename": "methods_row.txt"
+  }
+}
+
+4.
+{
+  "old_function": {
+    "name": "rowOrderStats",
+    "representation": "rowOrderStats",
+    "signature": "signature ( x =  dgCMatrix )",
+    "parameters": "function ( x , rows = NULL , cols = NULL , which = 1 , na.rm = FALSE )",
+    "body": "{  if (    which undefined  1 ||   which undefined   ncol (  x ) )  {   stop (  \"Argument 'which' is out of range.\" ) }  if (  !   is.null (  rows ) )  {   x -   x [  rows , , drop =  FALSE ] }  if (  !   is.null (  cols ) )  {   x -   x [ ,  cols , drop =  FALSE ] }   dgCMatrix_colOrderStats (   t (  x ) , which =  which , na_rm =  na.rm ) } ",
+    "filename": "methods_row.txt"
+  },
+  "new_function": {
+    "name": "rowOrderStats",
+    "representation": "rowOrderStats",
+    "signature": "signature ( x =  dgCMatrix )",
+    "parameters": "function ( x , rows = NULL , cols = NULL , which = 1 , useNames = NA , na.rm = FALSE )",
+    "body": "{  if (    which undefined  1 ||   which undefined   ncol (  x ) )  {   stop (  \"Argument 'which' is out of range.\" ) }  if (  !   is.null (  rows ) )  {   x -   x [  rows , , drop =  FALSE ] }  if (  !   is.null (  cols ) )  {   x -   x [ ,  cols , drop =  FALSE ] }   set_result_names_t (   dgCMatrix_colOrderStats (   t (  x ) , which =  which , na_rm =  na.rm ) ,  useNames ) } ",
+    "filename": "methods_row.txt"
+  }
+}
+
+5.
+{
+  "old_function": {
+    "name": "rowQuantiles",
+    "representation": "rowQuantiles",
+    "signature": "signature ( x =  xgCMatrix )",
+    "parameters": "function ( x , rows = NULL , cols = NULL , probs = seq ( from = 0 , to = 1 , by = 0.25 ) , na.rm = FALSE , drop = TRUE )",
+    "body": "{  if (  !   is.null (  rows ) )  {   x -   x [  rows , , drop =  FALSE ] }  if (  !   is.null (  cols ) )  {   x -   x [ ,  cols , drop =  FALSE ] }   mat -   dgCMatrix_colQuantiles (   t (  x ) ,  probs , na_rm =  na.rm ) # Add dim names   digits -   max (  2L ,   getOption (  \"digits\" ) )    colnames (  mat ) -   sprintf (  \"%.*g%%\" ,  digits ,   100 *  probs )    rownames (  mat ) -   rownames (  x )  if (   drop undefined    nrow (  mat ) ==  1 )  {   mat [  1 , ] } else  {  mat } } ",
+    "filename": "methods_row.txt"
+  },
+  "new_function": {
+    "name": "rowQuantiles",
+    "representation": "rowQuantiles",
+    "signature": "signature ( x =  xgCMatrix )",
+    "parameters": "function ( x , rows = NULL , cols = NULL , probs = seq ( from = 0 , to = 1 , by = 0.25 ) , na.rm = FALSE , useNames = NA , drop = TRUE )",
+    "body": "{  if (  !   is.null (  rows ) )  {   x -   x [  rows , , drop =  FALSE ] }  if (  !   is.null (  cols ) )  {   x -   x [ ,  cols , drop =  FALSE ] }   mat -   dgCMatrix_colQuantiles (   t (  x ) ,  probs , na_rm =  na.rm ) # Add dim names   digits -   max (  2L ,   getOption (  \"digits\" ) )    colnames (  mat ) -   sprintf (  \"%.*g%%\" ,  digits ,   100 *  probs )   mat -   set_result_rownames (  mat ,  useNames , default =  TRUE , names =   rownames (  x ) )  if (   drop undefined    nrow (  mat ) ==  1 )  {   mat [  1 , ] } else  {  mat } } ",
+    "filename": "methods_row.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  sparsematrixstats_release_3_13 sparsematrixstats_release_3_14
+
+{
+    "package": "sparseMatrixStats",
+    "release_versions": "sparsematrixstats_release_3_13 sparsematrixstats_release_3_14",
+    "desc_release_old": "1.4.2",
+    "desc_release_new": "1.6.0",
+    "old_release_number": 2,
+    "new_release_number": 3,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "rowQuantiles",
+    "representation": "rowQuantiles",
+    "signature": "signature ( x =  xgCMatrix )",
+    "parameters": "function ( x , rows = NULL , cols = NULL , probs = seq ( from = 0 , to = 1 , by = 0.25 ) , na.rm = FALSE , useNames = NA , drop = TRUE )",
+    "body": "{  if (  !   is.null (  rows ) )  {   x -   x [  rows , , drop =  FALSE ] }  if (  !   is.null (  cols ) )  {   x -   x [ ,  cols , drop =  FALSE ] }   mat -   dgCMatrix_colQuantiles (   t (  x ) ,  probs , na_rm =  na.rm ) # Add dim names   digits -   max (  2L ,   getOption (  \"digits\" ) )    colnames (  mat ) -   sprintf (  \"%.*g%%\" ,  digits ,   100 *  probs )   mat -   set_result_rownames (  mat ,  useNames , default =  TRUE , names =   rownames (  x ) )  if (   drop undefined    nrow (  mat ) ==  1 )  {   mat [  1 , ] } else  {  mat } } ",
+    "filename": "methods_row.txt"
+  },
+  "new_function": {
+    "name": "rowQuantiles",
+    "representation": "rowQuantiles",
+    "signature": "signature ( x =  xgCMatrix )",
+    "parameters": "function ( x , rows = NULL , cols = NULL , probs = seq ( from = 0 , to = 1 , by = 0.25 ) , na.rm = FALSE , type = 7L , useNames = NA , drop = TRUE )",
+    "body": "{   colQuantiles (   t (  x ) , rows =  cols , cols =  rows , probs =  probs , na.rm =  na.rm , type =  type , useNames =  useNames , drop =  drop ) } ",
+    "filename": "methods_row.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  sparsematrixstats_release_3_14 sparsematrixstats_master
+
+{
+    "package": "sparseMatrixStats",
+    "release_versions": "sparsematrixstats_release_3_14 sparsematrixstats_master",
+    "desc_release_old": "1.6.0",
+    "desc_release_new": "1.7.0",
+    "old_release_number": 3,
+    "new_release_number": 4,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+

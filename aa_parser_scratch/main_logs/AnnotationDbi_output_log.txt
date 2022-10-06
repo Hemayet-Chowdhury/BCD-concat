@@ -1,0 +1,2006 @@
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationdbi_release_1_9 annotationdbi_release_2_1
+
+{
+    "package": "AnnotationDbi",
+    "release_versions": "annotationdbi_release_1_9 annotationdbi_release_2_1",
+    "desc_release_old": "0.0.3",
+    "desc_release_new": "1.0.6",
+    "old_release_number": 0,
+    "new_release_number": 1,
+    "function_removals": 16,
+    "function_additions": 73,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 16
+}
+
+##########
+Functions Removed
+##########
+
+toggleDebug
+generateTwoWayMappings
+generateTableObjects
+generateAnnotTableObj
+generateQC
+userTable
+compareAnnotation
+comparePerf
+names
+queryTable
+countBy
+getCol
+subByRow
+is.environment
+dbGetQuery
+noMissing
+
+
+##########
+Functions Added
+##########
+
+debugSQL
+GOTerms
+dbFileConnect
+dbFileDisconnect
+mergeToNamespaceAndExport
+createAnnObjs.HUMANCHIP_DB
+createAnnObjs.RODENTCHIP_DB
+createAnnObjs.FLYCHIP_DB
+createAnnObjs.YEASTCHIP_DB
+createAnnObjs.ARABIDOPSISCHIP_DB
+createAnnObjs.HUMAN_DB
+createAnnObjs.RODENT_DB
+createAnnObjs.FLY_DB
+createAnnObjs.YEAST_DB
+createAnnObjs.YEASTLEGACY_DB
+createAnnObjs.GO_DB
+createAnnObjs.KEGG_DB
+createAnnObjs.AFFYHUEX_DB
+loadAnnDbPkgIndex
+checkMAPCOUNTS
+make_eg_to_go_map
+make_go_to_eg_map
+toSQLStringSet
+dbconn
+dbfile
+dbmeta
+dbschema
+dbInfo
+direction
+direction<-
+revmap
+colnames
+colmetanames
+Lkeyname
+Rkeyname
+keyname
+tagname
+Rattribnames
+Rattribnames<-
+Lkeys
+Rkeys
+keys
+Lkeys<-
+Rkeys<-
+keys<-
+subset
+Llength
+Rlength
+isNA
+mappedLkeys
+mappedRkeys
+mappedkeys
+count.mappedLkeys
+count.mappedRkeys
+count.mappedkeys
+summary
+toTable
+head
+tail
+links
+count.links
+nhit
+dim
+GOID
+Term
+Ontology
+Synonym
+Secondary
+Definition
+as.character
+exists
+sample
+makeAnnDbPkg
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationdbi_release_2_1 annotationdbi_release_2_2
+
+{
+    "package": "AnnotationDbi",
+    "release_versions": "annotationdbi_release_2_1 annotationdbi_release_2_2",
+    "desc_release_old": "1.0.6",
+    "desc_release_new": "1.2.3",
+    "old_release_number": 1,
+    "new_release_number": 2,
+    "function_removals": 2,
+    "function_additions": 31,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+createAnnObjs.RODENTCHIP_DB
+createAnnObjs.RODENT_DB
+
+
+##########
+Functions Added
+##########
+
+showQCData
+createAnnObjs.MOUSECHIP_DB
+createAnnObjs.RATCHIP_DB
+createAnnObjs.MALARIA_DB
+createAnnObjs.MOUSE_DB
+createAnnObjs.RAT_DB
+createAnnObjs.INPARANOIDHOMSA_DB
+createAnnObjs.INPARANOIDMUSMU_DB
+createAnnObjs.INPARANOIDRATNO_DB
+createAnnObjs.INPARANOIDDROME_DB
+createAnnObjs.INPARANOIDSACCE_DB
+createAnnObjs.PFAM_DB
+popHUMANCHIPDB
+popHUMANDB
+popMOUSECHIPDB
+popMOUSEDB
+popRATCHIPDB
+popRATDB
+popARABIDOPSISCHIPDB
+popFLYCHIPDB
+popFLYDB
+popYEASTCHIPDB
+popYEASTDB
+popMALARIADB
+makeHUMANCHIP_DB
+makeMOUSECHIP_DB
+makeRATCHIP_DB
+makeFLYCHIP_DB
+makeARABIDOPSISCHIP_DB
+makeYEASTCHIP_DB
+wrapBaseDBPackages
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationdbi_release_2_2 annotationdbi_release_2_3
+
+{
+    "package": "AnnotationDbi",
+    "release_versions": "annotationdbi_release_2_2 annotationdbi_release_2_3",
+    "desc_release_old": "1.2.3",
+    "desc_release_new": "1.4.3",
+    "old_release_number": 2,
+    "new_release_number": 3,
+    "function_removals": 0,
+    "function_additions": 36,
+    "parameter_removals": 0,
+    "parameter_additions": 6,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 7,
+    "total_count": 7
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+unlist2
+createAnnObjs.ZEBRAFISHCHIP_DB
+createAnnObjs.ECOLICHIP_DB
+createAnnObjs.CANINECHIP_DB
+createAnnObjs.BOVINECHIP_DB
+createAnnObjs.WORMCHIP_DB
+createAnnObjs.PIGCHIP_DB
+createAnnObjs.CHICKENCHIP_DB
+createAnnObjs.ZEBRAFISH_DB
+createAnnObjs.CANINE_DB
+createAnnObjs.BOVINE_DB
+createAnnObjs.WORM_DB
+createAnnObjs.PIG_DB
+createAnnObjs.CHICKEN_DB
+createAnnObjs.ECOLI_DB
+popZEBRAFISHCHIPDB
+popZEBRAFISHDB
+popECOLICHIPDB
+popECOLIDB
+popCANINECHIPDB
+popCANINEDB
+popBOVINECHIPDB
+popBOVINEDB
+popWORMCHIPDB
+popWORMDB
+popPIGCHIPDB
+popPIGDB
+popCHICKENCHIPDB
+popCHICKENDB
+makeZEBRAFISHCHIP_DB
+makeECOLICHIP_DB
+makeCANINECHIP_DB
+makeBOVINECHIP_DB
+makeWORMCHIP_DB
+makePIGCHIP_DB
+makeCHICKENCHIP_DB
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "makeHUMANCHIP_DB",
+    "representation": "makeHUMANCHIP_DB",
+    "parameters": "function ( affy , prefix , fileName , otherSrc = character ( 0 ) , chipMapSrc = system.file ( \"extdata\" , \"chipmapsrc_human.sqlite\" , package = \"human.db0\" ) , chipSrc = system.file ( \"extdata\" , \"chipsrc_human.sqlite\" , package = \"human.db0\" ) , baseMapType , outputDir = \".\" , version , manufacturer = \"Manufacturer not specified\" , chipName = \"ChipName not specified\" , manufacturerUrl = \"Manufacturer Url not specified\" )",
+    "body": "{  if (    outputDir !=  \".\" undefined     file.access (  outputDir ) [[  1 ] ] !=  0 )  {   stop (  \"Selected outputDir '\" ,  outputDir ,  \"' does not exist.\" ) }   metaDataSrc -   c ( DBSCHEMA =  \"HUMANCHIP_DB\" , ORGANISM =  \"Homo sapiens\" , SPECIES =  \"Human\" , MANUFACTURER =  manufacturer , CHIPNAME =  chipName , MANUFACTURERURL =  manufacturerUrl )   popHUMANCHIPDB ( affy =  affy , prefix =  prefix , fileName =  fileName , chipMapSrc =  chipMapSrc , chipSrc =  chipSrc , metaDataSrc =  metaDataSrc , otherSrc =  otherSrc , baseMapType =  baseMapType , outputDir =  outputDir , printSchema =  FALSE )   seed -   new (  \"AnnDbPkgSeed\" , Package =   paste (  prefix ,  \".db\" , sep =  \"\" ) , Version =  version , PkgTemplate =  \"HUMANCHIP.DB\" , AnnObjPrefix =  prefix )   makeAnnDbPkg (  seed ,   paste (  outputDir ,  \"/\" ,  prefix ,  \".sqlite\" , sep =  \"\" ) , dest_dir =  outputDir ) } ",
+    "filename": "sqlForge_makeAnnPkgs.txt"
+  },
+  "new_function": {
+    "name": "makeHUMANCHIP_DB",
+    "representation": "makeHUMANCHIP_DB",
+    "parameters": "function ( affy , prefix , fileName , otherSrc = character ( 0 ) , chipMapSrc = system.file ( \"extdata\" , \"chipmapsrc_human.sqlite\" , package = \"human.db0\" ) , chipSrc = system.file ( \"extdata\" , \"chipsrc_human.sqlite\" , package = \"human.db0\" ) , baseMapType , outputDir = \".\" , version , manufacturer = \"Manufacturer not specified\" , chipName = \"ChipName not specified\" , manufacturerUrl = \"Manufacturer Url not specified\" , author = \"Marc Carlson, Seth Falcon, Herve Pages, Nianhua Li\" , maintainer = \"Biocore Data Team  biocannotation@lists.fhcrc.org \" )",
+    "body": "{  if (    outputDir !=  \".\" undefined     file.access (  outputDir ) [[  1 ] ] !=  0 )  {   stop (  \"Selected outputDir '\" ,  outputDir ,  \"' does not exist.\" ) }   metaDataSrc -   c ( DBSCHEMA =  \"HUMANCHIP_DB\" , ORGANISM =  \"Homo sapiens\" , SPECIES =  \"Human\" , MANUFACTURER =  manufacturer , CHIPNAME =  chipName , MANUFACTURERURL =  manufacturerUrl )   popHUMANCHIPDB ( affy =  affy , prefix =  prefix , fileName =  fileName , chipMapSrc =  chipMapSrc , chipSrc =  chipSrc , metaDataSrc =  metaDataSrc , otherSrc =  otherSrc , baseMapType =  baseMapType , outputDir =  outputDir , printSchema =  FALSE )   seed -   new (  \"AnnDbPkgSeed\" , Package =   paste (  prefix ,  \".db\" , sep =  \"\" ) , Version =  version , Author =  author , Maintainer =  maintainer , PkgTemplate =  \"HUMANCHIP.DB\" , AnnObjPrefix =  prefix )   makeAnnDbPkg (  seed ,   paste (  outputDir ,  \"/\" ,  prefix ,  \".sqlite\" , sep =  \"\" ) , dest_dir =  outputDir ) } ",
+    "filename": "sqlForge_makeAnnPkgs.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "makeMOUSECHIP_DB",
+    "representation": "makeMOUSECHIP_DB",
+    "parameters": "function ( affy , prefix , fileName , otherSrc = character ( 0 ) , chipMapSrc = system.file ( \"extdata\" , \"chipmapsrc_mouse.sqlite\" , package = \"mouse.db0\" ) , chipSrc = system.file ( \"extdata\" , \"chipsrc_mouse.sqlite\" , package = \"mouse.db0\" ) , baseMapType , outputDir = \".\" , version , manufacturer = \"Manufacturer not specified\" , chipName = \"ChipName not specified\" , manufacturerUrl = \"Manufacturer Url not specified\" )",
+    "body": "{  if (    outputDir !=  \".\" undefined     file.access (  outputDir ) [[  1 ] ] !=  0 )  {   stop (  \"Selected outputDir '\" ,  outputDir ,  \"' does not exist.\" ) }   metaDataSrc -   c ( DBSCHEMA =  \"MOUSECHIP_DB\" , ORGANISM =  \"Mus musculus\" , SPECIES =  \"Mouse\" , MANUFACTURER =  manufacturer , CHIPNAME =  chipName , MANUFACTURERURL =  manufacturerUrl )   popMOUSECHIPDB ( affy =  affy , prefix =  prefix , fileName =  fileName , chipMapSrc =  chipMapSrc , chipSrc =  chipSrc , metaDataSrc =  metaDataSrc , otherSrc =  otherSrc , baseMapType =  baseMapType , outputDir =  outputDir , printSchema =  FALSE )   seed -   new (  \"AnnDbPkgSeed\" , Package =   paste (  prefix ,  \".db\" , sep =  \"\" ) , Version =  version , PkgTemplate =  \"MOUSECHIP.DB\" , AnnObjPrefix =  prefix )   makeAnnDbPkg (  seed ,   paste (  outputDir ,  \"/\" ,  prefix ,  \".sqlite\" , sep =  \"\" ) , dest_dir =  outputDir ) } ",
+    "filename": "sqlForge_makeAnnPkgs.txt"
+  },
+  "new_function": {
+    "name": "makeMOUSECHIP_DB",
+    "representation": "makeMOUSECHIP_DB",
+    "parameters": "function ( affy , prefix , fileName , otherSrc = character ( 0 ) , chipMapSrc = system.file ( \"extdata\" , \"chipmapsrc_mouse.sqlite\" , package = \"mouse.db0\" ) , chipSrc = system.file ( \"extdata\" , \"chipsrc_mouse.sqlite\" , package = \"mouse.db0\" ) , baseMapType , outputDir = \".\" , version , manufacturer = \"Manufacturer not specified\" , chipName = \"ChipName not specified\" , manufacturerUrl = \"Manufacturer Url not specified\" , author = \"Marc Carlson, Seth Falcon, Herve Pages, Nianhua Li\" , maintainer = \"Biocore Data Team  biocannotation@lists.fhcrc.org \" )",
+    "body": "{  if (    outputDir !=  \".\" undefined     file.access (  outputDir ) [[  1 ] ] !=  0 )  {   stop (  \"Selected outputDir '\" ,  outputDir ,  \"' does not exist.\" ) }   metaDataSrc -   c ( DBSCHEMA =  \"MOUSECHIP_DB\" , ORGANISM =  \"Mus musculus\" , SPECIES =  \"Mouse\" , MANUFACTURER =  manufacturer , CHIPNAME =  chipName , MANUFACTURERURL =  manufacturerUrl )   popMOUSECHIPDB ( affy =  affy , prefix =  prefix , fileName =  fileName , chipMapSrc =  chipMapSrc , chipSrc =  chipSrc , metaDataSrc =  metaDataSrc , otherSrc =  otherSrc , baseMapType =  baseMapType , outputDir =  outputDir , printSchema =  FALSE )   seed -   new (  \"AnnDbPkgSeed\" , Package =   paste (  prefix ,  \".db\" , sep =  \"\" ) , Version =  version , Author =  author , Maintainer =  maintainer , PkgTemplate =  \"MOUSECHIP.DB\" , AnnObjPrefix =  prefix )   makeAnnDbPkg (  seed ,   paste (  outputDir ,  \"/\" ,  prefix ,  \".sqlite\" , sep =  \"\" ) , dest_dir =  outputDir ) } ",
+    "filename": "sqlForge_makeAnnPkgs.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "makeRATCHIP_DB",
+    "representation": "makeRATCHIP_DB",
+    "parameters": "function ( affy , prefix , fileName , otherSrc = character ( 0 ) , chipMapSrc = system.file ( \"extdata\" , \"chipmapsrc_rat.sqlite\" , package = \"rat.db0\" ) , chipSrc = system.file ( \"extdata\" , \"chipsrc_rat.sqlite\" , package = \"rat.db0\" ) , baseMapType , outputDir = \".\" , version , manufacturer = \"Manufacturer not specified\" , chipName = \"ChipName not specified\" , manufacturerUrl = \"Manufacturer Url not specified\" )",
+    "body": "{  if (    outputDir !=  \".\" undefined     file.access (  outputDir ) [[  1 ] ] !=  0 )  {   stop (  \"Selected outputDir '\" ,  outputDir ,  \"' does not exist.\" ) }   metaDataSrc -   c ( DBSCHEMA =  \"RATCHIP_DB\" , ORGANISM =  \"Rattus norvegicus\" , SPECIES =  \"Rat\" , MANUFACTURER =  manufacturer , CHIPNAME =  chipName , MANUFACTURERURL =  manufacturerUrl )   popRATCHIPDB ( affy =  affy , prefix =  prefix , fileName =  fileName , chipMapSrc =  chipMapSrc , chipSrc =  chipSrc , metaDataSrc =  metaDataSrc , otherSrc =  otherSrc , baseMapType =  baseMapType , outputDir =  outputDir , printSchema =  FALSE )   seed -   new (  \"AnnDbPkgSeed\" , Package =   paste (  prefix ,  \".db\" , sep =  \"\" ) , Version =  version , PkgTemplate =  \"RATCHIP.DB\" , AnnObjPrefix =  prefix )   makeAnnDbPkg (  seed ,   paste (  outputDir ,  \"/\" ,  prefix ,  \".sqlite\" , sep =  \"\" ) , dest_dir =  outputDir ) } ",
+    "filename": "sqlForge_makeAnnPkgs.txt"
+  },
+  "new_function": {
+    "name": "makeRATCHIP_DB",
+    "representation": "makeRATCHIP_DB",
+    "parameters": "function ( affy , prefix , fileName , otherSrc = character ( 0 ) , chipMapSrc = system.file ( \"extdata\" , \"chipmapsrc_rat.sqlite\" , package = \"rat.db0\" ) , chipSrc = system.file ( \"extdata\" , \"chipsrc_rat.sqlite\" , package = \"rat.db0\" ) , baseMapType , outputDir = \".\" , version , manufacturer = \"Manufacturer not specified\" , chipName = \"ChipName not specified\" , manufacturerUrl = \"Manufacturer Url not specified\" , author = \"Marc Carlson, Seth Falcon, Herve Pages, Nianhua Li\" , maintainer = \"Biocore Data Team  biocannotation@lists.fhcrc.org \" )",
+    "body": "{  if (    outputDir !=  \".\" undefined     file.access (  outputDir ) [[  1 ] ] !=  0 )  {   stop (  \"Selected outputDir '\" ,  outputDir ,  \"' does not exist.\" ) }   metaDataSrc -   c ( DBSCHEMA =  \"RATCHIP_DB\" , ORGANISM =  \"Rattus norvegicus\" , SPECIES =  \"Rat\" , MANUFACTURER =  manufacturer , CHIPNAME =  chipName , MANUFACTURERURL =  manufacturerUrl )   popRATCHIPDB ( affy =  affy , prefix =  prefix , fileName =  fileName , chipMapSrc =  chipMapSrc , chipSrc =  chipSrc , metaDataSrc =  metaDataSrc , otherSrc =  otherSrc , baseMapType =  baseMapType , outputDir =  outputDir , printSchema =  FALSE )   seed -   new (  \"AnnDbPkgSeed\" , Package =   paste (  prefix ,  \".db\" , sep =  \"\" ) , Version =  version , Author =  author , Maintainer =  maintainer , PkgTemplate =  \"RATCHIP.DB\" , AnnObjPrefix =  prefix )   makeAnnDbPkg (  seed ,   paste (  outputDir ,  \"/\" ,  prefix ,  \".sqlite\" , sep =  \"\" ) , dest_dir =  outputDir ) } ",
+    "filename": "sqlForge_makeAnnPkgs.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "makeFLYCHIP_DB",
+    "representation": "makeFLYCHIP_DB",
+    "parameters": "function ( affy , prefix , fileName , otherSrc = character ( 0 ) , chipMapSrc = system.file ( \"extdata\" , \"chipmapsrc_fly.sqlite\" , package = \"fly.db0\" ) , chipSrc = system.file ( \"extdata\" , \"chipsrc_fly.sqlite\" , package = \"fly.db0\" ) , baseMapType , outputDir = \".\" , version , manufacturer = \"Manufacturer not specified\" , chipName = \"ChipName not specified\" , manufacturerUrl = \"Manufacturer Url not specified\" )",
+    "body": "{  if (    outputDir !=  \".\" undefined     file.access (  outputDir ) [[  1 ] ] !=  0 )  {   stop (  \"Selected outputDir '\" ,  outputDir ,  \"' does not exist.\" ) }   metaDataSrc -   c ( DBSCHEMA =  \"FLYCHIP_DB\" , ORGANISM =  \"Drosophila melanogaster\" , SPECIES =  \"Fly\" , MANUFACTURER =  manufacturer , CHIPNAME =  chipName , MANUFACTURERURL =  manufacturerUrl )   popFLYCHIPDB ( affy =  affy , prefix =  prefix , fileName =  fileName , chipMapSrc =  chipMapSrc , chipSrc =  chipSrc , metaDataSrc =  metaDataSrc , otherSrc =  otherSrc , baseMapType =  baseMapType , outputDir =  outputDir , printSchema =  FALSE )   seed -   new (  \"AnnDbPkgSeed\" , Package =   paste (  prefix ,  \".db\" , sep =  \"\" ) , Version =  version , PkgTemplate =  \"FLYCHIP.DB\" , AnnObjPrefix =  prefix )   makeAnnDbPkg (  seed ,   paste (  outputDir ,  \"/\" ,  prefix ,  \".sqlite\" , sep =  \"\" ) , dest_dir =  outputDir ) } ",
+    "filename": "sqlForge_makeAnnPkgs.txt"
+  },
+  "new_function": {
+    "name": "makeFLYCHIP_DB",
+    "representation": "makeFLYCHIP_DB",
+    "parameters": "function ( affy , prefix , fileName , otherSrc = character ( 0 ) , chipMapSrc = system.file ( \"extdata\" , \"chipmapsrc_fly.sqlite\" , package = \"fly.db0\" ) , chipSrc = system.file ( \"extdata\" , \"chipsrc_fly.sqlite\" , package = \"fly.db0\" ) , baseMapType , outputDir = \".\" , version , manufacturer = \"Manufacturer not specified\" , chipName = \"ChipName not specified\" , manufacturerUrl = \"Manufacturer Url not specified\" , author = \"Marc Carlson, Seth Falcon, Herve Pages, Nianhua Li\" , maintainer = \"Biocore Data Team  biocannotation@lists.fhcrc.org \" )",
+    "body": "{  if (    outputDir !=  \".\" undefined     file.access (  outputDir ) [[  1 ] ] !=  0 )  {   stop (  \"Selected outputDir '\" ,  outputDir ,  \"' does not exist.\" ) }   metaDataSrc -   c ( DBSCHEMA =  \"FLYCHIP_DB\" , ORGANISM =  \"Drosophila melanogaster\" , SPECIES =  \"Fly\" , MANUFACTURER =  manufacturer , CHIPNAME =  chipName , MANUFACTURERURL =  manufacturerUrl )   popFLYCHIPDB ( affy =  affy , prefix =  prefix , fileName =  fileName , chipMapSrc =  chipMapSrc , chipSrc =  chipSrc , metaDataSrc =  metaDataSrc , otherSrc =  otherSrc , baseMapType =  baseMapType , outputDir =  outputDir , printSchema =  FALSE )   seed -   new (  \"AnnDbPkgSeed\" , Package =   paste (  prefix ,  \".db\" , sep =  \"\" ) , Version =  version , Author =  author , Maintainer =  maintainer , PkgTemplate =  \"FLYCHIP.DB\" , AnnObjPrefix =  prefix )   makeAnnDbPkg (  seed ,   paste (  outputDir ,  \"/\" ,  prefix ,  \".sqlite\" , sep =  \"\" ) , dest_dir =  outputDir ) } ",
+    "filename": "sqlForge_makeAnnPkgs.txt"
+  }
+}
+
+4.
+{
+  "old_function": {
+    "name": "makeARABIDOPSISCHIP_DB",
+    "representation": "makeARABIDOPSISCHIP_DB",
+    "parameters": "function ( affy , prefix , fileName = \"myFile.txt\" , chipMapSrc = system.file ( \"extdata\" , \"chipmapsrc_arabidopsis.sqlite\" , package = \"arabidopsis.db0\" ) , chipSrc = system.file ( \"extdata\" , \"chipsrc_arabidopsis.sqlite\" , package = \"arabidopsis.db0\" ) , outputDir = \".\" , version , manufacturer = \"Manufacturer not specified\" , chipName = \"ChipName not specified\" , manufacturerUrl = \"Manufacturer Url not specified\" )",
+    "body": "{  if (    outputDir !=  \".\" undefined     file.access (  outputDir ) [[  1 ] ] !=  0 )  {   stop (  \"Selected outputDir '\" ,  outputDir ,  \"' does not exist.\" ) }   metaDataSrc -   c ( DBSCHEMA =  \"ARABIDOPSISCHIP_DB\" , ORGANISM =  \"Arabidopsis thaliana\" , SPECIES =  \"Arabidosis\" , MANUFACTURER =  manufacturer , CHIPNAME =  chipName , MANUFACTURERURL =  manufacturerUrl )   popARABIDOPSISCHIPDB ( affy =  affy , prefix =  prefix , fileName =  fileName , chipMapSrc =  chipMapSrc , chipSrc =  chipSrc , metaDataSrc =  metaDataSrc , outputDir =  outputDir , printSchema =  FALSE )   seed -   new (  \"AnnDbPkgSeed\" , Package =   paste (  prefix ,  \".db\" , sep =  \"\" ) , Version =  version , PkgTemplate =  \"ARABIDOPSISCHIP.DB\" , AnnObjPrefix =  prefix )   makeAnnDbPkg (  seed ,   paste (  outputDir ,  \"/\" ,  prefix ,  \".sqlite\" , sep =  \"\" ) , dest_dir =  outputDir ) } ",
+    "filename": "sqlForge_makeAnnPkgs.txt"
+  },
+  "new_function": {
+    "name": "makeARABIDOPSISCHIP_DB",
+    "representation": "makeARABIDOPSISCHIP_DB",
+    "parameters": "function ( affy , prefix , fileName = \"myFile.txt\" , chipMapSrc = system.file ( \"extdata\" , \"chipmapsrc_arabidopsis.sqlite\" , package = \"arabidopsis.db0\" ) , chipSrc = system.file ( \"extdata\" , \"chipsrc_arabidopsis.sqlite\" , package = \"arabidopsis.db0\" ) , outputDir = \".\" , version , manufacturer = \"Manufacturer not specified\" , chipName = \"ChipName not specified\" , manufacturerUrl = \"Manufacturer Url not specified\" , author = \"Marc Carlson, Seth Falcon, Herve Pages, Nianhua Li\" , maintainer = \"Biocore Data Team  biocannotation@lists.fhcrc.org \" )",
+    "body": "{  if (    outputDir !=  \".\" undefined     file.access (  outputDir ) [[  1 ] ] !=  0 )  {   stop (  \"Selected outputDir '\" ,  outputDir ,  \"' does not exist.\" ) }   metaDataSrc -   c ( DBSCHEMA =  \"ARABIDOPSISCHIP_DB\" , ORGANISM =  \"Arabidopsis thaliana\" , SPECIES =  \"Arabidosis\" , MANUFACTURER =  manufacturer , CHIPNAME =  chipName , MANUFACTURERURL =  manufacturerUrl )   popARABIDOPSISCHIPDB ( affy =  affy , prefix =  prefix , fileName =  fileName , chipMapSrc =  chipMapSrc , chipSrc =  chipSrc , metaDataSrc =  metaDataSrc , outputDir =  outputDir , printSchema =  FALSE )   seed -   new (  \"AnnDbPkgSeed\" , Package =   paste (  prefix ,  \".db\" , sep =  \"\" ) , Version =  version , Author =  author , Maintainer =  maintainer , PkgTemplate =  \"ARABIDOPSISCHIP.DB\" , AnnObjPrefix =  prefix )   makeAnnDbPkg (  seed ,   paste (  outputDir ,  \"/\" ,  prefix ,  \".sqlite\" , sep =  \"\" ) , dest_dir =  outputDir ) } ",
+    "filename": "sqlForge_makeAnnPkgs.txt"
+  }
+}
+
+5.
+{
+  "old_function": {
+    "name": "makeYEASTCHIP_DB",
+    "representation": "makeYEASTCHIP_DB",
+    "parameters": "function ( affy , prefix , fileName , chipSrc = system.file ( \"extdata\" , \"chipsrc_yeast.sqlite\" , package = \"yeast.db0\" ) , outputDir = \".\" , version , manufacturer = \"Manufacturer not specified\" , chipName = \"ChipName not specified\" , manufacturerUrl = \"Manufacturer Url not specified\" )",
+    "body": "{  if (    outputDir !=  \".\" undefined     file.access (  outputDir ) [[  1 ] ] !=  0 )  {   stop (  \"Selected outputDir '\" ,  outputDir ,  \"' does not exist.\" ) }   metaDataSrc -   c ( DBSCHEMA =  \"YEASTCHIP_DB\" , ORGANISM =  \"Saccharomyces cerevisiae\" , SPECIES =  \"Yeast\" , MANUFACTURER =  manufacturer , CHIPNAME =  chipName , MANUFACTURERURL =  manufacturerUrl )   popYEASTCHIPDB ( affy =  affy , prefix =  prefix , fileName =  fileName , chipSrc =  chipSrc , metaDataSrc =  metaDataSrc , outputDir =  outputDir , printSchema =  FALSE )   seed -   new (  \"AnnDbPkgSeed\" , Package =   paste (  prefix ,  \".db\" , sep =  \"\" ) , Version =  version , PkgTemplate =  \"YEASTCHIP.DB\" , AnnObjPrefix =  prefix )   makeAnnDbPkg (  seed ,   paste (  outputDir ,  \"/\" ,  prefix ,  \".sqlite\" , sep =  \"\" ) , dest_dir =  outputDir ) } ",
+    "filename": "sqlForge_makeAnnPkgs.txt"
+  },
+  "new_function": {
+    "name": "makeYEASTCHIP_DB",
+    "representation": "makeYEASTCHIP_DB",
+    "parameters": "function ( affy , prefix , fileName , chipSrc = system.file ( \"extdata\" , \"chipsrc_yeast.sqlite\" , package = \"yeast.db0\" ) , outputDir = \".\" , version , manufacturer = \"Manufacturer not specified\" , chipName = \"ChipName not specified\" , manufacturerUrl = \"Manufacturer Url not specified\" , author = \"Marc Carlson, Seth Falcon, Herve Pages, Nianhua Li\" , maintainer = \"Biocore Data Team  biocannotation@lists.fhcrc.org \" )",
+    "body": "{  if (    outputDir !=  \".\" undefined     file.access (  outputDir ) [[  1 ] ] !=  0 )  {   stop (  \"Selected outputDir '\" ,  outputDir ,  \"' does not exist.\" ) }   metaDataSrc -   c ( DBSCHEMA =  \"YEASTCHIP_DB\" , ORGANISM =  \"Saccharomyces cerevisiae\" , SPECIES =  \"Yeast\" , MANUFACTURER =  manufacturer , CHIPNAME =  chipName , MANUFACTURERURL =  manufacturerUrl )   popYEASTCHIPDB ( affy =  affy , prefix =  prefix , fileName =  fileName , chipSrc =  chipSrc , metaDataSrc =  metaDataSrc , outputDir =  outputDir , printSchema =  FALSE )   seed -   new (  \"AnnDbPkgSeed\" , Package =   paste (  prefix ,  \".db\" , sep =  \"\" ) , Version =  version , Author =  author , Maintainer =  maintainer , PkgTemplate =  \"YEASTCHIP.DB\" , AnnObjPrefix =  prefix )   makeAnnDbPkg (  seed ,   paste (  outputDir ,  \"/\" ,  prefix ,  \".sqlite\" , sep =  \"\" ) , dest_dir =  outputDir ) } ",
+    "filename": "sqlForge_makeAnnPkgs.txt"
+  }
+}
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "subset",
+    "representation": "subset",
+    "signature": "AnnDbBimap",
+    "parameters": "function ( x , Lkeys = NULL , Rkeys = NULL , objName = NULL )",
+    "body": "{ ## Call \"subset\" method for \"Bimap\" objects   x -   callNextMethod (  x , Lkeys =  Lkeys , Rkeys =  Rkeys )  if (  !   is.null (  objName ) )    x @ objName -   toString (  objName )  x } ",
+    "filename": "Bimap.txt"
+  },
+  "new_function": {
+    "name": "subset",
+    "representation": "subset",
+    "signature": "AnnDbBimap",
+    "parameters": "function ( x , Lkeys = NULL , Rkeys = NULL , drop.invalid.keys = FALSE , objName = NULL )",
+    "body": "{ ## Call \"subset\" method for \"Bimap\" objects   x -   callNextMethod (  x , Lkeys =  Lkeys , Rkeys =  Rkeys , drop.invalid.keys =  drop.invalid.keys )  if (  !   is.null (  objName ) )    x @ objName -   toString (  objName )  x } ",
+    "filename": "Bimap.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "makeHUMANCHIP_DB",
+    "representation": "makeHUMANCHIP_DB",
+    "parameters": "function ( affy , prefix , fileName , otherSrc = character ( 0 ) , chipMapSrc = system.file ( \"extdata\" , \"chipmapsrc_human.sqlite\" , package = \"human.db0\" ) , chipSrc = system.file ( \"extdata\" , \"chipsrc_human.sqlite\" , package = \"human.db0\" ) , baseMapType , outputDir = \".\" , version , manufacturer = \"Manufacturer not specified\" , chipName = \"ChipName not specified\" , manufacturerUrl = \"Manufacturer Url not specified\" )",
+    "body": "{  if (    outputDir !=  \".\" undefined     file.access (  outputDir ) [[  1 ] ] !=  0 )  {   stop (  \"Selected outputDir '\" ,  outputDir ,  \"' does not exist.\" ) }   metaDataSrc -   c ( DBSCHEMA =  \"HUMANCHIP_DB\" , ORGANISM =  \"Homo sapiens\" , SPECIES =  \"Human\" , MANUFACTURER =  manufacturer , CHIPNAME =  chipName , MANUFACTURERURL =  manufacturerUrl )   popHUMANCHIPDB ( affy =  affy , prefix =  prefix , fileName =  fileName , chipMapSrc =  chipMapSrc , chipSrc =  chipSrc , metaDataSrc =  metaDataSrc , otherSrc =  otherSrc , baseMapType =  baseMapType , outputDir =  outputDir , printSchema =  FALSE )   seed -   new (  \"AnnDbPkgSeed\" , Package =   paste (  prefix ,  \".db\" , sep =  \"\" ) , Version =  version , PkgTemplate =  \"HUMANCHIP.DB\" , AnnObjPrefix =  prefix )   makeAnnDbPkg (  seed ,   paste (  outputDir ,  \"/\" ,  prefix ,  \".sqlite\" , sep =  \"\" ) , dest_dir =  outputDir ) } ",
+    "filename": "sqlForge_makeAnnPkgs.txt"
+  },
+  "new_function": {
+    "name": "makeHUMANCHIP_DB",
+    "representation": "makeHUMANCHIP_DB",
+    "parameters": "function ( affy , prefix , fileName , otherSrc = character ( 0 ) , chipMapSrc = system.file ( \"extdata\" , \"chipmapsrc_human.sqlite\" , package = \"human.db0\" ) , chipSrc = system.file ( \"extdata\" , \"chipsrc_human.sqlite\" , package = \"human.db0\" ) , baseMapType , outputDir = \".\" , version , manufacturer = \"Manufacturer not specified\" , chipName = \"ChipName not specified\" , manufacturerUrl = \"Manufacturer Url not specified\" , author = \"Marc Carlson, Seth Falcon, Herve Pages, Nianhua Li\" , maintainer = \"Biocore Data Team  biocannotation@lists.fhcrc.org \" )",
+    "body": "{  if (    outputDir !=  \".\" undefined     file.access (  outputDir ) [[  1 ] ] !=  0 )  {   stop (  \"Selected outputDir '\" ,  outputDir ,  \"' does not exist.\" ) }   metaDataSrc -   c ( DBSCHEMA =  \"HUMANCHIP_DB\" , ORGANISM =  \"Homo sapiens\" , SPECIES =  \"Human\" , MANUFACTURER =  manufacturer , CHIPNAME =  chipName , MANUFACTURERURL =  manufacturerUrl )   popHUMANCHIPDB ( affy =  affy , prefix =  prefix , fileName =  fileName , chipMapSrc =  chipMapSrc , chipSrc =  chipSrc , metaDataSrc =  metaDataSrc , otherSrc =  otherSrc , baseMapType =  baseMapType , outputDir =  outputDir , printSchema =  FALSE )   seed -   new (  \"AnnDbPkgSeed\" , Package =   paste (  prefix ,  \".db\" , sep =  \"\" ) , Version =  version , Author =  author , Maintainer =  maintainer , PkgTemplate =  \"HUMANCHIP.DB\" , AnnObjPrefix =  prefix )   makeAnnDbPkg (  seed ,   paste (  outputDir ,  \"/\" ,  prefix ,  \".sqlite\" , sep =  \"\" ) , dest_dir =  outputDir ) } ",
+    "filename": "sqlForge_makeAnnPkgs.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "makeMOUSECHIP_DB",
+    "representation": "makeMOUSECHIP_DB",
+    "parameters": "function ( affy , prefix , fileName , otherSrc = character ( 0 ) , chipMapSrc = system.file ( \"extdata\" , \"chipmapsrc_mouse.sqlite\" , package = \"mouse.db0\" ) , chipSrc = system.file ( \"extdata\" , \"chipsrc_mouse.sqlite\" , package = \"mouse.db0\" ) , baseMapType , outputDir = \".\" , version , manufacturer = \"Manufacturer not specified\" , chipName = \"ChipName not specified\" , manufacturerUrl = \"Manufacturer Url not specified\" )",
+    "body": "{  if (    outputDir !=  \".\" undefined     file.access (  outputDir ) [[  1 ] ] !=  0 )  {   stop (  \"Selected outputDir '\" ,  outputDir ,  \"' does not exist.\" ) }   metaDataSrc -   c ( DBSCHEMA =  \"MOUSECHIP_DB\" , ORGANISM =  \"Mus musculus\" , SPECIES =  \"Mouse\" , MANUFACTURER =  manufacturer , CHIPNAME =  chipName , MANUFACTURERURL =  manufacturerUrl )   popMOUSECHIPDB ( affy =  affy , prefix =  prefix , fileName =  fileName , chipMapSrc =  chipMapSrc , chipSrc =  chipSrc , metaDataSrc =  metaDataSrc , otherSrc =  otherSrc , baseMapType =  baseMapType , outputDir =  outputDir , printSchema =  FALSE )   seed -   new (  \"AnnDbPkgSeed\" , Package =   paste (  prefix ,  \".db\" , sep =  \"\" ) , Version =  version , PkgTemplate =  \"MOUSECHIP.DB\" , AnnObjPrefix =  prefix )   makeAnnDbPkg (  seed ,   paste (  outputDir ,  \"/\" ,  prefix ,  \".sqlite\" , sep =  \"\" ) , dest_dir =  outputDir ) } ",
+    "filename": "sqlForge_makeAnnPkgs.txt"
+  },
+  "new_function": {
+    "name": "makeMOUSECHIP_DB",
+    "representation": "makeMOUSECHIP_DB",
+    "parameters": "function ( affy , prefix , fileName , otherSrc = character ( 0 ) , chipMapSrc = system.file ( \"extdata\" , \"chipmapsrc_mouse.sqlite\" , package = \"mouse.db0\" ) , chipSrc = system.file ( \"extdata\" , \"chipsrc_mouse.sqlite\" , package = \"mouse.db0\" ) , baseMapType , outputDir = \".\" , version , manufacturer = \"Manufacturer not specified\" , chipName = \"ChipName not specified\" , manufacturerUrl = \"Manufacturer Url not specified\" , author = \"Marc Carlson, Seth Falcon, Herve Pages, Nianhua Li\" , maintainer = \"Biocore Data Team  biocannotation@lists.fhcrc.org \" )",
+    "body": "{  if (    outputDir !=  \".\" undefined     file.access (  outputDir ) [[  1 ] ] !=  0 )  {   stop (  \"Selected outputDir '\" ,  outputDir ,  \"' does not exist.\" ) }   metaDataSrc -   c ( DBSCHEMA =  \"MOUSECHIP_DB\" , ORGANISM =  \"Mus musculus\" , SPECIES =  \"Mouse\" , MANUFACTURER =  manufacturer , CHIPNAME =  chipName , MANUFACTURERURL =  manufacturerUrl )   popMOUSECHIPDB ( affy =  affy , prefix =  prefix , fileName =  fileName , chipMapSrc =  chipMapSrc , chipSrc =  chipSrc , metaDataSrc =  metaDataSrc , otherSrc =  otherSrc , baseMapType =  baseMapType , outputDir =  outputDir , printSchema =  FALSE )   seed -   new (  \"AnnDbPkgSeed\" , Package =   paste (  prefix ,  \".db\" , sep =  \"\" ) , Version =  version , Author =  author , Maintainer =  maintainer , PkgTemplate =  \"MOUSECHIP.DB\" , AnnObjPrefix =  prefix )   makeAnnDbPkg (  seed ,   paste (  outputDir ,  \"/\" ,  prefix ,  \".sqlite\" , sep =  \"\" ) , dest_dir =  outputDir ) } ",
+    "filename": "sqlForge_makeAnnPkgs.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "makeRATCHIP_DB",
+    "representation": "makeRATCHIP_DB",
+    "parameters": "function ( affy , prefix , fileName , otherSrc = character ( 0 ) , chipMapSrc = system.file ( \"extdata\" , \"chipmapsrc_rat.sqlite\" , package = \"rat.db0\" ) , chipSrc = system.file ( \"extdata\" , \"chipsrc_rat.sqlite\" , package = \"rat.db0\" ) , baseMapType , outputDir = \".\" , version , manufacturer = \"Manufacturer not specified\" , chipName = \"ChipName not specified\" , manufacturerUrl = \"Manufacturer Url not specified\" )",
+    "body": "{  if (    outputDir !=  \".\" undefined     file.access (  outputDir ) [[  1 ] ] !=  0 )  {   stop (  \"Selected outputDir '\" ,  outputDir ,  \"' does not exist.\" ) }   metaDataSrc -   c ( DBSCHEMA =  \"RATCHIP_DB\" , ORGANISM =  \"Rattus norvegicus\" , SPECIES =  \"Rat\" , MANUFACTURER =  manufacturer , CHIPNAME =  chipName , MANUFACTURERURL =  manufacturerUrl )   popRATCHIPDB ( affy =  affy , prefix =  prefix , fileName =  fileName , chipMapSrc =  chipMapSrc , chipSrc =  chipSrc , metaDataSrc =  metaDataSrc , otherSrc =  otherSrc , baseMapType =  baseMapType , outputDir =  outputDir , printSchema =  FALSE )   seed -   new (  \"AnnDbPkgSeed\" , Package =   paste (  prefix ,  \".db\" , sep =  \"\" ) , Version =  version , PkgTemplate =  \"RATCHIP.DB\" , AnnObjPrefix =  prefix )   makeAnnDbPkg (  seed ,   paste (  outputDir ,  \"/\" ,  prefix ,  \".sqlite\" , sep =  \"\" ) , dest_dir =  outputDir ) } ",
+    "filename": "sqlForge_makeAnnPkgs.txt"
+  },
+  "new_function": {
+    "name": "makeRATCHIP_DB",
+    "representation": "makeRATCHIP_DB",
+    "parameters": "function ( affy , prefix , fileName , otherSrc = character ( 0 ) , chipMapSrc = system.file ( \"extdata\" , \"chipmapsrc_rat.sqlite\" , package = \"rat.db0\" ) , chipSrc = system.file ( \"extdata\" , \"chipsrc_rat.sqlite\" , package = \"rat.db0\" ) , baseMapType , outputDir = \".\" , version , manufacturer = \"Manufacturer not specified\" , chipName = \"ChipName not specified\" , manufacturerUrl = \"Manufacturer Url not specified\" , author = \"Marc Carlson, Seth Falcon, Herve Pages, Nianhua Li\" , maintainer = \"Biocore Data Team  biocannotation@lists.fhcrc.org \" )",
+    "body": "{  if (    outputDir !=  \".\" undefined     file.access (  outputDir ) [[  1 ] ] !=  0 )  {   stop (  \"Selected outputDir '\" ,  outputDir ,  \"' does not exist.\" ) }   metaDataSrc -   c ( DBSCHEMA =  \"RATCHIP_DB\" , ORGANISM =  \"Rattus norvegicus\" , SPECIES =  \"Rat\" , MANUFACTURER =  manufacturer , CHIPNAME =  chipName , MANUFACTURERURL =  manufacturerUrl )   popRATCHIPDB ( affy =  affy , prefix =  prefix , fileName =  fileName , chipMapSrc =  chipMapSrc , chipSrc =  chipSrc , metaDataSrc =  metaDataSrc , otherSrc =  otherSrc , baseMapType =  baseMapType , outputDir =  outputDir , printSchema =  FALSE )   seed -   new (  \"AnnDbPkgSeed\" , Package =   paste (  prefix ,  \".db\" , sep =  \"\" ) , Version =  version , Author =  author , Maintainer =  maintainer , PkgTemplate =  \"RATCHIP.DB\" , AnnObjPrefix =  prefix )   makeAnnDbPkg (  seed ,   paste (  outputDir ,  \"/\" ,  prefix ,  \".sqlite\" , sep =  \"\" ) , dest_dir =  outputDir ) } ",
+    "filename": "sqlForge_makeAnnPkgs.txt"
+  }
+}
+
+4.
+{
+  "old_function": {
+    "name": "makeFLYCHIP_DB",
+    "representation": "makeFLYCHIP_DB",
+    "parameters": "function ( affy , prefix , fileName , otherSrc = character ( 0 ) , chipMapSrc = system.file ( \"extdata\" , \"chipmapsrc_fly.sqlite\" , package = \"fly.db0\" ) , chipSrc = system.file ( \"extdata\" , \"chipsrc_fly.sqlite\" , package = \"fly.db0\" ) , baseMapType , outputDir = \".\" , version , manufacturer = \"Manufacturer not specified\" , chipName = \"ChipName not specified\" , manufacturerUrl = \"Manufacturer Url not specified\" )",
+    "body": "{  if (    outputDir !=  \".\" undefined     file.access (  outputDir ) [[  1 ] ] !=  0 )  {   stop (  \"Selected outputDir '\" ,  outputDir ,  \"' does not exist.\" ) }   metaDataSrc -   c ( DBSCHEMA =  \"FLYCHIP_DB\" , ORGANISM =  \"Drosophila melanogaster\" , SPECIES =  \"Fly\" , MANUFACTURER =  manufacturer , CHIPNAME =  chipName , MANUFACTURERURL =  manufacturerUrl )   popFLYCHIPDB ( affy =  affy , prefix =  prefix , fileName =  fileName , chipMapSrc =  chipMapSrc , chipSrc =  chipSrc , metaDataSrc =  metaDataSrc , otherSrc =  otherSrc , baseMapType =  baseMapType , outputDir =  outputDir , printSchema =  FALSE )   seed -   new (  \"AnnDbPkgSeed\" , Package =   paste (  prefix ,  \".db\" , sep =  \"\" ) , Version =  version , PkgTemplate =  \"FLYCHIP.DB\" , AnnObjPrefix =  prefix )   makeAnnDbPkg (  seed ,   paste (  outputDir ,  \"/\" ,  prefix ,  \".sqlite\" , sep =  \"\" ) , dest_dir =  outputDir ) } ",
+    "filename": "sqlForge_makeAnnPkgs.txt"
+  },
+  "new_function": {
+    "name": "makeFLYCHIP_DB",
+    "representation": "makeFLYCHIP_DB",
+    "parameters": "function ( affy , prefix , fileName , otherSrc = character ( 0 ) , chipMapSrc = system.file ( \"extdata\" , \"chipmapsrc_fly.sqlite\" , package = \"fly.db0\" ) , chipSrc = system.file ( \"extdata\" , \"chipsrc_fly.sqlite\" , package = \"fly.db0\" ) , baseMapType , outputDir = \".\" , version , manufacturer = \"Manufacturer not specified\" , chipName = \"ChipName not specified\" , manufacturerUrl = \"Manufacturer Url not specified\" , author = \"Marc Carlson, Seth Falcon, Herve Pages, Nianhua Li\" , maintainer = \"Biocore Data Team  biocannotation@lists.fhcrc.org \" )",
+    "body": "{  if (    outputDir !=  \".\" undefined     file.access (  outputDir ) [[  1 ] ] !=  0 )  {   stop (  \"Selected outputDir '\" ,  outputDir ,  \"' does not exist.\" ) }   metaDataSrc -   c ( DBSCHEMA =  \"FLYCHIP_DB\" , ORGANISM =  \"Drosophila melanogaster\" , SPECIES =  \"Fly\" , MANUFACTURER =  manufacturer , CHIPNAME =  chipName , MANUFACTURERURL =  manufacturerUrl )   popFLYCHIPDB ( affy =  affy , prefix =  prefix , fileName =  fileName , chipMapSrc =  chipMapSrc , chipSrc =  chipSrc , metaDataSrc =  metaDataSrc , otherSrc =  otherSrc , baseMapType =  baseMapType , outputDir =  outputDir , printSchema =  FALSE )   seed -   new (  \"AnnDbPkgSeed\" , Package =   paste (  prefix ,  \".db\" , sep =  \"\" ) , Version =  version , Author =  author , Maintainer =  maintainer , PkgTemplate =  \"FLYCHIP.DB\" , AnnObjPrefix =  prefix )   makeAnnDbPkg (  seed ,   paste (  outputDir ,  \"/\" ,  prefix ,  \".sqlite\" , sep =  \"\" ) , dest_dir =  outputDir ) } ",
+    "filename": "sqlForge_makeAnnPkgs.txt"
+  }
+}
+
+5.
+{
+  "old_function": {
+    "name": "makeARABIDOPSISCHIP_DB",
+    "representation": "makeARABIDOPSISCHIP_DB",
+    "parameters": "function ( affy , prefix , fileName = \"myFile.txt\" , chipMapSrc = system.file ( \"extdata\" , \"chipmapsrc_arabidopsis.sqlite\" , package = \"arabidopsis.db0\" ) , chipSrc = system.file ( \"extdata\" , \"chipsrc_arabidopsis.sqlite\" , package = \"arabidopsis.db0\" ) , outputDir = \".\" , version , manufacturer = \"Manufacturer not specified\" , chipName = \"ChipName not specified\" , manufacturerUrl = \"Manufacturer Url not specified\" )",
+    "body": "{  if (    outputDir !=  \".\" undefined     file.access (  outputDir ) [[  1 ] ] !=  0 )  {   stop (  \"Selected outputDir '\" ,  outputDir ,  \"' does not exist.\" ) }   metaDataSrc -   c ( DBSCHEMA =  \"ARABIDOPSISCHIP_DB\" , ORGANISM =  \"Arabidopsis thaliana\" , SPECIES =  \"Arabidosis\" , MANUFACTURER =  manufacturer , CHIPNAME =  chipName , MANUFACTURERURL =  manufacturerUrl )   popARABIDOPSISCHIPDB ( affy =  affy , prefix =  prefix , fileName =  fileName , chipMapSrc =  chipMapSrc , chipSrc =  chipSrc , metaDataSrc =  metaDataSrc , outputDir =  outputDir , printSchema =  FALSE )   seed -   new (  \"AnnDbPkgSeed\" , Package =   paste (  prefix ,  \".db\" , sep =  \"\" ) , Version =  version , PkgTemplate =  \"ARABIDOPSISCHIP.DB\" , AnnObjPrefix =  prefix )   makeAnnDbPkg (  seed ,   paste (  outputDir ,  \"/\" ,  prefix ,  \".sqlite\" , sep =  \"\" ) , dest_dir =  outputDir ) } ",
+    "filename": "sqlForge_makeAnnPkgs.txt"
+  },
+  "new_function": {
+    "name": "makeARABIDOPSISCHIP_DB",
+    "representation": "makeARABIDOPSISCHIP_DB",
+    "parameters": "function ( affy , prefix , fileName = \"myFile.txt\" , chipMapSrc = system.file ( \"extdata\" , \"chipmapsrc_arabidopsis.sqlite\" , package = \"arabidopsis.db0\" ) , chipSrc = system.file ( \"extdata\" , \"chipsrc_arabidopsis.sqlite\" , package = \"arabidopsis.db0\" ) , outputDir = \".\" , version , manufacturer = \"Manufacturer not specified\" , chipName = \"ChipName not specified\" , manufacturerUrl = \"Manufacturer Url not specified\" , author = \"Marc Carlson, Seth Falcon, Herve Pages, Nianhua Li\" , maintainer = \"Biocore Data Team  biocannotation@lists.fhcrc.org \" )",
+    "body": "{  if (    outputDir !=  \".\" undefined     file.access (  outputDir ) [[  1 ] ] !=  0 )  {   stop (  \"Selected outputDir '\" ,  outputDir ,  \"' does not exist.\" ) }   metaDataSrc -   c ( DBSCHEMA =  \"ARABIDOPSISCHIP_DB\" , ORGANISM =  \"Arabidopsis thaliana\" , SPECIES =  \"Arabidosis\" , MANUFACTURER =  manufacturer , CHIPNAME =  chipName , MANUFACTURERURL =  manufacturerUrl )   popARABIDOPSISCHIPDB ( affy =  affy , prefix =  prefix , fileName =  fileName , chipMapSrc =  chipMapSrc , chipSrc =  chipSrc , metaDataSrc =  metaDataSrc , outputDir =  outputDir , printSchema =  FALSE )   seed -   new (  \"AnnDbPkgSeed\" , Package =   paste (  prefix ,  \".db\" , sep =  \"\" ) , Version =  version , Author =  author , Maintainer =  maintainer , PkgTemplate =  \"ARABIDOPSISCHIP.DB\" , AnnObjPrefix =  prefix )   makeAnnDbPkg (  seed ,   paste (  outputDir ,  \"/\" ,  prefix ,  \".sqlite\" , sep =  \"\" ) , dest_dir =  outputDir ) } ",
+    "filename": "sqlForge_makeAnnPkgs.txt"
+  }
+}
+
+6.
+{
+  "old_function": {
+    "name": "makeYEASTCHIP_DB",
+    "representation": "makeYEASTCHIP_DB",
+    "parameters": "function ( affy , prefix , fileName , chipSrc = system.file ( \"extdata\" , \"chipsrc_yeast.sqlite\" , package = \"yeast.db0\" ) , outputDir = \".\" , version , manufacturer = \"Manufacturer not specified\" , chipName = \"ChipName not specified\" , manufacturerUrl = \"Manufacturer Url not specified\" )",
+    "body": "{  if (    outputDir !=  \".\" undefined     file.access (  outputDir ) [[  1 ] ] !=  0 )  {   stop (  \"Selected outputDir '\" ,  outputDir ,  \"' does not exist.\" ) }   metaDataSrc -   c ( DBSCHEMA =  \"YEASTCHIP_DB\" , ORGANISM =  \"Saccharomyces cerevisiae\" , SPECIES =  \"Yeast\" , MANUFACTURER =  manufacturer , CHIPNAME =  chipName , MANUFACTURERURL =  manufacturerUrl )   popYEASTCHIPDB ( affy =  affy , prefix =  prefix , fileName =  fileName , chipSrc =  chipSrc , metaDataSrc =  metaDataSrc , outputDir =  outputDir , printSchema =  FALSE )   seed -   new (  \"AnnDbPkgSeed\" , Package =   paste (  prefix ,  \".db\" , sep =  \"\" ) , Version =  version , PkgTemplate =  \"YEASTCHIP.DB\" , AnnObjPrefix =  prefix )   makeAnnDbPkg (  seed ,   paste (  outputDir ,  \"/\" ,  prefix ,  \".sqlite\" , sep =  \"\" ) , dest_dir =  outputDir ) } ",
+    "filename": "sqlForge_makeAnnPkgs.txt"
+  },
+  "new_function": {
+    "name": "makeYEASTCHIP_DB",
+    "representation": "makeYEASTCHIP_DB",
+    "parameters": "function ( affy , prefix , fileName , chipSrc = system.file ( \"extdata\" , \"chipsrc_yeast.sqlite\" , package = \"yeast.db0\" ) , outputDir = \".\" , version , manufacturer = \"Manufacturer not specified\" , chipName = \"ChipName not specified\" , manufacturerUrl = \"Manufacturer Url not specified\" , author = \"Marc Carlson, Seth Falcon, Herve Pages, Nianhua Li\" , maintainer = \"Biocore Data Team  biocannotation@lists.fhcrc.org \" )",
+    "body": "{  if (    outputDir !=  \".\" undefined     file.access (  outputDir ) [[  1 ] ] !=  0 )  {   stop (  \"Selected outputDir '\" ,  outputDir ,  \"' does not exist.\" ) }   metaDataSrc -   c ( DBSCHEMA =  \"YEASTCHIP_DB\" , ORGANISM =  \"Saccharomyces cerevisiae\" , SPECIES =  \"Yeast\" , MANUFACTURER =  manufacturer , CHIPNAME =  chipName , MANUFACTURERURL =  manufacturerUrl )   popYEASTCHIPDB ( affy =  affy , prefix =  prefix , fileName =  fileName , chipSrc =  chipSrc , metaDataSrc =  metaDataSrc , outputDir =  outputDir , printSchema =  FALSE )   seed -   new (  \"AnnDbPkgSeed\" , Package =   paste (  prefix ,  \".db\" , sep =  \"\" ) , Version =  version , Author =  author , Maintainer =  maintainer , PkgTemplate =  \"YEASTCHIP.DB\" , AnnObjPrefix =  prefix )   makeAnnDbPkg (  seed ,   paste (  outputDir ,  \"/\" ,  prefix ,  \".sqlite\" , sep =  \"\" ) , dest_dir =  outputDir ) } ",
+    "filename": "sqlForge_makeAnnPkgs.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationdbi_release_2_3 annotationdbi_release_2_4
+
+{
+    "package": "AnnotationDbi",
+    "release_versions": "annotationdbi_release_2_3 annotationdbi_release_2_4",
+    "desc_release_old": "1.4.3",
+    "desc_release_new": "1.6.1",
+    "old_release_number": 3,
+    "new_release_number": 4,
+    "function_removals": 0,
+    "function_additions": 12,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+createAnnObjs.HUMANCROSSCHIP_DB
+createAnnObjs.YEASTNCBI_DB
+popYEASTNCBIDB
+createSimpleBimap
+available.db0pkgs
+inpIDMapper
+intraIDMapper
+idConverter
+print.probetable
+getProbeDataAffy
+getProbeData_1lq
+makeProbePackage
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationdbi_release_2_4 annotationdbi_release_2_5
+
+{
+    "package": "AnnotationDbi",
+    "release_versions": "annotationdbi_release_2_4 annotationdbi_release_2_5",
+    "desc_release_old": "1.6.1",
+    "desc_release_new": "1.8.2",
+    "old_release_number": 4,
+    "new_release_number": 5,
+    "function_removals": 78,
+    "function_additions": 15,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 78
+}
+
+##########
+Functions Removed
+##########
+
+createAnnObjs.HUMANCROSSCHIP_DB
+createAnnObjs.HUMANCHIP_DB
+createAnnObjs.MOUSECHIP_DB
+createAnnObjs.RATCHIP_DB
+createAnnObjs.FLYCHIP_DB
+createAnnObjs.YEASTCHIP_DB
+createAnnObjs.ZEBRAFISHCHIP_DB
+createAnnObjs.ECOLICHIP_DB
+createAnnObjs.CANINECHIP_DB
+createAnnObjs.BOVINECHIP_DB
+createAnnObjs.WORMCHIP_DB
+createAnnObjs.PIGCHIP_DB
+createAnnObjs.CHICKENCHIP_DB
+createAnnObjs.ARABIDOPSISCHIP_DB
+createAnnObjs.HUMAN_DB
+createAnnObjs.MALARIA_DB
+createAnnObjs.MOUSE_DB
+createAnnObjs.RAT_DB
+createAnnObjs.FLY_DB
+createAnnObjs.YEAST_DB
+createAnnObjs.YEASTLEGACY_DB
+createAnnObjs.YEASTNCBI_DB
+createAnnObjs.ZEBRAFISH_DB
+createAnnObjs.CANINE_DB
+createAnnObjs.BOVINE_DB
+createAnnObjs.WORM_DB
+createAnnObjs.PIG_DB
+createAnnObjs.CHICKEN_DB
+createAnnObjs.ECOLI_DB
+createAnnObjs.GO_DB
+createAnnObjs.KEGG_DB
+createAnnObjs.INPARANOIDHOMSA_DB
+createAnnObjs.INPARANOIDMUSMU_DB
+createAnnObjs.INPARANOIDRATNO_DB
+createAnnObjs.INPARANOIDDROME_DB
+createAnnObjs.INPARANOIDSACCE_DB
+createAnnObjs.PFAM_DB
+createAnnObjs.AFFYHUEX_DB
+popHUMANCHIPDB
+popHUMANDB
+popMOUSECHIPDB
+popMOUSEDB
+popRATCHIPDB
+popRATDB
+popARABIDOPSISCHIPDB
+popFLYCHIPDB
+popFLYDB
+popYEASTCHIPDB
+popYEASTDB
+popYEASTNCBIDB
+popMALARIADB
+popZEBRAFISHCHIPDB
+popZEBRAFISHDB
+popECOLICHIPDB
+popECOLIDB
+popCANINECHIPDB
+popCANINEDB
+popBOVINECHIPDB
+popBOVINEDB
+popWORMCHIPDB
+popWORMDB
+popPIGCHIPDB
+popPIGDB
+popCHICKENCHIPDB
+popCHICKENDB
+makeHUMANCHIP_DB
+makeMOUSECHIP_DB
+makeRATCHIP_DB
+makeFLYCHIP_DB
+makeARABIDOPSISCHIP_DB
+makeYEASTCHIP_DB
+makeZEBRAFISHCHIP_DB
+makeECOLICHIP_DB
+makeCANINECHIP_DB
+makeBOVINECHIP_DB
+makeWORMCHIP_DB
+makePIGCHIP_DB
+makeCHICKENCHIP_DB
+
+
+##########
+Functions Added
+##########
+
+createAnnObjs.SchemaChoice
+populateDB
+makeDBPackage
+available.dbschemas
+available.chipdbschemas
+toggleProbes
+hasMultiProbes
+hasSingleProbes
+getBimapFilters
+setInpBimapFilter
+GOFrame
+GOAllFrame
+getGOFrameData
+KEGGFrame
+getKEGGFrameData
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationdbi_release_2_5 annotationdbi_release_2_6
+
+{
+    "package": "AnnotationDbi",
+    "release_versions": "annotationdbi_release_2_5 annotationdbi_release_2_6",
+    "desc_release_old": "1.8.2",
+    "desc_release_new": "1.10.2",
+    "old_release_number": 5,
+    "new_release_number": 6,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationdbi_release_2_6 annotationdbi_release_2_7
+
+{
+    "package": "AnnotationDbi",
+    "release_versions": "annotationdbi_release_2_6 annotationdbi_release_2_7",
+    "desc_release_old": "1.10.2",
+    "desc_release_new": "1.12.1",
+    "old_release_number": 6,
+    "new_release_number": 7,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationdbi_release_2_7 annotationdbi_release_2_8
+
+{
+    "package": "AnnotationDbi",
+    "release_versions": "annotationdbi_release_2_7 annotationdbi_release_2_8",
+    "desc_release_old": "1.12.1",
+    "desc_release_new": "1.14.1",
+    "old_release_number": 7,
+    "new_release_number": 8,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationdbi_release_2_8 annotationdbi_release_2_9
+
+{
+    "package": "AnnotationDbi",
+    "release_versions": "annotationdbi_release_2_8 annotationdbi_release_2_9",
+    "desc_release_old": "1.14.1",
+    "desc_release_new": "1.16.19",
+    "old_release_number": 8,
+    "new_release_number": 9,
+    "function_removals": 0,
+    "function_additions": 8,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+makeOrgPackageFromNCBI
+metadata
+as.data.frame
+saveDb
+loadDb
+cols
+keytypes
+select
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationdbi_release_2_9 annotationdbi_release_2_11
+
+{
+    "package": "AnnotationDbi",
+    "release_versions": "annotationdbi_release_2_9 annotationdbi_release_2_11",
+    "desc_release_old": "1.16.19",
+    "desc_release_new": "1.20.7",
+    "old_release_number": 9,
+    "new_release_number": 10,
+    "function_removals": 14,
+    "function_additions": 8,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 14
+}
+
+##########
+Functions Removed
+##########
+
+loadAnnDbPkgIndex
+populateDB
+makeDBPackage
+createSimpleBimap
+available.db0pkgs
+available.dbschemas
+available.chipdbschemas
+wrapBaseDBPackages
+makeOrgPackageFromNCBI
+print.probetable
+getProbeDataAffy
+getProbeData_1lq
+makeProbePackage
+makeAnnDbPkg
+
+
+##########
+Functions Added
+##########
+
+supportedSeqnameStyles
+extractSeqnameSet
+testSeqnames
+isSupportedSeqnamesStyle
+listAllSupportedStylesBySpecies
+listAllSupportedSeqnameStyles
+supportedSeqnames
+species
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationdbi_release_2_11 annotationdbi_release_2_12
+
+{
+    "package": "AnnotationDbi",
+    "release_versions": "annotationdbi_release_2_11 annotationdbi_release_2_12",
+    "desc_release_old": "1.20.7",
+    "desc_release_new": "1.22.6",
+    "old_release_number": 10,
+    "new_release_number": 11,
+    "function_removals": 0,
+    "function_additions": 3,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+makeGOGraph
+supportedSeqnameMappings
+findSequenceRenamingMaps
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationdbi_release_2_12 annotationdbi_release_2_13
+
+{
+    "package": "AnnotationDbi",
+    "release_versions": "annotationdbi_release_2_12 annotationdbi_release_2_13",
+    "desc_release_old": "1.22.6",
+    "desc_release_new": "1.24.0",
+    "old_release_number": 11,
+    "new_release_number": 12,
+    "function_removals": 1,
+    "function_additions": 2,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+cols
+
+
+##########
+Functions Added
+##########
+
+
+columns
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationdbi_release_2_13 annotationdbi_release_2_14
+
+{
+    "package": "AnnotationDbi",
+    "release_versions": "annotationdbi_release_2_13 annotationdbi_release_2_14",
+    "desc_release_old": "1.24.0",
+    "desc_release_new": "1.26.1",
+    "old_release_number": 12,
+    "new_release_number": 13,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationdbi_release_2_14 annotationdbi_release_3_1
+
+{
+    "package": "AnnotationDbi",
+    "release_versions": "annotationdbi_release_2_14 annotationdbi_release_3_1",
+    "desc_release_old": "1.26.1",
+    "desc_release_new": "1.30.1",
+    "old_release_number": 13,
+    "new_release_number": 14,
+    "function_removals": 1,
+    "function_additions": 2,
+    "parameter_removals": 1,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+
+
+
+##########
+Functions Added
+##########
+
+createSimpleBimap
+mapIds
+
+
+##########
+Removed Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "ls",
+    "representation": "ls",
+    "signature": "signature ( name =  Bimap )",
+    "parameters": "function ( name , pos , envir , all.names , pattern )",
+    "body": "{  if (  !   missing (  pos ) )   warning (  \"ignoring 'pos' argument\" )  if (  !   missing (  envir ) )   warning (  \"ignoring 'envir' argument\" )  if (  !   missing (  all.names ) )   warning (  \"ignoring 'all.names' argument\" )   .ls (  name ,  pos ,  envir ,  all.names ,  pattern ) } ",
+    "filename": "Bimap-envirAPI.txt"
+  },
+  "new_function": {
+    "name": "ls",
+    "representation": "ls",
+    "signature": "signature ( name =  Bimap )",
+    "parameters": "function ( name , pos = - 1L , envir = as.environment ( pos ) , all.names = FALSE , pattern , sorted = TRUE )",
+    "body": "{  if (  !   missing (  pos ) )   warning (  \"ignoring 'pos' argument\" )  if (  !   missing (  envir ) )   warning (  \"ignoring 'envir' argument\" )  if (  !   missing (  all.names ) )   warning (  \"ignoring 'all.names' argument\" )  if (  !   missing (  sorted ) )   warning (  \"ignoring 'sorted' argument\" )   .ls (  name ,  pos ,  envir ,  all.names ,  pattern ) } ",
+    "filename": "Bimap-envirAPI.txt"
+  }
+}
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "species",
+    "representation": "species",
+    "signature": "AnnotationDb",
+    "parameters": "function ( x )",
+    "body": "{   res -   as.character (   dbEasyQuery (   dbConn (  x ) ,  \"SELECT value FROM metadata WHERE name='ORGANISM'\" ) )  if (   res ==  \"character(0)\" )  { ## then try again.   res -   as.character (   dbEasyQuery (   dbConn (  x ) ,  \"SELECT value FROM metadata WHERE name='Organism'\" ) ) }  if (   res ==  \"character(0)\" )  { ## then try again.   res -   as.character (   dbEasyQuery (   dbConn (  x ) ,  \"SELECT value FROM metadata WHERE name='Genus and Species'\" ) ) }  res } ",
+    "filename": "methods-AnnotationDb.txt"
+  },
+  "new_function": {
+    "name": "species",
+    "representation": "species",
+    "signature": "AnnotationDb",
+    "parameters": "function ( object )",
+    "body": "{   res -   as.character (   dbEasyQuery (   dbconn (  object ) ,  \"SELECT value FROM metadata WHERE name='ORGANISM'\" ) )  if (   res ==  \"character(0)\" )  { ## then try again.   res -   as.character (   dbEasyQuery (   dbconn (  object ) ,  \"SELECT value FROM metadata WHERE name='Organism'\" ) ) }  if (   res ==  \"character(0)\" )  { ## then try again.   res -   as.character (   dbEasyQuery (   dbconn (  object ) ,  \"SELECT value FROM metadata WHERE name='Genus and Species'\" ) ) }  res } ",
+    "filename": "methods-AnnotationDb.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationdbi_release_3_1 annotationdbi_release_3_2
+
+{
+    "package": "AnnotationDbi",
+    "release_versions": "annotationdbi_release_3_1 annotationdbi_release_3_2",
+    "desc_release_old": "1.30.1",
+    "desc_release_new": "1.32.3",
+    "old_release_number": 14,
+    "new_release_number": 15,
+    "function_removals": 9,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 9
+}
+
+##########
+Functions Removed
+##########
+
+supportedSeqnameMappings
+findSequenceRenamingMaps
+supportedSeqnameStyles
+extractSeqnameSet
+testSeqnames
+isSupportedSeqnamesStyle
+listAllSupportedStylesBySpecies
+listAllSupportedSeqnameStyles
+supportedSeqnames
+
+
+##########
+Functions Added
+##########
+
+taxonomyId
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationdbi_release_3_2 annotationdbi_release_3_3
+
+{
+    "package": "AnnotationDbi",
+    "release_versions": "annotationdbi_release_3_2 annotationdbi_release_3_3",
+    "desc_release_old": "1.32.3",
+    "desc_release_new": "1.34.4",
+    "old_release_number": 15,
+    "new_release_number": 16,
+    "function_removals": 0,
+    "function_additions": 9,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+dbGetTable
+getOrgPkgForSchema
+chooseCentralOrgPkgSymbol
+mapIds_base
+resort_base
+testForValidKeytype
+testSelectArgs
+NCBICHIP_DB_SeedGenerator
+filterSeeds
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationdbi_release_3_3 annotationdbi_release_3_4
+
+{
+    "package": "AnnotationDbi",
+    "release_versions": "annotationdbi_release_3_3 annotationdbi_release_3_4",
+    "desc_release_old": "1.34.4",
+    "desc_release_new": "1.36.2",
+    "old_release_number": 16,
+    "new_release_number": 17,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationdbi_release_3_4 annotationdbi_release_3_5
+
+{
+    "package": "AnnotationDbi",
+    "release_versions": "annotationdbi_release_3_4 annotationdbi_release_3_5",
+    "desc_release_old": "1.36.2",
+    "desc_release_new": "1.38.2",
+    "old_release_number": 17,
+    "new_release_number": 18,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationdbi_release_3_5 annotationdbi_release_3_6
+
+{
+    "package": "AnnotationDbi",
+    "release_versions": "annotationdbi_release_3_5 annotationdbi_release_3_6",
+    "desc_release_old": "1.38.2",
+    "desc_release_new": "1.40.0",
+    "old_release_number": 18,
+    "new_release_number": 19,
+    "function_removals": 0,
+    "function_additions": 3,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+as.list.Bimap
+as.data.frame.Bimap
+orgPackageName
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationdbi_release_3_6 annotationdbi_release_3_7
+
+{
+    "package": "AnnotationDbi",
+    "release_versions": "annotationdbi_release_3_6 annotationdbi_release_3_7",
+    "desc_release_old": "1.40.0",
+    "desc_release_new": "1.42.1",
+    "old_release_number": 19,
+    "new_release_number": 20,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationdbi_release_3_7 annotationdbi_release_3_8
+
+{
+    "package": "AnnotationDbi",
+    "release_versions": "annotationdbi_release_3_7 annotationdbi_release_3_8",
+    "desc_release_old": "1.42.1",
+    "desc_release_new": "1.44.0",
+    "old_release_number": 20,
+    "new_release_number": 21,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationdbi_release_3_8 annotationdbi_release_3_9
+
+{
+    "package": "AnnotationDbi",
+    "release_versions": "annotationdbi_release_3_8 annotationdbi_release_3_9",
+    "desc_release_old": "1.44.0",
+    "desc_release_new": "1.46.1",
+    "old_release_number": 21,
+    "new_release_number": 22,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationdbi_release_3_9 annotationdbi_release_3_11
+
+{
+    "package": "AnnotationDbi",
+    "release_versions": "annotationdbi_release_3_9 annotationdbi_release_3_11",
+    "desc_release_old": "1.46.1",
+    "desc_release_new": "1.50.3",
+    "old_release_number": 22,
+    "new_release_number": 23,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationdbi_release_3_11 annotationdbi_release_3_12
+
+{
+    "package": "AnnotationDbi",
+    "release_versions": "annotationdbi_release_3_11 annotationdbi_release_3_12",
+    "desc_release_old": "1.50.3",
+    "desc_release_new": "1.52.0",
+    "old_release_number": 23,
+    "new_release_number": 24,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationdbi_release_3_12 annotationdbi_release_3_13
+
+{
+    "package": "AnnotationDbi",
+    "release_versions": "annotationdbi_release_3_12 annotationdbi_release_3_13",
+    "desc_release_old": "1.52.0",
+    "desc_release_new": "1.54.1",
+    "old_release_number": 24,
+    "new_release_number": 25,
+    "function_removals": 1,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+setInpBimapFilter
+
+
+##########
+Functions Added
+##########
+
+organismKEGGFrame
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationdbi_release_3_13 annotationdbi_release_3_14
+
+{
+    "package": "AnnotationDbi",
+    "release_versions": "annotationdbi_release_3_13 annotationdbi_release_3_14",
+    "desc_release_old": "1.54.1",
+    "desc_release_new": "1.56.2",
+    "old_release_number": 25,
+    "new_release_number": 26,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  annotationdbi_release_3_14 annotationdbi_master
+
+{
+    "package": "AnnotationDbi",
+    "release_versions": "annotationdbi_release_3_14 annotationdbi_master",
+    "desc_release_old": "1.56.2",
+    "desc_release_new": "1.57.1",
+    "old_release_number": 26,
+    "new_release_number": 27,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+

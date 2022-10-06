@@ -1,0 +1,875 @@
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  summarizedexperiment_release_3_2 summarizedexperiment_release_3_3
+
+{
+    "package": "SummarizedExperiment",
+    "release_versions": "summarizedexperiment_release_3_2 summarizedexperiment_release_3_3",
+    "desc_release_old": "1.0.2",
+    "desc_release_new": "1.2.3",
+    "old_release_number": 0,
+    "new_release_number": 1,
+    "function_removals": 6,
+    "function_additions": 8,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 7,
+    "total_count": 13
+}
+
+##########
+Functions Removed
+##########
+
+.DollarNames.SummarizedExperiment0
+
+compare
+countOverlaps
+overlapsAny
+subsetByOverlaps
+
+
+##########
+Functions Added
+##########
+
+.DollarNames.SummarizedExperiment
+arbind
+acbind
+exptData
+exptData<-
+rowData
+rowData<-
+pcompare
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  RangedSummarizedExperiment ,  Vector )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" , \"equal\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{   query -   rowRanges (  query )   callGeneric ( ) } ",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  RangedSummarizedExperiment ,  Vector )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" , \"equal\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , ignore.strand = FALSE )",
+    "body": "{   query -   rowRanges (  query )   callGeneric ( ) } ",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  Vector ,  RangedSummarizedExperiment )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" , \"equal\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{   subject -   rowRanges (  subject )   callGeneric ( ) } ",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  Vector ,  RangedSummarizedExperiment )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" , \"equal\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , ignore.strand = FALSE )",
+    "body": "{   subject -   rowRanges (  subject )   callGeneric ( ) } ",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  RangedSummarizedExperiment ,  RangedSummarizedExperiment )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" , \"equal\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{   query -   rowRanges (  query )   subject -   rowRanges (  subject )   callGeneric ( ) } ",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  RangedSummarizedExperiment ,  RangedSummarizedExperiment )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" , \"equal\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , ignore.strand = FALSE )",
+    "body": "{   query -   rowRanges (  query )   subject -   rowRanges (  subject )   callGeneric ( ) } ",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "nearest",
+    "representation": "nearest",
+    "signature": "c (  RangedSummarizedExperiment ,  ANY )",
+    "parameters": "function ( x , subject , select = c ( \"arbitrary\" , \"all\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{   x -   rowRanges (  x )   callGeneric ( ) } ",
+    "filename": "nearest-methods.txt"
+  },
+  "new_function": {
+    "name": "nearest",
+    "representation": "nearest",
+    "signature": "c (  RangedSummarizedExperiment ,  ANY )",
+    "parameters": "function ( x , subject , select = c ( \"arbitrary\" , \"all\" ) , ignore.strand = FALSE )",
+    "body": "{   x -   rowRanges (  x )   callGeneric ( ) } ",
+    "filename": "nearest-methods.txt"
+  }
+}
+
+4.
+{
+  "old_function": {
+    "name": "nearest",
+    "representation": "nearest",
+    "signature": "c (  ANY ,  RangedSummarizedExperiment )",
+    "parameters": "function ( x , subject , select = c ( \"arbitrary\" , \"all\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{   subject -   rowRanges (  subject )   callGeneric ( ) } ",
+    "filename": "nearest-methods.txt"
+  },
+  "new_function": {
+    "name": "nearest",
+    "representation": "nearest",
+    "signature": "c (  ANY ,  RangedSummarizedExperiment )",
+    "parameters": "function ( x , subject , select = c ( \"arbitrary\" , \"all\" ) , ignore.strand = FALSE )",
+    "body": "{   subject -   rowRanges (  subject )   callGeneric ( ) } ",
+    "filename": "nearest-methods.txt"
+  }
+}
+
+5.
+{
+  "old_function": {
+    "name": "nearest",
+    "representation": "nearest",
+    "signature": "c (  RangedSummarizedExperiment ,  RangedSummarizedExperiment )",
+    "parameters": "function ( x , subject , select = c ( \"arbitrary\" , \"all\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{   x -   rowRanges (  x )   subject -   rowRanges (  subject )   callGeneric ( ) } ",
+    "filename": "nearest-methods.txt"
+  },
+  "new_function": {
+    "name": "nearest",
+    "representation": "nearest",
+    "signature": "c (  RangedSummarizedExperiment ,  RangedSummarizedExperiment )",
+    "parameters": "function ( x , subject , select = c ( \"arbitrary\" , \"all\" ) , ignore.strand = FALSE )",
+    "body": "{   x -   rowRanges (  x )   subject -   rowRanges (  subject )   callGeneric ( ) } ",
+    "filename": "nearest-methods.txt"
+  }
+}
+
+6.
+{
+  "old_function": {
+    "name": "SummarizedExperiment",
+    "representation": "SummarizedExperiment",
+    "signature": "SimpleList",
+    "parameters": "function ( assays , rowRanges = GRangesList ( ) , colData = DataFrame ( ) , metadata = list ( ) , exptData = SimpleList ( ) )",
+    "body": "{  if (    missing (  colData ) undefined   0L !=   length (  assays ) )  {   nms -   colnames (   assays [[  1 ] ] )  if (    is.null (  nms ) undefined   0L !=   ncol (   assays [[  1 ] ] ) )   stop (  \"'SummarizedExperiment' assay colnames must not be NULL\" )   colData -   DataFrame ( row.names =  nms ) }  if (   missing (  rowRanges ) )  {   ans_rownames -   get_rownames_from_assays (  assays ) } else  {   ans_rownames -   names (  rowRanges ) }   ans_colnames -   rownames (  colData )   ans_dimnames -   list (  ans_rownames ,  ans_colnames )   FUN -  function ( x )  { ## dimnames(x) as NULL or list(NULL, NULL)    all (   sapply (   dimnames (  x ) ,  is.null ) ) || ## or consistent with 'ans_dimnames'   identical (    dimnames (  x ) [   1 :  2 ] ,  ans_dimnames ) }  if (  !   all (   sapply (  assays ,  FUN ) ) )   assays -   endoapply (  assays ,  unname )   assays -   Assays (  assays ) ## For backward compatibility with \"classic\" SummarizedExperiment objects.  if (  !   missing (  exptData ) )  {  if (  !   missing (  metadata ) )   stop (  \"only one of 'metadata' and 'exptData' can be \" ,  \"specified, but not both\" )   msg -   c (  \"the 'exptData' argument is deprecated, \" ,  \"please use 'metadata' instead\" )   .Deprecated ( msg =  msg )   metadata -  exptData }  if (   missing (  rowRanges ) )  {   new_SummarizedExperiment0 (  assays ,  ans_rownames ,  NULL ,  colData ,  metadata ) } else  {   .new_RangedSummarizedExperiment (  assays ,  rowRanges ,  colData ,  metadata ) } } ",
+    "filename": "RangedSummarizedExperiment-class.txt"
+  },
+  "new_function": {
+    "name": "SummarizedExperiment",
+    "representation": "SummarizedExperiment",
+    "signature": "SimpleList",
+    "parameters": "function ( assays , rowData = NULL , rowRanges = GRangesList ( ) , colData = DataFrame ( ) , metadata = list ( ) )",
+    "body": "{  if (    missing (  colData ) undefined   0L !=   length (  assays ) )  {   assay -   assays [[  1 ] ]   nms -   colnames (  assay )   colData -    DataFrame ( x =   seq_len (   ncol (  assay ) ) , row.names =  nms ) [ ,  FALSE ] } else  if (  !   missing (  colData ) )  {   colData -   as (  colData ,  \"DataFrame\" )  if (   is.null (   rownames (  colData ) ) )    rownames (  colData ) -   .get_colnames_from_assays (  assays ) }   ans_colnames -   rownames (  colData )  if (   is.null (  rowData ) )  {  if (   missing (  rowRanges ) )  {   ans_rownames -   .get_rownames_from_assays (  assays ) } else  {  if (   is.null (   names (  rowRanges ) ) )    names (  rowRanges ) -   .get_rownames_from_assays (  assays )   ans_rownames -   names (  rowRanges ) } } else  {  if (  !   missing (  rowRanges ) )   stop (  \"only one of 'rowData' and 'rowRanges' can be specified\" )  if (   is (  rowData ,  \"GenomicRangesORGRangesList\" ) )  {   rowRanges -  rowData  if (   is.null (   names (  rowRanges ) ) )    names (  rowRanges ) -   .get_rownames_from_assays (  assays )   ans_rownames -   names (  rowRanges ) } else  {   rowData -   as (  rowData ,  \"DataFrame\" )   ans_rownames -   rownames (  rowData )  if (   is.null (  ans_rownames ) )   ans_rownames -   .get_rownames_from_assays (  assays ) } } ## validate   ok -   vapply (  assays ,  function ( x )  {   colnames -   colnames (  x )   test -    is.null (  colnames ) ||   identical (  colnames ,  ans_colnames )  if (  !  test )   stop (  \"assay colnames() must be NULL or equal colData rownames()\" )   rownames -   rownames (  x )   test -    test undefined   is.null (  rownames ) ||   identical (  rownames ,  ans_rownames )  if (  !  test )  {   txt -  \"assay rownames() must be NULL or equal rowData rownames() /\r\n                    rowRanges names()\"   stop (   paste (   strwrap (  txt , exdent =  2 ) , collapse =  \"\\n\" ) ) }  test } ,   logical (  1 ) )   assays -   Assays (  assays )  if (    missing (  rowRanges ) undefined  !   is (  rowData ,  \"GenomicRangesORGRangesList\" ) )  {   new_SummarizedExperiment (  assays ,  ans_rownames ,  rowData ,  colData ,  metadata ) } else  {   .new_RangedSummarizedExperiment (  assays ,  rowRanges ,  colData ,  metadata ) } } ",
+    "filename": "RangedSummarizedExperiment-class.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  summarizedexperiment_release_3_3 summarizedexperiment_release_3_4
+
+{
+    "package": "SummarizedExperiment",
+    "release_versions": "summarizedexperiment_release_3_3 summarizedexperiment_release_3_4",
+    "desc_release_old": "1.2.3",
+    "desc_release_new": "1.4.0",
+    "old_release_number": 1,
+    "new_release_number": 2,
+    "function_removals": 2,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+exptData
+exptData<-
+
+
+##########
+Functions Added
+##########
+
+makeSummarizedExperimentFromDataFrame
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  summarizedexperiment_release_3_4 summarizedexperiment_release_3_5
+
+{
+    "package": "SummarizedExperiment",
+    "release_versions": "summarizedexperiment_release_3_4 summarizedexperiment_release_3_5",
+    "desc_release_old": "1.4.0",
+    "desc_release_new": "1.6.5",
+    "old_release_number": 2,
+    "new_release_number": 3,
+    "function_removals": 0,
+    "function_additions": 4,
+    "parameter_removals": 1,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+.DollarNames.RangedSummarizedExperiment
+saveHDF5SummarizedExperiment
+loadHDF5SummarizedExperiment
+realize
+
+
+##########
+Removed Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": ".DollarNames.SummarizedExperiment",
+    "representation": ".DollarNames.SummarizedExperiment",
+    "parameters": "function ( x , pattern )",
+    "body": "grep ( pattern , names ( colData ( x ) ) , value = TRUE )",
+    "filename": "SummarizedExperiment-class.txt"
+  },
+  "new_function": {
+    "name": ".DollarNames.SummarizedExperiment",
+    "representation": ".DollarNames.SummarizedExperiment",
+    "parameters": "function ( x , pattern = \"\" )",
+    "body": "grep ( pattern , names ( colData ( x ) ) , value = TRUE )",
+    "filename": "SummarizedExperiment-class.txt"
+  }
+}
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "seqinfo",
+    "representation": "seqinfo<-",
+    "signature": "RangedSummarizedExperiment",
+    "parameters": "function ( x , new2old = NULL , force = FALSE , value )",
+    "body": "{  if (  !   is (  value ,  \"Seqinfo\" ) )   stop (  \"the supplied 'seqinfo' must be a Seqinfo object\" )   dangling_seqlevels -   GenomeInfoDb ::: getDanglingSeqlevels (   x @ rowRanges , new2old =  new2old , force =  force ,   seqlevels (  value ) )  if (    length (  dangling_seqlevels ) !=  0L )   x -   x [  !  (    seqnames (  x ) %in%  dangling_seqlevels ) ]    x @ rowRanges -   update (   x @ rowRanges , seqnames =   GenomeInfoDb ::: makeNewSeqnames (  x ,  new2old ,   seqlevels (  value ) ) , seqinfo =  value )  if (   is.character (   msg -   .valid.RangedSummarizedExperiment (  x ) ) )   stop (  msg )  x } ",
+    "filename": "RangedSummarizedExperiment-class.txt"
+  },
+  "new_function": {
+    "name": "seqinfo",
+    "representation": "seqinfo<-",
+    "signature": "RangedSummarizedExperiment",
+    "parameters": "function ( x , new2old = NULL , force = FALSE , pruning.mode = c ( \"error\" , \"coarse\" , \"fine\" , \"tidy\" ) , value )",
+    "body": "{  if (  !   is (  value ,  \"Seqinfo\" ) )   stop (  \"the supplied 'seqinfo' must be a Seqinfo object\" )   dangling_seqlevels -   GenomeInfoDb ::: getDanglingSeqlevels (   x @ rowRanges , new2old =  new2old , force =  force , pruning.mode =  pruning.mode ,   seqlevels (  value ) )  if (    length (  dangling_seqlevels ) !=  0L )   x -   x [  !  (    seqnames (  x ) %in%  dangling_seqlevels ) ]    x @ rowRanges -   update (   x @ rowRanges , seqnames =   GenomeInfoDb ::: makeNewSeqnames (  x ,  new2old ,   seqlevels (  value ) ) , seqinfo =  value )  if (   is.character (   msg -   .valid.RangedSummarizedExperiment (  x ) ) )   stop (  msg )  x } ",
+    "filename": "RangedSummarizedExperiment-class.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  summarizedexperiment_release_3_5 summarizedexperiment_release_3_6
+
+{
+    "package": "SummarizedExperiment",
+    "release_versions": "summarizedexperiment_release_3_5 summarizedexperiment_release_3_6",
+    "desc_release_old": "1.6.5",
+    "desc_release_new": "1.8.1",
+    "old_release_number": 3,
+    "new_release_number": 4,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "seqinfo",
+    "representation": "seqinfo<-",
+    "signature": "RangedSummarizedExperiment",
+    "parameters": "function ( x , new2old = NULL , force = FALSE , pruning.mode = c ( \"error\" , \"coarse\" , \"fine\" , \"tidy\" ) , value )",
+    "body": "{  if (  !   is (  value ,  \"Seqinfo\" ) )   stop (  \"the supplied 'seqinfo' must be a Seqinfo object\" )   dangling_seqlevels -   GenomeInfoDb ::: getDanglingSeqlevels (   x @ rowRanges , new2old =  new2old , force =  force , pruning.mode =  pruning.mode ,   seqlevels (  value ) )  if (    length (  dangling_seqlevels ) !=  0L )   x -   x [  !  (    seqnames (  x ) %in%  dangling_seqlevels ) ]    x @ rowRanges -   update (   x @ rowRanges , seqnames =   GenomeInfoDb ::: makeNewSeqnames (  x ,  new2old ,   seqlevels (  value ) ) , seqinfo =  value )  if (   is.character (   msg -   .valid.RangedSummarizedExperiment (  x ) ) )   stop (  msg )  x } ",
+    "filename": "RangedSummarizedExperiment-class.txt"
+  },
+  "new_function": {
+    "name": "seqinfo",
+    "representation": "seqinfo<-",
+    "signature": "RangedSummarizedExperiment",
+    "parameters": "function ( x , new2old = NULL , pruning.mode = c ( \"error\" , \"coarse\" , \"fine\" , \"tidy\" ) , value )",
+    "body": "{  if (  !   is (  value ,  \"Seqinfo\" ) )   stop (  \"the supplied 'seqinfo' must be a Seqinfo object\" )   dangling_seqlevels -   GenomeInfoDb ::: getDanglingSeqlevels (   x @ rowRanges , new2old =  new2old , pruning.mode =  pruning.mode ,   seqlevels (  value ) )  if (    length (  dangling_seqlevels ) !=  0L )   x -   x [  !  (    seqnames (  x ) %in%  dangling_seqlevels ) ]    x @ rowRanges -   update (   x @ rowRanges , seqnames =   GenomeInfoDb ::: makeNewSeqnames (  x ,  new2old ,   seqlevels (  value ) ) , seqinfo =  value )  if (   is.character (   msg -   .valid.RangedSummarizedExperiment (  x ) ) )   stop (  msg )  x } ",
+    "filename": "RangedSummarizedExperiment-class.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  summarizedexperiment_release_3_6 summarizedexperiment_release_3_7
+
+{
+    "package": "SummarizedExperiment",
+    "release_versions": "summarizedexperiment_release_3_6 summarizedexperiment_release_3_7",
+    "desc_release_old": "1.8.1",
+    "desc_release_new": "1.10.1",
+    "old_release_number": 4,
+    "new_release_number": 5,
+    "function_removals": 2,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+saveHDF5SummarizedExperiment
+loadHDF5SummarizedExperiment
+
+
+##########
+Functions Added
+##########
+
+makeSummarizedExperimentFromLoom
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  summarizedexperiment_release_3_7 summarizedexperiment_release_3_8
+
+{
+    "package": "SummarizedExperiment",
+    "release_versions": "summarizedexperiment_release_3_7 summarizedexperiment_release_3_8",
+    "desc_release_old": "1.10.1",
+    "desc_release_new": "1.12.0",
+    "old_release_number": 5,
+    "new_release_number": 6,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  summarizedexperiment_release_3_8 summarizedexperiment_release_3_9
+
+{
+    "package": "SummarizedExperiment",
+    "release_versions": "summarizedexperiment_release_3_8 summarizedexperiment_release_3_9",
+    "desc_release_old": "1.12.0",
+    "desc_release_new": "1.14.1",
+    "old_release_number": 6,
+    "new_release_number": 7,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  summarizedexperiment_release_3_9 summarizedexperiment_release_3_11
+
+{
+    "package": "SummarizedExperiment",
+    "release_versions": "summarizedexperiment_release_3_9 summarizedexperiment_release_3_11",
+    "desc_release_old": "1.14.1",
+    "desc_release_new": "1.18.2",
+    "old_release_number": 7,
+    "new_release_number": 8,
+    "function_removals": 2,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+extractROWS
+replaceROWS
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  summarizedexperiment_release_3_11 summarizedexperiment_release_3_12
+
+{
+    "package": "SummarizedExperiment",
+    "release_versions": "summarizedexperiment_release_3_11 summarizedexperiment_release_3_12",
+    "desc_release_old": "1.18.2",
+    "desc_release_new": "1.20.0",
+    "old_release_number": 8,
+    "new_release_number": 9,
+    "function_removals": 0,
+    "function_additions": 3,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+parallel_slot_names
+vertical_slot_names
+horizontal_slot_names
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  summarizedexperiment_release_3_12 summarizedexperiment_release_3_13
+
+{
+    "package": "SummarizedExperiment",
+    "release_versions": "summarizedexperiment_release_3_12 summarizedexperiment_release_3_13",
+    "desc_release_old": "1.20.0",
+    "desc_release_new": "1.22.0",
+    "old_release_number": 9,
+    "new_release_number": 10,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  summarizedexperiment_release_3_13 summarizedexperiment_release_3_14
+
+{
+    "package": "SummarizedExperiment",
+    "release_versions": "summarizedexperiment_release_3_13 summarizedexperiment_release_3_14",
+    "desc_release_old": "1.22.0",
+    "desc_release_new": "1.24.0",
+    "old_release_number": 10,
+    "new_release_number": 11,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+showAsCell
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "Assays",
+    "representation": "Assays",
+    "parameters": "function ( assays = SimpleList ( ) , as.null.if.zero.assay = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  as.null.if.zero.assay ) )   stop (   wmsg (  \"'as.null.if.zero.assay' must be TRUE or FALSE\" ) ) ## Starting with SummarizedExperiment 1.15.4, we wrap the user-supplied ## assays in a SimpleAssays object instead of a ShallowSimpleListAssays ## object. Note that there are probably hundreds (if not thousands) of ## serialized SummarizedExperiment objects around that use ## ShallowSimpleListAssays. These objects should keep working as before!  if (  !   is (  assays ,  \"SimpleAssays\" ) )  {  if (   is (  assays ,  \"Assays\" ) )  { ## Will turn any Assays derivative (e.g. ShallowSimpleListAssays) ## into a SimpleAssays object.   assays -   as (   as (  assays ,  \"SimpleList\" ) ,  \"SimpleAssays\" ) } else  {   assays -   normarg_assays (  assays ,  as.null.if.zero.assay )  if (   is.null (  assays ) )   return (  NULL )   assays -   as (  assays ,  \"SimpleAssays\" )   validObject (  assays ) } }  if (     length (  assays ) ==  0L undefined  as.null.if.zero.assay )   return (  NULL )  assays } ",
+    "filename": "Assays-class.txt"
+  },
+  "new_function": {
+    "name": "Assays",
+    "representation": "Assays",
+    "parameters": "function ( assays = SimpleList ( ) , as.null.if.no.assay = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  as.null.if.no.assay ) )   stop (   wmsg (  \"'as.null.if.no.assay' must be TRUE or FALSE\" ) ) ## Starting with SummarizedExperiment 1.15.4, we wrap the user-supplied ## assays in a SimpleAssays object instead of a ShallowSimpleListAssays ## object. Note that there are probably hundreds (if not thousands) of ## serialized SummarizedExperiment objects around that use ## ShallowSimpleListAssays. These objects should keep working as before!  if (  !   is (  assays ,  \"SimpleAssays\" ) )  {  if (   is (  assays ,  \"Assays\" ) )  { ## Will turn any Assays derivative (e.g. ShallowSimpleListAssays) ## into a SimpleAssays object.   assays -   as (   as (  assays ,  \"SimpleList\" ) ,  \"SimpleAssays\" ) } else  {   assays -   normarg_assays (  assays ,  as.null.if.no.assay )  if (   is.null (  assays ) )   return (  NULL )   assays -   as (  assays ,  \"SimpleAssays\" )   validObject (  assays ) } }  if (     length (  assays ) ==  0L undefined  as.null.if.no.assay )   return (  NULL )  assays } ",
+    "filename": "Assays-class.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  summarizedexperiment_release_3_14 summarizedexperiment_master
+
+{
+    "package": "SummarizedExperiment",
+    "release_versions": "summarizedexperiment_release_3_14 summarizedexperiment_master",
+    "desc_release_old": "1.24.0",
+    "desc_release_new": "1.25.3",
+    "old_release_number": 11,
+    "new_release_number": 12,
+    "function_removals": 1,
+    "function_additions": 4,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+dimnames
+
+
+##########
+Functions Added
+##########
+
+nrow
+ncol
+rownames
+colnames
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+

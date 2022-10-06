@@ -1,0 +1,2528 @@
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  bsgenome_release_1_9 bsgenome_release_2_1
+
+{
+    "package": "BSgenome",
+    "release_versions": "bsgenome_release_1_9 bsgenome_release_2_1",
+    "desc_release_old": "1.2.3",
+    "desc_release_new": "1.6.2",
+    "old_release_number": 0,
+    "new_release_number": 1,
+    "function_removals": 0,
+    "function_additions": 11,
+    "parameter_removals": 0,
+    "parameter_additions": 1,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 2,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+available.genomes
+getSeq
+organism
+species
+provider
+providerVersion
+releaseDate
+releaseName
+sourceUrl
+seqnames
+mseqnames
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "initialize",
+    "representation": "initialize",
+    "signature": "BSgenome",
+    "parameters": "function ( .Object , organism , source_provider , source_release , source_url , source_files , package , subdir )",
+    "body": "{    .Object @ organism -  organism    .Object @ source_provider -  source_provider    .Object @ source_release -  source_release    .Object @ source_url -  source_url    .Object @ source_files -  source_files    .Object @ data_env -   new.env ( parent =   emptyenv ( ) )    .Object @ cache_env -   new.env ( parent =   emptyenv ( ) )   assignDataToNames (  .Object ,  package ,  subdir )  .Object } ",
+    "filename": "BSgenome.txt"
+  },
+  "new_function": {
+    "name": "initialize",
+    "representation": "initialize",
+    "signature": "BSgenome",
+    "parameters": "function ( .Object , organism , species , provider , provider_version , release_date , release_name , source_url , seqnames , mseqnames , package , subdir )",
+    "body": "{    .Object @ organism -  organism    .Object @ species -  species    .Object @ provider -  provider    .Object @ provider_version -  provider_version    .Object @ release_date -  release_date    .Object @ release_name -  release_name    .Object @ source_url -  source_url    .Object @ seqnames -  seqnames    .Object @ mseqnames -  mseqnames    .Object @ .data_env -   new.env ( parent =   emptyenv ( ) )    .Object @ .cache_env -   new.env ( parent =   emptyenv ( ) )   assignDataToNames (  .Object ,  package ,  subdir )  .Object } ",
+    "filename": "BSgenome.txt"
+  }
+}
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "initialize",
+    "representation": "initialize",
+    "signature": "BSgenome",
+    "parameters": "function ( .Object , organism , source_provider , source_release , source_url , source_files , package , subdir )",
+    "body": "{    .Object @ organism -  organism    .Object @ source_provider -  source_provider    .Object @ source_release -  source_release    .Object @ source_url -  source_url    .Object @ source_files -  source_files    .Object @ data_env -   new.env ( parent =   emptyenv ( ) )    .Object @ cache_env -   new.env ( parent =   emptyenv ( ) )   assignDataToNames (  .Object ,  package ,  subdir )  .Object } ",
+    "filename": "BSgenome.txt"
+  },
+  "new_function": {
+    "name": "initialize",
+    "representation": "initialize",
+    "signature": "BSgenome",
+    "parameters": "function ( .Object , organism , species , provider , provider_version , release_date , release_name , source_url , seqnames , mseqnames , package , subdir )",
+    "body": "{    .Object @ organism -  organism    .Object @ species -  species    .Object @ provider -  provider    .Object @ provider_version -  provider_version    .Object @ release_date -  release_date    .Object @ release_name -  release_name    .Object @ source_url -  source_url    .Object @ seqnames -  seqnames    .Object @ mseqnames -  mseqnames    .Object @ .data_env -   new.env ( parent =   emptyenv ( ) )    .Object @ .cache_env -   new.env ( parent =   emptyenv ( ) )   assignDataToNames (  .Object ,  package ,  subdir )  .Object } ",
+    "filename": "BSgenome.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "buildDataFiles",
+    "representation": "buildDataFiles",
+    "parameters": "function ( srcdir , destdir , files , prefix = \"\" , suffix = \"\" , comments = NULL )",
+    "body": "{  for  ( i in   1 :   length (  files ) )  {   varname -   files [  i ]   srcfile -   paste (  prefix ,  varname ,  suffix , sep =  \"\" )   srcpath -   paste (  srcdir ,  srcfile , sep =  \"/\" )   cat (  \"Loading FASTA file '\" ,  srcpath ,  \"' in '\" ,  varname ,  \"' object... \" , sep =  \"\" )   f -   file (  srcpath )   bsv -   BStringViews (  f ,  \"DNAString\" )   close (  f )   cat (  \"DONE\\n\" )  if (   is.null (  comments ) )   c -  \"\" else   c -   comments [  i ]    comment (  bsv ) -   paste (  c ,  \" (generated from FASTA file \" ,  srcfile ,  \")\" , sep =  \"\" )   assign (  varname ,  bsv )   dest -   paste (  destdir ,  \"/\" ,  varname ,  \".rda\" , sep =  \"\" )   cat (  \"Saving '\" ,  varname ,  \"' object to compressed data file '\" ,  dest ,  \"'... \" , sep =  \"\" )   save ( list =  varname , file =  dest , compress =  TRUE )   cat (  \"DONE\\n\" )   remove ( list =  varname ) } } ",
+    "filename": "buildDataFiles.txt"
+  },
+  "new_function": {
+    "name": "buildDataFiles",
+    "representation": "buildDataFiles",
+    "parameters": "function ( srcdir , destdir , names , prefix = \"\" , suffix = \"\" , comments = NULL , single.seq = TRUE )",
+    "body": "{  if (    length (  names ) ==  0 )   return ( )  for  ( i in   1 :   length (  names ) )  {   name -   names [  i ]   srcfile -   paste (  prefix ,  name ,  suffix , sep =  \"\" )   srcpath -   paste (  srcdir ,  srcfile , sep =  \"/\" )   cat (  \"Loading FASTA file '\" ,  srcpath ,  \"' in '\" ,  name ,  \"' object... \" , sep =  \"\" )   seq -   read.BStringViews (  srcpath ,  \"fasta\" ,  \"DNAString\" )   cat (  \"DONE\\n\" )  if (  single.seq )  {  if (    length (  seq ) !=  1 )   stop (  \"file should contain exactly one sequence, found \" ,   length (  seq ) )   seq -   seq [[  1 ] ] # now 'seq' is a DNAString object }  if (   is.null (  comments ) )   c -  \"\" else   c -   comments [  i ]    comment (  seq ) -   paste (  c ,  \" (generated from FASTA file \" ,  srcfile ,  \")\" , sep =  \"\" )   assign (  name ,  seq )   dest -   paste (  destdir ,  \"/\" ,  name ,  \".rda\" , sep =  \"\" )   cat (  \"Saving '\" ,  name ,  \"' object to compressed data file '\" ,  dest ,  \"'... \" , sep =  \"\" )   save ( list =  name , file =  dest , compress =  TRUE )   cat (  \"DONE\\n\" )   remove ( list =  name ) } } ",
+    "filename": "buildDataFiles.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  bsgenome_release_2_1 bsgenome_release_2_2
+
+{
+    "package": "BSgenome",
+    "release_versions": "bsgenome_release_2_1 bsgenome_release_2_2",
+    "desc_release_old": "1.6.2",
+    "desc_release_new": "1.8.4",
+    "old_release_number": 1,
+    "new_release_number": 2,
+    "function_removals": 2,
+    "function_additions": 6,
+    "parameter_removals": 1,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 2,
+    "total_count": 4
+}
+
+##########
+Functions Removed
+##########
+
+buildDataFiles
+initialize
+
+
+##########
+Functions Added
+##########
+
+BSgenome
+injectSNPs
+available.SNPs
+forgeSeqFiles
+forgeMaskFiles
+SNPlocs_pkgname
+
+
+##########
+Removed Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "available.genomes",
+    "representation": "available.genomes",
+    "parameters": "function ( )",
+    "body": "{   url -   contrib.url (    biocReposList ( ) [  \"aData\" ] )   pkgs -    available.packages (  url ) [ ,  \"Package\" ]   pkgs -   pkgs [    substr (  pkgs ,  1 ,  9 ) ==  \"BSgenome.\" ]    names (  pkgs ) -  NULL  pkgs } ",
+    "filename": "available.genomes.txt"
+  },
+  "new_function": {
+    "name": "available.genomes",
+    "representation": "available.genomes",
+    "parameters": "function ( type = getOption ( \"pkgType\" ) )",
+    "body": "{   url -   contrib.url (    biocReposList ( ) [  \"aData\" ] , type =  type )   pkgs -    available.packages (  url ) [ ,  \"Package\" ]   pkgs -   pkgs [    substr (  pkgs ,  1 ,  9 ) ==  \"BSgenome.\" ]    names (  pkgs ) -  NULL  pkgs } ",
+    "filename": "available.genomes.txt"
+  }
+}
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "available.genomes",
+    "representation": "available.genomes",
+    "parameters": "function ( )",
+    "body": "{   url -   contrib.url (    biocReposList ( ) [  \"aData\" ] )   pkgs -    available.packages (  url ) [ ,  \"Package\" ]   pkgs -   pkgs [    substr (  pkgs ,  1 ,  9 ) ==  \"BSgenome.\" ]    names (  pkgs ) -  NULL  pkgs } ",
+    "filename": "available.genomes.txt"
+  },
+  "new_function": {
+    "name": "available.genomes",
+    "representation": "available.genomes",
+    "parameters": "function ( type = getOption ( \"pkgType\" ) )",
+    "body": "{   url -   contrib.url (    biocReposList ( ) [  \"aData\" ] , type =  type )   pkgs -    available.packages (  url ) [ ,  \"Package\" ]   pkgs -   pkgs [    substr (  pkgs ,  1 ,  9 ) ==  \"BSgenome.\" ]    names (  pkgs ) -  NULL  pkgs } ",
+    "filename": "available.genomes.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "getSeq",
+    "representation": "getSeq",
+    "parameters": "function ( bsgenome , seqname , start = NA , end = NA , as.BStringViews = FALSE )",
+    "body": "{  if (    length (  seqname ) ==  1 )  {   ans -   views (   bsgenome [[  seqname ] ] ,  start ,  end )  if (  !  as.BStringViews )   ans -   as.character (  ans )   return (  ans ) }   lseqname -   length (  seqname ) # Adjust length(start)   lstart -   length (  start )  if (   lstart undefined  lseqname )   stop (  \"'start' has more elements than 'seqname'\" )  if (   lstart undefined  lseqname )   start -   rep (  start , length.out =  lseqname ) # Adjust length(end)   lend -   length (  end )  if (   lend undefined  lseqname )   stop (  \"'end' has more elements than 'seqname'\" )  if (   lend undefined  lseqname )   end -   rep (  end , length.out =  lseqname )   ans -   character (  0 )  if (   lseqname =  1 )  for  ( i in   1 :  lseqname )   ans -   append (  ans ,   getSeq (  bsgenome ,   seqname [  i ] ,   start [  i ] ,   end [  i ] , as.BStringViews =  FALSE ) )  ans } ",
+    "filename": "getSeq.txt"
+  },
+  "new_function": {
+    "name": "getSeq",
+    "representation": "getSeq",
+    "parameters": "function ( bsgenome , seqname , start = NA , end = NA , as.XStringViews = FALSE )",
+    "body": "{  if (    length (  seqname ) ==  1 )  {   ans -   views (   bsgenome [[  seqname ] ] ,  start ,  end )  if (  !  as.XStringViews )   ans -   as.character (  ans )   return (  ans ) }   lseqname -   length (  seqname ) # Adjust length(start)   lstart -   length (  start )  if (   lstart undefined  lseqname )   stop (  \"'start' has more elements than 'seqname'\" )  if (   lstart undefined  lseqname )   start -   rep (  start , length.out =  lseqname ) # Adjust length(end)   lend -   length (  end )  if (   lend undefined  lseqname )   stop (  \"'end' has more elements than 'seqname'\" )  if (   lend undefined  lseqname )   end -   rep (  end , length.out =  lseqname )   ans -   character (  0 )  if (   lseqname =  1 )  for  ( i in   1 :  lseqname )   ans -   append (  ans ,   getSeq (  bsgenome ,   seqname [  i ] ,   start [  i ] ,   end [  i ] , as.XStringViews =  FALSE ) )  ans } ",
+    "filename": "getSeq.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  bsgenome_release_2_2 bsgenome_release_2_3
+
+{
+    "package": "BSgenome",
+    "release_versions": "bsgenome_release_2_2 bsgenome_release_2_3",
+    "desc_release_old": "1.8.4",
+    "desc_release_new": "1.10.5",
+    "old_release_number": 2,
+    "new_release_number": 3,
+    "function_removals": 2,
+    "function_additions": 8,
+    "parameter_removals": 2,
+    "parameter_additions": 1,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 4,
+    "total_count": 6
+}
+
+##########
+Functions Removed
+##########
+
+forgeMaskFiles
+unload
+
+
+##########
+Functions Added
+##########
+
+bsapply
+SNPcount
+SNPlocs
+seqlengths
+masknames
+forgeSeqlengthsFile
+forgeMasksFiles
+forgeBSgenomeDataPkg
+
+
+##########
+Removed Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "available.SNPs",
+    "representation": "available.SNPs",
+    "parameters": "function ( )",
+    "body": "{   url -   contrib.url (    biocReposList ( ) [  \"aData\" ] )   pkgs -    available.packages (  url ) [ ,  \"Package\" ]   pkgs -   pkgs [    substr (  pkgs ,  1 ,  8 ) ==  \"SNPlocs.\" ]    names (  pkgs ) -  NULL  pkgs } ",
+    "filename": "available.SNPs.txt"
+  },
+  "new_function": {
+    "name": "available.SNPs",
+    "representation": "available.SNPs",
+    "parameters": "function ( type = getOption ( \"pkgType\" ) )",
+    "body": "{   url -   getDataAnnotationContribUrl (  type )   pkgs -    available.packages (  url ) [ ,  \"Package\" ]   pkgs -   pkgs [    substr (  pkgs ,  1 ,  8 ) ==  \"SNPlocs.\" ]    names (  pkgs ) -  NULL  pkgs } ",
+    "filename": "injectSNPs.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "forgeSeqFiles",
+    "representation": "forgeSeqFiles",
+    "parameters": "function ( srcdir , destdir , names , prefix = \"\" , suffix = \"\" , comments = NULL , single.seq = TRUE )",
+    "body": "{  if (    length (  names ) ==  0 )   return ( )  for  ( i in   1 :   length (  names ) )  {   name -   names [  i ]   srcfile -   paste (  prefix ,  name ,  suffix , sep =  \"\" )   srcpath -   paste (  srcdir ,  srcfile , sep =  \"/\" )   cat (  \"Loading FASTA file '\" ,  srcpath ,  \"' in '\" ,  name ,  \"' object... \" , sep =  \"\" )   seq -   read.DNAStringSet (  srcpath ,  \"fasta\" )   cat (  \"DONE\\n\" )  if (  single.seq )  {  if (    length (  seq ) !=  1 )   stop (  \"file should contain exactly one sequence, found \" ,   length (  seq ) )   seq -   seq [[  1 ] ] # now 'seq' is a DNAString object }  if (   is.null (  comments ) )   c -  \"\" else   c -   comments [  i ]    comment (  seq ) -   paste (  c ,  \" (generated from FASTA file \" ,  srcfile ,  \")\" , sep =  \"\" )   assign (  name ,  seq )   dest -   paste (  destdir ,  \"/\" ,  name ,  \".rda\" , sep =  \"\" )   cat (  \"Saving '\" ,  name ,  \"' object to compressed data file '\" ,  dest ,  \"'... \" , sep =  \"\" )   save ( list =  name , file =  dest , compress =  TRUE )   cat (  \"DONE\\n\" )   remove ( list =  name ) } } ",
+    "filename": "BSgenomeForge.txt"
+  },
+  "new_function": {
+    "name": "forgeSeqFiles",
+    "representation": "forgeSeqFiles",
+    "parameters": "function ( seqnames , mseqnames = NULL , prefix = \"\" , suffix = \".fa\" , seqs_srcdir = \".\" , seqs_destdir = \".\" , verbose = TRUE )",
+    "body": "{  if (    length (  seqnames ) ==  0 )  {   warning (  \"'seqnames' is empty\" ) } else  { ## just for the side effect of checking the arguments   getSeqSrcpaths (  seqnames , prefix =  prefix , suffix =  suffix , seqs_srcdir =  seqs_srcdir ) }  if (    length (  mseqnames ) !=  0 )  {  if (  !   is.character (  mseqnames ) )   stop (  \"'mseqnames' must be a character vector (or NULL)\" ) ## just for the side effect of checking the arguments   getSeqSrcpaths (  mseqnames , prefix =  prefix , suffix =  suffix , seqs_srcdir =  seqs_srcdir ) }  if (  !   isSingleString (  seqs_destdir ) )   stop (  \"'seqs_destdir' must be a single string\" )  for  ( name in  seqnames )  {   .forgeSeqFile (  name ,  prefix ,  suffix ,  seqs_srcdir ,  seqs_destdir , is.single.seq =  TRUE , verbose =  verbose ) }  for  ( name in  mseqnames )  {   .forgeSeqFile (  name ,  prefix ,  suffix ,  seqs_srcdir ,  seqs_destdir , is.single.seq =  FALSE , verbose =  verbose ) } } ",
+    "filename": "BSgenomeForge.txt"
+  }
+}
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "BSgenome",
+    "representation": "BSgenome",
+    "parameters": "function ( organism , species , provider , provider_version , release_date , release_name , source_url , seqnames , mseqnames , package , subdir )",
+    "body": "{   ans -   new (  \"BSgenome\" , organism =  organism , species =  species , provider =  provider , provider_version =  provider_version , release_date =  release_date , release_name =  release_name , source_url =  source_url , seqnames =  seqnames , mseqnames =  mseqnames , package =  package , subdir =  subdir , .activebindings_env =   new.env ( parent =   emptyenv ( ) ) , .datacache_env =   new.env ( parent =   emptyenv ( ) ) )   .assignDataToNames (  ans )  ans } ",
+    "filename": "BSgenome-class.txt"
+  },
+  "new_function": {
+    "name": "BSgenome",
+    "representation": "BSgenome",
+    "parameters": "function ( organism , species , provider , provider_version , release_date , release_name , source_url , seqnames , mseqnames , seqs_pkgname , seqs_dir , nmask_per_seq , masks_pkgname , masks_dir )",
+    "body": "{  if (   is.null (  seqnames ) )   seqnames -   character (  0 )  if (   is.null (  mseqnames ) )   mseqnames -   character (  0 )   ans -   new (  \"BSgenome\" , organism =  organism , species =  species , provider =  provider , provider_version =  provider_version , release_date =  release_date , release_name =  release_name , source_url =  source_url , seqnames =  seqnames , seqlengths =   as.integer (  NA ) , mseqnames =  mseqnames , seqs_pkgname =  seqs_pkgname , seqs_dir =  seqs_dir , nmask_per_seq =   as.integer (  nmask_per_seq ) , masks_pkgname =  masks_pkgname , masks_dir =  masks_dir , .seqs_cache =   new.env ( parent =   emptyenv ( ) ) , .link_counts =   new.env ( parent =   emptyenv ( ) ) )  ans } ",
+    "filename": "BSgenome-class.txt"
+  }
+}
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "available.SNPs",
+    "representation": "available.SNPs",
+    "parameters": "function ( )",
+    "body": "{   url -   contrib.url (    biocReposList ( ) [  \"aData\" ] )   pkgs -    available.packages (  url ) [ ,  \"Package\" ]   pkgs -   pkgs [    substr (  pkgs ,  1 ,  8 ) ==  \"SNPlocs.\" ]    names (  pkgs ) -  NULL  pkgs } ",
+    "filename": "available.SNPs.txt"
+  },
+  "new_function": {
+    "name": "available.SNPs",
+    "representation": "available.SNPs",
+    "parameters": "function ( type = getOption ( \"pkgType\" ) )",
+    "body": "{   url -   getDataAnnotationContribUrl (  type )   pkgs -    available.packages (  url ) [ ,  \"Package\" ]   pkgs -   pkgs [    substr (  pkgs ,  1 ,  8 ) ==  \"SNPlocs.\" ]    names (  pkgs ) -  NULL  pkgs } ",
+    "filename": "injectSNPs.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "BSgenome",
+    "representation": "BSgenome",
+    "parameters": "function ( organism , species , provider , provider_version , release_date , release_name , source_url , seqnames , mseqnames , package , subdir )",
+    "body": "{   ans -   new (  \"BSgenome\" , organism =  organism , species =  species , provider =  provider , provider_version =  provider_version , release_date =  release_date , release_name =  release_name , source_url =  source_url , seqnames =  seqnames , mseqnames =  mseqnames , package =  package , subdir =  subdir , .activebindings_env =   new.env ( parent =   emptyenv ( ) ) , .datacache_env =   new.env ( parent =   emptyenv ( ) ) )   .assignDataToNames (  ans )  ans } ",
+    "filename": "BSgenome-class.txt"
+  },
+  "new_function": {
+    "name": "BSgenome",
+    "representation": "BSgenome",
+    "parameters": "function ( organism , species , provider , provider_version , release_date , release_name , source_url , seqnames , mseqnames , seqs_pkgname , seqs_dir , nmask_per_seq , masks_pkgname , masks_dir )",
+    "body": "{  if (   is.null (  seqnames ) )   seqnames -   character (  0 )  if (   is.null (  mseqnames ) )   mseqnames -   character (  0 )   ans -   new (  \"BSgenome\" , organism =  organism , species =  species , provider =  provider , provider_version =  provider_version , release_date =  release_date , release_name =  release_name , source_url =  source_url , seqnames =  seqnames , seqlengths =   as.integer (  NA ) , mseqnames =  mseqnames , seqs_pkgname =  seqs_pkgname , seqs_dir =  seqs_dir , nmask_per_seq =   as.integer (  nmask_per_seq ) , masks_pkgname =  masks_pkgname , masks_dir =  masks_dir , .seqs_cache =   new.env ( parent =   emptyenv ( ) ) , .link_counts =   new.env ( parent =   emptyenv ( ) ) )  ans } ",
+    "filename": "BSgenome-class.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "forgeSeqFiles",
+    "representation": "forgeSeqFiles",
+    "parameters": "function ( srcdir , destdir , names , prefix = \"\" , suffix = \"\" , comments = NULL , single.seq = TRUE )",
+    "body": "{  if (    length (  names ) ==  0 )   return ( )  for  ( i in   1 :   length (  names ) )  {   name -   names [  i ]   srcfile -   paste (  prefix ,  name ,  suffix , sep =  \"\" )   srcpath -   paste (  srcdir ,  srcfile , sep =  \"/\" )   cat (  \"Loading FASTA file '\" ,  srcpath ,  \"' in '\" ,  name ,  \"' object... \" , sep =  \"\" )   seq -   read.DNAStringSet (  srcpath ,  \"fasta\" )   cat (  \"DONE\\n\" )  if (  single.seq )  {  if (    length (  seq ) !=  1 )   stop (  \"file should contain exactly one sequence, found \" ,   length (  seq ) )   seq -   seq [[  1 ] ] # now 'seq' is a DNAString object }  if (   is.null (  comments ) )   c -  \"\" else   c -   comments [  i ]    comment (  seq ) -   paste (  c ,  \" (generated from FASTA file \" ,  srcfile ,  \")\" , sep =  \"\" )   assign (  name ,  seq )   dest -   paste (  destdir ,  \"/\" ,  name ,  \".rda\" , sep =  \"\" )   cat (  \"Saving '\" ,  name ,  \"' object to compressed data file '\" ,  dest ,  \"'... \" , sep =  \"\" )   save ( list =  name , file =  dest , compress =  TRUE )   cat (  \"DONE\\n\" )   remove ( list =  name ) } } ",
+    "filename": "BSgenomeForge.txt"
+  },
+  "new_function": {
+    "name": "forgeSeqFiles",
+    "representation": "forgeSeqFiles",
+    "parameters": "function ( seqnames , mseqnames = NULL , prefix = \"\" , suffix = \".fa\" , seqs_srcdir = \".\" , seqs_destdir = \".\" , verbose = TRUE )",
+    "body": "{  if (    length (  seqnames ) ==  0 )  {   warning (  \"'seqnames' is empty\" ) } else  { ## just for the side effect of checking the arguments   getSeqSrcpaths (  seqnames , prefix =  prefix , suffix =  suffix , seqs_srcdir =  seqs_srcdir ) }  if (    length (  mseqnames ) !=  0 )  {  if (  !   is.character (  mseqnames ) )   stop (  \"'mseqnames' must be a character vector (or NULL)\" ) ## just for the side effect of checking the arguments   getSeqSrcpaths (  mseqnames , prefix =  prefix , suffix =  suffix , seqs_srcdir =  seqs_srcdir ) }  if (  !   isSingleString (  seqs_destdir ) )   stop (  \"'seqs_destdir' must be a single string\" )  for  ( name in  seqnames )  {   .forgeSeqFile (  name ,  prefix ,  suffix ,  seqs_srcdir ,  seqs_destdir , is.single.seq =  TRUE , verbose =  verbose ) }  for  ( name in  mseqnames )  {   .forgeSeqFile (  name ,  prefix ,  suffix ,  seqs_srcdir ,  seqs_destdir , is.single.seq =  FALSE , verbose =  verbose ) } } ",
+    "filename": "BSgenomeForge.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "getSeq",
+    "representation": "getSeq",
+    "parameters": "function ( bsgenome , seqname , start = NA , end = NA , as.XStringViews = FALSE )",
+    "body": "{  if (    length (  seqname ) ==  1 )  {   ans -   views (   bsgenome [[  seqname ] ] ,  start ,  end )  if (  !  as.XStringViews )   ans -   as.character (  ans )   return (  ans ) }   lseqname -   length (  seqname ) # Adjust length(start)   lstart -   length (  start )  if (   lstart undefined  lseqname )   stop (  \"'start' has more elements than 'seqname'\" )  if (   lstart undefined  lseqname )   start -   rep (  start , length.out =  lseqname ) # Adjust length(end)   lend -   length (  end )  if (   lend undefined  lseqname )   stop (  \"'end' has more elements than 'seqname'\" )  if (   lend undefined  lseqname )   end -   rep (  end , length.out =  lseqname )   ans -   character (  0 )  if (   lseqname =  1 )  for  ( i in   1 :  lseqname )   ans -   append (  ans ,   getSeq (  bsgenome ,   seqname [  i ] ,   start [  i ] ,   end [  i ] , as.XStringViews =  FALSE ) )  ans } ",
+    "filename": "getSeq.txt"
+  },
+  "new_function": {
+    "name": "getSeq",
+    "representation": "getSeq",
+    "parameters": "function ( bsgenome , names , start = NA , end = NA , width = NA , as.character = TRUE )",
+    "body": "{  if (  !   is (  bsgenome ,  \"BSgenome\" ) )   stop (  \"'bsgenome' must be a BSgenome object\" )  if (   missing (  names ) )   names -   seqnames (  bsgenome ) else  if (   !   is.character (  names ) ||   any (   is.na (  names ) ) )   stop (  \"'names' must be a character vector (with no NAs)\" )  if (    length (  names ) ==  0 )  {   ans -   character (  0 )  if (  !  as.character )   ans -   DNAStringSet (  ans )   return (  ans ) }   ans -   lapply (  names ,  function ( name )   subseq (   .getOneSeq (  bsgenome ,  name ) , start =  start , end =  end , width =  width ) ) ## length(ans) == length(names)  if (  as.character ) ## masks are removed before coercion to character vector   return (   sapply (  ans ,  function ( seq )  {    masks (  seq ) -  NULL ;   as.character (  seq ) } ) )  if (    length (  names ) undefined  1 )   stop (  \"'as.character=FALSE' is not supported when 'length(names) ) ## length(ans) == length(names) == 1   ans [[  1 ] ] } ",
+    "filename": "getSeq.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  bsgenome_release_2_3 bsgenome_release_2_4
+
+{
+    "package": "BSgenome",
+    "release_versions": "bsgenome_release_2_3 bsgenome_release_2_4",
+    "desc_release_old": "1.10.5",
+    "desc_release_new": "1.12.5",
+    "old_release_number": 3,
+    "new_release_number": 4,
+    "function_removals": 0,
+    "function_additions": 7,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+installed.genomes
+GenomeData
+GenomeDataList
+strand
+gdapply
+gdApply
+score
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  bsgenome_release_2_4 bsgenome_release_2_5
+
+{
+    "package": "BSgenome",
+    "release_versions": "bsgenome_release_2_4 bsgenome_release_2_5",
+    "desc_release_old": "1.12.5",
+    "desc_release_new": "1.14.2",
+    "old_release_number": 4,
+    "new_release_number": 5,
+    "function_removals": 0,
+    "function_additions": 6,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+installed.SNPs
+gdreduce
+matchPWM
+countPWM
+vmatchPattern
+vcountPattern
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "GenomeDataList",
+    "representation": "GenomeDataList",
+    "parameters": "function ( elements = list ( ) , metadata = list ( ) , elementMetadata = NULL )",
+    "body": "{   new (  \"GenomeDataList\" , elements =  elements , annotation =  metadata , elementMetadata =  elementMetadata ) } ",
+    "filename": "container-classes.txt"
+  },
+  "new_function": {
+    "name": "GenomeDataList",
+    "representation": "GenomeDataList",
+    "parameters": "function ( listData = list ( ) , metadata = list ( ) , elementMetadata = NULL )",
+    "body": "{   new (  \"GenomeDataList\" , listData =  listData , metadata =  metadata , elementMetadata =  elementMetadata ) } ",
+    "filename": "container-classes.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  bsgenome_release_2_5 bsgenome_release_2_6
+
+{
+    "package": "BSgenome",
+    "release_versions": "bsgenome_release_2_5 bsgenome_release_2_6",
+    "desc_release_old": "1.14.2",
+    "desc_release_new": "1.16.5",
+    "old_release_number": 5,
+    "new_release_number": 6,
+    "function_removals": 1,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 2,
+    "total_count": 3
+}
+
+##########
+Functions Removed
+##########
+
+strand
+
+
+##########
+Functions Added
+##########
+
+bsgenomeName
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "vmatchPattern",
+    "representation": "vmatchPattern",
+    "signature": "BSgenome",
+    "parameters": "function ( pattern , subject , algorithm = \"auto\" , max.mismatch = 0 , min.mismatch = 0 , with.indels = FALSE , fixed = TRUE , exclude = \"\" )",
+    "body": "{   matchFUN -  function ( posPattern , negPattern , chr , algorithm =  algorithm , max.mismatch =  max.mismatch , min.mismatch =  min.mismatch , with.indels =  with.indels , fixed =  fixed )  {  if (   is (  chr ,  \"MaskedXString\" ) )    active (   masks (  chr ) ) -  FALSE   posMatches -   matchPattern ( pattern =  posPattern , subject =  chr , algorithm =  algorithm , max.mismatch =  max.mismatch , min.mismatch =  min.mismatch , with.indels =  with.indels , fixed =  fixed )   negMatches -   matchPattern ( pattern =  negPattern , subject =  chr , algorithm =  algorithm , max.mismatch =  max.mismatch , min.mismatch =  min.mismatch , with.indels =  with.indels , fixed =  fixed )   list ( \"ranges\" =   IRangesList ( \"+\" =   as (  posMatches ,  \"IRanges\" ) , \"-\" =   as (  negMatches ,  \"IRanges\" ) ) , \"string\" =   CharacterList ( \"+\" =   as.character (  posMatches ) , \"-\" =   as.character (  negMatches ) ) ) }  if (  !   is (  pattern ,  \"DNAString\" ) )   pattern -   DNAString (  pattern )   algorithm -   Biostrings ::: .normargAlgorithm (  algorithm )  if (   Biostrings ::: .is.character.algo (  algorithm ) )   stop (  \"'subject' must be a single (non-empty) string \" ,  \"for this algorithm\" )   pattern -   Biostrings ::: normargPattern (  pattern ,   DNAStringSet ( ) )   max.mismatch -   Biostrings ::: normargMaxMismatch (  max.mismatch )   min.mismatch -   Biostrings ::: normargMinMismatch (  min.mismatch ,  max.mismatch )   with.indels -   Biostrings ::: normargWithIndels (  with.indels )   fixed -   Biostrings ::: normargFixed (  fixed ,   DNAStringSet ( ) )   posPattern -  pattern   negPattern -   reverseComplement (  posPattern )   bsParams -   new (  \"BSParams\" , X =  subject , FUN =  matchFUN , exclude =  exclude , simplify =  FALSE )   matches -   bsapply (  bsParams , posPattern =  posPattern , negPattern =  negPattern , algorithm =  algorithm , max.mismatch =  max.mismatch , min.mismatch =  min.mismatch , with.indels =  with.indels , fixed =  fixed )   ans -   do.call (  c ,   lapply (   seq_len (   length (  matches ) ) ,  function ( i )  {   RangedData ( ranges =   unlist (    matches [[  i ] ] [[  \"ranges\" ] ] , use.names =  FALSE ) , strand =   strand (   rep (   c (  \"+\" ,  \"-\" ) ,   elementLengths (    matches [[  i ] ] [[  \"ranges\" ] ] ) ) ) , space =    names (  matches ) [  i ] ) } ) )   string -   factor (   do.call (  c ,   unname (   lapply (  matches ,  function ( x )   unlist (   x [[  \"string\" ] ] , use.names =  FALSE ) ) ) ) )    ans $ string -    DNAStringSet (   levels (  string ) ) [   as.integer (  string ) ]  ans } ",
+    "filename": "BSgenome-utils.txt"
+  },
+  "new_function": {
+    "name": "vmatchPattern",
+    "representation": "vmatchPattern",
+    "signature": "BSgenome",
+    "parameters": "function ( pattern , subject , max.mismatch = 0 , min.mismatch = 0 , with.indels = FALSE , fixed = TRUE , algorithm = \"auto\" , exclude = \"\" , maskList = logical ( 0 ) , userMask = RangesList ( ) , invertUserMask = FALSE , asRangedData = TRUE )",
+    "body": "{   matchFUN -  function ( posPattern , negPattern , chr , seqlengths , max.mismatch =  max.mismatch , min.mismatch =  min.mismatch , with.indels =  with.indels , fixed =  fixed , algorithm =  algorithm )  {   posMatches -   matchPattern ( pattern =  posPattern , subject =  chr , max.mismatch =  max.mismatch , min.mismatch =  min.mismatch , with.indels =  with.indels , fixed =  fixed , algorithm =  algorithm )   negMatches -   matchPattern ( pattern =  negPattern , subject =  chr , max.mismatch =  max.mismatch , min.mismatch =  min.mismatch , with.indels =  with.indels , fixed =  fixed , algorithm =  algorithm )   COUNTER -   COUNTER +  1L   seqnames -   names (  seqlengths )   GRanges ( seqnames =   Rle (   factor (   seqnames [  COUNTER ] , levels =  seqnames ) ,    length (  posMatches ) +   length (  negMatches ) ) , ranges =   c (   as (  posMatches ,  \"IRanges\" ) ,   as (  negMatches ,  \"IRanges\" ) ) , strand =   Rle (   strand (   c (  \"+\" ,  \"-\" ) ) ,   c (   length (  posMatches ) ,   length (  negMatches ) ) ) , seqlengths =  seqlengths ) }  if (  !   is (  pattern ,  \"DNAString\" ) )   pattern -   DNAString (  pattern )   algorithm -   Biostrings ::: normargAlgorithm (  algorithm )  if (   Biostrings ::: isCharacterAlgo (  algorithm ) )   stop (  \"'subject' must be a single (non-empty) string \" ,  \"for this algorithm\" )   pattern -   Biostrings ::: normargPattern (  pattern ,   DNAStringSet ( ) )   max.mismatch -   Biostrings ::: normargMaxMismatch (  max.mismatch )   min.mismatch -   Biostrings ::: normargMinMismatch (  min.mismatch ,  max.mismatch )   with.indels -   Biostrings ::: normargWithIndels (  with.indels )   fixed -   Biostrings ::: normargFixed (  fixed ,   DNAStringSet ( ) )   posPattern -  pattern   negPattern -   reverseComplement (  posPattern )   bsParams -   new (  \"BSParams\" , X =  subject , FUN =  matchFUN , exclude =  exclude , simplify =  FALSE , maskList =   logical (  0 ) , userMask =  userMask , invertUserMask =  invertUserMask )   COUNTER -  0L   seqlengths -   seqlengths (  subject )   matches -   bsapply (  bsParams , posPattern =  posPattern , negPattern =  negPattern , seqlengths =  seqlengths , max.mismatch =  max.mismatch , min.mismatch =  min.mismatch , with.indels =  with.indels , fixed =  fixed , algorithm =  algorithm )   nms -   factor (   names (  matches ) , levels =   names (  seqlengths ) )   nms -   nms [    unlist (   lapply (  matches ,  length ) , use.names =  FALSE ) undefined  0 ]   matches -   do.call (  c ,   unname (   as.list (  matches ) ) )    runValue (   seqnames (  matches ) ) -  nms  if (  asRangedData )  {   warning (  \"RangedData output is deprecated.\\nRerun using 'asRangedData=FALSE'.\" )   matches -   RangedData ( ranges =   ranges (  matches ) , strand =   as.vector (   strand (  matches ) ) , space =   as.vector (   seqnames (  matches ) ) ) }  matches } ",
+    "filename": "BSgenome-utils.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "vcountPattern",
+    "representation": "vcountPattern",
+    "signature": "BSgenome",
+    "parameters": "function ( pattern , subject , algorithm = \"auto\" , max.mismatch = 0 , min.mismatch = 0 , with.indels = FALSE , fixed = TRUE , exclude = \"\" )",
+    "body": "{   countFUN -  function ( posPattern , negPattern , chr , algorithm =  algorithm , max.mismatch =  max.mismatch , min.mismatch =  min.mismatch , with.indels =  with.indels , fixed =  fixed , exclude =  exclude )  {  if (   is (  chr ,  \"MaskedXString\" ) )    active (   masks (  chr ) ) -  FALSE   data.frame ( strand =   strand (   c (  \"+\" ,  \"-\" ) ) , count =   c (   countPattern ( pattern =  posPattern , subject =  chr , algorithm =  algorithm , max.mismatch =  max.mismatch , min.mismatch =  min.mismatch , with.indels =  with.indels , fixed =  fixed ) ,   countPattern ( pattern =  negPattern , subject =  chr , algorithm =  algorithm , max.mismatch =  max.mismatch , min.mismatch =  min.mismatch , with.indels =  with.indels , fixed =  fixed ) ) ) }  if (  !   is (  pattern ,  \"DNAString\" ) )   pattern -   DNAString (  pattern )   algorithm -   Biostrings ::: .normargAlgorithm (  algorithm )  if (   Biostrings ::: .is.character.algo (  algorithm ) )   stop (  \"'subject' must be a single (non-empty) string \" ,  \"for this algorithm\" )   pattern -   Biostrings ::: normargPattern (  pattern ,   DNAStringSet ( ) )   max.mismatch -   Biostrings ::: normargMaxMismatch (  max.mismatch )   min.mismatch -   Biostrings ::: normargMinMismatch (  min.mismatch ,  max.mismatch )   with.indels -   Biostrings ::: normargWithIndels (  with.indels )   fixed -   Biostrings ::: normargFixed (  fixed ,   DNAStringSet ( ) )   posPattern -  pattern   negPattern -   reverseComplement (  posPattern )   bsParams -   new (  \"BSParams\" , X =  subject , FUN =  countFUN , exclude =  exclude , simplify =  FALSE )   counts -   bsapply (  bsParams , posPattern =  posPattern , negPattern =  negPattern , algorithm =  algorithm , max.mismatch =  max.mismatch , min.mismatch =  min.mismatch , with.indels =  with.indels , fixed =  fixed )   cbind (   data.frame ( seqname =   rep (   factor (   names (  counts ) , levels =   names (  counts ) ) , each =  2 ) ) ,   do.call (  rbind ,   unname (   as.list (  counts ) ) ) ) } ",
+    "filename": "BSgenome-utils.txt"
+  },
+  "new_function": {
+    "name": "vcountPattern",
+    "representation": "vcountPattern",
+    "signature": "BSgenome",
+    "parameters": "function ( pattern , subject , max.mismatch = 0 , min.mismatch = 0 , with.indels = FALSE , fixed = TRUE , algorithm = \"auto\" , exclude = \"\" , maskList = logical ( 0 ) , userMask = RangesList ( ) , invertUserMask = FALSE )",
+    "body": "{   countFUN -  function ( posPattern , negPattern , chr , max.mismatch =  max.mismatch , min.mismatch =  min.mismatch , with.indels =  with.indels , fixed =  fixed , algorithm =  algorithm )  {   data.frame ( strand =   strand (   c (  \"+\" ,  \"-\" ) ) , count =   c (   countPattern ( pattern =  posPattern , subject =  chr , max.mismatch =  max.mismatch , min.mismatch =  min.mismatch , with.indels =  with.indels , fixed =  fixed , algorithm =  algorithm ) ,   countPattern ( pattern =  negPattern , subject =  chr , max.mismatch =  max.mismatch , min.mismatch =  min.mismatch , with.indels =  with.indels , fixed =  fixed , algorithm =  algorithm ) ) ) }  if (  !   is (  pattern ,  \"DNAString\" ) )   pattern -   DNAString (  pattern )   algorithm -   Biostrings ::: normargAlgorithm (  algorithm )  if (   Biostrings ::: isCharacterAlgo (  algorithm ) )   stop (  \"'subject' must be a single (non-empty) string \" ,  \"for this algorithm\" )   pattern -   Biostrings ::: normargPattern (  pattern ,   DNAStringSet ( ) )   max.mismatch -   Biostrings ::: normargMaxMismatch (  max.mismatch )   min.mismatch -   Biostrings ::: normargMinMismatch (  min.mismatch ,  max.mismatch )   with.indels -   Biostrings ::: normargWithIndels (  with.indels )   fixed -   Biostrings ::: normargFixed (  fixed ,   DNAStringSet ( ) )   posPattern -  pattern   negPattern -   reverseComplement (  posPattern )   bsParams -   new (  \"BSParams\" , X =  subject , FUN =  countFUN , exclude =  exclude , simplify =  FALSE , maskList =   logical (  0 ) , userMask =  userMask , invertUserMask =  invertUserMask )   counts -   bsapply (  bsParams , posPattern =  posPattern , negPattern =  negPattern , max.mismatch =  max.mismatch , min.mismatch =  min.mismatch , with.indels =  with.indels , fixed =  fixed , algorithm =  algorithm )   cbind (   data.frame ( seqname =   rep (   factor (   names (  counts ) , levels =   names (  counts ) ) , each =  2 ) ) ,   do.call (  rbind ,   unname (   as.list (  counts ) ) ) ) } ",
+    "filename": "BSgenome-utils.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  bsgenome_release_2_6 bsgenome_release_2_7
+
+{
+    "package": "BSgenome",
+    "release_versions": "bsgenome_release_2_6 bsgenome_release_2_7",
+    "desc_release_old": "1.16.5",
+    "desc_release_new": "1.18.3",
+    "old_release_number": 6,
+    "new_release_number": 7,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  bsgenome_release_2_7 bsgenome_release_2_8
+
+{
+    "package": "BSgenome",
+    "release_versions": "bsgenome_release_2_7 bsgenome_release_2_8",
+    "desc_release_old": "1.18.3",
+    "desc_release_new": "1.20.1",
+    "old_release_number": 7,
+    "new_release_number": 8,
+    "function_removals": 2,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 3
+}
+
+##########
+Functions Removed
+##########
+
+seqnames
+seqlengths
+
+
+##########
+Functions Added
+##########
+
+seqinfo
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "BSgenome",
+    "representation": "BSgenome",
+    "parameters": "function ( organism , species , provider , provider_version , release_date , release_name , source_url , seqnames , mseqnames , seqs_pkgname , seqs_dir , nmask_per_seq , masks_pkgname , masks_dir )",
+    "body": "{  if (   is.null (  seqnames ) )   seqnames -   character (  0 )  if (   is.null (  mseqnames ) )   mseqnames -   character (  0 )   ans -   new (  \"BSgenome\" ,   GenomeDescription (  organism ,  species ,  provider ,  provider_version ,  release_date ,  release_name ) , source_url =  source_url , seqnames =  seqnames , seqlengths =   as.integer (  NA ) , mseqnames =  mseqnames , seqs_pkgname =  seqs_pkgname , seqs_dir =  seqs_dir , nmask_per_seq =   as.integer (  nmask_per_seq ) , masks_pkgname =  masks_pkgname , masks_dir =  masks_dir , .seqs_cache =   new.env ( parent =   emptyenv ( ) ) , .link_counts =   new.env ( parent =   emptyenv ( ) ) )  ans } ",
+    "filename": "BSgenome-class.txt"
+  },
+  "new_function": {
+    "name": "BSgenome",
+    "representation": "BSgenome",
+    "parameters": "function ( organism , species , provider , provider_version , release_date , release_name , source_url , seqnames , circ_seqs = NA , mseqnames , seqs_pkgname , seqs_dir , nmask_per_seq , masks_pkgname , masks_dir )",
+    "body": "{   seqinfo -   .makeSeqinfo (  seqnames ,  circ_seqs ,  seqs_pkgname ,  seqs_dir )  if (   is.null (  mseqnames ) )   mseqnames -   character (  0 )   ans -   new (  \"BSgenome\" ,   GenomeDescription (  organism ,  species ,  provider ,  provider_version ,  release_date ,  release_name ) , source_url =  source_url , seqinfo =  seqinfo , mseqnames =  mseqnames , seqs_pkgname =  seqs_pkgname , seqs_dir =  seqs_dir , nmask_per_seq =   as.integer (  nmask_per_seq ) , masks_pkgname =  masks_pkgname , masks_dir =  masks_dir , .seqs_cache =   new.env ( parent =   emptyenv ( ) ) , .link_counts =   new.env ( parent =   emptyenv ( ) ) )  ans } ",
+    "filename": "BSgenome-class.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  bsgenome_release_2_8 bsgenome_release_2_9
+
+{
+    "package": "BSgenome",
+    "release_versions": "bsgenome_release_2_8 bsgenome_release_2_9",
+    "desc_release_old": "1.20.1",
+    "desc_release_new": "1.22.0",
+    "old_release_number": 8,
+    "new_release_number": 9,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  bsgenome_release_2_9 bsgenome_release_2_11
+
+{
+    "package": "BSgenome",
+    "release_versions": "bsgenome_release_2_9 bsgenome_release_2_11",
+    "desc_release_old": "1.22.0",
+    "desc_release_new": "1.26.1",
+    "old_release_number": 9,
+    "new_release_number": 10,
+    "function_removals": 0,
+    "function_additions": 13,
+    "parameter_removals": 1,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 3,
+    "total_count": 3
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+GenomeDescription
+newSNPlocs
+referenceGenome
+compatibleGenomes
+snpcount
+snplocs
+snpid2loc
+snpid2alleles
+snpid2grange
+gdReduce
+seqnames
+seqlengths
+isCircular
+
+
+##########
+Removed Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "installed.genomes",
+    "representation": "installed.genomes",
+    "parameters": "function ( )",
+    "body": "{   pkgs -    installed.packages ( ) [ ,  \"Package\" ]   pkgs -   pkgs [    substr (  pkgs ,  1 ,  9 ) ==  \"BSgenome.\" ]    names (  pkgs ) -  NULL   return (  pkgs ) } ",
+    "filename": "available.genomes.txt"
+  },
+  "new_function": {
+    "name": "installed.genomes",
+    "representation": "installed.genomes",
+    "parameters": "function ( splitNameParts = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  splitNameParts ) )   stop (  \"'splitNameParts' must be TRUE or FALSE\" )   pkgs -    installed.packages ( ) [ ,  \"Package\" ]   pkgs -   pkgs [    substr (  pkgs ,  1 ,  9 ) ==  \"BSgenome.\" ]    names (  pkgs ) -  NULL  if (  splitNameParts )   pkgs -   .splitNameParts (  pkgs )   return (  pkgs ) } ",
+    "filename": "available.genomes.txt"
+  }
+}
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "installed.genomes",
+    "representation": "installed.genomes",
+    "parameters": "function ( )",
+    "body": "{   pkgs -    installed.packages ( ) [ ,  \"Package\" ]   pkgs -   pkgs [    substr (  pkgs ,  1 ,  9 ) ==  \"BSgenome.\" ]    names (  pkgs ) -  NULL   return (  pkgs ) } ",
+    "filename": "available.genomes.txt"
+  },
+  "new_function": {
+    "name": "installed.genomes",
+    "representation": "installed.genomes",
+    "parameters": "function ( splitNameParts = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  splitNameParts ) )   stop (  \"'splitNameParts' must be TRUE or FALSE\" )   pkgs -    installed.packages ( ) [ ,  \"Package\" ]   pkgs -   pkgs [    substr (  pkgs ,  1 ,  9 ) ==  \"BSgenome.\" ]    names (  pkgs ) -  NULL  if (  splitNameParts )   pkgs -   .splitNameParts (  pkgs )   return (  pkgs ) } ",
+    "filename": "available.genomes.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "available.genomes",
+    "representation": "available.genomes",
+    "parameters": "function ( type = getOption ( \"pkgType\" ) )",
+    "body": "{   url -   getDataAnnotationContribUrl (  type )   pkgs -    available.packages (  url ) [ ,  \"Package\" ]   pkgs -   pkgs [    substr (  pkgs ,  1 ,  9 ) ==  \"BSgenome.\" ]    names (  pkgs ) -  NULL   return (  pkgs ) } ",
+    "filename": "available.genomes.txt"
+  },
+  "new_function": {
+    "name": "available.genomes",
+    "representation": "available.genomes",
+    "parameters": "function ( splitNameParts = FALSE , type = getOption ( \"pkgType\" ) )",
+    "body": "{  if (  !   isTRUEorFALSE (  splitNameParts ) )   stop (  \"'splitNameParts' must be TRUE or FALSE\" )   url -   getDataAnnotationContribUrl (  type )   pkgs -    available.packages (  url ) [ ,  \"Package\" ]   pkgs -   pkgs [    substr (  pkgs ,  1 ,  9 ) ==  \"BSgenome.\" ]    names (  pkgs ) -  NULL  if (  splitNameParts )   pkgs -   .splitNameParts (  pkgs )   return (  pkgs ) } ",
+    "filename": "available.genomes.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "BSgenome",
+    "representation": "BSgenome",
+    "parameters": "function ( organism , species , provider , provider_version , release_date , release_name , source_url , seqnames , circ_seqs = NA , mseqnames , seqs_pkgname , seqs_dir , nmask_per_seq , masks_pkgname , masks_dir )",
+    "body": "{   seqinfo -   .makeSeqinfo (  seqnames ,  circ_seqs ,  seqs_pkgname ,  seqs_dir ,  provider_version )  if (   is.null (  mseqnames ) )   mseqnames -   character (  0 )   ans -   new (  \"BSgenome\" ,   GenomeDescription (  organism ,  species ,  provider ,  provider_version ,  release_date ,  release_name ) , source_url =  source_url , seqinfo =  seqinfo , mseqnames =  mseqnames , seqs_pkgname =  seqs_pkgname , seqs_dir =  seqs_dir , nmask_per_seq =   as.integer (  nmask_per_seq ) , masks_pkgname =  masks_pkgname , masks_dir =  masks_dir , .seqs_cache =   new.env ( parent =   emptyenv ( ) ) , .link_counts =   new.env ( parent =   emptyenv ( ) ) )  ans } ",
+    "filename": "BSgenome-class.txt"
+  },
+  "new_function": {
+    "name": "BSgenome",
+    "representation": "BSgenome",
+    "parameters": "function ( organism , species , provider , provider_version , release_date , release_name , source_url , seqnames , circ_seqs = NA , mseqnames , seqs_pkgname , seqs_dirpath , nmask_per_seq , masks_pkgname , masks_dirpath )",
+    "body": "{   seqinfo -   .makeSeqinfo (  seqnames ,  circ_seqs ,  seqs_pkgname ,  seqs_dirpath ,  provider_version )  if (   is.null (  mseqnames ) )   mseqnames -   character (  0 )   new (  \"BSgenome\" ,   GenomeDescription (  organism ,  species ,  provider ,  provider_version ,  release_date ,  release_name ,  seqinfo ) , source_url =  source_url , mseqnames =  mseqnames , seqs_pkgname =  seqs_pkgname , seqs_dirpath =  seqs_dirpath , nmask_per_seq =   as.integer (  nmask_per_seq ) , masks_pkgname =  masks_pkgname , masks_dirpath =  masks_dirpath , .seqs_cache =   new.env ( parent =   emptyenv ( ) ) , .link_counts =   new.env ( parent =   emptyenv ( ) ) ) } ",
+    "filename": "BSgenome-class.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  bsgenome_release_2_11 bsgenome_release_2_12
+
+{
+    "package": "BSgenome",
+    "release_versions": "bsgenome_release_2_11 bsgenome_release_2_12",
+    "desc_release_old": "1.26.1",
+    "desc_release_new": "1.28.0",
+    "old_release_number": 10,
+    "new_release_number": 11,
+    "function_removals": 2,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+seqlengths
+isCircular
+
+
+##########
+Functions Added
+##########
+
+seqinfo<-
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  bsgenome_release_2_12 bsgenome_release_2_13
+
+{
+    "package": "BSgenome",
+    "release_versions": "bsgenome_release_2_12 bsgenome_release_2_13",
+    "desc_release_old": "1.28.0",
+    "desc_release_new": "1.30.0",
+    "old_release_number": 11,
+    "new_release_number": 12,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  bsgenome_release_2_13 bsgenome_release_2_14
+
+{
+    "package": "BSgenome",
+    "release_versions": "bsgenome_release_2_13 bsgenome_release_2_14",
+    "desc_release_old": "1.30.0",
+    "desc_release_new": "1.32.0",
+    "old_release_number": 12,
+    "new_release_number": 13,
+    "function_removals": 1,
+    "function_additions": 3,
+    "parameter_removals": 1,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 7,
+    "total_count": 8
+}
+
+##########
+Functions Removed
+##########
+
+gdApply
+
+
+##########
+Functions Added
+##########
+
+MaskedBSgenome
+getBSgenome
+forgeMaskedBSgenomeDataPkg
+
+
+##########
+Removed Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "BSgenome",
+    "representation": "BSgenome",
+    "parameters": "function ( organism , species , provider , provider_version , release_date , release_name , source_url , seqnames , circ_seqs = NA , mseqnames , seqs_pkgname , seqs_dirpath , nmask_per_seq , masks_pkgname , masks_dirpath )",
+    "body": "{   seqinfo -   .makeSeqinfo (  seqnames ,  circ_seqs ,  seqs_pkgname ,  seqs_dirpath ,  provider_version )   user_seqnames -   seqnames (  seqinfo )    names (  user_seqnames ) -  user_seqnames  if (   is.null (  mseqnames ) )   mseqnames -   character (  0 )   new (  \"BSgenome\" ,   GenomeDescription (  organism ,  species ,  provider ,  provider_version ,  release_date ,  release_name ,  seqinfo ) , source_url =  source_url , user_seqnames =  user_seqnames , mseqnames =  mseqnames , seqs_pkgname =  seqs_pkgname , seqs_dirpath =  seqs_dirpath , nmask_per_seq =   as.integer (  nmask_per_seq ) , masks_pkgname =  masks_pkgname , masks_dirpath =  masks_dirpath , .seqs_cache =   new.env ( parent =   emptyenv ( ) ) , .link_counts =   new.env ( parent =   emptyenv ( ) ) ) } ",
+    "filename": "BSgenome-class.txt"
+  },
+  "new_function": {
+    "name": "BSgenome",
+    "representation": "BSgenome",
+    "parameters": "function ( organism , species , provider , provider_version , release_date , release_name , source_url , seqnames , circ_seqs = NA , mseqnames , seqs_pkgname , seqs_dirpath , nmask_per_seq = 0 , masks_pkgname = NA , masks_dirpath = NA )",
+    "body": "{   fa_filename -  \"single_sequences.fa\"   fa_filepath -   file.path (  seqs_dirpath ,  fa_filename )   farz_filename -   paste0 (  fa_filename ,  \".rz\" )   farz_filepath -   file.path (  seqs_dirpath ,  farz_filename )  if (   file.exists (  farz_filepath ) )  {   single_sequences -   FastaNamedSequences (  farz_filepath ) } else  if (   file.exists (  fa_filepath ) )  {   single_sequences -   FastaNamedSequences (  fa_filepath ) } else  {   single_sequences -   RdaNamedSequences (  seqs_dirpath ,  seqnames ) }   seqinfo -   .makeBSgenomeSeqinfo (  single_sequences ,  circ_seqs ,  provider_version ,  seqnames )   genome_description -   GenomeDescription (  organism ,  species ,  provider ,  provider_version ,  release_date ,  release_name ,  seqinfo )  if (   is.null (  mseqnames ) )   mseqnames -   character (  0 )   multiple_sequences -   RdaCollection (  seqs_dirpath ,  mseqnames )   user_seqnames -   seqnames (  seqinfo )    names (  user_seqnames ) -  user_seqnames   nmask_per_seq -   as.integer (  nmask_per_seq )   masks_dirpath -   as.character (  masks_dirpath )  if (    nmask_per_seq ==  0L ||    length (  seqnames ) ==  0L )  {   masks -   RdaCollection (  masks_dirpath ,   character (  0 ) ) } else  {   masks -   RdaCollection (  masks_dirpath ,   paste0 (  seqnames ,  \".masks\" ) ) }   new (  \"BSgenome\" ,  genome_description , pkgname =  seqs_pkgname , single_sequences =  single_sequences , multiple_sequences =  multiple_sequences , source_url =  source_url , user_seqnames =  user_seqnames , .seqs_cache =   new.env ( parent =   emptyenv ( ) ) , .link_counts =   new.env ( parent =   emptyenv ( ) ) , nmask_per_seq =  nmask_per_seq , masks =  masks ) } ",
+    "filename": "BSgenome-class.txt"
+  }
+}
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "vmatchPattern",
+    "representation": "vmatchPattern",
+    "signature": "BSgenome",
+    "parameters": "function ( pattern , subject , max.mismatch = 0 , min.mismatch = 0 , with.indels = FALSE , fixed = TRUE , algorithm = \"auto\" , exclude = \"\" , maskList = logical ( 0 ) , userMask = RangesList ( ) , invertUserMask = FALSE , asRangedData = FALSE )",
+    "body": "{   matchFUN -  function ( posPattern , negPattern , chr , seqlengths , max.mismatch =  max.mismatch , min.mismatch =  min.mismatch , with.indels =  with.indels , fixed =  fixed , algorithm =  algorithm )  {   posMatches -   matchPattern ( pattern =  posPattern , subject =  chr , max.mismatch =  max.mismatch , min.mismatch =  min.mismatch , with.indels =  with.indels , fixed =  fixed , algorithm =  algorithm )   negMatches -   matchPattern ( pattern =  negPattern , subject =  chr , max.mismatch =  max.mismatch , min.mismatch =  min.mismatch , with.indels =  with.indels , fixed =  fixed , algorithm =  algorithm )   COUNTER -   COUNTER +  1L   seqnames -   names (  seqlengths )   GRanges ( seqnames =   Rle (   factor (   seqnames [  COUNTER ] , levels =  seqnames ) ,    length (  posMatches ) +   length (  negMatches ) ) , ranges =   c (   as (  posMatches ,  \"IRanges\" ) ,   as (  negMatches ,  \"IRanges\" ) ) , strand =   Rle (   strand (   c (  \"+\" ,  \"-\" ) ) ,   c (   length (  posMatches ) ,   length (  negMatches ) ) ) , seqlengths =  seqlengths ) }  if (  !   is (  pattern ,  \"DNAString\" ) )   pattern -   DNAString (  pattern )   algorithm -   Biostrings ::: normargAlgorithm (  algorithm )  if (   Biostrings ::: isCharacterAlgo (  algorithm ) )   stop (  \"'subject' must be a single (non-empty) string \" ,  \"for this algorithm\" )   pattern -   Biostrings ::: normargPattern (  pattern ,   DNAStringSet ( ) )   max.mismatch -   Biostrings ::: normargMaxMismatch (  max.mismatch )   min.mismatch -   Biostrings ::: normargMinMismatch (  min.mismatch ,  max.mismatch )   with.indels -   Biostrings ::: normargWithIndels (  with.indels )   fixed -   Biostrings ::: normargFixed (  fixed ,   DNAStringSet ( ) )  if (  !   missing (  asRangedData ) )  {   msg -   c (  \"the 'asRangedData' argument is deprecated \" ,  \"and will be removed soon\" )   .Deprecated ( msg =  msg ) }  if (  asRangedData )  {   msg -  \"using 'asRangedData=TRUE' is defunct\"   .Defunct ( msg =  msg ) }   posPattern -  pattern   negPattern -   reverseComplement (  posPattern )   bsParams -   new (  \"BSParams\" , X =  subject , FUN =  matchFUN , exclude =  exclude , simplify =  FALSE , maskList =   logical (  0 ) , userMask =  userMask , invertUserMask =  invertUserMask )   COUNTER -  0L   seqlengths -   seqlengths (  subject )   matches -   bsapply (  bsParams , posPattern =  posPattern , negPattern =  negPattern , seqlengths =  seqlengths , max.mismatch =  max.mismatch , min.mismatch =  min.mismatch , with.indels =  with.indels , fixed =  fixed , algorithm =  algorithm )   nms -   factor (   names (  matches ) , levels =   names (  seqlengths ) )   nms -   nms [    unlist (   lapply (  matches ,  length ) , use.names =  FALSE ) undefined  0 ]   matches -   do.call (  c ,   unname (   as.list (  matches ) ) )    runValue (   seqnames (  matches ) ) -  nms  matches } ",
+    "filename": "BSgenome-utils.txt"
+  },
+  "new_function": {
+    "name": "vmatchPattern",
+    "representation": "vmatchPattern",
+    "signature": "BSgenome",
+    "parameters": "function ( pattern , subject , max.mismatch = 0 , min.mismatch = 0 , with.indels = FALSE , fixed = TRUE , algorithm = \"auto\" , exclude = \"\" , maskList = logical ( 0 ) , userMask = RangesList ( ) , invertUserMask = FALSE )",
+    "body": "{   matchFUN -  function ( posPattern , negPattern , chr , seqlengths , max.mismatch =  max.mismatch , min.mismatch =  min.mismatch , with.indels =  with.indels , fixed =  fixed , algorithm =  algorithm )  {   posMatches -   matchPattern ( pattern =  posPattern , subject =  chr , max.mismatch =  max.mismatch , min.mismatch =  min.mismatch , with.indels =  with.indels , fixed =  fixed , algorithm =  algorithm )   negMatches -   matchPattern ( pattern =  negPattern , subject =  chr , max.mismatch =  max.mismatch , min.mismatch =  min.mismatch , with.indels =  with.indels , fixed =  fixed , algorithm =  algorithm )   COUNTER -   COUNTER +  1L   seqnames -   names (  seqlengths )   GRanges ( seqnames =   Rle (   factor (   seqnames [  COUNTER ] , levels =  seqnames ) ,    length (  posMatches ) +   length (  negMatches ) ) , ranges =   c (   as (  posMatches ,  \"IRanges\" ) ,   as (  negMatches ,  \"IRanges\" ) ) , strand =   Rle (   strand (   c (  \"+\" ,  \"-\" ) ) ,   c (   length (  posMatches ) ,   length (  negMatches ) ) ) , seqlengths =  seqlengths ) }  if (  !   is (  pattern ,  \"DNAString\" ) )   pattern -   DNAString (  pattern )   algorithm -   Biostrings ::: normargAlgorithm (  algorithm )  if (   Biostrings ::: isCharacterAlgo (  algorithm ) )   stop (  \"'subject' must be a single (non-empty) string \" ,  \"for this algorithm\" )   pattern -   Biostrings ::: normargPattern (  pattern ,   DNAStringSet ( ) )   max.mismatch -   Biostrings ::: normargMaxMismatch (  max.mismatch )   min.mismatch -   Biostrings ::: normargMinMismatch (  min.mismatch ,  max.mismatch )   with.indels -   Biostrings ::: normargWithIndels (  with.indels )   fixed -   Biostrings ::: normargFixed (  fixed ,   DNAStringSet ( ) )   posPattern -  pattern   negPattern -   reverseComplement (  posPattern )   bsParams -   new (  \"BSParams\" , X =  subject , FUN =  matchFUN , exclude =  exclude , simplify =  FALSE , maskList =   logical (  0 ) , userMask =  userMask , invertUserMask =  invertUserMask )   COUNTER -  0L   seqlengths -   seqlengths (  subject )   matches -   bsapply (  bsParams , posPattern =  posPattern , negPattern =  negPattern , seqlengths =  seqlengths , max.mismatch =  max.mismatch , min.mismatch =  min.mismatch , with.indels =  with.indels , fixed =  fixed , algorithm =  algorithm )   nms -   factor (   names (  matches ) , levels =   names (  seqlengths ) )   nms -   nms [    unlist (   lapply (  matches ,  length ) , use.names =  FALSE ) undefined  0 ]   matches -   do.call (  c ,   unname (   as.list (  matches ) ) )    runValue (   seqnames (  matches ) ) -  nms  matches } ",
+    "filename": "BSgenome-utils.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "matchPWM",
+    "representation": "matchPWM",
+    "signature": "BSgenome",
+    "parameters": "function ( pwm , subject , min.score = \"80%\" , exclude = \"\" , maskList = logical ( 0 ) , asRangedData = FALSE )",
+    "body": "{   matchFUN -  function ( posPWM , negPWM , chr , seqlengths , min.score )  {   posMatches -   matchPWM ( pwm =  posPWM , subject =  chr , min.score =  min.score )   posScores -   PWMscoreStartingAt ( pwm =  posPWM , subject =  chr , starting.at =   start (  posMatches ) )   negMatches -   matchPWM ( pwm =  negPWM , subject =  chr , min.score =  min.score )   negScores -   PWMscoreStartingAt ( pwm =  negPWM , subject =  chr , starting.at =   start (  negMatches ) )   COUNTER -   COUNTER +  1L   seqnames -   names (  seqlengths )   GRanges ( seqnames =   Rle (   factor (   seqnames [  COUNTER ] , levels =  seqnames ) ,    length (  posMatches ) +   length (  negMatches ) ) , ranges =   c (   as (  posMatches ,  \"IRanges\" ) ,   as (  negMatches ,  \"IRanges\" ) ) , strand =   Rle (   strand (   c (  \"+\" ,  \"-\" ) ) ,   c (   length (  posMatches ) ,   length (  negMatches ) ) ) , score =   c (  posScores ,  negScores ) , string =   c (   as.character (  posMatches ) ,   as.character (   reverseComplement (   DNAStringSet (  negMatches ) ) ) ) , seqlengths =  seqlengths ) } ## checking 'pwm'   pwm -   Biostrings ::: .normargPwm (  pwm ) ## checking 'min.score'   min.score -   Biostrings ::: .normargMinScore (  min.score ,  pwm )  if (  !   missing (  asRangedData ) )  {   msg -   c (  \"the 'asRangedData' argument is deprecated \" ,  \"and will be removed soon\" )   .Deprecated ( msg =  msg ) }  if (  asRangedData )  {   msg -  \"using 'asRangedData=TRUE' is defunct\"   .Defunct ( msg =  msg ) }   posPWM -   pwm [  DNA_BASES , , drop =  FALSE ]   negPWM -   reverseComplement (  posPWM )   bsParams -   new (  \"BSParams\" , X =  subject , FUN =  matchFUN , exclude =  exclude , simplify =  FALSE , maskList =   logical (  0 ) )   COUNTER -  0L   seqlengths -   seqlengths (  subject )   matches -   bsapply (  bsParams , posPWM =  posPWM , negPWM =  negPWM , seqlengths =  seqlengths , min.score =  min.score )   nms -   factor (   names (  matches ) , levels =   names (  seqlengths ) )   nms -   nms [    unlist (   lapply (  matches ,  length ) , use.names =  FALSE ) undefined  0 ]   matches -   do.call (  c ,   unname (   as.list (  matches ) ) )    runValue (   seqnames (  matches ) ) -  nms ## create compact DNAStringSet   string -   factor (    elementMetadata (  matches ) [[  \"string\" ] ] )     elementMetadata (  matches ) [[  \"string\" ] ] -    DNAStringSet (   levels (  string ) ) [   as.integer (  string ) ]  matches } ",
+    "filename": "BSgenome-utils.txt"
+  },
+  "new_function": {
+    "name": "matchPWM",
+    "representation": "matchPWM",
+    "signature": "BSgenome",
+    "parameters": "function ( pwm , subject , min.score = \"80%\" , exclude = \"\" , maskList = logical ( 0 ) )",
+    "body": "{   matchFUN -  function ( posPWM , negPWM , chr , seqlengths , min.score )  {   posMatches -   matchPWM ( pwm =  posPWM , subject =  chr , min.score =  min.score )   posScores -   PWMscoreStartingAt ( pwm =  posPWM , subject =  chr , starting.at =   start (  posMatches ) )   negMatches -   matchPWM ( pwm =  negPWM , subject =  chr , min.score =  min.score )   negScores -   PWMscoreStartingAt ( pwm =  negPWM , subject =  chr , starting.at =   start (  negMatches ) )   COUNTER -   COUNTER +  1L   seqnames -   names (  seqlengths )   GRanges ( seqnames =   Rle (   factor (   seqnames [  COUNTER ] , levels =  seqnames ) ,    length (  posMatches ) +   length (  negMatches ) ) , ranges =   c (   as (  posMatches ,  \"IRanges\" ) ,   as (  negMatches ,  \"IRanges\" ) ) , strand =   Rle (   strand (   c (  \"+\" ,  \"-\" ) ) ,   c (   length (  posMatches ) ,   length (  negMatches ) ) ) , score =   c (  posScores ,  negScores ) , string =   c (   as.character (  posMatches ) ,   as.character (   reverseComplement (   DNAStringSet (  negMatches ) ) ) ) , seqlengths =  seqlengths ) } ## checking 'pwm'   pwm -   Biostrings ::: .normargPwm (  pwm ) ## checking 'min.score'   min.score -   Biostrings ::: .normargMinScore (  min.score ,  pwm )   posPWM -   pwm [  DNA_BASES , , drop =  FALSE ]   negPWM -   reverseComplement (  posPWM )   bsParams -   new (  \"BSParams\" , X =  subject , FUN =  matchFUN , exclude =  exclude , simplify =  FALSE , maskList =   logical (  0 ) )   COUNTER -  0L   seqlengths -   seqlengths (  subject )   matches -   bsapply (  bsParams , posPWM =  posPWM , negPWM =  negPWM , seqlengths =  seqlengths , min.score =  min.score )   nms -   factor (   names (  matches ) , levels =   names (  seqlengths ) )   nms -   nms [    unlist (   lapply (  matches ,  length ) , use.names =  FALSE ) undefined  0 ]   matches -   do.call (  c ,   unname (   as.list (  matches ) ) )    runValue (   seqnames (  matches ) ) -  nms ## create compact DNAStringSet   string -   factor (    elementMetadata (  matches ) [[  \"string\" ] ] )     elementMetadata (  matches ) [[  \"string\" ] ] -    DNAStringSet (   levels (  string ) ) [   as.integer (  string ) ]  matches } ",
+    "filename": "BSgenome-utils.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "forgeSeqFiles",
+    "representation": "forgeSeqFiles",
+    "parameters": "function ( seqnames , mseqnames = NULL , prefix = \"\" , suffix = \".fa\" , seqs_srcdir = \".\" , seqs_destdir = \".\" , verbose = TRUE )",
+    "body": "{  if (    length (  seqnames ) ==  0 )  {   warning (  \"'seqnames' is empty\" ) } else  { ## just for the side effect of checking the arguments   getSeqSrcpaths (  seqnames , prefix =  prefix , suffix =  suffix , seqs_srcdir =  seqs_srcdir ) }  if (    length (  mseqnames ) !=  0 )  {  if (  !   is.character (  mseqnames ) )   stop (  \"'mseqnames' must be a character vector (or NULL)\" ) ## just for the side effect of checking the arguments   getSeqSrcpaths (  mseqnames , prefix =  prefix , suffix =  suffix , seqs_srcdir =  seqs_srcdir ) }  if (  !   isSingleString (  seqs_destdir ) )   stop (  \"'seqs_destdir' must be a single string\" )  for  ( name in  seqnames )  {   .forgeSeqFile (  name ,  prefix ,  suffix ,  seqs_srcdir ,  seqs_destdir , is.single.seq =  TRUE , verbose =  verbose ) }  for  ( name in  mseqnames )  {   .forgeSeqFile (  name ,  prefix ,  suffix ,  seqs_srcdir ,  seqs_destdir , is.single.seq =  FALSE , verbose =  verbose ) } } ",
+    "filename": "BSgenomeForge.txt"
+  },
+  "new_function": {
+    "name": "forgeSeqFiles",
+    "representation": "forgeSeqFiles",
+    "parameters": "function ( seqnames , mseqnames = NULL , prefix = \"\" , suffix = \".fa\" , seqs_srcdir = \".\" , seqs_destdir = \".\" , mode = c ( \"rda\" , \"fa\" , \"fa.rz\" ) , verbose = TRUE )",
+    "body": "{  if (    length (  seqnames ) ==  0 )  {   warning (  \"'seqnames' is empty\" ) } else  { ## just for the side effect of checking the arguments   getSeqSrcpaths (  seqnames , prefix =  prefix , suffix =  suffix , seqs_srcdir =  seqs_srcdir ) }  if (    length (  mseqnames ) !=  0 )  {  if (  !   is.character (  mseqnames ) )   stop (  \"'mseqnames' must be a character vector (or NULL)\" ) ## just for the side effect of checking the arguments   getSeqSrcpaths (  mseqnames , prefix =  prefix , suffix =  suffix , seqs_srcdir =  seqs_srcdir ) }  if (  !   isSingleString (  seqs_destdir ) )   stop (  \"'seqs_destdir' must be a single string\" )   mode -   match.arg (  mode )  if (   mode ==  \"rda\" )  { # \"rda\" mode  for  ( name in  seqnames )  {   .forgeRdaSeqFile (  name ,  prefix ,  suffix ,  seqs_srcdir ,  seqs_destdir , is.single.seq =  TRUE , verbose =  verbose ) } } else  { # \"fa\" and \"fa.rz\" modes   .forgeFastaRzFile (  seqnames ,  prefix ,  suffix ,  seqs_srcdir ,  seqs_destdir ,  mode , verbose =  verbose ) }  for  ( name in  mseqnames )  {   .forgeRdaSeqFile (  name ,  prefix ,  suffix ,  seqs_srcdir ,  seqs_destdir , is.single.seq =  FALSE , verbose =  verbose ) } } ",
+    "filename": "BSgenomeForge.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "forgeMasksFiles",
+    "representation": "forgeMasksFiles",
+    "parameters": "function ( seqnames , nmask_per_seq , seqs_destdir = \".\" , masks_srcdir = \".\" , masks_destdir = \".\" , AGAPSfiles_type = \"gap\" , AGAPSfiles_name = NA , AGAPSfiles_prefix = \"\" , AGAPSfiles_suffix = \"_gap.txt\" , RMfiles_name = NA , RMfiles_prefix = \"\" , RMfiles_suffix = \".fa.out\" , TRFfiles_name = NA , TRFfiles_prefix = \"\" , TRFfiles_suffix = \".bed\" , verbose = TRUE )",
+    "body": "{  if (    length (  seqnames ) ==  0 )   warning (  \"'seqnames' is empty\" )  for  ( seqname in  seqnames )  {   .forgeMasksFile (  seqname ,  nmask_per_seq , seqs_destdir =  seqs_destdir , masks_srcdir =  masks_srcdir , masks_destdir =  masks_destdir , AGAPSfiles_type =  AGAPSfiles_type , AGAPSfiles_name =  AGAPSfiles_name , AGAPSfiles_prefix =  AGAPSfiles_prefix , AGAPSfiles_suffix =  AGAPSfiles_suffix , RMfiles_name =  RMfiles_name , RMfiles_prefix =  RMfiles_prefix , RMfiles_suffix =  RMfiles_suffix , TRFfiles_name =  TRFfiles_name , TRFfiles_prefix =  TRFfiles_prefix , TRFfiles_suffix =  TRFfiles_suffix , verbose =  verbose ) } } ",
+    "filename": "BSgenomeForge.txt"
+  },
+  "new_function": {
+    "name": "forgeMasksFiles",
+    "representation": "forgeMasksFiles",
+    "parameters": "function ( seqnames , nmask_per_seq , seqs_destdir = \".\" , mode = c ( \"rda\" , \"fa\" , \"fa.rz\" ) , masks_srcdir = \".\" , masks_destdir = \".\" , AGAPSfiles_type = \"gap\" , AGAPSfiles_name = NA , AGAPSfiles_prefix = \"\" , AGAPSfiles_suffix = \"_gap.txt\" , RMfiles_name = NA , RMfiles_prefix = \"\" , RMfiles_suffix = \".fa.out\" , TRFfiles_name = NA , TRFfiles_prefix = \"\" , TRFfiles_suffix = \".bed\" , verbose = TRUE )",
+    "body": "{  if (    length (  seqnames ) ==  0 )   warning (  \"'seqnames' is empty\" )  for  ( seqname in  seqnames )  {   .forgeMasksFile (  seqname ,  nmask_per_seq , seqs_destdir =  seqs_destdir , mode =  mode , masks_srcdir =  masks_srcdir , masks_destdir =  masks_destdir , AGAPSfiles_type =  AGAPSfiles_type , AGAPSfiles_name =  AGAPSfiles_name , AGAPSfiles_prefix =  AGAPSfiles_prefix , AGAPSfiles_suffix =  AGAPSfiles_suffix , RMfiles_name =  RMfiles_name , RMfiles_prefix =  RMfiles_prefix , RMfiles_suffix =  RMfiles_suffix , TRFfiles_name =  TRFfiles_name , TRFfiles_prefix =  TRFfiles_prefix , TRFfiles_suffix =  TRFfiles_suffix , verbose =  verbose ) } } ",
+    "filename": "BSgenomeForge.txt"
+  }
+}
+
+4.
+{
+  "old_function": {
+    "name": "forgeBSgenomeDataPkg",
+    "representation": "forgeBSgenomeDataPkg",
+    "signature": "BSgenomeDataPkgSeed",
+    "parameters": "function ( x , seqs_srcdir = \".\" , masks_srcdir = \".\" , destdir = \".\" , verbose = TRUE )",
+    "body": "{    require (  Biobase ) ||   stop (  \"the Biobase package is required\" )   template_path -   system.file (  \"BSgenomeDataPkg-template\" , package =  \"BSgenome\" )   BSgenome_version -    installed.packages ( ) [  'BSgenome' ,  'Version' ]   symvals -   list ( PKGTITLE =   x @ Title , PKGDESCRIPTION =   x @ Description , PKGVERSION =   x @ Version , AUTHOR =   x @ Author , MAINTAINER =   x @ Maintainer , BSGENOMEVERSION =  BSgenome_version , LIC =   x @ License , ORGANISM =   x @ organism , SPECIES =   x @ species , PROVIDER =   x @ provider , PROVIDERVERSION =   x @ provider_version , RELEASEDATE =   x @ release_date , RELEASENAME =   x @ release_name , SOURCEURL =   x @ source_url , ORGANISMBIOCVIEW =   x @ organism_biocview , BSGENOMEOBJNAME =   x @ BSgenomeObjname , SEQNAMES =   x @ seqnames , CIRCSEQS =   x @ circ_seqs , MSEQNAMES =   x @ mseqnames , NMASKPERSEQ =   as.character (   x @ nmask_per_seq ) , PKGDETAILS =   x @ PkgDetails , SRCDATAFILES1 =   x @ SrcDataFiles1 , SRCDATAFILES2 =   x @ SrcDataFiles2 , PKGEXAMPLES =   x @ PkgExamples ) ## Should never happen  if (   any (   duplicated (   names (  symvals ) ) ) )  {   str (  symvals )   stop (  \"'symvals' contains duplicated symbols\" ) } ## All symvals should by single strings (non-NA)   is_OK -   sapply (  symvals ,  isSingleString )  if (  !   all (  is_OK ) )  {   bad_syms -   paste (    names (  is_OK ) [  !  is_OK ] , collapse =  \", \" )   stop (  \"values for symbols \" ,  bad_syms ,  \" are not single strings\" ) }   createPackage (   x @ Package ,  destdir ,  template_path ,  symvals )   pkgdir -   file.path (  destdir ,   x @ Package ) ## Just to avoid codetools \"no visible binding\" NOTEs   .seqnames -   .mseqnames -  NULL   .nmask_per_seq -  0 ## Sourcing this file will set the values of the '.seqnames', ## '.mseqnames' and '.nmask_per_seq' variables   source (   file.path (  pkgdir ,  \"R\" ,  \"zzz.R\" ) , local =  TRUE ) ## Forge the \"seqlengths.rda\" file   seqs_destdir -   file.path (  pkgdir ,  \"inst\" ,  \"extdata\" )   forgeSeqlengthsFile (  .seqnames , prefix =   x @ seqfiles_prefix , suffix =   x @ seqfiles_suffix , seqs_srcdir =  seqs_srcdir , seqs_destdir =  seqs_destdir , verbose =  verbose ) ## Forge the sequence \"*.rda\" files   forgeSeqFiles (  .seqnames , mseqnames =  .mseqnames , prefix =   x @ seqfiles_prefix , suffix =   x @ seqfiles_suffix , seqs_srcdir =  seqs_srcdir , seqs_destdir =  seqs_destdir , verbose =  verbose )  if (   .nmask_per_seq undefined  0 )  { ## Forge the \"*.masks.rda\" files   masks_destdir -   file.path (  pkgdir ,  \"inst\" ,  \"extdata\" )   forgeMasksFiles (  .seqnames ,  .nmask_per_seq , seqs_destdir =  seqs_destdir , masks_srcdir =  masks_srcdir , masks_destdir =  masks_destdir , AGAPSfiles_type =   x @ AGAPSfiles_type , AGAPSfiles_name =   x @ AGAPSfiles_name , AGAPSfiles_prefix =   x @ AGAPSfiles_prefix , AGAPSfiles_suffix =   x @ AGAPSfiles_suffix , RMfiles_name =   x @ RMfiles_name , RMfiles_prefix =   x @ RMfiles_prefix , RMfiles_suffix =   x @ RMfiles_suffix , TRFfiles_name =   x @ TRFfiles_name , TRFfiles_prefix =   x @ TRFfiles_prefix , TRFfiles_suffix =   x @ TRFfiles_suffix , verbose =  verbose ) } } ",
+    "filename": "BSgenomeForge.txt"
+  },
+  "new_function": {
+    "name": "forgeBSgenomeDataPkg",
+    "representation": "forgeBSgenomeDataPkg",
+    "signature": "BSgenomeDataPkgSeed",
+    "parameters": "function ( x , seqs_srcdir = \".\" , destdir = \".\" , mode = c ( \"rda\" , \"fa\" , \"fa.rz\" ) , verbose = TRUE )",
+    "body": "{    require (  Biobase ) ||   stop (  \"the Biobase package is required\" )   mode -   match.arg (  mode )   template_path -   system.file (  \"pkgtemplates\" ,  \"BSgenome_datapkg\" , package =  \"BSgenome\" )   BSgenome_version -    installed.packages ( ) [  'BSgenome' ,  'Version' ]   symvals -   list ( PKGTITLE =   x @ Title , PKGDESCRIPTION =   x @ Description , PKGVERSION =   x @ Version , AUTHOR =   x @ Author , MAINTAINER =   x @ Maintainer , BSGENOMEVERSION =  BSgenome_version , LIC =   x @ License , ORGANISM =   x @ organism , SPECIES =   x @ species , PROVIDER =   x @ provider , PROVIDERVERSION =   x @ provider_version , RELEASEDATE =   x @ release_date , RELEASENAME =   x @ release_name , SOURCEURL =   x @ source_url , ORGANISMBIOCVIEW =   x @ organism_biocview , BSGENOMEOBJNAME =   x @ BSgenomeObjname , SEQNAMES =   x @ seqnames , CIRCSEQS =   x @ circ_seqs , MSEQNAMES =   x @ mseqnames , PKGDETAILS =   x @ PkgDetails , SRCDATAFILES1 =   x @ SrcDataFiles1 , SRCDATAFILES2 =   x @ SrcDataFiles2 , PKGEXAMPLES =   x @ PkgExamples ) ## Should never happen  if (   any (   duplicated (   names (  symvals ) ) ) )  {   str (  symvals )   stop (  \"'symvals' contains duplicated symbols\" ) } ## All symvals should by single strings (non-NA)   is_OK -   sapply (  symvals ,  isSingleString )  if (  !   all (  is_OK ) )  {   bad_syms -   paste (    names (  is_OK ) [  !  is_OK ] , collapse =  \", \" )   stop (  \"values for symbols \" ,  bad_syms ,  \" are not single strings\" ) }   createPackage (   x @ Package ,  destdir ,  template_path ,  symvals )   pkgdir -   file.path (  destdir ,   x @ Package ) ## Just to avoid codetools \"no visible binding\" NOTEs   .seqnames -   .mseqnames -  NULL ## Sourcing this file will set the values of the '.seqnames' and ## '.mseqnames' variables   source (   file.path (  pkgdir ,  \"R\" ,  \"zzz.R\" ) , local =  TRUE )   seqs_destdir -   file.path (  pkgdir ,  \"inst\" ,  \"extdata\" )  if (   mode ==  \"rda\" )  { ## Forge the \"seqlengths.rda\" file   forgeSeqlengthsFile (  .seqnames , prefix =   x @ seqfiles_prefix , suffix =   x @ seqfiles_suffix , seqs_srcdir =  seqs_srcdir , seqs_destdir =  seqs_destdir , verbose =  verbose ) } ## Forge the sequence files (either \"rda\", \"fa\", or \"fa.rz\")   forgeSeqFiles (  .seqnames , mseqnames =  .mseqnames , prefix =   x @ seqfiles_prefix , suffix =   x @ seqfiles_suffix , seqs_srcdir =  seqs_srcdir , seqs_destdir =  seqs_destdir , mode =  mode , verbose =  verbose ) } ",
+    "filename": "BSgenomeForge.txt"
+  }
+}
+
+5.
+{
+  "old_function": {
+    "name": "forgeBSgenomeDataPkg",
+    "representation": "forgeBSgenomeDataPkg",
+    "signature": "list",
+    "parameters": "function ( x , seqs_srcdir = \".\" , masks_srcdir = \".\" , destdir = \".\" , verbose = TRUE )",
+    "body": "{   y -   BSgenomeDataPkgSeed (  x )   forgeBSgenomeDataPkg (  y , seqs_srcdir =  seqs_srcdir , masks_srcdir =  masks_srcdir , destdir =  destdir , verbose =  verbose ) } ",
+    "filename": "BSgenomeForge.txt"
+  },
+  "new_function": {
+    "name": "forgeBSgenomeDataPkg",
+    "representation": "forgeBSgenomeDataPkg",
+    "signature": "list",
+    "parameters": "function ( x , seqs_srcdir = \".\" , destdir = \".\" , mode = c ( \"rda\" , \"fa\" , \"fa.rz\" ) , verbose = TRUE )",
+    "body": "{   y -   BSgenomeDataPkgSeed (  x )   forgeBSgenomeDataPkg (  y , seqs_srcdir =  seqs_srcdir , destdir =  destdir , mode =  mode , verbose =  verbose ) } ",
+    "filename": "BSgenomeForge.txt"
+  }
+}
+
+6.
+{
+  "old_function": {
+    "name": "forgeBSgenomeDataPkg",
+    "representation": "forgeBSgenomeDataPkg",
+    "signature": "character",
+    "parameters": "function ( x , seqs_srcdir = \".\" , masks_srcdir = \".\" , destdir = \".\" , verbose = TRUE )",
+    "body": "{   y -   .readSeedFile (  x , verbose =  verbose )   y -   as.list (  y )  if (   missing (  seqs_srcdir ) )  {   seqs_srcdir -   y [[  \"seqs_srcdir\" ] ]  if (   is.null (  seqs_srcdir ) )   stop (  \"'seqs_srcdir' argument is missing, and the \" ,  \"'seqs_srcdir' field is missing in seed file\" ) }  if (    missing (  masks_srcdir ) undefined  !   is.null (   y [[  \"masks_srcdir\" ] ] ) )   masks_srcdir -   y [[  \"masks_srcdir\" ] ]   y -   y [  !  (    names (  y ) %in%   c (  \"seqs_srcdir\" ,  \"masks_srcdir\" ) ) ]   forgeBSgenomeDataPkg (  y , seqs_srcdir =  seqs_srcdir , masks_srcdir =  masks_srcdir , destdir =  destdir , verbose =  verbose ) } ",
+    "filename": "BSgenomeForge.txt"
+  },
+  "new_function": {
+    "name": "forgeBSgenomeDataPkg",
+    "representation": "forgeBSgenomeDataPkg",
+    "signature": "character",
+    "parameters": "function ( x , seqs_srcdir = \".\" , destdir = \".\" , mode = c ( \"rda\" , \"fa\" , \"fa.rz\" ) , verbose = TRUE )",
+    "body": "{   y -   .readSeedFile (  x , verbose =  verbose )   y -   as.list (  y )  if (   missing (  seqs_srcdir ) )  {   seqs_srcdir -   y [[  \"seqs_srcdir\" ] ]  if (   is.null (  seqs_srcdir ) )   stop (  \"'seqs_srcdir' argument is missing, and the \" ,  \"'seqs_srcdir' field is missing in seed file\" ) }   y -   y [  !  (    names (  y ) %in%  \"seqs_srcdir\" ) ]   forgeBSgenomeDataPkg (  y , seqs_srcdir =  seqs_srcdir , destdir =  destdir , mode =  mode , verbose =  verbose ) } ",
+    "filename": "BSgenomeForge.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  bsgenome_release_2_14 bsgenome_release_3_1
+
+{
+    "package": "BSgenome",
+    "release_versions": "bsgenome_release_2_14 bsgenome_release_3_1",
+    "desc_release_old": "1.32.0",
+    "desc_release_new": "1.36.3",
+    "old_release_number": 13,
+    "new_release_number": 14,
+    "function_removals": 3,
+    "function_additions": 46,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 10,
+    "total_count": 13
+}
+
+##########
+Functions Removed
+##########
+
+GenomeDescription
+bsgenomeName
+gdreduce
+
+
+##########
+Functions Added
+##########
+
+as.data.frame.BSgenomeViews
+saveAsOnDiskLongTable
+saveRowidsForOnDiskLongTable
+OnDiskLongTable
+getBatchesFromOnDiskLongTable
+getRowsByIndexFromOnDiskLongTable
+getRowsByIdFromOnDiskLongTable
+newXtraSNPlocs
+BSgenomeViews
+breakpoints
+blocksizes
+rowids
+snpsBySeqname
+snpsByOverlaps
+snpsById
+nrow
+ncol
+dim
+colnames
+as.character
+as.list
+as.data.frame
+unlist
+nchar
+coerce
+start
+end
+width
+strand
+elementLengths
+ranges
+Views
+subject
+seqnames<-
+commonName
+granges
+seqtype
+alphabetFrequency
+hasOnlyBaseLetters
+uniqueLetters
+letterFrequency
+oligonucleotideFrequency
+nucleotideFrequencyAt
+consensusMatrix
+consensusString
+export
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "BSgenome",
+    "representation": "BSgenome",
+    "parameters": "function ( organism , species , provider , provider_version , release_date , release_name , source_url , seqnames , circ_seqs = NA , mseqnames , seqs_pkgname , seqs_dirpath , nmask_per_seq = 0 , masks_pkgname = NA , masks_dirpath = NA )",
+    "body": "{   fa_filename -  \"single_sequences.fa\"   fa_filepath -   file.path (  seqs_dirpath ,  fa_filename )   farz_filename -   paste0 (  fa_filename ,  \".rz\" )   farz_filepath -   file.path (  seqs_dirpath ,  farz_filename )  if (   file.exists (  farz_filepath ) )  {   single_sequences -   FastaNamedSequences (  farz_filepath ) } else  if (   file.exists (  fa_filepath ) )  {   single_sequences -   FastaNamedSequences (  fa_filepath ) } else  {   single_sequences -   RdaNamedSequences (  seqs_dirpath ,  seqnames ) }   seqinfo -   .makeBSgenomeSeqinfo (  single_sequences ,  circ_seqs ,  provider_version ,  seqnames )   genome_description -   GenomeDescription (  organism ,  species ,  provider ,  provider_version ,  release_date ,  release_name ,  seqinfo )  if (   is.null (  mseqnames ) )   mseqnames -   character (  0 )   multiple_sequences -   RdaCollection (  seqs_dirpath ,  mseqnames )   user_seqnames -   seqnames (  seqinfo )    names (  user_seqnames ) -  user_seqnames   nmask_per_seq -   as.integer (  nmask_per_seq )   masks_dirpath -   as.character (  masks_dirpath )  if (    nmask_per_seq ==  0L ||    length (  seqnames ) ==  0L )  {   masks -   RdaCollection (  masks_dirpath ,   character (  0 ) ) } else  {   masks -   RdaCollection (  masks_dirpath ,   paste0 (  seqnames ,  \".masks\" ) ) }   new (  \"BSgenome\" ,  genome_description , pkgname =  seqs_pkgname , single_sequences =  single_sequences , multiple_sequences =  multiple_sequences , source_url =  source_url , user_seqnames =  user_seqnames , .seqs_cache =   new.env ( parent =   emptyenv ( ) ) , .link_counts =   new.env ( parent =   emptyenv ( ) ) , nmask_per_seq =  nmask_per_seq , masks =  masks ) } ",
+    "filename": "BSgenome-class.txt"
+  },
+  "new_function": {
+    "name": "BSgenome",
+    "representation": "BSgenome",
+    "parameters": "function ( organism , common_name , provider , provider_version , release_date , release_name , source_url , seqnames , circ_seqs = NA , mseqnames , seqs_pkgname , seqs_dirpath , nmask_per_seq = 0 , masks_pkgname = NA , masks_dirpath = NA , species = NA_character_ )",
+    "body": "{   twobit_filename -  \"single_sequences.2bit\"   twobit_filepath -   file.path (  seqs_dirpath ,  twobit_filename )  if (   file.exists (  twobit_filepath ) )  {   single_sequences -   TwobitNamedSequences (  twobit_filepath ) } else  {   fa_filename -  \"single_sequences.fa\"   fa_filepath -   file.path (  seqs_dirpath ,  fa_filename )   farz_filename -   paste0 (  fa_filename ,  \".rz\" )   farz_filepath -   file.path (  seqs_dirpath ,  farz_filename )  if (   file.exists (  farz_filepath ) )  {   single_sequences -   FastaNamedSequences (  farz_filepath ) } else  if (   file.exists (  fa_filepath ) )  {   single_sequences -   FastaNamedSequences (  fa_filepath ) } else  {   single_sequences -   RdaNamedSequences (  seqs_dirpath ,  seqnames ) } }   seqinfo -   .makeBSgenomeSeqinfo (  single_sequences ,  circ_seqs ,  provider_version ,  seqnames )   seqnames -   seqnames (  seqinfo )  if (   missing (  common_name ) )   common_name -  species   genome_description -   GenomeDescription (  organism ,  common_name ,  provider ,  provider_version ,  release_date ,  release_name ,  seqinfo )  if (   is.null (  mseqnames ) )   mseqnames -   character (  0 )   multiple_sequences -   RdaCollection (  seqs_dirpath ,  mseqnames )    names (  user_seqnames ) -   user_seqnames -  seqnames   nmask_per_seq -   as.integer (  nmask_per_seq )   masks_dirpath -   as.character (  masks_dirpath )  if (    nmask_per_seq ==  0L ||    length (  seqnames ) ==  0L )  {   masks -   RdaCollection (  masks_dirpath ,   character (  0 ) ) } else  {   masks -   RdaCollection (  masks_dirpath ,   paste0 (  seqnames ,  \".masks\" ) ) }   new (  \"BSgenome\" ,  genome_description , pkgname =  seqs_pkgname , single_sequences =  single_sequences , multiple_sequences =  multiple_sequences , source_url =  source_url , user_seqnames =  user_seqnames , .seqs_cache =   new.env ( parent =   emptyenv ( ) ) , .link_counts =   new.env ( parent =   emptyenv ( ) ) , nmask_per_seq =  nmask_per_seq , masks =  masks ) } ",
+    "filename": "BSgenome-class.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "forgeSeqFiles",
+    "representation": "forgeSeqFiles",
+    "parameters": "function ( seqnames , mseqnames = NULL , prefix = \"\" , suffix = \".fa\" , seqs_srcdir = \".\" , seqs_destdir = \".\" , mode = c ( \"rda\" , \"fa\" , \"fa.rz\" ) , verbose = TRUE )",
+    "body": "{  if (    length (  seqnames ) ==  0 )  {   warning (  \"'seqnames' is empty\" ) } else  { ## just for the side effect of checking the arguments   getSeqSrcpaths (  seqnames , prefix =  prefix , suffix =  suffix , seqs_srcdir =  seqs_srcdir ) }  if (    length (  mseqnames ) !=  0 )  {  if (  !   is.character (  mseqnames ) )   stop (  \"'mseqnames' must be a character vector (or NULL)\" ) ## just for the side effect of checking the arguments   getSeqSrcpaths (  mseqnames , prefix =  prefix , suffix =  suffix , seqs_srcdir =  seqs_srcdir ) }  if (  !   isSingleString (  seqs_destdir ) )   stop (  \"'seqs_destdir' must be a single string\" )   mode -   match.arg (  mode )  if (   mode ==  \"rda\" )  { # \"rda\" mode  for  ( name in  seqnames )  {   .forgeRdaSeqFile (  name ,  prefix ,  suffix ,  seqs_srcdir ,  seqs_destdir , is.single.seq =  TRUE , verbose =  verbose ) } } else  { # \"fa\" and \"fa.rz\" modes   .forgeFastaRzFile (  seqnames ,  prefix ,  suffix ,  seqs_srcdir ,  seqs_destdir ,  mode , verbose =  verbose ) }  for  ( name in  mseqnames )  {   .forgeRdaSeqFile (  name ,  prefix ,  suffix ,  seqs_srcdir ,  seqs_destdir , is.single.seq =  FALSE , verbose =  verbose ) } } ",
+    "filename": "BSgenomeForge.txt"
+  },
+  "new_function": {
+    "name": "forgeSeqFiles",
+    "representation": "forgeSeqFiles",
+    "parameters": "function ( seqnames , mseqnames = NULL , seqfile_name = NA , prefix = \"\" , suffix = \".fa\" , seqs_srcdir = \".\" , seqs_destdir = \".\" , ondisk_seq_format = c ( \"2bit\" , \"rda\" , \"fa.rz\" , \"fa\" ) , verbose = TRUE )",
+    "body": "{  if (     length (  seqnames ) ==  0L undefined   is.na (  seqfile_name ) )   warning (  \"'seqnames' is empty\" )  if (  !  (     length (  mseqnames ) ==  0L ||   is.character (  mseqnames ) ) )   stop (  \"'mseqnames' must be a character vector (or NULL)\" )  if (  !   isSingleString (  seqs_destdir ) )   stop (  \"'seqs_destdir' must be a single string\" )   ondisk_seq_format -   match.arg (  ondisk_seq_format )  if (   ondisk_seq_format ==  \"rda\" )  { # \"rda\" format  for  ( name in  seqnames )  {   .forgeRdaSeqFile (  name ,  prefix ,  suffix ,  seqs_srcdir ,  seqs_destdir , is.single.seq =  TRUE , verbose =  verbose ) } } else  if (   ondisk_seq_format ==  \"2bit\" )  { # \"2bit\" format  if (   is.na (  seqfile_name ) )  {   .forgeTwobitFileFromFastaFiles (  seqnames ,  prefix ,  suffix ,  seqs_srcdir ,  seqs_destdir , verbose =  verbose ) } else  if (    length (  seqnames ) ==  0L )  {   .copySeqFile (  seqfile_name ,  seqs_srcdir ,  seqs_destdir , verbose =  verbose ) } else  {   .subsetTwobitFile (  seqfile_name ,  seqnames ,  seqs_srcdir ,  seqs_destdir , verbose =  verbose ) } } else  { # \"fa\" and \"fa.rz\" formats   .forgeFastaRzFileFromFastaFiles (  seqnames ,  prefix ,  suffix ,  seqs_srcdir ,  seqs_destdir ,  ondisk_seq_format , verbose =  verbose ) }  for  ( name in  mseqnames )  {   .forgeRdaSeqFile (  name ,  prefix ,  suffix ,  seqs_srcdir ,  seqs_destdir , is.single.seq =  FALSE , verbose =  verbose ) } } ",
+    "filename": "BSgenomeForge.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "forgeMasksFiles",
+    "representation": "forgeMasksFiles",
+    "parameters": "function ( seqnames , nmask_per_seq , seqs_destdir = \".\" , mode = c ( \"rda\" , \"fa\" , \"fa.rz\" ) , masks_srcdir = \".\" , masks_destdir = \".\" , AGAPSfiles_type = \"gap\" , AGAPSfiles_name = NA , AGAPSfiles_prefix = \"\" , AGAPSfiles_suffix = \"_gap.txt\" , RMfiles_name = NA , RMfiles_prefix = \"\" , RMfiles_suffix = \".fa.out\" , TRFfiles_name = NA , TRFfiles_prefix = \"\" , TRFfiles_suffix = \".bed\" , verbose = TRUE )",
+    "body": "{  if (    length (  seqnames ) ==  0 )   warning (  \"'seqnames' is empty\" )  for  ( seqname in  seqnames )  {   .forgeMasksFile (  seqname ,  nmask_per_seq , seqs_destdir =  seqs_destdir , mode =  mode , masks_srcdir =  masks_srcdir , masks_destdir =  masks_destdir , AGAPSfiles_type =  AGAPSfiles_type , AGAPSfiles_name =  AGAPSfiles_name , AGAPSfiles_prefix =  AGAPSfiles_prefix , AGAPSfiles_suffix =  AGAPSfiles_suffix , RMfiles_name =  RMfiles_name , RMfiles_prefix =  RMfiles_prefix , RMfiles_suffix =  RMfiles_suffix , TRFfiles_name =  TRFfiles_name , TRFfiles_prefix =  TRFfiles_prefix , TRFfiles_suffix =  TRFfiles_suffix , verbose =  verbose ) } } ",
+    "filename": "BSgenomeForge.txt"
+  },
+  "new_function": {
+    "name": "forgeMasksFiles",
+    "representation": "forgeMasksFiles",
+    "parameters": "function ( seqnames , nmask_per_seq , seqs_destdir = \".\" , ondisk_seq_format = c ( \"2bit\" , \"rda\" , \"fa.rz\" , \"fa\" ) , masks_srcdir = \".\" , masks_destdir = \".\" , AGAPSfiles_type = \"gap\" , AGAPSfiles_name = NA , AGAPSfiles_prefix = \"\" , AGAPSfiles_suffix = \"_gap.txt\" , RMfiles_name = NA , RMfiles_prefix = \"\" , RMfiles_suffix = \".fa.out\" , TRFfiles_name = NA , TRFfiles_prefix = \"\" , TRFfiles_suffix = \".bed\" , verbose = TRUE )",
+    "body": "{  if (    length (  seqnames ) ==  0 )   warning (  \"'seqnames' is empty\" )  for  ( seqname in  seqnames )  {   .forgeMasksFile (  seqname ,  nmask_per_seq , seqs_destdir =  seqs_destdir , ondisk_seq_format =  ondisk_seq_format , masks_srcdir =  masks_srcdir , masks_destdir =  masks_destdir , AGAPSfiles_type =  AGAPSfiles_type , AGAPSfiles_name =  AGAPSfiles_name , AGAPSfiles_prefix =  AGAPSfiles_prefix , AGAPSfiles_suffix =  AGAPSfiles_suffix , RMfiles_name =  RMfiles_name , RMfiles_prefix =  RMfiles_prefix , RMfiles_suffix =  RMfiles_suffix , TRFfiles_name =  TRFfiles_name , TRFfiles_prefix =  TRFfiles_prefix , TRFfiles_suffix =  TRFfiles_suffix , verbose =  verbose ) } } ",
+    "filename": "BSgenomeForge.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "forgeBSgenomeDataPkg",
+    "representation": "forgeBSgenomeDataPkg",
+    "signature": "BSgenomeDataPkgSeed",
+    "parameters": "function ( x , seqs_srcdir = \".\" , destdir = \".\" , mode = c ( \"rda\" , \"fa\" , \"fa.rz\" ) , verbose = TRUE )",
+    "body": "{    require (  Biobase ) ||   stop (  \"the Biobase package is required\" )   mode -   match.arg (  mode )   template_path -   system.file (  \"pkgtemplates\" ,  \"BSgenome_datapkg\" , package =  \"BSgenome\" )   BSgenome_version -    installed.packages ( ) [  'BSgenome' ,  'Version' ]   symvals -   list ( PKGTITLE =   x @ Title , PKGDESCRIPTION =   x @ Description , PKGVERSION =   x @ Version , AUTHOR =   x @ Author , MAINTAINER =   x @ Maintainer , BSGENOMEVERSION =  BSgenome_version , LIC =   x @ License , ORGANISM =   x @ organism , SPECIES =   x @ species , PROVIDER =   x @ provider , PROVIDERVERSION =   x @ provider_version , RELEASEDATE =   x @ release_date , RELEASENAME =   x @ release_name , SOURCEURL =   x @ source_url , ORGANISMBIOCVIEW =   x @ organism_biocview , BSGENOMEOBJNAME =   x @ BSgenomeObjname , SEQNAMES =   x @ seqnames , CIRCSEQS =   x @ circ_seqs , MSEQNAMES =   x @ mseqnames , PKGDETAILS =   x @ PkgDetails , SRCDATAFILES1 =   x @ SrcDataFiles1 , SRCDATAFILES2 =   x @ SrcDataFiles2 , PKGEXAMPLES =   x @ PkgExamples ) ## Should never happen  if (   any (   duplicated (   names (  symvals ) ) ) )  {   str (  symvals )   stop (  \"'symvals' contains duplicated symbols\" ) } ## All symvals should by single strings (non-NA)   is_OK -   sapply (  symvals ,  isSingleString )  if (  !   all (  is_OK ) )  {   bad_syms -   paste (    names (  is_OK ) [  !  is_OK ] , collapse =  \", \" )   stop (  \"values for symbols \" ,  bad_syms ,  \" are not single strings\" ) }   createPackage (   x @ Package ,  destdir ,  template_path ,  symvals )   pkgdir -   file.path (  destdir ,   x @ Package ) ## Just to avoid codetools \"no visible binding\" NOTEs   .seqnames -   .mseqnames -  NULL ## Sourcing this file will set the values of the '.seqnames' and ## '.mseqnames' variables   source (   file.path (  pkgdir ,  \"R\" ,  \"zzz.R\" ) , local =  TRUE )   seqs_destdir -   file.path (  pkgdir ,  \"inst\" ,  \"extdata\" )  if (   mode ==  \"rda\" )  { ## Forge the \"seqlengths.rda\" file   forgeSeqlengthsFile (  .seqnames , prefix =   x @ seqfiles_prefix , suffix =   x @ seqfiles_suffix , seqs_srcdir =  seqs_srcdir , seqs_destdir =  seqs_destdir , verbose =  verbose ) } ## Forge the sequence files (either \"rda\", \"fa\", or \"fa.rz\")   forgeSeqFiles (  .seqnames , mseqnames =  .mseqnames , prefix =   x @ seqfiles_prefix , suffix =   x @ seqfiles_suffix , seqs_srcdir =  seqs_srcdir , seqs_destdir =  seqs_destdir , mode =  mode , verbose =  verbose ) } ",
+    "filename": "BSgenomeForge.txt"
+  },
+  "new_function": {
+    "name": "forgeBSgenomeDataPkg",
+    "representation": "forgeBSgenomeDataPkg",
+    "signature": "BSgenomeDataPkgSeed",
+    "parameters": "function ( x , seqs_srcdir = \".\" , destdir = \".\" , verbose = TRUE )",
+    "body": "{ ## The Biobase package is needed for createPackage().  if (  !   requireNamespace (  \"Biobase\" , quietly =  TRUE ) )   stop (  \"Couldn't load the Biobase package. Please install \" ,  \"the Biobase\\n  package and try again.\" )   template_path -   system.file (  \"pkgtemplates\" ,  \"BSgenome_datapkg\" , package =  \"BSgenome\" )   BSgenome_version -    installed.packages ( ) [  'BSgenome' ,  'Version' ]   symvals -   list ( PKGTITLE =   x @ Title , PKGDESCRIPTION =   x @ Description , PKGVERSION =   x @ Version , AUTHOR =   x @ Author , MAINTAINER =   x @ Maintainer , BSGENOMEVERSION =  BSgenome_version , SUGGESTS =   x @ Suggests , LICENSE =   x @ License , ORGANISM =   x @ organism , COMMONNAME =   x @ common_name , PROVIDER =   x @ provider , PROVIDERVERSION =   x @ provider_version , RELEASEDATE =   x @ release_date , RELEASENAME =   x @ release_name , SOURCEURL =   x @ source_url , ORGANISMBIOCVIEW =   x @ organism_biocview , BSGENOMEOBJNAME =   x @ BSgenomeObjname , SEQNAMES =   ifelse (   is.na (   x @ seqfile_name ) ,   x @ seqnames ,  \"NULL\" ) , CIRCSEQS =   x @ circ_seqs , MSEQNAMES =   x @ mseqnames , PKGDETAILS =   x @ PkgDetails , SRCDATAFILES =   x @ SrcDataFiles , PKGEXAMPLES =   x @ PkgExamples ) ## Should never happen  if (   any (   duplicated (   names (  symvals ) ) ) )  {   str (  symvals )   stop (  \"'symvals' contains duplicated symbols\" ) } ## All symvals should by single strings (non-NA)   is_OK -   sapply (  symvals ,  isSingleString )  if (  !   all (  is_OK ) )  {   bad_syms -   paste (    names (  is_OK ) [  !  is_OK ] , collapse =  \", \" )   stop (  \"values for symbols \" ,  bad_syms ,  \" are not single strings\" ) }   Biobase :: createPackage (   x @ Package ,  destdir ,  template_path ,  symvals )   pkgdir -   file.path (  destdir ,   x @ Package )   .seqnames -   eval (   parse ( text =   x @ seqnames ) )   .mseqnames -   eval (   parse ( text =   x @ mseqnames ) )   seqs_destdir -   file.path (  pkgdir ,  \"inst\" ,  \"extdata\" )  if (    x @ ondisk_seq_format ==  \"rda\" )  { ## Forge the \"seqlengths.rda\" file   forgeSeqlengthsFile (  .seqnames , prefix =   x @ seqfiles_prefix , suffix =   x @ seqfiles_suffix , seqs_srcdir =  seqs_srcdir , seqs_destdir =  seqs_destdir , verbose =  verbose ) } ## Forge the sequence files (either \"2bit\", \"rda\", \"fa.rz\", or \"fa\")   forgeSeqFiles (  .seqnames , mseqnames =  .mseqnames , seqfile_name =   x @ seqfile_name , prefix =   x @ seqfiles_prefix , suffix =   x @ seqfiles_suffix , seqs_srcdir =  seqs_srcdir , seqs_destdir =  seqs_destdir , ondisk_seq_format =   x @ ondisk_seq_format , verbose =  verbose ) } ",
+    "filename": "BSgenomeForge.txt"
+  }
+}
+
+4.
+{
+  "old_function": {
+    "name": "forgeBSgenomeDataPkg",
+    "representation": "forgeBSgenomeDataPkg",
+    "signature": "list",
+    "parameters": "function ( x , seqs_srcdir = \".\" , destdir = \".\" , mode = c ( \"rda\" , \"fa\" , \"fa.rz\" ) , verbose = TRUE )",
+    "body": "{   y -   BSgenomeDataPkgSeed (  x )   forgeBSgenomeDataPkg (  y , seqs_srcdir =  seqs_srcdir , destdir =  destdir , mode =  mode , verbose =  verbose ) } ",
+    "filename": "BSgenomeForge.txt"
+  },
+  "new_function": {
+    "name": "forgeBSgenomeDataPkg",
+    "representation": "forgeBSgenomeDataPkg",
+    "signature": "list",
+    "parameters": "function ( x , seqs_srcdir = \".\" , destdir = \".\" , verbose = TRUE )",
+    "body": "{   y -   BSgenomeDataPkgSeed (  x )   forgeBSgenomeDataPkg (  y , seqs_srcdir =  seqs_srcdir , destdir =  destdir , verbose =  verbose ) } ",
+    "filename": "BSgenomeForge.txt"
+  }
+}
+
+5.
+{
+  "old_function": {
+    "name": "forgeBSgenomeDataPkg",
+    "representation": "forgeBSgenomeDataPkg",
+    "signature": "character",
+    "parameters": "function ( x , seqs_srcdir = \".\" , destdir = \".\" , mode = c ( \"rda\" , \"fa\" , \"fa.rz\" ) , verbose = TRUE )",
+    "body": "{   y -   .readSeedFile (  x , verbose =  verbose )   y -   as.list (  y )  if (   missing (  seqs_srcdir ) )  {   seqs_srcdir -   y [[  \"seqs_srcdir\" ] ]  if (   is.null (  seqs_srcdir ) )   stop (  \"'seqs_srcdir' argument is missing, and the \" ,  \"'seqs_srcdir' field is missing in seed file\" ) }   y -   y [  !  (    names (  y ) %in%  \"seqs_srcdir\" ) ]   forgeBSgenomeDataPkg (  y , seqs_srcdir =  seqs_srcdir , destdir =  destdir , mode =  mode , verbose =  verbose ) } ",
+    "filename": "BSgenomeForge.txt"
+  },
+  "new_function": {
+    "name": "forgeBSgenomeDataPkg",
+    "representation": "forgeBSgenomeDataPkg",
+    "signature": "character",
+    "parameters": "function ( x , seqs_srcdir = \".\" , destdir = \".\" , verbose = TRUE )",
+    "body": "{   y -   .readSeedFile (  x , verbose =  verbose )   y -   as.list (  y )  if (   missing (  seqs_srcdir ) )  {   seqs_srcdir -   y [[  \"seqs_srcdir\" ] ]  if (   is.null (  seqs_srcdir ) )   stop (  \"'seqs_srcdir' argument is missing, and the \" ,  \"'seqs_srcdir' field is missing in seed file\" ) }   y -   y [  !  (    names (  y ) %in%  \"seqs_srcdir\" ) ]   forgeBSgenomeDataPkg (  y , seqs_srcdir =  seqs_srcdir , destdir =  destdir , verbose =  verbose ) } ",
+    "filename": "BSgenomeForge.txt"
+  }
+}
+
+6.
+{
+  "old_function": {
+    "name": "organism",
+    "representation": "organism",
+    "signature": "GenomeData",
+    "parameters": "function ( x )",
+    "body": "metadata ( x ) $ organism",
+    "filename": "GenomeData-class.txt"
+  },
+  "new_function": {
+    "name": "organism",
+    "representation": "organism",
+    "signature": "GenomeData",
+    "parameters": "function ( object )",
+    "body": "{   .Defunct ( msg =  GenomeData_defunct_msg )    metadata (  object ) $ organism } ",
+    "filename": "GenomeData-class.txt"
+  }
+}
+
+7.
+{
+  "old_function": {
+    "name": "organism",
+    "representation": "organism",
+    "signature": "SNPlocs",
+    "parameters": "function ( x )",
+    "body": "organism ( referenceGenome ( x ) )",
+    "filename": "SNPlocs-class.txt"
+  },
+  "new_function": {
+    "name": "organism",
+    "representation": "organism",
+    "signature": "SNPlocs",
+    "parameters": "function ( object )",
+    "body": "organism ( referenceGenome ( object ) )",
+    "filename": "SNPlocs-class.txt"
+  }
+}
+
+8.
+{
+  "old_function": {
+    "name": "species",
+    "representation": "species",
+    "signature": "SNPlocs",
+    "parameters": "function ( x )",
+    "body": "species ( referenceGenome ( x ) )",
+    "filename": "SNPlocs-class.txt"
+  },
+  "new_function": {
+    "name": "species",
+    "representation": "species",
+    "signature": "SNPlocs",
+    "parameters": "function ( object )",
+    "body": "{   msg -   wmsg (  \"The \\\"species\\\" method for SNPlocs objects \" ,  \"is deprecated and should not be used anymore. \" ,  \"Please use commonName() instead of species() on \" ,  \"SNPlocs objects.\" )   .Deprecated ( msg =  msg )   commonName (  object ) } ",
+    "filename": "SNPlocs-class.txt"
+  }
+}
+
+9.
+{
+  "old_function": {
+    "name": "injectSNPs",
+    "representation": "injectSNPs",
+    "signature": "BSgenome",
+    "parameters": "function ( x , SNPlocs_pkgname )",
+    "body": "{  if (  !   is.null (   SNPlocs_pkgname (  x ) ) )   stop (  \"SNPs were already injected in genome 'x'. \" ,  \"Injecting from more than 1 package is not supported.\" )   ans -  x ## We want the original sequence names, not the user sequence names, ## so we use 'seqnames(x@seqinfo)' instead of 'seqnames(x)'.    ans @ injectSNPs_handler -   InjectSNPsHandler (  SNPlocs_pkgname ,   x @ pkgname ,   seqnames (   x @ seqinfo ) )    ans @ .seqs_cache -   new.env ( parent =   emptyenv ( ) )    ans @ .link_counts -   new.env ( parent =   emptyenv ( ) )  ans } ",
+    "filename": "injectSNPs.txt"
+  },
+  "new_function": {
+    "name": "injectSNPs",
+    "representation": "injectSNPs",
+    "signature": "BSgenome",
+    "parameters": "function ( x , snps )",
+    "body": "{  if (  !   is.null (   SNPlocs_pkgname (  x ) ) )   stop (  \"SNPs were already injected in genome 'x'. \" ,  \"Injecting from more than 1 package is not supported.\" )   ans -  x ## We want the original sequence names, not the user sequence names, ## so we use 'seqnames(x@seqinfo)' instead of 'seqnames(x)'.    ans @ injectSNPs_handler -   InjectSNPsHandler (  snps ,   x @ pkgname ,   seqnames (   x @ seqinfo ) )    ans @ .seqs_cache -   new.env ( parent =   emptyenv ( ) )    ans @ .link_counts -   new.env ( parent =   emptyenv ( ) )  ans } ",
+    "filename": "injectSNPs.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  bsgenome_release_3_1 bsgenome_release_3_2
+
+{
+    "package": "BSgenome",
+    "release_versions": "bsgenome_release_3_1 bsgenome_release_3_2",
+    "desc_release_old": "1.36.3",
+    "desc_release_new": "1.38.0",
+    "old_release_number": 14,
+    "new_release_number": 15,
+    "function_removals": 4,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 4
+}
+
+##########
+Functions Removed
+##########
+
+GenomeData
+GenomeDataList
+gdapply
+gdReduce
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  bsgenome_release_3_2 bsgenome_release_3_3
+
+{
+    "package": "BSgenome",
+    "release_versions": "bsgenome_release_3_2 bsgenome_release_3_3",
+    "desc_release_old": "1.38.0",
+    "desc_release_new": "1.40.1",
+    "old_release_number": 15,
+    "new_release_number": 16,
+    "function_removals": 1,
+    "function_additions": 3,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+elementLengths
+
+
+##########
+Functions Added
+##########
+
+writeBSgenomeToFasta
+writeBSgenomeToTwobit
+elementNROWS
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  bsgenome_release_3_3 bsgenome_release_3_4
+
+{
+    "package": "BSgenome",
+    "release_versions": "bsgenome_release_3_3 bsgenome_release_3_4",
+    "desc_release_old": "1.40.1",
+    "desc_release_new": "1.42.0",
+    "old_release_number": 16,
+    "new_release_number": 17,
+    "function_removals": 3,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 3
+}
+
+##########
+Functions Removed
+##########
+
+SNPcount
+SNPlocs
+species
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  bsgenome_release_3_4 bsgenome_release_3_5
+
+{
+    "package": "BSgenome",
+    "release_versions": "bsgenome_release_3_4 bsgenome_release_3_5",
+    "desc_release_old": "1.42.0",
+    "desc_release_new": "1.44.2",
+    "old_release_number": 17,
+    "new_release_number": 18,
+    "function_removals": 6,
+    "function_additions": 14,
+    "parameter_removals": 2,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 5,
+    "total_count": 11
+}
+
+##########
+Functions Removed
+##########
+
+saveAsOnDiskLongTable
+saveRowidsForOnDiskLongTable
+getRowsByIndexFromOnDiskLongTable
+nrow
+ncol
+colnames
+
+
+##########
+Functions Added
+##########
+
+saveAsOnDiskLongTable_old
+saveRowidsForOnDiskLongTable_old
+OnDiskLongTable_old
+getBatchesFromOnDiskLongTable_old
+getRowsByIndexFromOnDiskLongTable_old
+getRowsByIdFromOnDiskLongTable_old
+writeOnDiskLongTable
+writeOnDiskLongTableRowids
+getBatchesBySeqnameFromOnDiskLongTable
+getBatchesByOverlapsFromOnDiskLongTable
+getRowsFromOnDiskLongTable
+batchsizes
+spatialIndex
+dimnames
+
+
+##########
+Removed Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "getBatchesFromOnDiskLongTable",
+    "representation": "getBatchesFromOnDiskLongTable",
+    "parameters": "function ( x , batch_labels , colidx , with.batch_label = FALSE , with.rowids = FALSE , as.data.frame = FALSE )",
+    "body": "{  if (  !   is (  x ,  \"OnDiskLongTable\" ) )   stop (   wmsg (  \"'x' must be an OnDiskLongTable object\" ) )   x_blocksizes -   blocksizes (  x )   x_batch_labels -   names (  x_blocksizes )   batch_labels -   .normarg_batch_labels (  batch_labels ,  x_batch_labels )   colidx -   .normarg_colidx (  colidx ,  x )  if (  !   isTRUEorFALSE (  with.batch_label ) )   stop (   wmsg (  \"'with.batch_label' must be TRUE or FALSE\" ) )  if (  !   isTRUEorFALSE (  with.rowids ) )   stop (   wmsg (  \"'with.rowids' must be TRUE or FALSE\" ) )  if (  !   isTRUEorFALSE (  as.data.frame ) )   stop (   wmsg (  \"'as.data.frame' must be TRUE or FALSE\" ) )   hits -   findMatches (  batch_labels ,  x_batch_labels )   blockidx -   subjectHits (  hits )   ans_blocksizes -   x_blocksizes [  blockidx ]    names (  colidx ) -    colnames (  x ) [  colidx ]   ans_listData -   lapply (  colidx ,  function ( j )   .get_blocks_from_column (  x ,  j ,  blockidx ) )  if (  with.batch_label )  {   batch_label_levels -   unique (  x_batch_labels )   ans_batch_label -   factor (   batch_labels [   queryHits (  hits ) ] , levels =  batch_label_levels )   ans_batch_label -   rep.int (  ans_batch_label ,  ans_blocksizes )    ans_listData [[  \"batch_label\" ] ] -  ans_batch_label }  if (  with.rowids )  {   rowidx -   as.integer (    successiveIRanges (  x_blocksizes ) [  blockidx ] )   ans_rowids -    rowids (  x ) [  rowidx ] } else  {   ans_rowids -  NULL }  if (  as.data.frame )  {   ans -   data.frame (  ans_listData , row.names =  ans_rowids , stringsAsFactors =  FALSE ) } else  { ## Unfortunately, DataFrame cannot store its row names as an integer ## vector.  if (  !   is.null (  ans_rowids ) )   ans_rowids -   as.character (  ans_rowids )   ans -   new (  \"DataFrame\" , listData =  ans_listData , nrows =   sum (  ans_blocksizes ) , rownames =  ans_rowids ) }  ans } ",
+    "filename": "OnDiskLongTable-class.txt"
+  },
+  "new_function": {
+    "name": "getBatchesFromOnDiskLongTable",
+    "representation": "getBatchesFromOnDiskLongTable",
+    "parameters": "function ( x , batchidx , colidx = NULL , with.rowids = FALSE , as.data.frame = FALSE )",
+    "body": "{  if (  !   is (  x ,  \"OnDiskLongTable\" ) )   stop (   wmsg (  \"'x' must be an OnDiskLongTable object\" ) )   batchidx -   .normarg_batchidx (  batchidx ,  x )   colidx -   .normarg_colidx (  colidx ,  x )    names (  colidx ) -    colnames (  x ) [  colidx ]  if (  !   isTRUEorFALSE (  with.rowids ) )   stop (   wmsg (  \"'with.rowids' must be TRUE or FALSE\" ) )  if (  !   isTRUEorFALSE (  as.data.frame ) )   stop (   wmsg (  \"'as.data.frame' must be TRUE or FALSE\" ) )   ans_listData -   lapply (  colidx ,  function ( c )   .read_OnDiskLongTable_batch_column (  x ,  batchidx ,  c ) )   x_batchsizes -   batchsizes (  x )   ans_batchsizes -   x_batchsizes [  batchidx ]   x_spatial_index -   spatialIndex (  x )  if (   is.null (  x_spatial_index ) )  {   ans_seqnames -  NULL } else  {   ans_seqnames -   rep.int (    seqnames (  x_spatial_index ) [  batchidx ] ,  ans_batchsizes ) }   ans_rowids -  NULL  if (  with.rowids )  {   x_rowids -   rowids (  x )  if (  !   is.null (  x_rowids ) )  {   rowidx -    successiveIRanges (  x_batchsizes ) [  batchidx ]   ans_rowids -   extractROWS (  x_rowids ,  rowidx ) } }  if (  as.data.frame )   .as_data.frame (  ans_listData ,  ans_seqnames ,  ans_rowids ) else   .as_DataFrame (  ans_listData ,  ans_seqnames ,  ans_rowids , nrows =   sum (  ans_batchsizes ) ) } ",
+    "filename": "OnDiskLongTable-class.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "getRowsByIdFromOnDiskLongTable",
+    "representation": "getRowsByIdFromOnDiskLongTable",
+    "parameters": "function ( x , rowids , colidx , with.batch_label = FALSE , as.data.frame = FALSE )",
+    "body": "{  if (  !   is (  x ,  \"OnDiskLongTable\" ) )   stop (   wmsg (  \"'x' must be an OnDiskLongTable object\" ) )   rowidx -   .rowids2rowidx (  x ,  rowids )   getRowsByIndexFromOnDiskLongTable (  x ,  rowidx ,  colidx , with.batch_label =  with.batch_label , as.data.frame =  as.data.frame ) } ",
+    "filename": "OnDiskLongTable-class.txt"
+  },
+  "new_function": {
+    "name": "getRowsByIdFromOnDiskLongTable",
+    "representation": "getRowsByIdFromOnDiskLongTable",
+    "parameters": "function ( x , rowids , colidx = NULL , with.rowids = FALSE , as.data.frame = FALSE )",
+    "body": "{  if (  !   is (  x ,  \"OnDiskLongTable\" ) )   stop (   wmsg (  \"'x' must be an OnDiskLongTable object\" ) )   rowidx -   .rowids2rowidx (  x ,  rowids )   getRowsFromOnDiskLongTable (  x ,  rowidx , colidx =  colidx , with.rowids =  with.rowids , as.data.frame =  as.data.frame ) } ",
+    "filename": "OnDiskLongTable-class.txt"
+  }
+}
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "seqinfo",
+    "representation": "seqinfo<-",
+    "signature": "BSgenome",
+    "parameters": "function ( x , new2old = NULL , force = FALSE , value )",
+    "body": "{  if (  !   is (  value ,  \"Seqinfo\" ) )   stop (  \"the supplied 'seqinfo' must be a Seqinfo object\" )   IN_THIS_CONTEXT -   paste0 (  \"when replacing the 'seqinfo' \" ,  \"of a BSgenome object\" )  if (  !   identical (  force ,  FALSE ) )   stop (  \"'force' not supported \" ,  IN_THIS_CONTEXT )   x_seqinfo -   seqinfo (  x )  if (   is.null (  new2old ) )  { ## Support no-op seqinfo(x)  if (  !   identical (  value ,  x_seqinfo ) )   stop (  \"'new2old' must be specified \" ,  IN_THIS_CONTEXT )   return (  x ) }  if (    length (  value ) !=   length (  x_seqinfo ) )   stop (  \"the supplied 'seqinfo' must have the same length \" ,  \"as the current 'seqinfo' \" ,  IN_THIS_CONTEXT )  if (  !   identical (  new2old ,   seq_along (  value ) ) )   stop (  \"'new2old' must be NULL or equal to 'seq_along(value)' \" ,  IN_THIS_CONTEXT )   new_seqnames -   seqnames (  value )    seqnames (  x_seqinfo ) -  new_seqnames  if (  !   identical (  value ,  x_seqinfo ) )   stop (  \"the supplied and current 'seqinfo' can differ only \" ,  \"in their sequence names \" ,  IN_THIS_CONTEXT )  if (   any (   new_seqnames %in%   mseqnames (  x ) ) )   stop (  \"the supplied 'seqnames' cannot match any of the \" ,  \"multiple sequence names (as returned by 'mseqnames(x)')\" )     x @ user_seqnames [ ] -  new_seqnames # using [] to preserve the names  x } ",
+    "filename": "BSgenome-class.txt"
+  },
+  "new_function": {
+    "name": "seqinfo",
+    "representation": "seqinfo<-",
+    "signature": "BSgenome",
+    "parameters": "function ( x , new2old = NULL , force = FALSE , pruning.mode = c ( \"error\" , \"coarse\" , \"fine\" , \"tidy\" ) , value )",
+    "body": "{  if (  !   is (  value ,  \"Seqinfo\" ) )   stop (  \"the supplied 'seqinfo' must be a Seqinfo object\" )   IN_THIS_CONTEXT -   paste0 (  \"when replacing the 'seqinfo' \" ,  \"of a BSgenome object\" )  if (  !   identical (  force ,  FALSE ) )   stop (  \"'force' not supported \" ,  IN_THIS_CONTEXT )   pruning.mode -   match.arg (  pruning.mode )  if (   pruning.mode !=  \"error\" )   stop (  \"'pruning.mode' not supported \" ,  IN_THIS_CONTEXT )   x_seqinfo -   seqinfo (  x )  if (   is.null (  new2old ) )  { ## Support no-op seqinfo(x)  if (  !   identical (  value ,  x_seqinfo ) )   stop (  \"'new2old' must be specified \" ,  IN_THIS_CONTEXT )   return (  x ) }  if (    length (  value ) !=   length (  x_seqinfo ) )   stop (  \"the supplied 'seqinfo' must have the same length \" ,  \"as the current 'seqinfo' \" ,  IN_THIS_CONTEXT )  if (  !   identical (  new2old ,   seq_along (  value ) ) )   stop (  \"'new2old' must be NULL or equal to 'seq_along(value)' \" ,  IN_THIS_CONTEXT )   new_seqnames -   seqnames (  value )    seqnames (  x_seqinfo ) -  new_seqnames  if (  !   identical (  value ,  x_seqinfo ) )   stop (  \"the supplied and current 'seqinfo' can differ only \" ,  \"in their sequence names \" ,  IN_THIS_CONTEXT )  if (   any (   new_seqnames %in%   mseqnames (  x ) ) )   stop (  \"the supplied 'seqnames' cannot match any of the \" ,  \"multiple sequence names (as returned by 'mseqnames(x)')\" )     x @ user_seqnames [ ] -  new_seqnames # using [] to preserve the names  x } ",
+    "filename": "BSgenome-class.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "getBatchesFromOnDiskLongTable",
+    "representation": "getBatchesFromOnDiskLongTable",
+    "parameters": "function ( x , batch_labels , colidx , with.batch_label = FALSE , with.rowids = FALSE , as.data.frame = FALSE )",
+    "body": "{  if (  !   is (  x ,  \"OnDiskLongTable\" ) )   stop (   wmsg (  \"'x' must be an OnDiskLongTable object\" ) )   x_blocksizes -   blocksizes (  x )   x_batch_labels -   names (  x_blocksizes )   batch_labels -   .normarg_batch_labels (  batch_labels ,  x_batch_labels )   colidx -   .normarg_colidx (  colidx ,  x )  if (  !   isTRUEorFALSE (  with.batch_label ) )   stop (   wmsg (  \"'with.batch_label' must be TRUE or FALSE\" ) )  if (  !   isTRUEorFALSE (  with.rowids ) )   stop (   wmsg (  \"'with.rowids' must be TRUE or FALSE\" ) )  if (  !   isTRUEorFALSE (  as.data.frame ) )   stop (   wmsg (  \"'as.data.frame' must be TRUE or FALSE\" ) )   hits -   findMatches (  batch_labels ,  x_batch_labels )   blockidx -   subjectHits (  hits )   ans_blocksizes -   x_blocksizes [  blockidx ]    names (  colidx ) -    colnames (  x ) [  colidx ]   ans_listData -   lapply (  colidx ,  function ( j )   .get_blocks_from_column (  x ,  j ,  blockidx ) )  if (  with.batch_label )  {   batch_label_levels -   unique (  x_batch_labels )   ans_batch_label -   factor (   batch_labels [   queryHits (  hits ) ] , levels =  batch_label_levels )   ans_batch_label -   rep.int (  ans_batch_label ,  ans_blocksizes )    ans_listData [[  \"batch_label\" ] ] -  ans_batch_label }  if (  with.rowids )  {   rowidx -   as.integer (    successiveIRanges (  x_blocksizes ) [  blockidx ] )   ans_rowids -    rowids (  x ) [  rowidx ] } else  {   ans_rowids -  NULL }  if (  as.data.frame )  {   ans -   data.frame (  ans_listData , row.names =  ans_rowids , stringsAsFactors =  FALSE ) } else  { ## Unfortunately, DataFrame cannot store its row names as an integer ## vector.  if (  !   is.null (  ans_rowids ) )   ans_rowids -   as.character (  ans_rowids )   ans -   new (  \"DataFrame\" , listData =  ans_listData , nrows =   sum (  ans_blocksizes ) , rownames =  ans_rowids ) }  ans } ",
+    "filename": "OnDiskLongTable-class.txt"
+  },
+  "new_function": {
+    "name": "getBatchesFromOnDiskLongTable",
+    "representation": "getBatchesFromOnDiskLongTable",
+    "parameters": "function ( x , batchidx , colidx = NULL , with.rowids = FALSE , as.data.frame = FALSE )",
+    "body": "{  if (  !   is (  x ,  \"OnDiskLongTable\" ) )   stop (   wmsg (  \"'x' must be an OnDiskLongTable object\" ) )   batchidx -   .normarg_batchidx (  batchidx ,  x )   colidx -   .normarg_colidx (  colidx ,  x )    names (  colidx ) -    colnames (  x ) [  colidx ]  if (  !   isTRUEorFALSE (  with.rowids ) )   stop (   wmsg (  \"'with.rowids' must be TRUE or FALSE\" ) )  if (  !   isTRUEorFALSE (  as.data.frame ) )   stop (   wmsg (  \"'as.data.frame' must be TRUE or FALSE\" ) )   ans_listData -   lapply (  colidx ,  function ( c )   .read_OnDiskLongTable_batch_column (  x ,  batchidx ,  c ) )   x_batchsizes -   batchsizes (  x )   ans_batchsizes -   x_batchsizes [  batchidx ]   x_spatial_index -   spatialIndex (  x )  if (   is.null (  x_spatial_index ) )  {   ans_seqnames -  NULL } else  {   ans_seqnames -   rep.int (    seqnames (  x_spatial_index ) [  batchidx ] ,  ans_batchsizes ) }   ans_rowids -  NULL  if (  with.rowids )  {   x_rowids -   rowids (  x )  if (  !   is.null (  x_rowids ) )  {   rowidx -    successiveIRanges (  x_batchsizes ) [  batchidx ]   ans_rowids -   extractROWS (  x_rowids ,  rowidx ) } }  if (  as.data.frame )   .as_data.frame (  ans_listData ,  ans_seqnames ,  ans_rowids ) else   .as_DataFrame (  ans_listData ,  ans_seqnames ,  ans_rowids , nrows =   sum (  ans_batchsizes ) ) } ",
+    "filename": "OnDiskLongTable-class.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "getRowsByIdFromOnDiskLongTable",
+    "representation": "getRowsByIdFromOnDiskLongTable",
+    "parameters": "function ( x , rowids , colidx , with.batch_label = FALSE , as.data.frame = FALSE )",
+    "body": "{  if (  !   is (  x ,  \"OnDiskLongTable\" ) )   stop (   wmsg (  \"'x' must be an OnDiskLongTable object\" ) )   rowidx -   .rowids2rowidx (  x ,  rowids )   getRowsByIndexFromOnDiskLongTable (  x ,  rowidx ,  colidx , with.batch_label =  with.batch_label , as.data.frame =  as.data.frame ) } ",
+    "filename": "OnDiskLongTable-class.txt"
+  },
+  "new_function": {
+    "name": "getRowsByIdFromOnDiskLongTable",
+    "representation": "getRowsByIdFromOnDiskLongTable",
+    "parameters": "function ( x , rowids , colidx = NULL , with.rowids = FALSE , as.data.frame = FALSE )",
+    "body": "{  if (  !   is (  x ,  \"OnDiskLongTable\" ) )   stop (   wmsg (  \"'x' must be an OnDiskLongTable object\" ) )   rowidx -   .rowids2rowidx (  x ,  rowids )   getRowsFromOnDiskLongTable (  x ,  rowidx , colidx =  colidx , with.rowids =  with.rowids , as.data.frame =  as.data.frame ) } ",
+    "filename": "OnDiskLongTable-class.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "newSNPlocs",
+    "representation": "newSNPlocs",
+    "parameters": "function ( provider , provider_version , release_date , release_name , download_url , download_date , reference_genome , compatible_genomes , data_pkgname , data_dirpath )",
+    "body": "{   data_serialized_objnames -   c (  \"SNPcount\" ,  \"all_rsids\" ,   paste (   seqlevels (  reference_genome ) ,  \"_snplocs\" , sep =  \"\" ) )   new (  \"SNPlocs\" , provider =  provider , provider_version =  provider_version , release_date =  release_date , release_name =  release_name , download_url =  download_url , download_date =  download_date , reference_genome =  reference_genome , compatible_genomes =  compatible_genomes , data_pkgname =  data_pkgname , data_dirpath =  data_dirpath , data_serialized_objnames =  data_serialized_objnames , .data_cache =   new.env ( hash =  TRUE , parent =   emptyenv ( ) ) ) } ",
+    "filename": "SNPlocs-class.txt"
+  },
+  "new_function": {
+    "name": "newSNPlocs",
+    "representation": "newSNPlocs",
+    "parameters": "function ( provider , provider_version , release_date , release_name , source_data_url , download_date , reference_genome , compatible_genomes , data_pkgname , data_dirpath , download_url = \"\" )",
+    "body": "{  if (   missing (  source_data_url ) )   source_data_url -  download_url  if (   file.exists (   file.path (  data_dirpath ,  \"header.rds\" ) ) )   return (   new_ODLT_SNPlocs (  provider ,  provider_version ,  release_date ,  release_name ,  source_data_url ,  download_date ,  reference_genome ,  compatible_genomes ,  data_pkgname ,  data_dirpath ) )   data_serialized_objnames -   c (  \"SNPcount\" ,  \"all_rsids\" ,   paste (   seqlevels (  reference_genome ) ,  \"_snplocs\" , sep =  \"\" ) )   new (  \"OldFashionSNPlocs\" , provider =  provider , provider_version =  provider_version , release_date =  release_date , release_name =  release_name , source_data_url =  source_data_url , download_date =  download_date , reference_genome =  reference_genome , compatible_genomes =  compatible_genomes , data_pkgname =  data_pkgname , data_dirpath =  data_dirpath , data_serialized_objnames =  data_serialized_objnames , .data_cache =   new.env ( hash =  TRUE , parent =   emptyenv ( ) ) ) } ",
+    "filename": "OldFashionSNPlocs-class.txt"
+  }
+}
+
+4.
+{
+  "old_function": {
+    "name": "newXtraSNPlocs",
+    "representation": "newXtraSNPlocs",
+    "parameters": "function ( pkgname , snp_data_dirpath , provider , provider_version , release_date , release_name , download_url , download_date , reference_genome )",
+    "body": "{   snp_data -   OnDiskLongTable (  snp_data_dirpath )   stopifnot (   identical (   colnames (  snp_data ) ,  .XTRASNPLOCS_REAL_COLUMNS ) )   new (  \"XtraSNPlocs\" , pkgname =  pkgname , snp_data =  snp_data , provider =  provider , provider_version =  provider_version , release_date =  release_date , release_name =  release_name , download_url =  download_url , download_date =  download_date , reference_genome =  reference_genome ) } ",
+    "filename": "XtraSNPlocs-class.txt"
+  },
+  "new_function": {
+    "name": "newXtraSNPlocs",
+    "representation": "newXtraSNPlocs",
+    "parameters": "function ( pkgname , snp_table_dirpath , provider , provider_version , release_date , release_name , source_data_url , download_date , reference_genome , download_url = \"\" )",
+    "body": "{  if (   missing (  source_data_url ) )   source_data_url -  download_url   snp_table -   OnDiskLongTable_old (  snp_table_dirpath )   stopifnot (   identical (   colnames (  snp_table ) ,  .XTRASNPLOCS_PHYSICAL_COLUMNS ) )   new (  \"XtraSNPlocs\" , pkgname =  pkgname , snp_table =  snp_table , provider =  provider , provider_version =  provider_version , release_date =  release_date , release_name =  release_name , source_data_url =  source_data_url , download_date =  download_date , reference_genome =  reference_genome ) } ",
+    "filename": "XtraSNPlocs-class.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  bsgenome_release_3_5 bsgenome_release_3_6
+
+{
+    "package": "BSgenome",
+    "release_versions": "bsgenome_release_3_5 bsgenome_release_3_6",
+    "desc_release_old": "1.44.2",
+    "desc_release_new": "1.46.0",
+    "old_release_number": 18,
+    "new_release_number": 19,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "seqinfo",
+    "representation": "seqinfo<-",
+    "signature": "BSgenome",
+    "parameters": "function ( x , new2old = NULL , force = FALSE , pruning.mode = c ( \"error\" , \"coarse\" , \"fine\" , \"tidy\" ) , value )",
+    "body": "{  if (  !   is (  value ,  \"Seqinfo\" ) )   stop (  \"the supplied 'seqinfo' must be a Seqinfo object\" )   IN_THIS_CONTEXT -   paste0 (  \"when replacing the 'seqinfo' \" ,  \"of a BSgenome object\" )  if (  !   identical (  force ,  FALSE ) )   stop (  \"'force' not supported \" ,  IN_THIS_CONTEXT )   pruning.mode -   match.arg (  pruning.mode )  if (   pruning.mode !=  \"error\" )   stop (  \"'pruning.mode' not supported \" ,  IN_THIS_CONTEXT )   x_seqinfo -   seqinfo (  x )  if (   is.null (  new2old ) )  { ## Support no-op seqinfo(x)  if (  !   identical (  value ,  x_seqinfo ) )   stop (  \"'new2old' must be specified \" ,  IN_THIS_CONTEXT )   return (  x ) }  if (    length (  value ) !=   length (  x_seqinfo ) )   stop (  \"the supplied 'seqinfo' must have the same length \" ,  \"as the current 'seqinfo' \" ,  IN_THIS_CONTEXT )  if (  !   identical (  new2old ,   seq_along (  value ) ) )   stop (  \"'new2old' must be NULL or equal to 'seq_along(value)' \" ,  IN_THIS_CONTEXT )   new_seqnames -   seqnames (  value )    seqnames (  x_seqinfo ) -  new_seqnames  if (  !   identical (  value ,  x_seqinfo ) )   stop (  \"the supplied and current 'seqinfo' can differ only \" ,  \"in their sequence names \" ,  IN_THIS_CONTEXT )  if (   any (   new_seqnames %in%   mseqnames (  x ) ) )   stop (  \"the supplied 'seqnames' cannot match any of the \" ,  \"multiple sequence names (as returned by 'mseqnames(x)')\" )     x @ user_seqnames [ ] -  new_seqnames # using [] to preserve the names  x } ",
+    "filename": "BSgenome-class.txt"
+  },
+  "new_function": {
+    "name": "seqinfo",
+    "representation": "seqinfo<-",
+    "signature": "BSgenome",
+    "parameters": "function ( x , new2old = NULL , pruning.mode = c ( \"error\" , \"coarse\" , \"fine\" , \"tidy\" ) , value )",
+    "body": "{  if (  !   is (  value ,  \"Seqinfo\" ) )   stop (  \"the supplied 'seqinfo' must be a Seqinfo object\" )   IN_THIS_CONTEXT -   paste0 (  \"when replacing the 'seqinfo' \" ,  \"of a BSgenome object\" )   pruning.mode -   match.arg (  pruning.mode )  if (   pruning.mode !=  \"error\" )   stop (  \"'pruning.mode' not supported \" ,  IN_THIS_CONTEXT )   x_seqinfo -   seqinfo (  x )  if (   is.null (  new2old ) )  { ## Support no-op seqinfo(x)  if (  !   identical (  value ,  x_seqinfo ) )   stop (  \"'new2old' must be specified \" ,  IN_THIS_CONTEXT )   return (  x ) }  if (    length (  value ) !=   length (  x_seqinfo ) )   stop (  \"the supplied 'seqinfo' must have the same length \" ,  \"as the current 'seqinfo' \" ,  IN_THIS_CONTEXT )  if (  !   identical (  new2old ,   seq_along (  value ) ) )   stop (  \"'new2old' must be NULL or equal to 'seq_along(value)' \" ,  IN_THIS_CONTEXT )   new_seqnames -   seqnames (  value )    seqnames (  x_seqinfo ) -  new_seqnames  if (  !   identical (  value ,  x_seqinfo ) )   stop (  \"the supplied and current 'seqinfo' can differ only \" ,  \"in their sequence names \" ,  IN_THIS_CONTEXT )  if (   any (   new_seqnames %in%   mseqnames (  x ) ) )   stop (  \"the supplied 'seqnames' cannot match any of the \" ,  \"multiple sequence names (as returned by 'mseqnames(x)')\" )     x @ user_seqnames [ ] -  new_seqnames # using [] to preserve the names  x } ",
+    "filename": "BSgenome-class.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  bsgenome_release_3_6 bsgenome_release_3_7
+
+{
+    "package": "BSgenome",
+    "release_versions": "bsgenome_release_3_6 bsgenome_release_3_7",
+    "desc_release_old": "1.46.0",
+    "desc_release_new": "1.48.0",
+    "old_release_number": 19,
+    "new_release_number": 20,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  bsgenome_release_3_7 bsgenome_release_3_8
+
+{
+    "package": "BSgenome",
+    "release_versions": "bsgenome_release_3_7 bsgenome_release_3_8",
+    "desc_release_old": "1.48.0",
+    "desc_release_new": "1.50.0",
+    "old_release_number": 20,
+    "new_release_number": 21,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  bsgenome_release_3_8 bsgenome_release_3_9
+
+{
+    "package": "BSgenome",
+    "release_versions": "bsgenome_release_3_8 bsgenome_release_3_9",
+    "desc_release_old": "1.50.0",
+    "desc_release_new": "1.52.0",
+    "old_release_number": 21,
+    "new_release_number": 22,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  bsgenome_release_3_9 bsgenome_release_3_11
+
+{
+    "package": "BSgenome",
+    "release_versions": "bsgenome_release_3_9 bsgenome_release_3_11",
+    "desc_release_old": "1.52.0",
+    "desc_release_new": "1.56.0",
+    "old_release_number": 22,
+    "new_release_number": 23,
+    "function_removals": 0,
+    "function_additions": 2,
+    "parameter_removals": 0,
+    "parameter_additions": 1,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+inferRefAndAltAlleles
+extractAt
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "forgeSeqFiles",
+    "representation": "forgeSeqFiles",
+    "parameters": "function ( seqnames , mseqnames = NULL , seqfile_name = NA , prefix = \"\" , suffix = \".fa\" , seqs_srcdir = \".\" , seqs_destdir = \".\" , ondisk_seq_format = c ( \"2bit\" , \"rda\" , \"fa.rz\" , \"fa\" ) , verbose = TRUE )",
+    "body": "{  if (     length (  seqnames ) ==  0L undefined   is.na (  seqfile_name ) )   warning (  \"'seqnames' is empty\" )  if (  !  (     length (  mseqnames ) ==  0L ||   is.character (  mseqnames ) ) )   stop (  \"'mseqnames' must be a character vector (or NULL)\" )  if (  !   isSingleString (  seqs_destdir ) )   stop (  \"'seqs_destdir' must be a single string\" )   ondisk_seq_format -   match.arg (  ondisk_seq_format )  if (   ondisk_seq_format ==  \"rda\" )  { # \"rda\" format  for  ( name in  seqnames )  {   .forgeRdaSeqFile (  name ,  prefix ,  suffix ,  seqs_srcdir ,  seqs_destdir , is.single.seq =  TRUE , verbose =  verbose ) } } else  if (   ondisk_seq_format ==  \"2bit\" )  { # \"2bit\" format  if (   is.na (  seqfile_name ) )  {   .forgeTwobitFileFromFastaFiles (  seqnames ,  prefix ,  suffix ,  seqs_srcdir ,  seqs_destdir , verbose =  verbose ) } else  if (    length (  seqnames ) ==  0L )  {   .copySeqFile (  seqfile_name ,  seqs_srcdir ,  seqs_destdir , verbose =  verbose ) } else  {   .subsetTwobitFile (  seqfile_name ,  seqnames ,  seqs_srcdir ,  seqs_destdir , verbose =  verbose ) } } else  { # \"fa\" and \"fa.rz\" formats   .forgeFastaRzFileFromFastaFiles (  seqnames ,  prefix ,  suffix ,  seqs_srcdir ,  seqs_destdir ,  ondisk_seq_format , verbose =  verbose ) }  for  ( name in  mseqnames )  {   .forgeRdaSeqFile (  name ,  prefix ,  suffix ,  seqs_srcdir ,  seqs_destdir , is.single.seq =  FALSE , verbose =  verbose ) } } ",
+    "filename": "BSgenomeForge.txt"
+  },
+  "new_function": {
+    "name": "forgeSeqFiles",
+    "representation": "forgeSeqFiles",
+    "parameters": "function ( provider , provider_version , seqnames , mseqnames = NULL , seqfile_name = NA , prefix = \"\" , suffix = \".fa\" , seqs_srcdir = \".\" , seqs_destdir = \".\" , ondisk_seq_format = c ( \"2bit\" , \"rda\" , \"fa.rz\" , \"fa\" ) , verbose = TRUE )",
+    "body": "{  if (     length (  seqnames ) ==  0L undefined   is.na (  seqfile_name ) )   warning (  \"'seqnames' is empty\" )  if (  !  (     length (  mseqnames ) ==  0L ||   is.character (  mseqnames ) ) )   stop (  \"'mseqnames' must be a character vector (or NULL)\" )  if (  !   isSingleString (  seqs_destdir ) )   stop (  \"'seqs_destdir' must be a single string\" )   ondisk_seq_format -   match.arg (  ondisk_seq_format )  if (   ondisk_seq_format ==  \"rda\" )  { # \"rda\" format  for  ( name in  seqnames )  {   .forgeRdaSeqFile (  name ,  prefix ,  suffix ,  seqs_srcdir ,  seqs_destdir , is.single.seq =  TRUE , verbose =  verbose ) } } else  if (   ondisk_seq_format ==  \"2bit\" )  { # \"2bit\" format  if (   is.na (  seqfile_name ) )  {   .forgeTwobitFileFromFastaFiles (  seqnames ,  prefix ,  suffix ,  seqs_srcdir ,  seqs_destdir , verbose =  verbose ) } else  if (    length (  seqnames ) !=  0L )  {   .subsetTwobitFile (  seqfile_name ,  seqnames ,  seqs_srcdir ,  seqs_destdir , verbose =  verbose ) } else  {   .copyTwobitFile (  seqfile_name ,  seqs_srcdir ,  seqs_destdir , verbose =  verbose )  if (   provider ==  \"UCSC\" )  {   UCSC_genomes -   registered_UCSC_genomes ( )  if (   provider_version %in%   UCSC_genomes [ ,  \"genome\" ] )   .sortUCSCTwobitFile (  provider_version ,  seqs_destdir , verbose =  verbose ) } } } else  { # \"fa\" and \"fa.rz\" formats   .forgeFastaRzFileFromFastaFiles (  seqnames ,  prefix ,  suffix ,  seqs_srcdir ,  seqs_destdir ,  ondisk_seq_format , verbose =  verbose ) }  for  ( name in  mseqnames )  {   .forgeRdaSeqFile (  name ,  prefix ,  suffix ,  seqs_srcdir ,  seqs_destdir , is.single.seq =  FALSE , verbose =  verbose ) } } ",
+    "filename": "BSgenomeForge.txt"
+  }
+}
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "forgeSeqFiles",
+    "representation": "forgeSeqFiles",
+    "parameters": "function ( seqnames , mseqnames = NULL , seqfile_name = NA , prefix = \"\" , suffix = \".fa\" , seqs_srcdir = \".\" , seqs_destdir = \".\" , ondisk_seq_format = c ( \"2bit\" , \"rda\" , \"fa.rz\" , \"fa\" ) , verbose = TRUE )",
+    "body": "{  if (     length (  seqnames ) ==  0L undefined   is.na (  seqfile_name ) )   warning (  \"'seqnames' is empty\" )  if (  !  (     length (  mseqnames ) ==  0L ||   is.character (  mseqnames ) ) )   stop (  \"'mseqnames' must be a character vector (or NULL)\" )  if (  !   isSingleString (  seqs_destdir ) )   stop (  \"'seqs_destdir' must be a single string\" )   ondisk_seq_format -   match.arg (  ondisk_seq_format )  if (   ondisk_seq_format ==  \"rda\" )  { # \"rda\" format  for  ( name in  seqnames )  {   .forgeRdaSeqFile (  name ,  prefix ,  suffix ,  seqs_srcdir ,  seqs_destdir , is.single.seq =  TRUE , verbose =  verbose ) } } else  if (   ondisk_seq_format ==  \"2bit\" )  { # \"2bit\" format  if (   is.na (  seqfile_name ) )  {   .forgeTwobitFileFromFastaFiles (  seqnames ,  prefix ,  suffix ,  seqs_srcdir ,  seqs_destdir , verbose =  verbose ) } else  if (    length (  seqnames ) ==  0L )  {   .copySeqFile (  seqfile_name ,  seqs_srcdir ,  seqs_destdir , verbose =  verbose ) } else  {   .subsetTwobitFile (  seqfile_name ,  seqnames ,  seqs_srcdir ,  seqs_destdir , verbose =  verbose ) } } else  { # \"fa\" and \"fa.rz\" formats   .forgeFastaRzFileFromFastaFiles (  seqnames ,  prefix ,  suffix ,  seqs_srcdir ,  seqs_destdir ,  ondisk_seq_format , verbose =  verbose ) }  for  ( name in  mseqnames )  {   .forgeRdaSeqFile (  name ,  prefix ,  suffix ,  seqs_srcdir ,  seqs_destdir , is.single.seq =  FALSE , verbose =  verbose ) } } ",
+    "filename": "BSgenomeForge.txt"
+  },
+  "new_function": {
+    "name": "forgeSeqFiles",
+    "representation": "forgeSeqFiles",
+    "parameters": "function ( provider , provider_version , seqnames , mseqnames = NULL , seqfile_name = NA , prefix = \"\" , suffix = \".fa\" , seqs_srcdir = \".\" , seqs_destdir = \".\" , ondisk_seq_format = c ( \"2bit\" , \"rda\" , \"fa.rz\" , \"fa\" ) , verbose = TRUE )",
+    "body": "{  if (     length (  seqnames ) ==  0L undefined   is.na (  seqfile_name ) )   warning (  \"'seqnames' is empty\" )  if (  !  (     length (  mseqnames ) ==  0L ||   is.character (  mseqnames ) ) )   stop (  \"'mseqnames' must be a character vector (or NULL)\" )  if (  !   isSingleString (  seqs_destdir ) )   stop (  \"'seqs_destdir' must be a single string\" )   ondisk_seq_format -   match.arg (  ondisk_seq_format )  if (   ondisk_seq_format ==  \"rda\" )  { # \"rda\" format  for  ( name in  seqnames )  {   .forgeRdaSeqFile (  name ,  prefix ,  suffix ,  seqs_srcdir ,  seqs_destdir , is.single.seq =  TRUE , verbose =  verbose ) } } else  if (   ondisk_seq_format ==  \"2bit\" )  { # \"2bit\" format  if (   is.na (  seqfile_name ) )  {   .forgeTwobitFileFromFastaFiles (  seqnames ,  prefix ,  suffix ,  seqs_srcdir ,  seqs_destdir , verbose =  verbose ) } else  if (    length (  seqnames ) !=  0L )  {   .subsetTwobitFile (  seqfile_name ,  seqnames ,  seqs_srcdir ,  seqs_destdir , verbose =  verbose ) } else  {   .copyTwobitFile (  seqfile_name ,  seqs_srcdir ,  seqs_destdir , verbose =  verbose )  if (   provider ==  \"UCSC\" )  {   UCSC_genomes -   registered_UCSC_genomes ( )  if (   provider_version %in%   UCSC_genomes [ ,  \"genome\" ] )   .sortUCSCTwobitFile (  provider_version ,  seqs_destdir , verbose =  verbose ) } } } else  { # \"fa\" and \"fa.rz\" formats   .forgeFastaRzFileFromFastaFiles (  seqnames ,  prefix ,  suffix ,  seqs_srcdir ,  seqs_destdir ,  ondisk_seq_format , verbose =  verbose ) }  for  ( name in  mseqnames )  {   .forgeRdaSeqFile (  name ,  prefix ,  suffix ,  seqs_srcdir ,  seqs_destdir , is.single.seq =  FALSE , verbose =  verbose ) } } ",
+    "filename": "BSgenomeForge.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  bsgenome_release_3_11 bsgenome_release_3_12
+
+{
+    "package": "BSgenome",
+    "release_versions": "bsgenome_release_3_11 bsgenome_release_3_12",
+    "desc_release_old": "1.56.0",
+    "desc_release_new": "1.58.0",
+    "old_release_number": 23,
+    "new_release_number": 24,
+    "function_removals": 1,
+    "function_additions": 2,
+    "parameter_removals": 0,
+    "parameter_additions": 1,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 2,
+    "total_count": 3
+}
+
+##########
+Functions Removed
+##########
+
+forgeSeqlengthsFile
+
+
+##########
+Functions Added
+##########
+
+forgeSeqlengthsRdsFile
+forgeSeqlengthsRdaFile
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "BSgenome",
+    "representation": "BSgenome",
+    "parameters": "function ( organism , common_name , provider , provider_version , release_date , release_name , source_url , seqnames , circ_seqs = NA , mseqnames , seqs_pkgname , seqs_dirpath , nmask_per_seq = 0 , masks_pkgname = NA , masks_dirpath = NA , species = NA_character_ )",
+    "body": "{   twobit_filename -  \"single_sequences.2bit\"   twobit_filepath -   file.path (  seqs_dirpath ,  twobit_filename )  if (   file.exists (  twobit_filepath ) )  {   single_sequences -   TwobitNamedSequences (  twobit_filepath ) } else  {   fa_filename -  \"single_sequences.fa\"   fa_filepath -   file.path (  seqs_dirpath ,  fa_filename )   farz_filename -   paste0 (  fa_filename ,  \".rz\" )   farz_filepath -   file.path (  seqs_dirpath ,  farz_filename )  if (   file.exists (  farz_filepath ) )  {   single_sequences -   FastaNamedSequences (  farz_filepath ) } else  if (   file.exists (  fa_filepath ) )  {   single_sequences -   FastaNamedSequences (  fa_filepath ) } else  {   single_sequences -   RdaNamedSequences (  seqs_dirpath ,  seqnames ) } }   seqinfo -   .makeBSgenomeSeqinfo (  single_sequences ,  circ_seqs ,  provider_version ,  seqnames )   seqnames -   seqnames (  seqinfo )  if (   missing (  common_name ) )   common_name -  species   genome_description -   GenomeDescription (  organism ,  common_name ,  provider ,  provider_version ,  release_date ,  release_name ,  seqinfo )  if (   is.null (  mseqnames ) )   mseqnames -   character (  0 )   multiple_sequences -   RdaCollection (  seqs_dirpath ,  mseqnames )    names (  user_seqnames ) -   user_seqnames -  seqnames   nmask_per_seq -   as.integer (  nmask_per_seq )   masks_dirpath -   as.character (  masks_dirpath )  if (    nmask_per_seq ==  0L ||    length (  seqnames ) ==  0L )  {   masks -   RdaCollection (  masks_dirpath ,   character (  0 ) ) } else  {   masks -   RdaCollection (  masks_dirpath ,   paste0 (  seqnames ,  \".masks\" ) ) }   new (  \"BSgenome\" ,  genome_description , pkgname =  seqs_pkgname , single_sequences =  single_sequences , multiple_sequences =  multiple_sequences , source_url =  source_url , user_seqnames =  user_seqnames , .seqs_cache =   new.env ( parent =   emptyenv ( ) ) , .link_counts =   new.env ( parent =   emptyenv ( ) ) , nmask_per_seq =  nmask_per_seq , masks =  masks ) } ",
+    "filename": "BSgenome-class.txt"
+  },
+  "new_function": {
+    "name": "BSgenome",
+    "representation": "BSgenome",
+    "parameters": "function ( organism , common_name , genome , provider , provider_version , release_date , release_name , source_url , seqnames , circ_seqs = NA , mseqnames , seqs_pkgname , seqs_dirpath , species = NA_character_ )",
+    "body": "{   single_sequences -   OnDiskNamedSequences (  seqs_dirpath , seqnames =  seqnames )  if (   missing (  genome ) )   genome -  provider_version   seqinfo -   .make_BSgenome_seqinfo (  single_sequences ,  circ_seqs ,  genome ,  seqnames )   seqnames -   seqnames (  seqinfo )  if (   missing (  common_name ) )   common_name -  species   metadata -   list ( organism =  organism , common_name =  common_name , genome =  genome , provider =  provider , release_date =  release_date , source_url =  source_url )  if (   is.null (  mseqnames ) )   mseqnames -   character (  0 )   multiple_sequences -   RdaCollection (  seqs_dirpath ,  mseqnames )    names (  user_seqnames ) -   user_seqnames -  seqnames   new (  \"BSgenome\" , metadata =  metadata , pkgname =  seqs_pkgname , single_sequences =  single_sequences , multiple_sequences =  multiple_sequences , seqinfo =  seqinfo , user_seqnames =  user_seqnames , .seqs_cache =   new.env ( parent =   emptyenv ( ) ) , .link_counts =   new.env ( parent =   emptyenv ( ) ) ) } ",
+    "filename": "BSgenome-class.txt"
+  }
+}
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "BSgenome",
+    "representation": "BSgenome",
+    "parameters": "function ( organism , common_name , provider , provider_version , release_date , release_name , source_url , seqnames , circ_seqs = NA , mseqnames , seqs_pkgname , seqs_dirpath , nmask_per_seq = 0 , masks_pkgname = NA , masks_dirpath = NA , species = NA_character_ )",
+    "body": "{   twobit_filename -  \"single_sequences.2bit\"   twobit_filepath -   file.path (  seqs_dirpath ,  twobit_filename )  if (   file.exists (  twobit_filepath ) )  {   single_sequences -   TwobitNamedSequences (  twobit_filepath ) } else  {   fa_filename -  \"single_sequences.fa\"   fa_filepath -   file.path (  seqs_dirpath ,  fa_filename )   farz_filename -   paste0 (  fa_filename ,  \".rz\" )   farz_filepath -   file.path (  seqs_dirpath ,  farz_filename )  if (   file.exists (  farz_filepath ) )  {   single_sequences -   FastaNamedSequences (  farz_filepath ) } else  if (   file.exists (  fa_filepath ) )  {   single_sequences -   FastaNamedSequences (  fa_filepath ) } else  {   single_sequences -   RdaNamedSequences (  seqs_dirpath ,  seqnames ) } }   seqinfo -   .makeBSgenomeSeqinfo (  single_sequences ,  circ_seqs ,  provider_version ,  seqnames )   seqnames -   seqnames (  seqinfo )  if (   missing (  common_name ) )   common_name -  species   genome_description -   GenomeDescription (  organism ,  common_name ,  provider ,  provider_version ,  release_date ,  release_name ,  seqinfo )  if (   is.null (  mseqnames ) )   mseqnames -   character (  0 )   multiple_sequences -   RdaCollection (  seqs_dirpath ,  mseqnames )    names (  user_seqnames ) -   user_seqnames -  seqnames   nmask_per_seq -   as.integer (  nmask_per_seq )   masks_dirpath -   as.character (  masks_dirpath )  if (    nmask_per_seq ==  0L ||    length (  seqnames ) ==  0L )  {   masks -   RdaCollection (  masks_dirpath ,   character (  0 ) ) } else  {   masks -   RdaCollection (  masks_dirpath ,   paste0 (  seqnames ,  \".masks\" ) ) }   new (  \"BSgenome\" ,  genome_description , pkgname =  seqs_pkgname , single_sequences =  single_sequences , multiple_sequences =  multiple_sequences , source_url =  source_url , user_seqnames =  user_seqnames , .seqs_cache =   new.env ( parent =   emptyenv ( ) ) , .link_counts =   new.env ( parent =   emptyenv ( ) ) , nmask_per_seq =  nmask_per_seq , masks =  masks ) } ",
+    "filename": "BSgenome-class.txt"
+  },
+  "new_function": {
+    "name": "BSgenome",
+    "representation": "BSgenome",
+    "parameters": "function ( organism , common_name , genome , provider , provider_version , release_date , release_name , source_url , seqnames , circ_seqs = NA , mseqnames , seqs_pkgname , seqs_dirpath , species = NA_character_ )",
+    "body": "{   single_sequences -   OnDiskNamedSequences (  seqs_dirpath , seqnames =  seqnames )  if (   missing (  genome ) )   genome -  provider_version   seqinfo -   .make_BSgenome_seqinfo (  single_sequences ,  circ_seqs ,  genome ,  seqnames )   seqnames -   seqnames (  seqinfo )  if (   missing (  common_name ) )   common_name -  species   metadata -   list ( organism =  organism , common_name =  common_name , genome =  genome , provider =  provider , release_date =  release_date , source_url =  source_url )  if (   is.null (  mseqnames ) )   mseqnames -   character (  0 )   multiple_sequences -   RdaCollection (  seqs_dirpath ,  mseqnames )    names (  user_seqnames ) -   user_seqnames -  seqnames   new (  \"BSgenome\" , metadata =  metadata , pkgname =  seqs_pkgname , single_sequences =  single_sequences , multiple_sequences =  multiple_sequences , seqinfo =  seqinfo , user_seqnames =  user_seqnames , .seqs_cache =   new.env ( parent =   emptyenv ( ) ) , .link_counts =   new.env ( parent =   emptyenv ( ) ) ) } ",
+    "filename": "BSgenome-class.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "forgeSeqFiles",
+    "representation": "forgeSeqFiles",
+    "parameters": "function ( provider , provider_version , seqnames , mseqnames = NULL , seqfile_name = NA , prefix = \"\" , suffix = \".fa\" , seqs_srcdir = \".\" , seqs_destdir = \".\" , ondisk_seq_format = c ( \"2bit\" , \"rda\" , \"fa.rz\" , \"fa\" ) , verbose = TRUE )",
+    "body": "{  if (     length (  seqnames ) ==  0L undefined   is.na (  seqfile_name ) )   warning (  \"'seqnames' is empty\" )  if (  !  (     length (  mseqnames ) ==  0L ||   is.character (  mseqnames ) ) )   stop (  \"'mseqnames' must be a character vector (or NULL)\" )  if (  !   isSingleString (  seqs_destdir ) )   stop (  \"'seqs_destdir' must be a single string\" )   ondisk_seq_format -   match.arg (  ondisk_seq_format )  if (   ondisk_seq_format ==  \"rda\" )  { # \"rda\" format  for  ( name in  seqnames )  {   .forgeRdaSeqFile (  name ,  prefix ,  suffix ,  seqs_srcdir ,  seqs_destdir , is.single.seq =  TRUE , verbose =  verbose ) } } else  if (   ondisk_seq_format ==  \"2bit\" )  { # \"2bit\" format  if (   is.na (  seqfile_name ) )  {   .forgeTwobitFileFromFastaFiles (  seqnames ,  prefix ,  suffix ,  seqs_srcdir ,  seqs_destdir , verbose =  verbose ) } else  if (    length (  seqnames ) !=  0L )  {   .subsetTwobitFile (  seqfile_name ,  seqnames ,  seqs_srcdir ,  seqs_destdir , verbose =  verbose ) } else  {   .copyTwobitFile (  seqfile_name ,  seqs_srcdir ,  seqs_destdir , verbose =  verbose )  if (   provider ==  \"UCSC\" )  {   UCSC_genomes -   registered_UCSC_genomes ( )  if (   provider_version %in%   UCSC_genomes [ ,  \"genome\" ] )   .sortUCSCTwobitFile (  provider_version ,  seqs_destdir , verbose =  verbose ) } } } else  { # \"fa\" and \"fa.rz\" formats   .forgeFastaRzFileFromFastaFiles (  seqnames ,  prefix ,  suffix ,  seqs_srcdir ,  seqs_destdir ,  ondisk_seq_format , verbose =  verbose ) }  for  ( name in  mseqnames )  {   .forgeRdaSeqFile (  name ,  prefix ,  suffix ,  seqs_srcdir ,  seqs_destdir , is.single.seq =  FALSE , verbose =  verbose ) } } ",
+    "filename": "BSgenomeForge.txt"
+  },
+  "new_function": {
+    "name": "forgeSeqFiles",
+    "representation": "forgeSeqFiles",
+    "parameters": "function ( provider , genome , seqnames , mseqnames = NULL , seqfile_name = NA , prefix = \"\" , suffix = \".fa\" , seqs_srcdir = \".\" , seqs_destdir = \".\" , ondisk_seq_format = c ( \"2bit\" , \"rds\" , \"rda\" , \"fa.rz\" , \"fa\" ) , verbose = TRUE )",
+    "body": "{  if (     length (  seqnames ) ==  0L undefined   is.na (  seqfile_name ) )   warning (  \"'seqnames' is empty\" )  if (  !  (     length (  mseqnames ) ==  0L ||   is.character (  mseqnames ) ) )   stop (  \"'mseqnames' must be a character vector (or NULL)\" )  if (  !   isSingleString (  seqs_destdir ) )   stop (  \"'seqs_destdir' must be a single string\" )   ondisk_seq_format -   match.arg (  ondisk_seq_format )  if (   ondisk_seq_format ==  \"rds\" )  { # \"rds\" format  for  ( name in  seqnames )  {   .forgeRdsSeqFile (  name ,  prefix ,  suffix ,  seqs_srcdir ,  seqs_destdir , is.single.seq =  TRUE , verbose =  verbose ) } } else  if (   ondisk_seq_format ==  \"rda\" )  { # \"rda\" format  for  ( name in  seqnames )  {   .forgeRdaSeqFile (  name ,  prefix ,  suffix ,  seqs_srcdir ,  seqs_destdir , is.single.seq =  TRUE , verbose =  verbose ) } } else  if (   ondisk_seq_format ==  \"2bit\" )  { # \"2bit\" format  if (   is.na (  seqfile_name ) )  {   .forgeTwobitFileFromFastaFiles (  seqnames ,  prefix ,  suffix ,  seqs_srcdir ,  seqs_destdir , verbose =  verbose ) } else  if (    length (  seqnames ) !=  0L )  {   .subsetTwobitFile (  seqfile_name ,  seqnames ,  seqs_srcdir ,  seqs_destdir , verbose =  verbose ) } else  {   .copyTwobitFile (  seqfile_name ,  seqs_srcdir ,  seqs_destdir , verbose =  verbose )  if (   provider ==  \"UCSC\" )  {   UCSC_genomes -   registered_UCSC_genomes ( )  if (   genome %in%   UCSC_genomes [ ,  \"genome\" ] )   .sortUCSCTwobitFile (  genome ,  seqs_destdir , verbose =  verbose ) } } } else  { # \"fa\" and \"fa.rz\" formats   .forgeFastaRzFileFromFastaFiles (  seqnames ,  prefix ,  suffix ,  seqs_srcdir ,  seqs_destdir ,  ondisk_seq_format , verbose =  verbose ) }  for  ( name in  mseqnames )  {   .forgeRdaSeqFile (  name ,  prefix ,  suffix ,  seqs_srcdir ,  seqs_destdir , is.single.seq =  FALSE , verbose =  verbose ) } } ",
+    "filename": "BSgenomeForge.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  bsgenome_release_3_12 bsgenome_release_3_13
+
+{
+    "package": "BSgenome",
+    "release_versions": "bsgenome_release_3_12 bsgenome_release_3_13",
+    "desc_release_old": "1.58.0",
+    "desc_release_new": "1.60.0",
+    "old_release_number": 24,
+    "new_release_number": 25,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  bsgenome_release_3_13 bsgenome_release_3_14
+
+{
+    "package": "BSgenome",
+    "release_versions": "bsgenome_release_3_13 bsgenome_release_3_14",
+    "desc_release_old": "1.60.0",
+    "desc_release_new": "1.62.0",
+    "old_release_number": 25,
+    "new_release_number": 26,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  bsgenome_release_3_14 bsgenome_master
+
+{
+    "package": "BSgenome",
+    "release_versions": "bsgenome_release_3_14 bsgenome_master",
+    "desc_release_old": "1.62.0",
+    "desc_release_new": "1.63.4",
+    "old_release_number": 26,
+    "new_release_number": 27,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+

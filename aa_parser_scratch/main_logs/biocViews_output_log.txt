@@ -1,0 +1,1562 @@
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocviews_release_1_8 biocviews_release_1_9
+
+{
+    "package": "biocViews",
+    "release_versions": "biocviews_release_1_8 biocviews_release_1_9",
+    "desc_release_old": "1.0.0",
+    "desc_release_new": "1.2.0",
+    "old_release_number": 1,
+    "new_release_number": 2,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+write_SYMBOLS
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocviews_release_1_9 biocviews_release_2_1
+
+{
+    "package": "biocViews",
+    "release_versions": "biocviews_release_1_9 biocviews_release_2_1",
+    "desc_release_old": "1.2.0",
+    "desc_release_new": "1.6.1",
+    "old_release_number": 2,
+    "new_release_number": 3,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocviews_release_2_1 biocviews_release_2_2
+
+{
+    "package": "biocViews",
+    "release_versions": "biocviews_release_2_1 biocviews_release_2_2",
+    "desc_release_old": "1.6.1",
+    "desc_release_new": "1.8.0",
+    "old_release_number": 3,
+    "new_release_number": 4,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocviews_release_2_2 biocviews_release_2_3
+
+{
+    "package": "biocViews",
+    "release_versions": "biocviews_release_2_2 biocviews_release_2_3",
+    "desc_release_old": "1.8.0",
+    "desc_release_new": "1.10.6",
+    "old_release_number": 4,
+    "new_release_number": 5,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+extractManuals
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "writeRepositoryHtml",
+    "representation": "writeRepositoryHtml",
+    "parameters": "function ( reposRoot , title , reposUrl = \"..\" , viewUrl = \"../..\" , link.rel = TRUE )",
+    "body": "{ ## Writes package description html under reposRoot/html and an index.html ## file under reposRoot. ## ## Links created in the package description html will use reposUrl as ## prefix.   pkgList -   loadPackageDetails (  reposRoot ,  reposUrl ,  viewUrl )   writePackageDetailHtml (  pkgList ,   file.path (  reposRoot ,  \"html\" ) )   writeRepositoryIndexHtml (  pkgList ,  reposRoot ,  title , link.rel =  link.rel ) ## copy the css stylesheet   cssName -  \"repository-detail.css\"   cssPath -   system.file (   file.path (  \"css\" ,  cssName ) , package =  \"biocViews\" )   res -   try (   file.copy (  cssPath ,   file.path (  reposRoot ,  cssName ) , overwrite =  TRUE ) , silent =  TRUE ) } ",
+    "filename": "repository.txt"
+  },
+  "new_function": {
+    "name": "writeRepositoryHtml",
+    "representation": "writeRepositoryHtml",
+    "parameters": "function ( reposRoot , title , reposUrl = \"..\" , viewUrl = \"../..\" , reposFullUrl = reposUrl , downloadStatsUrl = \"\" , devHistoryUrl = \"\" , link.rel = TRUE , backgroundColor = \"transparent\" )",
+    "body": "{ ## Writes package description html under reposRoot/html and an index.html ## file under reposRoot. ## ## Links created in the package description html will use reposUrl as ## prefix.   pkgList -   loadPackageDetails (  reposRoot ,  reposUrl ,  viewUrl ,  reposFullUrl ,  downloadStatsUrl ,  devHistoryUrl )   writePackageDetailHtml (  pkgList ,   file.path (  reposRoot ,  \"html\" ) , backgroundColor =  backgroundColor )   writeRepositoryIndexHtml (  pkgList ,  reposRoot ,  title , link.rel =  link.rel ) ## copy the css stylesheet   cssName -  \"repository-detail.css\"   cssPath -   system.file (   file.path (  \"css\" ,   paste (  cssName ,  \".in\" , sep =  \"\" ) ) , package =  \"biocViews\" )   res -   try (   copySubstitute (  cssPath ,   file.path (  reposRoot ,  cssName ) , symbolValues =   list ( \"BACKGROUND_COLOR\" =  backgroundColor ) ) , silent =  TRUE )  res } ",
+    "filename": "repository.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocviews_release_2_3 biocviews_release_2_4
+
+{
+    "package": "biocViews",
+    "release_versions": "biocviews_release_2_3 biocviews_release_2_4",
+    "desc_release_old": "1.10.6",
+    "desc_release_new": "1.12.3",
+    "old_release_number": 5,
+    "new_release_number": 6,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocviews_release_2_4 biocviews_release_2_5
+
+{
+    "package": "biocViews",
+    "release_versions": "biocviews_release_2_4 biocviews_release_2_5",
+    "desc_release_old": "1.12.3",
+    "desc_release_new": "1.14.1",
+    "old_release_number": 6,
+    "new_release_number": 7,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocviews_release_2_5 biocviews_release_2_6
+
+{
+    "package": "biocViews",
+    "release_versions": "biocviews_release_2_5 biocviews_release_2_6",
+    "desc_release_old": "1.14.1",
+    "desc_release_new": "1.16.2",
+    "old_release_number": 7,
+    "new_release_number": 8,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocviews_release_2_6 biocviews_release_2_7
+
+{
+    "package": "biocViews",
+    "release_versions": "biocviews_release_2_6 biocviews_release_2_7",
+    "desc_release_old": "1.16.2",
+    "desc_release_new": "1.18.1",
+    "old_release_number": 8,
+    "new_release_number": 9,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocviews_release_2_7 biocviews_release_2_8
+
+{
+    "package": "biocViews",
+    "release_versions": "biocviews_release_2_7 biocviews_release_2_8",
+    "desc_release_old": "1.18.1",
+    "desc_release_new": "1.20.3",
+    "old_release_number": 9,
+    "new_release_number": 10,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+writeRFilesFromVignettes
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocviews_release_2_8 biocviews_release_2_9
+
+{
+    "package": "biocViews",
+    "release_versions": "biocviews_release_2_8 biocviews_release_2_9",
+    "desc_release_old": "1.20.3",
+    "desc_release_new": "1.22.0",
+    "old_release_number": 10,
+    "new_release_number": 11,
+    "function_removals": 0,
+    "function_additions": 3,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+extractReadmes
+getPackageNEWS
+printNEWS
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocviews_release_2_9 biocviews_release_2_11
+
+{
+    "package": "biocViews",
+    "release_versions": "biocviews_release_2_9 biocviews_release_2_11",
+    "desc_release_old": "1.22.0",
+    "desc_release_new": "1.26.0",
+    "old_release_number": 11,
+    "new_release_number": 12,
+    "function_removals": 1,
+    "function_additions": 3,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+extractReadmes
+
+
+##########
+Functions Added
+##########
+
+extractNEWS
+extractTopLevelFiles
+validate_bioc_views
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "getPackageNEWS",
+    "representation": "getPackageNEWS",
+    "parameters": "function ( prevRepos = \"http://www.bioconductor.org/packages/2.8/bioc\" , currRepos = \"http://www.bioconductor.org/packages/2.9/bioc\" , srcDir , tarred = TRUE )",
+    "body": "{   prev -   available.packages (   contrib.url (  prevRepos ,  \"source\" ) )   curr -   available.packages (   contrib.url (  currRepos ,  \"source\" ) )   prev -   prev [    rownames (  prev ) %in%   rownames (  curr ) , ]   newpkgs -   setdiff (   rownames (  curr ) ,   rownames (  prev ) )   idx -    package_version (   curr [  newpkgs ,  \"Version\" ] ) =  \"0.99.0\"   newpkgs -   newpkgs [  idx ]   vers -   c (   sub (  \"\\\\.[[:digit:]]?$\" ,  \".0\" ,   prev [ ,  \"Version\" ] ) ,   setNames (   rep (  \"0.0\" ,   length (  newpkgs ) ) ,  newpkgs ) )   getNews -  function ( pkg , ver , srcdir )  {   tryCatch (  {   db -   tools ::: .build_news_db (  pkg ,   dirname (  srcdir ) ,  NULL ,  NULL )  if (  !   is.null (  db ) )   utils :: news (   Version undefined  ver , db =  db ) else  NULL } , error =  function ( ... )  NULL ) }   getTarredNews -  function ( pkg , ver , tarball )  {   fl -   grep (  \"/NEWS(.Rd)?$\" ,   untar (  tarball , list =  TRUE ) , value =  TRUE )  if (   length (  fl ) )  {   tryCatch (  {   exdir -   tempfile ( )   untar (  tarball , exdir =  exdir )   getTarredNews (  pkg ,  ver ,  exdir ) } , error =  function ( ... )  NULL ) } else  NULL }  if (  tarred )  {   FUN -  getTarredNews   src -   file.path (  srcDir ,   sprintf (  \"%s_%s.tar.gz\" ,   names (  vers ) ,  vers ) ) } else  {   FUN -  getNews   src -   file.path (  srcDir ,   names (  vers ) ) }   Filter (  function ( x )   !   is.null (  x ) undefined   0L !=   nrow (  x ) ,   Map (  FUN ,   names (  vers ) ,  vers ,  src ) ) } ",
+    "filename": "getPackageNEWS.txt"
+  },
+  "new_function": {
+    "name": "getPackageNEWS",
+    "representation": "getPackageNEWS",
+    "parameters": "function ( prevRepos = \"http://www.bioconductor.org/packages/2.10/bioc\" , currRepos = \"http://www.bioconductor.org/packages/2.11/bioc\" , srcDir )",
+    "body": "{   prev -   available.packages (   contrib.url (  prevRepos ,  \"source\" ) )   curr -   available.packages (   contrib.url (  currRepos ,  \"source\" ) )   prev -   prev [    rownames (  prev ) %in%   rownames (  curr ) , ]   newpkgs -   setdiff (   rownames (  curr ) ,   rownames (  prev ) )   idx -    package_version (   curr [  newpkgs ,  \"Version\" ] ) =  \"0.99.0\"   newpkgs -   newpkgs [  idx ]   vers -   c (   sub (  \"\\\\.[[:digit:]]?$\" ,  \".0\" ,   prev [ ,  \"Version\" ] ) ,   setNames (   rep (  \"0.0\" ,   length (  newpkgs ) ) ,  newpkgs ) )   getNews -  function ( pkg , ver , srcdir )  {   newsloc -   file.path (  srcdir ,  pkg ,   c (  \"inst\" ,  \"inst\" ,  \".\" ) ,   c (  \"NEWS.Rd\" ,  \"NEWS\" ,  \"NEWS\" ) )   news -   head (   newsloc [   file.exists (  newsloc ) ] ,  1 )  if (   0L ==   length (  news ) )   return (  NULL )   tryCatch (  {   db -  if (   grepl (  \"Rd$\" ,  news ) )   tools ::: .build_news_db_from_package_NEWS_Rd (  news ) else   tools ::: .news_reader_default (  news )  if (  !   is.null (  db ) )   utils :: news (   Version undefined  ver , db =  db ) else  NULL } , error =  function ( ... )  NULL ) }   ret -   Filter (  function ( x )   !   is.null (  x ) undefined   0L !=   nrow (  x ) ,   Map (  getNews ,   names (  vers ) ,  vers ,  srcDir ) )   nms -   names (  ret )   s -   sort (  nms )   newRet -   ret [  s ] } ",
+    "filename": "getPackageNEWS.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocviews_release_2_11 biocviews_release_2_12
+
+{
+    "package": "biocViews",
+    "release_versions": "biocviews_release_2_11 biocviews_release_2_12",
+    "desc_release_old": "1.26.0",
+    "desc_release_new": "1.28.0",
+    "old_release_number": 12,
+    "new_release_number": 13,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+extractHTMLDocuments
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocviews_release_2_12 biocviews_release_2_13
+
+{
+    "package": "biocViews",
+    "release_versions": "biocviews_release_2_12 biocviews_release_2_13",
+    "desc_release_old": "1.28.0",
+    "desc_release_new": "1.30.2",
+    "old_release_number": 13,
+    "new_release_number": 14,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocviews_release_2_13 biocviews_release_2_14
+
+{
+    "package": "biocViews",
+    "release_versions": "biocviews_release_2_13 biocviews_release_2_14",
+    "desc_release_old": "1.30.2",
+    "desc_release_new": "1.32.1",
+    "old_release_number": 14,
+    "new_release_number": 15,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocviews_release_2_14 biocviews_release_3_1
+
+{
+    "package": "biocViews",
+    "release_versions": "biocviews_release_2_14 biocviews_release_3_1",
+    "desc_release_old": "1.32.1",
+    "desc_release_new": "1.36.2",
+    "old_release_number": 15,
+    "new_release_number": 16,
+    "function_removals": 0,
+    "function_additions": 3,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+extractCitations
+getCurrentbiocViews
+recommendBiocViews
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocviews_release_3_1 biocviews_release_3_2
+
+{
+    "package": "biocViews",
+    "release_versions": "biocviews_release_3_1 biocviews_release_3_2",
+    "desc_release_old": "1.36.2",
+    "desc_release_new": "1.38.1",
+    "old_release_number": 16,
+    "new_release_number": 17,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+recommendPackages
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocviews_release_3_2 biocviews_release_3_3
+
+{
+    "package": "biocViews",
+    "release_versions": "biocviews_release_3_2 biocviews_release_3_3",
+    "desc_release_old": "1.38.1",
+    "desc_release_new": "1.40.1",
+    "old_release_number": 17,
+    "new_release_number": 18,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocviews_release_3_3 biocviews_release_3_4
+
+{
+    "package": "biocViews",
+    "release_versions": "biocviews_release_3_3 biocviews_release_3_4",
+    "desc_release_old": "1.40.1",
+    "desc_release_new": "1.42.0",
+    "old_release_number": 18,
+    "new_release_number": 19,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocviews_release_3_4 biocviews_release_3_5
+
+{
+    "package": "biocViews",
+    "release_versions": "biocviews_release_3_4 biocviews_release_3_5",
+    "desc_release_old": "1.42.0",
+    "desc_release_new": "1.44.0",
+    "old_release_number": 19,
+    "new_release_number": 20,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocviews_release_3_5 biocviews_release_3_6
+
+{
+    "package": "biocViews",
+    "release_versions": "biocviews_release_3_5 biocviews_release_3_6",
+    "desc_release_old": "1.44.0",
+    "desc_release_new": "1.46.0",
+    "old_release_number": 20,
+    "new_release_number": 21,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocviews_release_3_6 biocviews_release_3_7
+
+{
+    "package": "biocViews",
+    "release_versions": "biocviews_release_3_6 biocviews_release_3_7",
+    "desc_release_old": "1.46.0",
+    "desc_release_new": "1.48.3",
+    "old_release_number": 21,
+    "new_release_number": 22,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+guessPackageType
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocviews_release_3_7 biocviews_release_3_8
+
+{
+    "package": "biocViews",
+    "release_versions": "biocviews_release_3_7 biocviews_release_3_8",
+    "desc_release_old": "1.48.3",
+    "desc_release_new": "1.50.10",
+    "old_release_number": 22,
+    "new_release_number": 23,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 1,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 2,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "getPackageNEWS",
+    "representation": "getPackageNEWS",
+    "parameters": "function ( prevRepos = \"https://bioconductor.org/packages/release/bioc\" , currRepos = \"https://bioconductor.org/packages/devel/bioc\" , srcDir )",
+    "body": "{   prev -   available.packages (   contrib.url (  prevRepos ,  \"source\" ) )   curr -   available.packages (   contrib.url (  currRepos ,  \"source\" ) )   prev -   prev [    rownames (  prev ) %in%   rownames (  curr ) , ]   newpkgs -   setdiff (   rownames (  curr ) ,   rownames (  prev ) )   idx -    package_version (   curr [  newpkgs ,  \"Version\" ] ) =  \"0.99.0\"   newpkgs -   newpkgs [  idx ]   vers -   c (   sub (  \"\\\\.[[:digit:]]?$\" ,  \".0\" ,   prev [ ,  \"Version\" ] ) ,   setNames (   rep (  \"0.0\" ,   length (  newpkgs ) ) ,  newpkgs ) )   getNews -  function ( pkg , ver , srcdir )  {   newsloc -   file.path (  srcdir ,  pkg ,   c (  \"inst\" ,  \"inst\" ,  \".\" ) ,   c (  \"NEWS.Rd\" ,  \"NEWS\" ,  \"NEWS\" ) )   news -   head (   newsloc [   file.exists (  newsloc ) ] ,  1 )  if (   0L ==   length (  news ) )   return (  NULL )   tryCatch (  {   db -  if (   grepl (  \"Rd$\" ,  news ) )   tools ::: .build_news_db_from_package_NEWS_Rd (  news ) else   tools ::: .news_reader_default (  news )  if (  !   is.null (  db ) )   utils :: news (   Version undefined  ver , db =  db ) else  NULL } , error =  function ( ... )  NULL ) }   ret -   Filter (  function ( x )   !   is.null (  x ) undefined   0L !=   nrow (  x ) ,   Map (  getNews ,   names (  vers ) ,  vers ,  srcDir ) )   nms -   names (  ret )   s -   sort (  nms )   newRet -   ret [  s ] } ",
+    "filename": "getPackageNEWS.txt"
+  },
+  "new_function": {
+    "name": "getPackageNEWS",
+    "representation": "getPackageNEWS",
+    "parameters": "function ( prevRepos = \"3.6\" , currRepos = \"3.7\" , repo = c ( \"bioc\" , \"data/experiment\" , \"workflows\" ) )",
+    "body": "{   repo -   match.arg (  repo )   URL_BASE -  \"http://master.bioconductor.org/packages/\"   VIEWS -  \"%s%s/%s/VIEWS\"   prevUrl -   url (   sprintf (  VIEWS ,  URL_BASE ,  prevRepos ,  repo ) )   prev -   read.dcf (  prevUrl , fields =   c (  \"Package\" ,  \"Version\" ) )    rownames (  prev ) -   prev [ ,  1 ]   close (  prevUrl )   currUrl -   url (   sprintf (  VIEWS ,  URL_BASE ,  currRepos ,  repo ) )   curr -   read.dcf (  currUrl , fields =   c (  \"Package\" ,  \"Version\" ) )    rownames (  curr ) -   curr [ ,  1 ]   close (  currUrl )   prev -   prev [    rownames (  prev ) %in%   rownames (  curr ) , ]   newpkgs -   setdiff (   rownames (  curr ) ,   rownames (  prev ) )   idx -    package_version (   curr [  newpkgs ,  \"Version\" ] ) =  \"0.99.0\"   newpkgs -   newpkgs [  idx ]   vers -   c (   sub (  \"\\\\.[[:digit:]]?$\" ,  \".0\" ,   prev [ ,  \"Version\" ] ) ,   setNames (   rep (  \"0.0\" ,   length (  newpkgs ) ) ,  newpkgs ) )   temp =   tempdir ( )   system (   paste0 (  \"scp -r webadmin@master.bioconductor.org:/extra/www/bioc/packages/\" ,  currRepos ,  \"/\" ,  repo ,  \"/news \" ,  temp ) )   getNews -  function ( pkg , ver , srcdir )  {   newsloc -   file.path (  srcdir ,  pkg ,   c (  \"inst\" ,  \"inst\" ,  \".\" ) ,   c (  \"NEWS.Rd\" ,  \"NEWS\" ,  \"NEWS\" ) )   news -   head (   newsloc [   file.exists (  newsloc ) ] ,  1 )  if (   0L ==   length (  news ) )   return (  NULL )   tryCatch (  {   db -  if (   grepl (  \"Rd$\" ,  news ) )   tools ::: .build_news_db_from_package_NEWS_Rd (  news ) else   tools ::: .news_reader_default (  news )  if (  !   is.null (  db ) )   utils :: news (   Version undefined  ver , db =  db ) else  NULL } , error =  function ( ... )  NULL ) }   ret -   Filter (  function ( x )   !   is.null (  x ) undefined   0L !=   nrow (  x ) ,   Map (  getNews ,   names (  vers ) ,  vers ,   paste0 (  temp ,  \"/news\" ) ) )   nms -   names (  ret )   s -   sort (  nms )   newRet -   ret [  s ] } ",
+    "filename": "getPackageNEWS.txt"
+  }
+}
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "getPackageNEWS",
+    "representation": "getPackageNEWS",
+    "parameters": "function ( prevRepos = \"https://bioconductor.org/packages/release/bioc\" , currRepos = \"https://bioconductor.org/packages/devel/bioc\" , srcDir )",
+    "body": "{   prev -   available.packages (   contrib.url (  prevRepos ,  \"source\" ) )   curr -   available.packages (   contrib.url (  currRepos ,  \"source\" ) )   prev -   prev [    rownames (  prev ) %in%   rownames (  curr ) , ]   newpkgs -   setdiff (   rownames (  curr ) ,   rownames (  prev ) )   idx -    package_version (   curr [  newpkgs ,  \"Version\" ] ) =  \"0.99.0\"   newpkgs -   newpkgs [  idx ]   vers -   c (   sub (  \"\\\\.[[:digit:]]?$\" ,  \".0\" ,   prev [ ,  \"Version\" ] ) ,   setNames (   rep (  \"0.0\" ,   length (  newpkgs ) ) ,  newpkgs ) )   getNews -  function ( pkg , ver , srcdir )  {   newsloc -   file.path (  srcdir ,  pkg ,   c (  \"inst\" ,  \"inst\" ,  \".\" ) ,   c (  \"NEWS.Rd\" ,  \"NEWS\" ,  \"NEWS\" ) )   news -   head (   newsloc [   file.exists (  newsloc ) ] ,  1 )  if (   0L ==   length (  news ) )   return (  NULL )   tryCatch (  {   db -  if (   grepl (  \"Rd$\" ,  news ) )   tools ::: .build_news_db_from_package_NEWS_Rd (  news ) else   tools ::: .news_reader_default (  news )  if (  !   is.null (  db ) )   utils :: news (   Version undefined  ver , db =  db ) else  NULL } , error =  function ( ... )  NULL ) }   ret -   Filter (  function ( x )   !   is.null (  x ) undefined   0L !=   nrow (  x ) ,   Map (  getNews ,   names (  vers ) ,  vers ,  srcDir ) )   nms -   names (  ret )   s -   sort (  nms )   newRet -   ret [  s ] } ",
+    "filename": "getPackageNEWS.txt"
+  },
+  "new_function": {
+    "name": "getPackageNEWS",
+    "representation": "getPackageNEWS",
+    "parameters": "function ( prevRepos = \"3.6\" , currRepos = \"3.7\" , repo = c ( \"bioc\" , \"data/experiment\" , \"workflows\" ) )",
+    "body": "{   repo -   match.arg (  repo )   URL_BASE -  \"http://master.bioconductor.org/packages/\"   VIEWS -  \"%s%s/%s/VIEWS\"   prevUrl -   url (   sprintf (  VIEWS ,  URL_BASE ,  prevRepos ,  repo ) )   prev -   read.dcf (  prevUrl , fields =   c (  \"Package\" ,  \"Version\" ) )    rownames (  prev ) -   prev [ ,  1 ]   close (  prevUrl )   currUrl -   url (   sprintf (  VIEWS ,  URL_BASE ,  currRepos ,  repo ) )   curr -   read.dcf (  currUrl , fields =   c (  \"Package\" ,  \"Version\" ) )    rownames (  curr ) -   curr [ ,  1 ]   close (  currUrl )   prev -   prev [    rownames (  prev ) %in%   rownames (  curr ) , ]   newpkgs -   setdiff (   rownames (  curr ) ,   rownames (  prev ) )   idx -    package_version (   curr [  newpkgs ,  \"Version\" ] ) =  \"0.99.0\"   newpkgs -   newpkgs [  idx ]   vers -   c (   sub (  \"\\\\.[[:digit:]]?$\" ,  \".0\" ,   prev [ ,  \"Version\" ] ) ,   setNames (   rep (  \"0.0\" ,   length (  newpkgs ) ) ,  newpkgs ) )   temp =   tempdir ( )   system (   paste0 (  \"scp -r webadmin@master.bioconductor.org:/extra/www/bioc/packages/\" ,  currRepos ,  \"/\" ,  repo ,  \"/news \" ,  temp ) )   getNews -  function ( pkg , ver , srcdir )  {   newsloc -   file.path (  srcdir ,  pkg ,   c (  \"inst\" ,  \"inst\" ,  \".\" ) ,   c (  \"NEWS.Rd\" ,  \"NEWS\" ,  \"NEWS\" ) )   news -   head (   newsloc [   file.exists (  newsloc ) ] ,  1 )  if (   0L ==   length (  news ) )   return (  NULL )   tryCatch (  {   db -  if (   grepl (  \"Rd$\" ,  news ) )   tools ::: .build_news_db_from_package_NEWS_Rd (  news ) else   tools ::: .news_reader_default (  news )  if (  !   is.null (  db ) )   utils :: news (   Version undefined  ver , db =  db ) else  NULL } , error =  function ( ... )  NULL ) }   ret -   Filter (  function ( x )   !   is.null (  x ) undefined   0L !=   nrow (  x ) ,   Map (  getNews ,   names (  vers ) ,  vers ,   paste0 (  temp ,  \"/news\" ) ) )   nms -   names (  ret )   s -   sort (  nms )   newRet -   ret [  s ] } ",
+    "filename": "getPackageNEWS.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "write_VIEWS",
+    "representation": "write_VIEWS",
+    "parameters": "function ( reposRootPath , fields = NULL , type = c ( \"source\" , \"win.binary\" , \"mac.binary\" , \"mac.binary.mavericks\" , \"mac.binary.el-capitan\" ) , verbose = FALSE , vignette.dir = \"vignettes\" )",
+    "body": "{ ## Copied from tools::write_PACKAGES  if (   is.null (  fields ) )   fields -   c (  \"Title\" ,  \"Description\" ,  \"biocViews\" ,  \"Author\" ,  \"Maintainer\" ,  \"URL\" ,  \"License\" ,  \"SystemRequirements\" ,  \"organism\" ,  \"manufacturer\" ,  \"hasReadme\" ,  \"VignetteBuilder\" ,  \"Video\" ,  \"BugReports\" ,  \"PackageStatus\" ,  \"git_url\" ,  \"git_branch\" ,  \"git_last_commit\" ,  \"git_last_commit_date\" ,  \"Date/Publication\" )  if (   missing (  type ) )   type -  \"source\"   type -   match.arg (  type ) ## Read REPOSITORY file for contrib path info   reposInfo -   read_REPOSITORY (  reposRootPath )   provided -    strsplit (   reposInfo [ ,  \"provides\" ] ,  \",\" ) [[  1L ] ] ## Use code from tools to build a matrix of package info ## by parsing the .tar.gz files   pkg.dir -   file.path (  reposRootPath ,   reposInfo [ ,  \"source\" ] )   db -   tools ::: .build_repository_package_db (  pkg.dir ,  fields ,  type ,  verbose ) ## Turn 'db' into a matrix with 1 row per package  if (    length (  db ) !=  0L )  {   dbMat -   do.call (  rbind ,  db ) } else  {   fields -   unique (   c (   tools ::: .get_standard_repository_db_fields ( ) ,  fields ) )   dbMat -   matrix ( nrow =  0L , ncol =   length (  fields ) )    colnames (  dbMat ) -  fields } ## Integrate version and archive file path info for the different contrib ## paths in this repos.  We duplicate the source path info here, but that ## makes things easier to handle later on as there is no special case.   fldNames -   c (   colnames (  dbMat ) ,   paste (  provided ,  \"ver\" , sep =  \".\" ) )   dbMat -   cbind (  dbMat ,   matrix (  NA , nrow =   nrow (  dbMat ) , ncol =   length (  provided ) ) )    colnames (  dbMat ) -  fldNames  for  ( ctype in  provided )  {   cPath -   reposInfo [ ,  ctype ]   buildPkgPath -  function ( pkgs , vers )  {   ext -   switch (  ctype , 'source' =  \".tar.gz\" , 'win.binary' =  \".zip\" , 'mac.binary' = , 'mac.binary.mavericks' = , 'mac.binary.el-capitan' =  \".tgz\" ,   stop (  \"unknown type\" ) )   paste (  cPath ,  \"/\" ,  pkgs ,  \"_\" ,  vers ,  ext , sep =  \"\" ) }   packagesFile -   file.path (  reposRootPath ,  cPath ,  \"PACKAGES\" )  if (  !   file.exists (  packagesFile ) )  {   warning (  \"No PACKAGES file found at \" ,   file.path (  reposRootPath ,  cPath ) ,  \"\\nSkipping this contrib path.\" )  next }   readOk -   tryCatch (  {   cDat -   read.dcf (  packagesFile )  TRUE } , error =  function ( e )  FALSE )  if (  !  readOk )  next  if (  !   length (  cDat ) )  {   warning (  \"Empty PACKAGES file found at \" ,   file.path (  reposRootPath ,  cPath ) ,  \"\\nSkipping this contrib path.\" )  next } ## FIXME: part of the lie we tell, there may be binary pkgs ## for which we do not have a source pkgs.  For now, ignore.   cDatGood -    cDat [ ,  \"Package\" ] %in%   dbMat [ ,  \"Package\" ]   dbMatIdx -   match (   cDat [  cDatGood ,  \"Package\" ] ,   dbMat [ ,  \"Package\" ] )   dbMatIdx -   dbMatIdx [  !   is.na (  dbMatIdx ) ]   col -   paste (  ctype ,  \"ver\" , sep =  \".\" )    dbMat [  dbMatIdx ,  col ] -   buildPkgPath (   cDat [  cDatGood ,  \"Package\" ] ,   cDat [  cDatGood ,  \"Version\" ] )  if (    length (   (   grep (  \"^win\" ,  ctype , value =  TRUE ) ) undefined  0 ) undefined  (   \"Archs\" %in%   colnames (  cDat ) ) )  {   which1 -   which (    dbMat [ ,  \"Package\" ] %in%   cDat [ ,  \"Package\" ] )   which2 -   which (    cDat [ ,  \"Package\" ] %in%   dbMat [ ,  \"Package\" ] )    dbMat [  which1 ,  \"Archs\" ] -   cDat [  which2 ,  \"Archs\" ] } } ## Add vignette path info   vigs -   getFileLinks (   dbMat [ ,  \"Package\" ] ,  reposRootPath ,  vignette.dir ,  \"pdf\" )   vtitles -   getDocumentTitles (  vigs , reposRootPath =  reposRootPath , fun =  getPdfTitle )   rfiles -   getFileLinks (   dbMat [ ,  \"Package\" ] ,  reposRootPath ,  vignette.dir ,  \"R\" )   htmlDocs -   getFileLinks (   dbMat [ ,  \"Package\" ] ,  reposRootPath ,  vignette.dir ,  \"html\" ,  TRUE )    htmlDocs [   grep (  \"\\\\/index\\\\.html$\" ,  htmlDocs ) ] -  NA   htmlTitles -   getDocumentTitles (  htmlDocs , ext =  \"html\" , src =   c (  \"Rmd\" ,  \"Rhtml\" ) ,  reposRootPath ,  getHtmlTitle )   allVigs -   paste (  vigs ,  htmlDocs , sep =  \", \" )   allTitles -   paste (  vtitles ,  htmlTitles , sep =  \", \" )   formatVec -  function ( vec )  {   vec -   gsub ( pattern =  \"NA, NA\" , replacement =  NA ,  vec )   vec -   gsub ( pattern =  \"NA, \" , replacement =  \"\" ,  vec )   vec -   gsub ( pattern =  \", NA\" , replacement =  \"\" ,  vec )  vec }   allVigs -   formatVec (  allVigs )   allTitles -   formatVec (  allTitles )    names (  allVigs ) -   names (  vigs )    names (  allTitles ) -   names (  vtitles )   readmes -   getFileExistsAttr (   dbMat [ ,  \"Package\" ] ,  reposRootPath ,  \"readmes\" ,  \"README\" )   news -   getFileExistsAttr (   dbMat [ ,  \"Package\" ] ,  reposRootPath ,  \"news\" ,  \"NEWS\" )   install -   getFileExistsAttr (   dbMat [ ,  \"Package\" ] ,  reposRootPath ,  \"install\" ,  \"INSTALL\" )   license -   getFileExistsAttr (   dbMat [ ,  \"Package\" ] ,  reposRootPath ,  \"licenses\" ,  \"LICENSE\" )   dbMat -   cbind (  dbMat ,  allVigs )   dbMat -   cbind (  dbMat ,  allTitles )   dbMat -   cbind (  dbMat ,  readmes )   dbMat -   cbind (  dbMat ,  news )   dbMat -   cbind (  dbMat ,  install )   dbMat -   cbind (  dbMat ,  license )   dbMat -   cbind (  dbMat ,  rfiles )    colnames (  dbMat ) -   c (  fldNames ,  \"vignettes\" ,  \"vignetteTitles\" ,  \"hasREADME\" ,  \"hasNEWS\" ,  \"hasINSTALL\" ,  \"hasLICENSE\" ,  \"Rfiles\" )   dependsOnMe -   getReverseDepends (  dbMat ,  \"Depends\" )   dbMat -   cbind (  dbMat ,  dependsOnMe )   importsMe -   getReverseDepends (  dbMat ,  \"Imports\" )   dbMat -   cbind (  dbMat ,  importsMe )   suggestsMe -   getReverseDepends (  dbMat ,  \"Suggests\" )   dbMat -   cbind (  dbMat ,  suggestsMe )   linksToMe -   getReverseDepends (  dbMat ,  \"LinkingTo\" )   dbMat -   cbind (  dbMat ,  linksToMe )   .write_repository_db (  dbMat ,  reposRootPath ,  \"VIEWS\" ) } ",
+    "filename": "repository.txt"
+  },
+  "new_function": {
+    "name": "write_VIEWS",
+    "representation": "write_VIEWS",
+    "parameters": "function ( reposRootPath , fields = NULL , verbose = FALSE , vignette.dir = \"vignettes\" , manifestFile = NA , meatPath = NA )",
+    "body": "{ ## Copied from tools::write_PACKAGES  if (   is.null (  fields ) )   fields -   c (  \"Title\" ,  \"Description\" ,  \"biocViews\" ,  \"Author\" ,  \"Maintainer\" ,  \"URL\" ,  \"License\" ,  \"SystemRequirements\" ,  \"organism\" ,  \"manufacturer\" ,  \"hasReadme\" ,  \"VignetteBuilder\" ,  \"Video\" ,  \"BugReports\" ,  \"PackageStatus\" ,  \"git_url\" ,  \"git_branch\" ,  \"git_last_commit\" ,  \"git_last_commit_date\" ,  \"Date/Publication\" ) ## Read REPOSITORY file for contrib path info   reposInfo -   read_REPOSITORY (  reposRootPath )   provided -    strsplit (   reposInfo [ ,  \"provides\" ] ,  \",\" ) [[  1L ] ]   fields =   unique (   c (   tools ::: .get_standard_repository_db_fields (  \"source\" ) ,   tools ::: .get_standard_repository_db_fields (  \"mac.binary\" ) ,   tools ::: .get_standard_repository_db_fields (  \"win.binary\" ) ,  fields ) )   convertToMat -  function ( reposRootPath , reposInfo , os , fields , verbose )  { ## Use code from tools to build a matrix of package info   pkg.dir -   file.path (  reposRootPath ,   reposInfo [ ,  os ] )  if (   grepl (  os , pattern =  \"mac.binary\" ) )   os =  \"mac.binary\"  if (   grepl (  os , pattern =  \"win.binary\" ) )   os =  \"win.binary\"   db -   tools ::: .build_repository_package_db (  pkg.dir ,  fields ,  os ,  verbose ) ## Turn 'db' into a matrix with 1 row per package  if (    length (  db ) !=  0L )  {   dbMatTemp -   do.call (  rbind ,  db ) } else  {   dbMatTemp -   matrix ( nrow =  0L , ncol =   length (  fields ) )    colnames (  dbMatTemp ) -  fields }  dbMatTemp }   os =   provided [  1 ]   dbMat =   convertToMat (  reposRootPath ,  reposInfo ,  os ,  fields ,  verbose )  if (    length (  provided ) undefined  1 )  {   otheros =   provided [  -  1 ]  for  ( os in  otheros )  {   dbMat2 =   convertToMat (  reposRootPath ,  reposInfo ,  os ,  fields ,  verbose )   idx =  !  (    dbMat2 [ ,  \"Package\" ] %in%   dbMat [ ,  \"Package\" ] )  if (    length (   which (  idx ) ) !=  0 )  {   tempMat =   dbMat2 [  idx , ]   dbMat =   rbind (  dbMat ,  tempMat ) } } } ## Integrate version and archive file path info for the different contrib ## paths in this repos.  We duplicate the source path info here, but that ## makes things easier to handle later on as there is no special case.   fldNames -   c (   colnames (  dbMat ) ,   paste (  provided ,  \"ver\" , sep =  \".\" ) )   dbMat -   cbind (  dbMat ,   matrix (  NA , nrow =   nrow (  dbMat ) , ncol =   length (  provided ) ) )    colnames (  dbMat ) -  fldNames  for  ( ctype in  provided )  {   cPath -   reposInfo [ ,  ctype ]   buildPkgPath -  function ( pkgs , vers )  {   ext -   switch (  ctype , 'source' =  \".tar.gz\" , 'win.binary' =  \".zip\" , 'mac.binary' = , 'mac.binary.mavericks' = , 'mac.binary.el-capitan' =  \".tgz\" ,   stop (  \"unknown type\" ) )   paste (  cPath ,  \"/\" ,  pkgs ,  \"_\" ,  vers ,  ext , sep =  \"\" ) }   packagesFile -   file.path (  reposRootPath ,  cPath ,  \"PACKAGES\" )  if (  !   file.exists (  packagesFile ) )  {   warning (  \"No PACKAGES file found at \" ,   file.path (  reposRootPath ,  cPath ) ,  \"\\nSkipping this contrib path.\" )  next }   readOk -   tryCatch (  {   cDat -   read.dcf (  packagesFile )  TRUE } , error =  function ( e )  FALSE )  if (  !  readOk )  next  if (  !   length (  cDat ) )  {   warning (  \"Empty PACKAGES file found at \" ,   file.path (  reposRootPath ,  cPath ) ,  \"\\nSkipping this contrib path.\" )  next }   cDatGood -    cDat [ ,  \"Package\" ] %in%   dbMat [ ,  \"Package\" ]   dbMatIdx -   match (   cDat [  cDatGood ,  \"Package\" ] ,   dbMat [ ,  \"Package\" ] )   dbMatIdx -   dbMatIdx [  !   is.na (  dbMatIdx ) ]   col -   paste (  ctype ,  \"ver\" , sep =  \".\" )    dbMat [  dbMatIdx ,  col ] -   buildPkgPath (   cDat [  cDatGood ,  \"Package\" ] ,   cDat [  cDatGood ,  \"Version\" ] )  if (    length (   (   grep (  \"^win\" ,  ctype , value =  TRUE ) ) undefined  0 ) undefined  (   \"Archs\" %in%   colnames (  cDat ) ) )  {   which1 -   which (    dbMat [ ,  \"Package\" ] %in%   cDat [ ,  \"Package\" ] )   which2 -   which (    cDat [ ,  \"Package\" ] %in%   dbMat [ ,  \"Package\" ] )    dbMat [  which1 ,  \"Archs\" ] -   cDat [  which2 ,  \"Archs\" ] } } ## Add vignette path info   vigs -   getFileLinks (   dbMat [ ,  \"Package\" ] ,  reposRootPath ,  vignette.dir ,  \"pdf\" )   vtitles -   getDocumentTitles (  vigs , reposRootPath =  reposRootPath , fun =  getPdfTitle )   rfiles -   getFileLinks (   dbMat [ ,  \"Package\" ] ,  reposRootPath ,  vignette.dir ,  \"R\" )   htmlDocs -   getFileLinks (   dbMat [ ,  \"Package\" ] ,  reposRootPath ,  vignette.dir ,  \"html\" ,  TRUE )    htmlDocs [   grep (  \"\\\\/index\\\\.html$\" ,  htmlDocs ) ] -  NA   htmlTitles -   getDocumentTitles (  htmlDocs , ext =  \"html\" , src =   c (  \"Rmd\" ,  \"Rhtml\" ) ,  reposRootPath ,  getHtmlTitle )   allVigs -   paste (  vigs ,  htmlDocs , sep =  \", \" )   allTitles -   paste (  vtitles ,  htmlTitles , sep =  \", \" )   formatVec -  function ( vec )  {   vec -   gsub ( pattern =  \"NA, NA\" , replacement =  NA ,  vec )   vec -   gsub ( pattern =  \"NA, \" , replacement =  \"\" ,  vec )   vec -   gsub ( pattern =  \", NA\" , replacement =  \"\" ,  vec )  vec }   allVigs -   formatVec (  allVigs )   allTitles -   formatVec (  allTitles )    names (  allVigs ) -   names (  vigs )    names (  allTitles ) -   names (  vtitles )   readmes -   getFileExistsAttr (   dbMat [ ,  \"Package\" ] ,  reposRootPath ,  \"readmes\" ,  \"README\" )   news -   getFileExistsAttr (   dbMat [ ,  \"Package\" ] ,  reposRootPath ,  \"news\" ,  \"NEWS\" )   install -   getFileExistsAttr (   dbMat [ ,  \"Package\" ] ,  reposRootPath ,  \"install\" ,  \"INSTALL\" )   license -   getFileExistsAttr (   dbMat [ ,  \"Package\" ] ,  reposRootPath ,  \"licenses\" ,  \"LICENSE\" )   dbMat -   cbind (  dbMat ,  allVigs )   dbMat -   cbind (  dbMat ,  allTitles )   dbMat -   cbind (  dbMat ,  readmes )   dbMat -   cbind (  dbMat ,  news )   dbMat -   cbind (  dbMat ,  install )   dbMat -   cbind (  dbMat ,  license )   dbMat -   cbind (  dbMat ,  rfiles )    colnames (  dbMat ) -   c (  fldNames ,  \"vignettes\" ,  \"vignetteTitles\" ,  \"hasREADME\" ,  \"hasNEWS\" ,  \"hasINSTALL\" ,  \"hasLICENSE\" ,  \"Rfiles\" )   dependsOnMe -   getReverseDepends (  dbMat ,  \"Depends\" )   dbMat -   cbind (  dbMat ,  dependsOnMe )   importsMe -   getReverseDepends (  dbMat ,  \"Imports\" )   dbMat -   cbind (  dbMat ,  importsMe )   suggestsMe -   getReverseDepends (  dbMat ,  \"Suggests\" )   dbMat -   cbind (  dbMat ,  suggestsMe )   linksToMe -   getReverseDepends (  dbMat ,  \"LinkingTo\" )   dbMat -   cbind (  dbMat ,  linksToMe ) # Add place Holder for valid packages compared to manifest # That haven't built so they get a shell landing page rather # than no landing page  if (  !   is.na (  manifestFile ) )  {  if (   file.exists (  manifestFile ) )  {   file =   readLines (  manifestFile )   fmtFile =   vapply (  file , FUN =  function ( vl )  {  if (   startsWith (  vl ,  \"Package\" ) )  {   trimws (   gsub (  vl , pattern =  \"Package: \" , replacement =  \"\" ) ) } else  {  \"\" } } , FUN.VALUE =   character (  1 ) , USE.NAMES =  FALSE )   man_pkgs =   fmtFile [  -   which (   fmtFile ==  \"\" ) ]   missing_pkgs =   man_pkgs [  !  (   man_pkgs %in%   unname (   dbMat [ ,  \"Package\" ] ) ) ]   add_mat =   matrix (  NA , nrow =   length (  missing_pkgs ) , ncol =   ncol (  dbMat ) )    rownames (  add_mat ) =  missing_pkgs    colnames (  add_mat ) =   colnames (  dbMat ) # manually fill info for missing packages    add_mat [ ,   which (    colnames (  dbMat ) ==  \"Package\" ) ] =  missing_pkgs  if (  !   is.na (  meatPath ) )  {  for  ( i in   seq_along (  missing_pkgs ) )  {   add_mat =   tryCatch (  {   desc =   read.dcf (   file.path (  meatPath ,   missing_pkgs [  i ] ,  \"DESCRIPTION\" ) )  for  ( dx in   colnames (  desc ) )  {  if (   dx %in%   colnames (  add_mat ) )  {    add_mat [  i ,   which (    colnames (  add_mat ) ==  dx ) ] =   desc [ ,  dx ] } else  { # check for Authors@R and parse accordingly  if (   dx ==  \"Authors@R\" )  {   ar =   desc [ ,  \"Authors@R\" ]   env -   new.env ( parent =   emptyenv ( ) )    env [[  \"c\" ] ] =  c    env [[  \"person\" ] ] -  utils :: person   pp -   parse ( text =  ar , keep.source =  TRUE )   people =   tryCatch (  {   people -   eval (  pp ,  env )  people } , error =  function ( e )  { # could not parse Authors@R   people -  \"ERROR\"  people } , warning =  function ( e )  {   people -  \"ERROR\"  people } )  if (   all (   people ==  \"ERROR\" ) )  {    add_mat [  i ,   which (    colnames (  dbMat ) ==  \"Maintainer\" ) ] =  \"ERROR\"    add_mat [  i ,   which (    colnames (  dbMat ) ==  \"Author\" ) ] =  \"ERROR\" } else  {   Author =   paste0 (   unlist (   people $ given ) ,  \" \" ,   unlist (   people $ family ) ,  \" ,   unlist (   people $ email ) ,  \" , collapse =  \", \" )    add_mat [  i ,   which (    colnames (  dbMat ) ==  \"Author\" ) ] =  Author   idx =  !   is.na (   unlist (   lapply (   people $ role , FUN =  match , x =  \"cre\" ) ) )  if (   any (  idx ) )  {   people =   people [  idx ]    add_mat [  i ,   which (    colnames (  dbMat ) ==  \"Maintainer\" ) ] =   paste0 (   unlist (   people $ given ) ,  \" \" ,   unlist (   people $ family ) ,  \" ,   unlist (   people $ email ) ,  \" , collapse =  \", \" ) } else  {    add_mat [  i ,   which (    colnames (  dbMat ) ==  \"Maintainer\" ) ] =  \"ERROR\" } } } } }  add_mat } , error =  function ( err )  {    add_mat [  i ,   which (    colnames (  dbMat ) ==  \"Maintainer\" ) ] =  \"ERROR\"    add_mat [  i ,   which (    colnames (  dbMat ) ==  \"Title\" ) ] =  \"ERROR\"  add_mat } , warning =  function ( err )  {    add_mat [  i ,   which (    colnames (  dbMat ) ==  \"Maintainer\" ) ] =  \"ERROR\"    add_mat [  i ,   which (    colnames (  dbMat ) ==  \"Title\" ) ] =  \"ERROR\"  add_mat } ) } } # make sure necessary columns are not NA  if (   any (   is.na (   add_mat [ ,  \"Title\" ] ) ) )  {    add_mat [   which (   is.na (   add_mat [ ,  \"Title\" ] ) ) ,  \"Title\" ] =  \"ERROR\" }  if (   any (   is.na (   add_mat [ ,  \"Maintainer\" ] ) ) )  {    add_mat [   which (   is.na (   add_mat [ ,  \"Maintainer\" ] ) ) ,  \"Maintainer\" ] =  \"ERROR\" }   dbMat =   rbind (  dbMat ,  add_mat ) } }   .write_repository_db (  dbMat ,  reposRootPath ,  \"VIEWS\" ) } ",
+    "filename": "repository.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocviews_release_3_8 biocviews_release_3_9
+
+{
+    "package": "biocViews",
+    "release_versions": "biocviews_release_3_8 biocviews_release_3_9",
+    "desc_release_old": "1.50.10",
+    "desc_release_new": "1.52.2",
+    "old_release_number": 23,
+    "new_release_number": 24,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocviews_release_3_9 biocviews_release_3_11
+
+{
+    "package": "biocViews",
+    "release_versions": "biocviews_release_3_9 biocviews_release_3_11",
+    "desc_release_old": "1.52.2",
+    "desc_release_new": "1.56.2",
+    "old_release_number": 24,
+    "new_release_number": 25,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocviews_release_3_11 biocviews_release_3_12
+
+{
+    "package": "biocViews",
+    "release_versions": "biocviews_release_3_11 biocviews_release_3_12",
+    "desc_release_old": "1.56.2",
+    "desc_release_new": "1.58.1",
+    "old_release_number": 25,
+    "new_release_number": 26,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocviews_release_3_12 biocviews_release_3_13
+
+{
+    "package": "biocViews",
+    "release_versions": "biocviews_release_3_12 biocviews_release_3_13",
+    "desc_release_old": "1.58.1",
+    "desc_release_new": "1.60.0",
+    "old_release_number": 26,
+    "new_release_number": 27,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocviews_release_3_13 biocviews_release_3_14
+
+{
+    "package": "biocViews",
+    "release_versions": "biocviews_release_3_13 biocviews_release_3_14",
+    "desc_release_old": "1.60.0",
+    "desc_release_new": "1.62.1",
+    "old_release_number": 27,
+    "new_release_number": 28,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocviews_release_3_14 biocviews_master
+
+{
+    "package": "biocViews",
+    "release_versions": "biocviews_release_3_14 biocviews_master",
+    "desc_release_old": "1.62.1",
+    "desc_release_new": "1.63.2",
+    "old_release_number": 28,
+    "new_release_number": 29,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+

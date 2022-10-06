@@ -1,0 +1,388 @@
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocneighbors_release_3_8 biocneighbors_release_3_9
+
+{
+    "package": "BiocNeighbors",
+    "release_versions": "biocneighbors_release_3_8 biocneighbors_release_3_9",
+    "desc_release_old": "1.0.0",
+    "desc_release_new": "1.2.0",
+    "old_release_number": 0,
+    "new_release_number": 1,
+    "function_removals": 3,
+    "function_additions": 27,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 2,
+    "total_count": 5
+}
+
+##########
+Functions Removed
+##########
+
+KmknnIndex_clustered_data
+KmknnIndex_clustered_order
+buildNNIndex
+
+
+##########
+Functions Added
+##########
+
+AnnoyIndex_search_mult
+AnnoyParam_search_mult
+HnswIndex
+HnswIndex_ef_search
+HnswIndex_path
+HnswParam
+HnswParam_directory
+HnswParam_ef_construction
+HnswParam_ef_search
+HnswParam_nlinks
+VptreeIndex
+VptreeIndex_nodes
+VptreeParam
+bndata
+bndistance
+bnorder
+buildHnsw
+buildIndex
+buildVptree
+findHnsw
+findVptree
+queryHnsw
+queryVptree
+rangeFindKmknn
+rangeFindVptree
+rangeQueryKmknn
+rangeQueryVptree
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "AnnoyIndex",
+    "representation": "AnnoyIndex",
+    "parameters": "function ( path , dim , NAMES = NULL )",
+    "body": "{   new (  \"AnnoyIndex\" , path =  path , Dims =  dim , NAMES =  NAMES ) } ",
+    "filename": "Annoy-class.txt"
+  },
+  "new_function": {
+    "name": "AnnoyIndex",
+    "representation": "AnnoyIndex",
+    "parameters": "function ( data , path , search.mult = 50 , NAMES = NULL , distance = \"Euclidean\" )",
+    "body": "{   new (  \"AnnoyIndex\" , data =  data , path =  path , NAMES =  NAMES , distance =  distance , search.mult =  search.mult ) } ",
+    "filename": "Annoy-class.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "buildAnnoy",
+    "representation": "buildAnnoy",
+    "parameters": "function ( X , ntrees = 50 , directory = tempdir ( ) , fname = tempfile ( tmpdir = directory , fileext = \".idx\" ) )",
+    "body": "{  if (  !   is.matrix (  X ) )  {   X -   as.matrix (  X ) }   .Call (  cxx_build_annoy ,   t (  X ) ,  ntrees ,  fname )   AnnoyIndex ( path =  fname , dim =   dim (  X ) , NAMES =   rownames (  X ) ) } ",
+    "filename": "buildAnnoy.txt"
+  },
+  "new_function": {
+    "name": "buildAnnoy",
+    "representation": "buildAnnoy",
+    "parameters": "function ( X , transposed = FALSE , ntrees = 50 , directory = tempdir ( ) , search.mult = ntrees , fname = tempfile ( tmpdir = directory , fileext = \".idx\" ) , distance = c ( \"Euclidean\" , \"Manhattan\" ) )",
+    "body": "{  if (  transposed )  {   tX -  X } else  {   tX -   t (  X ) }  if (  !   is.matrix (  tX ) )  {   tX -   as.matrix (  tX ) }   distance -   match.arg (  distance )   .Call (  cxx_build_annoy ,  tX ,  ntrees ,  fname ,  distance )   AnnoyIndex ( data =  tX , path =  fname , search.mult =  search.mult , NAMES =   colnames (  tX ) , distance =  distance ) } ",
+    "filename": "buildAnnoy.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocneighbors_release_3_9 biocneighbors_release_3_11
+
+{
+    "package": "BiocNeighbors",
+    "release_versions": "biocneighbors_release_3_9 biocneighbors_release_3_11",
+    "desc_release_old": "1.2.0",
+    "desc_release_new": "1.6.0",
+    "old_release_number": 1,
+    "new_release_number": 2,
+    "function_removals": 0,
+    "function_additions": 7,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+ExhaustiveIndex
+ExhaustiveParam
+buildExhaustive
+findExhaustive
+queryExhaustive
+rangeFindExhaustive
+rangeQueryExhaustive
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocneighbors_release_3_11 biocneighbors_release_3_12
+
+{
+    "package": "BiocNeighbors",
+    "release_versions": "biocneighbors_release_3_11 biocneighbors_release_3_12",
+    "desc_release_old": "1.6.0",
+    "desc_release_new": "1.8.2",
+    "old_release_number": 2,
+    "new_release_number": 3,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocneighbors_release_3_12 biocneighbors_release_3_13
+
+{
+    "package": "BiocNeighbors",
+    "release_versions": "biocneighbors_release_3_12 biocneighbors_release_3_13",
+    "desc_release_old": "1.8.2",
+    "desc_release_new": "1.10.0",
+    "old_release_number": 3,
+    "new_release_number": 4,
+    "function_removals": 0,
+    "function_additions": 3,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+findMutualNN
+[[
+[[<-
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocneighbors_release_3_13 biocneighbors_release_3_14
+
+{
+    "package": "BiocNeighbors",
+    "release_versions": "biocneighbors_release_3_13 biocneighbors_release_3_14",
+    "desc_release_old": "1.10.0",
+    "desc_release_new": "1.12.0",
+    "old_release_number": 4,
+    "new_release_number": 5,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocneighbors_release_3_14 biocneighbors_master
+
+{
+    "package": "BiocNeighbors",
+    "release_versions": "biocneighbors_release_3_14 biocneighbors_master",
+    "desc_release_old": "1.12.0",
+    "desc_release_new": "1.13.0",
+    "old_release_number": 5,
+    "new_release_number": 6,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+

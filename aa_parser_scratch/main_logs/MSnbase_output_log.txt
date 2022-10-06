@@ -1,0 +1,1809 @@
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  msnbase_release_2_8 msnbase_release_2_9
+
+{
+    "package": "MSnbase",
+    "release_versions": "msnbase_release_2_8 msnbase_release_2_9",
+    "desc_release_old": "1.0.7",
+    "desc_release_new": "1.2.3",
+    "old_release_number": 0,
+    "new_release_number": 1,
+    "function_removals": 0,
+    "function_additions": 24,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 2,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+readMgfData
+readMSData
+readMSnSet
+readIspyData
+fillUp
+as.data.frame.Spectrum
+as.ExpressionSet.MSnSet
+combineFeatures
+makeImpuritiesMatrix
+precSelection
+precSelectionTable
+t.MSnSet
+coerce
+plotDensity
+plotMzDelta
+removeReporters
+centroided
+centroided<-
+precScanNum
+purityCorrect
+writeMgfData
+write.exprs
+normalise
+normalize
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "precursorCharge",
+    "representation": "precursorCharge",
+    "signature": "Spectrum",
+    "parameters": "function ( object , value = \"integer\" )",
+    "body": "object @ precursorCharge - value",
+    "filename": "methods-Spectrum.txt"
+  },
+  "new_function": {
+    "name": "precursorCharge",
+    "representation": "precursorCharge",
+    "signature": "Spectrum",
+    "parameters": "function ( object )",
+    "body": "{  if (    msLevel (  object ) undefined  1 )   return (   object @ precursorCharge )   stop (  \"No precursor charge value for MS1 spectra.\" ) } ",
+    "filename": "methods-Spectrum.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "reporterNames",
+    "representation": "reporterNames",
+    "signature": "ReporterIons",
+    "parameters": "function ( object , value = \"list\" )",
+    "body": "object @ reporterNames - value",
+    "filename": "methods-ReporterIons.txt"
+  },
+  "new_function": {
+    "name": "reporterNames",
+    "representation": "reporterNames",
+    "signature": "ReporterIons",
+    "parameters": "function ( object )",
+    "body": "object @ reporterNames",
+    "filename": "methods-ReporterIons.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  msnbase_release_2_9 msnbase_release_2_11
+
+{
+    "package": "MSnbase",
+    "release_versions": "msnbase_release_2_9 msnbase_release_2_11",
+    "desc_release_old": "1.2.3",
+    "desc_release_new": "1.6.2",
+    "old_release_number": 1,
+    "new_release_number": 2,
+    "function_removals": 1,
+    "function_additions": 22,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+extractSpectra
+
+
+##########
+Functions Added
+##########
+
+writeMzTabData
+readMzTabData
+makeMTD
+makePEP
+makePRT
+is.na.MSnSet
+nQuants
+updateFvarLabels
+updateFeatureNames
+updateSampleNames
+msInfo
+expemail
+exptitle
+ionSource
+analyser
+detectorType
+image
+plotNA
+MAplot
+ionCount
+topN
+filterNA
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  msnbase_release_2_11 msnbase_release_2_12
+
+{
+    "package": "MSnbase",
+    "release_versions": "msnbase_release_2_11 msnbase_release_2_12",
+    "desc_release_old": "1.6.2",
+    "desc_release_new": "1.8.0",
+    "old_release_number": 2,
+    "new_release_number": 3,
+    "function_removals": 0,
+    "function_additions": 15,
+    "parameter_removals": 0,
+    "parameter_additions": 3,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 3,
+    "total_count": 3
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+droplevels.MSnSet
+featureCV
+getRatios
+ionSourceDetails
+analyzer
+analyserDetails
+analyzerDetails
+instrumentModel
+instrumentManufacturer
+instrumentCustomisations
+scanIndex
+scale
+log
+exprsToRatios
+impute
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "filterNA",
+    "representation": "filterNA",
+    "signature": "signature ( object =  matrix )",
+    "parameters": "function ( object , pNA = .5 )",
+    "body": "{  if (   pNA undefined  1 )   pNA -  1  if (   pNA undefined  0 )   pNA -  0   k -   apply (  object ,  1 ,  function ( x )    sum (   is.na (  x ) ) /   length (  x ) )   accept -   k =  pNA  if (    sum (  accept ) ==  1 )  {   ans -   matrix (   object [  accept , ] , nrow =  1 )    rownames (  ans ) -    rownames (  object ) [  accept ] } else  {   ans -   object [  accept , ] }   return (  ans ) } ",
+    "filename": "methods-MSnSet.txt"
+  },
+  "new_function": {
+    "name": "filterNA",
+    "representation": "filterNA",
+    "signature": "signature ( object =  matrix )",
+    "parameters": "function ( object , pNA = 0 , pattern )",
+    "body": "{  if (   missing (  pattern ) )  { ## using pNA  if (   pNA undefined  1 )   pNA -  1  if (   pNA undefined  0 )   pNA -  0   k -   apply (  object ,  1 ,  function ( x )    sum (   is.na (  x ) ) /   length (  x ) )   accept -   k =  pNA  if (    sum (  accept ) ==  1 )  {   ans -   matrix (   object [  accept , ] , nrow =  1 )    rownames (  ans ) -    rownames (  object ) [  accept ] } else  {   ans -   object [  accept , ] } } else  { ## using pattern   accept -   getRowsFromPattern (  object ,  pattern )   ans -   object [  accept , ] }   return (  ans ) } ",
+    "filename": "methods-MSnSet.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "filterNA",
+    "representation": "filterNA",
+    "signature": "signature ( object =  MSnSet )",
+    "parameters": "function ( object , pNA = .5 )",
+    "body": "{  if (   pNA undefined  1 )   pNA -  1  if (   pNA undefined  0 )   pNA -  0   k -   apply (   exprs (  object ) ,  1 ,  function ( x )    sum (   is.na (  x ) ) /   length (  x ) )   accept -   k =  pNA     object @ processingData @ processing -   c (    processingData (  object ) @ processing ,   paste0 (  \"Removed features with more than \" ,   round (  pNA ,  3 ) ,  \" NAs: \" ,   date ( ) ) )   ans -   object [  accept , ]  if (   validObject (  ans ) )   return (  ans ) } ",
+    "filename": "methods-MSnSet.txt"
+  },
+  "new_function": {
+    "name": "filterNA",
+    "representation": "filterNA",
+    "signature": "signature ( object =  MSnSet )",
+    "parameters": "function ( object , pNA = 0 , pattern , droplevels = TRUE )",
+    "body": "{  if (   missing (  pattern ) )  { ## using pNA  if (   pNA undefined  1 )   pNA -  1  if (   pNA undefined  0 )   pNA -  0   k -   apply (   exprs (  object ) ,  1 ,  function ( x )    sum (   is.na (  x ) ) /   length (  x ) )   accept -   k =  pNA   ans -   object [  accept , ]     ans @ processingData @ processing -   c (    processingData (  ans ) @ processing ,   paste0 (  \"Removed features with more than \" ,   round (  pNA ,  3 ) ,  \" NAs: \" ,   date ( ) ) ) } else  { ## using pattern   accept -   getRowsFromPattern (   exprs (  object ) ,  pattern )   ans -   object [  accept , ]     ans @ processingData @ processing -   c (    processingData (  ans ) @ processing ,   paste0 (  \"Removed features with according to pattern \" ,  pattern ,  \" \" ,   date ( ) ) ) }  if (  droplevels )   ans -   droplevels (  ans )  if (   validObject (  ans ) )   return (  ans ) } ",
+    "filename": "methods-MSnSet.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "makeImpuritiesMatrix",
+    "representation": "makeImpuritiesMatrix",
+    "parameters": "function ( x , edit = TRUE )",
+    "body": "{  if (   x ==  4 )  {   M -   matrix (   c (  0.929 ,  0.059 ,  0.002 ,  0.000 ,  0.020 ,  0.923 ,  0.056 ,  0.001 ,  0.000 ,  0.030 ,  0.924 ,  0.045 ,  0.000 ,  0.001 ,  0.040 ,  0.923 ) , nrow =  4 , byrow =  TRUE ) } else  if (   x ==  6 )  {   M -   matrix (   c (  0.939 ,  0.061 ,  0.000 ,  0.000 ,  0.000 ,  0.000 ,  0.005 ,  0.928 ,  0.067 ,  0.000 ,  0.000 ,  0.000 ,  0.000 ,  0.011 ,  0.947 ,  0.042 ,  0.000 ,  0.000 ,  0.000 ,  0.000 ,  0.017 ,  0.942 ,  0.041 ,  0.000 ,  0.000 ,  0.000 ,  0.000 ,  0.016 ,  0.963 ,  0.021 ,  0.000 ,  0.000 ,  0.000 ,  0.002 ,  0.032 ,  0.938 ) , nrow =  6 , byrow =  TRUE ) } else  {   M -   diag (  x ) }    colnames (  M ) -   paste (  \"reporter\" ,   1 :  x , sep =  \".\" )    rownames (  M ) -   paste (  \"% reporter\" ,   1 :  x )  if (  edit )   M -   edit (  M )   return (  M ) } ",
+    "filename": "utils.txt"
+  },
+  "new_function": {
+    "name": "makeImpuritiesMatrix",
+    "representation": "makeImpuritiesMatrix",
+    "parameters": "function ( x , filename , edit = TRUE )",
+    "body": "{  if (  !   missing (  filename ) )  {   m -   read.csv (  filename , row.names =  1 )   x -   ncol (  m )  if (    ncol (  m ) !=   nrow (  m ) )   stop (   paste0 (  \"Problem reading impurity matrix. Not square.\\n\" ,  \"Please read '?purityCorrect' for details.\" ) )   ncharge -   x /  2   a -  (   x /  2 )   b -   (   x /  2 ) +  1   res -   matrix (  0 ,  x ,  x )    diag (  res ) -   100 -   rowSums (  m )  for  ( k in   1 :  ncharge )  {    diag (   res [   (   1 +  k ) :  x ,   1 :  (   x -  k ) ] ) -   m [   (   1 +  k ) :  x ,  (    a -  k +  1 ) ]    diag (   res [   1 :  (   x -  k ) ,   (   1 +  k ) :  x ] ) -   m [   1 :  (   x -  k ) ,  (    b +  k -  1 ) ] } ## test ## diag(test) ## diag(test[4:6, 1:3]) ## diag(test[3:6, 1:4]) ## diag(test[2:6, 1:5]) ## diag(test[1:5, 2:6]) ## diag(test[1:4, 3:6]) ## diag(test[1:3, 4:6]) ## test   M -   res /  100 } else  {  if (   x ==  4 )  {   M -   matrix (   c (  0.929 ,  0.059 ,  0.002 ,  0.000 ,  0.020 ,  0.923 ,  0.056 ,  0.001 ,  0.000 ,  0.030 ,  0.924 ,  0.045 ,  0.000 ,  0.001 ,  0.040 ,  0.923 ) , nrow =  4 , byrow =  TRUE ) } else  if (   x ==  6 )  {   M -   matrix (   c (  0.939 ,  0.061 ,  0.000 ,  0.000 ,  0.000 ,  0.000 ,  0.005 ,  0.928 ,  0.067 ,  0.000 ,  0.000 ,  0.000 ,  0.000 ,  0.011 ,  0.947 ,  0.042 ,  0.000 ,  0.000 ,  0.000 ,  0.000 ,  0.017 ,  0.942 ,  0.041 ,  0.000 ,  0.000 ,  0.000 ,  0.000 ,  0.016 ,  0.963 ,  0.021 ,  0.000 ,  0.000 ,  0.000 ,  0.002 ,  0.032 ,  0.938 ) , nrow =  6 , byrow =  TRUE ) } else  {   M -   diag (  x ) } }    colnames (  M ) -   paste (  \"reporter\" ,   1 :  x , sep =  \".\" )    rownames (  M ) -   paste (  \"% reporter\" ,   1 :  x )  if (  edit )   M -   edit (  M )   return (  M ) } ",
+    "filename": "utils.txt"
+  }
+}
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "filterNA",
+    "representation": "filterNA",
+    "signature": "signature ( object =  matrix )",
+    "parameters": "function ( object , pNA = .5 )",
+    "body": "{  if (   pNA undefined  1 )   pNA -  1  if (   pNA undefined  0 )   pNA -  0   k -   apply (  object ,  1 ,  function ( x )    sum (   is.na (  x ) ) /   length (  x ) )   accept -   k =  pNA  if (    sum (  accept ) ==  1 )  {   ans -   matrix (   object [  accept , ] , nrow =  1 )    rownames (  ans ) -    rownames (  object ) [  accept ] } else  {   ans -   object [  accept , ] }   return (  ans ) } ",
+    "filename": "methods-MSnSet.txt"
+  },
+  "new_function": {
+    "name": "filterNA",
+    "representation": "filterNA",
+    "signature": "signature ( object =  matrix )",
+    "parameters": "function ( object , pNA = 0 , pattern )",
+    "body": "{  if (   missing (  pattern ) )  { ## using pNA  if (   pNA undefined  1 )   pNA -  1  if (   pNA undefined  0 )   pNA -  0   k -   apply (  object ,  1 ,  function ( x )    sum (   is.na (  x ) ) /   length (  x ) )   accept -   k =  pNA  if (    sum (  accept ) ==  1 )  {   ans -   matrix (   object [  accept , ] , nrow =  1 )    rownames (  ans ) -    rownames (  object ) [  accept ] } else  {   ans -   object [  accept , ] } } else  { ## using pattern   accept -   getRowsFromPattern (  object ,  pattern )   ans -   object [  accept , ] }   return (  ans ) } ",
+    "filename": "methods-MSnSet.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "filterNA",
+    "representation": "filterNA",
+    "signature": "signature ( object =  MSnSet )",
+    "parameters": "function ( object , pNA = .5 )",
+    "body": "{  if (   pNA undefined  1 )   pNA -  1  if (   pNA undefined  0 )   pNA -  0   k -   apply (   exprs (  object ) ,  1 ,  function ( x )    sum (   is.na (  x ) ) /   length (  x ) )   accept -   k =  pNA     object @ processingData @ processing -   c (    processingData (  object ) @ processing ,   paste0 (  \"Removed features with more than \" ,   round (  pNA ,  3 ) ,  \" NAs: \" ,   date ( ) ) )   ans -   object [  accept , ]  if (   validObject (  ans ) )   return (  ans ) } ",
+    "filename": "methods-MSnSet.txt"
+  },
+  "new_function": {
+    "name": "filterNA",
+    "representation": "filterNA",
+    "signature": "signature ( object =  MSnSet )",
+    "parameters": "function ( object , pNA = 0 , pattern , droplevels = TRUE )",
+    "body": "{  if (   missing (  pattern ) )  { ## using pNA  if (   pNA undefined  1 )   pNA -  1  if (   pNA undefined  0 )   pNA -  0   k -   apply (   exprs (  object ) ,  1 ,  function ( x )    sum (   is.na (  x ) ) /   length (  x ) )   accept -   k =  pNA   ans -   object [  accept , ]     ans @ processingData @ processing -   c (    processingData (  ans ) @ processing ,   paste0 (  \"Removed features with more than \" ,   round (  pNA ,  3 ) ,  \" NAs: \" ,   date ( ) ) ) } else  { ## using pattern   accept -   getRowsFromPattern (   exprs (  object ) ,  pattern )   ans -   object [  accept , ]     ans @ processingData @ processing -   c (    processingData (  ans ) @ processing ,   paste0 (  \"Removed features with according to pattern \" ,  pattern ,  \" \" ,   date ( ) ) ) }  if (  droplevels )   ans -   droplevels (  ans )  if (   validObject (  ans ) )   return (  ans ) } ",
+    "filename": "methods-MSnSet.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "makeImpuritiesMatrix",
+    "representation": "makeImpuritiesMatrix",
+    "parameters": "function ( x , edit = TRUE )",
+    "body": "{  if (   x ==  4 )  {   M -   matrix (   c (  0.929 ,  0.059 ,  0.002 ,  0.000 ,  0.020 ,  0.923 ,  0.056 ,  0.001 ,  0.000 ,  0.030 ,  0.924 ,  0.045 ,  0.000 ,  0.001 ,  0.040 ,  0.923 ) , nrow =  4 , byrow =  TRUE ) } else  if (   x ==  6 )  {   M -   matrix (   c (  0.939 ,  0.061 ,  0.000 ,  0.000 ,  0.000 ,  0.000 ,  0.005 ,  0.928 ,  0.067 ,  0.000 ,  0.000 ,  0.000 ,  0.000 ,  0.011 ,  0.947 ,  0.042 ,  0.000 ,  0.000 ,  0.000 ,  0.000 ,  0.017 ,  0.942 ,  0.041 ,  0.000 ,  0.000 ,  0.000 ,  0.000 ,  0.016 ,  0.963 ,  0.021 ,  0.000 ,  0.000 ,  0.000 ,  0.002 ,  0.032 ,  0.938 ) , nrow =  6 , byrow =  TRUE ) } else  {   M -   diag (  x ) }    colnames (  M ) -   paste (  \"reporter\" ,   1 :  x , sep =  \".\" )    rownames (  M ) -   paste (  \"% reporter\" ,   1 :  x )  if (  edit )   M -   edit (  M )   return (  M ) } ",
+    "filename": "utils.txt"
+  },
+  "new_function": {
+    "name": "makeImpuritiesMatrix",
+    "representation": "makeImpuritiesMatrix",
+    "parameters": "function ( x , filename , edit = TRUE )",
+    "body": "{  if (  !   missing (  filename ) )  {   m -   read.csv (  filename , row.names =  1 )   x -   ncol (  m )  if (    ncol (  m ) !=   nrow (  m ) )   stop (   paste0 (  \"Problem reading impurity matrix. Not square.\\n\" ,  \"Please read '?purityCorrect' for details.\" ) )   ncharge -   x /  2   a -  (   x /  2 )   b -   (   x /  2 ) +  1   res -   matrix (  0 ,  x ,  x )    diag (  res ) -   100 -   rowSums (  m )  for  ( k in   1 :  ncharge )  {    diag (   res [   (   1 +  k ) :  x ,   1 :  (   x -  k ) ] ) -   m [   (   1 +  k ) :  x ,  (    a -  k +  1 ) ]    diag (   res [   1 :  (   x -  k ) ,   (   1 +  k ) :  x ] ) -   m [   1 :  (   x -  k ) ,  (    b +  k -  1 ) ] } ## test ## diag(test) ## diag(test[4:6, 1:3]) ## diag(test[3:6, 1:4]) ## diag(test[2:6, 1:5]) ## diag(test[1:5, 2:6]) ## diag(test[1:4, 3:6]) ## diag(test[1:3, 4:6]) ## test   M -   res /  100 } else  {  if (   x ==  4 )  {   M -   matrix (   c (  0.929 ,  0.059 ,  0.002 ,  0.000 ,  0.020 ,  0.923 ,  0.056 ,  0.001 ,  0.000 ,  0.030 ,  0.924 ,  0.045 ,  0.000 ,  0.001 ,  0.040 ,  0.923 ) , nrow =  4 , byrow =  TRUE ) } else  if (   x ==  6 )  {   M -   matrix (   c (  0.939 ,  0.061 ,  0.000 ,  0.000 ,  0.000 ,  0.000 ,  0.005 ,  0.928 ,  0.067 ,  0.000 ,  0.000 ,  0.000 ,  0.000 ,  0.011 ,  0.947 ,  0.042 ,  0.000 ,  0.000 ,  0.000 ,  0.000 ,  0.017 ,  0.942 ,  0.041 ,  0.000 ,  0.000 ,  0.000 ,  0.000 ,  0.016 ,  0.963 ,  0.021 ,  0.000 ,  0.000 ,  0.000 ,  0.002 ,  0.032 ,  0.938 ) , nrow =  6 , byrow =  TRUE ) } else  {   M -   diag (  x ) } }    colnames (  M ) -   paste (  \"reporter\" ,   1 :  x , sep =  \".\" )    rownames (  M ) -   paste (  \"% reporter\" ,   1 :  x )  if (  edit )   M -   edit (  M )   return (  M ) } ",
+    "filename": "utils.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  msnbase_release_2_12 msnbase_release_2_13
+
+{
+    "package": "MSnbase",
+    "release_versions": "msnbase_release_2_12 msnbase_release_2_13",
+    "desc_release_old": "1.8.0",
+    "desc_release_new": "1.10.4",
+    "old_release_number": 3,
+    "new_release_number": 4,
+    "function_removals": 1,
+    "function_additions": 10,
+    "parameter_removals": 0,
+    "parameter_additions": 1,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+normalise
+
+
+##########
+Functions Added
+##########
+
+MSnSet
+readMSnSet2
+getEcols
+grepEcols
+as.data.frame.MSnSet
+ms2df
+as.MIAME.MIAPE
+
+chromatogram
+xic
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "plotMzDelta",
+    "representation": "plotMzDelta",
+    "signature": "c (  MSnExp )",
+    "parameters": "function ( object , reporters = NULL , percentage = 0.1 , precMz = NULL , precMzWidth = 2 , bw = 1 , xlim = c ( 40 , 200 ) , withLabels = TRUE , size = 2.5 , plot = TRUE , verbose = TRUE )",
+    "body": "plotMzDelta_MSnExp ( object , reporters , percentage , precMz , precMzWidth , bw , xlim , withLabels , size , plot , verbose )",
+    "filename": "methods-MSnExp.txt"
+  },
+  "new_function": {
+    "name": "plotMzDelta",
+    "representation": "plotMzDelta",
+    "signature": "c (  MSnExp )",
+    "parameters": "function ( object , reporters = NULL , subset , percentage = 0.1 , precMz = NULL , precMzWidth = 2 , bw = 1 , xlim = c ( 40 , 200 ) , withLabels = TRUE , size = 2.5 , plot = TRUE , verbose = TRUE )",
+    "body": "{  if (  !   missing (  subset ) )  {  if (    subset =  0 |   subset =  1 )  {   warning (  'subset must be in ]0, 1[. Ignoring ' ,  subset ,  '.' , immediate. =  TRUE ) } else  {   n -   length (  object )   .subset -   sample (  n ,   ceiling (   n *  subset ) )   object -   object [  .subset ]  if (  verbose )   message (  \"Subset to \" ,   length (  object ) ,  \" spectra.\" ) } }   plotMzDelta_MSnExp (  object ,  reporters ,  percentage ,  precMz ,  precMzWidth ,  bw ,  xlim ,  withLabels ,  size ,  plot ,  verbose ) } ",
+    "filename": "methods-MSnExp.txt"
+  }
+}
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "plotMzDelta",
+    "representation": "plotMzDelta",
+    "signature": "c (  MSnExp )",
+    "parameters": "function ( object , reporters = NULL , percentage = 0.1 , precMz = NULL , precMzWidth = 2 , bw = 1 , xlim = c ( 40 , 200 ) , withLabels = TRUE , size = 2.5 , plot = TRUE , verbose = TRUE )",
+    "body": "plotMzDelta_MSnExp ( object , reporters , percentage , precMz , precMzWidth , bw , xlim , withLabels , size , plot , verbose )",
+    "filename": "methods-MSnExp.txt"
+  },
+  "new_function": {
+    "name": "plotMzDelta",
+    "representation": "plotMzDelta",
+    "signature": "c (  MSnExp )",
+    "parameters": "function ( object , reporters = NULL , subset , percentage = 0.1 , precMz = NULL , precMzWidth = 2 , bw = 1 , xlim = c ( 40 , 200 ) , withLabels = TRUE , size = 2.5 , plot = TRUE , verbose = TRUE )",
+    "body": "{  if (  !   missing (  subset ) )  {  if (    subset =  0 |   subset =  1 )  {   warning (  'subset must be in ]0, 1[. Ignoring ' ,  subset ,  '.' , immediate. =  TRUE ) } else  {   n -   length (  object )   .subset -   sample (  n ,   ceiling (   n *  subset ) )   object -   object [  .subset ]  if (  verbose )   message (  \"Subset to \" ,   length (  object ) ,  \" spectra.\" ) } }   plotMzDelta_MSnExp (  object ,  reporters ,  percentage ,  precMz ,  precMzWidth ,  bw ,  xlim ,  withLabels ,  size ,  plot ,  verbose ) } ",
+    "filename": "methods-MSnExp.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  msnbase_release_2_13 msnbase_release_2_14
+
+{
+    "package": "MSnbase",
+    "release_versions": "msnbase_release_2_13 msnbase_release_2_14",
+    "desc_release_old": "1.10.4",
+    "desc_release_new": "1.12.1",
+    "old_release_number": 4,
+    "new_release_number": 5,
+    "function_removals": 0,
+    "function_additions": 4,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+addIdentificationData
+removeNoId
+removeMultipleAssignment
+idSummary
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  msnbase_release_2_14 msnbase_release_3_1
+
+{
+    "package": "MSnbase",
+    "release_versions": "msnbase_release_2_14 msnbase_release_3_1",
+    "desc_release_old": "1.12.1",
+    "desc_release_new": "1.16.2",
+    "old_release_number": 5,
+    "new_release_number": 6,
+    "function_removals": 1,
+    "function_additions": 37,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+
+
+
+##########
+Functions Added
+##########
+
+as.MSnSet.ExpressionSet
+imputeMethods
+get.amino.acids
+get.atomic.mass
+listOf
+npcv
+averageMSnSet
+MSmap
+assayData
+assayData<-
+fData
+fData<-
+featureNames
+featureNames<-
+isEmpty
+bin
+calculateFragments
+compareSpectra
+pickPeaks
+smooth
+FeaturesOfInterest
+foi
+description
+FoICollection
+addFeaturesOfInterest
+rmFeaturesOfInterest
+fnamesIn
+compfnames
+common
+unique1
+unique2
+names
+mzRes
+plot3D
+msMap
+fileName
+t
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "width",
+    "representation": "width",
+    "signature": "ReporterIons",
+    "parameters": "function ( object )",
+    "body": "object @ width",
+    "filename": "methods-ReporterIons.txt"
+  },
+  "new_function": {
+    "name": "width",
+    "representation": "width",
+    "signature": "ReporterIons",
+    "parameters": "function ( x )",
+    "body": "x @ width",
+    "filename": "methods-ReporterIons.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  msnbase_release_3_1 msnbase_release_3_2
+
+{
+    "package": "MSnbase",
+    "release_versions": "msnbase_release_3_1 msnbase_release_3_2",
+    "desc_release_old": "1.16.2",
+    "desc_release_new": "1.18.1",
+    "old_release_number": 6,
+    "new_release_number": 7,
+    "function_removals": 0,
+    "function_additions": 19,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+compareMSnSets
+defaultNeutralLoss
+as.matrix.FoICollection
+commonFeatureNames
+MSnSetList
+msnsets
+objlog
+image2
+MzTab
+smallMolecules
+comments
+mzTabMode
+mzTabType
+readMzTabData_v0.9
+lengths
+filterZero
+split
+metadata
+psms
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "readMzTabData",
+    "representation": "readMzTabData",
+    "parameters": "function ( file , what = c ( \"PRT\" , \"PEP\" ) , verbose = TRUE )",
+    "body": "{   warning (  \"Support for mzTab version 0.9 only. Support will be added soon.\" )   what -   match.arg (  what ) ## .parse1 ##   sapply(x, function(.x) strsplit(.x, \"\\t\")[[1]][-1])   .parse -  function ( x )  {   x -   sapply (  x ,  function ( .x )   sub (  \"\\t\" ,  \":\" ,  .x ) )    names (  x ) -   sub (  \"^(.+sub\\\\[[0-9]*\\\\]).+$\" ,  \"\\\\1\" ,  x , perl =  TRUE )   x [   order (   names (  x ) ) ] }   lns -   readLines (  file )   ans -   new (  \"MSnSet\" ) ## metadata section   mtd -   grep (  \"^MTD\" ,  lns , value =  TRUE )  if (    length (  mtd ) undefined  0 )  {  if (  verbose )   message (  \"Detected a metadata section\" )   mtd -   sub (  \"MTD\\t\" ,  \"\" ,  mtd )  if (    length (   title -   grep (  \"-title\\t\" ,  mtd , value =  TRUE ) ) undefined  0 )     ans @ experimentData @ title -   .parse (  title )  if (    length (   description -   grep (  \"-description\\t\" ,  mtd , value =  TRUE ) ) undefined  0 )  {      ans @ experimentData @ other $ description -   .parse (  description ) ## description ## if (length(description) ##   ans@experimentData@other$description }  if (    length (   sampleProcessing -   grep (  \"-sample_processing\\t\" ,  mtd , value =  TRUE ) ) undefined  0 )      ans @ experimentData @ other $ sampleProcessing -   .parse (  sampleProcessing )  if (    length (   instrumentSource -   grep (  \"-instrument\\\\[[0-9]*\\\\]-source\\t\" ,  mtd , value =  TRUE ) ) undefined  0 )     ans @ experimentData @ ionSource -   .parse (  instrumentSource )  if (    length (   instrumentAnalyzer -   grep (  \"-instrument\\\\[[0-9]*\\\\]-analyzer\\t\" ,  mtd , value =  TRUE ) ) undefined  0 )     ans @ experimentData @ analyser -   .parse (  instrumentAnalyzer )  if (    length (   instrumentDetector -   grep (  \"-instrument\\\\[[0-9]*\\\\]-detector\\t\" ,  mtd , value =  TRUE ) ) undefined  0 )     ans @ experimentData @ detectorType -   .parse (  instrumentDetector )  if (    length (   software -   grep (  \"-software\\\\[[0-9]*\\\\]\\t\" ,  mtd , value =  TRUE ) ) undefined  0 )     ans @ experimentData @ preprocessing -   as.list (   .parse (  software ) )  if (    length (   fdr -   grep (  \"-false_discovery_rate\\t\" ,  mtd , value =  TRUE ) ) undefined  0 )      ans @ experimentData @ other $ fdr -   .parse (  fdr )  if (    length (   publications -   grep (  \"-publication\\t\" ,  mtd , value =  TRUE ) ) undefined  0 )     ans @ experimentData @ pubMedIds -   .parse (  publications )  if (    length (   name -   grep (  \"-contact\\\\[[0-9]*\\\\]-name\\t\" ,  mtd , value =  TRUE ) ) undefined  0 )     ans @ experimentData @ name -   .parse (  name )  if (    length (   affiliation -   grep (  \"-contact\\\\[[0-9]*\\\\]-affiliation\\t\" ,  mtd , value =  TRUE ) ) undefined  0 )     ans @ experimentData @ lab -   .parse (  affiliation )  if (    length (   email -   grep (  \"-contact\\\\[[0-9]*\\\\]-email\\t\" ,  mtd , value =  TRUE ) ) undefined  0 )     ans @ experimentData @ email -   .parse (  email )  if (    length (   uri -   grep (  \"-uri\\t\" ,  mtd , value =  TRUE ) ) undefined  0 )     ans @ experimentData @ url -   .parse (  uri )  if (    length (   mod -   grep (  \"-mod\\t\" ,  mtd , value =  TRUE ) ) undefined  0 )      ans @ experimentData @ other $ modifications -   .parse (  mod )  if (    length (   modprob -   grep (  \"-mod-probability_method\\t\" ,  mtd , value =  TRUE ) ) undefined  0 )      ans @ experimentData @ other $ modProbabilityMethod -   .parse (  modprob )  if (    length (   quantMethod -   grep (  \"-quantification_method\\t\" ,  mtd , value =  TRUE ) ) undefined  0 )      ans @ experimentData @ other $ quantificationMethod -   .parse (  quantMethod )  if (    length (   protQuantUnit -   grep (  \"-protein-quantification_unit\\t\" ,  mtd , value =  TRUE ) ) undefined  0 )      ans @ experimentData @ other $ protQuantUnit -   .parse (  protQuantUnit )  if (    length (   pepQuantUnit -   grep (  \"-peptide-quantification_unit\\t\" ,  mtd , value =  TRUE ) ) undefined  0 )      ans @ experimentData @ other $ pepQuantUnit -   .parse (  pepQuantUnit )  if (    length (   msFileFormat -   grep (  \"-ms_file\\\\[[0-9]*\\\\]-format\\t\" ,  mtd , value =  TRUE ) ) undefined  0 )      ans @ experimentData @ other $ msFileFormat -   .parse (  msFileFormat )  if (    length (   msFile -   grep (  \"-ms_file\\\\[[0-9]*\\\\]-location\\t\" ,  mtd , value =  TRUE ) ) undefined  0 )     ans @ processingData @ files -   .parse (  msFile )  if (    length (   msFileIdFormat -   grep (  \"-ms_file\\\\[[0-9]*\\\\]-id_format\\t\" ,  mtd , value =  TRUE ) ) undefined  0 )      ans @ experimentData @ other $ msFileIdFormat -   .parse (  msFileIdFormat )  if (    length (   custom -   grep (  \"-custom\\t\" ,  mtd , value =  TRUE ) ) undefined  0 )  {   custom -   custom [  -   grep (  \"sub\" ,  custom ) ] ## added later to experimentData@samples  if (    length (  custom ) undefined  0 )      ans @ experimentData @ other $ custom -   .parse (  custom ) } ## sub metadata  if (    length (   species -   grep (  \"-species\\\\[[0-9]*\\\\]\\t\" ,  mtd , value =  TRUE ) ) undefined  0 )     ans @ experimentData @ samples -   append (    ans @ experimentData @ samples ,   list ( species =   .parse (  species ) ) )  if (    length (   tissue -   grep (  \"-tissue\\\\[[0-9]*\\\\]\\t\" ,  mtd , value =  TRUE ) ) undefined  0 )     ans @ experimentData @ samples -   append (    ans @ experimentData @ samples ,   list ( tissue =   .parse (  tissue ) ) )  if (    length (   cellType -   grep (  \"-cell_type\\\\[[0-9]*\\\\]\\t\" ,  mtd , value =  TRUE ) ) undefined  0 )     ans @ experimentData @ samples -   append (    ans @ experimentData @ samples ,   list ( cellType =   .parse (  cellType ) ) )  if (    length (   disease -   grep (  \"-disease\\\\[[0-9]*\\\\]\\t\" ,  mtd , value =  TRUE ) ) undefined  0 )     ans @ experimentData @ samples -   append (    ans @ experimentData @ samples ,   list ( disease =   .parse (  disease ) ) )  if (    length (   description_ -   grep (  \"-sub\\\\[[0-9]*\\\\]-description\\t\" ,  mtd , value =  TRUE ) ) undefined  0 )     ans @ experimentData @ samples -   append (    ans @ experimentData @ samples ,   list ( description =   .parse (  description_ ) ) )  if (    length (   quantReagent_ -   grep (  \"-sub\\\\[[0-9]*\\\\]-quantification_reagent\\t\" ,  mtd , value =  TRUE ) ) undefined  0 )     ans @ experimentData @ samples -   append (    ans @ experimentData @ samples ,   list ( quantReagent =   .parse (  quantReagent_ ) ) )  if (    length (   custom_ -   grep (  \"-sub\\\\[[0-9]*\\\\]-custom\\t\" ,  mtd , value =  TRUE ) ) undefined  0 )     ans @ experimentData @ samples -   append (    ans @ experimentData @ samples ,   list ( custom =   .parse (  custom_ ) ) ) }  if (   what ==  \"PRT\" )  {   prh -   grep (  \"^PRH\" ,  lns , value =  TRUE )   prt -   grep (  \"^PRT\" ,  lns , value =  TRUE )  if (     length (  prh ) !=  1 undefined    length (  prt ) undefined  1 )   stop (  \"No protein section found.\" )  if (  verbose )   message (  \"Detected a protein section\" )   prt -   sub (  \"^PRT\\t\" ,  \"\" ,  prt )   prh -   sub (  \"^PRH\\t\" ,  \"\" ,  prh )   l -   sapply (  prt ,  strsplit ,  \"\\t\" )    names (  l ) -  NULL   tab -   data.frame (   do.call (  rbind ,  l ) )   tabnms -    strsplit (  prh ,  \"\\t\" ) [[  1 ] ]   tabnms -   tabnms [   tabnms !=  \"\" ]    names (  tab ) -  tabnms } else  { ## \"PEP\"   peh -   grep (  \"^PEH\" ,  lns , value =  TRUE )   pep -   grep (  \"^PEP\" ,  lns , value =  TRUE )  if (     length (  peh ) !=  1 undefined    length (  pep ) undefined  1 )   stop (  \"No peptide section found.\" )  if (  verbose )   message (  \"Detected a peptide section\" )   pep -   sub (  \"^PEP\\t\" ,  \"\" ,  pep )   peh -   sub (  \"^PEH\\t\" ,  \"\" ,  peh )   l -   sapply (  pep ,  strsplit ,  \"\\t\" )    names (  l ) -  NULL   tab -   data.frame (   do.call (  rbind ,  l ) )   tabnms -    strsplit (  peh ,  \"\\t\" ) [[  1 ] ]   tabnms -   tabnms [   tabnms !=  \"\" ]    names (  tab ) -  tabnms }  if (   any (   esetCols -   grepl (  \"_abundance_sub\\\\[[0-9]*\\\\]\" ,   names (  tab ) ) ) )  {   eset -   as.matrix (   tab [ ,  esetCols ] )    mode (  eset ) -  \"numeric\"   nms -   colnames (  eset )    colnames (  eset ) -   sub (  \"^.+_abundance_\" ,  \"\" ,   colnames (  eset ) )   fdata -   new (  \"AnnotatedDataFrame\" , data =   tab [ ,  !  esetCols ] )   pdata -   new (  \"AnnotatedDataFrame\" , data =   data.frame ( abundance =  nms , row.names =   colnames (  eset ) ) ) } else  {   warning (  \"No quantitative data found - empty assayData slot.\" )   eset -   matrix ( nrow =   nrow (  tab ) , ncol =  0 )   fdata -   new (  \"AnnotatedDataFrame\" , data =  tab )   pdata -   new (  \"AnnotatedDataFrame\" ) }    rownames (  eset ) -   featureNames (  fdata )    exprs (  ans ) -  eset    featureData (  ans ) -  fdata    phenoData (  ans ) -  pdata ## adding mzTab file     ans @ processingData @ files -   c (    ans @ processingData @ files ,  file )     ans @ processingData @ processing -   c (    ans @ processingData @ processing ,   paste0 (  \"mzTab read: \" ,   date ( ) ) )  if (   validObject (  ans ) )   return (  ans ) } ",
+    "filename": "readWriteMzTab.txt"
+  },
+  "new_function": {
+    "name": "readMzTabData",
+    "representation": "readMzTabData",
+    "parameters": "function ( file , what = c ( \"PRT\" , \"PEP\" , \"PSM\" ) , version = c ( \"1.0\" , \"0.9\" ) , verbose = TRUE )",
+    "body": "{   version -   match.arg (  version )   what -   match.arg (  what )  if (   version ==  \"0.9\" )  {  if (   what ==  \"PSM\" )   stop (  \"Only 'PRT' or 'PEP' supported in mzTab version 0.9.\" )   readMzTabData_v0.9 (  file ,  what ,  verbose ) } else  {   ans -   as (   MzTab (  file ) ,  \"MSnSetList\" )   ans -   switch (  what , PRT =   ans [[  \"Proteins\" ] ] , PEP =   ans [[  \"Peptides\" ] ] , PSM =   ans [[  \"PSMs\" ] ] )   return (  ans ) } } ",
+    "filename": "readWriteMzTab.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  msnbase_release_3_2 msnbase_release_3_3
+
+{
+    "package": "MSnbase",
+    "release_versions": "msnbase_release_3_2 msnbase_release_3_3",
+    "desc_release_old": "1.18.1",
+    "desc_release_new": "1.20.8",
+    "old_release_number": 7,
+    "new_release_number": 8,
+    "function_removals": 1,
+    "function_additions": 12,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+readIspyData
+
+
+##########
+Functions Added
+##########
+
+naplot
+makeNaData
+makeNaData2
+whichNA
+selectFeatureData
+exprs
+fvarLabels
+sampleNames
+sampleNames<-
+estimateNoise
+trimws
+names<-
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "nQuants",
+    "representation": "nQuants",
+    "parameters": "function ( object , fcol )",
+    "body": "{   .count -  function ( x )  {   m -   rep (   nrow (  x ) ,   ncol (  x ) )   nna -   apply (  x ,  2 ,  function ( .x )   sum (   is.na (  .x ) ) )   m -  nna }  if (    class (  object ) !=  \"MSnSet\" )   stop (  \"'object' must be of class 'MSnSet'.\" )  if (   missing (  fcol ) )   stop (  \"'fcol' is required.\" )  if (  !   fcol %in%   fvarLabels (  object ) )   stop (  \"'fcol' not found in fvarLabels(object).\" )   res -   by (   exprs (  object ) ,   factor (    fData (  object ) [ ,  fcol ] ) ,  .count )  if (    ncol (  object ) ==  1 )  {   ans -   as.matrix (  res ) } else  {   ans -   do.call (  rbind ,  res ) }    colnames (  ans ) -   sampleNames (  object )   return (  ans ) } ",
+    "filename": "functions-MSnSet.txt"
+  },
+  "new_function": {
+    "name": "nQuants",
+    "representation": "nQuants",
+    "parameters": "function ( x , groupBy )",
+    "body": "{  if (    class (  x ) !=  \"MSnSet\" )   stop (  \"'x' must be of class 'MSnSet'.\" )   ans -   utils.applyColumnwiseByGroup (   exprs (  x ) , groupBy =  groupBy , FUN =  function ( y )  {    nrow (  y ) -   colSums (   is.na (  y ) ) } )    colnames (  ans ) -   sampleNames (  x )  ans } ",
+    "filename": "functions-MSnSet.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  msnbase_release_3_3 msnbase_release_3_4
+
+{
+    "package": "MSnbase",
+    "release_versions": "msnbase_release_3_3 msnbase_release_3_4",
+    "desc_release_old": "1.20.8",
+    "desc_release_new": "2.0.2",
+    "old_release_number": 8,
+    "new_release_number": 9,
+    "function_removals": 0,
+    "function_additions": 20,
+    "parameter_removals": 0,
+    "parameter_additions": 2,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 4,
+    "total_count": 4
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+abstract
+readMSData2
+as.MSnExp.OnDiskMSnExp
+ProcessingStep
+validateOnDiskMSnExp
+MSnbaseOptions
+isMSnbaseVerbose
+setMSnbaseVerbose
+setMSnbaseParallelThresh
+executeProcessingStep
+updateObject
+all.equal
+isCentroided
+smoothed
+smoothed<-
+filterMsLevel
+filterMz
+filterRt
+filterFile
+filterAcquisitionNum
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "removePeaks",
+    "representation": "removePeaks",
+    "signature": "Spectrum",
+    "parameters": "function ( object , t )",
+    "body": "removePeaks_Spectrum ( object , t )",
+    "filename": "methods-Spectrum.txt"
+  },
+  "new_function": {
+    "name": "removePeaks",
+    "representation": "removePeaks",
+    "signature": "Spectrum",
+    "parameters": "function ( object , t , msLevel. )",
+    "body": "removePeaks_Spectrum ( object , t , msLevel. )",
+    "filename": "methods-Spectrum.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "bin",
+    "representation": "bin",
+    "signature": "Spectrum",
+    "parameters": "function ( object , binSize = 1 , breaks = seq ( floor ( min ( mz ( object ) ) ) , ceiling ( max ( mz ( object ) ) ) , by = binSize ) )",
+    "body": "{   bin_Spectrum (  object , binSize =  binSize , breaks =  breaks ) } ",
+    "filename": "methods-Spectrum.txt"
+  },
+  "new_function": {
+    "name": "bin",
+    "representation": "bin",
+    "signature": "Spectrum",
+    "parameters": "function ( object , binSize = 1L , breaks = seq ( floor ( min ( mz ( object ) ) ) , ceiling ( max ( mz ( object ) ) ) , by = binSize ) , msLevel. )",
+    "body": "{   bin_Spectrum (  object , binSize =  binSize , breaks =  breaks , msLevel. =  msLevel. ) } ",
+    "filename": "methods-Spectrum.txt"
+  }
+}
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "removePeaks",
+    "representation": "removePeaks",
+    "signature": "Spectrum",
+    "parameters": "function ( object , t )",
+    "body": "removePeaks_Spectrum ( object , t )",
+    "filename": "methods-Spectrum.txt"
+  },
+  "new_function": {
+    "name": "removePeaks",
+    "representation": "removePeaks",
+    "signature": "Spectrum",
+    "parameters": "function ( object , t , msLevel. )",
+    "body": "removePeaks_Spectrum ( object , t , msLevel. )",
+    "filename": "methods-Spectrum.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "bin",
+    "representation": "bin",
+    "signature": "Spectrum",
+    "parameters": "function ( object , binSize = 1 , breaks = seq ( floor ( min ( mz ( object ) ) ) , ceiling ( max ( mz ( object ) ) ) , by = binSize ) )",
+    "body": "{   bin_Spectrum (  object , binSize =  binSize , breaks =  breaks ) } ",
+    "filename": "methods-Spectrum.txt"
+  },
+  "new_function": {
+    "name": "bin",
+    "representation": "bin",
+    "signature": "Spectrum",
+    "parameters": "function ( object , binSize = 1L , breaks = seq ( floor ( min ( mz ( object ) ) ) , ceiling ( max ( mz ( object ) ) ) , by = binSize ) , msLevel. )",
+    "body": "{   bin_Spectrum (  object , binSize =  binSize , breaks =  breaks , msLevel. =  msLevel. ) } ",
+    "filename": "methods-Spectrum.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "readMSData",
+    "representation": "readMSData",
+    "parameters": "function ( files , pdata = NULL , msLevel = 2 , verbose = TRUE , centroided = FALSE , smoothed = FALSE , removePeaks = 0 , clean = FALSE , cache = 1 )",
+    "body": "{   .testReadMSDataInput (   environment ( ) ) ## TODO: add also a trimMz argument.  if (   msLevel ==  1 ) ## cache currently only works for MS2 level data   cache -  0   msLevel -   as.integer (  msLevel ) ## Creating environment with Spectra objects   assaydata -   new.env ( parent =   emptyenv ( ) )   ioncount -   c ( )   ioncounter -  1   filenams -   filenums -   c ( )   fullhd2 -   fullhdorder -   c ( )   fullhdordercounter -  1   .instrumentInfo -   list ( )  for  ( f in  files )  {   filen -   match (  f ,  files )   filenums -   c (  filenums ,  filen )   filenams -   c (  filenams ,  f )   msdata -   mzR :: openMSfile (  f )   .instrumentInfo -   c (  .instrumentInfo ,   list (   instrumentInfo (  msdata ) ) )   fullhd -   mzR :: header (  msdata )   ifelse (   msLevel ==  1 , ## later,   spidx -   which (    fullhd $ msLevel ==  1 ) ,   spidx -   which (    fullhd $ msLevel undefined  1 ) ) ## increase vectors as needed   ioncount -   c (  ioncount ,   numeric (   length (  spidx ) ) )   fullhdorder -   c (  fullhdorder ,   numeric (   length (  spidx ) ) ) ## MS1 level  if (   msLevel ==  1 )  {  if (    length (  spidx ) ==  0 )   stop (  \"No MS1 spectra in file\" ,  f )  if (  verbose )  {   cat (  \"Reading \" ,   length (  spidx ) ,  \" MS1 spectra from file \" ,   basename (  f ) ,  \"\\n\" , sep =  \"\" )   pb -   txtProgressBar ( min =  0 , max =   length (  spidx ) , style =  3 ) }  for  ( i in   1 :   length (  spidx ) )  {  if (  verbose )   setTxtProgressBar (  pb ,  i )   j -   spidx [  i ]   hd -   fullhd [  j , ]   sp -   new (  \"Spectrum1\" , peaksCount =   hd $ peaksCount , rt =   hd $ retentionTime , acquisitionNum =   hd $ acquisitionNum , mz =    mzR :: peaks (  msdata ,  j ) [ ,  1 ] , intensity =    mzR :: peaks (  msdata ,  j ) [ ,  2 ] , fromFile =  filen , tic =   hd $ totIonCurrent , centroided =  centroided )    ioncount [  ioncounter ] -   sum (    mzR :: peaks (  msdata ,  j ) [ ,  2 ] )   ioncounter -   ioncounter +  1  if (   removePeaks undefined  0 )   sp -   removePeaks (  sp , t =  removePeaks )  if (  clean )   sp -   clean (  sp )   .fname -   sprintf (   paste0 (  \"X%0\" ,   ceiling (   log10 (    length (  spidx ) +  1L ) ) ,  \"d.%s\" ) ,  i ,  filen )   assign (  .fname ,  sp ,  assaydata )    fullhdorder [  fullhdordercounter ] -  .fname   fullhdordercounter -   fullhdordercounter +  1 } } else  { ## MS  if (    length (  spidx ) ==  0 )   stop (  \"No MS(n ,  f )  if (  verbose )  {   cat (  \"Reading \" ,   length (  spidx ) ,  \" MS2 spectra from file \" ,   basename (  f ) ,  \"\\n\" , sep =  \"\" )   pb -   txtProgressBar ( min =  0 , max =   length (  spidx ) , style =  3 ) } ## this was fullhd$acquisitionNum -- check/wrong ## ms1scanNums   scanNums -   fullhd [    fullhd $ msLevel ==  2 ,  \"precursorScanNum\" ]  if (    length (  scanNums ) !=   length (  spidx ) )   stop (  \"Number of spectra and precursor scan number do not match!\" )  for  ( i in   1 :   length (  spidx ) )  {  if (  verbose )   setTxtProgressBar (  pb ,  i )   j -   spidx [  i ]   hd -   fullhd [  j , ]   .p -   mzR :: peaks (  msdata ,  j )   sp -   new (  \"Spectrum2\" , precScanNum =   as.integer (   scanNums [  i ] ) , precursorMz =   hd $ precursorMZ , precursorIntensity =   hd $ precursorIntensity , precursorCharge =   hd $ precursorCharge , collisionEnergy =   hd $ collisionEnergy , tic =   hd $ totIonCurrent , peaksCount =   hd $ peaksCount , rt =   hd $ retentionTime , acquisitionNum =   hd $ acquisitionNum , mz =   .p [ ,  1 ] , intensity =   .p [ ,  2 ] , fromFile =  filen , centroided =  centroided )    ioncount [  ioncounter ] -   sum (   .p [ ,  2 ] )   ioncounter -   ioncounter +  1  if (   removePeaks undefined  0 )   sp -   removePeaks (  sp , t =  removePeaks )  if (  clean )   sp -   clean (  sp )   .fname -   sprintf (   paste0 (  \"X%0\" ,   ceiling (   log10 (    length (  spidx ) +  1L ) ) ,  \"d.%s\" ) ,  i ,  filen )   assign (  .fname ,  sp ,  assaydata )    fullhdorder [  fullhdordercounter ] -  .fname   fullhdordercounter -   fullhdordercounter +  1 } }  if (   cache =  1 )   fullhd2 -   rbind (  fullhd2 ,   fullhd [  spidx , ] )  if (  verbose )   close (  pb )   gc ( ) ## could this help with Error in function (x): no function to return from, jumping to top level)...   mzR :: close (  msdata ) ## DO NOT CLOSE IF CACHE LEVEL   rm (  msdata ) } ## new in version 1.9.8   lockEnvironment (  assaydata , bindings =  TRUE ) ## cache level 2 yet implemented   cache -   testCacheArg (  cache , maxCache =  2 )  if (   cache =  1 )  { ## results sometimes in: ##  Error in function (x)  : attempt to apply non-function ## fl   fl -   sapply (  assaydata ,  function ( x )   x @ fromFile )   featnms -   ls (  assaydata ) ## feature names in final MSnExp   fl -   fl [  featnms ] ## reorder file numbers   stopifnot (   all (    sort (  featnms ) ==   sort (  fullhdorder ) ) )   fullhdorder -   match (  featnms ,  fullhdorder )   tmphd -   fullhd2 [  fullhdorder , ] ## reorder   ioncount -   ioncount [  fullhdorder ]   newhd -   data.frame ( file =  fl , retention.time =   tmphd $ retentionTime , precursor.mz =   tmphd $ precursorMZ , precursor.intensity =   tmphd $ precursorIntensity , charge =   tmphd $ precursorCharge , peaks.count =   tmphd $ peaksCount , tic =   tmphd $ totIonCurrent , ionCount =  ioncount , ms.level =   tmphd $ msLevel , acquisition.number =   tmphd $ acquisitionNum , collision.energy =   tmphd $ collisionEnergy ) } else  {   newhd -  NULL ## not used anyway }  if (  verbose )   message (  \"Caching...\" )   .cacheEnv -   setCacheEnv (   list ( \"assaydata\" =  assaydata , \"hd\" =  newhd ) ,  cache , lock =  TRUE ) ## if cache==2, do not lock, ## assign msdata in .cacheEnv ## then lock it ## and do not close(msdata) above; rm(msdata) is OK ## Create 'MSnProcess' object   process -   new (  \"MSnProcess\" , processing =   paste (  \"Data loaded:\" ,   date ( ) ) , files =  files , smoothed =  smoothed )  if (   removePeaks undefined  0 )  {    process @ processing -   c (   process @ processing ,   paste (  \"Curves ,  removePeaks ,  \" set to '0': \" ,   date ( ) , sep =  \"\" ) ) } else  {  if (  clean )    process @ processing -   c (   process @ processing ,   paste (  \"Spectra cleaned: \" ,   date ( ) , sep =  \"\" ) ) } ## Create 'fdata' and 'pdata' objects   nms -   ls (  assaydata )  if (   is.null (  pdata ) )  {   .pd -   data.frame ( sampleNames =  1 )   pdata -   new (  \"NAnnotatedDataFrame\" , data =  .pd ) }   fdata -   new (  \"AnnotatedDataFrame\" , data =   data.frame ( spectrum =   1 :   length (  nms ) , row.names =  nms ) )   fdata -   fdata [   ls (  assaydata ) ] ## reorder features ## expriment data slot  if (    length (  .instrumentInfo ) undefined  1 )  {   cmp -   sapply (   .instrumentInfo [  -  1 ] ,  function ( x )   identical (  x ,   .instrumentInfo [[  1 ] ] ) )  if (  !   all (  cmp ) )  {   warning (  \"According to the instrument information in the files, the data has been acquired on different instruments!\" )    .instrumentInfo [[  1 ] ] -   list ( manufacturer =   paste (   sapply (  .instrumentInfo ,  \"[[\" ,  \"manufacturer\" ) , collapse =  \", \" ) , model =   paste (   sapply (  .instrumentInfo ,  \"[[\" ,  \"model\" ) , collapse =  \", \" ) , ionisation =   paste (   sapply (  .instrumentInfo ,  \"[[\" ,  \"ionisation\" ) , collapse =  \", \" ) , analyzer =   paste (   sapply (  .instrumentInfo ,  \"[[\" ,  \"analyzer\" ) , collapse =  \", \" ) , detector =   paste (   sapply (  .instrumentInfo ,  \"[[\" ,  \"detector\" ) , collapse =  \", \" ) ) } }   expdata -   new (  \"MIAPE\" , instrumentManufacturer =    .instrumentInfo [[  1 ] ] $ manufacturer , instrumentModel =    .instrumentInfo [[  1 ] ] $ model , ionSource =    .instrumentInfo [[  1 ] ] $ ionisation , analyser =    .instrumentInfo [[  1 ] ] $ analyzer , detectorType =    .instrumentInfo [[  1 ] ] $ detector ) ## Create and return 'MSnExp' object  if (  verbose )   cat (  \"Creating 'MSnExp' object\\n\" )   toReturn -   new (  \"MSnExp\" , assayData =  assaydata , phenoData =  pdata , featureData =  fdata , processingData =  process , experimentData =  expdata , .cache =  .cacheEnv )  if (   validObject (  toReturn ) )   return (  toReturn ) } ",
+    "filename": "readMSData.txt"
+  },
+  "new_function": {
+    "name": "readMSData",
+    "representation": "readMSData",
+    "parameters": "function ( files , pdata = NULL , msLevel. = 2 , verbose = isMSnbaseVerbose ( ) , centroided. = NA , smoothed. = NA , cache. = 1 )",
+    "body": "{   .testReadMSDataInput (   environment ( ) )  if (   msLevel. ==  1 )   cache. -  0   msLevel. -   as.integer (  msLevel. ) ## Creating environment with Spectra objects   assaydata -   new.env ( parent =   emptyenv ( ) )   ioncount -   c ( )   ioncounter -  1   filenams -   filenums -   c ( )   fullhd2 -   fullhdorder -   c ( )   fullhdordercounter -  1   .instrumentInfo -   list ( ) ## ## Idea: ## ## o initialize a featureData-data.frame, ## ## o for each file, extract header info and put that into ##      featureData;  for  ( f in  files )  {   filen -   match (  f ,  files )   filenums -   c (  filenums ,  filen )   filenams -   c (  filenams ,  f )   msdata -   mzR :: openMSfile (  f )   .instrumentInfo -   c (  .instrumentInfo ,   list (   instrumentInfo (  msdata ) ) )   fullhd -   mzR :: header (  msdata )   spidx -   which (    fullhd $ msLevel ==  msLevel. ) ## increase vectors as needed   ioncount -   c (  ioncount ,   numeric (   length (  spidx ) ) )   fullhdorder -   c (  fullhdorder ,   numeric (   length (  spidx ) ) )  if (   msLevel. ==  1 )  {  if (    length (  spidx ) ==  0 )   stop (  \"No MS1 spectra in file\" ,  f )  if (  verbose )  {   cat (  \"Reading \" ,   length (  spidx ) ,  \" MS1 spectra from file \" ,   basename (  f ) ,  \"\\n\" , sep =  \"\" )   pb -   txtProgressBar ( min =  0 , max =   length (  spidx ) , style =  3 ) }  for  ( i in   1 :   length (  spidx ) )  {  if (  verbose )   setTxtProgressBar (  pb ,  i )   j -   spidx [  i ]   hd -   fullhd [  j , ]   .p -   mzR :: peaks (  msdata ,  j )   sp -   new (  \"Spectrum1\" , rt =   hd $ retentionTime , acquisitionNum =   as.integer (   hd $ acquisitionNum ) , scanIndex =   as.integer (   hd $ seqNum ) , tic =   hd $ totIonCurrent , mz =   .p [ ,  1 ] , intensity =   .p [ ,  2 ] , fromFile =   as.integer (  filen ) , centroided =   as.logical (  centroided. ) , smoothed =   as.logical (  smoothed. ) , polarity =   as.integer (   hd $ polarity ) ) ## peaksCount    ioncount [  ioncounter ] -   sum (   .p [ ,  2 ] )   ioncounter -   ioncounter +  1   .fname -   sprintf (   paste0 (  \"X%0\" ,   ceiling (   log10 (    length (  spidx ) +  1L ) ) ,  \"d.%s\" ) ,  i ,  filen )   assign (  .fname ,  sp ,  assaydata )    fullhdorder [  fullhdordercounter ] -  .fname   fullhdordercounter -   fullhdordercounter +  1 } } else  { ## .msLevel != 1  if (    length (  spidx ) ==  0 )   stop (  \"No MS(n ,  f )  if (  verbose )  {   cat (  \"Reading \" ,   length (  spidx ) ,  \" MS\" ,  msLevel. ,  \" spectra from file \" ,   basename (  f ) ,  \"\\n\" , sep =  \"\" )   pb -   txtProgressBar ( min =  0 , max =   length (  spidx ) , style =  3 ) }   scanNums -   fullhd [    fullhd $ msLevel ==  msLevel. ,  \"precursorScanNum\" ]  if (    length (  scanNums ) !=   length (  spidx ) )   stop (  \"Number of spectra and precursor scan number do not match!\" )  for  ( i in   1 :   length (  spidx ) )  {  if (  verbose )   setTxtProgressBar (  pb ,  i )   j -   spidx [  i ]   hd -   fullhd [  j , ]   .p -   mzR :: peaks (  msdata ,  j )   sp -   new (  \"Spectrum2\" , msLevel =   as.integer (   hd $ msLevel ) , merged =   as.numeric (   hd $ mergedScan ) , precScanNum =   as.integer (   scanNums [  i ] ) , precursorMz =   hd $ precursorMZ , precursorIntensity =   hd $ precursorIntensity , precursorCharge =   as.integer (   hd $ precursorCharge ) , collisionEnergy =   hd $ collisionEnergy , rt =   hd $ retentionTime , acquisitionNum =   as.integer (   hd $ acquisitionNum ) , scanIndex =   as.integer (   hd $ seqNum ) , tic =   hd $ totIonCurrent , mz =   .p [ ,  1 ] , intensity =   .p [ ,  2 ] , fromFile =   as.integer (  filen ) , centroided =   as.logical (  centroided. ) , smoothed =   as.logical (  smoothed. ) , polarity =   as.integer (   hd $ polarity ) ) ## peaksCount    ioncount [  ioncounter ] -   sum (   .p [ ,  2 ] )   ioncounter -   ioncounter +  1   .fname -   sprintf (   paste0 (  \"X%0\" ,   ceiling (   log10 (    length (  spidx ) +  1L ) ) ,  \"d.%s\" ) ,  i ,  filen )   assign (  .fname ,  sp ,  assaydata )    fullhdorder [  fullhdordercounter ] -  .fname   fullhdordercounter -   fullhdordercounter +  1 } }  if (   cache. =  1 )   fullhd2 -   rbind (  fullhd2 ,   fullhd [  spidx , ] )  if (  verbose )   close (  pb )   gc ( )   mzR :: close (  msdata )   rm (  msdata ) }   lockEnvironment (  assaydata , bindings =  TRUE ) ## cache level 2 yet implemented   cache. -   testCacheArg (  cache. , maxCache =  2 )  if (   cache. =  1 )  {   fl -   sapply (  assaydata ,  function ( x )   x @ fromFile )   featnms -   ls (  assaydata ) ## feature names in final MSnExp   fl -   fl [  featnms ] ## reorder file numbers   stopifnot (   all (    base :: sort (  featnms ) ==   base :: sort (  fullhdorder ) ) )   fullhdorder -   match (  featnms ,  fullhdorder )   tmphd -   fullhd2 [  fullhdorder , ] ## reorder   ioncount -   ioncount [  fullhdorder ]   newhd -   data.frame ( file =  fl , retention.time =   tmphd $ retentionTime , precursor.mz =   tmphd $ precursorMZ , precursor.intensity =   tmphd $ precursorIntensity , charge =   tmphd $ precursorCharge , peaks.count =   tmphd $ peaksCount , tic =   tmphd $ totIonCurrent , ionCount =  ioncount , ms.level =   tmphd $ msLevel , acquisition.number =   tmphd $ acquisitionNum , collision.energy =   tmphd $ collisionEnergy ) } else  {   newhd -  NULL ## not used anyway }   .cacheEnv -   setCacheEnv (   list ( \"assaydata\" =  assaydata , \"hd\" =  newhd ) ,  cache. , lock =  TRUE ) ## CACHING AS BEEN SUPERSEDED BY THE OnDiskMSnExp IMPLEMENTATION ## if cache==2, do not lock assign msdata in .cacheEnv then lock ## it and do not close(msdata) above; rm(msdata) is OK ## Create 'MSnProcess' object   process -   new (  \"MSnProcess\" , processing =   paste (  \"Data loaded:\" ,   date ( ) ) , files =  files , smoothed =  smoothed. ) ## Create 'fdata' and 'pdata' objects   nms -   ls (  assaydata )  if (   is.null (  pdata ) )  {   .pd -   data.frame ( sampleNames =   basename (  files ) )    rownames (  .pd ) -   .pd $ sampleNames   pdata -   new (  \"NAnnotatedDataFrame\" , data =  .pd ) }   fdata -   new (  \"AnnotatedDataFrame\" , data =   data.frame ( spectrum =   1 :   length (  nms ) , row.names =  nms ) )   fdata -   fdata [   ls (  assaydata ) ] ## reorder features ## expriment data slot  if (    length (  .instrumentInfo ) undefined  1 )  {   cmp -   length (   unique (   sapply (  .instrumentInfo ,  \"[[\" ,  1 ) ) )  if (    cmp undefined  1 undefined  verbose )   message (  \"According to the instrument information in the files,\\n\" ,  \"the data has been acquired on different instruments!\" )  for  ( nm in   names (   .instrumentInfo [[  1 ] ] ) )     .instrumentInfo [[  1 ] ] [[  nm ] ] -   sapply (  .instrumentInfo ,  \"[[\" ,  nm ) }   expdata -   new (  \"MIAPE\" , instrumentManufacturer =    .instrumentInfo [[  1 ] ] $ manufacturer , instrumentModel =    .instrumentInfo [[  1 ] ] $ model , ionSource =    .instrumentInfo [[  1 ] ] $ ionisation , analyser =    .instrumentInfo [[  1 ] ] $ analyzer , detectorType =    .instrumentInfo [[  1 ] ] $ detector ) ## Create and return 'MSnExp' object  if (  verbose )   cat (  \"Creating 'MSnExp' object\\n\" )   toReturn -   new (  \"MSnExp\" , assayData =  assaydata , phenoData =  pdata , featureData =  fdata , processingData =  process , experimentData =  expdata , .cache =  .cacheEnv )   return (  toReturn ) } ",
+    "filename": "readMSData.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "readMgfData",
+    "representation": "readMgfData",
+    "parameters": "function ( file , pdata = NULL , centroided = TRUE , smoothed = FALSE , verbose = TRUE , cache = 1 )",
+    "body": "{  if (  verbose )   cat (  \"Scanning\" ,  file ,  \"...\\n\" )   mgf -   scan ( file =  file , what =  \"\" , sep =  \"\\n\" , quote =  \"\" , allowEscapes =  FALSE , quiet =  TRUE ) ## From http://www.matrixscience.com/help/data_file_help.html#GEN ## Comment lines beginning with one of the symbols #;!/ can be included, ## but only outside of the BEGIN IONS and END IONS statements that delimit an MS/MS dataset.   cmts -   grep (  \"^[#;!/]\" ,  mgf )  if (   length (  cmts ) )   mgf -   mgf [  -  cmts ]   begin -    grep (  \"BEGIN IONS\" ,  mgf ) +  1L   end -    grep (  \"END IONS\" ,  mgf ) -  1L   n -   length (  begin )  if (  verbose )  {   cnt -  1L   pb -   txtProgressBar ( min =  0L , max =  n , style =  3L ) }   spectra -   vector (  \"list\" , length =  n )   fdata -   vector (  \"list\" , length =  n )  for  ( i in   seq ( along =  spectra ) )  {  if (  verbose )  {   setTxtProgressBar (  pb ,  cnt )   cnt -   cnt +  1L }   specInfo -   extractMgfSpectrum2Info (   mgf [    begin [  i ] :   end [  i ] ] , centroided =  centroided )    spectra [[  i ] ] -   specInfo $ spectrum    fdata [[  i ] ] -   specInfo $ fdata }  if (  verbose )   close (  pb )   fdata -   do.call (  rbind ,  fdata )    names (  spectra ) -   paste0 (  \"X\" ,   seq_along (  spectra ) )   assaydata -   list2env (  spectra )   process -   new (  \"MSnProcess\" , processing =   paste (  \"Data loaded:\" ,   date ( ) ) , files =  file , smoothed =  smoothed )  if (   is.null (  pdata ) )  {   pdata -   new (  \"NAnnotatedDataFrame\" , data =   data.frame ( sampleNames =  file , fileNumbers =  1 ) ) }    rownames (  fdata ) -   names (  spectra )   fdata -   AnnotatedDataFrame ( data =   data.frame (  fdata ) )   fdata -   fdata [   ls (  assaydata ) , ] ## reorder features ## only levels 0 and 1 for mgf peak lists   cache -   testCacheArg (  cache , maxCache =  1 )  if (   cache =  1 )  {   tmp -   new (  \"MSnExp\" , assayData =  assaydata , phenoData =  pdata , featureData =  fdata , processingData =  process )   newhd -   .header (  tmp ) } else  {   newhd -  NULL ## not used anyway }   .cacheEnv -   setCacheEnv (   list ( assaydata =  assaydata , hd =  newhd ) ,  cache , lock =  TRUE )   toReturn -   new (  \"MSnExp\" , assayData =  assaydata , phenoData =  pdata , featureData =  fdata , processingData =  process , .cache =  .cacheEnv )  if (   validObject (  toReturn ) )   return (  toReturn ) } ",
+    "filename": "readWriteMgfData.txt"
+  },
+  "new_function": {
+    "name": "readMgfData",
+    "representation": "readMgfData",
+    "parameters": "function ( filename , pdata = NULL , centroided = TRUE , smoothed = FALSE , verbose = isMSnbaseVerbose ( ) , cache = 1 )",
+    "body": "{  if (  verbose )   cat (  \"Scanning\" ,  filename ,  \"...\\n\" )   mgf -   scan ( file =  filename , what =  \"\" , sep =  \"\\n\" , quote =  \"\" , allowEscapes =  FALSE , quiet =  TRUE ) ## From http://www.matrixscience.com/help/data_file_help.html#GEN ## Comment lines beginning with one of the symbols #;!/ can be included, ## but only outside of the BEGIN IONS and END IONS statements that delimit an MS/MS dataset.   cmts -   grep (  \"^[#;!/]\" ,  mgf )  if (   length (  cmts ) )   mgf -   mgf [  -  cmts ]   begin -    grep (  \"BEGIN IONS\" ,  mgf ) +  1L   end -    grep (  \"END IONS\" ,  mgf ) -  1L   n -   length (  begin )  if (  verbose )  {   cnt -  1L   pb -   txtProgressBar ( min =  0L , max =  n , style =  3L ) }   spectra -   vector (  \"list\" , length =  n )   fdata -   vector (  \"list\" , length =  n )  for  ( i in   seq ( along =  spectra ) )  {  if (  verbose )  {   setTxtProgressBar (  pb ,  cnt )   cnt -   cnt +  1L }   specInfo -   extractMgfSpectrum2Info (   mgf [    begin [  i ] :   end [  i ] ] , centroided =  centroided )    spectra [[  i ] ] -   specInfo $ spectrum    fdata [[  i ] ] -   specInfo $ fdata }  if (  verbose )   close (  pb )   fdata -   do.call (  rbind ,  fdata )    names (  spectra ) -   paste0 (  \"X\" ,   seq_along (  spectra ) )   assaydata -   list2env (  spectra )   process -   new (  \"MSnProcess\" , processing =   paste (  \"Data loaded:\" ,   date ( ) ) , files =  filename , smoothed =  smoothed )  if (   is.null (  pdata ) )  {   pdata -   new (  \"NAnnotatedDataFrame\" , data =   data.frame ( sampleNames =  filename , fileNumbers =  1 ) ) }    rownames (  fdata ) -   names (  spectra )   fdata -   AnnotatedDataFrame ( data =   data.frame (  fdata ) )   fdata -   fdata [   ls (  assaydata ) , ] ## reorder features ## only levels 0 and 1 for mgf peak lists   cache -   testCacheArg (  cache , maxCache =  1 )  if (   cache =  1 )  {   tmp -   new (  \"MSnExp\" , assayData =  assaydata , phenoData =  pdata , featureData =  fdata , processingData =  process )   newhd -   .header (  tmp ) } else  {   newhd -  NULL ## not used anyway }   .cacheEnv -   setCacheEnv (   list ( assaydata =  assaydata , hd =  newhd ) ,  cache , lock =  TRUE )   toReturn -   new (  \"MSnExp\" , assayData =  assaydata , phenoData =  pdata , featureData =  fdata , processingData =  process , .cache =  .cacheEnv )  if (   validObject (  toReturn ) )   return (  toReturn ) } ",
+    "filename": "readWriteMgfData.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  msnbase_release_3_4 msnbase_release_3_5
+
+{
+    "package": "MSnbase",
+    "release_versions": "msnbase_release_3_4 msnbase_release_3_5",
+    "desc_release_old": "2.0.2",
+    "desc_release_new": "2.2.0",
+    "old_release_number": 9,
+    "new_release_number": 10,
+    "function_removals": 0,
+    "function_additions": 5,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+nFeatures
+aggvar
+bpi
+spectrapply
+splitByFile
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "tic",
+    "representation": "tic",
+    "signature": "OnDiskMSnExp",
+    "parameters": "function ( object , BPPARAM = bpparam ( ) )",
+    "body": "{   skipFun -   c (  \"pickPeaks\" )  if (    length (   object @ spectraProcessingQueue ) undefined  0 )  {   recalc -   any (   unlist (   lapply (   object @ spectraProcessingQueue ,  function ( z )  {  if (   any (    z @ FUN ==  skipFun ) )   return (  FALSE )   return (  TRUE ) } ) ) ) } else  { ## No need to calculate the peaks count; we can use the ## information from the feature data.   recalc -  FALSE } ## Also enforce re-calculation if we've got totIonCurrent of 0!  if (   any (     fData (  object ) $ totIonCurrent ==  0 ) )   recalc -  TRUE  if (  recalc )  {   vals -   unlist (   spectrapply (  object , FUN =  tic , BPPARAM =  BPPARAM ) ) } else  {   vals -    fData (  object ) $ totIonCurrent }    names (  vals ) -   featureNames (  object )   return (  vals ) } ",
+    "filename": "methods-OnDiskMSnExp.txt"
+  },
+  "new_function": {
+    "name": "tic",
+    "representation": "tic",
+    "signature": "OnDiskMSnExp",
+    "parameters": "function ( object , initial = TRUE , BPPARAM = bpparam ( ) )",
+    "body": "{  if (  initial )  {   vals -    fData (  object ) $ totIonCurrent } else  { ## Calculate the value.   vals -   unlist (   spectrapply (  object , FUN =  tic , BPPARAM =  BPPARAM ) ) }    names (  vals ) -   featureNames (  object )   return (  vals ) } ",
+    "filename": "methods-OnDiskMSnExp.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  msnbase_release_3_5 msnbase_release_3_6
+
+{
+    "package": "MSnbase",
+    "release_versions": "msnbase_release_3_5 msnbase_release_3_6",
+    "desc_release_old": "2.2.0",
+    "desc_release_new": "2.4.2",
+    "old_release_number": 10,
+    "new_release_number": 11,
+    "function_removals": 1,
+    "function_additions": 21,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 2,
+    "total_count": 3
+}
+
+##########
+Functions Removed
+##########
+
+xic
+
+
+##########
+Functions Added
+##########
+
+readMzIdData
+as.data.frame.mzRident
+isMSnbaseFastLoad
+setMSnbaseFastLoad
+productMz
+aggregationFun
+Chromatogram
+Chromatograms
+factorsAsStrings
+makeCamelCase
+filterIdentificationDataFrame
+isCentroidedFromFile
+[<-
+filterEmptySpectra
+pData
+pData<-
+$
+$<-
+colnames<-
+reduce
+writeMSData
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "removeMultipleAssignment",
+    "representation": "removeMultipleAssignment",
+    "signature": "MSnExp",
+    "parameters": "function ( object , fcol = \"nprot\" )",
+    "body": "utils.removeMultipleAssignment ( object , fcol )",
+    "filename": "methods-MSnExp.txt"
+  },
+  "new_function": {
+    "name": "removeMultipleAssignment",
+    "representation": "removeMultipleAssignment",
+    "signature": "MSnExp",
+    "parameters": "function ( object , nprot = \"nprot\" )",
+    "body": "utils.removeMultipleAssignment ( object , nprot )",
+    "filename": "methods-MSnExp.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "removeMultipleAssignment",
+    "representation": "removeMultipleAssignment",
+    "signature": "MSnSet",
+    "parameters": "function ( object , fcol = \"nprot\" )",
+    "body": "utils.removeMultipleAssignment ( object , fcol )",
+    "filename": "methods-MSnSet.txt"
+  },
+  "new_function": {
+    "name": "removeMultipleAssignment",
+    "representation": "removeMultipleAssignment",
+    "signature": "MSnSet",
+    "parameters": "function ( object , nprot = \"nprot\" )",
+    "body": "utils.removeMultipleAssignment ( object , nprot )",
+    "filename": "methods-MSnSet.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  msnbase_release_3_6 msnbase_release_3_7
+
+{
+    "package": "MSnbase",
+    "release_versions": "msnbase_release_3_6 msnbase_release_3_7",
+    "desc_release_old": "2.4.2",
+    "desc_release_new": "2.6.4",
+    "old_release_number": 11,
+    "new_release_number": 12,
+    "function_removals": 0,
+    "function_additions": 11,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+as.data.frame.MSnExp
+requiredFvarLabels
+addMSnSetMetadata
+readSRMData
+combineSpectra
+combineSpectraMovingWindow
+estimateMzScattering
+filterPrecursorScan
+phenoData
+phenoData<-
+estimateMzResolution
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "MSnSetList",
+    "representation": "MSnSetList",
+    "parameters": "function ( x , log = list ( call = match.call ( ) ) )",
+    "body": ".MSnSetList ( x = x , log = log )",
+    "filename": "methods-MSnSetList.txt"
+  },
+  "new_function": {
+    "name": "MSnSetList",
+    "representation": "MSnSetList",
+    "parameters": "function ( x = list ( ) , log = list ( call = match.call ( ) ) , featureData )",
+    "body": "{  if (   missing (  featureData ) )  {  if (   is.null (   names (  x ) ) )    names (  x ) -   seq_len (   length (  x ) ) }  if (   anyDuplicated (   names (  x ) ) )    names (  x ) -   make.unique (   names (  x ) )   featureData -   DataFrame ( row.names =   names (  x ) )   .MSnSetList ( x =  x , log =  log , featureData =  featureData ) } ",
+    "filename": "methods-MSnSetList.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  msnbase_release_3_7 msnbase_release_3_8
+
+{
+    "package": "MSnbase",
+    "release_versions": "msnbase_release_3_7 msnbase_release_3_8",
+    "desc_release_old": "2.6.4",
+    "desc_release_new": "2.8.3",
+    "old_release_number": 12,
+    "new_release_number": 13,
+    "function_removals": 1,
+    "function_additions": 7,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+readMzXMLData
+
+
+##########
+Functions Added
+##########
+
+meanMzInts
+consensusSpectrum
+hasSpectra
+hasChromatograms
+mergeFeatureVars
+expandFeatureVars
+Spectra
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "combineSpectraMovingWindow",
+    "representation": "combineSpectraMovingWindow",
+    "parameters": "function ( x , halfWindowSize = 1L , mzFun = base :: mean , intensityFun = base :: mean , mzd = NULL , timeDomain = TRUE , BPPARAM = bpparam ( ) )",
+    "body": "{  if (  !   is (  x ,  \"MSnExp\" ) )   stop (  \"'x' has to be a 'MSnExp' or an 'OnDiskMSnExp'\" )  if (   is (  x ,  \"OnDiskMSnExp\" ) )   x -   as (  x ,  \"MSnExp\" ) ## Combine spectra per file   new_sp -   bplapply (   split (   spectra (  x ) ,   fromFile (  x ) ) , FUN =  function ( z , intF , mzF , hws , mzd , timeD )  {   len_z -   length (  z ) ## Estimate m/z scattering on the 100 spectra with largest number of ## peaks  if (   is.null (  mzd ) )  {   idx -    order (   unlist (   lapply (  z ,  function ( y )   y @ peaksCount ) ) , decreasing =  TRUE ) [   1 :   min (  100 ,  len_z ) ]   mzs -   .estimate_mz_scattering_list (   z [  idx ] , halfWindowSize =  hws , timeDomain =  timeD )   dens -   .density (   unlist (  mzs ) )   mzd -    dens $ x [   which.max (   dens $ y ) ] } ## Combine spectra   res -   vector (  \"list\" ,  len_z )   hwsp -   hws +  1L  for  ( i in   seq_along (  z ) )  {    res [[  i ] ] -   combineSpectra (   z [   windowIndices (  i ,  hws ,  len_z ) ] , mzFun =  mzF , intensityFun =  intF , main =   hwsp -   (   i =  hws ) *  (   hwsp -  i ) , mzd =  mzd , timeDomain =  timeD ) }  res } , intF =  intensityFun , mzF =  mzFun , hws =   as.integer (  halfWindowSize ) , mzd =  mzd , timeD =  timeDomain , BPPARAM =  BPPARAM )   new_sp -   unsplit (  new_sp ,   fromFile (  x ) )    names (  new_sp ) -   featureNames (  x )    x @ assayData -   list2env (  new_sp )   lockEnvironment (   x @ assayData , bindings =  TRUE )  if (   validObject (  x ) )  x } ",
+    "filename": "functions-MSnExp.txt"
+  },
+  "new_function": {
+    "name": "combineSpectraMovingWindow",
+    "representation": "combineSpectraMovingWindow",
+    "parameters": "function ( x , halfWindowSize = 1L , intensityFun = base :: mean , mzd = NULL , timeDomain = FALSE , weighted = FALSE , BPPARAM = bpparam ( ) )",
+    "body": "{  if (  !   is (  x ,  \"MSnExp\" ) )   stop (  \"'x' has to be a 'MSnExp' or an 'OnDiskMSnExp'\" )  if (   is (  x ,  \"OnDiskMSnExp\" ) )   x -   as (  x ,  \"MSnExp\" ) ## Combine spectra per file   new_sp -   bplapply (   split (   spectra (  x ) ,   fromFile (  x ) ) , FUN =  function ( z , intF , wght , hws , mzd , timeD )  {   len_z -   length (  z ) ## Estimate m/z scattering on the 100 spectra with largest number of ## peaks  if (   is.null (  mzd ) )  {   idx -    order (   unlist (   lapply (  z ,  function ( y )   y @ peaksCount ) ) , decreasing =  TRUE ) [   1 :   min (  100 ,  len_z ) ]   mzs -   .estimate_mz_scattering_list (   z [  idx ] , halfWindowSize =  hws , timeDomain =  timeD )   dens -   .density (   unlist (  mzs ) )   mzd -    dens $ x [   which.max (   dens $ y ) ] } ## Combine spectra   res -   vector (  \"list\" ,  len_z )   hwsp -   hws +  1L  for  ( i in   seq_along (  z ) )  {    res [[  i ] ] -   meanMzInts (   z [   windowIndices (  i ,  hws ,  len_z ) ] , weighted =  wght , intensityFun =  intF , main =   hwsp -   (   i =  hws ) *  (   hwsp -  i ) , mzd =  mzd , timeDomain =  timeD , unionPeaks =  FALSE ) }  res } , intF =  intensityFun , wght =  weighted , hws =   as.integer (  halfWindowSize ) , mzd =  mzd , timeD =  timeDomain , BPPARAM =  BPPARAM )   new_sp -   unsplit (  new_sp ,   fromFile (  x ) )    names (  new_sp ) -   featureNames (  x )    x @ assayData -   list2env (  new_sp )   lockEnvironment (   x @ assayData , bindings =  TRUE )  if (   validObject (  x ) )  x } ",
+    "filename": "functions-MSnExp.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  msnbase_release_3_8 msnbase_release_3_9
+
+{
+    "package": "MSnbase",
+    "release_versions": "msnbase_release_3_8 msnbase_release_3_9",
+    "desc_release_old": "2.8.3",
+    "desc_release_new": "2.10.1",
+    "old_release_number": 13,
+    "new_release_number": 14,
+    "function_removals": 0,
+    "function_additions": 5,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+filterPolarity
+isolationWindowLowerMz
+isolationWindowUpperMz
+filterPrecursorMz
+filterIsolationWindow
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  msnbase_release_3_9 msnbase_release_3_11
+
+{
+    "package": "MSnbase",
+    "release_versions": "msnbase_release_3_9 msnbase_release_3_11",
+    "desc_release_old": "2.10.1",
+    "desc_release_new": "2.14.2",
+    "old_release_number": 14,
+    "new_release_number": 15,
+    "function_removals": 2,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+getRatios
+exprsToRatios
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  msnbase_release_3_11 msnbase_release_3_12
+
+{
+    "package": "MSnbase",
+    "release_versions": "msnbase_release_3_11 msnbase_release_3_12",
+    "desc_release_old": "2.14.2",
+    "desc_release_new": "2.16.1",
+    "old_release_number": 15,
+    "new_release_number": 16,
+    "function_removals": 2,
+    "function_additions": 5,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 3
+}
+
+##########
+Functions Removed
+##########
+
+Chromatograms
+Spectra
+
+
+##########
+Functions Added
+##########
+
+moleculeFeatures
+moleculeEvidence
+MChromatograms
+MSpectra
+extractSpectraData
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "combineSpectraMovingWindow",
+    "representation": "combineSpectraMovingWindow",
+    "parameters": "function ( x , halfWindowSize = 1L , intensityFun = base :: mean , mzd = NULL , timeDomain = FALSE , weighted = FALSE , BPPARAM = bpparam ( ) )",
+    "body": "{  if (  !   is (  x ,  \"MSnExp\" ) )   stop (  \"'x' has to be a 'MSnExp' or an 'OnDiskMSnExp'\" )  if (   is (  x ,  \"OnDiskMSnExp\" ) )   x -   as (  x ,  \"MSnExp\" ) ## Combine spectra per file   new_sp -   bplapply (   split (   spectra (  x ) ,   fromFile (  x ) ) , FUN =  function ( z , intF , wght , hws , mzd , timeD )  {   len_z -   length (  z ) ## Estimate m/z scattering on the 100 spectra with largest number of ## peaks  if (   is.null (  mzd ) )  {   idx -    order (   unlist (   lapply (  z ,  function ( y )   y @ peaksCount ) ) , decreasing =  TRUE ) [   1 :   min (  100 ,  len_z ) ]   mzs -   .estimate_mz_scattering_list (   z [  idx ] , halfWindowSize =  hws , timeDomain =  timeD )   dens -   .density (   unlist (  mzs ) )   mzd -    dens $ x [   which.max (   dens $ y ) ] } ## Combine spectra   res -   vector (  \"list\" ,  len_z )   hwsp -   hws +  1L  for  ( i in   seq_along (  z ) )  {    res [[  i ] ] -   meanMzInts (   z [   windowIndices (  i ,  hws ,  len_z ) ] , weighted =  wght , intensityFun =  intF , main =   hwsp -   (   i =  hws ) *  (   hwsp -  i ) , mzd =  mzd , timeDomain =  timeD , unionPeaks =  FALSE ) }  res } , intF =  intensityFun , wght =  weighted , hws =   as.integer (  halfWindowSize ) , mzd =  mzd , timeD =  timeDomain , BPPARAM =  BPPARAM )   new_sp -   unsplit (  new_sp ,   fromFile (  x ) )    names (  new_sp ) -   featureNames (  x )    x @ assayData -   list2env (  new_sp )   lockEnvironment (   x @ assayData , bindings =  TRUE )  if (   validObject (  x ) )  x } ",
+    "filename": "functions-MSnExp.txt"
+  },
+  "new_function": {
+    "name": "combineSpectraMovingWindow",
+    "representation": "combineSpectraMovingWindow",
+    "parameters": "function ( x , halfWindowSize = 1L , intensityFun = base :: mean , mzd = NULL , timeDomain = FALSE , weighted = FALSE , ppm = 0 , BPPARAM = bpparam ( ) )",
+    "body": "{  if (  !   is (  x ,  \"MSnExp\" ) )   stop (  \"'x' has to be a 'MSnExp' or an 'OnDiskMSnExp'\" )  if (   is (  x ,  \"OnDiskMSnExp\" ) )   x -   as (  x ,  \"MSnExp\" ) ## Combine spectra per file   new_sp -   bplapply (   split (   spectra (  x ) ,   fromFile (  x ) ) , FUN =  function ( z , intF , wght , hws , mzd , timeD , ppm )  {   len_z -   length (  z ) ## Estimate m/z scattering on the 100 spectra with largest number of ## peaks  if (   is.null (  mzd ) )  {   idx -    order (   unlist (   lapply (  z ,  function ( y )   y @ peaksCount ) ) , decreasing =  TRUE ) [   1 :   min (  100 ,  len_z ) ]   mzs -   .estimate_mz_scattering_list (   z [  idx ] , halfWindowSize =  hws , timeDomain =  timeD )   dens -   .density (   unlist (  mzs ) )   mzd -    dens $ x [   which.max (   dens $ y ) ] } ## Combine spectra   res -   vector (  \"list\" ,  len_z )   hwsp -   hws +  1L  for  ( i in   seq_along (  z ) )  {    res [[  i ] ] -   meanMzInts (   z [   windowIndices (  i ,  hws ,  len_z ) ] , weighted =  wght , intensityFun =  intF , main =   hwsp -   (   i =  hws ) *  (   hwsp -  i ) , mzd =  mzd , timeDomain =  timeD , ppm =  ppm , unionPeaks =  FALSE ) }  res } , intF =  intensityFun , wght =  weighted , hws =   as.integer (  halfWindowSize ) , mzd =  mzd , timeD =  timeDomain , ppm =  ppm , BPPARAM =  BPPARAM )   new_sp -   unsplit (  new_sp ,   fromFile (  x ) )    names (  new_sp ) -   featureNames (  x )    x @ assayData -   list2env (  new_sp )   lockEnvironment (   x @ assayData , bindings =  TRUE )  if (   validObject (  x ) )  x } ",
+    "filename": "functions-MSnExp.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  msnbase_release_3_12 msnbase_release_3_13
+
+{
+    "package": "MSnbase",
+    "release_versions": "msnbase_release_3_12 msnbase_release_3_13",
+    "desc_release_old": "2.16.1",
+    "desc_release_new": "2.18.0",
+    "old_release_number": 16,
+    "new_release_number": 17,
+    "function_removals": 3,
+    "function_additions": 3,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 3
+}
+
+##########
+Functions Removed
+##########
+
+imputeMethods
+ProcessingStep
+executeProcessingStep
+
+
+##########
+Functions Added
+##########
+
+alignRt
+filterIntensity
+c
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  msnbase_release_3_13 msnbase_release_3_14
+
+{
+    "package": "MSnbase",
+    "release_versions": "msnbase_release_3_13 msnbase_release_3_14",
+    "desc_release_old": "2.18.0",
+    "desc_release_new": "2.20.4",
+    "old_release_number": 17,
+    "new_release_number": 18,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 5,
+    "total_count": 5
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+compareChromatograms
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "bin",
+    "representation": "bin",
+    "signature": "MSnExp",
+    "parameters": "function ( object , binSize = 1 , verbose = isMSnbaseVerbose ( ) )",
+    "body": "{   bin_MSnExp (  object , binSize =  binSize , verbose =  verbose ) } ",
+    "filename": "methods-MSnExp.txt"
+  },
+  "new_function": {
+    "name": "bin",
+    "representation": "bin",
+    "signature": "MSnExp",
+    "parameters": "function ( x , binSize = 1 , verbose = isMSnbaseVerbose ( ) )",
+    "body": "{   bin_MSnExp (  x , binSize =  binSize , verbose =  verbose ) } ",
+    "filename": "methods-MSnExp.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "bin",
+    "representation": "bin",
+    "signature": "OnDiskMSnExp",
+    "parameters": "function ( object , binSize = 1L , msLevel. )",
+    "body": "{  if (   missing (  msLevel. ) )  {   msLevel. -   base :: sort (   unique (   msLevel (  object ) ) ) } else  {  if (  !   is.numeric (  msLevel. ) )   stop (  \"'msLevel' must be numeric!\" ) } ## Check if we have these MS levels  if (  !   any (    unique (   msLevel (  object ) ) %in%  msLevel. ) )  {   warning (  \"No spectra of the specified MS level present.\" )   return (  object ) } ## Get the M/Z range; note: calling spectrapply and returning just ## the M/Z range per spectrum is about twice as fast than getting ## all M/Z values and calculating the range on that (i.e. ## range(mz(object)))   mzr -   range (   unlist (   spectrapply (   filterMsLevel (  object , msLevel. =  msLevel. ) , FUN =  function ( z )  {   return (   range (   mz (  z ) , na.rm =  TRUE ) ) } , BPPARAM =   bpparam ( ) ) ) )   breaks -   seq (   floor (   mzr [  1 ] ) ,   ceiling (   mzr [  2 ] ) , by =  binSize ) ## Now add the processing step   ps -   ProcessingStep (  \"bin\" ,   list ( breaks =  breaks , msLevel. =  msLevel. ) )    object @ spectraProcessingQueue -   c (   object @ spectraProcessingQueue ,   list (  ps ) ) ## And add the processing info.     object @ processingData @ processing -   c (    object @ processingData @ processing ,   paste0 (  \"Spectra of MS level(s) \" ,   paste0 (  msLevel. , sep =  \", \" ) ,  \" binned: \" ,   date ( ) ) )   return (  object ) } ",
+    "filename": "methods-OnDiskMSnExp.txt"
+  },
+  "new_function": {
+    "name": "bin",
+    "representation": "bin",
+    "signature": "OnDiskMSnExp",
+    "parameters": "function ( x , binSize = 1L , msLevel. )",
+    "body": "{  if (   missing (  msLevel. ) )  {   msLevel. -   base :: sort (   unique (   msLevel (  x ) ) ) } else  {  if (  !   is.numeric (  msLevel. ) )   stop (  \"'msLevel' must be numeric!\" ) } ## Check if we have these MS levels  if (  !   any (    unique (   msLevel (  x ) ) %in%  msLevel. ) )  {   warning (  \"No spectra of the specified MS level present.\" )   return (  x ) } ## Get the M/Z range; note: calling spectrapply and returning just ## the M/Z range per spectrum is about twice as fast than getting ## all M/Z values and calculating the range on that (i.e. ## range(mz(object)))   mzr -   range (   unlist (   spectrapply (   filterMsLevel (  x , msLevel. =  msLevel. ) , FUN =  function ( z )  {   return (   range (   mz (  z ) , na.rm =  TRUE ) ) } , BPPARAM =   bpparam ( ) ) ) )   breaks -   seq (   floor (   mzr [  1 ] ) ,   ceiling (   mzr [  2 ] ) , by =  binSize ) ## Now add the processing step   ps -   ProcessingStep (  \"bin\" ,   list ( breaks =  breaks , msLevel. =  msLevel. ) )    x @ spectraProcessingQueue -   c (   x @ spectraProcessingQueue ,   list (  ps ) ) ## And add the processing info.     x @ processingData @ processing -   c (    x @ processingData @ processing ,   paste0 (  \"Spectra of MS level(s) \" ,   paste0 (  msLevel. , sep =  \", \" ) ,  \" binned: \" ,   date ( ) ) )  x } ",
+    "filename": "methods-OnDiskMSnExp.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "bin",
+    "representation": "bin",
+    "signature": "Spectrum",
+    "parameters": "function ( object , binSize = 1L , breaks = seq ( floor ( min ( mz ( object ) ) ) , ceiling ( max ( mz ( object ) ) ) , by = binSize ) , msLevel. )",
+    "body": "{   bin_Spectrum (  object , binSize =  binSize , breaks =  breaks , msLevel. =  msLevel. ) } ",
+    "filename": "methods-Spectrum.txt"
+  },
+  "new_function": {
+    "name": "bin",
+    "representation": "bin",
+    "signature": "Spectrum",
+    "parameters": "function ( x , binSize = 1L , breaks = seq ( floor ( min ( mz ( x ) ) ) , ceiling ( max ( mz ( x ) ) ) , by = binSize ) , msLevel. )",
+    "body": "{   bin_Spectrum (  x , binSize =  binSize , breaks =  breaks , msLevel. =  msLevel. ) } ",
+    "filename": "methods-Spectrum.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "bin",
+    "representation": "bin",
+    "signature": "Chromatogram",
+    "parameters": "function ( object , binSize = 0.5 , breaks = seq ( floor ( min ( rtime ( object ) ) ) , ceiling ( max ( rtime ( object ) ) ) , by = binSize ) , fun = max )",
+    "body": "{   bins -   .bin_values (   object @ intensity ,   object @ rtime , binSize =  binSize , breaks =  breaks , fun =  fun )    object @ intensity -   bins $ x    object @ rtime -   bins $ mids  if (   validObject (  object ) )  object } ",
+    "replacementFunction": ".bin_Chromatogram",
+    "filename": "methods-Chromatogram.txt"
+  },
+  "new_function": {
+    "name": "bin",
+    "representation": "bin",
+    "signature": "Chromatogram",
+    "parameters": "function ( x , binSize = 0.5 , breaks = seq ( floor ( min ( rtime ( x ) ) ) , ceiling ( max ( rtime ( x ) ) ) , by = binSize ) , fun = max )",
+    "body": "{   bins -   .bin_values (   x @ intensity ,   x @ rtime , binSize =  binSize , breaks =  breaks , fun =  fun )    x @ intensity -   bins $ x    x @ rtime -   bins $ mids  if (   validObject (  x ) )  x } ",
+    "replacementFunction": ".bin_Chromatogram",
+    "filename": "methods-Chromatogram.txt"
+  }
+}
+
+4.
+{
+  "old_function": {
+    "name": "bin",
+    "representation": "bin",
+    "signature": "MChromatograms",
+    "parameters": "function ( object , binSize = 0.5 , breaks = numeric ( ) , fun = max )",
+    "body": "{  for  ( i in   seq_len (   nrow (  object ) ) )  {  if (  !   length (  breaks ) )  {   rt_rng -   range (   lapply (   object [  i , ] ,  function ( z )   range (   rtime (  z ) ) ) )   brks -   .fix_breaks (   seq (   floor (   rt_rng [  1 ] ) ,   ceiling (   rt_rng [  2 ] ) , by =  binSize ) ,  rt_rng ) } else   brks -  breaks    object [  i , ] -   lapply (   object [  i , ] ,  .bin_Chromatogram , binSize =  binSize , breaks =  brks , fun =  fun ) }  if (   validObject (  object ) )  object } ",
+    "replacementFunction": ".bin_MChromatograms",
+    "filename": "methods-MChromatograms.txt"
+  },
+  "new_function": {
+    "name": "bin",
+    "representation": "bin",
+    "signature": "MChromatograms",
+    "parameters": "function ( x , binSize = 0.5 , breaks = numeric ( ) , fun = max )",
+    "body": "{  for  ( i in   seq_len (   nrow (  x ) ) )  {  if (  !   length (  breaks ) )  {   rt_rng -   range (   lapply (   x [  i , ] ,  function ( z )   range (   rtime (  z ) ) ) )   brks -   .fix_breaks (   seq (   floor (   rt_rng [  1 ] ) ,   ceiling (   rt_rng [  2 ] ) , by =  binSize ) ,  rt_rng ) } else   brks -  breaks    x [  i , ] -   lapply (   x [  i , ] ,  .bin_Chromatogram , binSize =  binSize , breaks =  brks , fun =  fun ) }  if (   validObject (  x ) )  x } ",
+    "replacementFunction": ".bin_MChromatograms",
+    "filename": "methods-MChromatograms.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  msnbase_release_3_14 msnbase_master
+
+{
+    "package": "MSnbase",
+    "release_versions": "msnbase_release_3_14 msnbase_master",
+    "desc_release_old": "2.20.4",
+    "desc_release_new": "2.21.6",
+    "old_release_number": 18,
+    "new_release_number": 19,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+transformIntensity
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+

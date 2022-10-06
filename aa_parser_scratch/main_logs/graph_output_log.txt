@@ -1,0 +1,1961 @@
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  graph_release_1_6 graph_release_1_7
+
+{
+    "package": "graph",
+    "release_versions": "graph_release_1_6 graph_release_1_7",
+    "desc_release_old": "1.5.10",
+    "desc_release_new": "1.8.0",
+    "old_release_number": 2,
+    "new_release_number": 3,
+    "function_removals": 0,
+    "function_additions": 14,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+isAdjacent
+isDirected
+attrDefaults
+attrDefaults<-
+edgeDataDefaults
+edgeDataDefaults<-
+nodeDataDefaults
+nodeDataDefaults<-
+edgeData
+edgeData<-
+nodeData
+nodeData<-
+attrDataItem
+attrDataItem<-
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  graph_release_1_7 graph_release_1_8
+
+{
+    "package": "graph",
+    "release_versions": "graph_release_1_7 graph_release_1_8",
+    "desc_release_old": "1.8.0",
+    "desc_release_new": "1.10.6",
+    "old_release_number": 3,
+    "new_release_number": 4,
+    "function_removals": 1,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 1,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 2,
+    "total_count": 3
+}
+
+##########
+Functions Removed
+##########
+
+NELhandler
+
+
+##########
+Functions Added
+##########
+
+removeAttrDataItem<-
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "gxlTreeNEL",
+    "representation": "gxlTreeNEL",
+    "parameters": "function ( gnel )",
+    "body": "{    require (  \"XML\" ) ||   stop (  \"XML package needed\" )   nds -   nodes (  gnel )   eds -   lapply (   edges (  gnel ) ,  unique )   enms -   names (  eds )   out -   xmlTree (  \"gxl\" , #dtd=\"http://www.gupro.de/GXL/gxl-1.0.1.dtd\", namespaces =   c ( gxl =  \"http://www.w3.org/1999/xlink\" ) ) # #    out $ addTag (  \"gxl\" , close =  FALSE )    out $ addTag (  \"graph\" , attrs =   c ( id =  \"graphNEL\" , edgemode =   as.character (   edgemode (  gnel ) ) ) , close =  FALSE )  for  ( i in   1 :   length (  nds ) )  {    out $ addTag (  \"node\" , attrs =   c ( id =   nds [  i ] ) , close =  FALSE )    out $ closeTag ( ) }   ued -  0  for  ( i in   1 :   length (  eds ) )  {  if (    length (   eds [[  i ] ] ) undefined  0 )  for  ( j in   1 :   length (   eds [[  i ] ] ) )  {   ued -   ued +  1   etag -   paste (  \"e\" ,  ued , sep =  \"\" )    out $ addTag (  \"edge\" , attrs =   c ( id =  etag , from =   enms [  i ] , to =    eds [[  i ] ] [  j ] ) , close =  FALSE )    out $ closeTag ( ) } }    out $ closeTag ( ) # graph    out $ closeTag ( ) # gxl  out } ",
+    "filename": "GXLformals.txt"
+  },
+  "new_function": {
+    "name": "gxlTreeNEL",
+    "representation": "gxlTreeNEL",
+    "parameters": "function ( gnel , graph.name )",
+    "body": "{    require (  \"XML\" ) ||   stop (  \"XML package needed\" )   GXL_NAMESPACE -   c ( gxl =  \"http://www.gupro.de/GXL/gxl-1.1.dtd\" )   out -   xmlOutputDOM (  \"gxl\" , nsURI =  GXL_NAMESPACE , nameSpace =  \"gxl\" ) ## NOTE: We could specify dtd=\"http://www.gupro.de/GXL/gxl-1.0.1.dtd\", ##       but this might mean that net access is required to write ##       GXL which seems quite unacceptable.   nodeAttrs -   names (   nodeDataDefaults (  gnel ) )   edgeAttrs -   names (   edgeDataDefaults (  gnel ) )   writeAttr -  function ( attrName , val )  { ## skip NA and NULL  if (    is.null (  val ) ||   is.na (  val ) )   return (  NULL ) ## at present, can only handle length 1  if (    length (  val ) undefined  1 )  {   warning (  \"GXL conversion only handles attributes \" ,  \"with length 1.  Will try to represent \" ,  \"object of length \" ,   length (  val ) ,  \" as a\" ,  \"string.\" )   val -   paste (  val , collapse =  \", \" ) }   atag -   switch (   typeof (  val ) , integer =  \"int\" , character =  \"string\" , double =  \"float\" ,  {   warning (  \"I don't know how to convert \" ,  \"a \" ,   typeof (  val ) ,  \" to GXL. \" ,  \" Skipping.\" )  NULL } )  if (   is.null (  atag ) )   return (  NULL )    out $ addTag (  \"attr\" , attrs =   c ( name =  attrName ) , close =  FALSE )    out $ addTag (  atag ,   as.character (  val ) )    out $ closeTag ( ) }   writeNode -  function ( n )  { ## Helper function to write a graphNEL node to XML    out $ addTag (  \"node\" , attrs =   c ( id =  n ) , close =  FALSE )  for  ( nodeAttr in  nodeAttrs )  {   val -    nodeData (  gnel ,  n , attr =  nodeAttr ) [[  1 ] ]   writeAttr (  nodeAttr ,  val ) }    out $ closeTag ( ) ## node }   edgeCount -  1   writeEdge -  function ( from , to )  { ## Helper function to write a graphNEL node to XML   edgeId -  edgeCount   edgeCount -   edgeCount +  1    out $ addTag (  \"edge\" , attrs =   c ( id =  edgeId , from =  from , to =  to ) , close =  FALSE )  for  ( edgeAttr in  edgeAttrs )  {   val -    edgeData (  gnel ,  from ,  to , attr =  edgeAttr ) [[  1 ] ]   writeAttr (  edgeAttr ,  val ) }    out $ closeTag ( ) ## node }   nds -   nodes (  gnel )  if (  !   isDirected (  gnel ) )  { ## remove recipricol edges   eds -   lapply (   gnel @ edgeL ,  function ( x )   x $ edges )   eds -   mapply (  function ( x , y )   x [   x undefined  y ] ,  eds ,   seq ( length =   length (  eds ) ) )    names (  eds ) -   nodes (  gnel )   eds -   lapply (  eds ,  function ( x )  {  if (    length (  x ) undefined  0 )   nds [  x ] else   character (  0 ) } ) } else  {   eds -   edges (  gnel ) }   enms -   names (  eds )    out $ addTag (  \"graph\" , attrs =   c ( id =  graph.name , edgemode =   edgemode (  gnel ) ) , close =  FALSE )  for  ( n in  nds )  {   writeNode (  n ) }  for  ( from in  enms )  {  for  ( to in   eds [[  from ] ] )  {   writeEdge ( from =  from , to =  to ) } }    out $ closeTag ( ) # graph  out } ",
+    "filename": "GXLformals.txt"
+  }
+}
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "gxlTreeNEL",
+    "representation": "gxlTreeNEL",
+    "parameters": "function ( gnel )",
+    "body": "{    require (  \"XML\" ) ||   stop (  \"XML package needed\" )   nds -   nodes (  gnel )   eds -   lapply (   edges (  gnel ) ,  unique )   enms -   names (  eds )   out -   xmlTree (  \"gxl\" , #dtd=\"http://www.gupro.de/GXL/gxl-1.0.1.dtd\", namespaces =   c ( gxl =  \"http://www.w3.org/1999/xlink\" ) ) # #    out $ addTag (  \"gxl\" , close =  FALSE )    out $ addTag (  \"graph\" , attrs =   c ( id =  \"graphNEL\" , edgemode =   as.character (   edgemode (  gnel ) ) ) , close =  FALSE )  for  ( i in   1 :   length (  nds ) )  {    out $ addTag (  \"node\" , attrs =   c ( id =   nds [  i ] ) , close =  FALSE )    out $ closeTag ( ) }   ued -  0  for  ( i in   1 :   length (  eds ) )  {  if (    length (   eds [[  i ] ] ) undefined  0 )  for  ( j in   1 :   length (   eds [[  i ] ] ) )  {   ued -   ued +  1   etag -   paste (  \"e\" ,  ued , sep =  \"\" )    out $ addTag (  \"edge\" , attrs =   c ( id =  etag , from =   enms [  i ] , to =    eds [[  i ] ] [  j ] ) , close =  FALSE )    out $ closeTag ( ) } }    out $ closeTag ( ) # graph    out $ closeTag ( ) # gxl  out } ",
+    "filename": "GXLformals.txt"
+  },
+  "new_function": {
+    "name": "gxlTreeNEL",
+    "representation": "gxlTreeNEL",
+    "parameters": "function ( gnel , graph.name )",
+    "body": "{    require (  \"XML\" ) ||   stop (  \"XML package needed\" )   GXL_NAMESPACE -   c ( gxl =  \"http://www.gupro.de/GXL/gxl-1.1.dtd\" )   out -   xmlOutputDOM (  \"gxl\" , nsURI =  GXL_NAMESPACE , nameSpace =  \"gxl\" ) ## NOTE: We could specify dtd=\"http://www.gupro.de/GXL/gxl-1.0.1.dtd\", ##       but this might mean that net access is required to write ##       GXL which seems quite unacceptable.   nodeAttrs -   names (   nodeDataDefaults (  gnel ) )   edgeAttrs -   names (   edgeDataDefaults (  gnel ) )   writeAttr -  function ( attrName , val )  { ## skip NA and NULL  if (    is.null (  val ) ||   is.na (  val ) )   return (  NULL ) ## at present, can only handle length 1  if (    length (  val ) undefined  1 )  {   warning (  \"GXL conversion only handles attributes \" ,  \"with length 1.  Will try to represent \" ,  \"object of length \" ,   length (  val ) ,  \" as a\" ,  \"string.\" )   val -   paste (  val , collapse =  \", \" ) }   atag -   switch (   typeof (  val ) , integer =  \"int\" , character =  \"string\" , double =  \"float\" ,  {   warning (  \"I don't know how to convert \" ,  \"a \" ,   typeof (  val ) ,  \" to GXL. \" ,  \" Skipping.\" )  NULL } )  if (   is.null (  atag ) )   return (  NULL )    out $ addTag (  \"attr\" , attrs =   c ( name =  attrName ) , close =  FALSE )    out $ addTag (  atag ,   as.character (  val ) )    out $ closeTag ( ) }   writeNode -  function ( n )  { ## Helper function to write a graphNEL node to XML    out $ addTag (  \"node\" , attrs =   c ( id =  n ) , close =  FALSE )  for  ( nodeAttr in  nodeAttrs )  {   val -    nodeData (  gnel ,  n , attr =  nodeAttr ) [[  1 ] ]   writeAttr (  nodeAttr ,  val ) }    out $ closeTag ( ) ## node }   edgeCount -  1   writeEdge -  function ( from , to )  { ## Helper function to write a graphNEL node to XML   edgeId -  edgeCount   edgeCount -   edgeCount +  1    out $ addTag (  \"edge\" , attrs =   c ( id =  edgeId , from =  from , to =  to ) , close =  FALSE )  for  ( edgeAttr in  edgeAttrs )  {   val -    edgeData (  gnel ,  from ,  to , attr =  edgeAttr ) [[  1 ] ]   writeAttr (  edgeAttr ,  val ) }    out $ closeTag ( ) ## node }   nds -   nodes (  gnel )  if (  !   isDirected (  gnel ) )  { ## remove recipricol edges   eds -   lapply (   gnel @ edgeL ,  function ( x )   x $ edges )   eds -   mapply (  function ( x , y )   x [   x undefined  y ] ,  eds ,   seq ( length =   length (  eds ) ) )    names (  eds ) -   nodes (  gnel )   eds -   lapply (  eds ,  function ( x )  {  if (    length (  x ) undefined  0 )   nds [  x ] else   character (  0 ) } ) } else  {   eds -   edges (  gnel ) }   enms -   names (  eds )    out $ addTag (  \"graph\" , attrs =   c ( id =  graph.name , edgemode =   edgemode (  gnel ) ) , close =  FALSE )  for  ( n in  nds )  {   writeNode (  n ) }  for  ( from in  enms )  {  for  ( to in   eds [[  from ] ] )  {   writeEdge ( from =  from , to =  to ) } }    out $ closeTag ( ) # graph  out } ",
+    "filename": "GXLformals.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": ".dropEdges",
+    "representation": ".dropEdges",
+    "parameters": "function ( x , z )",
+    "body": "{   ans =   lapply (  z ,  function ( ww )  {   bad -   match (  x ,   ww $ edges )   bad -   bad [  !   is.na (  bad ) ]  if (    length (  bad ) undefined  0 )   ans =   list ( edges =    ww $ edges [  -  bad ] , weights =    ww $ weights [  -  bad ] ) else   ans =  ww } )  ans } ",
+    "filename": "methods-graph.txt"
+  },
+  "new_function": {
+    "name": ".dropEdges",
+    "representation": ".dropEdges",
+    "parameters": "function ( self , x )",
+    "body": "{ ## Remove all edges in graphNEL self to node with ## index x.  Also remove all edges from node with index x. ## Return the modified graphNEL. ## Removing edges also removes the associated attributes.   oldEdgeL -   self @ edgeL   newEdgeL -   vector ( mode =  \"list\" , length =   length (  oldEdgeL ) )    names (  newEdgeL ) -   names (  oldEdgeL )   nds -   nodes (  self )  for  ( i in   seq ( along =  nds ) )  {   toList -    oldEdgeL [[  i ] ] $ edges  if (   i %in%  x )  {   to -   nds [  toList ]  if (   length (  to ) )   self -   clearEdgeData (  self , from =   nds [  i ] , to =  to )   toList -   list ( edges =   numeric (  0 ) ) } else  {   bad -   match (  x ,  toList )   bad -   bad [  !   is.na (  bad ) ]  if (   length (  bad ) )  {   self -   clearEdgeData (  self , from =   nds [  i ] , to =   nds [   toList [  bad ] ] )   toList -   list ( edges =   toList [  -  bad ] ) } else  {   toList -   list ( edges =  toList ) } }    newEdgeL [[   nds [  i ] ] ] -  (  toList ) }    self @ edgeL -  newEdgeL  self } ",
+    "filename": "graphNEL.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  graph_release_1_8 graph_release_1_9
+
+{
+    "package": "graph",
+    "release_versions": "graph_release_1_8 graph_release_1_9",
+    "desc_release_old": "1.10.6",
+    "desc_release_new": "1.12.1",
+    "old_release_number": 4,
+    "new_release_number": 5,
+    "function_removals": 19,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 5,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 5,
+    "total_count": 24
+}
+
+##########
+Functions Removed
+##########
+
+hashtable
+asGraphProperty
+bNode
+eNode
+edgeID
+edgeOrder
+fromEdges
+fromEdges<-
+toEdges<-
+getNodes
+hash
+idstring
+intersection3
+label
+nodeID
+nodeType
+property
+property<-
+toEdges
+
+
+##########
+Functions Added
+##########
+
+reverseEdgeDirections
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "edgeWeights",
+    "representation": "edgeWeights",
+    "signature": "distGraph",
+    "parameters": "function ( object , index )",
+    "body": "{   edg -   edges (  object )  if (  !   missing (  index ) )   edg -   edg [  index ]   NODES -   nodes (  object )   edLocs -   match (   names (  edg ) ,  NODES )   edE -   lapply (  edg ,  function ( x )   match (  x ,  NODES ) )  for  ( i in   seq ( along =  edLocs ) )    edE [[  i ] ] -    object @ Dist [   edLocs [  i ] ,   edE [[  i ] ] ]    names (  edE ) -   names (  edg )  edE } ",
+    "filename": "clustergraph.txt"
+  },
+  "new_function": {
+    "name": "edgeWeights",
+    "representation": "edgeWeights",
+    "signature": "distGraph",
+    "parameters": "function ( object , index , attr , default , type.checker )",
+    "body": "{   edg -   edges (  object )  if (  !   missing (  index ) )   edg -   edg [  index ]   NODES -   nodes (  object )   edLocs -   match (   names (  edg ) ,  NODES )   edE -   lapply (  edg ,  function ( x )   match (  x ,  NODES ) )  for  ( i in   seq ( along =  edLocs ) )    edE [[  i ] ] -    object @ Dist [   edLocs [  i ] ,   edE [[  i ] ] ]    names (  edE ) -   names (  edg )  edE } ",
+    "filename": "clustergraph.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "edgeWeights",
+    "representation": "edgeWeights",
+    "signature": "clusterGraph",
+    "parameters": "function ( object , index )",
+    "body": "{   edg -   edges (  object )  if (  !   missing (  index ) )   edg -   edg [  index ]   ans -   lapply (  edg ,  function ( x )  {    ans -   rep (  1 ,   length (  x ) ) ;    names (  ans ) -  x ;  ans } )  ans } ",
+    "filename": "clustergraph.txt"
+  },
+  "new_function": {
+    "name": "edgeWeights",
+    "representation": "edgeWeights",
+    "signature": "clusterGraph",
+    "parameters": "function ( object , index , attr , default , type.checker )",
+    "body": "{   edg -   edges (  object )  if (  !   missing (  index ) )   edg -   edg [  index ]   ans -   lapply (  edg ,  function ( x )  {    ans -   rep (  1 ,   length (  x ) ) ;    names (  ans ) -  x ;  ans } )  ans } ",
+    "filename": "clustergraph.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "edgeWeights",
+    "representation": "edgeWeights",
+    "signature": "signature ( object =  graph , index =  character )",
+    "parameters": "function ( object , index )",
+    "body": "{  if (  !   \"weight\" %in%   names (   edgeDataDefaults (  object ) ) )  { ## No existing 'weight' edge attr, default to 1    edgeDataDefaults (  object ,  \"weight\" ) -   1 :  1 }   default -   edgeDataDefaults (  object ,  \"weight\" )  if (  !   is.vector (  default ) )   stop (  \"edgeWeights can only be used if the 'weight' \" ,  \"edge attributes are vectors.\" )   ew -   edgeData (  object , from =  index , attr =  \"weight\" )  if (  !   length (  ew ) )   return (   lapply (   edges (  object ) ,  function ( x )   vector ( mode =   mode (  default ) , length =  0 ) ) )   gEdges -    edges (  object ) [  index ]   edgeCounts -   sapply (  gEdges ,  length )   nn -   rep (  index ,  edgeCounts )    names (  ew ) -   unlist (  gEdges , use.names =  FALSE )   ans =   split (   unlist (  ew ) ,  nn )   ans -   c (  ans ,   lapply (   gEdges [   edgeCounts ==  0 ] ,  as.numeric ) )   ans [  index ] ## split does sorting, we want orig order } ",
+    "filename": "methods-graph.txt"
+  },
+  "new_function": {
+    "name": "edgeWeights",
+    "representation": "edgeWeights",
+    "signature": "signature ( object =  graph , index =  character )",
+    "parameters": "function ( object , index , attr , default , type.checker )",
+    "body": "{ ## Check extra args  if (   !   is.character (  attr ) ||    length (  attr ) !=  1 )   stop (   sQuote (  \"attr\" ) ,  \" must be a character vector of length one.\" )  if (   !   is.null (  type.checker ) undefined  !   is.function (  type.checker ) )   stop (   sQuote (  \"type.checker\" ) ,  \" must be a function or NULL.\" )  if (  !   attr %in%   names (   edgeDataDefaults (  object ) ) )  { ## No existing 'weight' edge attr, uses default    edgeDataDefaults (  object ,  attr ) -  default }   ew -   edgeData (  object , from =  index , attr =  attr )  if (  !   length (  ew ) )   return (   lapply (   edges (  object ) ,  function ( x )   vector ( mode =   mode (  default ) , length =  0 ) ) )   gEdges -    edges (  object ) [  index ]   edgeCounts -   sapply (  gEdges ,  length )   nn -   rep (  index ,  edgeCounts )    names (  ew ) -   unlist (  gEdges , use.names =  FALSE )   ew -   unlist (  ew )  if (   !   is.null (  type.checker ) undefined  !   isTRUE (   type.checker (  ew ) ) )   stop (  \"invalid type of edge weight.\\n\" ,  \"type.checker(ew) not TRUE\\n\" ,  \"typeof(ew): \" ,   typeof (  ew ) ) ##               for (el in ew) { ##                   ## XXX: if el is an S4 instance, it will match \"list\" ##                   if (!isTRUE(type.checker(el))) ##                     stop(\"invalid type of edge weight.\\n\", ##                          \"type.checker(el) not TRUE\\n\", ##                          \"typeof(el): \", typeof(el)) ##               } ##               if (!is.null(type.checker)) { ##                   dMode ##                   tryCatch(storage.mode(ew) ##                            warning=function(w) { ##                                wMsg ##                                msg ##                                             dMode, \"\\n\", wMsg) ##                                if (grep(\"NA\", msg)) ##                                  stop(msg) ##                                else ##                                  warning(wMsg) ##                            })   ans =   split (   unlist (  ew ) ,  nn )   ans -   c (  ans ,   lapply (   gEdges [   edgeCounts ==  0 ] ,  as.numeric ) )   ans [  index ] ## split does sorting, we want orig order } ",
+    "filename": "methods-graph.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "edgeWeights",
+    "representation": "edgeWeights",
+    "signature": "signature ( object =  graph , index =  numeric )",
+    "parameters": "function ( object , index )",
+    "body": "{   index -    nodes (  object ) [  index ]   edgeWeights (  object ,  index ) } ",
+    "filename": "methods-graph.txt"
+  },
+  "new_function": {
+    "name": "edgeWeights",
+    "representation": "edgeWeights",
+    "signature": "signature ( object =  graph , index =  numeric )",
+    "parameters": "function ( object , index , attr , default , type.checker )",
+    "body": "{   index -    nodes (  object ) [  index ]   edgeWeights (  object ,  index , attr =  attr , default =  default , type.checker =  type.checker ) } ",
+    "filename": "methods-graph.txt"
+  }
+}
+
+4.
+{
+  "old_function": {
+    "name": "edgeWeights",
+    "representation": "edgeWeights",
+    "signature": "signature ( object =  graph , index =  missing )",
+    "parameters": "function ( object , index )",
+    "body": "{   index -   nodes (  object )   edgeWeights (  object ,  index ) } ",
+    "filename": "methods-graph.txt"
+  },
+  "new_function": {
+    "name": "edgeWeights",
+    "representation": "edgeWeights",
+    "signature": "signature ( object =  graph , index =  missing )",
+    "parameters": "function ( object , index , attr , default , type.checker )",
+    "body": "{   index -   nodes (  object )   edgeWeights (  object ,  index , attr =  attr , default =  default , type.checker =  type.checker ) } ",
+    "filename": "methods-graph.txt"
+  }
+}
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "edgeWeights",
+    "representation": "edgeWeights",
+    "signature": "distGraph",
+    "parameters": "function ( object , index )",
+    "body": "{   edg -   edges (  object )  if (  !   missing (  index ) )   edg -   edg [  index ]   NODES -   nodes (  object )   edLocs -   match (   names (  edg ) ,  NODES )   edE -   lapply (  edg ,  function ( x )   match (  x ,  NODES ) )  for  ( i in   seq ( along =  edLocs ) )    edE [[  i ] ] -    object @ Dist [   edLocs [  i ] ,   edE [[  i ] ] ]    names (  edE ) -   names (  edg )  edE } ",
+    "filename": "clustergraph.txt"
+  },
+  "new_function": {
+    "name": "edgeWeights",
+    "representation": "edgeWeights",
+    "signature": "distGraph",
+    "parameters": "function ( object , index , attr , default , type.checker )",
+    "body": "{   edg -   edges (  object )  if (  !   missing (  index ) )   edg -   edg [  index ]   NODES -   nodes (  object )   edLocs -   match (   names (  edg ) ,  NODES )   edE -   lapply (  edg ,  function ( x )   match (  x ,  NODES ) )  for  ( i in   seq ( along =  edLocs ) )    edE [[  i ] ] -    object @ Dist [   edLocs [  i ] ,   edE [[  i ] ] ]    names (  edE ) -   names (  edg )  edE } ",
+    "filename": "clustergraph.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "edgeWeights",
+    "representation": "edgeWeights",
+    "signature": "clusterGraph",
+    "parameters": "function ( object , index )",
+    "body": "{   edg -   edges (  object )  if (  !   missing (  index ) )   edg -   edg [  index ]   ans -   lapply (  edg ,  function ( x )  {    ans -   rep (  1 ,   length (  x ) ) ;    names (  ans ) -  x ;  ans } )  ans } ",
+    "filename": "clustergraph.txt"
+  },
+  "new_function": {
+    "name": "edgeWeights",
+    "representation": "edgeWeights",
+    "signature": "clusterGraph",
+    "parameters": "function ( object , index , attr , default , type.checker )",
+    "body": "{   edg -   edges (  object )  if (  !   missing (  index ) )   edg -   edg [  index ]   ans -   lapply (  edg ,  function ( x )  {    ans -   rep (  1 ,   length (  x ) ) ;    names (  ans ) -  x ;  ans } )  ans } ",
+    "filename": "clustergraph.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "edgeWeights",
+    "representation": "edgeWeights",
+    "signature": "signature ( object =  graph , index =  character )",
+    "parameters": "function ( object , index )",
+    "body": "{  if (  !   \"weight\" %in%   names (   edgeDataDefaults (  object ) ) )  { ## No existing 'weight' edge attr, default to 1    edgeDataDefaults (  object ,  \"weight\" ) -   1 :  1 }   default -   edgeDataDefaults (  object ,  \"weight\" )  if (  !   is.vector (  default ) )   stop (  \"edgeWeights can only be used if the 'weight' \" ,  \"edge attributes are vectors.\" )   ew -   edgeData (  object , from =  index , attr =  \"weight\" )  if (  !   length (  ew ) )   return (   lapply (   edges (  object ) ,  function ( x )   vector ( mode =   mode (  default ) , length =  0 ) ) )   gEdges -    edges (  object ) [  index ]   edgeCounts -   sapply (  gEdges ,  length )   nn -   rep (  index ,  edgeCounts )    names (  ew ) -   unlist (  gEdges , use.names =  FALSE )   ans =   split (   unlist (  ew ) ,  nn )   ans -   c (  ans ,   lapply (   gEdges [   edgeCounts ==  0 ] ,  as.numeric ) )   ans [  index ] ## split does sorting, we want orig order } ",
+    "filename": "methods-graph.txt"
+  },
+  "new_function": {
+    "name": "edgeWeights",
+    "representation": "edgeWeights",
+    "signature": "signature ( object =  graph , index =  character )",
+    "parameters": "function ( object , index , attr , default , type.checker )",
+    "body": "{ ## Check extra args  if (   !   is.character (  attr ) ||    length (  attr ) !=  1 )   stop (   sQuote (  \"attr\" ) ,  \" must be a character vector of length one.\" )  if (   !   is.null (  type.checker ) undefined  !   is.function (  type.checker ) )   stop (   sQuote (  \"type.checker\" ) ,  \" must be a function or NULL.\" )  if (  !   attr %in%   names (   edgeDataDefaults (  object ) ) )  { ## No existing 'weight' edge attr, uses default    edgeDataDefaults (  object ,  attr ) -  default }   ew -   edgeData (  object , from =  index , attr =  attr )  if (  !   length (  ew ) )   return (   lapply (   edges (  object ) ,  function ( x )   vector ( mode =   mode (  default ) , length =  0 ) ) )   gEdges -    edges (  object ) [  index ]   edgeCounts -   sapply (  gEdges ,  length )   nn -   rep (  index ,  edgeCounts )    names (  ew ) -   unlist (  gEdges , use.names =  FALSE )   ew -   unlist (  ew )  if (   !   is.null (  type.checker ) undefined  !   isTRUE (   type.checker (  ew ) ) )   stop (  \"invalid type of edge weight.\\n\" ,  \"type.checker(ew) not TRUE\\n\" ,  \"typeof(ew): \" ,   typeof (  ew ) ) ##               for (el in ew) { ##                   ## XXX: if el is an S4 instance, it will match \"list\" ##                   if (!isTRUE(type.checker(el))) ##                     stop(\"invalid type of edge weight.\\n\", ##                          \"type.checker(el) not TRUE\\n\", ##                          \"typeof(el): \", typeof(el)) ##               } ##               if (!is.null(type.checker)) { ##                   dMode ##                   tryCatch(storage.mode(ew) ##                            warning=function(w) { ##                                wMsg ##                                msg ##                                             dMode, \"\\n\", wMsg) ##                                if (grep(\"NA\", msg)) ##                                  stop(msg) ##                                else ##                                  warning(wMsg) ##                            })   ans =   split (   unlist (  ew ) ,  nn )   ans -   c (  ans ,   lapply (   gEdges [   edgeCounts ==  0 ] ,  as.numeric ) )   ans [  index ] ## split does sorting, we want orig order } ",
+    "filename": "methods-graph.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "edgeWeights",
+    "representation": "edgeWeights",
+    "signature": "signature ( object =  graph , index =  numeric )",
+    "parameters": "function ( object , index )",
+    "body": "{   index -    nodes (  object ) [  index ]   edgeWeights (  object ,  index ) } ",
+    "filename": "methods-graph.txt"
+  },
+  "new_function": {
+    "name": "edgeWeights",
+    "representation": "edgeWeights",
+    "signature": "signature ( object =  graph , index =  numeric )",
+    "parameters": "function ( object , index , attr , default , type.checker )",
+    "body": "{   index -    nodes (  object ) [  index ]   edgeWeights (  object ,  index , attr =  attr , default =  default , type.checker =  type.checker ) } ",
+    "filename": "methods-graph.txt"
+  }
+}
+
+4.
+{
+  "old_function": {
+    "name": "edgeWeights",
+    "representation": "edgeWeights",
+    "signature": "signature ( object =  graph , index =  missing )",
+    "parameters": "function ( object , index )",
+    "body": "{   index -   nodes (  object )   edgeWeights (  object ,  index ) } ",
+    "filename": "methods-graph.txt"
+  },
+  "new_function": {
+    "name": "edgeWeights",
+    "representation": "edgeWeights",
+    "signature": "signature ( object =  graph , index =  missing )",
+    "parameters": "function ( object , index , attr , default , type.checker )",
+    "body": "{   index -   nodes (  object )   edgeWeights (  object ,  index , attr =  attr , default =  default , type.checker =  type.checker ) } ",
+    "filename": "methods-graph.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  graph_release_1_9 graph_release_2_1
+
+{
+    "package": "graph",
+    "release_versions": "graph_release_1_9 graph_release_2_1",
+    "desc_release_old": "1.12.1",
+    "desc_release_new": "1.16.1",
+    "old_release_number": 5,
+    "new_release_number": 6,
+    "function_removals": 0,
+    "function_additions": 2,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 2,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+ugraphOld
+leaves
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "inEdges",
+    "representation": "inEdges",
+    "signature": "signature ( node =  graphAM , object =  missing )",
+    "parameters": "function ( object , node )",
+    "body": "{   allNodes -   nodes (  node )   return (   inEdges (  allNodes ,  node ) ) } ",
+    "filename": "methods-graphAM.txt"
+  },
+  "new_function": {
+    "name": "inEdges",
+    "representation": "inEdges",
+    "signature": "signature ( node =  graphAM , object =  missing )",
+    "parameters": "function ( node , object )",
+    "body": "{   allNodes -   nodes (  node )   return (   inEdges (  allNodes ,  node ) ) } ",
+    "filename": "methods-graphAM.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "inEdges",
+    "representation": "inEdges",
+    "signature": "signature ( node =  missing , object =  graphAM )",
+    "parameters": "function ( object , node )",
+    "body": "{   allNodes -   nodes (  object )   return (   inEdges (  allNodes ,  object ) ) } ",
+    "filename": "methods-graphAM.txt"
+  },
+  "new_function": {
+    "name": "inEdges",
+    "representation": "inEdges",
+    "signature": "signature ( node =  missing , object =  graphAM )",
+    "parameters": "function ( node , object )",
+    "body": "{   allNodes -   nodes (  object )   return (   inEdges (  allNodes ,  object ) ) } ",
+    "filename": "methods-graphAM.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  graph_release_2_1 graph_release_2_2
+
+{
+    "package": "graph",
+    "release_versions": "graph_release_2_1 graph_release_2_2",
+    "desc_release_old": "1.16.1",
+    "desc_release_new": "1.18.1",
+    "old_release_number": 6,
+    "new_release_number": 7,
+    "function_removals": 0,
+    "function_additions": 11,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+graph.par
+graph.par.get
+graphRenderInfo
+nodeRenderInfo
+edgeRenderInfo
+parRenderInfo
+nodeRenderInfo<-
+edgeRenderInfo<-
+parRenderInfo<-
+graphRenderInfo<-
+updateGraph
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  graph_release_2_2 graph_release_2_3
+
+{
+    "package": "graph",
+    "release_versions": "graph_release_2_2 graph_release_2_3",
+    "desc_release_old": "1.18.1",
+    "desc_release_new": "1.20.0",
+    "old_release_number": 7,
+    "new_release_number": 8,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  graph_release_2_3 graph_release_2_4
+
+{
+    "package": "graph",
+    "release_versions": "graph_release_2_3 graph_release_2_4",
+    "desc_release_old": "1.20.0",
+    "desc_release_new": "1.22.5",
+    "old_release_number": 8,
+    "new_release_number": 9,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  graph_release_2_4 graph_release_2_5
+
+{
+    "package": "graph",
+    "release_versions": "graph_release_2_4 graph_release_2_5",
+    "desc_release_old": "1.22.5",
+    "desc_release_new": "1.24.4",
+    "old_release_number": 9,
+    "new_release_number": 10,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  graph_release_2_5 graph_release_2_6
+
+{
+    "package": "graph",
+    "release_versions": "graph_release_2_5 graph_release_2_6",
+    "desc_release_old": "1.24.4",
+    "desc_release_new": "1.26.0",
+    "old_release_number": 10,
+    "new_release_number": 11,
+    "function_removals": 0,
+    "function_additions": 7,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+graphBAM
+MultiGraph
+eweights
+edgeSetIntersect0
+extractFromTo
+subsetEdgeSets
+extractGraphAM
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  graph_release_2_6 graph_release_2_7
+
+{
+    "package": "graph",
+    "release_versions": "graph_release_2_6 graph_release_2_7",
+    "desc_release_old": "1.26.0",
+    "desc_release_new": "1.28.0",
+    "old_release_number": 11,
+    "new_release_number": 12,
+    "function_removals": 0,
+    "function_additions": 7,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+edgeSetUnion0
+extractGraphBAM
+mgEdgeData
+mgEdgeData<-
+graphIntersect
+graphUnion
+removeEdgesByWeight
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  graph_release_2_7 graph_release_2_8
+
+{
+    "package": "graph",
+    "release_versions": "graph_release_2_7 graph_release_2_8",
+    "desc_release_old": "1.28.0",
+    "desc_release_new": "1.30.0",
+    "old_release_number": 12,
+    "new_release_number": 13,
+    "function_removals": 0,
+    "function_additions": 3,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+mgEdgeDataDefaults
+mgEdgeDataDefaults<-
+edgeSets
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  graph_release_2_8 graph_release_2_9
+
+{
+    "package": "graph",
+    "release_versions": "graph_release_2_8 graph_release_2_9",
+    "desc_release_old": "1.30.0",
+    "desc_release_new": "1.32.0",
+    "old_release_number": 13,
+    "new_release_number": 14,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  graph_release_2_9 graph_release_2_11
+
+{
+    "package": "graph",
+    "release_versions": "graph_release_2_9 graph_release_2_11",
+    "desc_release_old": "1.32.0",
+    "desc_release_new": "1.36.2",
+    "old_release_number": 14,
+    "new_release_number": 15,
+    "function_removals": 0,
+    "function_additions": 3,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 2,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+graphNEL
+graphAM
+plot
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "buildRepDepGraph",
+    "representation": "buildRepDepGraph",
+    "parameters": "function ( repository , depLevel = c ( \"Depends\" , \"Suggests\" ) )",
+    "body": "{   .Deprecated (  \"makeDepGraph\" , package =  \"pkgDepTools\" )   depLevel -   match.arg (  depLevel )  if (   missing (  repository ) )   stop (  \"No online repositories specified\" )  if (    length (  repository ) !=  1 )   stop (  \"The repository argument must be of length 1\" )   dGraph -   new (  \"graphNEL\" , edgemode =  \"directed\" )   cran -   CRAN.packages ( contriburl =  repository )   pkgDeps -   package.dependencies (  cran , check =  FALSE , depLevel =  depLevel )   pkgs -   names (  pkgDeps )  for  ( i in   seq ( along =  pkgDeps ) )  {  if (  !    pkgs [  i ] %in%   nodes (  dGraph ) )   dGraph -   addNode (   pkgs [  i ] ,  dGraph )   curMtrx -   pkgDeps [[  i ] ]  if (  !   is.matrix (  curMtrx ) )  next  for  ( j in   seq ( along =   curMtrx [ ,  1 ] ) )  {   depPkg -   curMtrx [  j ,  1 ]  if (   depPkg ==  \"R\" )  next  if (  !   depPkg %in%   nodes (  dGraph ) )   dGraph -   addNode (  depPkg ,  dGraph )   dGraph -   addEdge (   pkgs [  i ] ,  depPkg ,  dGraph ,  1 ) } }  dGraph } ",
+    "filename": "buildDepGraph.txt"
+  },
+  "new_function": {
+    "name": "buildRepDepGraph",
+    "representation": "buildRepDepGraph",
+    "parameters": "function ( )",
+    "body": "{   .Defunct (  \"makeDepGraph\" , package =  \"pkgDepTools\" ) } ",
+    "filename": "buildDepGraph.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "ugraphOld",
+    "representation": "ugraphOld",
+    "parameters": "function ( graph )",
+    "body": "{   .Deprecated (  \"ugraph\" )  if (    edgemode (  graph ) ==  \"undirected\" )   return (  graph )  if (  !   is (  graph ,  \"graphNEL\" ) )   stop (  \"only graphNEL supported for now\" )  if (   duplicatedEdges (  graph ) )   stop (  \"there are duplicated edges, cannot handle multigraphs\" )   eL -   graph @ edgeL   nN -   nodes (  graph ) ##just in case they are not in the same order!   eL -   eL [  nN ]  for  ( i in   1 :   length (  eL ) )  {   cNode -   nN [  i ]   e -   eL [[  i ] ]  if (    length (   e $ edges ) undefined  0 )  {   wh -   nN [   e $ edges ]  for  ( j in   1 :   length (  wh ) )  {   eX -    eL [[   wh [  j ] ] ] $ edges ##the current node is i so check for it  if (   i %in%  eX )  next     eL [[   wh [  j ] ] ] $ edges -   c (  i ,  eX )     eL [[   wh [  j ] ] ] $ weights -   c (    e $ weights [  j ] ,    eL [[   wh [  j ] ] ] $ weights ) } } }    edgemode (  graph ) -  \"undirected\"    graph @ edgeL -  eL   return (  graph ) } ",
+    "filename": "graphfunctions.txt"
+  },
+  "new_function": {
+    "name": "ugraphOld",
+    "representation": "ugraphOld",
+    "parameters": "function ( )",
+    "body": "{   .Defunct (  \"ugraph\" ) } ",
+    "filename": "graphfunctions.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  graph_release_2_11 graph_release_2_12
+
+{
+    "package": "graph",
+    "release_versions": "graph_release_2_11 graph_release_2_12",
+    "desc_release_old": "1.36.2",
+    "desc_release_new": "1.38.3",
+    "old_release_number": 15,
+    "new_release_number": 16,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  graph_release_2_12 graph_release_2_13
+
+{
+    "package": "graph",
+    "release_versions": "graph_release_2_12 graph_release_2_13",
+    "desc_release_old": "1.38.3",
+    "desc_release_new": "1.40.1",
+    "old_release_number": 16,
+    "new_release_number": 17,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  graph_release_2_13 graph_release_2_14
+
+{
+    "package": "graph",
+    "release_versions": "graph_release_2_13 graph_release_2_14",
+    "desc_release_old": "1.40.1",
+    "desc_release_new": "1.42.0",
+    "old_release_number": 17,
+    "new_release_number": 18,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  graph_release_2_14 graph_release_3_1
+
+{
+    "package": "graph",
+    "release_versions": "graph_release_2_14 graph_release_3_1",
+    "desc_release_old": "1.42.0",
+    "desc_release_new": "1.46.0",
+    "old_release_number": 18,
+    "new_release_number": 19,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+adjacencyMatrix
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  graph_release_3_1 graph_release_3_2
+
+{
+    "package": "graph",
+    "release_versions": "graph_release_3_1 graph_release_3_2",
+    "desc_release_old": "1.46.0",
+    "desc_release_new": "1.48.0",
+    "old_release_number": 19,
+    "new_release_number": 20,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+toDotWithRI
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  graph_release_3_2 graph_release_3_3
+
+{
+    "package": "graph",
+    "release_versions": "graph_release_3_2 graph_release_3_3",
+    "desc_release_old": "1.48.0",
+    "desc_release_new": "1.50.0",
+    "old_release_number": 20,
+    "new_release_number": 21,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  graph_release_3_3 graph_release_3_4
+
+{
+    "package": "graph",
+    "release_versions": "graph_release_3_3 graph_release_3_4",
+    "desc_release_old": "1.50.0",
+    "desc_release_new": "1.52.0",
+    "old_release_number": 21,
+    "new_release_number": 22,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  graph_release_3_4 graph_release_3_5
+
+{
+    "package": "graph",
+    "release_versions": "graph_release_3_4 graph_release_3_5",
+    "desc_release_old": "1.52.0",
+    "desc_release_new": "1.54.0",
+    "old_release_number": 22,
+    "new_release_number": 23,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  graph_release_3_5 graph_release_3_6
+
+{
+    "package": "graph",
+    "release_versions": "graph_release_3_5 graph_release_3_6",
+    "desc_release_old": "1.54.0",
+    "desc_release_new": "1.56.0",
+    "old_release_number": 23,
+    "new_release_number": 24,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  graph_release_3_6 graph_release_3_7
+
+{
+    "package": "graph",
+    "release_versions": "graph_release_3_6 graph_release_3_7",
+    "desc_release_old": "1.56.0",
+    "desc_release_new": "1.58.2",
+    "old_release_number": 24,
+    "new_release_number": 25,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  graph_release_3_7 graph_release_3_8
+
+{
+    "package": "graph",
+    "release_versions": "graph_release_3_7 graph_release_3_8",
+    "desc_release_old": "1.58.2",
+    "desc_release_new": "1.60.0",
+    "old_release_number": 25,
+    "new_release_number": 26,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  graph_release_3_8 graph_release_3_9
+
+{
+    "package": "graph",
+    "release_versions": "graph_release_3_8 graph_release_3_9",
+    "desc_release_old": "1.60.0",
+    "desc_release_new": "1.62.0",
+    "old_release_number": 26,
+    "new_release_number": 27,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  graph_release_3_9 graph_release_3_11
+
+{
+    "package": "graph",
+    "release_versions": "graph_release_3_9 graph_release_3_11",
+    "desc_release_old": "1.62.0",
+    "desc_release_new": "1.66.0",
+    "old_release_number": 27,
+    "new_release_number": 28,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  graph_release_3_11 graph_release_3_12
+
+{
+    "package": "graph",
+    "release_versions": "graph_release_3_11 graph_release_3_12",
+    "desc_release_old": "1.66.0",
+    "desc_release_new": "1.68.0",
+    "old_release_number": 28,
+    "new_release_number": 29,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  graph_release_3_12 graph_release_3_13
+
+{
+    "package": "graph",
+    "release_versions": "graph_release_3_12 graph_release_3_13",
+    "desc_release_old": "1.68.0",
+    "desc_release_new": "1.70.0",
+    "old_release_number": 29,
+    "new_release_number": 30,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  graph_release_3_13 graph_release_3_14
+
+{
+    "package": "graph",
+    "release_versions": "graph_release_3_13 graph_release_3_14",
+    "desc_release_old": "1.70.0",
+    "desc_release_new": "1.72.0",
+    "old_release_number": 30,
+    "new_release_number": 31,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  graph_release_3_14 graph_master
+
+{
+    "package": "graph",
+    "release_versions": "graph_release_3_14 graph_master",
+    "desc_release_old": "1.72.0",
+    "desc_release_new": "1.73.0",
+    "old_release_number": 31,
+    "new_release_number": 32,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+

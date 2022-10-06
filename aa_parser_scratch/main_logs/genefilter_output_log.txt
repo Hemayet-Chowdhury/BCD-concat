@@ -1,0 +1,1758 @@
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genefilter_release_1_5 genefilter_release_1_6
+
+{
+    "package": "genefilter",
+    "release_versions": "genefilter_release_1_5 genefilter_release_1_6",
+    "desc_release_old": "1.5.0",
+    "desc_release_new": "1.6.3",
+    "old_release_number": 1,
+    "new_release_number": 2,
+    "function_removals": 0,
+    "function_additions": 6,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+shorth
+rowttests
+colttests
+rowFtests
+colFtests
+rowSds
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genefilter_release_1_6 genefilter_release_1_7
+
+{
+    "package": "genefilter",
+    "release_versions": "genefilter_release_1_6 genefilter_release_1_7",
+    "desc_release_old": "1.6.3",
+    "desc_release_new": "1.8.0",
+    "old_release_number": 2,
+    "new_release_number": 3,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+rowpAUCs
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genefilter_release_1_7 genefilter_release_1_8
+
+{
+    "package": "genefilter",
+    "release_versions": "genefilter_release_1_7 genefilter_release_1_8",
+    "desc_release_old": "1.8.0",
+    "desc_release_new": "1.10.1",
+    "old_release_number": 3,
+    "new_release_number": 4,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+findLargest
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genefilter_release_1_8 genefilter_release_1_9
+
+{
+    "package": "genefilter",
+    "release_versions": "genefilter_release_1_8 genefilter_release_1_9",
+    "desc_release_old": "1.10.1",
+    "desc_release_new": "1.12.0",
+    "old_release_number": 4,
+    "new_release_number": 5,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+half.range.mode
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "shorth",
+    "representation": "shorth",
+    "parameters": "function ( x , na.rm = FALSE , tieLimit = 0.05 )",
+    "body": "{   stopifnot (   is.numeric (  x ) )  if (  na.rm )   x -   x [  !   is.na (  x ) ]   rv -  NA  if (    length (  x ) =  1 )  {   sx -   sort (  x )   width -   round (   0.5 *   length (  x ) )   diffs -    sx [   (   width +  1 ) :   length (  x ) ] -   sx [   1 :  (    length (  x ) -  width ) ]   q -   which (   diffs ==   min (  diffs ) ) ## deal with ties: if they lie within 5%, simply take the average ## otherwise, generate an error   maxq =   max (  q )   minq =   min (  q )  if (    maxq -  minq =   tieLimit *   length (  x ) )  {   q -   mean (  q ) } else  {   stop (   paste (  \"Encountered a tie, this could mean that the distribution does not have a well-defined peak.\\nq=\" ,  minq ,  \"...\" ,  maxq ,  \"\\nvalues: \" ,   signif (   sx [  minq ] ,  4 ) ,  \"...\" ,   signif (   sx [   minq +  width ] ,  4 ) ,  \"\\n\" , sep =  \"\" ) ) }   rv -   mean (   sx [   q :  (    q +  width -  1 ) ] ) }   return (  rv ) } ",
+    "filename": "shorth.txt"
+  },
+  "new_function": {
+    "name": "shorth",
+    "representation": "shorth",
+    "parameters": "function ( x , na.rm = FALSE , tie.action = \"mean\" , tie.limit = 0.05 )",
+    "body": "{   stopifnot (   is.numeric (  x ) )  if (  na.rm )   x -   x [  !   is.na (  x ) ]   rv -  NA  if (    length (  x ) =  1 )  {   sx -   sort (  x )   width -   round (   0.5 *   length (  x ) )   diffs -    sx [   (   width +  1 ) :   length (  x ) ] -   sx [   1 :  (    length (  x ) -  width ) ]   q -   which (   diffs ==   min (  diffs ) )  if (    length (  q ) undefined  1 )  { ## deal with ties:   maxq =   max (  q )   minq =   min (  q ) ## take the action specified in \"tie.action\"   q -   switch (  tie.action , mean =  {  if (    maxq -  minq =   tie.limit *   length (  x ) )  {   mean (  q ) } else  {   stop (   paste (  \"Encountered a tie, and the difference between minimal and maximal value is larger than 'length(x)*tie.limit'.\" ,  \"This could mean that the distribution does not have a single well-defined mode.\" ,   paste (  \"q=\" ,  minq ,  \"...\" ,  maxq ,  \",  values=\" ,   signif (   sx [  minq ] ,  4 ) ,  \"...\" ,   signif (   sx [   minq +  width ] ,  4 ) , sep =  \"\" ) , sep =  \"\\n\" ) ) } } , max =  maxq , ## largest midpoint (maxq) min =  minq , # smallest midpoint (minq)   stop (   sprintf (  \"Invalid value '%s' for argument 'tie.action'\" ,  tie.action ) ) ) }   rv -   mean (   sx [   q :  (    q +  width -  1 ) ] ) }   return (  rv ) } ",
+    "filename": "shorth.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genefilter_release_1_9 genefilter_release_2_1
+
+{
+    "package": "genefilter",
+    "release_versions": "genefilter_release_1_9 genefilter_release_2_1",
+    "desc_release_old": "1.12.0",
+    "desc_release_new": "1.16.0",
+    "old_release_number": 5,
+    "new_release_number": 6,
+    "function_removals": 0,
+    "function_additions": 11,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+rowVars
+dist2
+show
+plot
+[
+sens
+spec
+area
+pAUC
+AUC
+nsFilter
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genefilter_release_2_1 genefilter_release_2_2
+
+{
+    "package": "genefilter",
+    "release_versions": "genefilter_release_2_1 genefilter_release_2_2",
+    "desc_release_old": "1.16.0",
+    "desc_release_new": "1.20.1",
+    "old_release_number": 6,
+    "new_release_number": 7,
+    "function_removals": 0,
+    "function_additions": 2,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 4,
+    "total_count": 4
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+varFilter
+featureFilter
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "rowpAUCs",
+    "representation": "rowpAUCs",
+    "signature": "signature ( x =  matrix , fac =  factor )",
+    "parameters": "function ( x , fac , p = 0.1 , jitter = TRUE , caseNames = c ( \"1\" , \"2\" ) )",
+    "body": "{ ##check argument 'p'  if (   !   is.numeric (  p ) ||    length (  p ) undefined  1 )   stop (  \"'p' must be numeric of length 1\" ) ## check argument 'fac'   f =   genefilter ::: checkfac (  fac )  if (      f $ nrgrp !=  2 ||    length (   f $ fac ) !=   ncol (  x ) ||    length (   unique (   f $ fac ) ) !=  2 )   stop (  \"'fac' must be factor with 2 levels and length 'ncol(x)'\" ) ## compute cutpoints   cutpts -   matrix (   (   0 :   ncol (  x ) ) +  0.5 , ncol =    ncol (  x ) +  1 , nrow =   nrow (  x ) , byrow =  TRUE ) ## rank data   xr -   t (   apply (  x ,  1 ,  rank ) )    mode (  xr ) -  \"numeric\" ## add jitter  if (  jitter )   xr -   jitter (  xr , amount =  0.1 ) ## call C function and return object of class 'rowROC'   res -   .Call (  \"ROCpAUC\" ,  xr ,  cutpts ,   as.integer (   f $ fac ) ,  p , PACKAGE =  \"genefilter\" )   object -   new (  \"rowROC\" , data =  x , sens =   res $ sens , spec =   res $ spec , pAUC =   res $ pAUC , AUC =   res $ AUC , factor =   factor (   f $ fac ) , p =  p , ranks =  xr , caseNames =   as.character (  caseNames ) , cutpoints =  cutpts )   return (  object ) } ",
+    "filename": "rowpAUCs-methods.txt"
+  },
+  "new_function": {
+    "name": "rowpAUCs",
+    "representation": "rowpAUCs",
+    "signature": "signature ( x =  matrix , fac =  factor )",
+    "parameters": "function ( x , fac , p = 0.1 , flip = TRUE , caseNames = c ( \"1\" , \"2\" ) )",
+    "body": "{ ##check argument 'p'  if (   !   is.numeric (  p ) ||    length (  p ) undefined  1 )   stop (  \"'p' must be numeric of length 1\" ) ## check argument 'fac'   f =   genefilter ::: checkfac (  fac )  if (      f $ nrgrp !=  2 ||    length (   f $ fac ) !=   ncol (  x ) ||    length (   unique (   f $ fac ) ) !=  2 )   stop (  \"'fac' must be factor with 2 levels and length 'ncol(x)'\" ) ## check argument 'flip'  if (     length (  flip ) !=  1 ||  !  (   is.logical (  flip ) ) )   stop (  \"'flip' must be logical scalar\" )   flip -   as.integer (  flip ) ## compute cutpoints   cutpts -   matrix (   (   0 :   ncol (  x ) ) +  0.5 , ncol =    ncol (  x ) +  1 , nrow =   nrow (  x ) , byrow =  TRUE ) ## rank data   xr -   t (   apply (  x ,  1 ,  rank ) )    mode (  xr ) -  \"numeric\" ## call C function and return object of class 'rowROC'   res -   .Call (  \"ROCpAUC\" ,  xr ,  cutpts ,   as.integer (   f $ fac ) ,  p , PACKAGE =  \"genefilter\" ,  flip )   object -   new (  \"rowROC\" , data =  x , sens =   res $ sens , spec =   res $ spec , pAUC =   res $ pAUC , AUC =   res $ AUC , factor =   factor (   f $ fac ) , p =  p , ranks =  xr , caseNames =   as.character (  caseNames ) , cutpoints =  cutpts )   return (  object ) } ",
+    "filename": "rowpAUCs-methods.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "rowpAUCs",
+    "representation": "rowpAUCs",
+    "signature": "signature ( x =  matrix , fac =  numeric )",
+    "parameters": "function ( x , fac , p = 0.1 , jitter = FALSE , caseNames = c ( \"1\" , \"2\" ) )",
+    "body": "{   cutpts -   matrix (   (   0 :   ncol (  x ) ) +  0.5 , ncol =    ncol (  x ) +  1 , nrow =   nrow (  x ) , byrow =  TRUE )   rowpAUCs ( x =  x , fac =   factor (  fac ) , p =  p , jitter =  jitter , caseNames =  caseNames ) } ",
+    "filename": "rowpAUCs-methods.txt"
+  },
+  "new_function": {
+    "name": "rowpAUCs",
+    "representation": "rowpAUCs",
+    "signature": "signature ( x =  matrix , fac =  numeric )",
+    "parameters": "function ( x , fac , p = 0.1 , flip = TRUE , caseNames = c ( \"1\" , \"2\" ) )",
+    "body": "{   cutpts -   matrix (   (   0 :   ncol (  x ) ) +  0.5 , ncol =    ncol (  x ) +  1 , nrow =   nrow (  x ) , byrow =  TRUE )   rowpAUCs ( x =  x , fac =   factor (  fac ) , p =  p , flip =  flip , caseNames =  caseNames ) } ",
+    "filename": "rowpAUCs-methods.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "rowpAUCs",
+    "representation": "rowpAUCs",
+    "signature": "signature ( x =  ExpressionSet )",
+    "parameters": "function ( x , fac , p = 0.1 , jitter = FALSE , caseNames = c ( \"1\" , \"2\" ) )",
+    "body": "{   rowpAUCs ( x =   exprs (  x ) , fac =  fac , p =  p , jitter =  jitter , caseNames =  caseNames ) } ",
+    "filename": "rowpAUCs-methods.txt"
+  },
+  "new_function": {
+    "name": "rowpAUCs",
+    "representation": "rowpAUCs",
+    "signature": "signature ( x =  ExpressionSet )",
+    "parameters": "function ( x , fac , p = 0.1 , flip = TRUE , caseNames = c ( \"1\" , \"2\" ) )",
+    "body": "{   rowpAUCs ( x =   exprs (  x ) , fac =  fac , p =  p , flip =  flip , caseNames =  caseNames ) } ",
+    "filename": "rowpAUCs-methods.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "rowpAUCs",
+    "representation": "rowpAUCs",
+    "signature": "signature ( x =  ExpressionSet , fac =  character )",
+    "parameters": "function ( x , fac , p = 0.1 , jitter = FALSE , caseNames = c ( \"1\" , \"2\" ) )",
+    "body": "{  if (    length (  fac ) !=  1 )   stop (  \"fac must be length 1 character or a factor\" )   cn -   as.character (   levels (    pData (  x ) [[  fac ] ] ) )   fac =   factor (    as.integer (   factor (    pData (  x ) [[  fac ] ] ) ) -  1 )   rowpAUCs ( x =   exprs (  x ) , fac =  fac , p =  p , jitter =  jitter , caseNames =  cn ) } ",
+    "filename": "rowpAUCs-methods.txt"
+  },
+  "new_function": {
+    "name": "rowpAUCs",
+    "representation": "rowpAUCs",
+    "signature": "signature ( x =  ExpressionSet , fac =  character )",
+    "parameters": "function ( x , fac , p = 0.1 , flip = TRUE , caseNames = c ( \"1\" , \"2\" ) )",
+    "body": "{  if (    length (  fac ) ==  1 )  {  if (  !   fac %in%   colnames (   pData (  x ) ) )   stop (  \"fac must be length 1 character indicating a \" ,  \"covariate in the phenoData slot of the expressionSet\" )   cn -   as.character (   levels (    pData (  x ) [[  fac ] ] ) )   fac =   factor (    as.integer (   factor (    pData (  x ) [[  fac ] ] ) ) -  1 )   rowpAUCs ( x =   exprs (  x ) , fac =  fac , p =  p , flip =  flip , caseNames =  cn ) } else  {   rowpAUCs ( x =  x , fac =   as.factor (  fac ) , p =  p , flip =  flip , caseNames =  caseNames ) } } ",
+    "filename": "rowpAUCs-methods.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genefilter_release_2_2 genefilter_release_2_3
+
+{
+    "package": "genefilter",
+    "release_versions": "genefilter_release_2_2 genefilter_release_2_3",
+    "desc_release_old": "1.20.1",
+    "desc_release_new": "1.22.0",
+    "old_release_number": 7,
+    "new_release_number": 8,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genefilter_release_2_3 genefilter_release_2_4
+
+{
+    "package": "genefilter",
+    "release_versions": "genefilter_release_2_3 genefilter_release_2_4",
+    "desc_release_old": "1.22.0",
+    "desc_release_new": "1.24.3",
+    "old_release_number": 8,
+    "new_release_number": 9,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genefilter_release_2_4 genefilter_release_2_5
+
+{
+    "package": "genefilter",
+    "release_versions": "genefilter_release_2_4 genefilter_release_2_5",
+    "desc_release_old": "1.24.3",
+    "desc_release_new": "1.28.2",
+    "old_release_number": 9,
+    "new_release_number": 10,
+    "function_removals": 0,
+    "function_additions": 6,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+kappa_t
+kappa_p
+filtered_p
+filtered_R
+rejection_plot
+filter_volcano
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "featureFilter",
+    "representation": "featureFilter",
+    "parameters": "function ( eset , require.entrez = TRUE , require.GOBP = FALSE , require.GOCC = FALSE , require.GOMF = FALSE , remove.dupEntrez = TRUE , feature.exclude = \"^AFFX\" )",
+    "body": "{   annChip -   annotation (  eset )  if (    nchar (  annChip ) ==  0 )   stop (  \"'eset' must have a valid annotation slot\" )   getAnnEnv -  function ( map )  {   getAnnMap ( map =  map , chip =  annChip ) }   nfeat -  function ( eset )   length (   featureNames (  eset ) )   requireID -  function ( eset , map )  {   IDs -   mget (   featureNames (  eset ) , envir =   getAnnEnv (  map ) )   haveID -    names (  IDs ) [   sapply (  IDs ,  function ( x )  !   is.na (  x ) ) ]   eset [  haveID , ] }  if (  require.entrez )   eset -   requireID (  eset ,  \"ENTREZID\" )   filterGO -  function ( eset , ontology )  {   haveGo -   sapply (   mget (   featureNames (  eset ) ,   getAnnEnv (  \"GO\" ) ) ,  function ( x )  {  if (     length (  x ) ==  1 undefined   is.na (  x ) )  FALSE else  {   onts -   subListExtract (  x ,  \"Ontology\" , simplify =  TRUE )   ontology %in%  onts } } )   eset [  haveGo , ] }  if (  require.GOBP )   eset -   filterGO (  eset ,  \"BP\" )  if (  require.GOCC )   eset -   filterGO (  eset ,  \"CC\" )  if (  require.GOMF )   eset -   filterGO (  eset ,  \"MF\" )  if (   length (  feature.exclude ) )  {   fnms -   featureNames (  eset )   badIdx -   integer (  0 )  for  ( pat in  feature.exclude )  {  if (    nchar (  pat ) ==  0 )  next   badIdx -   c (   grep (  pat ,  fnms ) ,  badIdx ) }  if (   length (  badIdx ) )  {   badIdx -   unique (  badIdx )   eset -   eset [  -  badIdx , ] } }  if (  remove.dupEntrez )  { ## Reduce to unique probe ## We will want \"unique genes\" in the non-specific filtered gene ## set.   uniqGenes -   findLargest (   featureNames (  eset ) ,   rowIQRs (  eset ) ,   annotation (  eset ) )   eset -   eset [  uniqGenes , ] }  eset } ",
+    "filename": "nsFilter.txt"
+  },
+  "new_function": {
+    "name": "featureFilter",
+    "representation": "featureFilter",
+    "parameters": "function ( eset , require.entrez = TRUE , require.GOBP = FALSE , require.GOCC = FALSE , require.GOMF = FALSE , require.CytoBand = FALSE , remove.dupEntrez = TRUE , feature.exclude = \"^AFFX\" )",
+    "body": "{   annChip -   annotation (  eset )  if (    nchar (  annChip ) ==  0 )   stop (  \"'eset' must have a valid annotation slot\" )   getAnnEnv -  function ( map )  {   getAnnMap ( map =  map , chip =  annChip ) }   nfeat -  function ( eset )   length (   featureNames (  eset ) )   requireID -  function ( eset , map )  {   IDs -   mget (   featureNames (  eset ) , envir =   getAnnEnv (  map ) , ifnotfound =  NA )   haveID -    names (  IDs ) [   sapply (  IDs ,  function ( x )  !   is.na (  x ) ) ]   eset [  haveID , ] }  if (  require.entrez )  {   centID -   .findCentralID (  annChip )   eset -   requireID (  eset ,  centID ) }   filterGO -  function ( eset , ontology )  {   haveGo -   sapply (   mget (   featureNames (  eset ) ,   getAnnEnv (  \"GO\" ) , ifnotfound =  NA ) ,  function ( x )  {  if (     length (  x ) ==  1 undefined   is.na (  x ) )  FALSE else  {   onts -   subListExtract (  x ,  \"Ontology\" , simplify =  TRUE )   ontology %in%  onts } } )   eset [  haveGo , ] }  if (  require.GOBP )   eset -   filterGO (  eset ,  \"BP\" )  if (  require.GOCC )   eset -   filterGO (  eset ,  \"CC\" )  if (  require.GOMF )   eset -   filterGO (  eset ,  \"MF\" )  if (   length (  feature.exclude ) )  {   fnms -   featureNames (  eset )   badIdx -   integer (  0 )  for  ( pat in  feature.exclude )  {  if (    nchar (  pat ) ==  0 )  next   badIdx -   c (   grep (  pat ,  fnms ) ,  badIdx ) }  if (   length (  badIdx ) )  {   badIdx -   unique (  badIdx )   eset -   eset [  -  badIdx , ] } }  if (  remove.dupEntrez )  { ## Reduce to unique probe ## We will want \"unique genes\" in the non-specific filtered gene ## set.   uniqGenes -   findLargest (   featureNames (  eset ) ,   rowIQRs (  eset ) ,   annotation (  eset ) )   eset -   eset [  uniqGenes , ] }   requireCytoBand -  function ( eset )  {   MAPs -   mget (   featureNames (  eset ) , envir =   getAnnEnv (  \"MAP\" ) , ifnotfound =  NA )   haveMAP -    names (  MAPs ) [   sapply (  MAPs ,  function ( x )  !   is.na (   x [  1 ] ) ) ]   eset [  haveMAP , ] }  if (  require.CytoBand )   eset -   requireCytoBand (  eset )  eset } ",
+    "filename": "nsFilter.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genefilter_release_2_5 genefilter_release_2_6
+
+{
+    "package": "genefilter",
+    "release_versions": "genefilter_release_2_5 genefilter_release_2_6",
+    "desc_release_old": "1.28.2",
+    "desc_release_new": "1.30.0",
+    "old_release_number": 10,
+    "new_release_number": 11,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genefilter_release_2_6 genefilter_release_2_7
+
+{
+    "package": "genefilter",
+    "release_versions": "genefilter_release_2_6 genefilter_release_2_7",
+    "desc_release_old": "1.30.0",
+    "desc_release_new": "1.32.0",
+    "old_release_number": 11,
+    "new_release_number": 12,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genefilter_release_2_7 genefilter_release_2_8
+
+{
+    "package": "genefilter",
+    "release_versions": "genefilter_release_2_7 genefilter_release_2_8",
+    "desc_release_old": "1.32.0",
+    "desc_release_new": "1.34.0",
+    "old_release_number": 12,
+    "new_release_number": 13,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genefilter_release_2_8 genefilter_release_2_9
+
+{
+    "package": "genefilter",
+    "release_versions": "genefilter_release_2_8 genefilter_release_2_9",
+    "desc_release_old": "1.34.0",
+    "desc_release_new": "1.36.0",
+    "old_release_number": 13,
+    "new_release_number": 14,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genefilter_release_2_9 genefilter_release_2_11
+
+{
+    "package": "genefilter",
+    "release_versions": "genefilter_release_2_9 genefilter_release_2_11",
+    "desc_release_old": "1.36.0",
+    "desc_release_new": "1.40.0",
+    "old_release_number": 14,
+    "new_release_number": 15,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genefilter_release_2_11 genefilter_release_2_12
+
+{
+    "package": "genefilter",
+    "release_versions": "genefilter_release_2_11 genefilter_release_2_12",
+    "desc_release_old": "1.40.0",
+    "desc_release_new": "1.42.0",
+    "old_release_number": 15,
+    "new_release_number": 16,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genefilter_release_2_12 genefilter_release_2_13
+
+{
+    "package": "genefilter",
+    "release_versions": "genefilter_release_2_12 genefilter_release_2_13",
+    "desc_release_old": "1.42.0",
+    "desc_release_new": "1.44.0",
+    "old_release_number": 16,
+    "new_release_number": 17,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genefilter_release_2_13 genefilter_release_2_14
+
+{
+    "package": "genefilter",
+    "release_versions": "genefilter_release_2_13 genefilter_release_2_14",
+    "desc_release_old": "1.44.0",
+    "desc_release_new": "1.46.1",
+    "old_release_number": 17,
+    "new_release_number": 18,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genefilter_release_2_14 genefilter_release_3_1
+
+{
+    "package": "genefilter",
+    "release_versions": "genefilter_release_2_14 genefilter_release_3_1",
+    "desc_release_old": "1.46.1",
+    "desc_release_new": "1.50.0",
+    "old_release_number": 18,
+    "new_release_number": 19,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genefilter_release_3_1 genefilter_release_3_2
+
+{
+    "package": "genefilter",
+    "release_versions": "genefilter_release_3_1 genefilter_release_3_2",
+    "desc_release_old": "1.50.0",
+    "desc_release_new": "1.52.1",
+    "old_release_number": 19,
+    "new_release_number": 20,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genefilter_release_3_2 genefilter_release_3_3
+
+{
+    "package": "genefilter",
+    "release_versions": "genefilter_release_3_2 genefilter_release_3_3",
+    "desc_release_old": "1.52.1",
+    "desc_release_new": "1.54.2",
+    "old_release_number": 20,
+    "new_release_number": 21,
+    "function_removals": 2,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+allNA
+anyNA
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genefilter_release_3_3 genefilter_release_3_4
+
+{
+    "package": "genefilter",
+    "release_versions": "genefilter_release_3_3 genefilter_release_3_4",
+    "desc_release_old": "1.54.2",
+    "desc_release_new": "1.56.0",
+    "old_release_number": 21,
+    "new_release_number": 22,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genefilter_release_3_4 genefilter_release_3_5
+
+{
+    "package": "genefilter",
+    "release_versions": "genefilter_release_3_4 genefilter_release_3_5",
+    "desc_release_old": "1.56.0",
+    "desc_release_new": "1.58.1",
+    "old_release_number": 22,
+    "new_release_number": 23,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genefilter_release_3_5 genefilter_release_3_6
+
+{
+    "package": "genefilter",
+    "release_versions": "genefilter_release_3_5 genefilter_release_3_6",
+    "desc_release_old": "1.58.1",
+    "desc_release_new": "1.60.0",
+    "old_release_number": 23,
+    "new_release_number": 24,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genefilter_release_3_6 genefilter_release_3_7
+
+{
+    "package": "genefilter",
+    "release_versions": "genefilter_release_3_6 genefilter_release_3_7",
+    "desc_release_old": "1.60.0",
+    "desc_release_new": "1.62.0",
+    "old_release_number": 24,
+    "new_release_number": 25,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genefilter_release_3_7 genefilter_release_3_8
+
+{
+    "package": "genefilter",
+    "release_versions": "genefilter_release_3_7 genefilter_release_3_8",
+    "desc_release_old": "1.62.0",
+    "desc_release_new": "1.64.0",
+    "old_release_number": 25,
+    "new_release_number": 26,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genefilter_release_3_8 genefilter_release_3_9
+
+{
+    "package": "genefilter",
+    "release_versions": "genefilter_release_3_8 genefilter_release_3_9",
+    "desc_release_old": "1.64.0",
+    "desc_release_new": "1.66.0",
+    "old_release_number": 26,
+    "new_release_number": 27,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genefilter_release_3_9 genefilter_release_3_11
+
+{
+    "package": "genefilter",
+    "release_versions": "genefilter_release_3_9 genefilter_release_3_11",
+    "desc_release_old": "1.66.0",
+    "desc_release_new": "1.70.0",
+    "old_release_number": 27,
+    "new_release_number": 28,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genefilter_release_3_11 genefilter_release_3_12
+
+{
+    "package": "genefilter",
+    "release_versions": "genefilter_release_3_11 genefilter_release_3_12",
+    "desc_release_old": "1.70.0",
+    "desc_release_new": "1.72.1",
+    "old_release_number": 28,
+    "new_release_number": 29,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genefilter_release_3_12 genefilter_release_3_13
+
+{
+    "package": "genefilter",
+    "release_versions": "genefilter_release_3_12 genefilter_release_3_13",
+    "desc_release_old": "1.72.1",
+    "desc_release_new": "1.74.1",
+    "old_release_number": 29,
+    "new_release_number": 30,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genefilter_release_3_13 genefilter_release_3_14
+
+{
+    "package": "genefilter",
+    "release_versions": "genefilter_release_3_13 genefilter_release_3_14",
+    "desc_release_old": "1.74.1",
+    "desc_release_new": "1.76.0",
+    "old_release_number": 30,
+    "new_release_number": 31,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genefilter_release_3_14 genefilter_master
+
+{
+    "package": "genefilter",
+    "release_versions": "genefilter_release_3_14 genefilter_master",
+    "desc_release_old": "1.76.0",
+    "desc_release_new": "1.77.0",
+    "old_release_number": 31,
+    "new_release_number": 32,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+

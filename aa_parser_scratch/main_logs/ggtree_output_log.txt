@@ -1,0 +1,1217 @@
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  ggtree_release_3_1 ggtree_release_3_2
+
+{
+    "package": "ggtree",
+    "release_versions": "ggtree_release_3_1 ggtree_release_3_2",
+    "desc_release_old": "1.0.21",
+    "desc_release_new": "1.2.17",
+    "old_release_number": 0,
+    "new_release_number": 1,
+    "function_removals": 8,
+    "function_additions": 31,
+    "parameter_removals": 6,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 2,
+    "total_count": 10
+}
+
+##########
+Functions Removed
+##########
+
+add_legend
+aes
+annotation_clade
+annotation_clade2
+geom_text
+ggplotGrob
+gplot
+hilight
+
+
+##########
+Functions Added
+##########
+
+MRCA
+StatHilight
+apeBoot
+geom_cladelabel
+geom_hilight
+geom_point2
+geom_segment2
+geom_text2
+geom_tree2
+geom_treescale
+get_clade_position
+get_heatmap_column_position
+inset
+multiplot
+nodebar
+nodepie
+phyPML
+pmlToSeq
+raxml2nwk
+read.nhx
+read.phylip
+rescale_tree
+stat_hilight
+theme_inset
+viewClade
+fortify.apeBootstrap
+fortify.nhx
+fortify.obkData
+fortify.phangorn
+fortify.phylip
+fortify.phyloseq
+
+
+##########
+Removed Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "scaleClade",
+    "representation": "scaleClade",
+    "parameters": "function ( tree_view , node , scale = 1 , vertical_only = TRUE )",
+    "body": "{  if (   scale ==  1 )  {   return (  tree_view ) }   df -   tree_view $ data   sp -   get.offspring.df (  df ,  node )   sp.df -   df [  sp , ] ## sp_nr ## span ## new_span   old.sp.df -  sp.df    sp.df $ y -    df [  node ,  \"y\" ] +   (    sp.df $ y -   df [  node ,  \"y\" ] ) *  scale  if (   vertical_only ==  FALSE )  {    sp.df $ x -    df [  node ,  \"x\" ] +   (    sp.df $ x -   df [  node ,  \"x\" ] ) *  scale }   scale_diff.up -    max (   sp.df $ y ) -   max (   old.sp.df $ y )   scale_diff.lw -    min (   sp.df $ y ) -   min (   old.sp.df $ y )   ii -    df $ y undefined   max (   old.sp.df $ y )  if (    sum (  ii ) undefined  0 )  {    df [  ii ,  \"y\" ] -    df [  ii ,  \"y\" ] +  scale_diff.up }   jj -    df $ y undefined   min (   old.sp.df $ y )  if (    sum (  jj ) undefined  0 )  {    df [  jj ,  \"y\" ] -    df [  jj ,  \"y\" ] +  scale_diff.lw }    df [  sp , ] -  sp.df  if (  !   \"scale\" %in%   colnames (  df ) )  {    df $ scale -  1 }    df [  sp ,  \"scale\" ] -    df [  sp ,  \"scale\" ] *  scale ## re-calculate branch mid position   df -   calculate_branch_mid (  df )    tree_view $ data -  df  tree_view } ",
+    "filename": "ggtree.txt"
+  },
+  "new_function": {
+    "name": "scaleClade",
+    "representation": "scaleClade",
+    "parameters": "function ( tree_view = NULL , node , scale = 1 , vertical_only = TRUE )",
+    "body": "{   tree_view %  get_tree_view  if (   scale ==  1 )  {   return (  tree_view ) }   df -   tree_view $ data   sp -   get.offspring.df (  df ,  node )   sp.df -   df [  sp , ] ## sp_nr ## span ## new_span   old.sp.df -  sp.df    sp.df $ y -    df [  node ,  \"y\" ] +   (    sp.df $ y -   df [  node ,  \"y\" ] ) *  scale  if (   vertical_only ==  FALSE )  {    sp.df $ x -    df [  node ,  \"x\" ] +   (    sp.df $ x -   df [  node ,  \"x\" ] ) *  scale }   scale_diff.up -    max (   sp.df $ y ) -   max (   old.sp.df $ y )   scale_diff.lw -    min (   sp.df $ y ) -   min (   old.sp.df $ y )   ii -    df $ y undefined   max (   old.sp.df $ y )  if (    sum (  ii ) undefined  0 )  {    df [  ii ,  \"y\" ] -    df [  ii ,  \"y\" ] +  scale_diff.up }   jj -    df $ y undefined   min (   old.sp.df $ y )  if (    sum (  jj ) undefined  0 )  {    df [  jj ,  \"y\" ] -    df [  jj ,  \"y\" ] +  scale_diff.lw }    df [  sp , ] -  sp.df  if (  !   \"scale\" %in%   colnames (  df ) )  {    df $ scale -  1 }    df [  sp ,  \"scale\" ] -    df [  sp ,  \"scale\" ] *  scale ## re-calculate branch mid position   df -   calculate_branch_mid (  df )    tree_view $ data -  df  tree_view } ",
+    "filename": "clade-functions.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "flip",
+    "representation": "flip",
+    "parameters": "function ( tree_view , node1 , node2 )",
+    "body": "{   df -   tree_view $ data   p1 -   with (  df ,   parent [   node ==  node1 ] )   p2 -   with (  df ,   parent [   node ==  node2 ] )  if (   p1 !=  p2 )  {   stop (  \"node1 and node2 should share a same parent node...\" ) }   sp1 -   c (  node1 ,   get.offspring.df (  df ,  node1 ) )   sp2 -   c (  node2 ,   get.offspring.df (  df ,  node2 ) )   sp1.df -   df [  sp1 , ]   sp2.df -   df [  sp2 , ]   min_y1 -   min (   sp1.df $ y )   min_y2 -   min (   sp2.df $ y )  if (   min_y1 undefined  min_y2 )  {   tmp -  sp1.df   sp1.df -  sp2.df   sp2.df -  tmp   tmp -  sp1   sp1 -  sp2   sp2 -  tmp }   min_y1 -   min (   sp1.df $ y )   min_y2 -   min (   sp2.df $ y )   space -    min (   sp1.df $ y ) -   max (   sp2.df $ y )    sp1.df $ y -    sp1.df $ y -   abs (   min_y1 -  min_y2 )    sp2.df $ y -      sp2.df $ y +   max (   sp1.df $ y ) +  space -   min (   sp2.df $ y )    df [  sp1 ,  \"y\" ] -   sp1.df $ y    df [  sp2 ,  \"y\" ] -   sp2.df $ y   anc -   getAncestor.df (  df ,  node1 )   ii -   match (  anc ,   df $ node )    df [  ii ,  \"y\" ] -  NA   currentNode -   unlist (   as.vector (   sapply (  anc ,  getChild.df , df =  df ) ) )   currentNode -   currentNode [  !   currentNode %in%  anc ]    tree_view $ data -   re_assign_ycoord_df (  df ,  currentNode )  tree_view } ",
+    "filename": "ggtree.txt"
+  },
+  "new_function": {
+    "name": "flip",
+    "representation": "flip",
+    "parameters": "function ( tree_view = NULL , node1 , node2 )",
+    "body": "{   tree_view %  get_tree_view   df -   tree_view $ data   p1 -   with (  df ,   parent [   node ==  node1 ] )   p2 -   with (  df ,   parent [   node ==  node2 ] )  if (   p1 !=  p2 )  {   stop (  \"node1 and node2 should share a same parent node...\" ) }   sp1 -   c (  node1 ,   get.offspring.df (  df ,  node1 ) )   sp2 -   c (  node2 ,   get.offspring.df (  df ,  node2 ) )   sp1.df -   df [  sp1 , ]   sp2.df -   df [  sp2 , ]   min_y1 -   min (   sp1.df $ y )   min_y2 -   min (   sp2.df $ y )  if (   min_y1 undefined  min_y2 )  {   tmp -  sp1.df   sp1.df -  sp2.df   sp2.df -  tmp   tmp -  sp1   sp1 -  sp2   sp2 -  tmp }   min_y1 -   min (   sp1.df $ y )   min_y2 -   min (   sp2.df $ y )   space -    min (   sp1.df $ y ) -   max (   sp2.df $ y )    sp1.df $ y -    sp1.df $ y -   abs (   min_y1 -  min_y2 )    sp2.df $ y -      sp2.df $ y +   max (   sp1.df $ y ) +  space -   min (   sp2.df $ y )    df [  sp1 ,  \"y\" ] -   sp1.df $ y    df [  sp2 ,  \"y\" ] -   sp2.df $ y   anc -   getAncestor.df (  df ,  node1 )   ii -   match (  anc ,   df $ node )    df [  ii ,  \"y\" ] -  NA   currentNode -   unlist (   as.vector (   sapply (  anc ,  getChild.df , df =  df ) ) )   currentNode -   currentNode [  !   currentNode %in%  anc ]    tree_view $ data -   re_assign_ycoord_df (  df ,  currentNode )  tree_view } ",
+    "filename": "clade-functions.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "rotate",
+    "representation": "rotate",
+    "parameters": "function ( tree_view , node )",
+    "body": "{   df -   tree_view $ data   sp -   get.offspring.df (  df ,  node )   sp_idx -   with (  df ,   match (  sp ,  node ) )   tip -   sp [    df $ isTip [  sp_idx ] ]   sp.df -   df [  sp_idx , ]   ii -   with (  sp.df ,   match (  tip ,  node ) )   jj -   ii [   order (   sp.df [  ii ,  \"y\" ] ) ]    sp.df [  jj ,  \"y\" ] -   rev (   sp.df [  jj ,  \"y\" ] )    sp.df [  -  jj ,  \"y\" ] -  NA   sp.df -   re_assign_ycoord_df (  sp.df ,  tip )    df [  sp_idx ,  \"y\" ] -   sp.df $ y    df [    df $ node ==  node ,  \"y\" ] -   mean (   df [    df $ parent ==  node ,  \"y\" ] )   pnode -    df $ parent [    df $ node ==  node ]  if (    pnode !=  node undefined  !   is.na (  pnode ) )  {    df [    df $ node ==  pnode ,  \"y\" ] -   mean (   df [    df $ parent ==  pnode ,  \"y\" ] ) }    tree_view $ data -  df  tree_view } ",
+    "filename": "ggtree.txt"
+  },
+  "new_function": {
+    "name": "rotate",
+    "representation": "rotate",
+    "parameters": "function ( tree_view = NULL , node )",
+    "body": "{   tree_view %  get_tree_view   df -   tree_view $ data   sp -   get.offspring.df (  df ,  node )   sp_idx -   with (  df ,   match (  sp ,  node ) )   tip -   sp [    df $ isTip [  sp_idx ] ]   sp.df -   df [  sp_idx , ]   ii -   with (  sp.df ,   match (  tip ,  node ) )   jj -   ii [   order (   sp.df [  ii ,  \"y\" ] ) ]    sp.df [  jj ,  \"y\" ] -   rev (   sp.df [  jj ,  \"y\" ] )    sp.df [  -  jj ,  \"y\" ] -  NA   sp.df -   re_assign_ycoord_df (  sp.df ,  tip )    df [  sp_idx ,  \"y\" ] -   sp.df $ y    df [    df $ node ==  node ,  \"y\" ] -   mean (   df [    df $ parent ==  node ,  \"y\" ] )   pnode -    df $ parent [    df $ node ==  node ]  if (    pnode !=  node undefined  !   is.na (  pnode ) )  {    df [    df $ node ==  pnode ,  \"y\" ] -   mean (   df [    df $ parent ==  pnode ,  \"y\" ] ) }    tree_view $ data -  df  tree_view } ",
+    "filename": "clade-functions.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "collapse",
+    "representation": "collapse",
+    "parameters": "function ( tree_view , node )",
+    "body": "{   df -   tree_view $ data   sp -   get.offspring.df (  df ,  node )   sp.df -   df [  sp , ]    df [  node ,  \"isTip\" ] -  TRUE   sp_y -   range (   sp.df $ y )   ii -   which (    df $ y undefined   max (  sp_y ) )  if (   length (  ii ) )  {     df $ y [  ii ] -     df $ y [  ii ] -   diff (  sp_y ) }     df $ y [  node ] -   min (  sp_y )    df [  sp ,  \"x\" ] -  NA    df [  sp ,  \"y\" ] -  NA   root -   which (    df $ node ==   df $ parent )   pp -   df [  node ,  \"parent\" ]  while (   any (   pp !=  root ) )  {    df [  pp ,  \"y\" ] -   mean (   df [   getChild.df (  df ,  pp ) ,  \"y\" ] )   pp -   df [  pp ,  \"parent\" ] }   j -   getChild.df (  df ,  pp )   j -   j [   j !=  pp ]    df [  pp ,  \"y\" ] -   mean (   df [  j ,  \"y\" ] ) ## re-calculate branch mid position   df -   calculate_branch_mid (  df )    tree_view $ data -  df   clade -   paste0 (  \"clade_\" ,  node )    attr (  tree_view ,  clade ) -  sp.df  tree_view } ",
+    "filename": "ggtree.txt"
+  },
+  "new_function": {
+    "name": "collapse",
+    "representation": "collapse",
+    "parameters": "function ( tree_view = NULL , node )",
+    "body": "{   tree_view %  get_tree_view   df -   tree_view $ data   sp -   get.offspring.df (  df ,  node )   sp.df -   df [  sp , ]    df [  node ,  \"isTip\" ] -  TRUE   sp_y -   range (   sp.df $ y )   ii -   which (    df $ y undefined   max (  sp_y ) )  if (   length (  ii ) )  {     df $ y [  ii ] -     df $ y [  ii ] -   diff (  sp_y ) }     df $ y [  node ] -   min (  sp_y )    df [  sp ,  \"x\" ] -  NA    df [  sp ,  \"y\" ] -  NA   root -   which (    df $ node ==   df $ parent )   pp -   df [  node ,  \"parent\" ]  while (   any (   pp !=  root ) )  {    df [  pp ,  \"y\" ] -   mean (   df [   getChild.df (  df ,  pp ) ,  \"y\" ] )   pp -   df [  pp ,  \"parent\" ] }   j -   getChild.df (  df ,  pp )   j -   j [   j !=  pp ]    df [  pp ,  \"y\" ] -   mean (   df [  j ,  \"y\" ] ) ## re-calculate branch mid position   df -   calculate_branch_mid (  df )    tree_view $ data -  df   clade -   paste0 (  \"clade_\" ,  node )    attr (  tree_view ,  clade ) -  sp.df  tree_view } ",
+    "filename": "clade-functions.txt"
+  }
+}
+
+4.
+{
+  "old_function": {
+    "name": "expand",
+    "representation": "expand",
+    "parameters": "function ( tree_view , node )",
+    "body": "{   clade -   paste0 (  \"clade_\" ,  node )   sp.df -   attr (  tree_view ,  clade )  if (   is.null (  sp.df ) )  {   return (  tree_view ) }   df -   tree_view $ data    df [  node ,  \"isTip\" ] -  FALSE   sp_y -   range (   sp.df $ y )   ii -   which (    df $ y undefined    df $ y [  node ] )    df [  ii ,  \"y\" ] -    df [  ii ,  \"y\" ] +   diff (  sp_y )    sp.df $ y -     sp.df $ y -   min (   sp.df $ y ) +    df $ y [  node ]    df [   sp.df $ node , ] -  sp.df   root -   which (    df $ node ==   df $ parent )   pp -  node  while (   any (   pp !=  root ) )  {    df [  pp ,  \"y\" ] -   mean (   df [   getChild.df (  df ,  pp ) ,  \"y\" ] )   pp -   df [  pp ,  \"parent\" ] }   j -   getChild.df (  df ,  pp )   j -   j [   j !=  pp ]    df [  pp ,  \"y\" ] -   mean (   df [  j ,  \"y\" ] ) ## re-calculate branch mid position   df -   calculate_branch_mid (  df )    tree_view $ data -  df    attr (  tree_view ,  clade ) -  NULL  tree_view } ",
+    "filename": "ggtree.txt"
+  },
+  "new_function": {
+    "name": "expand",
+    "representation": "expand",
+    "parameters": "function ( tree_view = NULL , node )",
+    "body": "{   tree_view %  get_tree_view   clade -   paste0 (  \"clade_\" ,  node )   sp.df -   attr (  tree_view ,  clade )  if (   is.null (  sp.df ) )  {   return (  tree_view ) }   df -   tree_view $ data    df [  node ,  \"isTip\" ] -  FALSE   sp_y -   range (   sp.df $ y )   ii -   which (    df $ y undefined    df $ y [  node ] )    df [  ii ,  \"y\" ] -    df [  ii ,  \"y\" ] +   diff (  sp_y )    sp.df $ y -     sp.df $ y -   min (   sp.df $ y ) +    df $ y [  node ]    df [   sp.df $ node , ] -  sp.df   root -   which (    df $ node ==   df $ parent )   pp -  node  while (   any (   pp !=  root ) )  {    df [  pp ,  \"y\" ] -   mean (   df [   getChild.df (  df ,  pp ) ,  \"y\" ] )   pp -   df [  pp ,  \"parent\" ] }   j -   getChild.df (  df ,  pp )   j -   j [   j !=  pp ]    df [  pp ,  \"y\" ] -   mean (   df [  j ,  \"y\" ] ) ## re-calculate branch mid position   df -   calculate_branch_mid (  df )    tree_view $ data -  df    attr (  tree_view ,  clade ) -  NULL  tree_view } ",
+    "filename": "clade-functions.txt"
+  }
+}
+
+5.
+{
+  "old_function": {
+    "name": "get_taxa_name",
+    "representation": "get_taxa_name",
+    "parameters": "function ( tree_view , node )",
+    "body": "{   df -   tree_view $ data   sp -   get.offspring.df (  df ,  node )   res -   df [  sp ,  \"label\" ]   return (   res [   df [  sp ,  \"isTip\" ] ] ) } ",
+    "filename": "ggtree.txt"
+  },
+  "new_function": {
+    "name": "get_taxa_name",
+    "representation": "get_taxa_name",
+    "parameters": "function ( tree_view = NULL , node )",
+    "body": "{   tree_view %  get_tree_view   df -   tree_view $ data   sp -   get.offspring.df (  df ,  node )   res -   df [  sp ,  \"label\" ]   return (   res [   df [  sp ,  \"isTip\" ] ] ) } ",
+    "filename": "clade-functions.txt"
+  }
+}
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "gheatmap",
+    "representation": "gheatmap",
+    "parameters": "function ( p , data , offset = 0 , width = 1 , low = \"green\" , high = \"red\" , color = \"white\" , colnames = TRUE , colnames_position = \"bottom\" , font.size = 4 )",
+    "body": "{   colnames_position %   match.arg (   c (  \"bottom\" ,  \"top\" ) ) ## if (is.null(width)) { ##     width ## } ## convert width to width of each cell   width -    width *  (      p $ data $ x %  range %  diff ) /   ncol (  data )   isTip -   x -   y -   variable -   value -   from -   to -  NULL   df =   p $ data   df =   df [   df $ isTip , ]   start -    max (   df $ x ) +  offset   dd -   data [    df $ label [   order (   df $ y ) ] , ]    dd $ y -   sort (   df $ y )    dd $ lab -   rownames (  dd )   dd -   melt (  dd , id =   c (  \"lab\" ,  \"y\" ) )  if (   any (    dd $ value ==  \"\" ) )  {     dd $ value [    dd $ value ==  \"\" ] -  NA }   V2 -   start +    as.numeric (   dd $ variable ) *  width   mapping -   data.frame ( from =   dd $ variable , to =  V2 )   mapping -   unique (  mapping )    dd $ x -  V2   p2 -   p +   geom_tile ( data =  dd ,   aes (  x ,  y , fill =  value ) , color =  color , inherit.aes =  FALSE )  if (   is (   dd $ value ,  \"numeric\" ) )  {   p2 -   p2 +   scale_fill_gradient ( low =  low , high =  high , na.value =  \"white\" ) } else  {   p2 -   p2 +   scale_fill_discrete ( na.value =  \"white\" ) }  if (  colnames )  {  if (   colnames_position ==  \"bottom\" )  {   y -  0 } else  {   y -    max (    p $ data $ y ) +  1 }   p2 -   p2 +   geom_text ( data =  mapping ,   aes ( x =  to , label =  from ) , y =  y , size =  font.size , inherit.aes =  FALSE ) }   p2 -   p2 +   theme ( legend.position =  \"right\" , legend.title =   element_blank ( ) )   p2 -   p2 +   guides ( fill =   guide_legend ( override.aes =   list ( colour =  NULL ) ) )    attr (  p2 ,  \"mapping\" ) -  mapping   return (  p2 ) } ",
+    "filename": "gplot.txt"
+  },
+  "new_function": {
+    "name": "gheatmap",
+    "representation": "gheatmap",
+    "parameters": "function ( p , data , offset = 0 , width = 1 , low = \"green\" , high = \"red\" , color = \"white\" , colnames = TRUE , colnames_position = \"bottom\" , colnames_level = NULL , font.size = 4 )",
+    "body": "{   colnames_position %   match.arg (   c (  \"bottom\" ,  \"top\" ) )   variable -   value -   lab -   y -  NULL ## if (is.null(width)) { ##     width ## } ## convert width to width of each cell   width -    width *  (      p $ data $ x %  range %  diff ) /   ncol (  data )   isTip -   x -   y -   variable -   value -   from -   to -  NULL   df -   p $ data   df -   df [   df $ isTip , ]   start -    max (   df $ x ) +  offset   dd -   data [    df $ label [   order (   df $ y ) ] , ]    dd $ y -   sort (   df $ y )    dd $ lab -   rownames (  dd ) ## dd   dd -   gather (  dd ,  variable ,  value ,  -   c (  lab ,  y ) )  if (   any (    dd $ value ==  \"\" ) )  {     dd $ value [    dd $ value ==  \"\" ] -  NA }  if (   is.null (  colnames_level ) )  {    dd $ variable -   factor (   dd $ variable , levels =   colnames (  data ) ) } else  {    dd $ variable -   factor (   dd $ variable , levels =  colnames_level ) }   V2 -   start +    as.numeric (   dd $ variable ) *  width   mapping -   data.frame ( from =   dd $ variable , to =  V2 )   mapping -   unique (  mapping )    dd $ x -  V2  if (   is.null (  color ) )  {   p2 -   p +   geom_tile ( data =  dd ,   aes (  x ,  y , fill =  value ) , inherit.aes =  FALSE ) } else  {   p2 -   p +   geom_tile ( data =  dd ,   aes (  x ,  y , fill =  value ) , color =  color , inherit.aes =  FALSE ) }  if (   is (   dd $ value ,  \"numeric\" ) )  {   p2 -   p2 +   scale_fill_gradient ( low =  low , high =  high , na.value =  \"white\" ) } else  {   p2 -   p2 +   scale_fill_discrete ( na.value =  \"white\" ) }  if (  colnames )  {  if (   colnames_position ==  \"bottom\" )  {   y -  0 } else  {   y -    max (    p $ data $ y ) +  1 }   p2 -   p2 +   geom_text ( data =  mapping ,   aes ( x =  to , label =  from ) , y =  y , size =  font.size , inherit.aes =  FALSE ) }   p2 -   p2 +   theme ( legend.position =  \"right\" , legend.title =   element_blank ( ) )   p2 -   p2 +   guides ( fill =   guide_legend ( override.aes =   list ( colour =  NULL ) ) )    attr (  p2 ,  \"mapping\" ) -  mapping   return (  p2 ) } ",
+    "filename": "gheatmap.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "scale_x_ggtree",
+    "representation": "scale_x_ggtree",
+    "parameters": "function ( p , breaks = NULL , labels = NULL )",
+    "body": "{   mrsd -   attr (  p ,  \"mrsd\" )  if (   !   is.null (  mrsd ) undefined    class (    p $ data $ x ) ==  \"Date\" )  {   x -   Date2decimal (    p $ data $ x ) } else  {   x -    p $ data $ x }  if (   is.null (  breaks ) )  {   breaks -    hist (  x , breaks =  5 , plot =  FALSE ) $ breaks }   m -   attr (  p ,  \"mapping\" )  if (   !   is.null (  mrsd ) undefined    class (   m $ to ) ==  \"Date\" )  {   to -   Date2decimal (   m $ to ) } else  {   to -   m $ to }   idx -   which (   sapply (  breaks ,  function ( x )   any (   x undefined   m $ to ) ) )  if (   length (  idx ) )  {   breaks -   breaks [  -  idx ] }  if (   is.null (  labels ) )  {   labels -  breaks }   breaks -   c (  breaks ,  to )   labels -   c (  labels ,   gsub (  \"\\\\.\" ,  \"\" ,   as.character (   m $ from ) ) )  if (   !   is.null (  mrsd ) undefined    class (    p $ data $ x ) ==  \"Date\" )  {   p -   p +   scale_x_date ( breaks =   decimal2Date (  breaks ) ,  labels ) } else  {   p -   p +   scale_x_continuous ( breaks =  breaks , labels =  labels ) }   return (  p ) } ",
+    "filename": "gplot.txt"
+  },
+  "new_function": {
+    "name": "scale_x_ggtree",
+    "representation": "scale_x_ggtree",
+    "parameters": "function ( tree_view , breaks = NULL , labels = NULL )",
+    "body": "{   p -   get_tree_view (  tree_view )   mrsd -   attr (  p ,  \"mrsd\" )  if (   !   is.null (  mrsd ) undefined    class (    p $ data $ x ) ==  \"Date\" )  {   x -   Date2decimal (    p $ data $ x ) } else  {   x -    p $ data $ x }  if (   is.null (  breaks ) )  {   breaks -    hist (  x , breaks =  5 , plot =  FALSE ) $ breaks }   m -   attr (  p ,  \"mapping\" )  if (   !   is.null (  mrsd ) undefined    class (   m $ to ) ==  \"Date\" )  {   to -   Date2decimal (   m $ to ) } else  {   to -   m $ to }   idx -   which (   sapply (  breaks ,  function ( x )   any (   x undefined   m $ to ) ) )  if (   length (  idx ) )  {   breaks -   breaks [  -  idx ] }  if (   is.null (  labels ) )  {   labels -  breaks }   breaks -   c (  breaks ,  to )   labels -   c (  labels ,   gsub (  \"\\\\.\" ,  \"\" ,   as.character (   m $ from ) ) )  if (   !   is.null (  mrsd ) undefined    class (    p $ data $ x ) ==  \"Date\" )  {   p -   p +   scale_x_date ( breaks =   decimal2Date (  breaks ) ,  labels ) } else  {   p -   p +   scale_x_continuous ( breaks =  breaks , labels =  labels ) }   return (  p ) } ",
+    "filename": "gplot.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  ggtree_release_3_2 ggtree_release_3_3
+
+{
+    "package": "ggtree",
+    "release_versions": "ggtree_release_3_2 ggtree_release_3_3",
+    "desc_release_old": "1.2.17",
+    "desc_release_new": "1.4.20",
+    "old_release_number": 1,
+    "new_release_number": 2,
+    "function_removals": 0,
+    "function_additions": 15,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+StatBalance
+geom_balance
+geom_label2
+geom_range
+geom_strip
+geom_taxalink
+geom_tiplab2
+get_balance_position
+nodeid
+open_tree
+rotate_tree
+stat_balance
+fortify.phylo4d
+identify.gg
+print.beastList
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  ggtree_release_3_3 ggtree_release_3_4
+
+{
+    "package": "ggtree",
+    "release_versions": "ggtree_release_3_3 ggtree_release_3_4",
+    "desc_release_old": "1.4.20",
+    "desc_release_new": "1.6.11",
+    "old_release_number": 2,
+    "new_release_number": 3,
+    "function_removals": 0,
+    "function_additions": 4,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+%+>%
+as.polytomy
+facet_plot
+read.phyloT
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "gheatmap",
+    "representation": "gheatmap",
+    "parameters": "function ( p , data , offset = 0 , width = 1 , low = \"green\" , high = \"red\" , color = \"white\" , colnames = TRUE , colnames_position = \"bottom\" , colnames_level = NULL , font.size = 4 )",
+    "body": "{   colnames_position %   match.arg (   c (  \"bottom\" ,  \"top\" ) )   variable -   value -   lab -   y -  NULL ## if (is.null(width)) { ##     width ## } ## convert width to width of each cell   width -    width *  (      p $ data $ x %  range %  diff ) /   ncol (  data )   isTip -   x -   y -   variable -   value -   from -   to -  NULL   df -   p $ data   df -   df [   df $ isTip , ]   start -    max (   df $ x ) +  offset   dd -  data ## dd$lab   lab -    df $ label [   order (   df $ y ) ]   dd -   dd [  lab , , drop =  FALSE ]    dd $ y -   sort (   df $ y )    dd $ lab -  lab ## dd   dd -   gather (  dd ,  variable ,  value ,  -   c (  lab ,  y ) )   i -   which (    dd $ value ==  \"\" )  if (    length (  i ) undefined  0 )  {     dd $ value [  i ] -  NA }  if (   is.null (  colnames_level ) )  {    dd $ variable -   factor (   dd $ variable , levels =   colnames (  data ) ) } else  {    dd $ variable -   factor (   dd $ variable , levels =  colnames_level ) }   V2 -   start +    as.numeric (   dd $ variable ) *  width   mapping -   data.frame ( from =   dd $ variable , to =  V2 )   mapping -   unique (  mapping )    dd $ x -  V2    dd $ width -  width  if (   is.null (  color ) )  {   p2 -   p +   geom_tile ( data =  dd ,   aes (  x ,  y , fill =  value , width =  width ) , inherit.aes =  FALSE ) } else  {   p2 -   p +   geom_tile ( data =  dd ,   aes (  x ,  y , fill =  value , width =  width ) , color =  color , inherit.aes =  FALSE ) }  if (   is (   dd $ value ,  \"numeric\" ) )  {   p2 -   p2 +   scale_fill_gradient ( low =  low , high =  high , na.value =  \"white\" ) } else  {   p2 -   p2 +   scale_fill_discrete ( na.value =  \"white\" ) }  if (  colnames )  {  if (   colnames_position ==  \"bottom\" )  {   y -  0 } else  {   y -    max (    p $ data $ y ) +  1 }   p2 -   p2 +   geom_text ( data =  mapping ,   aes ( x =  to , label =  from ) , y =  y , size =  font.size , inherit.aes =  FALSE ) }   p2 -   p2 +   theme ( legend.position =  \"right\" , legend.title =   element_blank ( ) ) ## p2    attr (  p2 ,  \"mapping\" ) -  mapping   return (  p2 ) } ",
+    "filename": "gheatmap.txt"
+  },
+  "new_function": {
+    "name": "gheatmap",
+    "representation": "gheatmap",
+    "parameters": "function ( p , data , offset = 0 , width = 1 , low = \"green\" , high = \"red\" , color = \"white\" , colnames = TRUE , colnames_position = \"bottom\" , colnames_angle = 0 , colnames_level = NULL , colnames_offset_x = 0 , colnames_offset_y = 0 , font.size = 4 , hjust = 0.5 )",
+    "body": "{   colnames_position %   match.arg (   c (  \"bottom\" ,  \"top\" ) )   variable -   value -   lab -   y -  NULL ## if (is.null(width)) { ##     width ## } ## convert width to width of each cell   width -    width *  (      p $ data $ x %  range %  diff ) /   ncol (  data )   isTip -   x -   y -   variable -   value -   from -   to -  NULL   df -   p $ data   df -   df [   df $ isTip , ]   start -    max (   df $ x ) +  offset   dd -   as.data.frame (  data ) ## dd$lab   lab -    df $ label [   order (   df $ y ) ]   dd -   dd [  lab , , drop =  FALSE ]    dd $ y -   sort (   df $ y )    dd $ lab -  lab ## dd   dd -   gather (  dd ,  variable ,  value ,  -   c (  lab ,  y ) )   i -   which (    dd $ value ==  \"\" )  if (    length (  i ) undefined  0 )  {     dd $ value [  i ] -  NA }  if (   is.null (  colnames_level ) )  {    dd $ variable -   factor (   dd $ variable , levels =   colnames (  data ) ) } else  {    dd $ variable -   factor (   dd $ variable , levels =  colnames_level ) }   V2 -   start +    as.numeric (   dd $ variable ) *  width   mapping -   data.frame ( from =   dd $ variable , to =  V2 )   mapping -   unique (  mapping )    dd $ x -  V2    dd $ width -  width  if (   is.null (  color ) )  {   p2 -   p +   geom_tile ( data =  dd ,   aes (  x ,  y , fill =  value ) , width =  width , inherit.aes =  FALSE ) } else  {   p2 -   p +   geom_tile ( data =  dd ,   aes (  x ,  y , fill =  value ) , width =  width , color =  color , inherit.aes =  FALSE ) }  if (   is (   dd $ value ,  \"numeric\" ) )  {   p2 -   p2 +   scale_fill_gradient ( low =  low , high =  high , na.value =  \"white\" ) } else  {   p2 -   p2 +   scale_fill_discrete ( na.value =  \"white\" ) }  if (  colnames )  {  if (   colnames_position ==  \"bottom\" )  {   y -  0 } else  {   y -    max (    p $ data $ y ) +  1 }    mapping $ y -  y   p2 -   p2 +   geom_text ( data =  mapping ,   aes ( x =  to , y =  y , label =  from ) , size =  font.size , inherit.aes =  FALSE , angle =  colnames_angle , nudge_x =  colnames_offset_x , nudge_y =  colnames_offset_y , hjust =  hjust ) }   p2 -   p2 +   theme ( legend.position =  \"right\" , legend.title =   element_blank ( ) ) ## p2    attr (  p2 ,  \"mapping\" ) -  mapping   return (  p2 ) } ",
+    "filename": "gheatmap.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  ggtree_release_3_4 ggtree_release_3_5
+
+{
+    "package": "ggtree",
+    "release_versions": "ggtree_release_3_4 ggtree_release_3_5",
+    "desc_release_old": "1.6.11",
+    "desc_release_new": "1.8.2",
+    "old_release_number": 3,
+    "new_release_number": 4,
+    "function_removals": 34,
+    "function_additions": 5,
+    "parameter_removals": 1,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 34
+}
+
+##########
+Functions Removed
+##########
+
+get.fields
+get.placements
+get.subs
+get.tipseq
+get.tree
+get.treeinfo
+get.treetext
+getNodeNum
+getRoot
+mask
+merge_tree
+phyPML
+plot
+pmlToSeq
+raxml2nwk
+read.baseml
+read.beast
+read.codeml
+read.codeml_mlc
+read.hyphy
+read.jplace
+read.nhx
+read.paml_rst
+read.phylip
+read.phyloT
+read.r8s
+read.raxml
+read.tree
+rtree
+write.jplace
+show
+fortify.apeBootstrap
+fortify.nhx
+fortify.raxml
+
+
+##########
+Functions Added
+##########
+
+revts
+xlim_expand
+xlim_tree
+as.data.frame.treedata
+fortify.treedata
+
+
+##########
+Removed Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "get_taxa_name",
+    "representation": "get_taxa_name",
+    "parameters": "function ( tree_view = NULL , node )",
+    "body": "{   tree_view %  get_tree_view   df -   tree_view $ data   sp -   get.offspring.df (  df ,  node )   res -   df [  sp ,  \"label\" ]   return (   res [   df [  sp ,  \"isTip\" ] ] ) } ",
+    "filename": "clade-functions.txt"
+  },
+  "new_function": {
+    "name": "get_taxa_name",
+    "representation": "get_taxa_name",
+    "parameters": "function ( tree_view = NULL , node = NULL )",
+    "body": "{   tree_view %  get_tree_view   df -   tree_view $ data  if (  !   is.null (  node ) )  {   sp -   get.offspring.df (  df ,  node )   df -   df [  sp , ] }   with (  df ,  {   i =   order (  y , decreasing =  T )    label [  i ] [   isTip [  i ] ] } ) } ",
+    "filename": "clade-functions.txt"
+  }
+}
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  ggtree_release_3_5 ggtree_release_3_6
+
+{
+    "package": "ggtree",
+    "release_versions": "ggtree_release_3_5 ggtree_release_3_6",
+    "desc_release_old": "1.8.2",
+    "desc_release_new": "1.10.5",
+    "old_release_number": 4,
+    "new_release_number": 5,
+    "function_removals": 0,
+    "function_additions": 6,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+GeomHilight
+geom_cladelabel2
+geom_hilight_encircle
+geom_motif
+geom_nodelab
+set_hilight_legend
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  ggtree_release_3_6 ggtree_release_3_7
+
+{
+    "package": "ggtree",
+    "release_versions": "ggtree_release_3_6 ggtree_release_3_7",
+    "desc_release_old": "1.10.5",
+    "desc_release_new": "1.12.7",
+    "old_release_number": 5,
+    "new_release_number": 6,
+    "function_removals": 18,
+    "function_additions": 32,
+    "parameter_removals": 0,
+    "parameter_additions": 1,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 19
+}
+
+##########
+Functions Removed
+##########
+
+apeBoot
+as.binary
+download.phylopic
+get.phylopic
+theme_transparent
+as.binary.phylo
+as.data.frame.phylo
+as.data.frame.treedata
+fortify.beast
+fortify.codeml
+fortify.codeml_mlc
+fortify.hyphy
+fortify.jplace
+fortify.paml_rst
+fortify.phangorn
+fortify.phylip
+fortify.r8s
+print.beastList
+
+
+##########
+Functions Added
+##########
+
+aes
+fortify
+geom_label
+geom_point
+geom_text
+ggplot
+ggsave
+range_format
+read.astral
+read.beast
+read.codeml
+read.codeml_mlc
+read.hyphy
+read.iqtree
+read.jplace
+read.jtree
+read.mrbayes
+read.newick
+read.nexus
+read.nhx
+read.paml_rst
+read.phylip
+read.phyloT
+read.r8s
+read.raxml
+read.tree
+rtree
+theme
+xlim
+collapse.ggtree
+groupClade.ggtree
+groupOTU.ggtree
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "inset",
+    "representation": "inset",
+    "parameters": "function ( tree_view , insets , width = 0.1 , height = 0.1 , hjust = 0 , vjust = 0 , x = \"node\" , reverse_x = FALSE , reverse_y = FALSE )",
+    "body": "{   message (  \"The inset function will be defunct in next release, please use ggimage::geom_subview() instead.\" )   df -    tree_view $ data [   as.numeric (   names (  insets ) ) , ]   x -   match.arg (  x ,   c (  \"node\" ,  \"branch\" ,  \"edge\" ) )  if (   x ==  'node' )  {   xx -   df $ x } else  {   xx -   df $ branch }   yy -   df $ y   xx -   xx -  hjust   yy -   yy -  vjust  if (  reverse_x )   xx -  -  xx  if (  reverse_y )   yy -  -  yy  for  ( i in   seq_along (  insets ) )  {   tree_view %   subview (   insets [[  i ] ] , x =   xx [  i ] , y =   yy [  i ] , width =  width , height =  height ) }   return (  tree_view ) } ",
+    "filename": "inset.txt"
+  },
+  "new_function": {
+    "name": "inset",
+    "representation": "inset",
+    "parameters": "function ( tree_view , insets , width , height , hjust = 0 , vjust = 0 , x = \"node\" , reverse_x = FALSE , reverse_y = FALSE )",
+    "body": "{   df -    tree_view $ data [   as.numeric (   names (  insets ) ) , ]   x -   match.arg (  x ,   c (  \"node\" ,  \"branch\" ,  \"edge\" ) )  if (   x ==  'node' )  {   xx -   df $ x } else  {   xx -   df $ branch }   yy -   df $ y   xx -   xx -  hjust   yy -   yy -  vjust  if (  reverse_x )   xx -  -  xx  if (  reverse_y )   yy -  -  yy   geom_subview -   get_fun_from_pkg (  \"ggimage\" ,  \"geom_subview\" )   tree_view +   geom_subview ( subview =  insets , width =  width , height =  height , x =  xx , y =  yy ) } ",
+    "filename": "inset.txt"
+  }
+}
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "inset",
+    "representation": "inset",
+    "parameters": "function ( tree_view , insets , width = 0.1 , height = 0.1 , hjust = 0 , vjust = 0 , x = \"node\" , reverse_x = FALSE , reverse_y = FALSE )",
+    "body": "{   message (  \"The inset function will be defunct in next release, please use ggimage::geom_subview() instead.\" )   df -    tree_view $ data [   as.numeric (   names (  insets ) ) , ]   x -   match.arg (  x ,   c (  \"node\" ,  \"branch\" ,  \"edge\" ) )  if (   x ==  'node' )  {   xx -   df $ x } else  {   xx -   df $ branch }   yy -   df $ y   xx -   xx -  hjust   yy -   yy -  vjust  if (  reverse_x )   xx -  -  xx  if (  reverse_y )   yy -  -  yy  for  ( i in   seq_along (  insets ) )  {   tree_view %   subview (   insets [[  i ] ] , x =   xx [  i ] , y =   yy [  i ] , width =  width , height =  height ) }   return (  tree_view ) } ",
+    "filename": "inset.txt"
+  },
+  "new_function": {
+    "name": "inset",
+    "representation": "inset",
+    "parameters": "function ( tree_view , insets , width , height , hjust = 0 , vjust = 0 , x = \"node\" , reverse_x = FALSE , reverse_y = FALSE )",
+    "body": "{   df -    tree_view $ data [   as.numeric (   names (  insets ) ) , ]   x -   match.arg (  x ,   c (  \"node\" ,  \"branch\" ,  \"edge\" ) )  if (   x ==  'node' )  {   xx -   df $ x } else  {   xx -   df $ branch }   yy -   df $ y   xx -   xx -  hjust   yy -   yy -  vjust  if (  reverse_x )   xx -  -  xx  if (  reverse_y )   yy -  -  yy   geom_subview -   get_fun_from_pkg (  \"ggimage\" ,  \"geom_subview\" )   tree_view +   geom_subview ( subview =  insets , width =  width , height =  height , x =  xx , y =  yy ) } ",
+    "filename": "inset.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  ggtree_release_3_7 ggtree_release_3_8
+
+{
+    "package": "ggtree",
+    "release_versions": "ggtree_release_3_7 ggtree_release_3_8",
+    "desc_release_old": "1.12.7",
+    "desc_release_new": "1.14.6",
+    "old_release_number": 6,
+    "new_release_number": 7,
+    "function_removals": 0,
+    "function_additions": 3,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+facet_labeller
+geom_nodelab2
+geom_rootedge
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  ggtree_release_3_8 ggtree_release_3_9
+
+{
+    "package": "ggtree",
+    "release_versions": "ggtree_release_3_8 ggtree_release_3_9",
+    "desc_release_old": "1.14.6",
+    "desc_release_new": "1.16.6",
+    "old_release_number": 7,
+    "new_release_number": 8,
+    "function_removals": 4,
+    "function_additions": 3,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 4
+}
+
+##########
+Functions Removed
+##########
+
+MRCA
+get.offspring.tip
+reroot
+rescale_tree
+
+
+##########
+Functions Added
+##########
+
+facet_data
+facet_widths
+MRCA.gg
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  ggtree_release_3_9 ggtree_release_3_11
+
+{
+    "package": "ggtree",
+    "release_versions": "ggtree_release_3_9 ggtree_release_3_11",
+    "desc_release_old": "1.16.6",
+    "desc_release_new": "2.2.4",
+    "old_release_number": 8,
+    "new_release_number": 9,
+    "function_removals": 21,
+    "function_additions": 41,
+    "parameter_removals": 1,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 2,
+    "total_count": 23
+}
+
+##########
+Functions Removed
+##########
+
+.
+get_balance_position
+read.astral
+read.beast
+read.codeml
+read.codeml_mlc
+read.hyphy
+read.iqtree
+read.jplace
+read.jtree
+read.mrbayes
+read.newick
+read.nexus
+read.nhx
+read.paml_rst
+read.phylip
+read.phyloT
+read.r8s
+read.raxml
+stat_balance
+MRCA.gg
+
+
+##########
+Functions Added
+##########
+
+MRCA
+arrow
+geom_facet
+geom_highlight
+geom_inset
+ggdensitree
+guide_legend
+layout_circular
+layout_dendrogram
+layout_fan
+layout_rectangular
+margin
+nodelab
+scale_color_manual
+scale_colour_manual
+scale_fill_manual
+scale_x_range
+theme_dendrogram
+unit
+MRCA.ggtree
+fortify.agnes
+fortify.dendrogram
+fortify.diana
+fortify.hclust
+fortify.igraph
+fortify.phylog
+fortify.twins
+ggplot_add.cladelabel
+ggplot_add.facet_plot
+ggplot_add.facet_xlim
+ggplot_add.geom_range
+ggplot_add.hilight
+ggplot_add.layout_ggtree
+ggplot_add.range_xaxis
+ggplot_add.scale_ggtree
+ggplot_add.striplabel
+ggplot_add.tiplab
+ggplot_add.tree_inset
+nodeid.ggtree
+nodelab.ggtree
+offspring.ggtree
+
+
+##########
+Removed Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "scale_x_ggtree",
+    "representation": "scale_x_ggtree",
+    "parameters": "function ( tree_view , breaks = NULL , labels = NULL )",
+    "body": "{   p -   get_tree_view (  tree_view )   mrsd -   get (  \"mrsd\" , envir =   tree_view $ plot_env )  if (   !   is.null (  mrsd ) undefined    class (    p $ data $ x ) ==  \"Date\" )  {   x -   Date2decimal (    p $ data $ x ) } else  {   x -    p $ data $ x }  if (   is.null (  breaks ) )  {   breaks -    graphics :: hist (  x , breaks =  5 , plot =  FALSE ) $ breaks }   m -   attr (  p ,  \"mapping\" )  if (   !   is.null (  mrsd ) undefined    class (   m $ to ) ==  \"Date\" )  {   to -   Date2decimal (   m $ to ) } else  {   to -   m $ to }   idx -   which (   sapply (  breaks ,  function ( x )   any (   x undefined   m $ to ) ) )  if (   length (  idx ) )  {   breaks -   breaks [  -  idx ] }  if (   is.null (  labels ) )  {   labels -  breaks }   breaks -   c (  breaks ,  to )   labels -   c (  labels ,   gsub (  \"\\\\.\" ,  \"\" ,   as.character (   m $ from ) ) )  if (   !   is.null (  mrsd ) undefined    class (    p $ data $ x ) ==  \"Date\" )  {   p -   p +   scale_x_date ( breaks =   decimal2Date (  breaks ) ,  labels ) } else  {   p -   p +   scale_x_continuous ( breaks =  breaks , labels =  labels ) }   return (  p ) } ",
+    "filename": "experimental_function.txt"
+  },
+  "new_function": {
+    "name": "scale_x_ggtree",
+    "representation": "scale_x_ggtree",
+    "parameters": "function ( breaks = waiver ( ) , labels = waiver ( ) )",
+    "body": "{   structure (   list ( breaks =  breaks , labels =  labels ) , class =  \"scale_ggtree\" ) } ",
+    "filename": "scales.txt"
+  }
+}
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "scale_x_ggtree",
+    "representation": "scale_x_ggtree",
+    "parameters": "function ( tree_view , breaks = NULL , labels = NULL )",
+    "body": "{   p -   get_tree_view (  tree_view )   mrsd -   get (  \"mrsd\" , envir =   tree_view $ plot_env )  if (   !   is.null (  mrsd ) undefined    class (    p $ data $ x ) ==  \"Date\" )  {   x -   Date2decimal (    p $ data $ x ) } else  {   x -    p $ data $ x }  if (   is.null (  breaks ) )  {   breaks -    graphics :: hist (  x , breaks =  5 , plot =  FALSE ) $ breaks }   m -   attr (  p ,  \"mapping\" )  if (   !   is.null (  mrsd ) undefined    class (   m $ to ) ==  \"Date\" )  {   to -   Date2decimal (   m $ to ) } else  {   to -   m $ to }   idx -   which (   sapply (  breaks ,  function ( x )   any (   x undefined   m $ to ) ) )  if (   length (  idx ) )  {   breaks -   breaks [  -  idx ] }  if (   is.null (  labels ) )  {   labels -  breaks }   breaks -   c (  breaks ,  to )   labels -   c (  labels ,   gsub (  \"\\\\.\" ,  \"\" ,   as.character (   m $ from ) ) )  if (   !   is.null (  mrsd ) undefined    class (    p $ data $ x ) ==  \"Date\" )  {   p -   p +   scale_x_date ( breaks =   decimal2Date (  breaks ) ,  labels ) } else  {   p -   p +   scale_x_continuous ( breaks =  breaks , labels =  labels ) }   return (  p ) } ",
+    "filename": "experimental_function.txt"
+  },
+  "new_function": {
+    "name": "scale_x_ggtree",
+    "representation": "scale_x_ggtree",
+    "parameters": "function ( breaks = waiver ( ) , labels = waiver ( ) )",
+    "body": "{   structure (   list ( breaks =  breaks , labels =  labels ) , class =  \"scale_ggtree\" ) } ",
+    "filename": "scales.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "gheatmap",
+    "representation": "gheatmap",
+    "parameters": "function ( p , data , offset = 0 , width = 1 , low = \"green\" , high = \"red\" , color = \"white\" , colnames = TRUE , colnames_position = \"bottom\" , colnames_angle = 0 , colnames_level = NULL , colnames_offset_x = 0 , colnames_offset_y = 0 , font.size = 4 , hjust = 0.5 )",
+    "body": "{   colnames_position %   match.arg (   c (  \"bottom\" ,  \"top\" ) )   variable -   value -   lab -   y -  NULL ## if (is.null(width)) { ##     width ## } ## convert width to width of each cell   width -    width *  (      p $ data $ x %   range ( na.rm =  TRUE ) %  diff ) /   ncol (  data )   isTip -   x -   y -   variable -   value -   from -   to -  NULL   df -   p $ data   df -   df [   df $ isTip , ]   start -    max (   df $ x , na.rm =  TRUE ) +  offset   dd -   as.data.frame (  data ) ## dd$lab   i -   order (   df $ y ) ## handle collapsed tree ## https://github.com/GuangchuangYu/ggtree/issues/137   i -   i [  !   is.na (    df $ y [  i ] ) ]   lab -    df $ label [  i ] ## dd ## https://github.com/GuangchuangYu/ggtree/issues/182   dd -   dd [   match (  lab ,   rownames (  dd ) ) , , drop =  FALSE ]    dd $ y -   sort (   df $ y )    dd $ lab -  lab ## dd   dd -   gather (  dd ,  variable ,  value ,  -   c (  lab ,  y ) )   i -   which (    dd $ value ==  \"\" )  if (    length (  i ) undefined  0 )  {     dd $ value [  i ] -  NA }  if (   is.null (  colnames_level ) )  {    dd $ variable -   factor (   dd $ variable , levels =   colnames (  data ) ) } else  {    dd $ variable -   factor (   dd $ variable , levels =  colnames_level ) }   V2 -   start +    as.numeric (   dd $ variable ) *  width   mapping -   data.frame ( from =   dd $ variable , to =  V2 )   mapping -   unique (  mapping )    dd $ x -  V2    dd $ width -  width    dd [[  \".panel\" ] ] -   factor (  \"Tree\" )  if (   is.null (  color ) )  {   p2 -   p +   geom_tile ( data =  dd ,   aes (  x ,  y , fill =  value ) , width =  width , inherit.aes =  FALSE ) } else  {   p2 -   p +   geom_tile ( data =  dd ,   aes (  x ,  y , fill =  value ) , width =  width , color =  color , inherit.aes =  FALSE ) }  if (   is (   dd $ value ,  \"numeric\" ) )  {   p2 -   p2 +   scale_fill_gradient ( low =  low , high =  high , na.value =  NA ) # \"white\") } else  {   p2 -   p2 +   scale_fill_discrete ( na.value =  NA ) #\"white\") }  if (  colnames )  {  if (   colnames_position ==  \"bottom\" )  {   y -  0 } else  {   y -    max (    p $ data $ y ) +  1 }    mapping $ y -  y    mapping [[  \".panel\" ] ] -   factor (  \"Tree\" )   p2 -   p2 +   geom_text ( data =  mapping ,   aes ( x =  to , y =  y , label =  from ) , size =  font.size , inherit.aes =  FALSE , angle =  colnames_angle , nudge_x =  colnames_offset_x , nudge_y =  colnames_offset_y , hjust =  hjust ) }   p2 -   p2 +   theme ( legend.position =  \"right\" , legend.title =   element_blank ( ) ) ## p2  if (  !  colnames )  { ## https://github.com/GuangchuangYu/ggtree/issues/204   p2 -   p2 +   scale_y_continuous ( expand =   c (  0 ,  0 ) ) }    attr (  p2 ,  \"mapping\" ) -  mapping   return (  p2 ) } ",
+    "filename": "gheatmap.txt"
+  },
+  "new_function": {
+    "name": "gheatmap",
+    "representation": "gheatmap",
+    "parameters": "function ( p , data , offset = 0 , width = 1 , low = \"green\" , high = \"red\" , color = \"white\" , colnames = TRUE , colnames_position = \"bottom\" , colnames_angle = 0 , colnames_level = NULL , colnames_offset_x = 0 , colnames_offset_y = 0 , font.size = 4 , family = \"\" , hjust = 0.5 , legend_title = \"value\" )",
+    "body": "{   colnames_position %   match.arg (   c (  \"bottom\" ,  \"top\" ) )   variable -   value -   lab -   y -  NULL ## if (is.null(width)) { ##     width ## } ## convert width to width of each cell   width -    width *  (      p $ data $ x %   range ( na.rm =  TRUE ) %  diff ) /   ncol (  data )   isTip -   x -   y -   variable -   value -   from -   to -  NULL ## handle the display of heatmap on collapsed nodes ## https://github.com/GuangchuangYu/ggtree/issues/242 ## extract data on leaves ( ## (the latter is extracted only when the input data has data on collapsed ## internal nodes)   df -   p $ data   nodeCo -   intersect (     df %   filter (   is.na (  x ) ) %   select (   .data $ parent ,   .data $ node ) %   unlist ( ) ,     df %   filter (  !   is.na (  x ) ) %   select (   .data $ parent ,   .data $ node ) %   unlist ( ) )   labCo -     df %   filter (    .data $ node %in%  nodeCo ) %   select (   .data $ label ) %   unlist ( )   selCo -   intersect (  labCo ,   rownames (  data ) )   isSel -    df $ label %in%  selCo   df -   df [    df $ isTip |  isSel , ]   start -    max (   df $ x , na.rm =  TRUE ) +  offset   dd -   as.data.frame (  data ) ## dd$lab   i -   order (   df $ y ) ## handle collapsed tree ## https://github.com/GuangchuangYu/ggtree/issues/137   i -   i [  !   is.na (    df $ y [  i ] ) ]   lab -    df $ label [  i ] ## dd ## https://github.com/GuangchuangYu/ggtree/issues/182   dd -   dd [   match (  lab ,   rownames (  dd ) ) , , drop =  FALSE ]    dd $ y -   sort (   df $ y )    dd $ lab -  lab ## dd   dd -   gather (  dd ,  variable ,  value ,  -   c (  lab ,  y ) )   i -   which (    dd $ value ==  \"\" )  if (    length (  i ) undefined  0 )  {     dd $ value [  i ] -  NA }  if (   is.null (  colnames_level ) )  {    dd $ variable -   factor (   dd $ variable , levels =   colnames (  data ) ) } else  {    dd $ variable -   factor (   dd $ variable , levels =  colnames_level ) }   V2 -   start +    as.numeric (   dd $ variable ) *  width   mapping -   data.frame ( from =   dd $ variable , to =  V2 )   mapping -   unique (  mapping )    dd $ x -  V2    dd $ width -  width    dd [[  \".panel\" ] ] -   factor (  \"Tree\" )  if (   is.null (  color ) )  {   p2 -   p +   geom_tile ( data =  dd ,   aes (  x ,  y , fill =  value ) , width =  width , inherit.aes =  FALSE ) } else  {   p2 -   p +   geom_tile ( data =  dd ,   aes (  x ,  y , fill =  value ) , width =  width , color =  color , inherit.aes =  FALSE ) }  if (   is (   dd $ value ,  \"numeric\" ) )  {   p2 -   p2 +   scale_fill_gradient ( low =  low , high =  high , na.value =  NA , name =  legend_title ) # \"white\") } else  {   p2 -   p2 +   scale_fill_discrete ( na.value =  NA , name =  legend_title ) #\"white\") }  if (  colnames )  {  if (   colnames_position ==  \"bottom\" )  {   y -  0 } else  {   y -    max (    p $ data $ y ) +  1 }    mapping $ y -  y    mapping [[  \".panel\" ] ] -   factor (  \"Tree\" )   p2 -   p2 +   geom_text ( data =  mapping ,   aes ( x =  to , y =  y , label =  from ) , size =  font.size , family =  family , inherit.aes =  FALSE , angle =  colnames_angle , nudge_x =  colnames_offset_x , nudge_y =  colnames_offset_y , hjust =  hjust ) }   p2 -   p2 +   theme ( legend.position =  \"right\" ) ## p2  if (  !  colnames )  { ## https://github.com/GuangchuangYu/ggtree/issues/204   p2 -   p2 +   scale_y_continuous ( expand =   c (  0 ,  0 ) ) }    attr (  p2 ,  \"mapping\" ) -  mapping   return (  p2 ) } ",
+    "filename": "gheatmap.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  ggtree_release_3_11 ggtree_release_3_12
+
+{
+    "package": "ggtree",
+    "release_versions": "ggtree_release_3_11 ggtree_release_3_12",
+    "desc_release_old": "2.2.4",
+    "desc_release_new": "2.4.2",
+    "old_release_number": 9,
+    "new_release_number": 10,
+    "function_removals": 7,
+    "function_additions": 17,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 8
+}
+
+##########
+Functions Removed
+##########
+
+GeomHilight
+StatHilight
+annotation_image
+geom_hilight_encircle
+phylopic
+stat_hilight
+subview
+
+
+##########
+Functions Added
+##########
+
+geom_cladelab
+geom_zoom_clade
+ggexpand
+hexpand
+label_pad
+layout_inward_circular
+td_filter
+td_unnest
+vexpand
+zoomClade
+fortify.pvclust
+fortify.treedataList
+ggplot_add.cladelab
+ggplot_add.ggexpand
+ggplot_add.taxalink
+ggplot_add.tiplab_ylab
+ggplot_add.zoom_clade
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "geom_treescale",
+    "representation": "geom_treescale",
+    "parameters": "function ( x = NULL , y = NULL , width = NULL , offset = NULL , color = \"black\" , linesize = 0.5 , fontsize = 3.88 , family = \"sans\" )",
+    "body": "{   data =  NULL   position =  \"identity\"   show.legend =  NA   na.rm =  TRUE   inherit.aes =  FALSE   default_aes -   aes_ ( x =  ~  x , y =  ~  y )   mapping -  default_aes   list (   stat_treeScaleLine ( xx =  x , yy =  y , width =  width , color =  color , offset =  offset , size =  linesize , mapping =  mapping , data =  data , position =  position , show.legend =  show.legend , inherit.aes =  inherit.aes , na.rm =  na.rm ) ,   stat_treeScaleText ( xx =  x , yy =  y , width =  width , color =  color , offset =  offset , size =  fontsize , family =  family , mapping =  mapping , data =  data , position =  position , show.legend =  show.legend , inherit.aes =  inherit.aes , na.rm =  na.rm ) ) } ",
+    "filename": "geom_treescale.txt"
+  },
+  "new_function": {
+    "name": "geom_treescale",
+    "representation": "geom_treescale",
+    "parameters": "function ( x = NULL , y = NULL , width = NULL , offset = NULL , offset.label = NULL , label = NULL , color = \"black\" , linesize = 0.5 , fontsize = 3.88 , family = \"sans\" )",
+    "body": "{   data =  NULL   position =  \"identity\"   show.legend =  NA   na.rm =  TRUE   inherit.aes =  FALSE   default_aes -   aes_ ( x =  ~  x , y =  ~  y )   mapping -  default_aes   ly -   list (   stat_treeScaleLine ( xx =  x , yy =  y , width =  width , color =  color , offset =  offset , size =  linesize , offset.label =  offset.label , labelname =  label , mapping =  mapping , data =  data , position =  position , show.legend =  show.legend , inherit.aes =  inherit.aes , na.rm =  na.rm ) ,   stat_treeScaleText ( xx =  x , yy =  y , width =  width , color =  color , offset =  offset , offset.label =  offset.label , labelname =  label , size =  fontsize , family =  family , mapping =  mapping , data =  data , position =  position , show.legend =  show.legend , inherit.aes =  inherit.aes , na.rm =  na.rm ) )  if (  !   is.null (  label ) )  {    ly [[  3 ] ] -   stat_treeScaleLabel ( xx =  x , yy =  y , width =  width , color =  color , offset =  offset , offset.label =  offset.label , labelname =  label , size =  fontsize , family =  family , mapping =  mapping , data =  data , position =  position , show.legend =  show.legend , inherit.aes =  inherit.aes , na.rm =  na.rm ) }   return (  ly ) } ",
+    "filename": "geom_treescale.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  ggtree_release_3_12 ggtree_release_3_13
+
+{
+    "package": "ggtree",
+    "release_versions": "ggtree_release_3_12 ggtree_release_3_13",
+    "desc_release_old": "2.4.2",
+    "desc_release_new": "3.0.4",
+    "old_release_number": 10,
+    "new_release_number": 11,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  ggtree_release_3_13 ggtree_release_3_14
+
+{
+    "package": "ggtree",
+    "release_versions": "ggtree_release_3_13 ggtree_release_3_14",
+    "desc_release_old": "3.0.4",
+    "desc_release_new": "3.2.1",
+    "old_release_number": 11,
+    "new_release_number": 12,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+td_mutate
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  ggtree_release_3_14 ggtree_master
+
+{
+    "package": "ggtree",
+    "release_versions": "ggtree_release_3_14 ggtree_master",
+    "desc_release_old": "3.2.1",
+    "desc_release_new": "3.3.1",
+    "old_release_number": 12,
+    "new_release_number": 13,
+    "function_removals": 0,
+    "function_additions": 3,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+scale_color_subtree
+scale_colour_subtree
+ggplot_add.color_subtree
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+

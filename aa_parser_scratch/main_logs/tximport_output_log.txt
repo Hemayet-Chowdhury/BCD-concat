@@ -1,0 +1,699 @@
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  tximport_release_3_3 tximport_release_3_4
+
+{
+    "package": "tximport",
+    "release_versions": "tximport_release_3_3 tximport_release_3_4",
+    "desc_release_old": "1.0.3",
+    "desc_release_new": "1.2.0",
+    "old_release_number": 0,
+    "new_release_number": 1,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  tximport_release_3_4 tximport_release_3_5
+
+{
+    "package": "tximport",
+    "release_versions": "tximport_release_3_4 tximport_release_3_5",
+    "desc_release_old": "1.2.0",
+    "desc_release_new": "1.4.0",
+    "old_release_number": 1,
+    "new_release_number": 2,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 1,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "tximport",
+    "representation": "tximport",
+    "parameters": "function ( files , type = c ( \"none\" , \"kallisto\" , \"salmon\" , \"sailfish\" , \"rsem\" ) , txIn = TRUE , txOut = FALSE , countsFromAbundance = c ( \"no\" , \"scaledTPM\" , \"lengthScaledTPM\" ) , tx2gene = NULL , reader = read.delim , geneIdCol , txIdCol , abundanceCol , countsCol , lengthCol , importer , collatedFiles , ignoreTxVersion = FALSE )",
+    "body": "{   type -   match.arg (  type ,   c (  \"none\" ,  \"kallisto\" ,  \"salmon\" ,  \"sailfish\" ,  \"rsem\" ) )   countsFromAbundance -   match.arg (  countsFromAbundance ,   c (  \"no\" ,  \"scaledTPM\" ,  \"lengthScaledTPM\" ) )   stopifnot (   all (   file.exists (  files ) ) )  if (   !  txIn undefined  txOut )   stop (  \"txOut only an option when transcript-level data is read in (txIn=TRUE)\" ) # kallisto presets  if (   type ==  \"kallisto\" )  {   geneIdCol =  \"gene_id\"   txIdCol -  \"target_id\"   abundanceCol -  \"tpm\"   countsCol -  \"est_counts\"   lengthCol -  \"eff_length\"   importer -  reader } # salmon/sailfish presets  if (   type %in%   c (  \"salmon\" ,  \"sailfish\" ) )  {   geneIdCol =  \"gene_id\"   txIdCol -  \"Name\"   abundanceCol -  \"TPM\"   countsCol -  \"NumReads\"   lengthCol -  \"EffectiveLength\"   importer -  function ( x )   reader (  x , comment =  '#' ) } # rsem presets  if (   type ==  \"rsem\" )  {   txIn -  FALSE   geneIdCol -  \"gene_id\"   abundanceCol -  \"FPKM\"   countsCol -  \"expected_count\"   lengthCol -  \"effective_length\"   importer -  reader }  if (   type ==  \"cufflinks\" )  {   stop (  \"reading from collated files not yet implemented\" ) } # if input is tx-level, need to summarize abundances, counts and lengths to gene-level  if (  txIn )  {   message (  \"reading in files\" )  for  ( i in   seq_along (  files ) )  {   message (  i ,  \" \" , appendLF =  FALSE )   raw -   as.data.frame (   importer (   files [  i ] ) ) ##################################################################### # some temporary code for detecting older fishes  if (    (   i ==  1 ) undefined  (   type %in%   c (  \"salmon\" ,  \"sailfish\" ) ) undefined  !  (   \"EffectiveLength\" %in%   names (  raw ) ) )  {   lengthCol -  \"Length\" # because the comment lines have the same comment character # as the header, need to name the column names   importer -  function ( x )  {   tmp -   reader (  x , comment =  \"#\" , header =  FALSE )    names (  tmp ) -   c (  \"Name\" ,  \"Length\" ,  \"TPM\" ,  \"NumReads\" )  tmp } # re-read the first file   raw -   try (   as.data.frame (   importer (   files [  i ] ) ) , silent =  TRUE ) # if this didn't work, reader is likely read_tsv and # different importer() code is needed  if (   inherits (  raw ,  \"try-error\" ) )  {   importer -  function ( x )  {   reader (  x , comment =  \"#\" , col_names =   c (  \"Name\" ,  \"Length\" ,  \"TPM\" ,  \"NumReads\" ) ) }   raw -   try (   as.data.frame (   importer (   files [  i ] ) ) )  if (   inherits (  raw ,  \"try-error\" ) )   stop (  \"tried but couldn't use reader() without error\r\n  user will need to define the importer() as well\" ) } } ##################################################################### # does the table contain gene association or was an external tx2gene table provided?  if (    is.null (  tx2gene ) undefined  !  txOut )  { # e.g. Cufflinks includes the gene ID in the table  if (  !   geneIdCol %in%   names (  raw ) )  {   message ( )   stop (  \"\r\n\r\n  tximport failed at summarizing to the gene-level.\r\n  Please see 'Solutions' in the Details section of the man page: ?tximport\r\n\r\n\" ) }   stopifnot (   all (    c (  lengthCol ,  abundanceCol ) %in%   names (  raw ) ) )  if (   i ==  1 )  {   geneId -   raw [[  geneIdCol ] ] } else  {   stopifnot (   all (   geneId ==   raw [[  geneIdCol ] ] ) ) } } else  { # e.g. Salmon and kallisto do not include the gene ID, need an external table   stopifnot (   all (    c (  lengthCol ,  abundanceCol ) %in%   names (  raw ) ) )  if (   i ==  1 )  {   txId -   raw [[  txIdCol ] ] } else  {   stopifnot (   all (   txId ==   raw [[  txIdCol ] ] ) ) } } # create empty matrices  if (   i ==  1 )  {   mat -   matrix ( nrow =   nrow (  raw ) , ncol =   length (  files ) )    rownames (  mat ) -   raw [[  txIdCol ] ]    colnames (  mat ) -   names (  files )   abundanceMatTx -  mat   countsMatTx -  mat   lengthMatTx -  mat }    abundanceMatTx [ ,  i ] -   raw [[  abundanceCol ] ]    countsMatTx [ ,  i ] -   raw [[  countsCol ] ]    lengthMatTx [ ,  i ] -   raw [[  lengthCol ] ] }   message (  \"\" )   txi -   list ( abundance =  abundanceMatTx , counts =  countsMatTx , length =  lengthMatTx , countsFromAbundance =  \"no\" ) # if the user requested just the transcript-level data:  if (  txOut )  {   return (  txi ) }    txi [[  \"countsFromAbundance\" ] ] -  NULL   txiGene -   summarizeToGene (  txi ,  tx2gene ,  ignoreTxVersion ,  countsFromAbundance )   return (  txiGene ) # e.g. RSEM already has gene-level summaries # just combine the gene-level summaries across files } else  {   message (  \"reading in files\" )  for  ( i in   seq_along (  files ) )  {   message (  i ,  \" \" , appendLF =  FALSE )   raw -   as.data.frame (   importer (   files [  i ] ) )   stopifnot (   all (    c (  geneIdCol ,  abundanceCol ,  lengthCol ) %in%   names (  raw ) ) )  if (   i ==  1 )  {   mat -   matrix ( nrow =   nrow (  raw ) , ncol =   length (  files ) )    rownames (  mat ) -   raw [[  geneIdCol ] ]    colnames (  mat ) -   names (  files )   abundanceMat -  mat   countsMat -  mat   lengthMat -  mat }    abundanceMat [ ,  i ] -   raw [[  abundanceCol ] ]    countsMat [ ,  i ] -   raw [[  countsCol ] ]    lengthMat [ ,  i ] -   raw [[  lengthCol ] ] } }   message (  \"\" )   return (   list ( abundance =  abundanceMat , counts =  countsMat , length =  lengthMat , countsFromAbundance =  \"no\" ) ) } ",
+    "filename": "tximport.txt"
+  },
+  "new_function": {
+    "name": "tximport",
+    "representation": "tximport",
+    "parameters": "function ( files , type = c ( \"none\" , \"salmon\" , \"sailfish\" , \"kallisto\" , \"rsem\" ) , txIn = TRUE , txOut = FALSE , countsFromAbundance = c ( \"no\" , \"scaledTPM\" , \"lengthScaledTPM\" ) , tx2gene = NULL , varReduce = FALSE , dropInfReps = FALSE , ignoreTxVersion = FALSE , geneIdCol , txIdCol , abundanceCol , countsCol , lengthCol , importer = NULL )",
+    "body": "{ # inferential replicate importer   infRepImporter -  NULL   type -   match.arg (  type ,   c (  \"none\" ,  \"salmon\" ,  \"sailfish\" ,  \"kallisto\" ,  \"rsem\" ) )   countsFromAbundance -   match.arg (  countsFromAbundance ,   c (  \"no\" ,  \"scaledTPM\" ,  \"lengthScaledTPM\" ) )   stopifnot (   all (   file.exists (  files ) ) )  if (   !  txIn undefined  txOut )   stop (  \"txOut only an option when transcript-level data is read in (txIn=TRUE)\" )   kallisto.h5 -    basename (   files [  1 ] ) ==  \"abundance.h5\"  if (    type ==  \"kallisto\" undefined  !  kallisto.h5 )  {   message (  \"Note: importing `abundance.h5` is typically faster than `abundance.tsv`\" ) }   readrStatus -  FALSE  if (    is.null (  importer ) undefined  !  kallisto.h5 )  {  if (  !   requireNamespace (  \"readr\" , quietly =  TRUE ) )  {   message (  \"reading in files with read.delim (install 'readr' package for speed up)\" )   importer -  read.delim } else  {   message (  \"reading in files with read_tsv\" )   readrStatus -  TRUE   importer -  function ( x )   readr :: read_tsv (  x , progress =  FALSE , col_types =   readr :: cols ( ) ) } } # salmon/sailfish presets  if (   type %in%   c (  \"salmon\" ,  \"sailfish\" ) )  {   geneIdCol =  \"gene_id\"   txIdCol -  \"Name\"   abundanceCol -  \"TPM\"   countsCol -  \"NumReads\"   lengthCol -  \"EffectiveLength\"   infRepImporter -  if (  dropInfReps )  {  NULL } else  {  function ( x )   readInfRepFish (  x ,  type ) } } # kallisto presets  if (   type ==  \"kallisto\" )  {   geneIdCol =  \"gene_id\"   txIdCol -  \"target_id\"   abundanceCol -  \"tpm\"   countsCol -  \"est_counts\"   lengthCol -  \"eff_length\"  if (  kallisto.h5 )  {   importer -  read_kallisto_h5 }   infRepImporter -  if (  dropInfReps )  {  NULL } else  {  readInfRepKallisto } } # rsem presets  if (   type ==  \"rsem\" )  {   txIn -  FALSE   geneIdCol -  \"gene_id\"   abundanceCol -  \"FPKM\"   countsCol -  \"expected_count\"   lengthCol -  \"effective_length\" }   infRepType -  \"none\"  if (    type %in%   c (  \"salmon\" ,  \"sailfish\" ,  \"kallisto\" ) undefined  !  dropInfReps )  {   infRepType -  if (  varReduce )  {  \"var\" } else  {  \"full\" } } # if input is tx-level, need to summarize abundances, counts and lengths to gene-level  if (  txIn )  {  for  ( i in   seq_along (  files ) )  {   message (  i ,  \" \" , appendLF =  FALSE )   raw -   as.data.frame (   importer (   files [  i ] ) ) # if we expect inferential replicate info   repInfo -  NULL  if (   infRepType !=  \"none\" )  {   repInfo -   infRepImporter (   dirname (   files [  i ] ) ) # if we didn't find inferential replicate info  if (   is.null (  repInfo ) )  {   infRepType -  \"none\" } } # if external tx2gene table not provided, send user to vignette  if (    is.null (  tx2gene ) undefined  !  txOut )  {   summarizeFail ( ) # ...long message in helper.R } else  { # e.g. Salmon and kallisto do not include the gene ID, need an external table   stopifnot (   all (    c (  lengthCol ,  abundanceCol ) %in%   names (  raw ) ) )  if (   i ==  1 )  {   txId -   raw [[  txIdCol ] ] } else  {   stopifnot (   all (   txId ==   raw [[  txIdCol ] ] ) ) } } # create empty matrices  if (   i ==  1 )  {   mat -   matrix ( nrow =   nrow (  raw ) , ncol =   length (  files ) )    rownames (  mat ) -   raw [[  txIdCol ] ]    colnames (  mat ) -   names (  files )   abundanceMatTx -  mat   countsMatTx -  mat   lengthMatTx -  mat  if (   infRepType ==  \"var\" )  {   varMatTx -  mat } else  if (   infRepType ==  \"full\" )  {   infRepMatTx -   list ( ) } }    abundanceMatTx [ ,  i ] -   raw [[  abundanceCol ] ]    countsMatTx [ ,  i ] -   raw [[  countsCol ] ]    lengthMatTx [ ,  i ] -   raw [[  lengthCol ] ]  if (   infRepType ==  \"var\" )  {    varMatTx [ ,  i ] -   repInfo $ vars } else  if (   infRepType ==  \"full\" )  {    infRepMatTx [[  i ] ] -   repInfo $ reps } } # propagate names to inferential replicate list  if (   infRepType ==  \"full\" )  {    names (  infRepMatTx ) -   names (  files ) }   message (  \"\" ) # if there is no information about inferential replicates  if (   infRepType ==  \"none\" )  {   txi -   list ( abundance =  abundanceMatTx , counts =  countsMatTx , length =  lengthMatTx , countsFromAbundance =  countsFromAbundance ) } else  if (   infRepType ==  \"var\" )  { # if we're keeping only the variance from inferential replicates   txi -   list ( abundance =  abundanceMatTx , counts =  countsMatTx , variance =  varMatTx , length =  lengthMatTx , countsFromAbundance =  countsFromAbundance ) } else  if (   infRepType ==  \"full\" )  { # if we're keeping the full samples from inferential replicates   txi -   list ( abundance =  abundanceMatTx , counts =  countsMatTx , infReps =  infRepMatTx , length =  lengthMatTx , countsFromAbundance =  countsFromAbundance ) } # if the user requested just the transcript-level data:  if (  txOut )  {  if (   countsFromAbundance !=  \"no\" )  {    txi $ counts -   makeCountsFromAbundance (   txi $ counts ,   txi $ abundance ,   txi $ length ,  countsFromAbundance ) }   return (  txi ) }    txi [[  \"countsFromAbundance\" ] ] -  NULL   txiGene -   summarizeToGene (  txi ,  tx2gene ,  ignoreTxVersion ,  countsFromAbundance )   return (  txiGene ) # e.g. RSEM already has gene-level summaries # just combine the gene-level summaries across files } else  {  for  ( i in   seq_along (  files ) )  {   message (  i ,  \" \" , appendLF =  FALSE )   out -   capture.output (  {   raw -   as.data.frame (   importer (   files [  i ] ) ) } , type =  \"message\" )   stopifnot (   all (    c (  geneIdCol ,  abundanceCol ,  lengthCol ) %in%   names (  raw ) ) )  if (   i ==  1 )  {   mat -   matrix ( nrow =   nrow (  raw ) , ncol =   length (  files ) )    rownames (  mat ) -   raw [[  geneIdCol ] ]    colnames (  mat ) -   names (  files )   abundanceMat -  mat   countsMat -  mat   lengthMat -  mat }    abundanceMat [ ,  i ] -   raw [[  abundanceCol ] ]    countsMat [ ,  i ] -   raw [[  countsCol ] ]    lengthMat [ ,  i ] -   raw [[  lengthCol ] ] } }   message (  \"\" )   return (   list ( abundance =  abundanceMat , counts =  countsMat , length =  lengthMat , countsFromAbundance =  \"no\" ) ) } ",
+    "filename": "tximport.txt"
+  }
+}
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "tximport",
+    "representation": "tximport",
+    "parameters": "function ( files , type = c ( \"none\" , \"kallisto\" , \"salmon\" , \"sailfish\" , \"rsem\" ) , txIn = TRUE , txOut = FALSE , countsFromAbundance = c ( \"no\" , \"scaledTPM\" , \"lengthScaledTPM\" ) , tx2gene = NULL , reader = read.delim , geneIdCol , txIdCol , abundanceCol , countsCol , lengthCol , importer , collatedFiles , ignoreTxVersion = FALSE )",
+    "body": "{   type -   match.arg (  type ,   c (  \"none\" ,  \"kallisto\" ,  \"salmon\" ,  \"sailfish\" ,  \"rsem\" ) )   countsFromAbundance -   match.arg (  countsFromAbundance ,   c (  \"no\" ,  \"scaledTPM\" ,  \"lengthScaledTPM\" ) )   stopifnot (   all (   file.exists (  files ) ) )  if (   !  txIn undefined  txOut )   stop (  \"txOut only an option when transcript-level data is read in (txIn=TRUE)\" ) # kallisto presets  if (   type ==  \"kallisto\" )  {   geneIdCol =  \"gene_id\"   txIdCol -  \"target_id\"   abundanceCol -  \"tpm\"   countsCol -  \"est_counts\"   lengthCol -  \"eff_length\"   importer -  reader } # salmon/sailfish presets  if (   type %in%   c (  \"salmon\" ,  \"sailfish\" ) )  {   geneIdCol =  \"gene_id\"   txIdCol -  \"Name\"   abundanceCol -  \"TPM\"   countsCol -  \"NumReads\"   lengthCol -  \"EffectiveLength\"   importer -  function ( x )   reader (  x , comment =  '#' ) } # rsem presets  if (   type ==  \"rsem\" )  {   txIn -  FALSE   geneIdCol -  \"gene_id\"   abundanceCol -  \"FPKM\"   countsCol -  \"expected_count\"   lengthCol -  \"effective_length\"   importer -  reader }  if (   type ==  \"cufflinks\" )  {   stop (  \"reading from collated files not yet implemented\" ) } # if input is tx-level, need to summarize abundances, counts and lengths to gene-level  if (  txIn )  {   message (  \"reading in files\" )  for  ( i in   seq_along (  files ) )  {   message (  i ,  \" \" , appendLF =  FALSE )   raw -   as.data.frame (   importer (   files [  i ] ) ) ##################################################################### # some temporary code for detecting older fishes  if (    (   i ==  1 ) undefined  (   type %in%   c (  \"salmon\" ,  \"sailfish\" ) ) undefined  !  (   \"EffectiveLength\" %in%   names (  raw ) ) )  {   lengthCol -  \"Length\" # because the comment lines have the same comment character # as the header, need to name the column names   importer -  function ( x )  {   tmp -   reader (  x , comment =  \"#\" , header =  FALSE )    names (  tmp ) -   c (  \"Name\" ,  \"Length\" ,  \"TPM\" ,  \"NumReads\" )  tmp } # re-read the first file   raw -   try (   as.data.frame (   importer (   files [  i ] ) ) , silent =  TRUE ) # if this didn't work, reader is likely read_tsv and # different importer() code is needed  if (   inherits (  raw ,  \"try-error\" ) )  {   importer -  function ( x )  {   reader (  x , comment =  \"#\" , col_names =   c (  \"Name\" ,  \"Length\" ,  \"TPM\" ,  \"NumReads\" ) ) }   raw -   try (   as.data.frame (   importer (   files [  i ] ) ) )  if (   inherits (  raw ,  \"try-error\" ) )   stop (  \"tried but couldn't use reader() without error\r\n  user will need to define the importer() as well\" ) } } ##################################################################### # does the table contain gene association or was an external tx2gene table provided?  if (    is.null (  tx2gene ) undefined  !  txOut )  { # e.g. Cufflinks includes the gene ID in the table  if (  !   geneIdCol %in%   names (  raw ) )  {   message ( )   stop (  \"\r\n\r\n  tximport failed at summarizing to the gene-level.\r\n  Please see 'Solutions' in the Details section of the man page: ?tximport\r\n\r\n\" ) }   stopifnot (   all (    c (  lengthCol ,  abundanceCol ) %in%   names (  raw ) ) )  if (   i ==  1 )  {   geneId -   raw [[  geneIdCol ] ] } else  {   stopifnot (   all (   geneId ==   raw [[  geneIdCol ] ] ) ) } } else  { # e.g. Salmon and kallisto do not include the gene ID, need an external table   stopifnot (   all (    c (  lengthCol ,  abundanceCol ) %in%   names (  raw ) ) )  if (   i ==  1 )  {   txId -   raw [[  txIdCol ] ] } else  {   stopifnot (   all (   txId ==   raw [[  txIdCol ] ] ) ) } } # create empty matrices  if (   i ==  1 )  {   mat -   matrix ( nrow =   nrow (  raw ) , ncol =   length (  files ) )    rownames (  mat ) -   raw [[  txIdCol ] ]    colnames (  mat ) -   names (  files )   abundanceMatTx -  mat   countsMatTx -  mat   lengthMatTx -  mat }    abundanceMatTx [ ,  i ] -   raw [[  abundanceCol ] ]    countsMatTx [ ,  i ] -   raw [[  countsCol ] ]    lengthMatTx [ ,  i ] -   raw [[  lengthCol ] ] }   message (  \"\" )   txi -   list ( abundance =  abundanceMatTx , counts =  countsMatTx , length =  lengthMatTx , countsFromAbundance =  \"no\" ) # if the user requested just the transcript-level data:  if (  txOut )  {   return (  txi ) }    txi [[  \"countsFromAbundance\" ] ] -  NULL   txiGene -   summarizeToGene (  txi ,  tx2gene ,  ignoreTxVersion ,  countsFromAbundance )   return (  txiGene ) # e.g. RSEM already has gene-level summaries # just combine the gene-level summaries across files } else  {   message (  \"reading in files\" )  for  ( i in   seq_along (  files ) )  {   message (  i ,  \" \" , appendLF =  FALSE )   raw -   as.data.frame (   importer (   files [  i ] ) )   stopifnot (   all (    c (  geneIdCol ,  abundanceCol ,  lengthCol ) %in%   names (  raw ) ) )  if (   i ==  1 )  {   mat -   matrix ( nrow =   nrow (  raw ) , ncol =   length (  files ) )    rownames (  mat ) -   raw [[  geneIdCol ] ]    colnames (  mat ) -   names (  files )   abundanceMat -  mat   countsMat -  mat   lengthMat -  mat }    abundanceMat [ ,  i ] -   raw [[  abundanceCol ] ]    countsMat [ ,  i ] -   raw [[  countsCol ] ]    lengthMat [ ,  i ] -   raw [[  lengthCol ] ] } }   message (  \"\" )   return (   list ( abundance =  abundanceMat , counts =  countsMat , length =  lengthMat , countsFromAbundance =  \"no\" ) ) } ",
+    "filename": "tximport.txt"
+  },
+  "new_function": {
+    "name": "tximport",
+    "representation": "tximport",
+    "parameters": "function ( files , type = c ( \"none\" , \"salmon\" , \"sailfish\" , \"kallisto\" , \"rsem\" ) , txIn = TRUE , txOut = FALSE , countsFromAbundance = c ( \"no\" , \"scaledTPM\" , \"lengthScaledTPM\" ) , tx2gene = NULL , varReduce = FALSE , dropInfReps = FALSE , ignoreTxVersion = FALSE , geneIdCol , txIdCol , abundanceCol , countsCol , lengthCol , importer = NULL )",
+    "body": "{ # inferential replicate importer   infRepImporter -  NULL   type -   match.arg (  type ,   c (  \"none\" ,  \"salmon\" ,  \"sailfish\" ,  \"kallisto\" ,  \"rsem\" ) )   countsFromAbundance -   match.arg (  countsFromAbundance ,   c (  \"no\" ,  \"scaledTPM\" ,  \"lengthScaledTPM\" ) )   stopifnot (   all (   file.exists (  files ) ) )  if (   !  txIn undefined  txOut )   stop (  \"txOut only an option when transcript-level data is read in (txIn=TRUE)\" )   kallisto.h5 -    basename (   files [  1 ] ) ==  \"abundance.h5\"  if (    type ==  \"kallisto\" undefined  !  kallisto.h5 )  {   message (  \"Note: importing `abundance.h5` is typically faster than `abundance.tsv`\" ) }   readrStatus -  FALSE  if (    is.null (  importer ) undefined  !  kallisto.h5 )  {  if (  !   requireNamespace (  \"readr\" , quietly =  TRUE ) )  {   message (  \"reading in files with read.delim (install 'readr' package for speed up)\" )   importer -  read.delim } else  {   message (  \"reading in files with read_tsv\" )   readrStatus -  TRUE   importer -  function ( x )   readr :: read_tsv (  x , progress =  FALSE , col_types =   readr :: cols ( ) ) } } # salmon/sailfish presets  if (   type %in%   c (  \"salmon\" ,  \"sailfish\" ) )  {   geneIdCol =  \"gene_id\"   txIdCol -  \"Name\"   abundanceCol -  \"TPM\"   countsCol -  \"NumReads\"   lengthCol -  \"EffectiveLength\"   infRepImporter -  if (  dropInfReps )  {  NULL } else  {  function ( x )   readInfRepFish (  x ,  type ) } } # kallisto presets  if (   type ==  \"kallisto\" )  {   geneIdCol =  \"gene_id\"   txIdCol -  \"target_id\"   abundanceCol -  \"tpm\"   countsCol -  \"est_counts\"   lengthCol -  \"eff_length\"  if (  kallisto.h5 )  {   importer -  read_kallisto_h5 }   infRepImporter -  if (  dropInfReps )  {  NULL } else  {  readInfRepKallisto } } # rsem presets  if (   type ==  \"rsem\" )  {   txIn -  FALSE   geneIdCol -  \"gene_id\"   abundanceCol -  \"FPKM\"   countsCol -  \"expected_count\"   lengthCol -  \"effective_length\" }   infRepType -  \"none\"  if (    type %in%   c (  \"salmon\" ,  \"sailfish\" ,  \"kallisto\" ) undefined  !  dropInfReps )  {   infRepType -  if (  varReduce )  {  \"var\" } else  {  \"full\" } } # if input is tx-level, need to summarize abundances, counts and lengths to gene-level  if (  txIn )  {  for  ( i in   seq_along (  files ) )  {   message (  i ,  \" \" , appendLF =  FALSE )   raw -   as.data.frame (   importer (   files [  i ] ) ) # if we expect inferential replicate info   repInfo -  NULL  if (   infRepType !=  \"none\" )  {   repInfo -   infRepImporter (   dirname (   files [  i ] ) ) # if we didn't find inferential replicate info  if (   is.null (  repInfo ) )  {   infRepType -  \"none\" } } # if external tx2gene table not provided, send user to vignette  if (    is.null (  tx2gene ) undefined  !  txOut )  {   summarizeFail ( ) # ...long message in helper.R } else  { # e.g. Salmon and kallisto do not include the gene ID, need an external table   stopifnot (   all (    c (  lengthCol ,  abundanceCol ) %in%   names (  raw ) ) )  if (   i ==  1 )  {   txId -   raw [[  txIdCol ] ] } else  {   stopifnot (   all (   txId ==   raw [[  txIdCol ] ] ) ) } } # create empty matrices  if (   i ==  1 )  {   mat -   matrix ( nrow =   nrow (  raw ) , ncol =   length (  files ) )    rownames (  mat ) -   raw [[  txIdCol ] ]    colnames (  mat ) -   names (  files )   abundanceMatTx -  mat   countsMatTx -  mat   lengthMatTx -  mat  if (   infRepType ==  \"var\" )  {   varMatTx -  mat } else  if (   infRepType ==  \"full\" )  {   infRepMatTx -   list ( ) } }    abundanceMatTx [ ,  i ] -   raw [[  abundanceCol ] ]    countsMatTx [ ,  i ] -   raw [[  countsCol ] ]    lengthMatTx [ ,  i ] -   raw [[  lengthCol ] ]  if (   infRepType ==  \"var\" )  {    varMatTx [ ,  i ] -   repInfo $ vars } else  if (   infRepType ==  \"full\" )  {    infRepMatTx [[  i ] ] -   repInfo $ reps } } # propagate names to inferential replicate list  if (   infRepType ==  \"full\" )  {    names (  infRepMatTx ) -   names (  files ) }   message (  \"\" ) # if there is no information about inferential replicates  if (   infRepType ==  \"none\" )  {   txi -   list ( abundance =  abundanceMatTx , counts =  countsMatTx , length =  lengthMatTx , countsFromAbundance =  countsFromAbundance ) } else  if (   infRepType ==  \"var\" )  { # if we're keeping only the variance from inferential replicates   txi -   list ( abundance =  abundanceMatTx , counts =  countsMatTx , variance =  varMatTx , length =  lengthMatTx , countsFromAbundance =  countsFromAbundance ) } else  if (   infRepType ==  \"full\" )  { # if we're keeping the full samples from inferential replicates   txi -   list ( abundance =  abundanceMatTx , counts =  countsMatTx , infReps =  infRepMatTx , length =  lengthMatTx , countsFromAbundance =  countsFromAbundance ) } # if the user requested just the transcript-level data:  if (  txOut )  {  if (   countsFromAbundance !=  \"no\" )  {    txi $ counts -   makeCountsFromAbundance (   txi $ counts ,   txi $ abundance ,   txi $ length ,  countsFromAbundance ) }   return (  txi ) }    txi [[  \"countsFromAbundance\" ] ] -  NULL   txiGene -   summarizeToGene (  txi ,  tx2gene ,  ignoreTxVersion ,  countsFromAbundance )   return (  txiGene ) # e.g. RSEM already has gene-level summaries # just combine the gene-level summaries across files } else  {  for  ( i in   seq_along (  files ) )  {   message (  i ,  \" \" , appendLF =  FALSE )   out -   capture.output (  {   raw -   as.data.frame (   importer (   files [  i ] ) ) } , type =  \"message\" )   stopifnot (   all (    c (  geneIdCol ,  abundanceCol ,  lengthCol ) %in%   names (  raw ) ) )  if (   i ==  1 )  {   mat -   matrix ( nrow =   nrow (  raw ) , ncol =   length (  files ) )    rownames (  mat ) -   raw [[  geneIdCol ] ]    colnames (  mat ) -   names (  files )   abundanceMat -  mat   countsMat -  mat   lengthMat -  mat }    abundanceMat [ ,  i ] -   raw [[  abundanceCol ] ]    countsMat [ ,  i ] -   raw [[  countsCol ] ]    lengthMat [ ,  i ] -   raw [[  lengthCol ] ] } }   message (  \"\" )   return (   list ( abundance =  abundanceMat , counts =  countsMat , length =  lengthMat , countsFromAbundance =  \"no\" ) ) } ",
+    "filename": "tximport.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  tximport_release_3_5 tximport_release_3_6
+
+{
+    "package": "tximport",
+    "release_versions": "tximport_release_3_5 tximport_release_3_6",
+    "desc_release_old": "1.4.0",
+    "desc_release_new": "1.6.0",
+    "old_release_number": 2,
+    "new_release_number": 3,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  tximport_release_3_6 tximport_release_3_7
+
+{
+    "package": "tximport",
+    "release_versions": "tximport_release_3_6 tximport_release_3_7",
+    "desc_release_old": "1.6.0",
+    "desc_release_new": "1.8.0",
+    "old_release_number": 3,
+    "new_release_number": 4,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 2,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "summarizeToGene",
+    "representation": "summarizeToGene",
+    "parameters": "function ( txi , tx2gene , ignoreTxVersion = FALSE , countsFromAbundance = c ( \"no\" , \"scaledTPM\" , \"lengthScaledTPM\" ) )",
+    "body": "{   countsFromAbundance -   match.arg (  countsFromAbundance ,   c (  \"no\" ,  \"scaledTPM\" ,  \"lengthScaledTPM\" ) ) # unpack matrices from list for cleaner code   abundanceMatTx -   txi $ abundance   countsMatTx -   txi $ counts   lengthMatTx -   txi $ length   txId -   rownames (  abundanceMatTx )   stopifnot (   all (   txId ==   rownames (  countsMatTx ) ) )   stopifnot (   all (   txId ==   rownames (  lengthMatTx ) ) ) # need to associate tx to genes # potentially remove unassociated transcript rows and warn user  if (  !   is.null (  tx2gene ) )  { # code to strip dots from the rownames of matrices  if (  ignoreTxVersion )  {   txId -   sapply (   strsplit (   as.character (  txId ) ,  \"\\\\.\" ) ,  \"[[\" ,  1 ) }    colnames (  tx2gene ) -   c (  \"tx\" ,  \"gene\" )  if (   any (   duplicated (   tx2gene $ tx ) ) )  {   message (  \"removing duplicated transcript rows from tx2gene\" )   tx2gene -   tx2gene [  !   duplicated (   tx2gene $ tx ) , ] }    tx2gene $ gene -   factor (   tx2gene $ gene )    tx2gene $ tx -   factor (   tx2gene $ tx ) # if none of the rownames of the matrices (txId) are # in the tx2gene table something is wrong  if (  !   any (   txId %in%   tx2gene $ tx ) )  {   stop (  \"\r\n  None of the transcripts in the quantification files are present\r\n  in the first column of tx2gene. Check to see that you are using\r\n  the same annotation for both.\\n\\n\" ) } # remove transcripts (and genes) not in the rownames of matrices   tx2gene -   tx2gene [    tx2gene $ tx %in%  txId , ]    tx2gene $ gene -   droplevels (   tx2gene $ gene )   ntxmissing -   sum (  !   txId %in%   tx2gene $ tx )  if (   ntxmissing undefined  0 )   message (  \"transcripts missing from tx2gene: \" ,  ntxmissing ) # subset to transcripts in the tx2gene table   sub.idx -   txId %in%   tx2gene $ tx   abundanceMatTx -   abundanceMatTx [  sub.idx , , drop =  FALSE ]   countsMatTx -   countsMatTx [  sub.idx , , drop =  FALSE ]   lengthMatTx -   lengthMatTx [  sub.idx , , drop =  FALSE ]   txId -   txId [  sub.idx ] # now create a vector of geneId which aligns to the matrices   geneId -    tx2gene $ gene [   match (  txId ,   tx2gene $ tx ) ] } # summarize abundance and counts   message (  \"summarizing abundance\" )   abundanceMat -   rowsum (  abundanceMatTx ,  geneId )   message (  \"summarizing counts\" )   countsMat -   rowsum (  countsMatTx ,  geneId )   message (  \"summarizing length\" ) # the next lines calculate a weighted average of transcript length, # weighting by transcript abundance. # this can be used as an offset / normalization factor which removes length bias # for the differential analysis of estimated counts summarized at the gene level.   weightedLength -   rowsum (   abundanceMatTx *  lengthMatTx ,  geneId )   lengthMat -   weightedLength /  abundanceMat # pre-calculate a simple average transcript length # for the case the abundances are all zero for all samples. # first, average the tx lengths over samples   aveLengthSamp -   rowMeans (  lengthMatTx ) # then simple average of lengths within genes (not weighted by abundance)   aveLengthSampGene -   tapply (  aveLengthSamp ,  geneId ,  mean )   stopifnot (   all (    names (  aveLengthSampGene ) ==   rownames (  lengthMat ) ) ) # check for NaN and if possible replace these values with geometric mean of other samples. # (the geometic mean here implies an offset of 0 on the log scale) # NaN come from samples which have abundance of 0 for all isoforms of a gene, and # so we cannot calculate the weighted average. our best guess is to use the average # transcript length from the other samples.   lengthMat -   replaceMissingLength (  lengthMat ,  aveLengthSampGene )  if (   countsFromAbundance !=  \"no\" )  {   countsMat -   makeCountsFromAbundance (  countsMat ,  abundanceMat ,  lengthMat ,  countsFromAbundance ) }   return (   list ( abundance =  abundanceMat , counts =  countsMat , length =  lengthMat , countsFromAbundance =  countsFromAbundance ) ) } ",
+    "filename": "summarizeToGene.txt"
+  },
+  "new_function": {
+    "name": "summarizeToGene",
+    "representation": "summarizeToGene",
+    "parameters": "function ( txi , tx2gene , ignoreTxVersion = FALSE , ignoreAfterBar = FALSE , countsFromAbundance = c ( \"no\" , \"scaledTPM\" , \"lengthScaledTPM\" ) )",
+    "body": "{   countsFromAbundance -   match.arg (  countsFromAbundance ,   c (  \"no\" ,  \"scaledTPM\" ,  \"lengthScaledTPM\" ) ) # unpack matrices from list for cleaner code   abundanceMatTx -   txi $ abundance   countsMatTx -   txi $ counts   lengthMatTx -   txi $ length   txId -   rownames (  abundanceMatTx )   stopifnot (   all (   txId ==   rownames (  countsMatTx ) ) )   stopifnot (   all (   txId ==   rownames (  lengthMatTx ) ) ) # need to associate tx to genes # potentially remove unassociated transcript rows and warn user  if (  !   is.null (  tx2gene ) )  { # code to strip dots or bars and all remaining chars from the rownames of matrices  if (  ignoreTxVersion )  {   txId -   sub (  \"\\\\..*\" ,  \"\" ,  txId ) } else  if (  ignoreAfterBar )  {   txId -   sub (  \"\\\\|.*\" ,  \"\" ,  txId ) }    colnames (  tx2gene ) -   c (  \"tx\" ,  \"gene\" )  if (   any (   duplicated (   tx2gene $ tx ) ) )  {   message (  \"removing duplicated transcript rows from tx2gene\" )   tx2gene -   tx2gene [  !   duplicated (   tx2gene $ tx ) , ] }    tx2gene $ gene -   factor (   tx2gene $ gene )    tx2gene $ tx -   factor (   tx2gene $ tx ) # if none of the rownames of the matrices (txId) are # in the tx2gene table something is wrong  if (  !   any (   txId %in%   tx2gene $ tx ) )  {   txFromFile -   paste0 (  \"Example IDs (file): [\" ,   paste (   head (  txId ,  3 ) , collapse =  \", \" ) ,  \", ...]\" )   txFromTable -   paste0 (  \"Example IDs (tx2gene): [\" ,   paste (   head (   tx2gene $ tx ,  3 ) , collapse =  \", \" ) ,  \", ...]\" )   stop (   paste0 (  \"\r\n  None of the transcripts in the quantification files are present\r\n  in the first column of tx2gene. Check to see that you are using\r\n  the same annotation for both.\\n\\n\" ,  txFromFile ,  \"\\n\\n\" ,  txFromTable ,  \"\\n\\n  This can sometimes (not always) be fixed using 'ignoreTxVersion' or 'ignoreAfterBar'.\\n\\n\" ) ) } # remove transcripts (and genes) not in the rownames of matrices   tx2gene -   tx2gene [    tx2gene $ tx %in%  txId , ]    tx2gene $ gene -   droplevels (   tx2gene $ gene )   ntxmissing -   sum (  !   txId %in%   tx2gene $ tx )  if (   ntxmissing undefined  0 )   message (  \"transcripts missing from tx2gene: \" ,  ntxmissing ) # subset to transcripts in the tx2gene table   sub.idx -   txId %in%   tx2gene $ tx   abundanceMatTx -   abundanceMatTx [  sub.idx , , drop =  FALSE ]   countsMatTx -   countsMatTx [  sub.idx , , drop =  FALSE ]   lengthMatTx -   lengthMatTx [  sub.idx , , drop =  FALSE ]   txId -   txId [  sub.idx ] # now create a vector of geneId which aligns to the matrices   geneId -    tx2gene $ gene [   match (  txId ,   tx2gene $ tx ) ] } # summarize abundance and counts   message (  \"summarizing abundance\" )   abundanceMat -   rowsum (  abundanceMatTx ,  geneId )   message (  \"summarizing counts\" )   countsMat -   rowsum (  countsMatTx ,  geneId )   message (  \"summarizing length\" ) # the next lines calculate a weighted average of transcript length, # weighting by transcript abundance. # this can be used as an offset / normalization factor which removes length bias # for the differential analysis of estimated counts summarized at the gene level.   weightedLength -   rowsum (   abundanceMatTx *  lengthMatTx ,  geneId )   lengthMat -   weightedLength /  abundanceMat # pre-calculate a simple average transcript length # for the case the abundances are all zero for all samples. # first, average the tx lengths over samples   aveLengthSamp -   rowMeans (  lengthMatTx ) # then simple average of lengths within genes (not weighted by abundance)   aveLengthSampGene -   tapply (  aveLengthSamp ,  geneId ,  mean )   stopifnot (   all (    names (  aveLengthSampGene ) ==   rownames (  lengthMat ) ) ) # check for NaN and if possible replace these values with geometric mean of other samples. # (the geometic mean here implies an offset of 0 on the log scale) # NaN come from samples which have abundance of 0 for all isoforms of a gene, and # so we cannot calculate the weighted average. our best guess is to use the average # transcript length from the other samples.   lengthMat -   replaceMissingLength (  lengthMat ,  aveLengthSampGene )  if (   countsFromAbundance !=  \"no\" )  {   countsMat -   makeCountsFromAbundance (  countsMat ,  abundanceMat ,  lengthMat ,  countsFromAbundance ) }   return (   list ( abundance =  abundanceMat , counts =  countsMat , length =  lengthMat , countsFromAbundance =  countsFromAbundance ) ) } ",
+    "filename": "summarizeToGene.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "tximport",
+    "representation": "tximport",
+    "parameters": "function ( files , type = c ( \"none\" , \"salmon\" , \"sailfish\" , \"kallisto\" , \"rsem\" ) , txIn = TRUE , txOut = FALSE , countsFromAbundance = c ( \"no\" , \"scaledTPM\" , \"lengthScaledTPM\" ) , tx2gene = NULL , varReduce = FALSE , dropInfReps = FALSE , ignoreTxVersion = FALSE , geneIdCol , txIdCol , abundanceCol , countsCol , lengthCol , importer = NULL )",
+    "body": "{ # inferential replicate importer   infRepImporter -  NULL   type -   match.arg (  type ,   c (  \"none\" ,  \"salmon\" ,  \"sailfish\" ,  \"kallisto\" ,  \"rsem\" ) )   countsFromAbundance -   match.arg (  countsFromAbundance ,   c (  \"no\" ,  \"scaledTPM\" ,  \"lengthScaledTPM\" ) )   stopifnot (   all (   file.exists (  files ) ) )  if (   !  txIn undefined  txOut )   stop (  \"txOut only an option when transcript-level data is read in (txIn=TRUE)\" )   kallisto.h5 -    basename (   files [  1 ] ) ==  \"abundance.h5\"  if (    type ==  \"kallisto\" undefined  !  kallisto.h5 )  {   message (  \"Note: importing `abundance.h5` is typically faster than `abundance.tsv`\" ) }   readrStatus -  FALSE  if (    is.null (  importer ) undefined  !  kallisto.h5 )  {  if (  !   requireNamespace (  \"readr\" , quietly =  TRUE ) )  {   message (  \"reading in files with read.delim (install 'readr' package for speed up)\" )   importer -  read.delim } else  {   message (  \"reading in files with read_tsv\" )   readrStatus -  TRUE   importer -  function ( x )   readr :: read_tsv (  x , progress =  FALSE , col_types =   readr :: cols ( ) ) } } # salmon/sailfish presets  if (   type %in%   c (  \"salmon\" ,  \"sailfish\" ) )  {   geneIdCol =  \"gene_id\"   txIdCol -  \"Name\"   abundanceCol -  \"TPM\"   countsCol -  \"NumReads\"   lengthCol -  \"EffectiveLength\"   infRepImporter -  if (  dropInfReps )  {  NULL } else  {  function ( x )   readInfRepFish (  x ,  type ) } } # kallisto presets  if (   type ==  \"kallisto\" )  {   geneIdCol =  \"gene_id\"   txIdCol -  \"target_id\"   abundanceCol -  \"tpm\"   countsCol -  \"est_counts\"   lengthCol -  \"eff_length\"  if (  kallisto.h5 )  {   importer -  read_kallisto_h5 }   infRepImporter -  if (  dropInfReps )  {  NULL } else  {  readInfRepKallisto } } # rsem presets  if (   type ==  \"rsem\" )  {   txIn -  FALSE   geneIdCol -  \"gene_id\"   abundanceCol -  \"FPKM\"   countsCol -  \"expected_count\"   lengthCol -  \"effective_length\" }   infRepType -  \"none\"  if (    type %in%   c (  \"salmon\" ,  \"sailfish\" ,  \"kallisto\" ) undefined  !  dropInfReps )  {   infRepType -  if (  varReduce )  {  \"var\" } else  {  \"full\" } } # if input is tx-level, need to summarize abundances, counts and lengths to gene-level  if (  txIn )  {  for  ( i in   seq_along (  files ) )  {   message (  i ,  \" \" , appendLF =  FALSE )   raw -   as.data.frame (   importer (   files [  i ] ) ) # if we expect inferential replicate info   repInfo -  NULL  if (   infRepType !=  \"none\" )  {   repInfo -   infRepImporter (   dirname (   files [  i ] ) ) # if we didn't find inferential replicate info  if (   is.null (  repInfo ) )  {   infRepType -  \"none\" } } # if external tx2gene table not provided, send user to vignette  if (    is.null (  tx2gene ) undefined  !  txOut )  {   summarizeFail ( ) # ...long message in helper.R } else  { # e.g. Salmon and kallisto do not include the gene ID, need an external table   stopifnot (   all (    c (  lengthCol ,  abundanceCol ) %in%   names (  raw ) ) )  if (   i ==  1 )  {   txId -   raw [[  txIdCol ] ] } else  {   stopifnot (   all (   txId ==   raw [[  txIdCol ] ] ) ) } } # create empty matrices  if (   i ==  1 )  {   mat -   matrix ( nrow =   nrow (  raw ) , ncol =   length (  files ) )    rownames (  mat ) -   raw [[  txIdCol ] ]    colnames (  mat ) -   names (  files )   abundanceMatTx -  mat   countsMatTx -  mat   lengthMatTx -  mat  if (   infRepType ==  \"var\" )  {   varMatTx -  mat } else  if (   infRepType ==  \"full\" )  {   infRepMatTx -   list ( ) } }    abundanceMatTx [ ,  i ] -   raw [[  abundanceCol ] ]    countsMatTx [ ,  i ] -   raw [[  countsCol ] ]    lengthMatTx [ ,  i ] -   raw [[  lengthCol ] ]  if (   infRepType ==  \"var\" )  {    varMatTx [ ,  i ] -   repInfo $ vars } else  if (   infRepType ==  \"full\" )  {    infRepMatTx [[  i ] ] -   repInfo $ reps } } # propagate names to inferential replicate list  if (   infRepType ==  \"full\" )  {    names (  infRepMatTx ) -   names (  files ) }   message (  \"\" ) # if there is no information about inferential replicates  if (   infRepType ==  \"none\" )  {   txi -   list ( abundance =  abundanceMatTx , counts =  countsMatTx , length =  lengthMatTx , countsFromAbundance =  countsFromAbundance ) } else  if (   infRepType ==  \"var\" )  { # if we're keeping only the variance from inferential replicates   txi -   list ( abundance =  abundanceMatTx , counts =  countsMatTx , variance =  varMatTx , length =  lengthMatTx , countsFromAbundance =  countsFromAbundance ) } else  if (   infRepType ==  \"full\" )  { # if we're keeping the full samples from inferential replicates   txi -   list ( abundance =  abundanceMatTx , counts =  countsMatTx , infReps =  infRepMatTx , length =  lengthMatTx , countsFromAbundance =  countsFromAbundance ) } # if the user requested just the transcript-level data:  if (  txOut )  {  if (   countsFromAbundance !=  \"no\" )  {    txi $ counts -   makeCountsFromAbundance (   txi $ counts ,   txi $ abundance ,   txi $ length ,  countsFromAbundance ) }   return (  txi ) }    txi [[  \"countsFromAbundance\" ] ] -  NULL   txiGene -   summarizeToGene (  txi ,  tx2gene ,  ignoreTxVersion ,  countsFromAbundance )   return (  txiGene ) # e.g. RSEM already has gene-level summaries # just combine the gene-level summaries across files } else  {  for  ( i in   seq_along (  files ) )  {   message (  i ,  \" \" , appendLF =  FALSE )   out -   capture.output (  {   raw -   as.data.frame (   importer (   files [  i ] ) ) } , type =  \"message\" )   stopifnot (   all (    c (  geneIdCol ,  abundanceCol ,  lengthCol ) %in%   names (  raw ) ) )  if (   i ==  1 )  {   mat -   matrix ( nrow =   nrow (  raw ) , ncol =   length (  files ) )    rownames (  mat ) -   raw [[  geneIdCol ] ]    colnames (  mat ) -   names (  files )   abundanceMat -  mat   countsMat -  mat   lengthMat -  mat }    abundanceMat [ ,  i ] -   raw [[  abundanceCol ] ]    countsMat [ ,  i ] -   raw [[  countsCol ] ]    lengthMat [ ,  i ] -   raw [[  lengthCol ] ] } }   message (  \"\" )   return (   list ( abundance =  abundanceMat , counts =  countsMat , length =  lengthMat , countsFromAbundance =  \"no\" ) ) } ",
+    "filename": "tximport.txt"
+  },
+  "new_function": {
+    "name": "tximport",
+    "representation": "tximport",
+    "parameters": "function ( files , type = c ( \"none\" , \"salmon\" , \"sailfish\" , \"kallisto\" , \"rsem\" , \"stringtie\" ) , txIn = TRUE , txOut = FALSE , countsFromAbundance = c ( \"no\" , \"scaledTPM\" , \"lengthScaledTPM\" ) , tx2gene = NULL , varReduce = FALSE , dropInfReps = FALSE , ignoreTxVersion = FALSE , ignoreAfterBar = FALSE , geneIdCol , txIdCol , abundanceCol , countsCol , lengthCol , importer = NULL , existenceOptional = FALSE , readLength = 75 )",
+    "body": "{ # inferential replicate importer   infRepImporter -  NULL   type -   match.arg (  type ,   c (  \"none\" ,  \"salmon\" ,  \"sailfish\" ,  \"kallisto\" ,  \"rsem\" ,  \"stringtie\" ) )   countsFromAbundance -   match.arg (  countsFromAbundance ,   c (  \"no\" ,  \"scaledTPM\" ,  \"lengthScaledTPM\" ) )  if (  !  existenceOptional )   stopifnot (   all (   file.exists (  files ) ) )  if (   !  txIn undefined  txOut )   stop (  \"txOut only an option when transcript-level data is read in (txIn=TRUE)\" )   stopifnot (    length (  files ) undefined  0 )   kallisto.h5 -    basename (   files [  1 ] ) ==  \"abundance.h5\"  if (    type ==  \"kallisto\" undefined  !  kallisto.h5 )  {   message (  \"Note: importing `abundance.h5` is typically faster than `abundance.tsv`\" ) }  if (     type ==  \"rsem\" undefined  txIn undefined   grepl (  \"genes\" ,   files [  1 ] ) )  {   message (  \"It looks like you are importing RSEM genes.results files, setting txIn=FALSE\" )   txIn -  FALSE }   readrStatus -  FALSE  if (    is.null (  importer ) undefined  !  kallisto.h5 )  {  if (  !   requireNamespace (  \"readr\" , quietly =  TRUE ) )  {   message (  \"reading in files with read.delim (install 'readr' package for speed up)\" )   importer -  read.delim } else  {   message (  \"reading in files with read_tsv\" )   readrStatus -  TRUE } } # salmon/sailfish presets  if (   type %in%   c (  \"salmon\" ,  \"sailfish\" ) )  {   txIdCol -  \"Name\"   abundanceCol -  \"TPM\"   countsCol -  \"NumReads\"   lengthCol -  \"EffectiveLength\"  if (   readrStatus undefined   is.null (  importer ) )  {   col.types -   readr :: cols (   readr :: col_character ( ) ,   readr :: col_integer ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) )   importer -  function ( x )   readr :: read_tsv (  x , progress =  FALSE , col_types =  col.types ) }   infRepImporter -  if (  dropInfReps )  {  NULL } else  {  function ( x )   readInfRepFish (  x ,  type ) } } # kallisto presets  if (   type ==  \"kallisto\" )  {   txIdCol -  \"target_id\"   abundanceCol -  \"tpm\"   countsCol -  \"est_counts\"   lengthCol -  \"eff_length\"  if (  kallisto.h5 )  {   importer -  read_kallisto_h5 } else  if (   readrStatus undefined   is.null (  importer ) )  {   col.types -   readr :: cols (   readr :: col_character ( ) ,   readr :: col_integer ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) )   importer -  function ( x )   readr :: read_tsv (  x , progress =  FALSE , col_types =  col.types ) }   infRepImporter -  if (  dropInfReps )  {  NULL } else  {  readInfRepKallisto } } # rsem presets  if (   type ==  \"rsem\" )  {  if (  txIn )  {   txIdCol -  \"transcript_id\"   abundanceCol -  \"TPM\"   countsCol -  \"expected_count\"   lengthCol -  \"effective_length\"  if (   readrStatus undefined   is.null (  importer ) )  {   col.types -   readr :: cols (   readr :: col_character ( ) ,   readr :: col_character ( ) ,   readr :: col_integer ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) )   importer -  function ( x )   readr :: read_tsv (  x , progress =  FALSE , col_types =  col.types ) } } else  {   geneIdCol -  \"gene_id\"   abundanceCol -  \"TPM\"   countsCol -  \"expected_count\"   lengthCol -  \"effective_length\"  if (   readrStatus undefined   is.null (  importer ) )  {   col.types -   readr :: cols (   readr :: col_character ( ) ,   readr :: col_character ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) )   importer -  function ( x )   readr :: read_tsv (  x , progress =  FALSE , col_types =  col.types ) } } }  if (   type ==   c (  \"stringtie\" ) )  {   txIdCol -  \"t_name\"   geneIdCol -  \"gene_name\"   abundanceCol -  \"FPKM\"   countsCol -  \"cov\"   lengthCol -  \"length\"  if (   readrStatus undefined   is.null (  importer ) )  {   col.types -   readr :: cols (   readr :: col_character ( ) ,   readr :: col_character ( ) ,   readr :: col_character ( ) ,   readr :: col_integer ( ) ,   readr :: col_integer ( ) ,   readr :: col_character ( ) ,   readr :: col_integer ( ) ,   readr :: col_integer ( ) ,   readr :: col_character ( ) ,   readr :: col_character ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) )   importer -  function ( x )   readr :: read_tsv (  x , progress =  FALSE , col_types =  col.types ) } }   infRepType -  \"none\"  if (    type %in%   c (  \"salmon\" ,  \"sailfish\" ,  \"kallisto\" ) undefined  !  dropInfReps )  {   infRepType -  if (  varReduce )  {  \"var\" } else  {  \"full\" } } # if input is tx-level (this is every case but RSEM gene.results files)  if (  txIn )  {  for  ( i in   seq_along (  files ) )  {   message (  i ,  \" \" , appendLF =  FALSE )   raw -   as.data.frame (   importer (   files [  i ] ) ) # if we expect inferential replicate info   repInfo -  NULL  if (   infRepType !=  \"none\" )  {   repInfo -   infRepImporter (   dirname (   files [  i ] ) ) # if we didn't find inferential replicate info  if (   is.null (  repInfo ) )  {   infRepType -  \"none\" } } # if external tx2gene table not provided, send user to vignette  if (    is.null (  tx2gene ) undefined  !  txOut )  {   summarizeFail ( ) # ...long message in helper.R } else  { # e.g. Salmon and kallisto do not include the gene ID, need an external table   stopifnot (   all (    c (  lengthCol ,  abundanceCol ) %in%   names (  raw ) ) )  if (   i ==  1 )  {   txId -   raw [[  txIdCol ] ] } else  {   stopifnot (   all (   txId ==   raw [[  txIdCol ] ] ) ) } } # create empty matrices  if (   i ==  1 )  {   mat -   matrix ( nrow =   nrow (  raw ) , ncol =   length (  files ) )    rownames (  mat ) -   raw [[  txIdCol ] ]    colnames (  mat ) -   names (  files )   abundanceMatTx -  mat   countsMatTx -  mat   lengthMatTx -  mat  if (   infRepType ==  \"var\" )  {   varMatTx -  mat } else  if (   infRepType ==  \"full\" )  {   infRepMatTx -   list ( ) } }    abundanceMatTx [ ,  i ] -   raw [[  abundanceCol ] ]    countsMatTx [ ,  i ] -   raw [[  countsCol ] ]    lengthMatTx [ ,  i ] -   raw [[  lengthCol ] ]  if (   infRepType ==  \"var\" )  {    varMatTx [ ,  i ] -   repInfo $ vars } else  if (   infRepType ==  \"full\" )  {    infRepMatTx [[  i ] ] -   repInfo $ reps } } # propagate names to inferential replicate list  if (   infRepType ==  \"full\" )  {    names (  infRepMatTx ) -   names (  files ) }   message (  \"\" ) # if there is no information about inferential replicates  if (   infRepType ==  \"none\" )  {   txi -   list ( abundance =  abundanceMatTx , counts =  countsMatTx , length =  lengthMatTx , countsFromAbundance =  countsFromAbundance ) } else  if (   infRepType ==  \"var\" )  { # if we're keeping only the variance from inferential replicates   txi -   list ( abundance =  abundanceMatTx , counts =  countsMatTx , variance =  varMatTx , length =  lengthMatTx , countsFromAbundance =  countsFromAbundance ) } else  if (   infRepType ==  \"full\" )  { # if we're keeping the full samples from inferential replicates   txi -   list ( abundance =  abundanceMatTx , counts =  countsMatTx , infReps =  infRepMatTx , length =  lengthMatTx , countsFromAbundance =  countsFromAbundance ) } # stringtie outputs coverage, here we turn into counts  if (   type ==  \"stringtie\" )  { # here \"counts\" is still just coverage, this formula gives back original counts    txi $ counts -     txi $ counts *   txi $ length /  readLength }  if (   type ==  \"rsem\" )  { # protect against 0 bp length transcripts     txi $ length [    txi $ length undefined  1 ] -  1 } # if the user requested just the transcript-level data, return it now  if (  txOut )  {  if (   countsFromAbundance !=  \"no\" )  {    txi $ counts -   makeCountsFromAbundance (   txi $ counts ,   txi $ abundance ,   txi $ length ,  countsFromAbundance ) }   return (  txi ) } # otherwise, summarize to the gene-level    txi [[  \"countsFromAbundance\" ] ] -  NULL   txiGene -   summarizeToGene (  txi ,  tx2gene ,  ignoreTxVersion ,  ignoreAfterBar ,  countsFromAbundance )   return (  txiGene ) # else, not txIn... } else  { # RSEM already has gene-level summaries # so we just combine the gene-level summaries across files  for  ( i in   seq_along (  files ) )  {   message (  i ,  \" \" , appendLF =  FALSE )   out -   capture.output (  {   raw -   as.data.frame (   importer (   files [  i ] ) ) } , type =  \"message\" )   stopifnot (   all (    c (  geneIdCol ,  abundanceCol ,  lengthCol ) %in%   names (  raw ) ) )  if (   i ==  1 )  {   mat -   matrix ( nrow =   nrow (  raw ) , ncol =   length (  files ) )    rownames (  mat ) -   raw [[  geneIdCol ] ]    colnames (  mat ) -   names (  files )   abundanceMat -  mat   countsMat -  mat   lengthMat -  mat }    abundanceMat [ ,  i ] -   raw [[  abundanceCol ] ]    countsMat [ ,  i ] -   raw [[  countsCol ] ]    lengthMat [ ,  i ] -   raw [[  lengthCol ] ] } }   message (  \"\" )   return (   list ( abundance =  abundanceMat , counts =  countsMat , length =  lengthMat , countsFromAbundance =  \"no\" ) ) } ",
+    "filename": "tximport.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  tximport_release_3_7 tximport_release_3_8
+
+{
+    "package": "tximport",
+    "release_versions": "tximport_release_3_7 tximport_release_3_8",
+    "desc_release_old": "1.8.0",
+    "desc_release_new": "1.10.1",
+    "old_release_number": 4,
+    "new_release_number": 5,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 2,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+makeCountsFromAbundance
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "summarizeToGene",
+    "representation": "summarizeToGene",
+    "parameters": "function ( txi , tx2gene , ignoreTxVersion = FALSE , ignoreAfterBar = FALSE , countsFromAbundance = c ( \"no\" , \"scaledTPM\" , \"lengthScaledTPM\" ) )",
+    "body": "{   countsFromAbundance -   match.arg (  countsFromAbundance ,   c (  \"no\" ,  \"scaledTPM\" ,  \"lengthScaledTPM\" ) ) # unpack matrices from list for cleaner code   abundanceMatTx -   txi $ abundance   countsMatTx -   txi $ counts   lengthMatTx -   txi $ length   txId -   rownames (  abundanceMatTx )   stopifnot (   all (   txId ==   rownames (  countsMatTx ) ) )   stopifnot (   all (   txId ==   rownames (  lengthMatTx ) ) ) # need to associate tx to genes # potentially remove unassociated transcript rows and warn user  if (  !   is.null (  tx2gene ) )  { # code to strip dots or bars and all remaining chars from the rownames of matrices  if (  ignoreTxVersion )  {   txId -   sub (  \"\\\\..*\" ,  \"\" ,  txId ) } else  if (  ignoreAfterBar )  {   txId -   sub (  \"\\\\|.*\" ,  \"\" ,  txId ) }    colnames (  tx2gene ) -   c (  \"tx\" ,  \"gene\" )  if (   any (   duplicated (   tx2gene $ tx ) ) )  {   message (  \"removing duplicated transcript rows from tx2gene\" )   tx2gene -   tx2gene [  !   duplicated (   tx2gene $ tx ) , ] }    tx2gene $ gene -   factor (   tx2gene $ gene )    tx2gene $ tx -   factor (   tx2gene $ tx ) # if none of the rownames of the matrices (txId) are # in the tx2gene table something is wrong  if (  !   any (   txId %in%   tx2gene $ tx ) )  {   txFromFile -   paste0 (  \"Example IDs (file): [\" ,   paste (   head (  txId ,  3 ) , collapse =  \", \" ) ,  \", ...]\" )   txFromTable -   paste0 (  \"Example IDs (tx2gene): [\" ,   paste (   head (   tx2gene $ tx ,  3 ) , collapse =  \", \" ) ,  \", ...]\" )   stop (   paste0 (  \"\r\n  None of the transcripts in the quantification files are present\r\n  in the first column of tx2gene. Check to see that you are using\r\n  the same annotation for both.\\n\\n\" ,  txFromFile ,  \"\\n\\n\" ,  txFromTable ,  \"\\n\\n  This can sometimes (not always) be fixed using 'ignoreTxVersion' or 'ignoreAfterBar'.\\n\\n\" ) ) } # remove transcripts (and genes) not in the rownames of matrices   tx2gene -   tx2gene [    tx2gene $ tx %in%  txId , ]    tx2gene $ gene -   droplevels (   tx2gene $ gene )   ntxmissing -   sum (  !   txId %in%   tx2gene $ tx )  if (   ntxmissing undefined  0 )   message (  \"transcripts missing from tx2gene: \" ,  ntxmissing ) # subset to transcripts in the tx2gene table   sub.idx -   txId %in%   tx2gene $ tx   abundanceMatTx -   abundanceMatTx [  sub.idx , , drop =  FALSE ]   countsMatTx -   countsMatTx [  sub.idx , , drop =  FALSE ]   lengthMatTx -   lengthMatTx [  sub.idx , , drop =  FALSE ]   txId -   txId [  sub.idx ] # now create a vector of geneId which aligns to the matrices   geneId -    tx2gene $ gene [   match (  txId ,   tx2gene $ tx ) ] } # summarize abundance and counts   message (  \"summarizing abundance\" )   abundanceMat -   rowsum (  abundanceMatTx ,  geneId )   message (  \"summarizing counts\" )   countsMat -   rowsum (  countsMatTx ,  geneId )   message (  \"summarizing length\" ) # the next lines calculate a weighted average of transcript length, # weighting by transcript abundance. # this can be used as an offset / normalization factor which removes length bias # for the differential analysis of estimated counts summarized at the gene level.   weightedLength -   rowsum (   abundanceMatTx *  lengthMatTx ,  geneId )   lengthMat -   weightedLength /  abundanceMat # pre-calculate a simple average transcript length # for the case the abundances are all zero for all samples. # first, average the tx lengths over samples   aveLengthSamp -   rowMeans (  lengthMatTx ) # then simple average of lengths within genes (not weighted by abundance)   aveLengthSampGene -   tapply (  aveLengthSamp ,  geneId ,  mean )   stopifnot (   all (    names (  aveLengthSampGene ) ==   rownames (  lengthMat ) ) ) # check for NaN and if possible replace these values with geometric mean of other samples. # (the geometic mean here implies an offset of 0 on the log scale) # NaN come from samples which have abundance of 0 for all isoforms of a gene, and # so we cannot calculate the weighted average. our best guess is to use the average # transcript length from the other samples.   lengthMat -   replaceMissingLength (  lengthMat ,  aveLengthSampGene )  if (   countsFromAbundance !=  \"no\" )  {   countsMat -   makeCountsFromAbundance (  countsMat ,  abundanceMat ,  lengthMat ,  countsFromAbundance ) }   return (   list ( abundance =  abundanceMat , counts =  countsMat , length =  lengthMat , countsFromAbundance =  countsFromAbundance ) ) } ",
+    "filename": "summarizeToGene.txt"
+  },
+  "new_function": {
+    "name": "summarizeToGene",
+    "representation": "summarizeToGene",
+    "parameters": "function ( txi , tx2gene , varReduce = FALSE , ignoreTxVersion = FALSE , ignoreAfterBar = FALSE , countsFromAbundance = c ( \"no\" , \"scaledTPM\" , \"lengthScaledTPM\" ) )",
+    "body": "{   countsFromAbundance -   match.arg (  countsFromAbundance ,   c (  \"no\" ,  \"scaledTPM\" ,  \"lengthScaledTPM\" ) )  if (  !   is.null (   txi $ countsFromAbundance ) )  {  if (    countsFromAbundance ==  \"no\" undefined    txi $ countsFromAbundance !=  \"no\" )  {   warning (   paste0 (  \"the incoming counts have countsFromAbundance = '\" ,   txi $ countsFromAbundance ,  \"',\r\n  and so the original counts are no longer accessible.\r\n  to use countsFromAbundance='no', re-run tximport() with this setting.\r\n  over-riding 'countsFromAbundance' to set it to: \" ,   txi $ countsFromAbundance ) )   countsFromAbundance -   txi $ countsFromAbundance } } # unpack matrices from list for cleaner code   abundanceMatTx -   txi $ abundance   countsMatTx -   txi $ counts   lengthMatTx -   txi $ length   txId -   rownames (  abundanceMatTx )   stopifnot (   all (   txId ==   rownames (  countsMatTx ) ) )   stopifnot (   all (   txId ==   rownames (  lengthMatTx ) ) ) # need to associate tx to genes # potentially remove unassociated transcript rows and warn user  if (  !   is.null (  tx2gene ) )  { # code to strip dots or bars and all remaining chars from the rownames of matrices  if (  ignoreTxVersion )  {   txId -   sub (  \"\\\\..*\" ,  \"\" ,  txId ) } else  if (  ignoreAfterBar )  {   txId -   sub (  \"\\\\|.*\" ,  \"\" ,  txId ) }   tx2gene -   cleanTx2Gene (  tx2gene ) # if none of the rownames of the matrices (txId) are # in the tx2gene table something is wrong  if (  !   any (   txId %in%   tx2gene $ tx ) )  {   txFromFile -   paste0 (  \"Example IDs (file): [\" ,   paste (   head (  txId ,  3 ) , collapse =  \", \" ) ,  \", ...]\" )   txFromTable -   paste0 (  \"Example IDs (tx2gene): [\" ,   paste (   head (   tx2gene $ tx ,  3 ) , collapse =  \", \" ) ,  \", ...]\" )   stop (   paste0 (  \"\r\n  None of the transcripts in the quantification files are present\r\n  in the first column of tx2gene. Check to see that you are using\r\n  the same annotation for both.\\n\\n\" ,  txFromFile ,  \"\\n\\n\" ,  txFromTable ,  \"\\n\\n  This can sometimes (not always) be fixed using 'ignoreTxVersion' or 'ignoreAfterBar'.\\n\\n\" ) ) } # remove transcripts (and genes) not in the rownames of matrices   tx2gene -   tx2gene [    tx2gene $ tx %in%  txId , ]    tx2gene $ gene -   droplevels (   tx2gene $ gene )   ntxmissing -   sum (  !   txId %in%   tx2gene $ tx )  if (   ntxmissing undefined  0 )   message (  \"transcripts missing from tx2gene: \" ,  ntxmissing ) # subset to transcripts in the tx2gene table   sub.idx -   txId %in%   tx2gene $ tx   abundanceMatTx -   abundanceMatTx [  sub.idx , , drop =  FALSE ]   countsMatTx -   countsMatTx [  sub.idx , , drop =  FALSE ]   lengthMatTx -   lengthMatTx [  sub.idx , , drop =  FALSE ]   txId -   txId [  sub.idx ] # now create a vector of geneId which aligns to the matrices   geneId -    tx2gene $ gene [   match (  txId ,   tx2gene $ tx ) ] } # summarize abundance and counts   message (  \"summarizing abundance\" )   abundanceMat -   rowsum (  abundanceMatTx ,  geneId )   message (  \"summarizing counts\" )   countsMat -   rowsum (  countsMatTx ,  geneId )   message (  \"summarizing length\" )  if (   \"infReps\" %in%   names (  txi ) )  {   infReps -   lapply (   txi $ infReps ,  function ( x )   rowsum (   x [  sub.idx , , drop =  FALSE ] ,  geneId ) )   message (  \"summarizing inferential replicates\" ) } # the next lines calculate a weighted average of transcript length, # weighting by transcript abundance. # this can be used as an offset / normalization factor which removes length bias # for the differential analysis of estimated counts summarized at the gene level.   weightedLength -   rowsum (   abundanceMatTx *  lengthMatTx ,  geneId )   lengthMat -   weightedLength /  abundanceMat # pre-calculate a simple average transcript length # for the case the abundances are all zero for all samples. # first, average the tx lengths over samples   aveLengthSamp -   rowMeans (  lengthMatTx ) # then simple average of lengths within genes (not weighted by abundance)   aveLengthSampGene -   tapply (  aveLengthSamp ,  geneId ,  mean )   stopifnot (   all (    names (  aveLengthSampGene ) ==   rownames (  lengthMat ) ) ) # check for NaN and if possible replace these values with geometric mean of other samples. # (the geometic mean here implies an offset of 0 on the log scale) # NaN come from samples which have abundance of 0 for all isoforms of a gene, and # so we cannot calculate the weighted average. our best guess is to use the average # transcript length from the other samples.   lengthMat -   replaceMissingLength (  lengthMat ,  aveLengthSampGene )  if (   countsFromAbundance !=  \"no\" )  {   countsMat -   makeCountsFromAbundance (  countsMat ,  abundanceMat ,  lengthMat ,  countsFromAbundance ) }  if (   \"infReps\" %in%   names (  txi ) )  {  if (  varReduce )  {   vars -   sapply (  infReps ,  rowVars )   out -   list ( abundance =  abundanceMat , counts =  countsMat , variance =  vars , length =  lengthMat , countsFromAbundance =  countsFromAbundance ) } else  {   out -   list ( abundance =  abundanceMat , counts =  countsMat , infReps =  infReps , length =  lengthMat , countsFromAbundance =  countsFromAbundance ) } } else  {   out -   list ( abundance =  abundanceMat , counts =  countsMat , length =  lengthMat , countsFromAbundance =  countsFromAbundance ) }   return (  out ) } ",
+    "filename": "summarizeToGene.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "tximport",
+    "representation": "tximport",
+    "parameters": "function ( files , type = c ( \"none\" , \"salmon\" , \"sailfish\" , \"kallisto\" , \"rsem\" , \"stringtie\" ) , txIn = TRUE , txOut = FALSE , countsFromAbundance = c ( \"no\" , \"scaledTPM\" , \"lengthScaledTPM\" ) , tx2gene = NULL , varReduce = FALSE , dropInfReps = FALSE , ignoreTxVersion = FALSE , ignoreAfterBar = FALSE , geneIdCol , txIdCol , abundanceCol , countsCol , lengthCol , importer = NULL , existenceOptional = FALSE , readLength = 75 )",
+    "body": "{ # inferential replicate importer   infRepImporter -  NULL   type -   match.arg (  type ,   c (  \"none\" ,  \"salmon\" ,  \"sailfish\" ,  \"kallisto\" ,  \"rsem\" ,  \"stringtie\" ) )   countsFromAbundance -   match.arg (  countsFromAbundance ,   c (  \"no\" ,  \"scaledTPM\" ,  \"lengthScaledTPM\" ) )  if (  !  existenceOptional )   stopifnot (   all (   file.exists (  files ) ) )  if (   !  txIn undefined  txOut )   stop (  \"txOut only an option when transcript-level data is read in (txIn=TRUE)\" )   stopifnot (    length (  files ) undefined  0 )   kallisto.h5 -    basename (   files [  1 ] ) ==  \"abundance.h5\"  if (    type ==  \"kallisto\" undefined  !  kallisto.h5 )  {   message (  \"Note: importing `abundance.h5` is typically faster than `abundance.tsv`\" ) }  if (     type ==  \"rsem\" undefined  txIn undefined   grepl (  \"genes\" ,   files [  1 ] ) )  {   message (  \"It looks like you are importing RSEM genes.results files, setting txIn=FALSE\" )   txIn -  FALSE }   readrStatus -  FALSE  if (    is.null (  importer ) undefined  !  kallisto.h5 )  {  if (  !   requireNamespace (  \"readr\" , quietly =  TRUE ) )  {   message (  \"reading in files with read.delim (install 'readr' package for speed up)\" )   importer -  read.delim } else  {   message (  \"reading in files with read_tsv\" )   readrStatus -  TRUE } } # salmon/sailfish presets  if (   type %in%   c (  \"salmon\" ,  \"sailfish\" ) )  {   txIdCol -  \"Name\"   abundanceCol -  \"TPM\"   countsCol -  \"NumReads\"   lengthCol -  \"EffectiveLength\"  if (   readrStatus undefined   is.null (  importer ) )  {   col.types -   readr :: cols (   readr :: col_character ( ) ,   readr :: col_integer ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) )   importer -  function ( x )   readr :: read_tsv (  x , progress =  FALSE , col_types =  col.types ) }   infRepImporter -  if (  dropInfReps )  {  NULL } else  {  function ( x )   readInfRepFish (  x ,  type ) } } # kallisto presets  if (   type ==  \"kallisto\" )  {   txIdCol -  \"target_id\"   abundanceCol -  \"tpm\"   countsCol -  \"est_counts\"   lengthCol -  \"eff_length\"  if (  kallisto.h5 )  {   importer -  read_kallisto_h5 } else  if (   readrStatus undefined   is.null (  importer ) )  {   col.types -   readr :: cols (   readr :: col_character ( ) ,   readr :: col_integer ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) )   importer -  function ( x )   readr :: read_tsv (  x , progress =  FALSE , col_types =  col.types ) }   infRepImporter -  if (  dropInfReps )  {  NULL } else  {  readInfRepKallisto } } # rsem presets  if (   type ==  \"rsem\" )  {  if (  txIn )  {   txIdCol -  \"transcript_id\"   abundanceCol -  \"TPM\"   countsCol -  \"expected_count\"   lengthCol -  \"effective_length\"  if (   readrStatus undefined   is.null (  importer ) )  {   col.types -   readr :: cols (   readr :: col_character ( ) ,   readr :: col_character ( ) ,   readr :: col_integer ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) )   importer -  function ( x )   readr :: read_tsv (  x , progress =  FALSE , col_types =  col.types ) } } else  {   geneIdCol -  \"gene_id\"   abundanceCol -  \"TPM\"   countsCol -  \"expected_count\"   lengthCol -  \"effective_length\"  if (   readrStatus undefined   is.null (  importer ) )  {   col.types -   readr :: cols (   readr :: col_character ( ) ,   readr :: col_character ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) )   importer -  function ( x )   readr :: read_tsv (  x , progress =  FALSE , col_types =  col.types ) } } }  if (   type ==   c (  \"stringtie\" ) )  {   txIdCol -  \"t_name\"   geneIdCol -  \"gene_name\"   abundanceCol -  \"FPKM\"   countsCol -  \"cov\"   lengthCol -  \"length\"  if (   readrStatus undefined   is.null (  importer ) )  {   col.types -   readr :: cols (   readr :: col_character ( ) ,   readr :: col_character ( ) ,   readr :: col_character ( ) ,   readr :: col_integer ( ) ,   readr :: col_integer ( ) ,   readr :: col_character ( ) ,   readr :: col_integer ( ) ,   readr :: col_integer ( ) ,   readr :: col_character ( ) ,   readr :: col_character ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) )   importer -  function ( x )   readr :: read_tsv (  x , progress =  FALSE , col_types =  col.types ) } }   infRepType -  \"none\"  if (    type %in%   c (  \"salmon\" ,  \"sailfish\" ,  \"kallisto\" ) undefined  !  dropInfReps )  {   infRepType -  if (  varReduce )  {  \"var\" } else  {  \"full\" } } # if input is tx-level (this is every case but RSEM gene.results files)  if (  txIn )  {  for  ( i in   seq_along (  files ) )  {   message (  i ,  \" \" , appendLF =  FALSE )   raw -   as.data.frame (   importer (   files [  i ] ) ) # if we expect inferential replicate info   repInfo -  NULL  if (   infRepType !=  \"none\" )  {   repInfo -   infRepImporter (   dirname (   files [  i ] ) ) # if we didn't find inferential replicate info  if (   is.null (  repInfo ) )  {   infRepType -  \"none\" } } # if external tx2gene table not provided, send user to vignette  if (    is.null (  tx2gene ) undefined  !  txOut )  {   summarizeFail ( ) # ...long message in helper.R } else  { # e.g. Salmon and kallisto do not include the gene ID, need an external table   stopifnot (   all (    c (  lengthCol ,  abundanceCol ) %in%   names (  raw ) ) )  if (   i ==  1 )  {   txId -   raw [[  txIdCol ] ] } else  {   stopifnot (   all (   txId ==   raw [[  txIdCol ] ] ) ) } } # create empty matrices  if (   i ==  1 )  {   mat -   matrix ( nrow =   nrow (  raw ) , ncol =   length (  files ) )    rownames (  mat ) -   raw [[  txIdCol ] ]    colnames (  mat ) -   names (  files )   abundanceMatTx -  mat   countsMatTx -  mat   lengthMatTx -  mat  if (   infRepType ==  \"var\" )  {   varMatTx -  mat } else  if (   infRepType ==  \"full\" )  {   infRepMatTx -   list ( ) } }    abundanceMatTx [ ,  i ] -   raw [[  abundanceCol ] ]    countsMatTx [ ,  i ] -   raw [[  countsCol ] ]    lengthMatTx [ ,  i ] -   raw [[  lengthCol ] ]  if (   infRepType ==  \"var\" )  {    varMatTx [ ,  i ] -   repInfo $ vars } else  if (   infRepType ==  \"full\" )  {    infRepMatTx [[  i ] ] -   repInfo $ reps } } # propagate names to inferential replicate list  if (   infRepType ==  \"full\" )  {    names (  infRepMatTx ) -   names (  files ) }   message (  \"\" ) # if there is no information about inferential replicates  if (   infRepType ==  \"none\" )  {   txi -   list ( abundance =  abundanceMatTx , counts =  countsMatTx , length =  lengthMatTx , countsFromAbundance =  countsFromAbundance ) } else  if (   infRepType ==  \"var\" )  { # if we're keeping only the variance from inferential replicates   txi -   list ( abundance =  abundanceMatTx , counts =  countsMatTx , variance =  varMatTx , length =  lengthMatTx , countsFromAbundance =  countsFromAbundance ) } else  if (   infRepType ==  \"full\" )  { # if we're keeping the full samples from inferential replicates   txi -   list ( abundance =  abundanceMatTx , counts =  countsMatTx , infReps =  infRepMatTx , length =  lengthMatTx , countsFromAbundance =  countsFromAbundance ) } # stringtie outputs coverage, here we turn into counts  if (   type ==  \"stringtie\" )  { # here \"counts\" is still just coverage, this formula gives back original counts    txi $ counts -     txi $ counts *   txi $ length /  readLength }  if (   type ==  \"rsem\" )  { # protect against 0 bp length transcripts     txi $ length [    txi $ length undefined  1 ] -  1 } # if the user requested just the transcript-level data, return it now  if (  txOut )  {  if (   countsFromAbundance !=  \"no\" )  {    txi $ counts -   makeCountsFromAbundance (   txi $ counts ,   txi $ abundance ,   txi $ length ,  countsFromAbundance ) }   return (  txi ) } # otherwise, summarize to the gene-level    txi [[  \"countsFromAbundance\" ] ] -  NULL   txiGene -   summarizeToGene (  txi ,  tx2gene ,  ignoreTxVersion ,  ignoreAfterBar ,  countsFromAbundance )   return (  txiGene ) # else, not txIn... } else  { # RSEM already has gene-level summaries # so we just combine the gene-level summaries across files  for  ( i in   seq_along (  files ) )  {   message (  i ,  \" \" , appendLF =  FALSE )   out -   capture.output (  {   raw -   as.data.frame (   importer (   files [  i ] ) ) } , type =  \"message\" )   stopifnot (   all (    c (  geneIdCol ,  abundanceCol ,  lengthCol ) %in%   names (  raw ) ) )  if (   i ==  1 )  {   mat -   matrix ( nrow =   nrow (  raw ) , ncol =   length (  files ) )    rownames (  mat ) -   raw [[  geneIdCol ] ]    colnames (  mat ) -   names (  files )   abundanceMat -  mat   countsMat -  mat   lengthMat -  mat }    abundanceMat [ ,  i ] -   raw [[  abundanceCol ] ]    countsMat [ ,  i ] -   raw [[  countsCol ] ]    lengthMat [ ,  i ] -   raw [[  lengthCol ] ] } }   message (  \"\" )   return (   list ( abundance =  abundanceMat , counts =  countsMat , length =  lengthMat , countsFromAbundance =  \"no\" ) ) } ",
+    "filename": "tximport.txt"
+  },
+  "new_function": {
+    "name": "tximport",
+    "representation": "tximport",
+    "parameters": "function ( files , type = c ( \"none\" , \"salmon\" , \"sailfish\" , \"kallisto\" , \"rsem\" , \"stringtie\" ) , txIn = TRUE , txOut = FALSE , countsFromAbundance = c ( \"no\" , \"scaledTPM\" , \"lengthScaledTPM\" , \"dtuScaledTPM\" ) , tx2gene = NULL , varReduce = FALSE , dropInfReps = FALSE , infRepStat = NULL , ignoreTxVersion = FALSE , ignoreAfterBar = FALSE , geneIdCol , txIdCol , abundanceCol , countsCol , lengthCol , importer = NULL , existenceOptional = FALSE , readLength = 75 )",
+    "body": "{ # inferential replicate importer   infRepImporter -  NULL   type -   match.arg (  type )   countsFromAbundance -   match.arg (  countsFromAbundance )  if (   countsFromAbundance ==  \"dtuScaledTPM\" )  {   stopifnot (  txOut )  if (   is.null (  tx2gene ) )   stop (  \"'dtuScaledTPM' requires 'tx2gene' input\" ) }  if (  !  existenceOptional )   stopifnot (   all (   file.exists (  files ) ) )  if (   !  txIn undefined  txOut )   stop (  \"txOut only an option when transcript-level data is read in (txIn=TRUE)\" )   stopifnot (    length (  files ) undefined  0 )   kallisto.h5 -    basename (   files [  1 ] ) ==  \"abundance.h5\"  if (    type ==  \"kallisto\" undefined  !  kallisto.h5 )  {   message (  \"Note: importing `abundance.h5` is typically faster than `abundance.tsv`\" ) }  if (     type ==  \"rsem\" undefined  txIn undefined   grepl (  \"genes\" ,   files [  1 ] ) )  {   message (  \"It looks like you are importing RSEM genes.results files, setting txIn=FALSE\" )   txIn -  FALSE }   readrStatus -  FALSE  if (    is.null (  importer ) undefined  !  kallisto.h5 )  {  if (  !   requireNamespace (  \"readr\" , quietly =  TRUE ) )  {   message (  \"reading in files with read.delim (install 'readr' package for speed up)\" )   importer -  read.delim } else  {   message (  \"reading in files with read_tsv\" )   readrStatus -  TRUE } } # salmon/sailfish presets  if (   type %in%   c (  \"salmon\" ,  \"sailfish\" ) )  {   txIdCol -  \"Name\"   abundanceCol -  \"TPM\"   countsCol -  \"NumReads\"   lengthCol -  \"EffectiveLength\"  if (   readrStatus undefined   is.null (  importer ) )  {   col.types -   readr :: cols (   readr :: col_character ( ) ,   readr :: col_integer ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) )   importer -  function ( x )   readr :: read_tsv (  x , progress =  FALSE , col_types =  col.types ) }   infRepImporter -  if (  dropInfReps )  {  NULL } else  {  function ( x )   readInfRepFish (  x ,  type ) } } # kallisto presets  if (   type ==  \"kallisto\" )  {   txIdCol -  \"target_id\"   abundanceCol -  \"tpm\"   countsCol -  \"est_counts\"   lengthCol -  \"eff_length\"  if (  kallisto.h5 )  {   importer -  read_kallisto_h5 } else  if (   readrStatus undefined   is.null (  importer ) )  {   col.types -   readr :: cols (   readr :: col_character ( ) ,   readr :: col_integer ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) )   importer -  function ( x )   readr :: read_tsv (  x , progress =  FALSE , col_types =  col.types ) }   infRepImporter -  if (  dropInfReps )  {  NULL } else  {  readInfRepKallisto } } # rsem presets  if (   type ==  \"rsem\" )  {  if (  txIn )  {   txIdCol -  \"transcript_id\"   abundanceCol -  \"TPM\"   countsCol -  \"expected_count\"   lengthCol -  \"effective_length\"  if (   readrStatus undefined   is.null (  importer ) )  {   col.types -   readr :: cols (   readr :: col_character ( ) ,   readr :: col_character ( ) ,   readr :: col_integer ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) )   importer -  function ( x )   readr :: read_tsv (  x , progress =  FALSE , col_types =  col.types ) } } else  {   geneIdCol -  \"gene_id\"   abundanceCol -  \"TPM\"   countsCol -  \"expected_count\"   lengthCol -  \"effective_length\"  if (   readrStatus undefined   is.null (  importer ) )  {   col.types -   readr :: cols (   readr :: col_character ( ) ,   readr :: col_character ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) )   importer -  function ( x )   readr :: read_tsv (  x , progress =  FALSE , col_types =  col.types ) } } }  if (   type ==   c (  \"stringtie\" ) )  {   txIdCol -  \"t_name\"   geneIdCol -  \"gene_name\"   abundanceCol -  \"FPKM\"   countsCol -  \"cov\"   lengthCol -  \"length\"  if (   readrStatus undefined   is.null (  importer ) )  {   col.types -   readr :: cols (   readr :: col_character ( ) ,   readr :: col_character ( ) ,   readr :: col_character ( ) ,   readr :: col_integer ( ) ,   readr :: col_integer ( ) ,   readr :: col_character ( ) ,   readr :: col_integer ( ) ,   readr :: col_integer ( ) ,   readr :: col_character ( ) ,   readr :: col_character ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) )   importer -  function ( x )   readr :: read_tsv (  x , progress =  FALSE , col_types =  col.types ) } }   infRepType -  \"none\"  if (    type %in%   c (  \"salmon\" ,  \"sailfish\" ,  \"kallisto\" ) undefined  !  dropInfReps )  { # if summarizing to gene-level, need the full matrices passed to summarizeToGene   infRepType -  if (   varReduce undefined  txOut )  {  \"var\" } else  {  \"full\" } }  if (  dropInfReps )   stopifnot (   is.null (  infRepStat ) ) # special code for RSEM gene.results files. # RSEM gene-level is the only case of !txIn  if (  !  txIn )  {   txi -   computeRsemGeneLevel (  files ,  importer ,  geneIdCol ,  abundanceCol ,  countsCol ,  lengthCol ,  countsFromAbundance )   return (  txi ) } ###################################################### # the rest of the code assumes transcript-level input: ### --- BEGIN --- loop over files reading in columns / inf reps ###  for  ( i in   seq_along (  files ) )  {   message (  i ,  \" \" , appendLF =  FALSE )   raw -   as.data.frame (   importer (   files [  i ] ) ) # if we expect inferential replicate info   repInfo -  NULL  if (   infRepType !=  \"none\" )  {   repInfo -   infRepImporter (   dirname (   files [  i ] ) ) # if we didn't find inferential replicate info  if (   is.null (  repInfo ) )  {   infRepType -  \"none\" } } # if external tx2gene table not provided, send user to vignette  if (    is.null (  tx2gene ) undefined  !  txOut )  {   summarizeFail ( ) # ...long message in helper.R } else  { # e.g. Salmon and kallisto do not include the gene ID, need an external table   stopifnot (   all (    c (  lengthCol ,  abundanceCol ) %in%   names (  raw ) ) )  if (   i ==  1 )  {   txId -   raw [[  txIdCol ] ] } else  {   stopifnot (   all (   txId ==   raw [[  txIdCol ] ] ) ) } } # create empty matrices  if (   i ==  1 )  {   mat -   matrix ( nrow =   nrow (  raw ) , ncol =   length (  files ) )    rownames (  mat ) -   raw [[  txIdCol ] ]    colnames (  mat ) -   names (  files )   abundanceMatTx -  mat   countsMatTx -  mat   lengthMatTx -  mat  if (   infRepType ==  \"var\" )  {   varMatTx -  mat } else  if (   infRepType ==  \"full\" )  {   infRepMatTx -   list ( ) } }    abundanceMatTx [ ,  i ] -   raw [[  abundanceCol ] ]    countsMatTx [ ,  i ] -   raw [[  countsCol ] ]    lengthMatTx [ ,  i ] -   raw [[  lengthCol ] ]  if (   infRepType ==  \"var\" )  {    varMatTx [ ,  i ] -   repInfo $ vars } else  if (   infRepType ==  \"full\" )  {    infRepMatTx [[  i ] ] -   repInfo $ reps } # if infRepStat was specified, re-compute counts and abundances  if (  !   is.null (  infRepStat ) )  {    countsMatTx [ ,  i ] -   infRepStat (   repInfo $ reps )   tpm -    countsMatTx [ ,  i ] /   lengthMatTx [ ,  i ]    abundanceMatTx [ ,  i ] -    tpm *  1e6 /   sum (  tpm ) } } ### --- END --- loop over files ### # propagate names to inferential replicate list  if (   infRepType ==  \"full\" )  {    names (  infRepMatTx ) -   names (  files ) }   message (  \"\" ) # if there is no information about inferential replicates  if (   infRepType ==  \"none\" )  {   txi -   list ( abundance =  abundanceMatTx , counts =  countsMatTx , length =  lengthMatTx , countsFromAbundance =  countsFromAbundance ) } else  if (   infRepType ==  \"var\" )  { # if we're keeping only the variance from inferential replicates   txi -   list ( abundance =  abundanceMatTx , counts =  countsMatTx , variance =  varMatTx , length =  lengthMatTx , countsFromAbundance =  countsFromAbundance ) } else  if (   infRepType ==  \"full\" )  { # if we're keeping the full samples from inferential replicates   txi -   list ( abundance =  abundanceMatTx , counts =  countsMatTx , infReps =  infRepMatTx , length =  lengthMatTx , countsFromAbundance =  countsFromAbundance ) } # stringtie outputs coverage, here we turn into counts  if (   type ==  \"stringtie\" )  { # here \"counts\" is still just coverage, this formula gives back original counts    txi $ counts -     txi $ counts *   txi $ length /  readLength }  if (   type ==  \"rsem\" )  { # protect against 0 bp length transcripts     txi $ length [    txi $ length undefined  1 ] -  1 } # two main outputs, based on choice of txOut: # 1) if the user requested just the transcript-level data, return it now  if (  txOut )  { # if countsFromAbundance in {scaledTPM, lengthScaledTPM, or dtuScaledTPM}  if (   countsFromAbundance !=  \"no\" )  { # for dtuScaledTPM, pretend we're doing lengthScaledTPM w/ an altered length matrix. # note that we will still output txi$countsFromAbundance set to \"dtuScaledTPM\"   length4CFA -   txi $ length # intermediate version of the length matrix  if (   countsFromAbundance ==  \"dtuScaledTPM\" )  {   length4CFA -   medianLengthOverIsoform (  length4CFA ,  tx2gene ,  ignoreTxVersion ,  ignoreAfterBar )   countsFromAbundance -  \"lengthScaledTPM\" } # function for computing all 3 countsFromAbundance methods:    txi $ counts -   makeCountsFromAbundance ( countsMat =   txi $ counts , abundanceMat =   txi $ abundance , lengthMat =  length4CFA , countsFromAbundance =  countsFromAbundance ) }   return (  txi ) } # 2) otherwise, summarize to the gene-level    txi [[  \"countsFromAbundance\" ] ] -  NULL   txiGene -   summarizeToGene (  txi ,  tx2gene ,  varReduce ,  ignoreTxVersion ,  ignoreAfterBar ,  countsFromAbundance )   return (  txiGene ) } ",
+    "filename": "tximport.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  tximport_release_3_8 tximport_release_3_9
+
+{
+    "package": "tximport",
+    "release_versions": "tximport_release_3_8 tximport_release_3_9",
+    "desc_release_old": "1.10.1",
+    "desc_release_new": "1.12.3",
+    "old_release_number": 5,
+    "new_release_number": 6,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "tximport",
+    "representation": "tximport",
+    "parameters": "function ( files , type = c ( \"none\" , \"salmon\" , \"sailfish\" , \"kallisto\" , \"rsem\" , \"stringtie\" ) , txIn = TRUE , txOut = FALSE , countsFromAbundance = c ( \"no\" , \"scaledTPM\" , \"lengthScaledTPM\" , \"dtuScaledTPM\" ) , tx2gene = NULL , varReduce = FALSE , dropInfReps = FALSE , infRepStat = NULL , ignoreTxVersion = FALSE , ignoreAfterBar = FALSE , geneIdCol , txIdCol , abundanceCol , countsCol , lengthCol , importer = NULL , existenceOptional = FALSE , readLength = 75 )",
+    "body": "{ # inferential replicate importer   infRepImporter -  NULL   type -   match.arg (  type )   countsFromAbundance -   match.arg (  countsFromAbundance )  if (   countsFromAbundance ==  \"dtuScaledTPM\" )  {   stopifnot (  txOut )  if (   is.null (  tx2gene ) )   stop (  \"'dtuScaledTPM' requires 'tx2gene' input\" ) }  if (  !  existenceOptional )   stopifnot (   all (   file.exists (  files ) ) )  if (   !  txIn undefined  txOut )   stop (  \"txOut only an option when transcript-level data is read in (txIn=TRUE)\" )   stopifnot (    length (  files ) undefined  0 )   kallisto.h5 -    basename (   files [  1 ] ) ==  \"abundance.h5\"  if (    type ==  \"kallisto\" undefined  !  kallisto.h5 )  {   message (  \"Note: importing `abundance.h5` is typically faster than `abundance.tsv`\" ) }  if (     type ==  \"rsem\" undefined  txIn undefined   grepl (  \"genes\" ,   files [  1 ] ) )  {   message (  \"It looks like you are importing RSEM genes.results files, setting txIn=FALSE\" )   txIn -  FALSE }   readrStatus -  FALSE  if (    is.null (  importer ) undefined  !  kallisto.h5 )  {  if (  !   requireNamespace (  \"readr\" , quietly =  TRUE ) )  {   message (  \"reading in files with read.delim (install 'readr' package for speed up)\" )   importer -  read.delim } else  {   message (  \"reading in files with read_tsv\" )   readrStatus -  TRUE } } # salmon/sailfish presets  if (   type %in%   c (  \"salmon\" ,  \"sailfish\" ) )  {   txIdCol -  \"Name\"   abundanceCol -  \"TPM\"   countsCol -  \"NumReads\"   lengthCol -  \"EffectiveLength\"  if (   readrStatus undefined   is.null (  importer ) )  {   col.types -   readr :: cols (   readr :: col_character ( ) ,   readr :: col_integer ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) )   importer -  function ( x )   readr :: read_tsv (  x , progress =  FALSE , col_types =  col.types ) }   infRepImporter -  if (  dropInfReps )  {  NULL } else  {  function ( x )   readInfRepFish (  x ,  type ) } } # kallisto presets  if (   type ==  \"kallisto\" )  {   txIdCol -  \"target_id\"   abundanceCol -  \"tpm\"   countsCol -  \"est_counts\"   lengthCol -  \"eff_length\"  if (  kallisto.h5 )  {   importer -  read_kallisto_h5 } else  if (   readrStatus undefined   is.null (  importer ) )  {   col.types -   readr :: cols (   readr :: col_character ( ) ,   readr :: col_integer ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) )   importer -  function ( x )   readr :: read_tsv (  x , progress =  FALSE , col_types =  col.types ) }   infRepImporter -  if (  dropInfReps )  {  NULL } else  {  readInfRepKallisto } } # rsem presets  if (   type ==  \"rsem\" )  {  if (  txIn )  {   txIdCol -  \"transcript_id\"   abundanceCol -  \"TPM\"   countsCol -  \"expected_count\"   lengthCol -  \"effective_length\"  if (   readrStatus undefined   is.null (  importer ) )  {   col.types -   readr :: cols (   readr :: col_character ( ) ,   readr :: col_character ( ) ,   readr :: col_integer ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) )   importer -  function ( x )   readr :: read_tsv (  x , progress =  FALSE , col_types =  col.types ) } } else  {   geneIdCol -  \"gene_id\"   abundanceCol -  \"TPM\"   countsCol -  \"expected_count\"   lengthCol -  \"effective_length\"  if (   readrStatus undefined   is.null (  importer ) )  {   col.types -   readr :: cols (   readr :: col_character ( ) ,   readr :: col_character ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) )   importer -  function ( x )   readr :: read_tsv (  x , progress =  FALSE , col_types =  col.types ) } } }  if (   type ==   c (  \"stringtie\" ) )  {   txIdCol -  \"t_name\"   geneIdCol -  \"gene_name\"   abundanceCol -  \"FPKM\"   countsCol -  \"cov\"   lengthCol -  \"length\"  if (   readrStatus undefined   is.null (  importer ) )  {   col.types -   readr :: cols (   readr :: col_character ( ) ,   readr :: col_character ( ) ,   readr :: col_character ( ) ,   readr :: col_integer ( ) ,   readr :: col_integer ( ) ,   readr :: col_character ( ) ,   readr :: col_integer ( ) ,   readr :: col_integer ( ) ,   readr :: col_character ( ) ,   readr :: col_character ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) )   importer -  function ( x )   readr :: read_tsv (  x , progress =  FALSE , col_types =  col.types ) } }   infRepType -  \"none\"  if (    type %in%   c (  \"salmon\" ,  \"sailfish\" ,  \"kallisto\" ) undefined  !  dropInfReps )  { # if summarizing to gene-level, need the full matrices passed to summarizeToGene   infRepType -  if (   varReduce undefined  txOut )  {  \"var\" } else  {  \"full\" } }  if (  dropInfReps )   stopifnot (   is.null (  infRepStat ) ) # special code for RSEM gene.results files. # RSEM gene-level is the only case of !txIn  if (  !  txIn )  {   txi -   computeRsemGeneLevel (  files ,  importer ,  geneIdCol ,  abundanceCol ,  countsCol ,  lengthCol ,  countsFromAbundance )   return (  txi ) } ###################################################### # the rest of the code assumes transcript-level input: ### --- BEGIN --- loop over files reading in columns / inf reps ###  for  ( i in   seq_along (  files ) )  {   message (  i ,  \" \" , appendLF =  FALSE )   raw -   as.data.frame (   importer (   files [  i ] ) ) # if we expect inferential replicate info   repInfo -  NULL  if (   infRepType !=  \"none\" )  {   repInfo -   infRepImporter (   dirname (   files [  i ] ) ) # if we didn't find inferential replicate info  if (   is.null (  repInfo ) )  {   infRepType -  \"none\" } } # if external tx2gene table not provided, send user to vignette  if (    is.null (  tx2gene ) undefined  !  txOut )  {   summarizeFail ( ) # ...long message in helper.R } else  { # e.g. Salmon and kallisto do not include the gene ID, need an external table   stopifnot (   all (    c (  lengthCol ,  abundanceCol ) %in%   names (  raw ) ) )  if (   i ==  1 )  {   txId -   raw [[  txIdCol ] ] } else  {   stopifnot (   all (   txId ==   raw [[  txIdCol ] ] ) ) } } # create empty matrices  if (   i ==  1 )  {   mat -   matrix ( nrow =   nrow (  raw ) , ncol =   length (  files ) )    rownames (  mat ) -   raw [[  txIdCol ] ]    colnames (  mat ) -   names (  files )   abundanceMatTx -  mat   countsMatTx -  mat   lengthMatTx -  mat  if (   infRepType ==  \"var\" )  {   varMatTx -  mat } else  if (   infRepType ==  \"full\" )  {   infRepMatTx -   list ( ) } }    abundanceMatTx [ ,  i ] -   raw [[  abundanceCol ] ]    countsMatTx [ ,  i ] -   raw [[  countsCol ] ]    lengthMatTx [ ,  i ] -   raw [[  lengthCol ] ]  if (   infRepType ==  \"var\" )  {    varMatTx [ ,  i ] -   repInfo $ vars } else  if (   infRepType ==  \"full\" )  {    infRepMatTx [[  i ] ] -   repInfo $ reps } # if infRepStat was specified, re-compute counts and abundances  if (  !   is.null (  infRepStat ) )  {    countsMatTx [ ,  i ] -   infRepStat (   repInfo $ reps )   tpm -    countsMatTx [ ,  i ] /   lengthMatTx [ ,  i ]    abundanceMatTx [ ,  i ] -    tpm *  1e6 /   sum (  tpm ) } } ### --- END --- loop over files ### # propagate names to inferential replicate list  if (   infRepType ==  \"full\" )  {    names (  infRepMatTx ) -   names (  files ) }   message (  \"\" ) # if there is no information about inferential replicates  if (   infRepType ==  \"none\" )  {   txi -   list ( abundance =  abundanceMatTx , counts =  countsMatTx , length =  lengthMatTx , countsFromAbundance =  countsFromAbundance ) } else  if (   infRepType ==  \"var\" )  { # if we're keeping only the variance from inferential replicates   txi -   list ( abundance =  abundanceMatTx , counts =  countsMatTx , variance =  varMatTx , length =  lengthMatTx , countsFromAbundance =  countsFromAbundance ) } else  if (   infRepType ==  \"full\" )  { # if we're keeping the full samples from inferential replicates   txi -   list ( abundance =  abundanceMatTx , counts =  countsMatTx , infReps =  infRepMatTx , length =  lengthMatTx , countsFromAbundance =  countsFromAbundance ) } # stringtie outputs coverage, here we turn into counts  if (   type ==  \"stringtie\" )  { # here \"counts\" is still just coverage, this formula gives back original counts    txi $ counts -     txi $ counts *   txi $ length /  readLength }  if (   type ==  \"rsem\" )  { # protect against 0 bp length transcripts     txi $ length [    txi $ length undefined  1 ] -  1 } # two main outputs, based on choice of txOut: # 1) if the user requested just the transcript-level data, return it now  if (  txOut )  { # if countsFromAbundance in {scaledTPM, lengthScaledTPM, or dtuScaledTPM}  if (   countsFromAbundance !=  \"no\" )  { # for dtuScaledTPM, pretend we're doing lengthScaledTPM w/ an altered length matrix. # note that we will still output txi$countsFromAbundance set to \"dtuScaledTPM\"   length4CFA -   txi $ length # intermediate version of the length matrix  if (   countsFromAbundance ==  \"dtuScaledTPM\" )  {   length4CFA -   medianLengthOverIsoform (  length4CFA ,  tx2gene ,  ignoreTxVersion ,  ignoreAfterBar )   countsFromAbundance -  \"lengthScaledTPM\" } # function for computing all 3 countsFromAbundance methods:    txi $ counts -   makeCountsFromAbundance ( countsMat =   txi $ counts , abundanceMat =   txi $ abundance , lengthMat =  length4CFA , countsFromAbundance =  countsFromAbundance ) }   return (  txi ) } # 2) otherwise, summarize to the gene-level    txi [[  \"countsFromAbundance\" ] ] -  NULL   txiGene -   summarizeToGene (  txi ,  tx2gene ,  varReduce ,  ignoreTxVersion ,  ignoreAfterBar ,  countsFromAbundance )   return (  txiGene ) } ",
+    "filename": "tximport.txt"
+  },
+  "new_function": {
+    "name": "tximport",
+    "representation": "tximport",
+    "parameters": "function ( files , type = c ( \"none\" , \"salmon\" , \"sailfish\" , \"alevin\" , \"kallisto\" , \"rsem\" , \"stringtie\" ) , txIn = TRUE , txOut = FALSE , countsFromAbundance = c ( \"no\" , \"scaledTPM\" , \"lengthScaledTPM\" , \"dtuScaledTPM\" ) , tx2gene = NULL , varReduce = FALSE , dropInfReps = FALSE , infRepStat = NULL , ignoreTxVersion = FALSE , ignoreAfterBar = FALSE , geneIdCol , txIdCol , abundanceCol , countsCol , lengthCol , importer = NULL , existenceOptional = FALSE , sparse = FALSE , sparseThreshold = 1 , readLength = 75 )",
+    "body": "{ # inferential replicate importer   infRepImporter -  NULL   type -   match.arg (  type )   countsFromAbundance -   match.arg (  countsFromAbundance )  if (   countsFromAbundance ==  \"dtuScaledTPM\" )  {   stopifnot (  txOut )  if (   is.null (  tx2gene ) )   stop (  \"'dtuScaledTPM' requires 'tx2gene' input\" ) }  if (  !  existenceOptional )   stopifnot (   all (   file.exists (  files ) ) )  if (   !  txIn undefined  txOut )   stop (  \"txOut only an option when transcript-level data is read in (txIn=TRUE)\" )   stopifnot (    length (  files ) undefined  0 )   kallisto.h5 -    basename (   files [  1 ] ) ==  \"abundance.h5\"  if (    type ==  \"kallisto\" undefined  !  kallisto.h5 )  {   message (  \"Note: importing `abundance.h5` is typically faster than `abundance.tsv`\" ) }  if (     type ==  \"rsem\" undefined  txIn undefined   grepl (  \"genes\" ,   files [  1 ] ) )  {   message (  \"It looks like you are importing RSEM genes.results files, setting txIn=FALSE\" )   txIn -  FALSE } # special alevin code  if (   type ==  \"alevin\" )  {  if (    length (  files ) undefined  1 )   stop (  \"alevin import currently only supports a single experiment\" )   vrsn -   getAlevinVersion (  files )   compareToV014 -   compareVersion (  vrsn ,  \"0.14.0\" )  if (   compareToV014 ==  -  1 )  {   mat -   readAlevinPreV014 (  files ) } else  {   mat -   readAlevin (  files ) }  if (  !   is.list (  mat ) )  {   message (  \"reading in alevin gene-level counts across cells\" )   txi -   list ( abundance =  NULL , counts =  mat , length =  NULL , countsFromAbundance =  \"no\" ) } else  {   message (  \"reading in alevin gene-level counts and inferential variance across cells\" )   txi -   list ( abundance =  NULL , counts =   mat [[  1 ] ] , variance =   mat [[  2 ] ] , length =  NULL , countsFromAbundance =  \"no\" ) }   return (  txi ) }   readrStatus -  FALSE  if (    is.null (  importer ) undefined  !  kallisto.h5 )  {  if (  !   requireNamespace (  \"readr\" , quietly =  TRUE ) )  {   message (  \"reading in files with read.delim (install 'readr' package for speed up)\" )   importer -  read.delim } else  {   message (  \"reading in files with read_tsv\" )   readrStatus -  TRUE } } # salmon/sailfish presets  if (   type %in%   c (  \"salmon\" ,  \"sailfish\" ) )  {   txIdCol -  \"Name\"   abundanceCol -  \"TPM\"   countsCol -  \"NumReads\"   lengthCol -  \"EffectiveLength\"  if (   readrStatus undefined   is.null (  importer ) )  {   col.types -   readr :: cols (   readr :: col_character ( ) ,   readr :: col_integer ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) )   importer -  function ( x )   readr :: read_tsv (  x , progress =  FALSE , col_types =  col.types ) }   infRepImporter -  if (  dropInfReps )  {  NULL } else  {  function ( x )   readInfRepFish (  x ,  type ) } } # kallisto presets  if (   type ==  \"kallisto\" )  {   txIdCol -  \"target_id\"   abundanceCol -  \"tpm\"   countsCol -  \"est_counts\"   lengthCol -  \"eff_length\"  if (  kallisto.h5 )  {   importer -  read_kallisto_h5 } else  if (   readrStatus undefined   is.null (  importer ) )  {   col.types -   readr :: cols (   readr :: col_character ( ) ,   readr :: col_integer ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) )   importer -  function ( x )   readr :: read_tsv (  x , progress =  FALSE , col_types =  col.types ) }   infRepImporter -  if (  dropInfReps )  {  NULL } else  {  readInfRepKallisto } } # rsem presets  if (   type ==  \"rsem\" )  {  if (  txIn )  {   txIdCol -  \"transcript_id\"   abundanceCol -  \"TPM\"   countsCol -  \"expected_count\"   lengthCol -  \"effective_length\"  if (   readrStatus undefined   is.null (  importer ) )  {   col.types -   readr :: cols (   readr :: col_character ( ) ,   readr :: col_character ( ) ,   readr :: col_integer ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) )   importer -  function ( x )   readr :: read_tsv (  x , progress =  FALSE , col_types =  col.types ) } } else  {   geneIdCol -  \"gene_id\"   abundanceCol -  \"TPM\"   countsCol -  \"expected_count\"   lengthCol -  \"effective_length\"  if (   readrStatus undefined   is.null (  importer ) )  {   col.types -   readr :: cols (   readr :: col_character ( ) ,   readr :: col_character ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) )   importer -  function ( x )   readr :: read_tsv (  x , progress =  FALSE , col_types =  col.types ) } } }  if (   type ==   c (  \"stringtie\" ) )  {   txIdCol -  \"t_name\"   geneIdCol -  \"gene_name\"   abundanceCol -  \"FPKM\"   countsCol -  \"cov\"   lengthCol -  \"length\"  if (   readrStatus undefined   is.null (  importer ) )  {   col.types -   readr :: cols (   readr :: col_character ( ) ,   readr :: col_character ( ) ,   readr :: col_character ( ) ,   readr :: col_integer ( ) ,   readr :: col_integer ( ) ,   readr :: col_character ( ) ,   readr :: col_integer ( ) ,   readr :: col_integer ( ) ,   readr :: col_character ( ) ,   readr :: col_character ( ) ,   readr :: col_double ( ) ,   readr :: col_double ( ) )   importer -  function ( x )   readr :: read_tsv (  x , progress =  FALSE , col_types =  col.types ) } }   infRepType -  \"none\"  if (    type %in%   c (  \"salmon\" ,  \"sailfish\" ,  \"kallisto\" ) undefined  !  dropInfReps )  { # if summarizing to gene-level, need the full matrices passed to summarizeToGene   infRepType -  if (   varReduce undefined  txOut )  {  \"var\" } else  {  \"full\" } }  if (  dropInfReps )   stopifnot (   is.null (  infRepStat ) ) # special code for RSEM gene.results files. # RSEM gene-level is the only case of !txIn  if (  !  txIn )  {   txi -   computeRsemGeneLevel (  files ,  importer ,  geneIdCol ,  abundanceCol ,  countsCol ,  lengthCol ,  countsFromAbundance )   return (  txi ) } # if external tx2gene table not provided, send user to vignette  if (    is.null (  tx2gene ) undefined  !  txOut )  {   summarizeFail ( ) # ...long message in helper.R } # trial run of inferential replicate info   repInfo -  NULL  if (   infRepType !=  \"none\" )  {   repInfo -   infRepImporter (   dirname (   files [  1 ] ) ) # if we didn't find inferential replicate info  if (   is.null (  repInfo ) )  {   infRepType -  \"none\" } }  if (  sparse )  {  if (  !   requireNamespace (  \"Matrix\" , quietly =  TRUE ) )  {   stop (  \"sparse import requires core R package `Matrix`\" ) }   message (  \"importing sparsely, only counts and abundances returned, support limited to\r\ntxOut=TRUE, CFA either 'no' or 'scaledTPM', and no inferential replicates\" )   stopifnot (  txOut )   stopifnot (   infRepType ==  \"none\" )   stopifnot (   countsFromAbundance %in%   c (  \"no\" ,  \"scaledTPM\" ) ) } ###################################################### # the rest of the code assumes transcript-level input: ### --- BEGIN --- loop over files reading in columns / inf reps ###  for  ( i in   seq_along (  files ) )  {   message (  i ,  \" \" , appendLF =  FALSE ) # import and convert quantification info to data.frame   raw -   as.data.frame (   importer (   files [  i ] ) ) # import inferential replicate info  if (   infRepType !=  \"none\" )  {   repInfo -   infRepImporter (   dirname (   files [  i ] ) ) } else  {   repInfo -  NULL } # check for columns   stopifnot (   all (    c (  abundanceCol ,  countsCol ,  lengthCol ) %in%   names (  raw ) ) ) # check for same-across-samples  if (   i ==  1 )  {   txId -   raw [[  txIdCol ] ] } else  {   stopifnot (   all (   txId ==   raw [[  txIdCol ] ] ) ) } # if importing dense matrices  if (  !  sparse )  { # create empty matrices  if (   i ==  1 )  {   mat -   matrix ( nrow =   nrow (  raw ) , ncol =   length (  files ) )    rownames (  mat ) -   raw [[  txIdCol ] ]    colnames (  mat ) -   names (  files )   abundanceMatTx -  mat   countsMatTx -  mat   lengthMatTx -  mat  if (   infRepType ==  \"var\" )  {   varMatTx -  mat } else  if (   infRepType ==  \"full\" )  {   infRepMatTx -   list ( ) } }    abundanceMatTx [ ,  i ] -   raw [[  abundanceCol ] ]    countsMatTx [ ,  i ] -   raw [[  countsCol ] ]    lengthMatTx [ ,  i ] -   raw [[  lengthCol ] ]  if (   infRepType ==  \"var\" )  {    varMatTx [ ,  i ] -   repInfo $ vars } else  if (   infRepType ==  \"full\" )  {    infRepMatTx [[  i ] ] -   repInfo $ reps } # if infRepStat was specified, re-compute counts and abundances  if (  !   is.null (  infRepStat ) )  {    countsMatTx [ ,  i ] -   infRepStat (   repInfo $ reps )   tpm -    countsMatTx [ ,  i ] /   lengthMatTx [ ,  i ]    abundanceMatTx [ ,  i ] -    tpm *  1e6 /   sum (  tpm ) } } else  { # try importing sparsely  if (   i ==  1 )  {   txId -   raw [[  txIdCol ] ]   countsListI -   list ( )   countsListX -   list ( )   abundanceListX -   list ( )   numNonzero -   c ( ) }   stopifnot (   all (   txId ==   raw [[  txIdCol ] ] ) )   sparse.idx -   which (    raw [[  countsCol ] ] =  sparseThreshold )   countsListI -   c (  countsListI ,  sparse.idx )   countsListX -   c (  countsListX ,    raw [[  countsCol ] ] [  sparse.idx ] )   numNonzero -   c (  numNonzero ,   length (  sparse.idx ) )  if (   countsFromAbundance ==  \"scaledTPM\" )  {   abundanceListX -   c (  abundanceListX ,    raw [[  abundanceCol ] ] [  sparse.idx ] ) } } } ### --- END --- loop over files ### # compile sparse matrices  if (  sparse )  {   countsMatTx -   Matrix :: sparseMatrix ( i =   unlist (  countsListI ) , j =   rep (   seq_along (  numNonzero ) ,  numNonzero ) , x =   unlist (  countsListX ) , dimnames =   list (  txId ,   names (  files ) ) )  if (   countsFromAbundance ==  \"scaledTPM\" )  {   abundanceMatTx -   Matrix :: sparseMatrix ( i =   unlist (  countsListI ) , j =   rep (   seq_along (  numNonzero ) ,  numNonzero ) , x =   unlist (  abundanceListX ) , dimnames =   list (  txId ,   names (  files ) ) ) } else  {   abundanceMatTx -  NULL }   lengthMatTx -  NULL } # propagate names to inferential replicate list  if (   infRepType ==  \"full\" )  {    names (  infRepMatTx ) -   names (  files ) }   message (  \"\" ) # if there is no information about inferential replicates  if (   infRepType ==  \"none\" )  {   txi -   list ( abundance =  abundanceMatTx , counts =  countsMatTx , length =  lengthMatTx , countsFromAbundance =  countsFromAbundance ) } else  if (   infRepType ==  \"var\" )  { # if we're keeping only the variance from inferential replicates   txi -   list ( abundance =  abundanceMatTx , counts =  countsMatTx , variance =  varMatTx , length =  lengthMatTx , countsFromAbundance =  countsFromAbundance ) } else  if (   infRepType ==  \"full\" )  { # if we're keeping the full samples from inferential replicates   txi -   list ( abundance =  abundanceMatTx , counts =  countsMatTx , infReps =  infRepMatTx , length =  lengthMatTx , countsFromAbundance =  countsFromAbundance ) } # stringtie outputs coverage, here we turn into counts  if (   type ==  \"stringtie\" )  { # here \"counts\" is still just coverage, this formula gives back original counts    txi $ counts -     txi $ counts *   txi $ length /  readLength }  if (   type ==  \"rsem\" )  { # protect against 0 bp length transcripts     txi $ length [    txi $ length undefined  1 ] -  1 } # two main outputs, based on choice of txOut: # 1) if the user requested just the transcript-level data, return it now  if (  txOut )  { # if countsFromAbundance in {scaledTPM, lengthScaledTPM, or dtuScaledTPM}  if (   countsFromAbundance !=  \"no\" )  { # for dtuScaledTPM, pretend we're doing lengthScaledTPM w/ an altered length matrix. # note that we will still output txi$countsFromAbundance set to \"dtuScaledTPM\"   length4CFA -   txi $ length # intermediate version of the length matrix  if (   countsFromAbundance ==  \"dtuScaledTPM\" )  {   length4CFA -   medianLengthOverIsoform (  length4CFA ,  tx2gene ,  ignoreTxVersion ,  ignoreAfterBar )   countsFromAbundance -  \"lengthScaledTPM\" } # function for computing all 3 countsFromAbundance methods:    txi $ counts -   makeCountsFromAbundance ( countsMat =   txi $ counts , abundanceMat =   txi $ abundance , lengthMat =  length4CFA , countsFromAbundance =  countsFromAbundance ) }   return (  txi ) } # 2) otherwise, summarize to the gene-level    txi [[  \"countsFromAbundance\" ] ] -  NULL   txiGene -   summarizeToGene (  txi ,  tx2gene ,  varReduce ,  ignoreTxVersion ,  ignoreAfterBar ,  countsFromAbundance )   return (  txiGene ) } ",
+    "filename": "tximport.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  tximport_release_3_9 tximport_release_3_11
+
+{
+    "package": "tximport",
+    "release_versions": "tximport_release_3_9 tximport_release_3_11",
+    "desc_release_old": "1.12.3",
+    "desc_release_new": "1.16.1",
+    "old_release_number": 6,
+    "new_release_number": 7,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  tximport_release_3_11 tximport_release_3_12
+
+{
+    "package": "tximport",
+    "release_versions": "tximport_release_3_11 tximport_release_3_12",
+    "desc_release_old": "1.16.1",
+    "desc_release_new": "1.18.0",
+    "old_release_number": 7,
+    "new_release_number": 8,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  tximport_release_3_12 tximport_release_3_13
+
+{
+    "package": "tximport",
+    "release_versions": "tximport_release_3_12 tximport_release_3_13",
+    "desc_release_old": "1.18.0",
+    "desc_release_new": "1.20.0",
+    "old_release_number": 8,
+    "new_release_number": 9,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  tximport_release_3_13 tximport_release_3_14
+
+{
+    "package": "tximport",
+    "release_versions": "tximport_release_3_13 tximport_release_3_14",
+    "desc_release_old": "1.20.0",
+    "desc_release_new": "1.22.0",
+    "old_release_number": 9,
+    "new_release_number": 10,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  tximport_release_3_14 tximport_master
+
+{
+    "package": "tximport",
+    "release_versions": "tximport_release_3_14 tximport_master",
+    "desc_release_old": "1.22.0",
+    "desc_release_new": "1.23.2",
+    "old_release_number": 10,
+    "new_release_number": 11,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+

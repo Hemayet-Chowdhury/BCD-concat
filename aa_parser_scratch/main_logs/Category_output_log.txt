@@ -1,0 +1,1630 @@
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  category_release_1_8 category_release_1_9
+
+{
+    "package": "Category",
+    "release_versions": "category_release_1_8 category_release_1_9",
+    "desc_release_old": "1.4.1",
+    "desc_release_new": "2.0.4",
+    "old_release_number": 2,
+    "new_release_number": 3,
+    "function_removals": 2,
+    "function_additions": 27,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+GOHyperG
+geneCategoryHyperGeoTest
+
+
+##########
+Functions Added
+##########
+
+.doHyperGTest
+hyperGTest
+categoryName
+pvalues
+geneCounts
+universeCounts
+universeMappedCount
+geneMappedCount
+annotation
+geneIds
+geneIds<-
+testName
+pvalueCutoff
+pvalueCutoff<-
+testDirection
+testDirection<-
+description
+universeGeneIds
+ontology
+ontology<-
+conditional
+conditional<-
+isConditional
+oddsRatios
+expectedCounts
+htmlReport
+summary
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  category_release_1_9 category_release_2_1
+
+{
+    "package": "Category",
+    "release_versions": "category_release_1_9 category_release_2_1",
+    "desc_release_old": "2.0.4",
+    "desc_release_new": "2.4.0",
+    "old_release_number": 3,
+    "new_release_number": 4,
+    "function_removals": 0,
+    "function_additions": 31,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+cb_children
+cb_contingency
+cb_parse_band_Hs
+cb_parse_band_Mm
+cb_sigBands
+cb_test
+chrBandInciMat
+ChrBandTreeFromGraph
+DatPkgFactory
+exampleLevels
+gseattperm
+makeChrBandGraph
+makeChrBandInciMat
+NewChrBandTree
+makeValidParams
+chrGraph
+annotation<-
+geneIdsByCategory
+geneIdUniverse
+condGeneIdUniverse
+sigCategories
+ID2GO
+ID2EntrezID
+GO2AllProbes
+initialize
+allGeneIds
+childrenOf
+level2nodes
+lgeneIds
+parentOf
+treeLevels
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "MAPAmat",
+    "representation": "MAPAmat",
+    "parameters": "function ( data , minCount = 5 )",
+    "body": "{  if (   !   is.character (  data ) ||    length (  data ) !=  1 )   stop (  \"wrong argument\" )   dataE =   as.list (   get (   paste (  data ,  \"MAP\" , sep =  \"\" ) ) )   LLs =   getLL (   names (  dataE ) ,  data )   goodLLs =   !   duplicated (  LLs ) undefined  !   is.na (  LLs )   use =   dataE [  goodLLs ]    names (  use ) =   LLs [  goodLLs ] ##some are in more than one cytochrome band and we keep only the first   use2 =   sapply (  use ,  function ( x )   x [  1 ] )   cytoLL =   split (   names (  use2 ) ,  use2 )   cts =   sapply (  cytoLL ,  length )   goodCts =   cts =  minCount   cytoLL =   cytoLL [  goodCts ]   uniqLL =   unique (   unlist (  cytoLL ) )   Amat =   sapply (  cytoLL ,  function ( x )  {   mtch =   match (  x ,  uniqLL )   zeros =   rep (  0 ,   length (  uniqLL ) )    zeros [  mtch ] =  1  zeros } )    dimnames (  Amat ) =   list (  uniqLL ,   names (  cytoLL ) )   return (  Amat ) } ",
+    "filename": "MAPcode.txt"
+  },
+  "new_function": {
+    "name": "MAPAmat",
+    "representation": "MAPAmat",
+    "parameters": "function ( chip , univ = NULL , minCount = 0 )",
+    "body": "{   m -   makeChrBandInciMat (   makeChrBandGraph ( chip =  chip , univ =  univ ) )  if (   minCount undefined  0 )  {   rs -   rowSums (  m )   m -   m [   rs =  minCount , ] }  m } ",
+    "filename": "MAPcode.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  category_release_2_1 category_release_2_2
+
+{
+    "package": "Category",
+    "release_versions": "category_release_2_1 category_release_2_2",
+    "desc_release_old": "2.4.0",
+    "desc_release_new": "2.6.0",
+    "old_release_number": 4,
+    "new_release_number": 5,
+    "function_removals": 0,
+    "function_additions": 2,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+linearMTest
+effectSize
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  category_release_2_2 category_release_2_3
+
+{
+    "package": "Category",
+    "release_versions": "category_release_2_2 category_release_2_3",
+    "desc_release_old": "2.6.0",
+    "desc_release_new": "2.8.4",
+    "old_release_number": 5,
+    "new_release_number": 6,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 4,
+    "total_count": 4
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "geneIds",
+    "representation": "geneIds<-",
+    "signature": "HyperGParams",
+    "parameters": "function ( r , value )",
+    "body": "{    r @ geneIds -  value  r } ",
+    "filename": "HyperGParams-accessors.txt"
+  },
+  "new_function": {
+    "name": "geneIds",
+    "representation": "geneIds<-",
+    "signature": "HyperGParams",
+    "parameters": "function ( object , value )",
+    "body": "{    object @ geneIds -  value  object } ",
+    "filename": "HyperGParams-accessors.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "geneIds",
+    "representation": "geneIds<-",
+    "signature": "LinearMParams",
+    "parameters": "function ( r , value )",
+    "body": "{    r @ geneIds -  value  r } ",
+    "filename": "LinearMParams-accessors.txt"
+  },
+  "new_function": {
+    "name": "geneIds",
+    "representation": "geneIds<-",
+    "signature": "LinearMParams",
+    "parameters": "function ( object , value )",
+    "body": "{    object @ geneIds -  value  object } ",
+    "filename": "LinearMParams-accessors.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "ontology",
+    "representation": "ontology",
+    "signature": "HyperGParams",
+    "parameters": "function ( r )",
+    "body": "NA",
+    "filename": "HyperGParams-accessors.txt"
+  },
+  "new_function": {
+    "name": "ontology",
+    "representation": "ontology",
+    "signature": "HyperGParams",
+    "parameters": "function ( object )",
+    "body": "NA",
+    "filename": "HyperGParams-accessors.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "ontology",
+    "representation": "ontology",
+    "signature": "GOHyperGParams",
+    "parameters": "function ( r )",
+    "body": "r @ ontology",
+    "filename": "HyperGParams-accessors.txt"
+  },
+  "new_function": {
+    "name": "ontology",
+    "representation": "ontology",
+    "signature": "GOHyperGParams",
+    "parameters": "function ( object )",
+    "body": "object @ ontology",
+    "filename": "HyperGParams-accessors.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  category_release_2_3 category_release_2_4
+
+{
+    "package": "Category",
+    "release_versions": "category_release_2_3 category_release_2_4",
+    "desc_release_old": "2.8.4",
+    "desc_release_new": "2.10.1",
+    "old_release_number": 6,
+    "new_release_number": 7,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  category_release_2_4 category_release_2_5
+
+{
+    "package": "Category",
+    "release_versions": "category_release_2_4 category_release_2_5",
+    "desc_release_old": "2.10.1",
+    "desc_release_new": "2.12.1",
+    "old_release_number": 7,
+    "new_release_number": 8,
+    "function_removals": 0,
+    "function_additions": 4,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+GSEAGOHyperGParams
+GSEAKEGGHyperGParams
+ID2KEGG
+KEGG2AllProbes
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  category_release_2_5 category_release_2_6
+
+{
+    "package": "Category",
+    "release_versions": "category_release_2_5 category_release_2_6",
+    "desc_release_old": "2.12.1",
+    "desc_release_new": "2.14.0",
+    "old_release_number": 8,
+    "new_release_number": 9,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  category_release_2_6 category_release_2_7
+
+{
+    "package": "Category",
+    "release_versions": "category_release_2_6 category_release_2_7",
+    "desc_release_old": "2.14.0",
+    "desc_release_new": "2.16.1",
+    "old_release_number": 9,
+    "new_release_number": 10,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  category_release_2_7 category_release_2_8
+
+{
+    "package": "Category",
+    "release_versions": "category_release_2_7 category_release_2_8",
+    "desc_release_old": "2.16.1",
+    "desc_release_new": "2.18.0",
+    "old_release_number": 10,
+    "new_release_number": 11,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  category_release_2_8 category_release_2_9
+
+{
+    "package": "Category",
+    "release_versions": "category_release_2_8 category_release_2_9",
+    "desc_release_old": "2.18.0",
+    "desc_release_new": "2.20.0",
+    "old_release_number": 11,
+    "new_release_number": 12,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+makeChrBandGSC
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  category_release_2_9 category_release_2_11
+
+{
+    "package": "Category",
+    "release_versions": "category_release_2_9 category_release_2_11",
+    "desc_release_old": "2.20.0",
+    "desc_release_new": "2.24.0",
+    "old_release_number": 12,
+    "new_release_number": 13,
+    "function_removals": 5,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 5
+}
+
+##########
+Functions Removed
+##########
+
+chrBandInciMat
+geneGoHyperGeoTest
+geneKeggHyperGeoTest
+condGeneIdUniverse
+isConditional
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  category_release_2_11 category_release_2_12
+
+{
+    "package": "Category",
+    "release_versions": "category_release_2_11 category_release_2_12",
+    "desc_release_old": "2.24.0",
+    "desc_release_new": "2.26.0",
+    "old_release_number": 13,
+    "new_release_number": 14,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  category_release_2_12 category_release_2_13
+
+{
+    "package": "Category",
+    "release_versions": "category_release_2_12 category_release_2_13",
+    "desc_release_old": "2.26.0",
+    "desc_release_new": "2.28.0",
+    "old_release_number": 14,
+    "new_release_number": 15,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+hyperg
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  category_release_2_13 category_release_2_14
+
+{
+    "package": "Category",
+    "release_versions": "category_release_2_13 category_release_2_14",
+    "desc_release_old": "2.28.0",
+    "desc_release_new": "2.30.0",
+    "old_release_number": 15,
+    "new_release_number": 16,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  category_release_2_14 category_release_3_1
+
+{
+    "package": "Category",
+    "release_versions": "category_release_2_14 category_release_3_1",
+    "desc_release_old": "2.30.0",
+    "desc_release_new": "2.34.2",
+    "old_release_number": 16,
+    "new_release_number": 17,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+organism
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  category_release_3_1 category_release_3_2
+
+{
+    "package": "Category",
+    "release_versions": "category_release_3_1 category_release_3_2",
+    "desc_release_old": "2.34.2",
+    "desc_release_new": "2.36.0",
+    "old_release_number": 17,
+    "new_release_number": 18,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  category_release_3_2 category_release_3_3
+
+{
+    "package": "Category",
+    "release_versions": "category_release_3_2 category_release_3_3",
+    "desc_release_old": "2.36.0",
+    "desc_release_new": "2.38.0",
+    "old_release_number": 18,
+    "new_release_number": 19,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  category_release_3_3 category_release_3_4
+
+{
+    "package": "Category",
+    "release_versions": "category_release_3_3 category_release_3_4",
+    "desc_release_old": "2.38.0",
+    "desc_release_new": "2.40.0",
+    "old_release_number": 19,
+    "new_release_number": 20,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  category_release_3_4 category_release_3_5
+
+{
+    "package": "Category",
+    "release_versions": "category_release_3_4 category_release_3_5",
+    "desc_release_old": "2.40.0",
+    "desc_release_new": "2.42.1",
+    "old_release_number": 20,
+    "new_release_number": 21,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  category_release_3_5 category_release_3_6
+
+{
+    "package": "Category",
+    "release_versions": "category_release_3_5 category_release_3_6",
+    "desc_release_old": "2.42.1",
+    "desc_release_new": "2.44.0",
+    "old_release_number": 21,
+    "new_release_number": 22,
+    "function_removals": 0,
+    "function_additions": 2,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+OBOCollectionDatPkg
+OBOHyperGParams
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  category_release_3_6 category_release_3_7
+
+{
+    "package": "Category",
+    "release_versions": "category_release_3_6 category_release_3_7",
+    "desc_release_old": "2.44.0",
+    "desc_release_new": "2.46.0",
+    "old_release_number": 22,
+    "new_release_number": 23,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  category_release_3_7 category_release_3_8
+
+{
+    "package": "Category",
+    "release_versions": "category_release_3_7 category_release_3_8",
+    "desc_release_old": "2.46.0",
+    "desc_release_new": "2.48.1",
+    "old_release_number": 23,
+    "new_release_number": 24,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  category_release_3_8 category_release_3_9
+
+{
+    "package": "Category",
+    "release_versions": "category_release_3_8 category_release_3_9",
+    "desc_release_old": "2.48.1",
+    "desc_release_new": "2.50.0",
+    "old_release_number": 24,
+    "new_release_number": 25,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  category_release_3_9 category_release_3_11
+
+{
+    "package": "Category",
+    "release_versions": "category_release_3_9 category_release_3_11",
+    "desc_release_old": "2.50.0",
+    "desc_release_new": "2.54.0",
+    "old_release_number": 25,
+    "new_release_number": 26,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  category_release_3_11 category_release_3_12
+
+{
+    "package": "Category",
+    "release_versions": "category_release_3_11 category_release_3_12",
+    "desc_release_old": "2.54.0",
+    "desc_release_new": "2.56.0",
+    "old_release_number": 26,
+    "new_release_number": 27,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  category_release_3_12 category_release_3_13
+
+{
+    "package": "Category",
+    "release_versions": "category_release_3_12 category_release_3_13",
+    "desc_release_old": "2.56.0",
+    "desc_release_new": "2.58.0",
+    "old_release_number": 27,
+    "new_release_number": 28,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  category_release_3_13 category_release_3_14
+
+{
+    "package": "Category",
+    "release_versions": "category_release_3_13 category_release_3_14",
+    "desc_release_old": "2.58.0",
+    "desc_release_new": "2.60.0",
+    "old_release_number": 28,
+    "new_release_number": 29,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  category_release_3_14 category_master
+
+{
+    "package": "Category",
+    "release_versions": "category_release_3_14 category_master",
+    "desc_release_old": "2.60.0",
+    "desc_release_new": "2.61.0",
+    "old_release_number": 29,
+    "new_release_number": 30,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+

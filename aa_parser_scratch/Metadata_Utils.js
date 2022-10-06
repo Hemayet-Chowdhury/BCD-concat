@@ -2,7 +2,7 @@ export function getLibraryVersion(description_file) {
   let lines = description_file.split("\n");
   let version;
   lines.forEach((line) => {
-    if (line.includes("Version")) {
+    if (line.includes("Version:")) {
       let raw_version = line.split(":")[1];
       version = raw_version.trim();
     }

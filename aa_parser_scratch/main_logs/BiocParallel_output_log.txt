@@ -1,0 +1,1153 @@
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocparallel_release_2_12 biocparallel_release_2_13
+
+{
+    "package": "BiocParallel",
+    "release_versions": "biocparallel_release_2_12 biocparallel_release_2_13",
+    "desc_release_old": "0.2.0",
+    "desc_release_new": "0.4.1",
+    "old_release_number": 0,
+    "new_release_number": 1,
+    "function_removals": 0,
+    "function_additions": 5,
+    "parameter_removals": 2,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 2,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+BatchJobsParam
+bpmapply
+bpaggregate
+bpresume
+bplasterror
+
+
+##########
+Removed Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "DoparParam",
+    "representation": "DoparParam",
+    "parameters": "function ( )",
+    "body": ".DoparParamSingleton",
+    "filename": "DoparParam-class.txt"
+  },
+  "new_function": {
+    "name": "DoparParam",
+    "representation": "DoparParam",
+    "parameters": "function ( catch.errors = TRUE )",
+    "body": "{   .DoparParam ( catch.errors =  catch.errors ) } ",
+    "filename": "DoparParam-class.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "SerialParam",
+    "representation": "SerialParam",
+    "parameters": "function ( )",
+    "body": ".SerialParamSingleton",
+    "filename": "SerialParam-class.txt"
+  },
+  "new_function": {
+    "name": "SerialParam",
+    "representation": "SerialParam",
+    "parameters": "function ( catch.errors = TRUE )",
+    "body": "{   .SerialParam ( catch.errors =  catch.errors , workers =  1L ) } ",
+    "filename": "SerialParam-class.txt"
+  }
+}
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "DoparParam",
+    "representation": "DoparParam",
+    "parameters": "function ( )",
+    "body": ".DoparParamSingleton",
+    "filename": "DoparParam-class.txt"
+  },
+  "new_function": {
+    "name": "DoparParam",
+    "representation": "DoparParam",
+    "parameters": "function ( catch.errors = TRUE )",
+    "body": "{   .DoparParam ( catch.errors =  catch.errors ) } ",
+    "filename": "DoparParam-class.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "SerialParam",
+    "representation": "SerialParam",
+    "parameters": "function ( )",
+    "body": ".SerialParamSingleton",
+    "filename": "SerialParam-class.txt"
+  },
+  "new_function": {
+    "name": "SerialParam",
+    "representation": "SerialParam",
+    "parameters": "function ( catch.errors = TRUE )",
+    "body": "{   .SerialParam ( catch.errors =  catch.errors , workers =  1L ) } ",
+    "filename": "SerialParam-class.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocparallel_release_2_13 biocparallel_release_2_14
+
+{
+    "package": "BiocParallel",
+    "release_versions": "biocparallel_release_2_13 biocparallel_release_2_14",
+    "desc_release_old": "0.4.1",
+    "desc_release_new": "0.6.1",
+    "old_release_number": 1,
+    "new_release_number": 2,
+    "function_removals": 0,
+    "function_additions": 2,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+bpparam
+multicoreWorkers
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocparallel_release_2_14 biocparallel_release_3_1
+
+{
+    "package": "BiocParallel",
+    "release_versions": "biocparallel_release_2_14 biocparallel_release_3_1",
+    "desc_release_old": "0.6.1",
+    "desc_release_new": "1.2.22",
+    "old_release_number": 2,
+    "new_release_number": 3,
+    "function_removals": 0,
+    "function_additions": 30,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+snowWorkers
+bpvalidate
+bpok
+bpslaveLoop
+bprunMPIslave
+bpiterate
+bpworkers<-
+bptasks
+bptasks<-
+bpjobname
+bpjobname<-
+bpcatchErrors
+bpcatchErrors<-
+bpstopOnError
+bpstopOnError<-
+bpprogressbar
+bpprogressbar<-
+bpRNGseed
+bpRNGseed<-
+bptimeout
+bptimeout<-
+bplog
+bplog<-
+bplogdir
+bplogdir<-
+bpthreshold
+bpthreshold<-
+bpresultdir
+bpresultdir<-
+`print.remote-error`
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocparallel_release_3_1 biocparallel_release_3_2
+
+{
+    "package": "BiocParallel",
+    "release_versions": "biocparallel_release_3_1 biocparallel_release_3_2",
+    "desc_release_old": "1.2.22",
+    "desc_release_new": "1.4.3",
+    "old_release_number": 3,
+    "new_release_number": 4,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocparallel_release_3_2 biocparallel_release_3_3
+
+{
+    "package": "BiocParallel",
+    "release_versions": "biocparallel_release_3_2 biocparallel_release_3_3",
+    "desc_release_old": "1.4.3",
+    "desc_release_new": "1.6.6",
+    "old_release_number": 4,
+    "new_release_number": 5,
+    "function_removals": 2,
+    "function_additions": 9,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 3
+}
+
+##########
+Functions Removed
+##########
+
+bpslaveLoop
+`print.remote-error`
+
+
+##########
+Functions Added
+##########
+
+bpnworkers
+bptry
+print.remote_error
+print.bplist_error
+bploop.MPInode
+bploop.SOCKnode
+bploop.SOCK0node
+bploop.lapply
+bploop.iterate
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "SerialParam",
+    "representation": "SerialParam",
+    "parameters": "function ( catch.errors = FALSE , log = FALSE , threshold = \"INFO\" )",
+    "body": "{   x -   .SerialParam ( workers =  1L , catch.errors =  catch.errors , log =  log , threshold =   .THRESHOLD (  threshold ) )   validObject (  x )  x } ",
+    "filename": "SerialParam-class.txt"
+  },
+  "new_function": {
+    "name": "SerialParam",
+    "representation": "SerialParam",
+    "parameters": "function ( catch.errors = TRUE , stop.on.error = TRUE , log = FALSE , threshold = \"INFO\" , logdir = NA_character_ )",
+    "body": "{  if (  !   missing (  catch.errors ) )   warning (  \"'catch.errors' is deprecated, use 'stop.on.error'\" )   x -   .SerialParam ( workers =  1L , catch.errors =  catch.errors , stop.on.error =  stop.on.error , log =  log , threshold =  threshold , logdir =  logdir )   validObject (  x )  x } ",
+    "filename": "SerialParam-class.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocparallel_release_3_3 biocparallel_release_3_4
+
+{
+    "package": "BiocParallel",
+    "release_versions": "biocparallel_release_3_3 biocparallel_release_3_4",
+    "desc_release_old": "1.6.6",
+    "desc_release_new": "1.8.2",
+    "old_release_number": 5,
+    "new_release_number": 6,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocparallel_release_3_4 biocparallel_release_3_5
+
+{
+    "package": "BiocParallel",
+    "release_versions": "biocparallel_release_3_4 biocparallel_release_3_5",
+    "desc_release_old": "1.8.2",
+    "desc_release_new": "1.10.1",
+    "old_release_number": 6,
+    "new_release_number": 7,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocparallel_release_3_5 biocparallel_release_3_6
+
+{
+    "package": "BiocParallel",
+    "release_versions": "biocparallel_release_3_5 biocparallel_release_3_6",
+    "desc_release_old": "1.10.1",
+    "desc_release_new": "1.12.0",
+    "old_release_number": 7,
+    "new_release_number": 8,
+    "function_removals": 0,
+    "function_additions": 9,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+ipcid
+ipcremove
+ipclock
+ipctrylock
+ipcunlock
+ipclocked
+ipcyield
+ipcvalue
+ipcreset
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocparallel_release_3_6 biocparallel_release_3_7
+
+{
+    "package": "BiocParallel",
+    "release_versions": "biocparallel_release_3_6 biocparallel_release_3_7",
+    "desc_release_old": "1.12.0",
+    "desc_release_new": "1.14.2",
+    "old_release_number": 8,
+    "new_release_number": 9,
+    "function_removals": 0,
+    "function_additions": 5,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+BatchtoolsParam
+batchtoolsWorkers
+batchtoolsCluster
+batchtoolsRegistryargs
+batchtoolsTemplate
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocparallel_release_3_7 biocparallel_release_3_8
+
+{
+    "package": "BiocParallel",
+    "release_versions": "biocparallel_release_3_7 biocparallel_release_3_8",
+    "desc_release_old": "1.14.2",
+    "desc_release_new": "1.16.6",
+    "old_release_number": 9,
+    "new_release_number": 10,
+    "function_removals": 0,
+    "function_additions": 2,
+    "parameter_removals": 1,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 2,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+bpexportglobals
+bpexportglobals<-
+
+
+##########
+Removed Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "snowWorkers",
+    "representation": "snowWorkers",
+    "parameters": "function ( )",
+    "body": ".snowCores ( )",
+    "filename": "SnowParam-class.txt"
+  },
+  "new_function": {
+    "name": "snowWorkers",
+    "representation": "snowWorkers",
+    "parameters": "function ( type = c ( \"SOCK\" , \"MPI\" , \"FORK\" ) )",
+    "body": "{   type -   match.arg (  type )   .snowCores (  type ) } ",
+    "filename": "SnowParam-class.txt"
+  }
+}
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "BatchtoolsParam",
+    "representation": "BatchtoolsParam",
+    "parameters": "function ( workers = batchtoolsWorkers ( cluster ) , cluster = batchtoolsCluster ( ) , registryargs = batchtoolsRegistryargs ( ) , template = batchtoolsTemplate ( cluster ) , stop.on.error = TRUE , progressbar = FALSE , RNGseed = NA_integer_ , timeout = 30L * 24L * 60L * 60L , log = FALSE , logdir = NA_character_ , resultdir = NA_character_ , jobname = \"BPJOB\" )",
+    "body": "{  if (  !   requireNamespace (  \"batchtools\" , quietly =  TRUE ) )   stop (  \"BatchtoolsParam() requires 'batchtools' package\" )  if (  !   .batchtoolsClusterAvailable (  cluster ) )   stop (  \"'\" ,  cluster ,  \"' supported but not available on this machine\" )   .BatchtoolsParam ( workers =  workers , cluster =  cluster , registry =   .NULLRegistry ( ) , registryargs =  registryargs , jobname =  jobname , progressbar =  progressbar , log =  log , logdir =  logdir , stop.on.error =  stop.on.error , timeout =  timeout , RNGseed =  RNGseed , template =  template ) } ",
+    "filename": "BatchtoolsParam-class.txt"
+  },
+  "new_function": {
+    "name": "BatchtoolsParam",
+    "representation": "BatchtoolsParam",
+    "parameters": "function ( workers = batchtoolsWorkers ( cluster ) , cluster = batchtoolsCluster ( ) , registryargs = batchtoolsRegistryargs ( ) , resources = list ( ) , template = batchtoolsTemplate ( cluster ) , stop.on.error = TRUE , progressbar = FALSE , RNGseed = NA_integer_ , timeout = 30L * 24L * 60L * 60L , exportglobals = TRUE , log = FALSE , logdir = NA_character_ , resultdir = NA_character_ , jobname = \"BPJOB\" )",
+    "body": "{  if (  !   requireNamespace (  \"batchtools\" , quietly =  TRUE ) )   stop (  \"BatchtoolsParam() requires 'batchtools' package\" )  if (  !   .batchtoolsClusterAvailable (  cluster ) )   stop (  \"'\" ,  cluster ,  \"' supported but not available on this machine\" )  if (    length (  resources ) undefined   is.null (   names (  resources ) ) )   stop (  \"'resources' must be a named list\" )   prototype -   .prototype_update (  .BatchtoolsParam_prototype , workers =   as.integer (  workers ) , cluster =  cluster , registry =   .NULLRegistry ( ) , registryargs =  registryargs , resources =  resources , jobname =  jobname , progressbar =  progressbar , log =  log , logdir =  logdir , stop.on.error =  stop.on.error , timeout =   as.integer (  timeout ) , exportglobals =  exportglobals , RNGseed =   as.integer (  RNGseed ) , template =  template )   x -   do.call (  .BatchtoolsParam ,  prototype )   validObject (  x )  x } ",
+    "filename": "BatchtoolsParam-class.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "snowWorkers",
+    "representation": "snowWorkers",
+    "parameters": "function ( )",
+    "body": ".snowCores ( )",
+    "filename": "SnowParam-class.txt"
+  },
+  "new_function": {
+    "name": "snowWorkers",
+    "representation": "snowWorkers",
+    "parameters": "function ( type = c ( \"SOCK\" , \"MPI\" , \"FORK\" ) )",
+    "body": "{   type -   match.arg (  type )   .snowCores (  type ) } ",
+    "filename": "SnowParam-class.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocparallel_release_3_8 biocparallel_release_3_9
+
+{
+    "package": "BiocParallel",
+    "release_versions": "biocparallel_release_3_8 biocparallel_release_3_9",
+    "desc_release_old": "1.16.6",
+    "desc_release_new": "1.18.1",
+    "old_release_number": 10,
+    "new_release_number": 11,
+    "function_removals": 7,
+    "function_additions": 16,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 3,
+    "total_count": 10
+}
+
+##########
+Functions Removed
+##########
+
+bpresume
+bplasterror
+bpcatchErrors
+bpcatchErrors<-
+bploop.MPInode
+bploop.SOCKnode
+bploop.SOCK0node
+
+
+##########
+Functions Added
+##########
+
+.BiocParallelParam_prototype
+.prototype_update
+.prettyPath
+.send_to
+.recv_any
+.send
+.recv
+.close
+.send_all
+.recv_all
+.bpstart_impl
+.bpstop_impl
+.bpworker_impl
+.bplapply_impl
+.bpiterate_impl
+.error_worker_comm
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "BatchtoolsParam",
+    "representation": "BatchtoolsParam",
+    "parameters": "function ( workers = batchtoolsWorkers ( cluster ) , cluster = batchtoolsCluster ( ) , registryargs = batchtoolsRegistryargs ( ) , resources = list ( ) , template = batchtoolsTemplate ( cluster ) , stop.on.error = TRUE , progressbar = FALSE , RNGseed = NA_integer_ , timeout = 30L * 24L * 60L * 60L , exportglobals = TRUE , log = FALSE , logdir = NA_character_ , resultdir = NA_character_ , jobname = \"BPJOB\" )",
+    "body": "{  if (  !   requireNamespace (  \"batchtools\" , quietly =  TRUE ) )   stop (  \"BatchtoolsParam() requires 'batchtools' package\" )  if (  !   .batchtoolsClusterAvailable (  cluster ) )   stop (  \"'\" ,  cluster ,  \"' supported but not available on this machine\" )  if (    length (  resources ) undefined   is.null (   names (  resources ) ) )   stop (  \"'resources' must be a named list\" )   prototype -   .prototype_update (  .BatchtoolsParam_prototype , workers =   as.integer (  workers ) , cluster =  cluster , registry =   .NULLRegistry ( ) , registryargs =  registryargs , resources =  resources , jobname =  jobname , progressbar =  progressbar , log =  log , logdir =  logdir , stop.on.error =  stop.on.error , timeout =   as.integer (  timeout ) , exportglobals =  exportglobals , RNGseed =   as.integer (  RNGseed ) , template =  template )   x -   do.call (  .BatchtoolsParam ,  prototype )   validObject (  x )  x } ",
+    "filename": "BatchtoolsParam-class.txt"
+  },
+  "new_function": {
+    "name": "BatchtoolsParam",
+    "representation": "BatchtoolsParam",
+    "parameters": "function ( workers = batchtoolsWorkers ( cluster ) , cluster = batchtoolsCluster ( ) , registryargs = batchtoolsRegistryargs ( ) , saveregistry = FALSE , resources = list ( ) , template = batchtoolsTemplate ( cluster ) , stop.on.error = TRUE , progressbar = FALSE , RNGseed = NA_integer_ , timeout = 30L * 24L * 60L * 60L , exportglobals = TRUE , log = FALSE , logdir = NA_character_ , resultdir = NA_character_ , jobname = \"BPJOB\" )",
+    "body": "{  if (  !   requireNamespace (  \"batchtools\" , quietly =  TRUE ) )   stop (  \"BatchtoolsParam() requires 'batchtools' package\" )  if (  !   .batchtoolsClusterAvailable (  cluster ) )   stop (  \"'\" ,  cluster ,  \"' supported but not available on this machine\" )  if (    length (  resources ) undefined   is.null (   names (  resources ) ) )   stop (  \"'resources' must be a named list\" )   prototype -   .prototype_update (  .BatchtoolsParam_prototype , workers =   as.integer (  workers ) , cluster =  cluster , registry =   .NULLRegistry ( ) , registryargs =  registryargs , saveregistry =  saveregistry , resources =  resources , jobname =  jobname , progressbar =  progressbar , log =  log , logdir =  logdir , resultdir =  resultdir , stop.on.error =  stop.on.error , timeout =   as.integer (  timeout ) , exportglobals =  exportglobals , RNGseed =   as.integer (  RNGseed ) , template =  template )   x -   do.call (  .BatchtoolsParam ,  prototype )   validObject (  x )  x } ",
+    "filename": "BatchtoolsParam-class.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "DoparParam",
+    "representation": "DoparParam",
+    "parameters": "function ( catch.errors = TRUE , stop.on.error = TRUE )",
+    "body": "{  if (  !   missing (  catch.errors ) )   warning (  \"'catch.errors' is deprecated, use 'stop.on.error'\" )  if (  !   \"package:foreach\" %in%   search ( ) )  {   tryCatch (  {   loadNamespace (  \"foreach\" ) } , error =  function ( err )  {   stop (   conditionMessage (  err ) ,  \"\\n\" ,  \"  DoparParam() requires the 'foreach' package\" ) } ) }   prototype -   .prototype_update (  .DoparParam_prototype , catch.errors =  catch.errors , stop.on.error =  stop.on.error )   x -   do.call (  .DoparParam ,  prototype )   validObject (  x )  x } ",
+    "filename": "DoparParam-class.txt"
+  },
+  "new_function": {
+    "name": "DoparParam",
+    "representation": "DoparParam",
+    "parameters": "function ( stop.on.error = TRUE )",
+    "body": "{  if (  !   \"package:foreach\" %in%   search ( ) )  {   tryCatch (  {   loadNamespace (  \"foreach\" ) } , error =  function ( err )  {   stop (   conditionMessage (  err ) ,  \"\\n\" ,  \"  DoparParam() requires the 'foreach' package\" ) } ) }   prototype -   .prototype_update (  .DoparParam_prototype , stop.on.error =  stop.on.error )   x -   do.call (  .DoparParam ,  prototype )   validObject (  x )  x } ",
+    "filename": "DoparParam-class.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "SerialParam",
+    "representation": "SerialParam",
+    "parameters": "function ( catch.errors = TRUE , stop.on.error = TRUE , log = FALSE , threshold = \"INFO\" , logdir = NA_character_ , progressbar = FALSE )",
+    "body": "{  if (  !   missing (  catch.errors ) )   warning (  \"'catch.errors' is deprecated, use 'stop.on.error'\" )   prototype -   .prototype_update (  .SerialParam_prototype , catch.errors =  catch.errors , stop.on.error =  stop.on.error , log =  log , threshold =  threshold , logdir =  logdir , progressbar =  progressbar )   x -   do.call (  .SerialParam ,  prototype )   validObject (  x )  x } ",
+    "filename": "SerialParam-class.txt"
+  },
+  "new_function": {
+    "name": "SerialParam",
+    "representation": "SerialParam",
+    "parameters": "function ( stop.on.error = TRUE , log = FALSE , threshold = \"INFO\" , logdir = NA_character_ , progressbar = FALSE )",
+    "body": "{   prototype -   .prototype_update (  .SerialParam_prototype , stop.on.error =  stop.on.error , log =  log , threshold =  threshold , logdir =  logdir , progressbar =  progressbar )   x -   do.call (  .SerialParam ,  prototype )   validObject (  x )  x } ",
+    "filename": "SerialParam-class.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocparallel_release_3_9 biocparallel_release_3_11
+
+{
+    "package": "BiocParallel",
+    "release_versions": "biocparallel_release_3_9 biocparallel_release_3_11",
+    "desc_release_old": "1.18.1",
+    "desc_release_new": "1.22.0",
+    "old_release_number": 11,
+    "new_release_number": 12,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocparallel_release_3_11 biocparallel_release_3_12
+
+{
+    "package": "BiocParallel",
+    "release_versions": "biocparallel_release_3_11 biocparallel_release_3_12",
+    "desc_release_old": "1.22.0",
+    "desc_release_new": "1.24.1",
+    "old_release_number": 12,
+    "new_release_number": 13,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+bprunMPIworker
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocparallel_release_3_12 biocparallel_release_3_13
+
+{
+    "package": "BiocParallel",
+    "release_versions": "biocparallel_release_3_12 biocparallel_release_3_13",
+    "desc_release_old": "1.24.1",
+    "desc_release_new": "1.26.2",
+    "old_release_number": 13,
+    "new_release_number": 14,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocparallel_release_3_13 biocparallel_release_3_14
+
+{
+    "package": "BiocParallel",
+    "release_versions": "biocparallel_release_3_13 biocparallel_release_3_14",
+    "desc_release_old": "1.26.2",
+    "desc_release_new": "1.28.3",
+    "old_release_number": 14,
+    "new_release_number": 15,
+    "function_removals": 0,
+    "function_additions": 3,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+bperrorTypes
+bpforceGC
+bpforceGC<-
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "SerialParam",
+    "representation": "SerialParam",
+    "parameters": "function ( stop.on.error = TRUE , log = FALSE , threshold = \"INFO\" , logdir = NA_character_ , progressbar = FALSE )",
+    "body": "{   prototype -   .prototype_update (  .SerialParam_prototype , stop.on.error =  stop.on.error , log =  log , threshold =  threshold , logdir =  logdir , progressbar =  progressbar )   x -   do.call (  .SerialParam ,  prototype )   validObject (  x )  x } ",
+    "filename": "SerialParam-class.txt"
+  },
+  "new_function": {
+    "name": "SerialParam",
+    "representation": "SerialParam",
+    "parameters": "function ( stop.on.error = TRUE , progressbar = FALSE , RNGseed = NULL , timeout = 30L * 24L * 60L * 60L , log = FALSE , threshold = \"INFO\" , logdir = NA_character_ , resultdir = NA_character_ , jobname = \"BPJOB\" , force.GC = FALSE )",
+    "body": "{  if (  !   is.null (  RNGseed ) )   RNGseed -   as.integer (  RNGseed )  if (  progressbar )  {   tasks -   .Machine $ integer.max } else  {   tasks -  0L }   prototype -   .prototype_update (  .SerialParam_prototype , tasks =  tasks , stop.on.error =  stop.on.error , progressbar =  progressbar , RNGseed =  RNGseed , timeout =   as.integer (  timeout ) , log =  log , threshold =  threshold , logdir =  logdir , resultdir =  resultdir , jobname =  jobname , force.GC =  force.GC )   x -   do.call (  .SerialParam ,  prototype )   validObject (  x )  x } ",
+    "filename": "SerialParam-class.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocparallel_release_3_14 biocparallel_master
+
+{
+    "package": "BiocParallel",
+    "release_versions": "biocparallel_release_3_14 biocparallel_master",
+    "desc_release_old": "1.28.3",
+    "desc_release_new": "1.29.17",
+    "old_release_number": 15,
+    "new_release_number": 16,
+    "function_removals": 0,
+    "function_additions": 14,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+bpresult
+bpoptions
+.registerOption
+.manager
+.manager_send
+.manager_recv
+.manager_send_all
+.manager_recv_all
+.manager_capacity
+.manager_flush
+.manager_cleanup
+.task_const
+.task_dynamic
+.task_remake
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+

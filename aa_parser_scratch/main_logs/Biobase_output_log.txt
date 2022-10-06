@@ -1,0 +1,1937 @@
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biobase_release_1_6 biobase_release_1_7
+
+{
+    "package": "Biobase",
+    "release_versions": "biobase_release_1_6 biobase_release_1_7",
+    "desc_release_old": "1.5.12",
+    "desc_release_new": "1.8.0",
+    "old_release_number": 2,
+    "new_release_number": 3,
+    "function_removals": 5,
+    "function_additions": 13,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 5
+}
+
+##########
+Functions Removed
+##########
+
+$.eSet
+$.exprSet
+$.phenoData
+eMetadata
+eMetadata<-
+
+
+##########
+Functions Added
+##########
+
+reverseSplit
+df2pD
+note
+read.pD
+$
+coerce
+ncol
+reporterInfo
+assayData<-
+reporterInfo<-
+dim
+assayData
+reporterNames
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biobase_release_1_7 biobase_release_1_8
+
+{
+    "package": "Biobase",
+    "release_versions": "biobase_release_1_7 biobase_release_1_8",
+    "desc_release_old": "1.8.0",
+    "desc_release_new": "1.10.1",
+    "old_release_number": 3,
+    "new_release_number": 4,
+    "function_removals": 5,
+    "function_additions": 22,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 5
+}
+
+##########
+Functions Removed
+##########
+
+addNonExisting
+addPDF2Vig
+addVig2Menu
+addVig4Unix
+addVig4Win
+
+
+##########
+Functions Added
+##########
+
+assayDataNew
+assayDataValidMembers
+assayDataElementNames
+assayDataElement
+assayDataElementReplace
+biocReposList
+cache
+isUnique
+matchpt
+updateOldESet
+dims
+experimentData
+featureNames
+storageMode
+experimentData<-
+featureNames<-
+varLabels<-
+varMetadata<-
+storageMode<-
+pubMedIds
+pubMedIds<-
+initialize
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biobase_release_1_8 biobase_release_1_9
+
+{
+    "package": "Biobase",
+    "release_versions": "biobase_release_1_8 biobase_release_1_9",
+    "desc_release_old": "1.10.1",
+    "desc_release_new": "1.12.2",
+    "old_release_number": 4,
+    "new_release_number": 5,
+    "function_removals": 0,
+    "function_additions": 16,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+as.data.frame.ExpressionSet
+getObjectSlots
+selectSome
+updateObjectFromSlots
+userQuery
+annotatedDataFrameFrom
+featureData
+featureData<-
+dimLabels
+isVersioned
+isCurrent
+classVersion
+classVersion<-
+updateObject
+updateObjectTo
+Compare
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "cache",
+    "representation": "cache",
+    "parameters": "function ( name , expr )",
+    "body": "{  if (  !  (    is.character (  name ) undefined    length (  name ) ==  1 ) )   stop (  \"'name' must be a single character string.\" )   cachefile -   paste (  \"tmp-\" ,  name ,  \".RData\" , sep =  \"\" )  if (   file.exists (  cachefile ) )  {   load (  cachefile ) } else  {   assign (  name ,  expr )   save ( list =  name , file =  cachefile , compress =  TRUE ) }   get (  name ) } ",
+    "filename": "tools.txt"
+  },
+  "new_function": {
+    "name": "cache",
+    "representation": "cache",
+    "parameters": "function ( expr , dir = \".\" , prefix = \"tmp_R_cache_\" , name )",
+    "body": "{   pexpr -   parse ( text =   deparse (   substitute (  expr ) ) )   pexpr -   as.list (   pexpr [[  1 ] ] )   useOld -  (     pexpr [[  1 ] ] !=  \" ||  !   missing (  name ) )  if (  useOld )  { ## compatibility layer  if (   missing (  name ) )   name -  expr  if (     pexpr [[  1 ] ] !=  \" undefined  !   missing (  dir ) )   expr -  dir   cache__usage -  cache_old   return (   cache__usage (  name ,  expr ) ) }   name -   as.character (   pexpr [[  2 ] ] )   RHS -   pexpr [[  3 ] ]   cachefile -   file.path (  dir ,   paste (  prefix ,  name ,  \".RData\" , sep =  \"\" ) )  if (   file.exists (  cachefile ) )  {   load (  cachefile )   assign (  name ,   get (  name ) , envir =   parent.frame ( ) ) } else  {   dir.create (  dir , recursive =  TRUE , showWarnings =  FALSE )   assign (  name ,   eval (  RHS , envir =   parent.frame ( ) ) , envir =   parent.frame ( ) )   save ( list =  name , file =  cachefile , envir =   parent.frame ( ) ) }   invisible (   get (  name , envir =   parent.frame ( ) ) ) } ",
+    "filename": "tools.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biobase_release_1_9 biobase_release_2_1
+
+{
+    "package": "Biobase",
+    "release_versions": "biobase_release_1_9 biobase_release_2_1",
+    "desc_release_old": "1.12.2",
+    "desc_release_new": "1.16.3",
+    "old_release_number": 5,
+    "new_release_number": 6,
+    "function_removals": 4,
+    "function_additions": 21,
+    "parameter_removals": 0,
+    "parameter_additions": 2,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 5,
+    "total_count": 9
+}
+
+##########
+Functions Removed
+##########
+
+read.exprSet
+read.phenoData
+read.pD
+ncol
+
+
+##########
+Functions Added
+##########
+
+anyMissing
+assayDataElement<-
+mkScalar
+readExpressionSet
+read.AnnotatedDataFrame
+subListExtract
+lcSuffix
+lcPrefix
+lcPrefixC
+channel
+channelNames
+fData
+fvarLabels
+fvarMetadata
+makeDataPackage
+selectChannels
+dimLabels<-
+fData<-
+fvarLabels<-
+fvarMetadata<-
+preproc<-
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "copyEnv",
+    "representation": "copyEnv",
+    "parameters": "function ( oldEnv , newEnv = new.env ( hash = TRUE , parent = parent.env ( oldEnv ) ) , all.names = FALSE )",
+    "body": "{   oldVals -   as.list (  oldEnv ,  all.names )   l2e (  oldVals ,  newEnv ) } ",
+    "filename": "environment.txt"
+  },
+  "new_function": {
+    "name": "copyEnv",
+    "representation": "copyEnv",
+    "parameters": "function ( oldEnv , newEnv , all.names = FALSE )",
+    "body": "{  if (   missing (  newEnv ) )   newEnv -   new.env ( hash =  TRUE , parent =   parent.env (  oldEnv ) , size =   .new_env_size (   length (  oldEnv ) ) )   .Call (  copyEnv_sym ,  oldEnv ,  newEnv ,  all.names ) } ",
+    "filename": "environment.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "matchpt",
+    "representation": "matchpt",
+    "parameters": "function ( x , y = NULL )",
+    "body": "{  if (   is.vector (  x ) )   x -   matrix (   as.double (  x ) , ncol =  1 , nrow =   length (  x ) )  if (  !   is.matrix (  x ) )   stop (  \"x must be a matrix in call to nn (nearest neighbour)\" )   dims -   dim (  x )  if (    length (  dims ) !=  2 )   stop (  \"wrong argument dimensions\" )  if (  !   is.null (  y ) )  {  if (   is.vector (  y ) )   y -   matrix (   as.double (  y ) , ncol =  1 , nrow =   length (  y ) )  if (  !   is.matrix (  y ) )   stop (  \"y must be a matrix in call to nn (nearest neighbour)\" )  if (    length (  dims ) !=   length (   dim (  y ) ) )   stop (  \"x and y must have the same dimensionality\" )  if (    dims [[  2 ] ] !=    dim (  y ) [[  2 ] ] )   stop (  \"x and y must have the same dimensionality\" ) }   res -   .Call (  \"matchpt\" ,  x ,  y , PACKAGE =  \"Biobase\" )    colnames (  res ) -   c (  \"index\" ,  \"distance\" )   return (  res ) } ",
+    "filename": "tools.txt"
+  },
+  "new_function": {
+    "name": "matchpt",
+    "representation": "matchpt",
+    "parameters": "function ( x , y )",
+    "body": "{    storage.mode (  x ) =  \"double\"  if (   is.vector (  x ) )   x -   matrix (  x , ncol =  1L , nrow =   length (  x ) )  if (  !  (    is.matrix (  x ) undefined   is.numeric (  x ) ) )   stop (  \"'x' must be a numeric matrix.\" )  if (  !   missing (  y ) )  {    storage.mode (  y ) =  \"double\"  if (   is.vector (  y ) )   y -   matrix (  y , ncol =  1L , nrow =   length (  y ) )  if (  !  (    is.matrix (  y ) undefined   is.numeric (  y ) ) )   stop (  \"y must be a numeric matrix.\" )  if (    ncol (  x ) !=   ncol (  y ) )   stop (  \"x and y must have the same number of columns.\" ) } else  {   y -  NULL }   res -   .Call (  \"matchpt\" ,  x ,  y , PACKAGE =  \"Biobase\" )   res -   as.data.frame (  res )    rownames (  res ) -   rownames (  x )   return (  res ) } ",
+    "filename": "tools.txt"
+  }
+}
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "listLen",
+    "representation": "listLen",
+    "parameters": "function ( list )",
+    "body": ".Call ( \"listLen\" , list , PACKAGE = \"Biobase\" )",
+    "filename": "environment.txt"
+  },
+  "new_function": {
+    "name": "listLen",
+    "representation": "listLen",
+    "parameters": "function ( x )",
+    "body": ".Call ( \"listLen\" , x , PACKAGE = \"Biobase\" )",
+    "filename": "environment.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "copyEnv",
+    "representation": "copyEnv",
+    "parameters": "function ( oldEnv , newEnv = new.env ( hash = TRUE , parent = parent.env ( oldEnv ) ) , all.names = FALSE )",
+    "body": "{   oldVals -   as.list (  oldEnv ,  all.names )   l2e (  oldVals ,  newEnv ) } ",
+    "filename": "environment.txt"
+  },
+  "new_function": {
+    "name": "copyEnv",
+    "representation": "copyEnv",
+    "parameters": "function ( oldEnv , newEnv , all.names = FALSE )",
+    "body": "{  if (   missing (  newEnv ) )   newEnv -   new.env ( hash =  TRUE , parent =   parent.env (  oldEnv ) , size =   .new_env_size (   length (  oldEnv ) ) )   .Call (  copyEnv_sym ,  oldEnv ,  newEnv ,  all.names ) } ",
+    "filename": "environment.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "assayDataElementNames",
+    "representation": "assayDataElementNames",
+    "parameters": "function ( obj )",
+    "body": "{  if (    storageMode (  obj ) ==  \"list\" )   names (   assayData (  obj ) ) else   ls (   assayData (  obj ) ) } ",
+    "filename": "methods-eSet.txt"
+  },
+  "new_function": {
+    "name": "assayDataElementNames",
+    "representation": "assayDataElementNames",
+    "parameters": "function ( object )",
+    "body": "{  if (    storageMode (  object ) ==  \"list\" )   names (   assayData (  object ) ) else   ls (   assayData (  object ) ) } ",
+    "filename": "methods-eSet.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "assayDataElement",
+    "representation": "assayDataElement",
+    "parameters": "function ( obj , elt )",
+    "body": "assayData ( obj ) [[ elt ] ]",
+    "filename": "methods-eSet.txt"
+  },
+  "new_function": {
+    "name": "assayDataElement",
+    "representation": "assayDataElement",
+    "parameters": "function ( object , elt )",
+    "body": "assayData ( object ) [[ elt ] ]",
+    "filename": "methods-eSet.txt"
+  }
+}
+
+4.
+{
+  "old_function": {
+    "name": "matchpt",
+    "representation": "matchpt",
+    "parameters": "function ( x , y = NULL )",
+    "body": "{  if (   is.vector (  x ) )   x -   matrix (   as.double (  x ) , ncol =  1 , nrow =   length (  x ) )  if (  !   is.matrix (  x ) )   stop (  \"x must be a matrix in call to nn (nearest neighbour)\" )   dims -   dim (  x )  if (    length (  dims ) !=  2 )   stop (  \"wrong argument dimensions\" )  if (  !   is.null (  y ) )  {  if (   is.vector (  y ) )   y -   matrix (   as.double (  y ) , ncol =  1 , nrow =   length (  y ) )  if (  !   is.matrix (  y ) )   stop (  \"y must be a matrix in call to nn (nearest neighbour)\" )  if (    length (  dims ) !=   length (   dim (  y ) ) )   stop (  \"x and y must have the same dimensionality\" )  if (    dims [[  2 ] ] !=    dim (  y ) [[  2 ] ] )   stop (  \"x and y must have the same dimensionality\" ) }   res -   .Call (  \"matchpt\" ,  x ,  y , PACKAGE =  \"Biobase\" )    colnames (  res ) -   c (  \"index\" ,  \"distance\" )   return (  res ) } ",
+    "filename": "tools.txt"
+  },
+  "new_function": {
+    "name": "matchpt",
+    "representation": "matchpt",
+    "parameters": "function ( x , y )",
+    "body": "{    storage.mode (  x ) =  \"double\"  if (   is.vector (  x ) )   x -   matrix (  x , ncol =  1L , nrow =   length (  x ) )  if (  !  (    is.matrix (  x ) undefined   is.numeric (  x ) ) )   stop (  \"'x' must be a numeric matrix.\" )  if (  !   missing (  y ) )  {    storage.mode (  y ) =  \"double\"  if (   is.vector (  y ) )   y -   matrix (  y , ncol =  1L , nrow =   length (  y ) )  if (  !  (    is.matrix (  y ) undefined   is.numeric (  y ) ) )   stop (  \"y must be a numeric matrix.\" )  if (    ncol (  x ) !=   ncol (  y ) )   stop (  \"x and y must have the same number of columns.\" ) } else  {   y -  NULL }   res -   .Call (  \"matchpt\" ,  x ,  y , PACKAGE =  \"Biobase\" )   res -   as.data.frame (  res )    rownames (  res ) -   rownames (  x )   return (  res ) } ",
+    "filename": "tools.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biobase_release_2_1 biobase_release_2_2
+
+{
+    "package": "Biobase",
+    "release_versions": "biobase_release_2_1 biobase_release_2_2",
+    "desc_release_old": "1.16.3",
+    "desc_release_new": "2.0.1",
+    "old_release_number": 6,
+    "new_release_number": 7,
+    "function_removals": 11,
+    "function_additions": 5,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 11
+}
+
+##########
+Functions Removed
+##########
+
+addVarMetadataEntry
+convertVarLabels
+exprs2excel
+getUnits
+getVarMetadata
+iter
+split
+update2MIAME
+reporterInfo
+reporterInfo<-
+as.data.frame.exprSet
+
+
+##########
+Functions Added
+##########
+
+read.exprSet
+read.phenoData
+read.pD
+validMsg
+reporterNames<-
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biobase_release_2_2 biobase_release_2_3
+
+{
+    "package": "Biobase",
+    "release_versions": "biobase_release_2_2 biobase_release_2_3",
+    "desc_release_old": "2.0.1",
+    "desc_release_new": "2.2.2",
+    "old_release_number": 7,
+    "new_release_number": 8,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biobase_release_2_3 biobase_release_2_4
+
+{
+    "package": "Biobase",
+    "release_versions": "biobase_release_2_3 biobase_release_2_4",
+    "desc_release_old": "2.2.2",
+    "desc_release_new": "2.4.1",
+    "old_release_number": 8,
+    "new_release_number": 9,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biobase_release_2_4 biobase_release_2_5
+
+{
+    "package": "Biobase",
+    "release_versions": "biobase_release_2_4 biobase_release_2_5",
+    "desc_release_old": "2.4.1",
+    "desc_release_new": "2.6.1",
+    "old_release_number": 9,
+    "new_release_number": 10,
+    "function_removals": 0,
+    "function_additions": 2,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+protocolData
+protocolData<-
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biobase_release_2_5 biobase_release_2_6
+
+{
+    "package": "Biobase",
+    "release_versions": "biobase_release_2_5 biobase_release_2_6",
+    "desc_release_old": "2.6.1",
+    "desc_release_new": "2.8.0",
+    "old_release_number": 10,
+    "new_release_number": 11,
+    "function_removals": 0,
+    "function_additions": 4,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+snpCall
+snpCallProbability
+snpCall<-
+snpCallProbability<-
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biobase_release_2_6 biobase_release_2_7
+
+{
+    "package": "Biobase",
+    "release_versions": "biobase_release_2_6 biobase_release_2_7",
+    "desc_release_old": "2.8.0",
+    "desc_release_new": "2.10.0",
+    "old_release_number": 11,
+    "new_release_number": 12,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biobase_release_2_7 biobase_release_2_8
+
+{
+    "package": "Biobase",
+    "release_versions": "biobase_release_2_7 biobase_release_2_8",
+    "desc_release_old": "2.10.0",
+    "desc_release_new": "2.12.2",
+    "old_release_number": 12,
+    "new_release_number": 13,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+MIAME
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biobase_release_2_8 biobase_release_2_9
+
+{
+    "package": "Biobase",
+    "release_versions": "biobase_release_2_8 biobase_release_2_9",
+    "desc_release_old": "2.12.2",
+    "desc_release_new": "2.14.0",
+    "old_release_number": 13,
+    "new_release_number": 14,
+    "function_removals": 0,
+    "function_additions": 14,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+counts
+counts<-
+design
+design<-
+dispTable
+dispTable<-
+sizeFactors
+sizeFactors<-
+conditions
+conditions<-
+estimateSizeFactors
+estimateDispersions
+AnnotatedDataFrame
+ExpressionSet
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biobase_release_2_9 biobase_release_2_11
+
+{
+    "package": "Biobase",
+    "release_versions": "biobase_release_2_9 biobase_release_2_11",
+    "desc_release_old": "2.14.0",
+    "desc_release_new": "2.18.0",
+    "old_release_number": 14,
+    "new_release_number": 15,
+    "function_removals": 15,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 15
+}
+
+##########
+Functions Removed
+##########
+
+biocReposList
+getObjectSlots
+df2pD
+l2e
+read.exprSet
+read.phenoData
+read.pD
+updateObjectFromSlots
+eList
+geneNames
+getExpData
+eList<-
+geneNames<-
+reporterNames
+reporterNames<-
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biobase_release_2_11 biobase_release_2_12
+
+{
+    "package": "Biobase",
+    "release_versions": "biobase_release_2_11 biobase_release_2_12",
+    "desc_release_old": "2.18.0",
+    "desc_release_new": "2.20.1",
+    "old_release_number": 15,
+    "new_release_number": 16,
+    "function_removals": 0,
+    "function_additions": 2,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+dimnames
+dimnames<-
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biobase_release_2_12 biobase_release_2_13
+
+{
+    "package": "Biobase",
+    "release_versions": "biobase_release_2_12 biobase_release_2_13",
+    "desc_release_old": "2.20.1",
+    "desc_release_new": "2.22.0",
+    "old_release_number": 16,
+    "new_release_number": 17,
+    "function_removals": 12,
+    "function_additions": 2,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 12
+}
+
+##########
+Functions Removed
+##########
+
+counts
+counts<-
+design
+design<-
+dispTable
+dispTable<-
+sizeFactors
+sizeFactors<-
+conditions
+conditions<-
+estimateSizeFactors
+estimateDispersions
+
+
+##########
+Functions Added
+##########
+
+NChannelSet
+channelNames<-
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biobase_release_2_13 biobase_release_2_14
+
+{
+    "package": "Biobase",
+    "release_versions": "biobase_release_2_13 biobase_release_2_14",
+    "desc_release_old": "2.22.0",
+    "desc_release_new": "2.24.0",
+    "old_release_number": 17,
+    "new_release_number": 18,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biobase_release_2_14 biobase_release_3_1
+
+{
+    "package": "Biobase",
+    "release_versions": "biobase_release_2_14 biobase_release_3_1",
+    "desc_release_old": "2.24.0",
+    "desc_release_new": "2.28.0",
+    "old_release_number": 18,
+    "new_release_number": 19,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 1,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+write.AnnotatedDataFrame
+
+
+##########
+Removed Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "cache",
+    "representation": "cache",
+    "parameters": "function ( expr , dir = \".\" , prefix = \"tmp_R_cache_\" , name )",
+    "body": "{   pexpr -   parse ( text =   deparse (   substitute (  expr ) ) )   pexpr -   as.list (   pexpr [[  1 ] ] )   useOld -  (     pexpr [[  1 ] ] !=  \" ||  !   missing (  name ) )  if (  useOld )  { ## compatibility layer  if (   missing (  name ) )   name -  expr  if (     pexpr [[  1 ] ] !=  \" undefined  !   missing (  dir ) )   expr -  dir   cache__usage -  cache_old   return (   cache__usage (  name ,  expr ) ) }   name -   as.character (   pexpr [[  2 ] ] )   RHS -   pexpr [[  3 ] ]   cachefile -   file.path (  dir ,   paste0 (  prefix ,  name ,  \".RData\" ) )  if (   file.exists (  cachefile ) )  {   load (  cachefile )   assign (  name ,   get (  name ) , envir =   parent.frame ( ) ) } else  {   dir.create (  dir , recursive =  TRUE , showWarnings =  FALSE )   assign (  name ,   eval (  RHS , envir =   parent.frame ( ) ) , envir =   parent.frame ( ) )   save ( list =  name , file =  cachefile , envir =   parent.frame ( ) ) }   invisible (   get (  name , envir =   parent.frame ( ) ) ) } ",
+    "filename": "tools.txt"
+  },
+  "new_function": {
+    "name": "cache",
+    "representation": "cache",
+    "parameters": "function ( expr , dir = \".\" , prefix = \"tmp_R_cache_\" )",
+    "body": "{   pexpr -   parse ( text =   deparse (   substitute (  expr ) ) )   pexpr -   as.list (   pexpr [[  1 ] ] )   name -   as.character (   pexpr [[  2 ] ] )   RHS -   pexpr [[  3 ] ]   cachefile -   file.path (  dir ,   paste0 (  prefix ,  name ,  \".RData\" ) )  if (   file.exists (  cachefile ) )  {   load (  cachefile )   assign (  name ,   get (  name ) , envir =   parent.frame ( ) ) } else  {   dir.create (  dir , recursive =  TRUE , showWarnings =  FALSE )   assign (  name ,   eval (  RHS , envir =   parent.frame ( ) ) , envir =   parent.frame ( ) )   save ( list =  name , file =  cachefile , envir =   parent.frame ( ) ) }   invisible (   get (  name , envir =   parent.frame ( ) ) ) } ",
+    "filename": "tools.txt"
+  }
+}
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "cache",
+    "representation": "cache",
+    "parameters": "function ( expr , dir = \".\" , prefix = \"tmp_R_cache_\" , name )",
+    "body": "{   pexpr -   parse ( text =   deparse (   substitute (  expr ) ) )   pexpr -   as.list (   pexpr [[  1 ] ] )   useOld -  (     pexpr [[  1 ] ] !=  \" ||  !   missing (  name ) )  if (  useOld )  { ## compatibility layer  if (   missing (  name ) )   name -  expr  if (     pexpr [[  1 ] ] !=  \" undefined  !   missing (  dir ) )   expr -  dir   cache__usage -  cache_old   return (   cache__usage (  name ,  expr ) ) }   name -   as.character (   pexpr [[  2 ] ] )   RHS -   pexpr [[  3 ] ]   cachefile -   file.path (  dir ,   paste0 (  prefix ,  name ,  \".RData\" ) )  if (   file.exists (  cachefile ) )  {   load (  cachefile )   assign (  name ,   get (  name ) , envir =   parent.frame ( ) ) } else  {   dir.create (  dir , recursive =  TRUE , showWarnings =  FALSE )   assign (  name ,   eval (  RHS , envir =   parent.frame ( ) ) , envir =   parent.frame ( ) )   save ( list =  name , file =  cachefile , envir =   parent.frame ( ) ) }   invisible (   get (  name , envir =   parent.frame ( ) ) ) } ",
+    "filename": "tools.txt"
+  },
+  "new_function": {
+    "name": "cache",
+    "representation": "cache",
+    "parameters": "function ( expr , dir = \".\" , prefix = \"tmp_R_cache_\" )",
+    "body": "{   pexpr -   parse ( text =   deparse (   substitute (  expr ) ) )   pexpr -   as.list (   pexpr [[  1 ] ] )   name -   as.character (   pexpr [[  2 ] ] )   RHS -   pexpr [[  3 ] ]   cachefile -   file.path (  dir ,   paste0 (  prefix ,  name ,  \".RData\" ) )  if (   file.exists (  cachefile ) )  {   load (  cachefile )   assign (  name ,   get (  name ) , envir =   parent.frame ( ) ) } else  {   dir.create (  dir , recursive =  TRUE , showWarnings =  FALSE )   assign (  name ,   eval (  RHS , envir =   parent.frame ( ) ) , envir =   parent.frame ( ) )   save ( list =  name , file =  cachefile , envir =   parent.frame ( ) ) }   invisible (   get (  name , envir =   parent.frame ( ) ) ) } ",
+    "filename": "tools.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biobase_release_3_1 biobase_release_3_2
+
+{
+    "package": "Biobase",
+    "release_versions": "biobase_release_3_1 biobase_release_3_2",
+    "desc_release_old": "2.28.0",
+    "desc_release_new": "2.30.0",
+    "old_release_number": 19,
+    "new_release_number": 20,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biobase_release_3_2 biobase_release_3_3
+
+{
+    "package": "Biobase",
+    "release_versions": "biobase_release_3_2 biobase_release_3_3",
+    "desc_release_old": "2.30.0",
+    "desc_release_new": "2.32.0",
+    "old_release_number": 20,
+    "new_release_number": 21,
+    "function_removals": 0,
+    "function_additions": 3,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+.DollarNames.eSet
+head.AnnotatedDataFrame
+tail.AnnotatedDataFrame
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biobase_release_3_3 biobase_release_3_4
+
+{
+    "package": "Biobase",
+    "release_versions": "biobase_release_3_3 biobase_release_3_4",
+    "desc_release_old": "2.32.0",
+    "desc_release_new": "2.34.0",
+    "old_release_number": 21,
+    "new_release_number": 22,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biobase_release_3_4 biobase_release_3_5
+
+{
+    "package": "Biobase",
+    "release_versions": "biobase_release_3_4 biobase_release_3_5",
+    "desc_release_old": "2.34.0",
+    "desc_release_new": "2.36.2",
+    "old_release_number": 22,
+    "new_release_number": 23,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 1,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+.DollarNames.ExpressionSet
+
+
+##########
+Removed Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": ".DollarNames.eSet",
+    "representation": ".DollarNames.eSet",
+    "parameters": "function ( x , pattern )",
+    "body": "grep ( pattern , names ( pData ( x ) ) , value = TRUE )",
+    "filename": "methods-eSet.txt"
+  },
+  "new_function": {
+    "name": ".DollarNames.eSet",
+    "representation": ".DollarNames.eSet",
+    "parameters": "function ( x , pattern = \"\" )",
+    "body": "grep ( pattern , names ( pData ( x ) ) , value = TRUE )",
+    "filename": "methods-eSet.txt"
+  }
+}
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biobase_release_3_5 biobase_release_3_6
+
+{
+    "package": "Biobase",
+    "release_versions": "biobase_release_3_5 biobase_release_3_6",
+    "desc_release_old": "2.36.2",
+    "desc_release_new": "2.38.0",
+    "old_release_number": 23,
+    "new_release_number": 24,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biobase_release_3_6 biobase_release_3_7
+
+{
+    "package": "Biobase",
+    "release_versions": "biobase_release_3_6 biobase_release_3_7",
+    "desc_release_old": "2.38.0",
+    "desc_release_new": "2.40.0",
+    "old_release_number": 24,
+    "new_release_number": 25,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biobase_release_3_7 biobase_release_3_8
+
+{
+    "package": "Biobase",
+    "release_versions": "biobase_release_3_7 biobase_release_3_8",
+    "desc_release_old": "2.40.0",
+    "desc_release_new": "2.42.0",
+    "old_release_number": 25,
+    "new_release_number": 26,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "dims",
+    "representation": "dims",
+    "signature": "eSet",
+    "parameters": "function ( object )",
+    "body": "assayDataDims ( assayData ( object ) )",
+    "filename": "methods-eSet.txt"
+  },
+  "new_function": {
+    "name": "dims",
+    "representation": "dims",
+    "signature": "eSet",
+    "parameters": "function ( x )",
+    "body": "assayDataDims ( assayData ( x ) )",
+    "filename": "methods-eSet.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biobase_release_3_8 biobase_release_3_9
+
+{
+    "package": "Biobase",
+    "release_versions": "biobase_release_3_8 biobase_release_3_9",
+    "desc_release_old": "2.42.0",
+    "desc_release_new": "2.44.0",
+    "old_release_number": 26,
+    "new_release_number": 27,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biobase_release_3_9 biobase_release_3_11
+
+{
+    "package": "Biobase",
+    "release_versions": "biobase_release_3_9 biobase_release_3_11",
+    "desc_release_old": "2.44.0",
+    "desc_release_new": "2.48.0",
+    "old_release_number": 27,
+    "new_release_number": 28,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biobase_release_3_11 biobase_release_3_12
+
+{
+    "package": "Biobase",
+    "release_versions": "biobase_release_3_11 biobase_release_3_12",
+    "desc_release_old": "2.48.0",
+    "desc_release_new": "2.50.0",
+    "old_release_number": 28,
+    "new_release_number": 29,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biobase_release_3_12 biobase_release_3_13
+
+{
+    "package": "Biobase",
+    "release_versions": "biobase_release_3_12 biobase_release_3_13",
+    "desc_release_old": "2.50.0",
+    "desc_release_new": "2.52.0",
+    "old_release_number": 29,
+    "new_release_number": 30,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biobase_release_3_13 biobase_release_3_14
+
+{
+    "package": "Biobase",
+    "release_versions": "biobase_release_3_13 biobase_release_3_14",
+    "desc_release_old": "2.52.0",
+    "desc_release_new": "2.54.0",
+    "old_release_number": 30,
+    "new_release_number": 31,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biobase_release_3_14 biobase_master
+
+{
+    "package": "Biobase",
+    "release_versions": "biobase_release_3_14 biobase_master",
+    "desc_release_old": "2.54.0",
+    "desc_release_new": "2.55.0",
+    "old_release_number": 31,
+    "new_release_number": 32,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+

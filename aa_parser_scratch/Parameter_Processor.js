@@ -63,17 +63,60 @@ export function checkDuplicateS3(arr) {
   return count > 1;
 }
 
-export function checkParameterRemoval(arr_old, arr_new) {
+export function checkOverallParameterNonBreaking(arr_old, arr_new) {
+  if (arr_new.length < arr_old.length) return false;
+  for (let i = 0; i < arr_old.length; i++) {
+    if (arr_old[i]?.name != arr_new[i]?.name) {
+      console.log("found name break", arr_old[i], arr_new[i]);
+      return false;
+    }
+    if (arr_old[i]?.value != undefined && arr_new[i]?.value === undefined) {
+      console.log("found value break", arr_old[i], arr_new[i]);
+      return false;
+    }
+  }
+  for (let i = arr_old.length; i < arr_new.length; i++) {
+    if (arr_new[i]?.value === undefined) {
+      console.log("found default break", arr_old[i], arr_new[i]);
+      return false;
+    }
+  }
+
+  return true;
+}
+
+//parameter presentation
+//--this many will break all clients
+//--all others (total - concrete changes) will break some clients.
+export function checkNonDefaultRemoval(arr_old, arr_new) {
   let non_default_old = 0;
   let non_default_new = 0;
   for (let i = 0; i < arr_old.length; i++) {
-    if (!arr_old[i]?.value) non_default_old++;
+    if (arr_old[i]?.value === undefined) non_default_old++;
   }
   for (let i = 0; i < arr_new.length; i++) {
-    if (!arr_new[i]?.value) non_default_new++;
+    if (arr_new[i]?.value === undefined) non_default_new++;
   }
 
   return non_default_new < non_default_old;
+}
+
+export function checkNonDefaultAddition(arr_old, arr_new) {
+  let non_default_old = 0;
+  let non_default_new = 0;
+  for (let i = 0; i < arr_old.length; i++) {
+    if (arr_old[i]?.value === undefined) non_default_old++;
+  }
+  for (let i = 0; i < arr_new.length; i++) {
+    if (arr_new[i]?.value === undefined) non_default_new++;
+  }
+
+  return non_default_new > non_default_old;
+}
+
+export function checkRenameAndReordering(arr_old, arr_new) {
+  if (checkSame(arr_old, arr_new)) return false;
+  return true;
 }
 
 export function checkParameterRemoval2(arr_old, arr_new) {

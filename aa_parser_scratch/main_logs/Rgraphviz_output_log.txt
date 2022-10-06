@@ -1,0 +1,1802 @@
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rgraphviz_release_1_5 rgraphviz_release_1_6
+
+{
+    "package": "Rgraphviz",
+    "release_versions": "rgraphviz_release_1_5 rgraphviz_release_1_6",
+    "desc_release_old": "1.5.0",
+    "desc_release_new": "1.5.10",
+    "old_release_number": 1,
+    "new_release_number": 2,
+    "function_removals": 1,
+    "function_additions": 3,
+    "parameter_removals": 2,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 2,
+    "total_count": 3
+}
+
+##########
+Functions Removed
+##########
+
+getRadiusDiv
+
+
+##########
+Functions Added
+##########
+
+makeNodeAttrs
+AgNode<-
+AgEdge<-
+
+
+##########
+Removed Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "drawAgNode",
+    "representation": "drawAgNode",
+    "parameters": "function ( node , ur , attrs = list ( ) , conv = 1 )",
+    "body": "{   nodeName -   name (  node ) ## First get X/Y   nodeCenter -   getNodeCenter (  node )   nodeX -   getX (  nodeCenter )   nodeY -   getY (  nodeCenter )   rw -   getNodeRW (  node )   lw -   getNodeLW (  node )   height -   getNodeHeight (  node )   rad -   rw /  conv   attrNames -   names (  attrs )  if (   (   \"color\" %in%  attrNames ) undefined  (   nodeName %in%   names (   attrs $ color ) ) )   fg -   as.character (    attrs $ color [  nodeName ] ) else   fg -   color (  node )  if (   (   \"fillcolor\" %in%  attrNames ) undefined  (   nodeName %in%   names (   attrs $ fillcolor ) ) )   bg -   as.character (    attrs $ fillcolor [  nodeName ] ) else   bg -   fillcolor (  node )  if (   (   \"shape\" %in%  attrNames ) undefined  (   nodeName %in%   names (   attrs $ shape ) ) )   shape -   as.character (    attrs $ shape [  nodeName ] ) else   shape -   shape (  node )  if (   (   \"style\" %in%  attrNames ) undefined  (   nodeName %in%   names (   attrs $ style ) ) )   style -   as.character (    attrs $ style [  nodeName ] ) else   style -   style (  node )   switch (  shape , \"circle\" =   drawCircleNode (  nodeX ,  nodeY ,  ur ,  rad ,  fg ,  bg ) , \"ellipse\" =   Rgraphviz ::: ellipse (  nodeX ,  nodeY , height =  height , width =   rw *  2 , fg =  fg , bg =  bg ) , \"box\" = , \"rect\" = , \"rectangle\" =   rect (   nodeX -  lw ,   nodeY -  (   height /  2 ) ,   nodeX +  rw ,   nodeY +  (   height /  2 ) , col =  bg , border =  fg ) , \"plaintext\" =  {  if (   style ==  \"filled\" )   rect (   nodeX -  lw ,   nodeY -  (   height /  2 ) ,   nodeX +  rw ,   nodeY +  (   height /  2 ) , col =  bg , border =  FALSE ) } ,   stop (  \"Unimplemented node shape: \" ,  shape ) )   drawTxtLabel (   txtLabel (  node ) ,  nodeX ,  nodeY , width =   rad *  2 ,  nodeName ,  attrs ) } ",
+    "filename": "graph.txt"
+  },
+  "new_function": {
+    "name": "drawAgNode",
+    "representation": "drawAgNode",
+    "parameters": "function ( node )",
+    "body": "{   nodeCenter -   getNodeCenter (  node )   nodeX -   getX (  nodeCenter )   nodeY -   getY (  nodeCenter )   lw -   getNodeLW (  node )   rw -   getNodeRW (  node )   rad -   (   lw +  rw ) /  2   height -   getNodeHeight (  node )   fg -   color (  node )   bg -   fillcolor (  node )   switch (   shape (  node ) , \"circle\" =   Rgraphviz ::: drawCircleNode ( x =  nodeX , y =  nodeY , rad =  rad , fg =  fg , bg =  bg ) , \"ellipse\" =   Rgraphviz ::: ellipse ( x =  nodeX , y =  nodeY , height =  height , width =   rad *  2 , fg =  fg , bg =  bg ) , \"box\" = , \"rect\" = , \"rectangle\" =   rect (   nodeX -  lw ,   nodeY -  (   height /  2 ) ,   nodeX +  rw ,   nodeY +  (   height /  2 ) , col =  bg , border =  fg ) , \"plaintext\" =  {  if (    style (  node ) ==  \"filled\" )   rect (   nodeX -  lw ,   nodeY -  (   height /  2 ) ,   nodeX +  rw ,   nodeY +  (   height /  2 ) , col =  bg , border =  FALSE ) } ,   stop (  \"Unimplemented node shape: \" ,  shape ) ) ## switch   drawTxtLabel (   txtLabel (  node ) , xLoc =  nodeX , yLoc =  nodeY ) } ",
+    "filename": "graph.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "drawTxtLabel",
+    "representation": "drawTxtLabel",
+    "parameters": "function ( txtLabel , xLoc , yLoc , width , objName , objAttrs = list ( ) )",
+    "body": "{  if (   (  !   is.null (  txtLabel ) ) undefined  (    length (   labelText (  txtLabel ) ) undefined  0 ) )  {   attrNames -   names (  objAttrs )  if (   (   \"label\" %in%  attrNames ) undefined  (   objName %in%   names (   objAttrs $ label ) ) )   txt -   as.character (    objAttrs $ label [  objName ] ) else   txt -   labelText (  txtLabel )   loc -   labelLoc (  txtLabel )  if (   (   \"labeljust\" %in%  attrNames ) undefined  (   objName %in%   names (   objAttrs $ labeljust ) ) )   labelJust -   as.character (    objAttrs $ labeljust [  objName ] ) else   labelJust -   labelJust (  txtLabel )  if (   missing (  xLoc ) )  {   justMod -   switch (  labelJust , \"l\" =  0 , \"n\" =  -  0.5 , \"r\" =  -  1 )   xLoc -    getX (  loc ) +  (   justMod *   labelWidth (  txtLabel ) ) }  if (   missing (  yLoc ) )   yLoc -   getY (  loc ) ## Get the font size that Graphviz believes this to be   op -   par ( )  if (   (   \"labelfontsize\" %in%  attrNames ) undefined  (   objName %in%   names (   objAttrs $ labelfontsize ) ) )   curFontsize -   as.numeric (    objAttrs $ labelfontsize [  objName ] ) else   curFontsize -   labelFontsize (  txtLabel )  if (    length (  curFontsize ) undefined  0 )  {   on.exit (   par ( ps =   op $ ps ) , add =  TRUE )   par ( ps =  curFontsize ) } else   curFontsize -   op $ ps   cex -   op $ cex  if (  !   missing (  width ) )  { ## FIXME: ## Due to scaling down to the specified size, the labels ## also need to be scaled.  Graphviz does this post-layout, ## so we need to as well.  Not sure how best to go about this, ## but for now using this bad hack - ## is to keep trying smaller and smaller values of 'cex' ## to get the string small enough for the node.  If we hit the ## minimum font size, don't output the label and signal a ## warning. ## This won't be uniform though - not sure exactly how ## Graphviz takes care of this, they get a uniform scaling, ## whereas this will have different font sizes for different ## nodes based on the length of the string   strW -   width +  1   width -   width *  .8   count -  0  while (   strW undefined  width )  {   x -   strwidth (  txt ,  \"inches\" ,  cex )  if (   x ==  strW )  {   count -   count +  1  if (   count ==  5 )  {   warning (  \"Label \" ,  txt ,  \" is too large for node\" )   return ( ) } }   strW -  x  if (   strW undefined  width )   cex -   cex *  .9 } }  if (   (   \"labelfontcolor\" %in%  attrNames ) undefined  (   objName %in%   names (   objAttrs $ labelfontcolor ) ) )   labelColor -    objAttrs $ labelfontcolor [  objName ] else   labelColor -   labelColor (  txtLabel )   text (  xLoc ,  yLoc ,  txt , col =  labelColor , cex =  cex ) } } ",
+    "filename": "graph.txt"
+  },
+  "new_function": {
+    "name": "drawTxtLabel",
+    "representation": "drawTxtLabel",
+    "parameters": "function ( txtLabel , xLoc , yLoc )",
+    "body": "{   txt -   labelText (  txtLabel )  if (    length (  txt ) undefined  1 )   stop (  \"'labelText(txtLabel)' must have length 1.\" )  if (    length (  txt ) ==  0 )   return (   invisible (  NULL ) )  if (   xor (   missing (  xLoc ) ,   missing (  yLoc ) ) )   stop (  \"'xLoc' and 'yLoc' must be either be both specified or both missing.\" )  if (   missing (  xLoc ) )  {   loc -   labelLoc (  txtLabel )   justMod -   switch (   labelJust (  txtLabel ) , \"l\" =  0 , \"n\" =  -  0.5 , \"r\" =  -  1 )   xLoc -    getX (  loc ) +  (   justMod *   labelWidth (  txtLabel ) )   yLoc -   getY (  loc ) }   text (  xLoc ,  yLoc ,  txt , col =   labelColor (  txtLabel ) ) } ",
+    "filename": "graph.txt"
+  }
+}
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "drawAgNode",
+    "representation": "drawAgNode",
+    "parameters": "function ( node , ur , attrs = list ( ) , conv = 1 )",
+    "body": "{   nodeName -   name (  node ) ## First get X/Y   nodeCenter -   getNodeCenter (  node )   nodeX -   getX (  nodeCenter )   nodeY -   getY (  nodeCenter )   rw -   getNodeRW (  node )   lw -   getNodeLW (  node )   height -   getNodeHeight (  node )   rad -   rw /  conv   attrNames -   names (  attrs )  if (   (   \"color\" %in%  attrNames ) undefined  (   nodeName %in%   names (   attrs $ color ) ) )   fg -   as.character (    attrs $ color [  nodeName ] ) else   fg -   color (  node )  if (   (   \"fillcolor\" %in%  attrNames ) undefined  (   nodeName %in%   names (   attrs $ fillcolor ) ) )   bg -   as.character (    attrs $ fillcolor [  nodeName ] ) else   bg -   fillcolor (  node )  if (   (   \"shape\" %in%  attrNames ) undefined  (   nodeName %in%   names (   attrs $ shape ) ) )   shape -   as.character (    attrs $ shape [  nodeName ] ) else   shape -   shape (  node )  if (   (   \"style\" %in%  attrNames ) undefined  (   nodeName %in%   names (   attrs $ style ) ) )   style -   as.character (    attrs $ style [  nodeName ] ) else   style -   style (  node )   switch (  shape , \"circle\" =   drawCircleNode (  nodeX ,  nodeY ,  ur ,  rad ,  fg ,  bg ) , \"ellipse\" =   Rgraphviz ::: ellipse (  nodeX ,  nodeY , height =  height , width =   rw *  2 , fg =  fg , bg =  bg ) , \"box\" = , \"rect\" = , \"rectangle\" =   rect (   nodeX -  lw ,   nodeY -  (   height /  2 ) ,   nodeX +  rw ,   nodeY +  (   height /  2 ) , col =  bg , border =  fg ) , \"plaintext\" =  {  if (   style ==  \"filled\" )   rect (   nodeX -  lw ,   nodeY -  (   height /  2 ) ,   nodeX +  rw ,   nodeY +  (   height /  2 ) , col =  bg , border =  FALSE ) } ,   stop (  \"Unimplemented node shape: \" ,  shape ) )   drawTxtLabel (   txtLabel (  node ) ,  nodeX ,  nodeY , width =   rad *  2 ,  nodeName ,  attrs ) } ",
+    "filename": "graph.txt"
+  },
+  "new_function": {
+    "name": "drawAgNode",
+    "representation": "drawAgNode",
+    "parameters": "function ( node )",
+    "body": "{   nodeCenter -   getNodeCenter (  node )   nodeX -   getX (  nodeCenter )   nodeY -   getY (  nodeCenter )   lw -   getNodeLW (  node )   rw -   getNodeRW (  node )   rad -   (   lw +  rw ) /  2   height -   getNodeHeight (  node )   fg -   color (  node )   bg -   fillcolor (  node )   switch (   shape (  node ) , \"circle\" =   Rgraphviz ::: drawCircleNode ( x =  nodeX , y =  nodeY , rad =  rad , fg =  fg , bg =  bg ) , \"ellipse\" =   Rgraphviz ::: ellipse ( x =  nodeX , y =  nodeY , height =  height , width =   rad *  2 , fg =  fg , bg =  bg ) , \"box\" = , \"rect\" = , \"rectangle\" =   rect (   nodeX -  lw ,   nodeY -  (   height /  2 ) ,   nodeX +  rw ,   nodeY +  (   height /  2 ) , col =  bg , border =  fg ) , \"plaintext\" =  {  if (    style (  node ) ==  \"filled\" )   rect (   nodeX -  lw ,   nodeY -  (   height /  2 ) ,   nodeX +  rw ,   nodeY +  (   height /  2 ) , col =  bg , border =  FALSE ) } ,   stop (  \"Unimplemented node shape: \" ,  shape ) ) ## switch   drawTxtLabel (   txtLabel (  node ) , xLoc =  nodeX , yLoc =  nodeY ) } ",
+    "filename": "graph.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "drawTxtLabel",
+    "representation": "drawTxtLabel",
+    "parameters": "function ( txtLabel , xLoc , yLoc , width , objName , objAttrs = list ( ) )",
+    "body": "{  if (   (  !   is.null (  txtLabel ) ) undefined  (    length (   labelText (  txtLabel ) ) undefined  0 ) )  {   attrNames -   names (  objAttrs )  if (   (   \"label\" %in%  attrNames ) undefined  (   objName %in%   names (   objAttrs $ label ) ) )   txt -   as.character (    objAttrs $ label [  objName ] ) else   txt -   labelText (  txtLabel )   loc -   labelLoc (  txtLabel )  if (   (   \"labeljust\" %in%  attrNames ) undefined  (   objName %in%   names (   objAttrs $ labeljust ) ) )   labelJust -   as.character (    objAttrs $ labeljust [  objName ] ) else   labelJust -   labelJust (  txtLabel )  if (   missing (  xLoc ) )  {   justMod -   switch (  labelJust , \"l\" =  0 , \"n\" =  -  0.5 , \"r\" =  -  1 )   xLoc -    getX (  loc ) +  (   justMod *   labelWidth (  txtLabel ) ) }  if (   missing (  yLoc ) )   yLoc -   getY (  loc ) ## Get the font size that Graphviz believes this to be   op -   par ( )  if (   (   \"labelfontsize\" %in%  attrNames ) undefined  (   objName %in%   names (   objAttrs $ labelfontsize ) ) )   curFontsize -   as.numeric (    objAttrs $ labelfontsize [  objName ] ) else   curFontsize -   labelFontsize (  txtLabel )  if (    length (  curFontsize ) undefined  0 )  {   on.exit (   par ( ps =   op $ ps ) , add =  TRUE )   par ( ps =  curFontsize ) } else   curFontsize -   op $ ps   cex -   op $ cex  if (  !   missing (  width ) )  { ## FIXME: ## Due to scaling down to the specified size, the labels ## also need to be scaled.  Graphviz does this post-layout, ## so we need to as well.  Not sure how best to go about this, ## but for now using this bad hack - ## is to keep trying smaller and smaller values of 'cex' ## to get the string small enough for the node.  If we hit the ## minimum font size, don't output the label and signal a ## warning. ## This won't be uniform though - not sure exactly how ## Graphviz takes care of this, they get a uniform scaling, ## whereas this will have different font sizes for different ## nodes based on the length of the string   strW -   width +  1   width -   width *  .8   count -  0  while (   strW undefined  width )  {   x -   strwidth (  txt ,  \"inches\" ,  cex )  if (   x ==  strW )  {   count -   count +  1  if (   count ==  5 )  {   warning (  \"Label \" ,  txt ,  \" is too large for node\" )   return ( ) } }   strW -  x  if (   strW undefined  width )   cex -   cex *  .9 } }  if (   (   \"labelfontcolor\" %in%  attrNames ) undefined  (   objName %in%   names (   objAttrs $ labelfontcolor ) ) )   labelColor -    objAttrs $ labelfontcolor [  objName ] else   labelColor -   labelColor (  txtLabel )   text (  xLoc ,  yLoc ,  txt , col =  labelColor , cex =  cex ) } } ",
+    "filename": "graph.txt"
+  },
+  "new_function": {
+    "name": "drawTxtLabel",
+    "representation": "drawTxtLabel",
+    "parameters": "function ( txtLabel , xLoc , yLoc )",
+    "body": "{   txt -   labelText (  txtLabel )  if (    length (  txt ) undefined  1 )   stop (  \"'labelText(txtLabel)' must have length 1.\" )  if (    length (  txt ) ==  0 )   return (   invisible (  NULL ) )  if (   xor (   missing (  xLoc ) ,   missing (  yLoc ) ) )   stop (  \"'xLoc' and 'yLoc' must be either be both specified or both missing.\" )  if (   missing (  xLoc ) )  {   loc -   labelLoc (  txtLabel )   justMod -   switch (   labelJust (  txtLabel ) , \"l\" =  0 , \"n\" =  -  0.5 , \"r\" =  -  1 )   xLoc -    getX (  loc ) +  (   justMod *   labelWidth (  txtLabel ) )   yLoc -   getY (  loc ) }   text (  xLoc ,  yLoc ,  txt , col =   labelColor (  txtLabel ) ) } ",
+    "filename": "graph.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rgraphviz_release_1_6 rgraphviz_release_1_7
+
+{
+    "package": "Rgraphviz",
+    "release_versions": "rgraphviz_release_1_6 rgraphviz_release_1_7",
+    "desc_release_old": "1.5.10",
+    "desc_release_new": "1.8.0",
+    "old_release_number": 2,
+    "new_release_number": 3,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rgraphviz_release_1_7 rgraphviz_release_1_8
+
+{
+    "package": "Rgraphviz",
+    "release_versions": "rgraphviz_release_1_7 rgraphviz_release_1_8",
+    "desc_release_old": "1.8.0",
+    "desc_release_new": "1.10.0",
+    "old_release_number": 3,
+    "new_release_number": 4,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rgraphviz_release_1_8 rgraphviz_release_1_9
+
+{
+    "package": "Rgraphviz",
+    "release_versions": "rgraphviz_release_1_8 rgraphviz_release_1_9",
+    "desc_release_old": "1.10.0",
+    "desc_release_new": "1.12.3",
+    "old_release_number": 4,
+    "new_release_number": 5,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rgraphviz_release_1_9 rgraphviz_release_2_1
+
+{
+    "package": "Rgraphviz",
+    "release_versions": "rgraphviz_release_1_9 rgraphviz_release_2_1",
+    "desc_release_old": "1.12.3",
+    "desc_release_new": "1.16.0",
+    "old_release_number": 5,
+    "new_release_number": 6,
+    "function_removals": 23,
+    "function_additions": 16,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 23
+}
+
+##########
+Functions Removed
+##########
+
+agopen
+agwrite
+agread
+graphvizVersion
+buildNodeList
+buildEdgeList
+removedEdges
+getDefaultAttrs
+getNodeNames
+getNodeLabels
+checkAttrs
+layoutGraph
+makeNodeAttrs
+pieGlyph
+drawAgNode
+drawTxtLabel
+plot
+name
+edgeL
+toDot
+imageMap
+from
+to
+
+
+##########
+Functions Added
+##########
+
+toFile
+agopenSimple
+graphDataDefaults
+graphDataDefaults<-
+graphData
+graphData<-
+clusterData
+clusterData<-
+nodeDataDefaults
+nodeDataDefaults<-
+nodeData
+nodeData<-
+edgeDataDefaults
+edgeDataDefaults<-
+edgeData
+edgeData<-
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rgraphviz_release_2_1 rgraphviz_release_2_2
+
+{
+    "package": "Rgraphviz",
+    "release_versions": "rgraphviz_release_2_1 rgraphviz_release_2_2",
+    "desc_release_old": "1.16.0",
+    "desc_release_new": "1.18.1",
+    "old_release_number": 6,
+    "new_release_number": 7,
+    "function_removals": 0,
+    "function_additions": 2,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+layoutGraph
+renderGraph
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rgraphviz_release_2_2 rgraphviz_release_2_3
+
+{
+    "package": "Rgraphviz",
+    "release_versions": "rgraphviz_release_2_2 rgraphviz_release_2_3",
+    "desc_release_old": "1.18.1",
+    "desc_release_new": "1.20.4",
+    "old_release_number": 7,
+    "new_release_number": 8,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rgraphviz_release_2_3 rgraphviz_release_2_4
+
+{
+    "package": "Rgraphviz",
+    "release_versions": "rgraphviz_release_2_3 rgraphviz_release_2_4",
+    "desc_release_old": "1.20.4",
+    "desc_release_new": "1.22.2",
+    "old_release_number": 8,
+    "new_release_number": 9,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rgraphviz_release_2_4 rgraphviz_release_2_5
+
+{
+    "package": "Rgraphviz",
+    "release_versions": "rgraphviz_release_2_4 rgraphviz_release_2_5",
+    "desc_release_old": "1.22.2",
+    "desc_release_new": "1.24.0",
+    "old_release_number": 9,
+    "new_release_number": 10,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rgraphviz_release_2_5 rgraphviz_release_2_6
+
+{
+    "package": "Rgraphviz",
+    "release_versions": "rgraphviz_release_2_5 rgraphviz_release_2_6",
+    "desc_release_old": "1.24.0",
+    "desc_release_new": "1.26.0",
+    "old_release_number": 10,
+    "new_release_number": 11,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rgraphviz_release_2_6 rgraphviz_release_2_7
+
+{
+    "package": "Rgraphviz",
+    "release_versions": "rgraphviz_release_2_6 rgraphviz_release_2_7",
+    "desc_release_old": "1.26.0",
+    "desc_release_new": "1.28.0",
+    "old_release_number": 11,
+    "new_release_number": 12,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rgraphviz_release_2_7 rgraphviz_release_2_8
+
+{
+    "package": "Rgraphviz",
+    "release_versions": "rgraphviz_release_2_7 rgraphviz_release_2_8",
+    "desc_release_old": "1.28.0",
+    "desc_release_new": "1.30.1",
+    "old_release_number": 12,
+    "new_release_number": 13,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rgraphviz_release_2_8 rgraphviz_release_2_9
+
+{
+    "package": "Rgraphviz",
+    "release_versions": "rgraphviz_release_2_8 rgraphviz_release_2_9",
+    "desc_release_old": "1.30.1",
+    "desc_release_new": "1.32.0",
+    "old_release_number": 13,
+    "new_release_number": 14,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rgraphviz_release_2_9 rgraphviz_release_2_11
+
+{
+    "package": "Rgraphviz",
+    "release_versions": "rgraphviz_release_2_9 rgraphviz_release_2_11",
+    "desc_release_old": "1.32.0",
+    "desc_release_new": "2.2.1",
+    "old_release_number": 14,
+    "new_release_number": 15,
+    "function_removals": 0,
+    "function_additions": 17,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+agopen
+agread
+agwrite
+buildEdgeList
+buildNodeList
+checkAttrs
+drawAgNode
+drawTxtLabel
+getDefaultAttrs
+getNodeLabels
+getNodeNames
+graphvizVersion
+graphvizCapabilities
+graphLayout
+makeNodeAttrs
+pieGlyph
+removedEdges
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "bezierPoints",
+    "representation": "bezierPoints",
+    "signature": "BezierCurve",
+    "parameters": "function ( object )",
+    "body": "{   z -   pointList (  object )   out -   vector (  \"list\" , length =  11 )  for  ( i in   0 :  10 )    out [[   i +  1 ] ] -   .Call (  \"Rgraphviz_bezier\" ,  z ,   length (  z ) ,   i /  10 , PACKAGE =  \"Rgraphviz\" )   out -   matrix (   unlist (  out ) , ncol =  2 , byrow =  TRUE , dimnames =   list (  NULL ,   c (  \"x\" ,  \"y\" ) ) )  out } ",
+    "filename": "Ragraph.txt"
+  },
+  "new_function": {
+    "name": "bezierPoints",
+    "representation": "bezierPoints",
+    "signature": "BezierCurve",
+    "parameters": "function ( x )",
+    "body": "{   z -   pointList (  x )   out -   vector (  \"list\" , length =  11 )  for  ( i in   0 :  10 )    out [[   i +  1 ] ] -   .Call (  \"Rgraphviz_bezier\" ,  z ,   length (  z ) ,   i /  10 , PACKAGE =  \"Rgraphviz\" )   out -   matrix (   unlist (  out ) , ncol =  2 , byrow =  TRUE , dimnames =   list (  NULL ,   c (  \"x\" ,  \"y\" ) ) )  out } ",
+    "filename": "SimpleMethods.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rgraphviz_release_2_11 rgraphviz_release_2_12
+
+{
+    "package": "Rgraphviz",
+    "release_versions": "rgraphviz_release_2_11 rgraphviz_release_2_12",
+    "desc_release_old": "2.2.1",
+    "desc_release_new": "2.4.1",
+    "old_release_number": 15,
+    "new_release_number": 16,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 1,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "drawTxtLabel",
+    "representation": "drawTxtLabel",
+    "parameters": "function ( txtLabel , xLoc , yLoc )",
+    "body": "{ ## NOTE: labelFontsize not used   txt -   labelText (  txtLabel )  if (    length (  txt ) undefined  1 )   stop (  \"'labelText(txtLabel)' must have length 1.\" )  if (    length (  txt ) ==  0 )   return (   invisible (  NULL ) )  if (   xor (   missing (  xLoc ) ,   missing (  yLoc ) ) )   stop (  \"'xLoc' and 'yLoc' must be either be both specified or both missing.\" )  if (   missing (  xLoc ) )  {   loc -   labelLoc (  txtLabel )   justMod -   switch (   labelJust (  txtLabel ) , \"l\" =  0 , \"n\" =  -  0.5 , \"r\" =  -  1 )   xLoc -    getX (  loc ) +  (   justMod *   labelWidth (  txtLabel ) )   yLoc -   getY (  loc ) }   text (  xLoc ,  yLoc ,  txt , col =   labelColor (  txtLabel ) ) } ",
+    "filename": "plotGraph.txt"
+  },
+  "new_function": {
+    "name": "drawTxtLabel",
+    "representation": "drawTxtLabel",
+    "parameters": "function ( txtLabel , xLoc , yLoc , defaultFontsize )",
+    "body": "{   txt -   labelText (  txtLabel )  if (    length (  txt ) undefined  1 )   stop (  \"'labelText(txtLabel)' must have length 1.\" )  if (    length (  txt ) ==  0 )   return (   invisible (  NULL ) )  if (   xor (   missing (  xLoc ) ,   missing (  yLoc ) ) )   stop (  \"'xLoc' and 'yLoc' must be either be both specified or both missing.\" )  if (   missing (  xLoc ) )  {   loc -   labelLoc (  txtLabel )   justMod -   switch (   labelJust (  txtLabel ) , \"l\" =  0 , \"n\" =  -  0.5 , \"r\" =  -  1 )   xLoc -    getX (  loc ) +  (   justMod *   labelWidth (  txtLabel ) )   yLoc -   getY (  loc ) }   cex -    labelFontsize (  txtLabel ) /   as.numeric (  defaultFontsize )   text (  xLoc ,  yLoc ,  txt , col =   labelColor (  txtLabel ) , cex =  cex ) } ",
+    "filename": "plotGraph.txt"
+  }
+}
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "drawTxtLabel",
+    "representation": "drawTxtLabel",
+    "parameters": "function ( txtLabel , xLoc , yLoc )",
+    "body": "{ ## NOTE: labelFontsize not used   txt -   labelText (  txtLabel )  if (    length (  txt ) undefined  1 )   stop (  \"'labelText(txtLabel)' must have length 1.\" )  if (    length (  txt ) ==  0 )   return (   invisible (  NULL ) )  if (   xor (   missing (  xLoc ) ,   missing (  yLoc ) ) )   stop (  \"'xLoc' and 'yLoc' must be either be both specified or both missing.\" )  if (   missing (  xLoc ) )  {   loc -   labelLoc (  txtLabel )   justMod -   switch (   labelJust (  txtLabel ) , \"l\" =  0 , \"n\" =  -  0.5 , \"r\" =  -  1 )   xLoc -    getX (  loc ) +  (   justMod *   labelWidth (  txtLabel ) )   yLoc -   getY (  loc ) }   text (  xLoc ,  yLoc ,  txt , col =   labelColor (  txtLabel ) ) } ",
+    "filename": "plotGraph.txt"
+  },
+  "new_function": {
+    "name": "drawTxtLabel",
+    "representation": "drawTxtLabel",
+    "parameters": "function ( txtLabel , xLoc , yLoc , defaultFontsize )",
+    "body": "{   txt -   labelText (  txtLabel )  if (    length (  txt ) undefined  1 )   stop (  \"'labelText(txtLabel)' must have length 1.\" )  if (    length (  txt ) ==  0 )   return (   invisible (  NULL ) )  if (   xor (   missing (  xLoc ) ,   missing (  yLoc ) ) )   stop (  \"'xLoc' and 'yLoc' must be either be both specified or both missing.\" )  if (   missing (  xLoc ) )  {   loc -   labelLoc (  txtLabel )   justMod -   switch (   labelJust (  txtLabel ) , \"l\" =  0 , \"n\" =  -  0.5 , \"r\" =  -  1 )   xLoc -    getX (  loc ) +  (   justMod *   labelWidth (  txtLabel ) )   yLoc -   getY (  loc ) }   cex -    labelFontsize (  txtLabel ) /   as.numeric (  defaultFontsize )   text (  xLoc ,  yLoc ,  txt , col =   labelColor (  txtLabel ) , cex =  cex ) } ",
+    "filename": "plotGraph.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rgraphviz_release_2_12 rgraphviz_release_2_13
+
+{
+    "package": "Rgraphviz",
+    "release_versions": "rgraphviz_release_2_12 rgraphviz_release_2_13",
+    "desc_release_old": "2.4.1",
+    "desc_release_new": "2.6.0",
+    "old_release_number": 16,
+    "new_release_number": 17,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rgraphviz_release_2_13 rgraphviz_release_2_14
+
+{
+    "package": "Rgraphviz",
+    "release_versions": "rgraphviz_release_2_13 rgraphviz_release_2_14",
+    "desc_release_old": "2.6.0",
+    "desc_release_new": "2.8.1",
+    "old_release_number": 17,
+    "new_release_number": 18,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rgraphviz_release_2_14 rgraphviz_release_3_1
+
+{
+    "package": "Rgraphviz",
+    "release_versions": "rgraphviz_release_2_14 rgraphviz_release_3_1",
+    "desc_release_old": "2.8.1",
+    "desc_release_new": "2.12.0",
+    "old_release_number": 18,
+    "new_release_number": 19,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rgraphviz_release_3_1 rgraphviz_release_3_2
+
+{
+    "package": "Rgraphviz",
+    "release_versions": "rgraphviz_release_3_1 rgraphviz_release_3_2",
+    "desc_release_old": "2.12.0",
+    "desc_release_new": "2.14.0",
+    "old_release_number": 19,
+    "new_release_number": 20,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rgraphviz_release_3_2 rgraphviz_release_3_3
+
+{
+    "package": "Rgraphviz",
+    "release_versions": "rgraphviz_release_3_2 rgraphviz_release_3_3",
+    "desc_release_old": "2.14.0",
+    "desc_release_new": "2.16.0",
+    "old_release_number": 20,
+    "new_release_number": 21,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rgraphviz_release_3_3 rgraphviz_release_3_4
+
+{
+    "package": "Rgraphviz",
+    "release_versions": "rgraphviz_release_3_3 rgraphviz_release_3_4",
+    "desc_release_old": "2.16.0",
+    "desc_release_new": "2.18.0",
+    "old_release_number": 21,
+    "new_release_number": 22,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rgraphviz_release_3_4 rgraphviz_release_3_5
+
+{
+    "package": "Rgraphviz",
+    "release_versions": "rgraphviz_release_3_4 rgraphviz_release_3_5",
+    "desc_release_old": "2.18.0",
+    "desc_release_new": "2.20.0",
+    "old_release_number": 22,
+    "new_release_number": 23,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rgraphviz_release_3_5 rgraphviz_release_3_6
+
+{
+    "package": "Rgraphviz",
+    "release_versions": "rgraphviz_release_3_5 rgraphviz_release_3_6",
+    "desc_release_old": "2.20.0",
+    "desc_release_new": "2.22.0",
+    "old_release_number": 23,
+    "new_release_number": 24,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rgraphviz_release_3_6 rgraphviz_release_3_7
+
+{
+    "package": "Rgraphviz",
+    "release_versions": "rgraphviz_release_3_6 rgraphviz_release_3_7",
+    "desc_release_old": "2.22.0",
+    "desc_release_new": "2.24.0",
+    "old_release_number": 24,
+    "new_release_number": 25,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rgraphviz_release_3_7 rgraphviz_release_3_8
+
+{
+    "package": "Rgraphviz",
+    "release_versions": "rgraphviz_release_3_7 rgraphviz_release_3_8",
+    "desc_release_old": "2.24.0",
+    "desc_release_new": "2.26.0",
+    "old_release_number": 25,
+    "new_release_number": 26,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rgraphviz_release_3_8 rgraphviz_release_3_9
+
+{
+    "package": "Rgraphviz",
+    "release_versions": "rgraphviz_release_3_8 rgraphviz_release_3_9",
+    "desc_release_old": "2.26.0",
+    "desc_release_new": "2.28.0",
+    "old_release_number": 26,
+    "new_release_number": 27,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rgraphviz_release_3_9 rgraphviz_release_3_11
+
+{
+    "package": "Rgraphviz",
+    "release_versions": "rgraphviz_release_3_9 rgraphviz_release_3_11",
+    "desc_release_old": "2.28.0",
+    "desc_release_new": "2.32.0",
+    "old_release_number": 27,
+    "new_release_number": 28,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rgraphviz_release_3_11 rgraphviz_release_3_12
+
+{
+    "package": "Rgraphviz",
+    "release_versions": "rgraphviz_release_3_11 rgraphviz_release_3_12",
+    "desc_release_old": "2.32.0",
+    "desc_release_new": "2.34.0",
+    "old_release_number": 28,
+    "new_release_number": 29,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rgraphviz_release_3_12 rgraphviz_release_3_13
+
+{
+    "package": "Rgraphviz",
+    "release_versions": "rgraphviz_release_3_12 rgraphviz_release_3_13",
+    "desc_release_old": "2.34.0",
+    "desc_release_new": "2.36.0",
+    "old_release_number": 29,
+    "new_release_number": 30,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rgraphviz_release_3_13 rgraphviz_release_3_14
+
+{
+    "package": "Rgraphviz",
+    "release_versions": "rgraphviz_release_3_13 rgraphviz_release_3_14",
+    "desc_release_old": "2.36.0",
+    "desc_release_new": "2.38.0",
+    "old_release_number": 30,
+    "new_release_number": 31,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rgraphviz_release_3_14 rgraphviz_master
+
+{
+    "package": "Rgraphviz",
+    "release_versions": "rgraphviz_release_3_14 rgraphviz_master",
+    "desc_release_old": "2.38.0",
+    "desc_release_new": "2.39.0",
+    "old_release_number": 31,
+    "new_release_number": 32,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+

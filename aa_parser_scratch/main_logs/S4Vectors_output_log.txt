@@ -1,0 +1,1312 @@
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  s4vectors_release_3_1 s4vectors_release_3_2
+
+{
+    "package": "S4Vectors",
+    "release_versions": "s4vectors_release_3_1 s4vectors_release_3_2",
+    "desc_release_old": "0.6.6",
+    "desc_release_new": "0.8.11",
+    "old_release_number": 0,
+    "new_release_number": 1,
+    "function_removals": 2,
+    "function_additions": 16,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+fixedColumnNames
+ifelse
+
+
+##########
+Functions Added
+##########
+
+recycleLogicalArg
+recycleCharacterArg
+recycleArg
+FilterRules
+FilterMatrix
+parallelVectorNames
+lengths
+active
+active<-
+evalSeparately
+subsetByFilter
+params
+filterRules
+split
+grep
+grepl
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  s4vectors_release_3_2 s4vectors_release_3_3
+
+{
+    "package": "S4Vectors",
+    "release_versions": "s4vectors_release_3_2 s4vectors_release_3_3",
+    "desc_release_old": "0.8.11",
+    "desc_release_new": "0.10.3",
+    "old_release_number": 1,
+    "new_release_number": 2,
+    "function_removals": 15,
+    "function_additions": 52,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 16
+}
+
+##########
+Functions Removed
+##########
+
+aggregate.Rle
+aggregate.List
+anyDuplicated.WindowNSBS
+as.data.frame.Rle
+as.data.frame.List
+as.data.frame.DataFrame
+as.list.Rle
+as.list.List
+as.list.SimpleList
+duplicated.Rle
+sort.Rle
+unique.Rle
+Find
+Map
+Position
+
+
+##########
+Functions Added
+##########
+
+as.data.frame.DataTable
+as.list.Vector
+head.DataTable
+tail.DataTable
+orderIntegerPairs
+matchIntegerPairs
+selfmatchIntegerPairs
+duplicatedIntegerPairs
+orderIntegerQuads
+matchIntegerQuads
+selfmatchIntegerQuads
+duplicatedIntegerQuads
+SelfHits
+isSelfHit
+isRedundantHit
+HitsList
+Pairs
+first
+first<-
+second
+second<-
+zipup
+zipdown
+rowSums
+colSums
+rowMeans
+colMeans
+expand.grid
+pcompare
+from
+to
+nLnode
+nRnode
+nnode
+countLnodeHits
+countRnodeHits
+elementNROWS
+relistToClass
+pcompareRecursively
+space
+expand
+!
+order
+is.unsorted
+nchar
+var
+cov
+cor
+sd
+setequal
+updateObject
+as.matrix.Vector
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "remapHits",
+    "representation": "remapHits",
+    "parameters": "function ( x , query.map = NULL , new.queryLength = NA , subject.map = NULL , new.subjectLength = NA , with.counts = FALSE )",
+    "body": "{  if (  !   is (  x ,  \"Hits\" ) )   stop (  \"'x' must be a Hits object\" )   query.map -   .normargMap (  query.map ,  \"query\" ,   queryLength (  x ) )   new.queryLength -   .normargNewLength (  new.queryLength ,  \"query\" ,  query.map )   subject.map -   .normargMap (  subject.map ,  \"subject\" ,   subjectLength (  x ) )   new.subjectLength -   .normargNewLength (  new.subjectLength ,  \"subject\" ,  subject.map )  if (  !   isTRUEorFALSE (  with.counts ) )   stop (  \"'with.counts' must be TRUE or FALSE\" )   q_hits -   queryHits (  x )  if (   is.null (  query.map ) )  {  if (   is.na (  new.queryLength ) )   new.queryLength -   queryLength (  x ) } else  {  if (   is.factor (  query.map ) )   query.map -   as.integer (  query.map )  if (   anyMissingOrOutside (  query.map ,  1L ,  new.queryLength ) )   stop (  \"'query.map' cannot contain NAs, or values that \" ,  \"are )   q_hits -   query.map [  q_hits ] }   s_hits -   subjectHits (  x )  if (   is.null (  subject.map ) )  {  if (   is.na (  new.subjectLength ) )   new.subjectLength -   subjectLength (  x ) } else  {  if (   is.factor (  subject.map ) )   subject.map -   as.integer (  subject.map )  if (   anyMissingOrOutside (  subject.map ,  1L ,  new.subjectLength ) )   stop (  \"'subject.map' cannot contain NAs, or values that \" ,  \"are )   s_hits -   subject.map [  s_hits ] }   x_mcols -   mcols (  x )   add_counts -  function ( counts )  {  if (   is.null (  x_mcols ) )   return (   DataFrame ( counts =  counts ) )  if (   \"counts\" %in%   colnames (  x_mcols ) )   warning (  \"'x' has a \\\"counts\\\" metadata column, replacing it\" )    x_mcols $ counts -  counts  x_mcols }  if (    is.null (  query.map ) undefined   is.null (  subject.map ) )  {  if (  with.counts )  {   counts -   rep.int (  1L ,   length (  x ) )   x_mcols -   add_counts (  counts ) } } else  {   sm -   selfmatchIntegerPairs (  q_hits ,  s_hits )  if (  with.counts )  {   counts -   tabulate (  sm , nbins =   length (  sm ) )   x_mcols -   add_counts (  counts )   keep_idx -   which (   counts !=  0L ) } else  {   keep_idx -   which (   sm ==   seq_along (  sm ) ) }   q_hits -   q_hits [  keep_idx ]   s_hits -   s_hits [  keep_idx ]   x_mcols -   extractROWS (  x_mcols ,  keep_idx ) }   do.call (  Hits ,   c (   list (  q_hits ,  s_hits ,  new.queryLength ,  new.subjectLength ) ,   as.list (  x_mcols ) ) ) } ",
+    "filename": "Hits-class.txt"
+  },
+  "new_function": {
+    "name": "remapHits",
+    "representation": "remapHits",
+    "parameters": "function ( x , Lnodes.remapping = NULL , new.nLnode = NA , Rnodes.remapping = NULL , new.nRnode = NA , with.counts = FALSE )",
+    "body": "{  if (  !   is (  x ,  \"SortedByQueryHits\" ) )   stop (  \"'x' must be a SortedByQueryHits object\" )   Lnodes.remapping -   .normarg_nodes.remapping (  Lnodes.remapping ,  \"L\" ,   nLnode (  x ) )   new.nLnode -   .normarg_new.nnode (  new.nLnode ,  \"L\" ,  Lnodes.remapping )   Rnodes.remapping -   .normarg_nodes.remapping (  Rnodes.remapping ,  \"R\" ,   nRnode (  x ) )   new.nRnode -   .normarg_new.nnode (  new.nRnode ,  \"R\" ,  Rnodes.remapping )  if (  !   isTRUEorFALSE (  with.counts ) )   stop (  \"'with.counts' must be TRUE or FALSE\" )   x_from -   from (  x )  if (   is.null (  Lnodes.remapping ) )  {  if (   is.na (  new.nLnode ) )   new.nLnode -   nLnode (  x ) } else  {  if (   is.factor (  Lnodes.remapping ) )   Lnodes.remapping -   as.integer (  Lnodes.remapping )  if (   anyMissingOrOutside (  Lnodes.remapping ,  1L ,  new.nLnode ) )   stop (   wmsg (  \"'Lnodes.remapping' cannot contain NAs, or values that \" ,  \"are ) )   x_from -   Lnodes.remapping [  x_from ] }   x_to -   to (  x )  if (   is.null (  Rnodes.remapping ) )  {  if (   is.na (  new.nRnode ) )   new.nRnode -   nRnode (  x ) } else  {  if (   is.factor (  Rnodes.remapping ) )   Rnodes.remapping -   as.integer (  Rnodes.remapping )  if (   anyMissingOrOutside (  Rnodes.remapping ,  1L ,  new.nRnode ) )   stop (   wmsg (  \"'Rnodes.remapping' cannot contain NAs, or values that \" ,  \"are ) )   x_to -   Rnodes.remapping [  x_to ] }   x_mcols -   mcols (  x )   add_counts -  function ( counts )  {  if (   is.null (  x_mcols ) )   return (   DataFrame ( counts =  counts ) )  if (   \"counts\" %in%   colnames (  x_mcols ) )   warning (  \"'x' has a \\\"counts\\\" metadata column, replacing it\" )    x_mcols $ counts -  counts  x_mcols }  if (    is.null (  Lnodes.remapping ) undefined   is.null (  Rnodes.remapping ) )  {  if (  with.counts )  {   counts -   rep.int (  1L ,   length (  x ) )   x_mcols -   add_counts (  counts ) } } else  {   sm -   selfmatchIntegerPairs (  x_from ,  x_to )  if (  with.counts )  {   counts -   tabulate (  sm , nbins =   length (  sm ) )   x_mcols -   add_counts (  counts )   keep_idx -   which (   counts !=  0L ) } else  {   keep_idx -   which (   sm ==   seq_along (  sm ) ) }   x_from -   x_from [  keep_idx ]   x_to -   x_to [  keep_idx ]   x_mcols -   extractROWS (  x_mcols ,  keep_idx ) }   new_Hits (   class (  x ) ,  x_from ,  x_to ,  new.nLnode ,  new.nRnode ,  x_mcols ) } ",
+    "filename": "Hits-class.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  s4vectors_release_3_3 s4vectors_release_3_4
+
+{
+    "package": "S4Vectors",
+    "release_versions": "s4vectors_release_3_3 s4vectors_release_3_4",
+    "desc_release_old": "0.10.3",
+    "desc_release_new": "0.12.2",
+    "old_release_number": 2,
+    "new_release_number": 3,
+    "function_removals": 0,
+    "function_additions": 4,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 10,
+    "total_count": 10
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+breakTies
+decode
+t.Hits
+t.HitsList
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "NSBS",
+    "representation": "NSBS",
+    "signature": "Rle",
+    "parameters": "function ( i , x , exact = TRUE , upperBoundIsStrict = TRUE )",
+    "body": "{   x_NROW -   NROW (  x )   i_vals -   runValue (  i )  if (    is.logical (  i_vals ) undefined    length (  i_vals ) !=  0L )  {  if (   anyMissing (  i_vals ) )   stop (  \"subscript contains NAs\" )  if (    length (  i ) undefined  x_NROW )   i -   rep (  i , length.out =  x_NROW ) ## The coercion method from Rle to NormalIRanges is defined in the ## IRanges package.  if (   requireNamespace (  \"IRanges\" , quietly =  TRUE ) )  {   i -   as (  i ,  \"NormalIRanges\" ) ## This will call the \"NSBS\" method for Ranges objects defined ## in the IRanges package and return a RangesNSBS, or ## RangeNSBS, or NativeNSBS object.   return (   callGeneric ( ) ) }   warning (   wmsg (  \"Couldn't load the IRanges package. Installing this package \" ,  \"will enable efficient subsetting by a logical-Rle object \" ,  \"so is higly recommended.\" ) )   i -   which (  i )   return (   callGeneric ( ) ) # will return a NativeNSBS object }   i_vals -   as.integer (   NSBS (  i_vals ,  x , exact =  exact , upperBoundIsStrict =  upperBoundIsStrict ) )    runValue (  i ) -  i_vals   new2 (  \"RleNSBS\" , subscript =  i , upper_bound =  x_NROW , upper_bound_is_strict =  upperBoundIsStrict , check =  FALSE ) } ",
+    "filename": "Rle-class.txt"
+  },
+  "new_function": {
+    "name": "NSBS",
+    "representation": "NSBS",
+    "signature": "Rle",
+    "parameters": "function ( i , x , exact = TRUE , strict.upper.bound = TRUE , allow.NAs = FALSE )",
+    "body": "{   x_NROW -   NROW (  x )   i_vals -   runValue (  i )  if (    is.logical (  i_vals ) undefined    length (  i_vals ) !=  0L )  {  if (   anyNA (  i_vals ) )   stop (  \"subscript contains NAs\" )  if (    length (  i ) undefined  x_NROW )   i -   rep (  i , length.out =  x_NROW ) ## The coercion method from Rle to NormalIRanges is defined in the ## IRanges package.  if (   requireNamespace (  \"IRanges\" , quietly =  TRUE ) )  {   i -   as (  i ,  \"NormalIRanges\" ) ## This will call the \"NSBS\" method for Ranges objects defined ## in the IRanges package and return a RangesNSBS, or ## RangeNSBS, or NativeNSBS object.   return (   callGeneric ( ) ) }   warning (   wmsg (  \"Couldn't load the IRanges package. Installing this package \" ,  \"will enable efficient subsetting by a logical-Rle object \" ,  \"so is higly recommended.\" ) )   i -   which (  i )   return (   callGeneric ( ) ) # will return a NativeNSBS object }   i_vals -   NSBS (  i_vals ,  x , exact =  exact , strict.upper.bound =  strict.upper.bound , allow.NAs =  allow.NAs )    runValue (  i ) -   as.integer (  i_vals )   new2 (  \"RleNSBS\" , subscript =  i , upper_bound =  x_NROW , upper_bound_is_strict =  strict.upper.bound , has_NAs =   i_vals @ has_NAs , check =  FALSE ) } ",
+    "filename": "Rle-class.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "NSBS",
+    "representation": "NSBS",
+    "signature": "NSBS",
+    "parameters": "function ( i , x , exact = TRUE , upperBoundIsStrict = TRUE )",
+    "body": "{   x_NROW -   NROW (  x )  if (     upperBound (  i ) !=  x_NROW ||    upperBoundIsStrict (  i ) undefined  upperBoundIsStrict )   .subscript_error (  \"subscript is a NSBS object that is incompatible \" ,  \"with the current subsetting operation\" )  i } ",
+    "filename": "subsetting-utils.txt"
+  },
+  "new_function": {
+    "name": "NSBS",
+    "representation": "NSBS",
+    "signature": "NSBS",
+    "parameters": "function ( i , x , exact = TRUE , strict.upper.bound = TRUE , allow.NAs = FALSE )",
+    "body": "{   x_NROW -   NROW (  x )  if (     i @ upper_bound !=  x_NROW ||    i @ upper_bound_is_strict undefined  strict.upper.bound )   .subscript_error (  \"subscript is a NSBS object that is incompatible \" ,  \"with the current subsetting operation\" )  if (   !  allow.NAs undefined   i @ has_NAs )   .subscript_error (  \"subscript contains NAs\" )  i } ",
+    "filename": "subsetting-utils.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "NSBS",
+    "representation": "NSBS",
+    "signature": "missing",
+    "parameters": "function ( i , x , exact = TRUE , upperBoundIsStrict = TRUE )",
+    "body": "{   x_NROW -   NROW (  x )   i -   seq_len (  x_NROW )   .NativeNSBS (  i ,  x_NROW ,  upperBoundIsStrict ) } ",
+    "filename": "subsetting-utils.txt"
+  },
+  "new_function": {
+    "name": "NSBS",
+    "representation": "NSBS",
+    "signature": "missing",
+    "parameters": "function ( i , x , exact = TRUE , strict.upper.bound = TRUE , allow.NAs = FALSE )",
+    "body": "{   x_NROW -   NROW (  x )   i -   seq_len (  x_NROW )   NativeNSBS (  i ,  x_NROW ,  strict.upper.bound ,  FALSE ) } ",
+    "filename": "subsetting-utils.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "NSBS",
+    "representation": "NSBS",
+    "signature": "NULL",
+    "parameters": "function ( i , x , exact = TRUE , upperBoundIsStrict = TRUE )",
+    "body": "{   x_NROW -   NROW (  x )   i -   integer (  0 )   .NativeNSBS (  i ,  x_NROW ,  upperBoundIsStrict ) } ",
+    "filename": "subsetting-utils.txt"
+  },
+  "new_function": {
+    "name": "NSBS",
+    "representation": "NSBS",
+    "signature": "NULL",
+    "parameters": "function ( i , x , exact = TRUE , strict.upper.bound = TRUE , allow.NAs = FALSE )",
+    "body": "{   x_NROW -   NROW (  x )   i -   integer (  0 )   NativeNSBS (  i ,  x_NROW ,  strict.upper.bound ,  FALSE ) } ",
+    "filename": "subsetting-utils.txt"
+  }
+}
+
+4.
+{
+  "old_function": {
+    "name": "NSBS",
+    "representation": "NSBS",
+    "signature": "logical",
+    "parameters": "function ( i , x , exact = TRUE , upperBoundIsStrict = TRUE )",
+    "body": "{   x_NROW -   NROW (  x )  if (   anyMissing (  i ) )   .subscript_error (  \"subscript contains NAs\" )   li -   length (  i )  if (   upperBoundIsStrict undefined   li undefined  x_NROW )  {  if (   any (   i [   (   x_NROW +  1L ) :  li ] ) )   .subscript_error (  \"subscript is a logical vector with out-of-bounds \" ,  \"TRUE values\" )   i -   i [   seq_len (  x_NROW ) ] }  if (   li undefined  x_NROW )   i -   rep (  i , length.out =  x_NROW )   i -   which (  i )   .NativeNSBS (  i ,  x_NROW ,  upperBoundIsStrict ) } ",
+    "filename": "subsetting-utils.txt"
+  },
+  "new_function": {
+    "name": "NSBS",
+    "representation": "NSBS",
+    "signature": "logical",
+    "parameters": "function ( i , x , exact = TRUE , strict.upper.bound = TRUE , allow.NAs = FALSE )",
+    "body": "{   x_NROW -   NROW (  x )  if (   anyNA (  i ) )   .subscript_error (  \"logical subscript contains NAs\" )   li -   length (  i )  if (   strict.upper.bound undefined   li undefined  x_NROW )  {  if (   any (   i [   (   x_NROW +  1L ) :  li ] ) )   .subscript_error (  \"subscript is a logical vector with out-of-bounds \" ,  \"TRUE values\" )   i -   i [   seq_len (  x_NROW ) ] }  if (   li undefined  x_NROW )   i -   rep (  i , length.out =  x_NROW )   i -   which (  i )   NativeNSBS (  i ,  x_NROW ,  strict.upper.bound ,  FALSE ) } ",
+    "filename": "subsetting-utils.txt"
+  }
+}
+
+5.
+{
+  "old_function": {
+    "name": "NSBS",
+    "representation": "NSBS",
+    "signature": "array",
+    "parameters": "function ( i , x , exact = TRUE , upperBoundIsStrict = TRUE )",
+    "body": "{   warning (  \"subscript is an array, passing it thru as.vector() first\" )   i -   as.vector (  i )   callGeneric ( ) } ",
+    "filename": "subsetting-utils.txt"
+  },
+  "new_function": {
+    "name": "NSBS",
+    "representation": "NSBS",
+    "signature": "array",
+    "parameters": "function ( i , x , exact = TRUE , strict.upper.bound = TRUE , allow.NAs = FALSE )",
+    "body": "{   warning (  \"subscript is an array, passing it thru as.vector() first\" )   i -   as.vector (  i )   callGeneric ( ) } ",
+    "filename": "subsetting-utils.txt"
+  }
+}
+
+6.
+{
+  "old_function": {
+    "name": "NSBS",
+    "representation": "NSBS",
+    "signature": "numeric",
+    "parameters": "function ( i , x , exact = TRUE , upperBoundIsStrict = TRUE )",
+    "body": "{   x_NROW -   NROW (  x )  if (  !   is.integer (  i ) )   i -   as.integer (  i )  if (  upperBoundIsStrict )  {  if (   anyMissingOrOutside (  i , upper =  x_NROW ) )   .subscript_error (  \"subscript contains NAs or out-of-bounds indices\" ) } else  {  if (   any (   is.na (  i ) ) )   .subscript_error (  \"subscript contains NAs\" ) }   nonzero_idx -   which (   i !=  0L )   i -   i [  nonzero_idx ]  if (    length (  i ) !=  0L )  {   any_pos -   any (   i undefined  0L )   any_neg -   any (   i undefined  0L )  if (   any_neg undefined  any_pos )   .subscript_error (  \"cannot mix negative with positive indices\" ) ## From here, indices are guaranteed to be either all positive or ## all negative.  if (  any_neg )   i -    seq_len (  x_NROW ) [  i ] }   .NativeNSBS (  i ,  x_NROW ,  upperBoundIsStrict ) } ",
+    "replacementFunction": ".NSBS.numeric",
+    "filename": "subsetting-utils.txt"
+  },
+  "new_function": {
+    "name": "NSBS",
+    "representation": "NSBS",
+    "signature": "numeric",
+    "parameters": "function ( i , x , exact = TRUE , strict.upper.bound = TRUE , allow.NAs = FALSE )",
+    "body": "{   x_NROW -   NROW (  x )  if (  !   is.integer (  i ) )   i -   as.integer (  i )   has_NAs -   anyNA (  i )  if (   !  allow.NAs undefined  has_NAs )   .subscript_error (  \"subscript contains NAs\" ) ## Strangely, this is much faster than using range().   i_max -   suppressWarnings (   max (  i , na.rm =  TRUE ) )   i_min -   suppressWarnings (   min (  i , na.rm =  TRUE ) )  if (   strict.upper.bound undefined   i_max undefined  x_NROW )   .subscript_error (  \"subscript contains out-of-bounds indices\" )  if (   i_min undefined  0L )  { ## Translate into positive indices.   i -    seq_len (  x_NROW ) [  i ] } else  { ## Remove 0's from subscript.   zero_idx -   which (   !   is.na (  i ) undefined   i ==  0L )  if (    length (  zero_idx ) !=  0L )   i -   i [  -  zero_idx ] }   NativeNSBS (  i ,  x_NROW ,  strict.upper.bound ,  has_NAs ) } ",
+    "replacementFunction": ".NSBS.numeric",
+    "filename": "subsetting-utils.txt"
+  }
+}
+
+7.
+{
+  "old_function": {
+    "name": "NSBS",
+    "representation": "NSBS",
+    "signature": "character",
+    "parameters": "function ( i , x , exact = TRUE , upperBoundIsStrict = TRUE )",
+    "body": "{   x_NROW -   NROW (  x )   x_ROWNAMES -   ROWNAMES (  x )   what -  if (    length (   dim (  x ) ) !=  0L )  \"rownames\" else  \"names\"  if (   is.null (  x_ROWNAMES ) )  {  if (  upperBoundIsStrict )   .subscript_error (  \"cannot subset by character when \" ,  what ,  \" are NULL\" )   i -   x_NROW +   seq_along (  i )   return (  i ) }  if (  exact )  {   i -   match (  i ,  x_ROWNAMES , incomparables =   c (  NA_character_ ,  \"\" ) ) } else  {   i -   pmatch (  i ,  x_ROWNAMES , duplicates.ok =  TRUE ) }  if (  !  upperBoundIsStrict )  {   na_idx -   which (   is.na (  i ) )    i [  na_idx ] -   x_NROW +   seq_along (  na_idx )   return (  i ) }  if (   anyMissing (  i ) )   .subscript_error (  \"subscript contains invalid \" ,  what )   .NativeNSBS (  i ,  x_NROW ,  upperBoundIsStrict ) } ",
+    "replacementFunction": ".NSBS.characterORfactor",
+    "filename": "subsetting-utils.txt"
+  },
+  "new_function": {
+    "name": "NSBS",
+    "representation": "NSBS",
+    "signature": "character",
+    "parameters": "function ( i , x , exact = TRUE , strict.upper.bound = TRUE , allow.NAs = FALSE )",
+    "body": "{   x_NROW -   NROW (  x )   x_ROWNAMES -   ROWNAMES (  x )   what -  if (    length (   dim (  x ) ) !=  0L )  \"rownames\" else  \"names\"  if (   is.null (  x_ROWNAMES ) )  {  if (  strict.upper.bound )   .subscript_error (  \"cannot subset by character when \" ,  what ,  \" are NULL\" )   i -   x_NROW +   seq_along (  i )   return (   NativeNSBS (  i ,  x_NROW ,  FALSE ,  FALSE ) ) }  if (  exact )  {   i -   match (  i ,  x_ROWNAMES , incomparables =   c (  NA_character_ ,  \"\" ) ) } else  {   i -   pmatch (  i ,  x_ROWNAMES , duplicates.ok =  TRUE ) }  if (  !  strict.upper.bound )  {   na_idx -   which (   is.na (  i ) )    i [  na_idx ] -   x_NROW +   seq_along (  na_idx )   return (   NativeNSBS (  i ,  x_NROW ,  FALSE ,  FALSE ) ) }   has_NAs -   anyNA (  i )  if (   !  allow.NAs undefined  has_NAs )   .subscript_error (  \"subscript contains invalid \" ,  what )   NativeNSBS (  i ,  x_NROW ,  strict.upper.bound ,  has_NAs ) } ",
+    "replacementFunction": ".NSBS.characterORfactor",
+    "filename": "subsetting-utils.txt"
+  }
+}
+
+8.
+{
+  "old_function": {
+    "name": "NSBS",
+    "representation": "NSBS",
+    "signature": "factor",
+    "parameters": "function ( i , x , exact = TRUE , upperBoundIsStrict = TRUE )",
+    "body": "{   x_NROW -   NROW (  x )   x_ROWNAMES -   ROWNAMES (  x )   what -  if (    length (   dim (  x ) ) !=  0L )  \"rownames\" else  \"names\"  if (   is.null (  x_ROWNAMES ) )  {  if (  upperBoundIsStrict )   .subscript_error (  \"cannot subset by character when \" ,  what ,  \" are NULL\" )   i -   x_NROW +   seq_along (  i )   return (  i ) }  if (  exact )  {   i -   match (  i ,  x_ROWNAMES , incomparables =   c (  NA_character_ ,  \"\" ) ) } else  {   i -   pmatch (  i ,  x_ROWNAMES , duplicates.ok =  TRUE ) }  if (  !  upperBoundIsStrict )  {   na_idx -   which (   is.na (  i ) )    i [  na_idx ] -   x_NROW +   seq_along (  na_idx )   return (  i ) }  if (   anyMissing (  i ) )   .subscript_error (  \"subscript contains invalid \" ,  what )   .NativeNSBS (  i ,  x_NROW ,  upperBoundIsStrict ) } ",
+    "replacementFunction": ".NSBS.characterORfactor",
+    "filename": "subsetting-utils.txt"
+  },
+  "new_function": {
+    "name": "NSBS",
+    "representation": "NSBS",
+    "signature": "factor",
+    "parameters": "function ( i , x , exact = TRUE , strict.upper.bound = TRUE , allow.NAs = FALSE )",
+    "body": "{   x_NROW -   NROW (  x )   x_ROWNAMES -   ROWNAMES (  x )   what -  if (    length (   dim (  x ) ) !=  0L )  \"rownames\" else  \"names\"  if (   is.null (  x_ROWNAMES ) )  {  if (  strict.upper.bound )   .subscript_error (  \"cannot subset by character when \" ,  what ,  \" are NULL\" )   i -   x_NROW +   seq_along (  i )   return (   NativeNSBS (  i ,  x_NROW ,  FALSE ,  FALSE ) ) }  if (  exact )  {   i -   match (  i ,  x_ROWNAMES , incomparables =   c (  NA_character_ ,  \"\" ) ) } else  {   i -   pmatch (  i ,  x_ROWNAMES , duplicates.ok =  TRUE ) }  if (  !  strict.upper.bound )  {   na_idx -   which (   is.na (  i ) )    i [  na_idx ] -   x_NROW +   seq_along (  na_idx )   return (   NativeNSBS (  i ,  x_NROW ,  FALSE ,  FALSE ) ) }   has_NAs -   anyNA (  i )  if (   !  allow.NAs undefined  has_NAs )   .subscript_error (  \"subscript contains invalid \" ,  what )   NativeNSBS (  i ,  x_NROW ,  strict.upper.bound ,  has_NAs ) } ",
+    "replacementFunction": ".NSBS.characterORfactor",
+    "filename": "subsetting-utils.txt"
+  }
+}
+
+9.
+{
+  "old_function": {
+    "name": "normalizeSingleBracketSubscript",
+    "representation": "normalizeSingleBracketSubscript",
+    "parameters": "function ( i , x , exact = TRUE , allow.append = FALSE , as.NSBS = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  exact ) )   stop (  \"'exact' must be TRUE or FALSE\" )  if (  !   isTRUEorFALSE (  allow.append ) )   stop (  \"'allow.append' must be TRUE or FALSE\" )  if (  !   isTRUEorFALSE (  as.NSBS ) )   stop (  \"'as.NSBS' must be TRUE or FALSE\" )  if (   missing (  i ) )  {   i -   NSBS ( ,  x , exact =  exact , upperBoundIsStrict =  !  allow.append ) } else  {   i -   NSBS (  i ,  x , exact =  exact , upperBoundIsStrict =  !  allow.append ) }  if (  !  as.NSBS )   i -   as.integer (  i )  i } ",
+    "filename": "subsetting-utils.txt"
+  },
+  "new_function": {
+    "name": "normalizeSingleBracketSubscript",
+    "representation": "normalizeSingleBracketSubscript",
+    "parameters": "function ( i , x , exact = TRUE , allow.append = FALSE , allow.NAs = FALSE , as.NSBS = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  exact ) )   stop (  \"'exact' must be TRUE or FALSE\" )  if (  !   isTRUEorFALSE (  allow.append ) )   stop (  \"'allow.append' must be TRUE or FALSE\" )  if (  !   isTRUEorFALSE (  as.NSBS ) )   stop (  \"'as.NSBS' must be TRUE or FALSE\" )  if (   missing (  i ) )  {   i -   NSBS ( ,  x , exact =  exact , strict.upper.bound =  !  allow.append , allow.NAs =  allow.NAs ) } else  {   i -   NSBS (  i ,  x , exact =  exact , strict.upper.bound =  !  allow.append , allow.NAs =  allow.NAs ) }  if (  !  as.NSBS )   i -   as.integer (  i )  i } ",
+    "filename": "subsetting-utils.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  s4vectors_release_3_4 s4vectors_release_3_5
+
+{
+    "package": "S4Vectors",
+    "release_versions": "s4vectors_release_3_4 s4vectors_release_3_5",
+    "desc_release_old": "0.12.2",
+    "desc_release_new": "0.14.7",
+    "old_release_number": 3,
+    "new_release_number": 4,
+    "function_removals": 2,
+    "function_additions": 17,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+compare
+elementLengths
+
+
+##########
+Functions Added
+##########
+
+as.character.Linteger
+as.integer.Linteger
+as.logical.Linteger
+as.numeric.Linteger
+head.Linteger
+intersect.Vector
+setdiff.Vector
+setequal.Vector
+tail.Linteger
+union.Vector
+window.Linteger
+is.Linteger
+as.Linteger
+Linteger
+rep.int
+Ops
+Summary
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  s4vectors_release_3_5 s4vectors_release_3_6
+
+{
+    "package": "S4Vectors",
+    "release_versions": "s4vectors_release_3_5 s4vectors_release_3_6",
+    "desc_release_old": "0.14.7",
+    "desc_release_new": "0.16.0",
+    "old_release_number": 4,
+    "new_release_number": 5,
+    "function_removals": 10,
+    "function_additions": 10,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 10
+}
+
+##########
+Functions Removed
+##########
+
+as.character.Linteger
+as.integer.Linteger
+as.logical.Linteger
+as.numeric.Linteger
+head.Linteger
+tail.Linteger
+window.Linteger
+is.Linteger
+as.Linteger
+Linteger
+
+
+##########
+Functions Added
+##########
+
+as.character.LLint
+as.integer.LLint
+as.logical.LLint
+as.numeric.LLint
+head.LLint
+tail.LLint
+window.LLint
+is.LLint
+as.LLint
+LLint
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  s4vectors_release_3_6 s4vectors_release_3_7
+
+{
+    "package": "S4Vectors",
+    "release_versions": "s4vectors_release_3_6 s4vectors_release_3_7",
+    "desc_release_old": "0.16.0",
+    "desc_release_new": "0.18.3",
+    "old_release_number": 5,
+    "new_release_number": 6,
+    "function_removals": 0,
+    "function_additions": 3,
+    "parameter_removals": 0,
+    "parameter_additions": 3,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 4,
+    "total_count": 4
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+subset.Vector
+toListOfIntegerVectors
+concatenateObjects
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "selectHits",
+    "representation": "selectHits",
+    "parameters": "function ( x , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" , \"count\" ) )",
+    "body": "{  if (  !   is (  x ,  \"Hits\" ) )   stop (  \"'x' must be a Hits object\" )   select -   match.arg (  select )  if (   select ==  \"all\" )   return (  x )   .Call2 (  \"select_hits\" ,   from (  x ) ,   to (  x ) ,   nLnode (  x ) ,  select , PACKAGE =  \"S4Vectors\" ) } ",
+    "filename": "Hits-class.txt"
+  },
+  "new_function": {
+    "name": "selectHits",
+    "representation": "selectHits",
+    "parameters": "function ( x , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" , \"count\" ) , rank )",
+    "body": "{  if (  !   is (  x ,  \"Hits\" ) )   stop (  \"'x' must be a Hits object\" )   select -   match.arg (  select )  if (   select ==  \"all\" )   return (  x )   to -   to (  x )  if (  !   missing (  rank ) )  {   r -   rank (  x , ties.method =  \"first\" , by =  rank )   revmap -   integer ( )    revmap [  r ] -  to   to -  r }   ans -   .Call2 (  \"select_hits\" ,   from (  x ) ,  to ,   nLnode (  x ) ,  select , PACKAGE =  \"S4Vectors\" )  if (  !   missing (  rank ) )  {   ans -   revmap [  ans ] }  ans } ",
+    "filename": "Hits-class.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "breakTies",
+    "representation": "breakTies",
+    "parameters": "function ( x , method = c ( \"first\" , \"last\" ) )",
+    "body": "{  if (  !   is (  x ,  \"Hits\" ) )   stop (  \"'x' must be a Hits object\" )   method -   match.arg (  method )   to -   selectHits (  x ,  method )   .new_Hits (  \"SortedByQueryHits\" ,   which (  !   is.na (  to ) ) ,   to [  !   is.na (  to ) ] ,   nLnode (  x ) ,   nRnode (  x ) ,  NULL ) } ",
+    "filename": "Hits-class.txt"
+  },
+  "new_function": {
+    "name": "breakTies",
+    "representation": "breakTies",
+    "parameters": "function ( x , method = c ( \"first\" , \"last\" ) , rank )",
+    "body": "{  if (  !   is (  x ,  \"Hits\" ) )   stop (  \"'x' must be a Hits object\" )   method -   match.arg (  method )   to -   selectHits (  x ,  method ,  rank )   .new_Hits (  \"SortedByQueryHits\" ,   which (  !   is.na (  to ) ) ,   to [  !   is.na (  to ) ] ,   nLnode (  x ) ,   nRnode (  x ) ,  NULL ) } ",
+    "filename": "Hits-class.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "rank",
+    "representation": "rank",
+    "signature": "Vector",
+    "parameters": "function ( x , na.last = TRUE , ties.method = c ( \"average\" , \"first\" , \"last\" , \"random\" , \"max\" , \"min\" ) )",
+    "body": "{   ties.method -   match.arg (  ties.method )   oo -   order (  x , na.last =  na.last ) ## 'ans' is the reverse permutation of 'oo'.   ans -   integer (   length (  oo ) )    ans [  oo ] -   seq_along (  oo )  if (   ties.method ==  \"first\" )   return (  ans )   ans -   ans [   selfmatch (  x ) ]  if (   ties.method ==  \"min\" )   return (  ans ) ## Other ties methods.   rank (  ans , ties.method =  ties.method ) } ",
+    "filename": "Vector-comparison.txt"
+  },
+  "new_function": {
+    "name": "rank",
+    "representation": "rank",
+    "signature": "Vector",
+    "parameters": "function ( x , na.last = TRUE , ties.method = c ( \"average\" , \"first\" , \"last\" , \"random\" , \"max\" , \"min\" ) , by )",
+    "body": "{   ties.method -   match.arg (  ties.method )  if (  !   missing (  by ) )   oo -   orderBy (  by ,  x , na.last =  na.last ) else   oo -   order (  x , na.last =  na.last ) ## 'ans' is the reverse permutation of 'oo'.   ans -   integer (   length (  oo ) )    ans [  oo ] -   seq_along (  oo )  if (   ties.method ==  \"first\" )   return (  ans )   ans -   ans [   selfmatch (  x ) ]  if (   ties.method ==  \"min\" )   return (  ans ) ## Other ties methods.   rank (  ans , ties.method =  ties.method ) } ",
+    "filename": "Vector-comparison.txt"
+  }
+}
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "selectHits",
+    "representation": "selectHits",
+    "parameters": "function ( x , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" , \"count\" ) )",
+    "body": "{  if (  !   is (  x ,  \"Hits\" ) )   stop (  \"'x' must be a Hits object\" )   select -   match.arg (  select )  if (   select ==  \"all\" )   return (  x )   .Call2 (  \"select_hits\" ,   from (  x ) ,   to (  x ) ,   nLnode (  x ) ,  select , PACKAGE =  \"S4Vectors\" ) } ",
+    "filename": "Hits-class.txt"
+  },
+  "new_function": {
+    "name": "selectHits",
+    "representation": "selectHits",
+    "parameters": "function ( x , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" , \"count\" ) , rank )",
+    "body": "{  if (  !   is (  x ,  \"Hits\" ) )   stop (  \"'x' must be a Hits object\" )   select -   match.arg (  select )  if (   select ==  \"all\" )   return (  x )   to -   to (  x )  if (  !   missing (  rank ) )  {   r -   rank (  x , ties.method =  \"first\" , by =  rank )   revmap -   integer ( )    revmap [  r ] -  to   to -  r }   ans -   .Call2 (  \"select_hits\" ,   from (  x ) ,  to ,   nLnode (  x ) ,  select , PACKAGE =  \"S4Vectors\" )  if (  !   missing (  rank ) )  {   ans -   revmap [  ans ] }  ans } ",
+    "filename": "Hits-class.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "breakTies",
+    "representation": "breakTies",
+    "parameters": "function ( x , method = c ( \"first\" , \"last\" ) )",
+    "body": "{  if (  !   is (  x ,  \"Hits\" ) )   stop (  \"'x' must be a Hits object\" )   method -   match.arg (  method )   to -   selectHits (  x ,  method )   .new_Hits (  \"SortedByQueryHits\" ,   which (  !   is.na (  to ) ) ,   to [  !   is.na (  to ) ] ,   nLnode (  x ) ,   nRnode (  x ) ,  NULL ) } ",
+    "filename": "Hits-class.txt"
+  },
+  "new_function": {
+    "name": "breakTies",
+    "representation": "breakTies",
+    "parameters": "function ( x , method = c ( \"first\" , \"last\" ) , rank )",
+    "body": "{  if (  !   is (  x ,  \"Hits\" ) )   stop (  \"'x' must be a Hits object\" )   method -   match.arg (  method )   to -   selectHits (  x ,  method ,  rank )   .new_Hits (  \"SortedByQueryHits\" ,   which (  !   is.na (  to ) ) ,   to [  !   is.na (  to ) ] ,   nLnode (  x ) ,   nRnode (  x ) ,  NULL ) } ",
+    "filename": "Hits-class.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "rank",
+    "representation": "rank",
+    "signature": "Vector",
+    "parameters": "function ( x , na.last = TRUE , ties.method = c ( \"average\" , \"first\" , \"last\" , \"random\" , \"max\" , \"min\" ) )",
+    "body": "{   ties.method -   match.arg (  ties.method )   oo -   order (  x , na.last =  na.last ) ## 'ans' is the reverse permutation of 'oo'.   ans -   integer (   length (  oo ) )    ans [  oo ] -   seq_along (  oo )  if (   ties.method ==  \"first\" )   return (  ans )   ans -   ans [   selfmatch (  x ) ]  if (   ties.method ==  \"min\" )   return (  ans ) ## Other ties methods.   rank (  ans , ties.method =  ties.method ) } ",
+    "filename": "Vector-comparison.txt"
+  },
+  "new_function": {
+    "name": "rank",
+    "representation": "rank",
+    "signature": "Vector",
+    "parameters": "function ( x , na.last = TRUE , ties.method = c ( \"average\" , \"first\" , \"last\" , \"random\" , \"max\" , \"min\" ) , by )",
+    "body": "{   ties.method -   match.arg (  ties.method )  if (  !   missing (  by ) )   oo -   orderBy (  by ,  x , na.last =  na.last ) else   oo -   order (  x , na.last =  na.last ) ## 'ans' is the reverse permutation of 'oo'.   ans -   integer (   length (  oo ) )    ans [  oo ] -   seq_along (  oo )  if (   ties.method ==  \"first\" )   return (  ans )   ans -   ans [   selfmatch (  x ) ]  if (   ties.method ==  \"min\" )   return (  ans ) ## Other ties methods.   rank (  ans , ties.method =  ties.method ) } ",
+    "filename": "Vector-comparison.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "normalizeDoubleBracketSubscript",
+    "representation": "normalizeDoubleBracketSubscript",
+    "parameters": "function ( i , x , exact = TRUE , error.if.nomatch = TRUE )",
+    "body": "{  if (  !   isTRUEorFALSE (  exact ) )   stop (  \"'exact' must be TRUE or FALSE\" )  if (  !   isTRUEorFALSE (  error.if.nomatch ) )   stop (  \"'error.if.nomatch' must be TRUE or FALSE\" )  if (   missing (  i ) )   stop (  \"subscript is missing\" )   subscript_type -   class (  i )  if (   is (  i ,  \"Rle\" ) )  {   i -   decodeRle (  i )   subscript_type -   paste0 (   class (  i ) ,  \"-\" ,  subscript_type ) }  if (     is.vector (  i ) undefined    length (  i ) ==  1L undefined   is.na (  i ) )  {  if (  error.if.nomatch )   stop (  \"subsetting by NA returns no match\" )   return (  NA_integer_ ) }  if (   !   is.numeric (  i ) undefined  !   is.character (  i ) )   stop (  \"invalid [[ subscript type: \" ,  subscript_type )  if (    length (  i ) undefined  1L )   stop (  \"attempt to extract less than one element\" )  if (    length (  i ) undefined  1L )   stop (  \"attempt to extract more than one element\" )  if (   is.numeric (  i ) )  {  if (  !   is.integer (  i ) )   i -   as.integer (  i )  if (    i undefined  1L ||    length (  x ) undefined  i )   stop (  \"subscript is out of bounds\" )   return (  i ) } ## 'i' is a character string   x_names -   names (  x )  if (   is.null (  x_names ) )  {  if (  error.if.nomatch )   stop (  \"attempt to extract by name when elements have no names\" )   return (  NA_integer_ ) } #if (i == \"\") #    stop(\"invalid subscript \\\"\\\"\")  if (  exact )  {   ans -   match (  i ,  x_names , incomparables =   c (  NA_character_ ,  \"\" ) ) } else  { ## Because 'i' has length 1, it doesn't matter whether we use ## 'duplicates.ok=FALSE' (the default) or 'duplicates.ok=TRUE' but ## the latter seems to be just a little bit faster.   ans -   pmatch (  i ,  x_names , duplicates.ok =  TRUE ) }  if (    is.na (  ans ) undefined  error.if.nomatch )   stop (  \"subscript \\\"\" ,  i ,  \"\\\" matches no name\" )  ans } ",
+    "filename": "subsetting-utils.txt"
+  },
+  "new_function": {
+    "name": "normalizeDoubleBracketSubscript",
+    "representation": "normalizeDoubleBracketSubscript",
+    "parameters": "function ( i , x , exact = TRUE , allow.append = FALSE , allow.NA = FALSE , allow.nomatch = FALSE )",
+    "body": "{  if (   missing (  i ) )   stop (  \"subscript is missing\" )  if (  !   isTRUEorFALSE (  exact ) )   stop (  \"'exact' must be TRUE or FALSE\" )  if (  !   isTRUEorFALSE (  allow.append ) )   stop (  \"'allow.append' must be TRUE or FALSE\" )  if (  !   isTRUEorFALSE (  allow.NA ) )   stop (  \"'allow.NA' must be TRUE or FALSE\" )  if (  !   isTRUEorFALSE (  allow.nomatch ) )   stop (  \"'allow.nomatch' must be TRUE or FALSE\" )   subscript_type -   class (  i )  if (   is (  i ,  \"Rle\" ) )  {   i -   decodeRle (  i )   subscript_type -   paste0 (   class (  i ) ,  \"-\" ,  subscript_type ) }  if (   is.factor (  i ) )   i -   as.character (  i )  if (     is.vector (  i ) undefined    length (  i ) ==  1L undefined   is.na (  i ) )  {  if (  !  allow.NA )   stop (  \"NA is not a valid [[ subscript\" )   return (  NA ) }  if (  !  (    is.numeric (  i ) ||   is.character (  i ) ) )   stop (  \"invalid [[ subscript type: \" ,  subscript_type )  if (    length (  i ) undefined  1L )   stop (  \"attempt to extract less than one element\" )  if (    length (  i ) undefined  1L )   stop (  \"attempt to extract more than one element\" )   x_len -   length (  x )  if (   is.numeric (  i ) )  {  if (  !   is.integer (  i ) )   i -   as.integer (  i )  if (   i undefined  1L )   stop (  \"[[ subscript must be )  if (  allow.append )  {  if (   i undefined   x_len +  1L )   stop (  \"[[ subscript must be ) } else  {  if (   i undefined  x_len )   stop (  \"subscript is out of bounds\" ) }   return (  i ) } ## 'i' is a single non-NA string.   x_names -   names (  x )  if (   is.null (  x_names ) )  {  if (  !  allow.nomatch )   stop (  \"attempt to extract by name when elements have no names\" )   return (  NA ) } #if (i == \"\") #    stop(\"invalid subscript \\\"\\\"\")   ans -   .match_name (  i ,  x_names , exact =  exact )  if (   is.na (  ans ) )  {  if (  !  allow.nomatch )   stop (  \"subscript \\\"\" ,  i ,  \"\\\" matches no name\" )   return (  NA ) }  ans } ",
+    "filename": "subsetting-utils.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  s4vectors_release_3_7 s4vectors_release_3_8
+
+{
+    "package": "S4Vectors",
+    "release_versions": "s4vectors_release_3_7 s4vectors_release_3_8",
+    "desc_release_old": "0.18.3",
+    "desc_release_new": "0.20.1",
+    "old_release_number": 6,
+    "new_release_number": 7,
+    "function_removals": 1,
+    "function_additions": 5,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+concatenateObjects
+
+
+##########
+Functions Added
+##########
+
+rev.Vector
+isSequence
+bindROWS
+rev
+rep
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "selectHits",
+    "representation": "selectHits",
+    "parameters": "function ( x , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" , \"count\" ) , rank )",
+    "body": "{  if (  !   is (  x ,  \"Hits\" ) )   stop (  \"'x' must be a Hits object\" )   select -   match.arg (  select )  if (   select ==  \"all\" )   return (  x )   to -   to (  x )  if (  !   missing (  rank ) )  {   r -   rank (  x , ties.method =  \"first\" , by =  rank )   revmap -   integer ( )    revmap [  r ] -  to   to -  r }   ans -   .Call2 (  \"select_hits\" ,   from (  x ) ,  to ,   nLnode (  x ) ,  select , PACKAGE =  \"S4Vectors\" )  if (  !   missing (  rank ) )  {   ans -   revmap [  ans ] }  ans } ",
+    "filename": "Hits-class.txt"
+  },
+  "new_function": {
+    "name": "selectHits",
+    "representation": "selectHits",
+    "parameters": "function ( hits , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" , \"count\" ) , nodup = FALSE , rank )",
+    "body": "{  if (  !   is (  hits ,  \"Hits\" ) )   stop (  \"'hits' must be a Hits object\" )   select -   match.arg (  select )  if (  !   isTRUEorFALSE (  nodup ) )   stop (   wmsg (  \"'nodup' must be TRUE or FALSE\" ) )  if (   nodup undefined  !  (   select %in%   c (  \"first\" ,  \"last\" ,  \"arbitrary\" ) ) )   stop (   wmsg (  \"'nodup=TRUE' is only supported when 'select' \" ,  \"is \\\"first\\\", \\\"last\\\", or \\\"arbitrary\\\"\" ) )  if (   !   missing (  rank ) undefined  (   !  (   select %in%   c (  \"first\" ,  \"last\" ) ) ||  nodup ) )   stop (   wmsg (  \"'rank' is only supported when 'select' \" ,  \"is \\\"first\\\" or \\\"last\\\" and 'nodup' is FALSE\" ) )  if (   select ==  \"all\" )   return (  hits ) # no-op   hits_from -   from (  hits )   hits_to -   to (  hits )   hits_nLnode -   nLnode (  hits )   hits_nRnode -   nRnode (  hits )  if (  !   missing (  rank ) )  {   r -   rank (  hits , ties.method =  \"first\" , by =  rank )   revmap -   integer ( )    revmap [  r ] -  hits_to   hits_to -  r }   ans -   .Call2 (  \"select_hits\" ,  hits_from ,  hits_to ,  hits_nLnode ,  hits_nRnode ,  select ,  nodup , PACKAGE =  \"S4Vectors\" )  if (  !   missing (  rank ) )   ans -   revmap [  ans ]  ans } ",
+    "filename": "Hits-class.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  s4vectors_release_3_8 s4vectors_release_3_9
+
+{
+    "package": "S4Vectors",
+    "release_versions": "s4vectors_release_3_8 s4vectors_release_3_9",
+    "desc_release_old": "0.20.1",
+    "desc_release_new": "0.22.1",
+    "old_release_number": 7,
+    "new_release_number": 8,
+    "function_removals": 0,
+    "function_additions": 5,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+transform.DataTable
+transform.Vector
+mergeROWS
+extractCOLS
+replaceCOLS
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "setValidity2",
+    "representation": "setValidity2",
+    "parameters": "function ( Class , valid.func , where = topenv ( parent.frame ( ) ) )",
+    "body": "{   setValidity (  Class ,  function ( object )  {  if (   disableValidity ( ) )   return (  TRUE )  if (   debugValidity ( ) )  {   whoami -   paste (  \"validity method for\" ,  Class ,  \"object\" )   cat (  \"[debugValidity] Entering \" ,  whoami ,  \"\\n\" , sep =  \"\" )   on.exit (   cat (  \"[debugValidity] Leaving \" ,  whoami ,  \"\\n\" , sep =  \"\" ) ) }   problems -   valid.func (  object )  if (    isTRUE (  problems ) ||    length (  problems ) ==  0L )   return (  TRUE )  problems } , where =  where ) } ",
+    "filename": "S4-utils.txt"
+  },
+  "new_function": {
+    "name": "setValidity2",
+    "representation": "setValidity2",
+    "parameters": "function ( Class , method , where = topenv ( parent.frame ( ) ) )",
+    "body": "{   setValidity (  Class ,  function ( object )  {  if (   disableValidity ( ) )   return (  TRUE )  if (   debugValidity ( ) )  {   whoami -   paste (  \"validity method for\" ,  Class ,  \"object\" )   cat (  \"[debugValidity] Entering \" ,  whoami ,  \"\\n\" , sep =  \"\" )   on.exit (   cat (  \"[debugValidity] Leaving \" ,  whoami ,  \"\\n\" , sep =  \"\" ) ) }   desc_strings -   method (  object )  if (    isTRUE (  desc_strings ) ||    length (  desc_strings ) ==  0L )   return (  TRUE )   vapply (  desc_strings ,  wmsg2 ,   character (  1 ) , USE.NAMES =  FALSE ) } , where =  where ) } ",
+    "filename": "S4-utils.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  s4vectors_release_3_9 s4vectors_release_3_11
+
+{
+    "package": "S4Vectors",
+    "release_versions": "s4vectors_release_3_9 s4vectors_release_3_11",
+    "desc_release_old": "0.22.1",
+    "desc_release_new": "0.26.1",
+    "old_release_number": 8,
+    "new_release_number": 9,
+    "function_removals": 8,
+    "function_additions": 21,
+    "parameter_removals": 0,
+    "parameter_additions": 1,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 9
+}
+
+##########
+Functions Removed
+##########
+
+rbind.DataFrame
+strsplitAsListOfIntegerVectors
+phead
+ptail
+rowSums
+colSums
+rowMeans
+colMeans
+
+
+##########
+Functions Added
+##########
+
+anyDuplicated.Vector
+anyDuplicated.Rle
+cbind.DataTable
+rbind.DataTable
+summary.Vector
+summary.Hits
+t.DataFrame
+t.TransposedDataFrame
+coolcat
+cbind_mcols_for_display
+makePrettyMatrixForCompactPrinting
+Factor
+make_zero_col_DFrame
+makeNakedCharacterMatrixForDisplay
+vertical_slot_names
+horizontal_slot_names
+bindCOLS
+sameAsPreviousROW
+FactorToClass
+unfactor
+splitAsList
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "sort",
+    "representation": "sort",
+    "signature": "List",
+    "parameters": "function ( x , decreasing = FALSE , na.last = NA )",
+    "body": "{  if (  !   pcompareRecursively (  x ) )  { ## TEMPORARY WORKAROUND A NASTY BUG IN callNextMethod()  (Apr 29, 2018) ## We temporary replace the call to callNextMethod() with an explicit ## call to the \"sort\" method for Vector objects. ## See .unique.List() above in this file for more information. #return(callNextMethod())   return (   .sort.Vector (  x , decreasing =  decreasing , na.last =  na.last ) ) }   i -   order (  x , na.last =  na.last , decreasing =  decreasing ) # IntegerList   x [  i ] } ",
+    "replacementFunction": ".sort.List",
+    "filename": "List-comparison.txt"
+  },
+  "new_function": {
+    "name": "sort",
+    "representation": "sort",
+    "signature": "List",
+    "parameters": "function ( x , decreasing = FALSE , na.last = NA , by )",
+    "body": "{  if (   !   missing (  by ) ||  !   pcompareRecursively (  x ) )  {   return (   callNextMethod ( ) ) }   i -   order (  x , na.last =  na.last , decreasing =  decreasing ) # IntegerList   x [  i ] } ",
+    "replacementFunction": ".sort.List",
+    "filename": "List-comparison.txt"
+  }
+}
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "sort",
+    "representation": "sort",
+    "signature": "List",
+    "parameters": "function ( x , decreasing = FALSE , na.last = NA )",
+    "body": "{  if (  !   pcompareRecursively (  x ) )  { ## TEMPORARY WORKAROUND A NASTY BUG IN callNextMethod()  (Apr 29, 2018) ## We temporary replace the call to callNextMethod() with an explicit ## call to the \"sort\" method for Vector objects. ## See .unique.List() above in this file for more information. #return(callNextMethod())   return (   .sort.Vector (  x , decreasing =  decreasing , na.last =  na.last ) ) }   i -   order (  x , na.last =  na.last , decreasing =  decreasing ) # IntegerList   x [  i ] } ",
+    "replacementFunction": ".sort.List",
+    "filename": "List-comparison.txt"
+  },
+  "new_function": {
+    "name": "sort",
+    "representation": "sort",
+    "signature": "List",
+    "parameters": "function ( x , decreasing = FALSE , na.last = NA , by )",
+    "body": "{  if (   !   missing (  by ) ||  !   pcompareRecursively (  x ) )  {   return (   callNextMethod ( ) ) }   i -   order (  x , na.last =  na.last , decreasing =  decreasing ) # IntegerList   x [  i ] } ",
+    "replacementFunction": ".sort.List",
+    "filename": "List-comparison.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  s4vectors_release_3_11 s4vectors_release_3_12
+
+{
+    "package": "S4Vectors",
+    "release_versions": "s4vectors_release_3_11 s4vectors_release_3_12",
+    "desc_release_old": "0.26.1",
+    "desc_release_new": "0.28.1",
+    "old_release_number": 9,
+    "new_release_number": 10,
+    "function_removals": 10,
+    "function_additions": 15,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 10
+}
+
+##########
+Functions Removed
+##########
+
+as.data.frame.DataTable
+cbind.DataTable
+duplicated.DataTable
+head.DataTable
+rbind.DataTable
+tail.DataTable
+transform.DataTable
+unique.DataTable
+NROW
+NCOL
+
+
+##########
+Functions Added
+##########
+
+as.data.frame.Hits
+cbind.RectangularData
+duplicated.DataFrame
+head.RectangularData
+rbind.RectangularData
+sort.Rle
+sort.List
+sort.DataFrame
+tail.RectangularData
+transform.DataFrame
+unique.DataFrame
+makeClassinfoRowForCompactPrinting
+parallel_slot_names
+mstack
+stack
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  s4vectors_release_3_12 s4vectors_release_3_13
+
+{
+    "package": "S4Vectors",
+    "release_versions": "s4vectors_release_3_12 s4vectors_release_3_13",
+    "desc_release_old": "0.28.1",
+    "desc_release_new": "0.30.2",
+    "old_release_number": 10,
+    "new_release_number": 11,
+    "function_removals": 1,
+    "function_additions": 7,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+parallelSlotNames
+
+
+##########
+Functions Added
+##########
+
+cbind.List
+I
+combineUniqueCols
+ROWNAMES<-
+combineRows
+combineCols
+unname
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  s4vectors_release_3_13 s4vectors_release_3_14
+
+{
+    "package": "S4Vectors",
+    "release_versions": "s4vectors_release_3_13 s4vectors_release_3_14",
+    "desc_release_old": "0.30.2",
+    "desc_release_new": "0.32.3",
+    "old_release_number": 11,
+    "new_release_number": 12,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  s4vectors_release_3_14 s4vectors_master
+
+{
+    "package": "S4Vectors",
+    "release_versions": "s4vectors_release_3_14 s4vectors_master",
+    "desc_release_old": "0.32.3",
+    "desc_release_new": "0.33.11",
+    "old_release_number": 12,
+    "new_release_number": 13,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+

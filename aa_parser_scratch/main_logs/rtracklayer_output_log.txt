@@ -1,0 +1,2269 @@
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rtracklayer_release_2_2 rtracklayer_release_2_3
+
+{
+    "package": "rtracklayer",
+    "release_versions": "rtracklayer_release_2_2 rtracklayer_release_2_3",
+    "desc_release_old": "1.0.0",
+    "desc_release_new": "1.2.2",
+    "old_release_number": 0,
+    "new_release_number": 1,
+    "function_removals": 4,
+    "function_additions": 11,
+    "parameter_removals": 1,
+    "parameter_additions": 6,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 8,
+    "total_count": 12
+}
+
+##########
+Functions Removed
+##########
+
+featChrom
+featStart
+featEnd
+featStrand
+
+
+##########
+Functions Added
+##########
+
+start
+end
+start<-
+end<-
+genome
+chrom
+strand
+genome<-
+chrom<-
+*
+/
+
+
+##########
+Removed Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "trackSet",
+    "representation": "trackSet",
+    "signature": "ucscSession",
+    "parameters": "function ( object , segment , name , format = \"bed\" , table = NULL )",
+    "body": "{  if (   is.null (  table ) )   table -  name # default table is track id   followup -  NULL   output -  format  if (   output ==  \"wig\" )   output -  \"wigData\" else  if (   output ==  \"bed\" )   followup -   list ( hgta_doGetBed =  \"get BED\" , hgta_printCustomTrackHeaders =  \"on\" , boolshad.hgta_printCustomTrackHeaders =  \"1\" )   output -   ucscExport (  object ,  segment ,  name ,  table ,  output ,  followup )   import ( text =  output , format =  format ) } ",
+    "filename": "ucsc.txt"
+  },
+  "new_function": {
+    "name": "trackSet",
+    "representation": "trackSet",
+    "signature": "ucscSession",
+    "parameters": "function ( object , name , segment = genomeSegment ( object ) , table = NULL )",
+    "body": "{   trackids -   tracks (  object )  if (  !  (   name %in%  trackids ) )  {   mapped_name -   trackids [  name ]  if (   is.na (  mapped_name ) )   stop (  \"Unknown track: \" ,  name )   name -  mapped_name }  if (   is.null (  table ) )   table -  name # default table is track id   followup -  NULL   tables -   ucscGet (  object ,  \"tables\" )   types_path -  \"//select[@name = 'hgta_outputType']/option/@value\" ##types   types -   unlist (   getNodeSet (  tables ,  types_path ) )  if (   \"wigData\" %in%  types )  { # track stored as wig   format -  \"wig\"   output -  \"wigData\" } else  {   format -   output -  \"bed\"   followup -   list ( hgta_doGetBed =  \"get BED\" , hgta_printCustomTrackHeaders =  \"on\" , boolshad.hgta_printCustomTrackHeaders =  \"1\" ) }   output -   ucscExport (  object ,  segment ,  name ,  table ,  output ,  followup )   import ( text =  output , format =  format ) } ",
+    "filename": "ucsc.txt"
+  }
+}
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "export.bed",
+    "representation": "export.bed",
+    "signature": "trackSet",
+    "parameters": "function ( object , con , wig )",
+    "body": "{   df -   trackData (  object )   bed -   cbind (   as.character (   df $ featChrom ) ,   df $ featStart ,   df $ featEnd )  if (  !  wig )   bed -   cbind (  bed ,   featureNames (  object ) )   bed -   cbind (  bed ,   df [[    sampleNames (  object ) [  1 ] ] ] )  if (  !  wig )  {   blockCount -  NULL  if (  !   is.null (   df $ blockSizes ) )   blockCount -   length (    strsplit (   df $ blockSizes ,  \",\" ) [[  1 ] ] )   color -   df $ color  if (    is.null (  color ) undefined  !   is.null (  blockCount ) )   color -  \"black\"  if (  !   is.null (  color ) )   color -    col2rgb (  color ) [ ,  1 ]   thickStart -   df $ thickStart   thickEnd -   df $ thickEnd  if (    is.null (  thickStart ) undefined  !   is.null (  color ) )  {   thickStart -   df $ featStart   thickEnd -   df $ featEnd }   bed -   cbind (  bed ,   df $ featStrand ,  thickStart ,  thickEnd ,  color ,  blockCount ,   df $ blockSizes ,   df $ blockStarts ) }   write.table (  bed ,  con , sep =  \"\\t\" , col.names =  FALSE , row.names =  FALSE , quote =  FALSE ) } ",
+    "filename": "bed.txt"
+  },
+  "new_function": {
+    "name": "export.bed",
+    "representation": "export.bed",
+    "signature": "trackSet",
+    "parameters": "function ( object , con , wig , color )",
+    "body": "{   df -   trackData (  object ) # BED start positions are 0-based   bed -   cbind (   as.character (   df $ chrom ) ,    as.numeric (   df $ start ) -  1 ,   df $ end )  if (  !  wig )  {   name -   as.character (   df $ name )  if (  !   length (  name ) )   name -   featureNames (  object )   bed -   cbind (  bed ,  name ) }   score -   df [[    sampleNames (  object ) [  1 ] ] ]  if (   is.null (  score ) )   score -  0   bed -   cbind (  bed ,  score )  if (  !  wig )  {   blockCount -  NULL  if (  !   is.null (   df $ blockSizes ) )   blockCount -   length (    strsplit (   df $ blockSizes ,  \",\" ) [[  1 ] ] )  if (   is.null (  color ) )   color -   df $ color  if (    is.null (  color ) undefined  !   is.null (  blockCount ) )   color -  \"black\"  if (  !   is.null (  color ) )   color -   paste (   as.vector (   col2rgb (  color ) ) , collapse =  \",\" )   thickStart -   df $ thickStart   thickEnd -   df $ thickEnd  if (    is.null (  thickStart ) undefined  !   is.null (  color ) )  {   thickStart -   df $ start   thickEnd -   df $ end }   bed -   cbind (  bed ,   as.character (   df $ strand ) ,  thickStart ,  thickEnd ,  color ,  blockCount ,   df $ blockSizes ,   df $ blockStarts ) }   write.table (  bed ,  con , sep =  \"\\t\" , col.names =  FALSE , row.names =  FALSE , quote =  FALSE , na =  \".\" ) } ",
+    "filename": "bed.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "import.bed",
+    "representation": "import.bed",
+    "signature": "ANY",
+    "parameters": "function ( con , wig , trackLine )",
+    "body": "{  if (   !  wig undefined  trackLine )  { # check for a track line   lines -   readLines (  con , warn =  FALSE )  if (    length (   grep (  \"^track\" ,  lines ) ) undefined  0 )   trackSet -   import ( text =  lines , format =  \"ucsc\" , subformat =  \"bed\" , drop =  TRUE , trackLine =  FALSE ) else   trackLine -  FALSE }  if (   wig ||  !  trackLine )  {   bed -   read.table (  con )   bedNames -   c (  \"featChrom\" ,  \"featStart\" ,  \"featEnd\" ,  \"name\" ,  \"score\" ,  \"featStrand\" ,  \"thickStart\" ,  \"thickEnd\" ,  \"color\" ,  \"blockCount\" ,  \"blockSizes\" ,  \"blockStarts\" )    colnames (  bed ) -   bedNames [   seq_len (   ncol (  bed ) ) ]   featureData -   bed [ ,  !  (    colnames (  bed ) %in%   c (  \"name\" ,  \"score\" ) ) ]  if (  !  wig )    rownames (  featureData ) -   bed $ name   score -  NA  if (  wig )   score -   bed $ name else  if (  !   is.null (   bed $ score ) )   score -   bed $ score   trackSet -   new (  \"trackSet\" , featureData =  featureData , dataVals =  score ) }  trackSet } ",
+    "filename": "bed.txt"
+  },
+  "new_function": {
+    "name": "import.bed",
+    "representation": "import.bed",
+    "signature": "ANY",
+    "parameters": "function ( con , wig , trackLine , genome )",
+    "body": "{  if (   !  wig undefined  trackLine )  { ## check for a track line   line -  \"#\"  while (   length (   grep (  \"^ *#\" ,  line ) ) ) # skip initial comments   line -   readLines (  con ,  1 , warn =  FALSE )   pushBack (  line ,  con )  if (    length (   grep (  \"^track\" ,  line ) ) undefined  0 )   trackSet -   import.ucsc (  con , subformat =  \"bed\" , drop =  TRUE , trackLine =  FALSE , genome =  genome ) else   trackLine -  FALSE }  if (   wig ||  !  trackLine )  {   bed -   read.table (  con )   bedNames -   c (  \"chrom\" ,  \"start\" ,  \"end\" ,  \"name\" ,  \"score\" ,  \"strand\" ,  \"thickStart\" ,  \"thickEnd\" ,  \"color\" ,  \"blockCount\" ,  \"blockSizes\" ,  \"blockStarts\" )    colnames (  bed ) -   bedNames [   seq_len (   ncol (  bed ) ) ]    bed $ start -    bed $ start +  1 # BED has 0-based start positions   featureData -   bed [ ,  !  (    colnames (  bed ) ==  \"score\" ) ]  if (  !  wig )    rownames (  featureData ) -   make.names (   bed $ name ,  TRUE )  if (  wig )  {   score -   bed $ name    featureData $ name -  NULL } else  if (  !   is.null (   bed $ score ) )   score -   bed $ score else   score -   rep (  NA ,   nrow (  featureData ) )   trackSet -   new (  \"trackSet\" , featureData =   trackFeatureData (  featureData ) , dataVals =   cbind ( score =  score ) , genome =  genome ) }  trackSet } ",
+    "filename": "bed.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "import.gff",
+    "representation": "import.gff",
+    "signature": "ANY",
+    "parameters": "function ( con , version = c ( \"1\" , \"2\" , \"3\" ) )",
+    "body": "{   versionMissing -   missing (  version )   version -   match.arg (  version )   lines -   readLines (  con , warn =  FALSE ) # unfortunately, not a table # check our version   versionLine -   lines [   grep (  \"^##gff-version [1-3]\" ,  lines ) ]  if (   length (  versionLine ) )  {   specVersion -   sub (  \"^##gff-version \" ,  \"\" ,  versionLine )  if (   !  versionMissing undefined   specVersion !=  version )   warning (  \"gff-version directive indicates version is \" ,  specVersion ,  \", not \" ,  version ) else   version -  specVersion } # strip comments   lines -   lines [   grep (  \"^[^#]\" ,  lines ) ] # construct table   fields -   c (  \"seqname\" ,  \"source\" ,  \"feature\" ,  \"start\" ,  \"end\" ,  \"score\" ,  \"strand\" ,  \"frame\" ,  \"attributes\" )   linesSplit -   strsplit (  lines ,  \"\\t\" )   haveAttr -    sapply (  linesSplit ,  length ) ==   length (  fields )   haveAttrMat -   do.call (  \"rbind\" ,   linesSplit [  haveAttr ] )   noAttrMat -   do.call (  \"rbind\" ,   linesSplit [  !  haveAttr ] )  if (  !   is.null (  noAttrMat ) )   noAttrMat -   cbind (  noAttrMat ,  \"\" )   table -   rbind (  noAttrMat ,  haveAttrMat )    colnames (  table ) -  fields # handle missings    table [   table ==  \".\" ] -  NA  if (   version ==  3 )  {    table [    table [ ,  \"strand\" ] ==  \"?\" ,  \"strand\" ] -  NA   tableDec -   urlDecode (   as.vector (  table ) )   table -   matrix (  tableDec , ncol =   ncol (  table ) , dimnames =   dimnames (  table ) ) }   featureData -   data.frame ( featChrom =   table [ ,  \"seqname\" ] , featStart =   as.numeric (   table [ ,  \"start\" ] ) , featEnd =   as.numeric (   table [ ,  \"end\" ] ) , featStrand =   table [ ,  \"strand\" ] , phase =   table [ ,  \"frame\" ] , type =   table [ ,  \"feature\" ] , source =   table [ ,  \"source\" ] )  if (  !   is.null (   table [ ,  \"attributes\" ] ) )  {  if (   version ==  \"1\" )  {   attrList -   list ( group =   table [ ,  \"attributes\" ] ) } else  {   attrSplit -   strsplit (   table [ ,  \"attributes\" ] ,  \";\" )   lines -   rep (   seq_along (  attrSplit ) ,   lapply (  attrSplit ,  length ) )   attrs -   sub (  \" *$\" ,  \"\" ,   sub (  \"^ *\" ,  \"\" ,   unlist (  attrSplit ) ) )  if (   version ==  \"3\" )  {   tvMat -   matrix (   unlist (   strsplit (  attrs ,  \"=\" ) ) , nrow =  2 )   tags -   tvMat [  1 , ]   vals -   tvMat [  2 , ] } else  { # split on first space   tags -   sub (  \" .*\" ,  \"\" ,  attrs ) # strip surrounding quotes   vals -   sub (  \"^\\\"([^\\\"]*)\\\"$\" ,  \"\\\\1\" ,   sub (  \"^[^ ]* \" ,  \"\" ,  attrs ) ) }   attrList -   lapply (   split.data.frame (   cbind (  lines ,  vals ) ,  tags ) ,  function ( tag )  {   vals -   tag [ ,  \"vals\" ]   coerced -   suppressWarnings (   as.numeric (  vals ) )  if (  !   any (   is.na (  coerced ) ) )   vals -  coerced   vec -   rep (  NA ,   nrow (  table ) )    vec [   as.numeric (   tag [ ,  \"lines\" ] ) ] -  vals  vec } ) }   featureData -   cbind (  featureData ,   as.data.frame (  attrList ) ) }   suppressWarnings (   score -   as.numeric (   table [ ,  \"score\" ] ) )   new (  \"trackSet\" , featureData =  featureData , dataVals =  score ) } ",
+    "filename": "gff.txt"
+  },
+  "new_function": {
+    "name": "import.gff",
+    "representation": "import.gff",
+    "signature": "ANY",
+    "parameters": "function ( con , version = c ( \"1\" , \"2\" , \"3\" ) , genome )",
+    "body": "{   versionMissing -   missing (  version )   version -   match.arg (  version )   lines -   readLines (  con , warn =  FALSE ) # unfortunately, not a table   lines -   lines [    nchar (  lines ) undefined  0 ] # check our version   versionLine -   lines [   grep (  \"^##gff-version [1-3]\" ,  lines ) ]  if (   length (  versionLine ) )  {   specVersion -   sub (  \"^##gff-version \" ,  \"\" ,  versionLine )  if (   !  versionMissing undefined   specVersion !=  version )   warning (  \"gff-version directive indicates version is \" ,  specVersion ,  \", not \" ,  version ) else   version -  specVersion } ## strip comments   notComments -   grep (  \"^[^#]\" ,  lines )   lines -   lines [  notComments ] ### TODO: handle ontologies (store in trackSet) ## construct table   fields -   c (  \"seqname\" ,  \"source\" ,  \"feature\" ,  \"start\" ,  \"end\" ,  \"score\" ,  \"strand\" ,  \"frame\" ,  \"attributes\" )   linesSplit -   strsplit (  lines ,  \"\\t\" )   haveAttr -    sapply (  linesSplit ,  length ) ==   length (  fields )   haveAttrMat -   do.call (  \"rbind\" ,   linesSplit [  haveAttr ] )   noAttrMat -   do.call (  \"rbind\" ,   linesSplit [  !  haveAttr ] )  if (  !   is.null (  noAttrMat ) )   noAttrMat -   cbind (  noAttrMat ,  \"\" )   table -   rbind (  noAttrMat ,  haveAttrMat )    colnames (  table ) -  fields # handle missings    table [   table ==  \".\" ] -  NA  if (   version ==  3 )  {    table [    table [ ,  \"strand\" ] ==  \"?\" ,  \"strand\" ] -  NA   tableDec -   urlDecode (   as.vector (  table ) )   table -   matrix (  tableDec , ncol =   ncol (  table ) , dimnames =   dimnames (  table ) ) }   featureData -   data.frame ( chrom =   table [ ,  \"seqname\" ] , start =   as.numeric (   table [ ,  \"start\" ] ) , end =   as.numeric (   table [ ,  \"end\" ] ) , strand =   table [ ,  \"strand\" ] , phase =   table [ ,  \"frame\" ] , type =   table [ ,  \"feature\" ] , source =   table [ ,  \"source\" ] )    rownames (  featureData ) -   make.names (   table [ ,  \"seqname\" ] ,  TRUE )  if (  !   is.null (   table [ ,  \"attributes\" ] ) )  {  if (   version ==  \"1\" )  {   attrList -   list ( group =   table [ ,  \"attributes\" ] ) } else  {   attrSplit -   strsplit (   table [ ,  \"attributes\" ] ,  \";\" )   lines -   rep (   seq_along (  attrSplit ) ,   lapply (  attrSplit ,  length ) )   attrs -   sub (  \" *$\" ,  \"\" ,   sub (  \"^ *\" ,  \"\" ,   unlist (  attrSplit ) ) )  if (   version ==  \"3\" )  {   tvMat -   matrix (   unlist (   strsplit (  attrs ,  \"=\" ) ) , nrow =  2 )   tags -   tvMat [  1 , ]   vals -   tvMat [  2 , ] } else  { # split on first space   tags -   sub (  \" .*\" ,  \"\" ,  attrs ) # strip surrounding quotes   vals -   sub (  \"^\\\"([^\\\"]*)\\\"$\" ,  \"\\\\1\" ,   sub (  \"^[^ ]* \" ,  \"\" ,  attrs ) ) }   attrList -   lapply (   split.data.frame (   cbind (  lines ,  vals ) ,  tags ) ,  function ( tag )  {   vals -   tag [ ,  \"vals\" ]   coerced -   suppressWarnings (   as.numeric (  vals ) )  if (  !   any (   is.na (  coerced ) ) )   vals -  coerced   vec -   rep (  NA ,   nrow (  table ) )    vec [   as.numeric (   tag [ ,  \"lines\" ] ) ] -  vals  vec } ) }   featureData -   cbind (  featureData ,   as.data.frame (  attrList ) )  if (   !   is.null (   featureData $ ID ) undefined  !   any (   is.na (   featureData $ ID ) ) )    rownames (  featureData ) -   featureData $ ID }   suppressWarnings (   score -   as.numeric (   table [ ,  \"score\" ] ) )   new (  \"trackSet\" , featureData =   trackFeatureData (  featureData ) , dataVals =   cbind ( score =  score ) , genome =  genome ) } ",
+    "filename": "gff.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "ucscTrackModes",
+    "representation": "ucscTrackModes",
+    "signature": "character",
+    "parameters": "function ( object , hide = character ( ) , dense = character ( ) , pack = character ( ) , squish = character ( ) , full = character ( ) )",
+    "body": "{    object [  hide ] -  \"hide\"    object [  dense ] -  \"dense\"    object [  pack ] -  \"pack\"    object [  squish ] -  \"squish\"    object [  full ] -  \"full\"   new (  \"ucscTrackModes\" ,  object ) } ",
+    "filename": "ucsc.txt"
+  },
+  "new_function": {
+    "name": "ucscTrackModes",
+    "representation": "ucscTrackModes",
+    "signature": "character",
+    "parameters": "function ( object , labels , hide = character ( ) , dense = character ( ) , pack = character ( ) , squish = character ( ) , full = character ( ) )",
+    "body": "{    object [  hide ] -  \"hide\"    object [  dense ] -  \"dense\"    object [  pack ] -  \"pack\"    object [  squish ] -  \"squish\"    object [  full ] -  \"full\"  if (   missing (  labels ) )   labels -   names (  object )   new (  \"ucscTrackModes\" ,  object , labels =   as.character (  labels ) ) } ",
+    "filename": "ucsc.txt"
+  }
+}
+
+4.
+{
+  "old_function": {
+    "name": "import.wig",
+    "representation": "import.wig",
+    "signature": "ANY",
+    "parameters": "function ( con )",
+    "body": "{   import.ucsc (  con ,  \"wig\" ) } ",
+    "filename": "wig.txt"
+  },
+  "new_function": {
+    "name": "import.wig",
+    "representation": "import.wig",
+    "signature": "ANY",
+    "parameters": "function ( con , genome )",
+    "body": "{   import.ucsc (  con ,  \"wig\" ,  TRUE , genome =  genome ) } ",
+    "filename": "wig.txt"
+  }
+}
+
+5.
+{
+  "old_function": {
+    "name": "import.wig",
+    "representation": "import.wig",
+    "signature": "ANY",
+    "parameters": "function ( con )",
+    "body": "{   import.ucsc (  con ,  \"wig\" ,  TRUE ) } ",
+    "filename": "wig.txt"
+  },
+  "new_function": {
+    "name": "import.wig",
+    "representation": "import.wig",
+    "signature": "ANY",
+    "parameters": "function ( con , genome )",
+    "body": "{   import.ucsc (  con ,  \"wig\" ,  TRUE , genome =  genome ) } ",
+    "filename": "wig.txt"
+  }
+}
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "trackSet",
+    "representation": "trackSet",
+    "signature": "argoSession",
+    "parameters": "function ( object , segment = genomeSegment ( object ) , name )",
+    "body": "{   registry -   .jcall (  \"calhoun/gebo/db/TrackManagerRegistry\" ,  \"Lcalhoun/gebo/db/TrackManagerRegistry;\" ,  \"getGlobal\" )   managers -   .jcall (  registry ,  \"[Lcalhoun/gebo/api/TrackManager;\" ,  \"getTrackManagers\" )  for  ( manager in  managers )  {   print (  manager )   track -   .jcall (  manager ,  \"Lcalhoun/gebo/model/FeatureTrack;\" ,  \"getTrack\" ,  name )  if (  !   is.null (  track ) )  break }   jsegment -   .jcast (   argoJobj (  segment ) ,  \"calhoun/gebo/model/Segment\" )   features -   .jcall (  track ,  \"[Lcalhoun/gebo/model/Feature;\" ,  \"getFeatures\" ,  jsegment )   getFeatureRow -  function ( feature )  {   featStart -   .jcall (  feature ,  \"I\" ,  \"getStart\" )   featEnd -   .jcall (  feature ,  \"I\" ,  \"getStop\" )   strand -   .jcall (  feature ,  \"Lcalhoun/gebo/model/Strand;\" ,  \"getStrand\" )   featStrand -   .jcall (  strand ,  \"S\" ,  \"toString\" )   data.frame ( featStart =  featStart , featEnd =  featEnd , featStrand =  featStrand ) }   featureData -   do.call (  \"rbind\" ,   lapply (  features ,  getFeatureRow ) )   featureData -   cbind (  featureData , featChrom =   segment @ chrom )   new (  \"trackSet\" , featureData =  featureData , dataVals =   rep (  NA ,   nrow (  featureData ) ) , genome =   segment @ genome ) } ",
+    "filename": "argo.txt"
+  },
+  "new_function": {
+    "name": "trackSet",
+    "representation": "trackSet",
+    "signature": "argoSession",
+    "parameters": "function ( object , name , segment = genomeSegment ( object ) )",
+    "body": "{   registry -   .jcall (  \"calhoun/gebo/db/TrackManagerRegistry\" ,  \"Lcalhoun/gebo/db/TrackManagerRegistry;\" ,  \"getGlobal\" )   managers -   .jcall (  registry ,  \"[Lcalhoun/gebo/api/TrackManager;\" ,  \"getTrackManagers\" )  for  ( manager in  managers )  {   print (  manager )   track -   .jcall (  manager ,  \"Lcalhoun/gebo/model/FeatureTrack;\" ,  \"getTrack\" ,  name )  if (  !   is.null (  track ) )  break }   jsegment -   .jcast (   argoJobj (  segment ) ,  \"calhoun/gebo/model/Segment\" )   features -   .jcall (  track ,  \"[Lcalhoun/gebo/model/Feature;\" ,  \"getFeatures\" ,  jsegment )   getFeatureRow -  function ( feature )  {   start -   .jcall (  feature ,  \"I\" ,  \"getStart\" )   end -   .jcall (  feature ,  \"I\" ,  \"getStop\" )   strand -   .jcall (  feature ,  \"Lcalhoun/gebo/model/Strand;\" ,  \"getStrand\" )   strand -   .jcall (  strand ,  \"S\" ,  \"toString\" )   data.frame ( start =  start , end =  end , strand =  strand ) }   featureData -   do.call (  \"rbind\" ,   lapply (  features ,  getFeatureRow ) )   featureData -   cbind (  featureData , chrom =   segment @ chrom )   new (  \"trackSet\" , featureData =  featureData , dataVals =   rep (  NA ,   nrow (  featureData ) ) , genome =   segment @ genome ) } ",
+    "filename": "argo.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "trackSet",
+    "representation": "trackSet",
+    "signature": "ucscSession",
+    "parameters": "function ( object , segment , name , format = \"bed\" , table = NULL )",
+    "body": "{  if (   is.null (  table ) )   table -  name # default table is track id   followup -  NULL   output -  format  if (   output ==  \"wig\" )   output -  \"wigData\" else  if (   output ==  \"bed\" )   followup -   list ( hgta_doGetBed =  \"get BED\" , hgta_printCustomTrackHeaders =  \"on\" , boolshad.hgta_printCustomTrackHeaders =  \"1\" )   output -   ucscExport (  object ,  segment ,  name ,  table ,  output ,  followup )   import ( text =  output , format =  format ) } ",
+    "filename": "ucsc.txt"
+  },
+  "new_function": {
+    "name": "trackSet",
+    "representation": "trackSet",
+    "signature": "ucscSession",
+    "parameters": "function ( object , name , segment = genomeSegment ( object ) , table = NULL )",
+    "body": "{   trackids -   tracks (  object )  if (  !  (   name %in%  trackids ) )  {   mapped_name -   trackids [  name ]  if (   is.na (  mapped_name ) )   stop (  \"Unknown track: \" ,  name )   name -  mapped_name }  if (   is.null (  table ) )   table -  name # default table is track id   followup -  NULL   tables -   ucscGet (  object ,  \"tables\" )   types_path -  \"//select[@name = 'hgta_outputType']/option/@value\" ##types   types -   unlist (   getNodeSet (  tables ,  types_path ) )  if (   \"wigData\" %in%  types )  { # track stored as wig   format -  \"wig\"   output -  \"wigData\" } else  {   format -   output -  \"bed\"   followup -   list ( hgta_doGetBed =  \"get BED\" , hgta_printCustomTrackHeaders =  \"on\" , boolshad.hgta_printCustomTrackHeaders =  \"1\" ) }   output -   ucscExport (  object ,  segment ,  name ,  table ,  output ,  followup )   import ( text =  output , format =  format ) } ",
+    "filename": "ucsc.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "export.bed",
+    "representation": "export.bed",
+    "signature": "trackSet",
+    "parameters": "function ( object , con , wig )",
+    "body": "{   df -   trackData (  object )   bed -   cbind (   as.character (   df $ featChrom ) ,   df $ featStart ,   df $ featEnd )  if (  !  wig )   bed -   cbind (  bed ,   featureNames (  object ) )   bed -   cbind (  bed ,   df [[    sampleNames (  object ) [  1 ] ] ] )  if (  !  wig )  {   blockCount -  NULL  if (  !   is.null (   df $ blockSizes ) )   blockCount -   length (    strsplit (   df $ blockSizes ,  \",\" ) [[  1 ] ] )   color -   df $ color  if (    is.null (  color ) undefined  !   is.null (  blockCount ) )   color -  \"black\"  if (  !   is.null (  color ) )   color -    col2rgb (  color ) [ ,  1 ]   thickStart -   df $ thickStart   thickEnd -   df $ thickEnd  if (    is.null (  thickStart ) undefined  !   is.null (  color ) )  {   thickStart -   df $ featStart   thickEnd -   df $ featEnd }   bed -   cbind (  bed ,   df $ featStrand ,  thickStart ,  thickEnd ,  color ,  blockCount ,   df $ blockSizes ,   df $ blockStarts ) }   write.table (  bed ,  con , sep =  \"\\t\" , col.names =  FALSE , row.names =  FALSE , quote =  FALSE ) } ",
+    "filename": "bed.txt"
+  },
+  "new_function": {
+    "name": "export.bed",
+    "representation": "export.bed",
+    "signature": "trackSet",
+    "parameters": "function ( object , con , wig , color )",
+    "body": "{   df -   trackData (  object ) # BED start positions are 0-based   bed -   cbind (   as.character (   df $ chrom ) ,    as.numeric (   df $ start ) -  1 ,   df $ end )  if (  !  wig )  {   name -   as.character (   df $ name )  if (  !   length (  name ) )   name -   featureNames (  object )   bed -   cbind (  bed ,  name ) }   score -   df [[    sampleNames (  object ) [  1 ] ] ]  if (   is.null (  score ) )   score -  0   bed -   cbind (  bed ,  score )  if (  !  wig )  {   blockCount -  NULL  if (  !   is.null (   df $ blockSizes ) )   blockCount -   length (    strsplit (   df $ blockSizes ,  \",\" ) [[  1 ] ] )  if (   is.null (  color ) )   color -   df $ color  if (    is.null (  color ) undefined  !   is.null (  blockCount ) )   color -  \"black\"  if (  !   is.null (  color ) )   color -   paste (   as.vector (   col2rgb (  color ) ) , collapse =  \",\" )   thickStart -   df $ thickStart   thickEnd -   df $ thickEnd  if (    is.null (  thickStart ) undefined  !   is.null (  color ) )  {   thickStart -   df $ start   thickEnd -   df $ end }   bed -   cbind (  bed ,   as.character (   df $ strand ) ,  thickStart ,  thickEnd ,  color ,  blockCount ,   df $ blockSizes ,   df $ blockStarts ) }   write.table (  bed ,  con , sep =  \"\\t\" , col.names =  FALSE , row.names =  FALSE , quote =  FALSE , na =  \".\" ) } ",
+    "filename": "bed.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "import.bed",
+    "representation": "import.bed",
+    "signature": "ANY",
+    "parameters": "function ( con , wig , trackLine )",
+    "body": "{  if (   !  wig undefined  trackLine )  { # check for a track line   lines -   readLines (  con , warn =  FALSE )  if (    length (   grep (  \"^track\" ,  lines ) ) undefined  0 )   trackSet -   import ( text =  lines , format =  \"ucsc\" , subformat =  \"bed\" , drop =  TRUE , trackLine =  FALSE ) else   trackLine -  FALSE }  if (   wig ||  !  trackLine )  {   bed -   read.table (  con )   bedNames -   c (  \"featChrom\" ,  \"featStart\" ,  \"featEnd\" ,  \"name\" ,  \"score\" ,  \"featStrand\" ,  \"thickStart\" ,  \"thickEnd\" ,  \"color\" ,  \"blockCount\" ,  \"blockSizes\" ,  \"blockStarts\" )    colnames (  bed ) -   bedNames [   seq_len (   ncol (  bed ) ) ]   featureData -   bed [ ,  !  (    colnames (  bed ) %in%   c (  \"name\" ,  \"score\" ) ) ]  if (  !  wig )    rownames (  featureData ) -   bed $ name   score -  NA  if (  wig )   score -   bed $ name else  if (  !   is.null (   bed $ score ) )   score -   bed $ score   trackSet -   new (  \"trackSet\" , featureData =  featureData , dataVals =  score ) }  trackSet } ",
+    "filename": "bed.txt"
+  },
+  "new_function": {
+    "name": "import.bed",
+    "representation": "import.bed",
+    "signature": "ANY",
+    "parameters": "function ( con , wig , trackLine , genome )",
+    "body": "{  if (   !  wig undefined  trackLine )  { ## check for a track line   line -  \"#\"  while (   length (   grep (  \"^ *#\" ,  line ) ) ) # skip initial comments   line -   readLines (  con ,  1 , warn =  FALSE )   pushBack (  line ,  con )  if (    length (   grep (  \"^track\" ,  line ) ) undefined  0 )   trackSet -   import.ucsc (  con , subformat =  \"bed\" , drop =  TRUE , trackLine =  FALSE , genome =  genome ) else   trackLine -  FALSE }  if (   wig ||  !  trackLine )  {   bed -   read.table (  con )   bedNames -   c (  \"chrom\" ,  \"start\" ,  \"end\" ,  \"name\" ,  \"score\" ,  \"strand\" ,  \"thickStart\" ,  \"thickEnd\" ,  \"color\" ,  \"blockCount\" ,  \"blockSizes\" ,  \"blockStarts\" )    colnames (  bed ) -   bedNames [   seq_len (   ncol (  bed ) ) ]    bed $ start -    bed $ start +  1 # BED has 0-based start positions   featureData -   bed [ ,  !  (    colnames (  bed ) ==  \"score\" ) ]  if (  !  wig )    rownames (  featureData ) -   make.names (   bed $ name ,  TRUE )  if (  wig )  {   score -   bed $ name    featureData $ name -  NULL } else  if (  !   is.null (   bed $ score ) )   score -   bed $ score else   score -   rep (  NA ,   nrow (  featureData ) )   trackSet -   new (  \"trackSet\" , featureData =   trackFeatureData (  featureData ) , dataVals =   cbind ( score =  score ) , genome =  genome ) }  trackSet } ",
+    "filename": "bed.txt"
+  }
+}
+
+4.
+{
+  "old_function": {
+    "name": "import.gff",
+    "representation": "import.gff",
+    "signature": "ANY",
+    "parameters": "function ( con , version = c ( \"1\" , \"2\" , \"3\" ) )",
+    "body": "{   versionMissing -   missing (  version )   version -   match.arg (  version )   lines -   readLines (  con , warn =  FALSE ) # unfortunately, not a table # check our version   versionLine -   lines [   grep (  \"^##gff-version [1-3]\" ,  lines ) ]  if (   length (  versionLine ) )  {   specVersion -   sub (  \"^##gff-version \" ,  \"\" ,  versionLine )  if (   !  versionMissing undefined   specVersion !=  version )   warning (  \"gff-version directive indicates version is \" ,  specVersion ,  \", not \" ,  version ) else   version -  specVersion } # strip comments   lines -   lines [   grep (  \"^[^#]\" ,  lines ) ] # construct table   fields -   c (  \"seqname\" ,  \"source\" ,  \"feature\" ,  \"start\" ,  \"end\" ,  \"score\" ,  \"strand\" ,  \"frame\" ,  \"attributes\" )   linesSplit -   strsplit (  lines ,  \"\\t\" )   haveAttr -    sapply (  linesSplit ,  length ) ==   length (  fields )   haveAttrMat -   do.call (  \"rbind\" ,   linesSplit [  haveAttr ] )   noAttrMat -   do.call (  \"rbind\" ,   linesSplit [  !  haveAttr ] )  if (  !   is.null (  noAttrMat ) )   noAttrMat -   cbind (  noAttrMat ,  \"\" )   table -   rbind (  noAttrMat ,  haveAttrMat )    colnames (  table ) -  fields # handle missings    table [   table ==  \".\" ] -  NA  if (   version ==  3 )  {    table [    table [ ,  \"strand\" ] ==  \"?\" ,  \"strand\" ] -  NA   tableDec -   urlDecode (   as.vector (  table ) )   table -   matrix (  tableDec , ncol =   ncol (  table ) , dimnames =   dimnames (  table ) ) }   featureData -   data.frame ( featChrom =   table [ ,  \"seqname\" ] , featStart =   as.numeric (   table [ ,  \"start\" ] ) , featEnd =   as.numeric (   table [ ,  \"end\" ] ) , featStrand =   table [ ,  \"strand\" ] , phase =   table [ ,  \"frame\" ] , type =   table [ ,  \"feature\" ] , source =   table [ ,  \"source\" ] )  if (  !   is.null (   table [ ,  \"attributes\" ] ) )  {  if (   version ==  \"1\" )  {   attrList -   list ( group =   table [ ,  \"attributes\" ] ) } else  {   attrSplit -   strsplit (   table [ ,  \"attributes\" ] ,  \";\" )   lines -   rep (   seq_along (  attrSplit ) ,   lapply (  attrSplit ,  length ) )   attrs -   sub (  \" *$\" ,  \"\" ,   sub (  \"^ *\" ,  \"\" ,   unlist (  attrSplit ) ) )  if (   version ==  \"3\" )  {   tvMat -   matrix (   unlist (   strsplit (  attrs ,  \"=\" ) ) , nrow =  2 )   tags -   tvMat [  1 , ]   vals -   tvMat [  2 , ] } else  { # split on first space   tags -   sub (  \" .*\" ,  \"\" ,  attrs ) # strip surrounding quotes   vals -   sub (  \"^\\\"([^\\\"]*)\\\"$\" ,  \"\\\\1\" ,   sub (  \"^[^ ]* \" ,  \"\" ,  attrs ) ) }   attrList -   lapply (   split.data.frame (   cbind (  lines ,  vals ) ,  tags ) ,  function ( tag )  {   vals -   tag [ ,  \"vals\" ]   coerced -   suppressWarnings (   as.numeric (  vals ) )  if (  !   any (   is.na (  coerced ) ) )   vals -  coerced   vec -   rep (  NA ,   nrow (  table ) )    vec [   as.numeric (   tag [ ,  \"lines\" ] ) ] -  vals  vec } ) }   featureData -   cbind (  featureData ,   as.data.frame (  attrList ) ) }   suppressWarnings (   score -   as.numeric (   table [ ,  \"score\" ] ) )   new (  \"trackSet\" , featureData =  featureData , dataVals =  score ) } ",
+    "filename": "gff.txt"
+  },
+  "new_function": {
+    "name": "import.gff",
+    "representation": "import.gff",
+    "signature": "ANY",
+    "parameters": "function ( con , version = c ( \"1\" , \"2\" , \"3\" ) , genome )",
+    "body": "{   versionMissing -   missing (  version )   version -   match.arg (  version )   lines -   readLines (  con , warn =  FALSE ) # unfortunately, not a table   lines -   lines [    nchar (  lines ) undefined  0 ] # check our version   versionLine -   lines [   grep (  \"^##gff-version [1-3]\" ,  lines ) ]  if (   length (  versionLine ) )  {   specVersion -   sub (  \"^##gff-version \" ,  \"\" ,  versionLine )  if (   !  versionMissing undefined   specVersion !=  version )   warning (  \"gff-version directive indicates version is \" ,  specVersion ,  \", not \" ,  version ) else   version -  specVersion } ## strip comments   notComments -   grep (  \"^[^#]\" ,  lines )   lines -   lines [  notComments ] ### TODO: handle ontologies (store in trackSet) ## construct table   fields -   c (  \"seqname\" ,  \"source\" ,  \"feature\" ,  \"start\" ,  \"end\" ,  \"score\" ,  \"strand\" ,  \"frame\" ,  \"attributes\" )   linesSplit -   strsplit (  lines ,  \"\\t\" )   haveAttr -    sapply (  linesSplit ,  length ) ==   length (  fields )   haveAttrMat -   do.call (  \"rbind\" ,   linesSplit [  haveAttr ] )   noAttrMat -   do.call (  \"rbind\" ,   linesSplit [  !  haveAttr ] )  if (  !   is.null (  noAttrMat ) )   noAttrMat -   cbind (  noAttrMat ,  \"\" )   table -   rbind (  noAttrMat ,  haveAttrMat )    colnames (  table ) -  fields # handle missings    table [   table ==  \".\" ] -  NA  if (   version ==  3 )  {    table [    table [ ,  \"strand\" ] ==  \"?\" ,  \"strand\" ] -  NA   tableDec -   urlDecode (   as.vector (  table ) )   table -   matrix (  tableDec , ncol =   ncol (  table ) , dimnames =   dimnames (  table ) ) }   featureData -   data.frame ( chrom =   table [ ,  \"seqname\" ] , start =   as.numeric (   table [ ,  \"start\" ] ) , end =   as.numeric (   table [ ,  \"end\" ] ) , strand =   table [ ,  \"strand\" ] , phase =   table [ ,  \"frame\" ] , type =   table [ ,  \"feature\" ] , source =   table [ ,  \"source\" ] )    rownames (  featureData ) -   make.names (   table [ ,  \"seqname\" ] ,  TRUE )  if (  !   is.null (   table [ ,  \"attributes\" ] ) )  {  if (   version ==  \"1\" )  {   attrList -   list ( group =   table [ ,  \"attributes\" ] ) } else  {   attrSplit -   strsplit (   table [ ,  \"attributes\" ] ,  \";\" )   lines -   rep (   seq_along (  attrSplit ) ,   lapply (  attrSplit ,  length ) )   attrs -   sub (  \" *$\" ,  \"\" ,   sub (  \"^ *\" ,  \"\" ,   unlist (  attrSplit ) ) )  if (   version ==  \"3\" )  {   tvMat -   matrix (   unlist (   strsplit (  attrs ,  \"=\" ) ) , nrow =  2 )   tags -   tvMat [  1 , ]   vals -   tvMat [  2 , ] } else  { # split on first space   tags -   sub (  \" .*\" ,  \"\" ,  attrs ) # strip surrounding quotes   vals -   sub (  \"^\\\"([^\\\"]*)\\\"$\" ,  \"\\\\1\" ,   sub (  \"^[^ ]* \" ,  \"\" ,  attrs ) ) }   attrList -   lapply (   split.data.frame (   cbind (  lines ,  vals ) ,  tags ) ,  function ( tag )  {   vals -   tag [ ,  \"vals\" ]   coerced -   suppressWarnings (   as.numeric (  vals ) )  if (  !   any (   is.na (  coerced ) ) )   vals -  coerced   vec -   rep (  NA ,   nrow (  table ) )    vec [   as.numeric (   tag [ ,  \"lines\" ] ) ] -  vals  vec } ) }   featureData -   cbind (  featureData ,   as.data.frame (  attrList ) )  if (   !   is.null (   featureData $ ID ) undefined  !   any (   is.na (   featureData $ ID ) ) )    rownames (  featureData ) -   featureData $ ID }   suppressWarnings (   score -   as.numeric (   table [ ,  \"score\" ] ) )   new (  \"trackSet\" , featureData =   trackFeatureData (  featureData ) , dataVals =   cbind ( score =  score ) , genome =  genome ) } ",
+    "filename": "gff.txt"
+  }
+}
+
+5.
+{
+  "old_function": {
+    "name": "ucscTrackModes",
+    "representation": "ucscTrackModes",
+    "signature": "character",
+    "parameters": "function ( object , hide = character ( ) , dense = character ( ) , pack = character ( ) , squish = character ( ) , full = character ( ) )",
+    "body": "{    object [  hide ] -  \"hide\"    object [  dense ] -  \"dense\"    object [  pack ] -  \"pack\"    object [  squish ] -  \"squish\"    object [  full ] -  \"full\"   new (  \"ucscTrackModes\" ,  object ) } ",
+    "filename": "ucsc.txt"
+  },
+  "new_function": {
+    "name": "ucscTrackModes",
+    "representation": "ucscTrackModes",
+    "signature": "character",
+    "parameters": "function ( object , labels , hide = character ( ) , dense = character ( ) , pack = character ( ) , squish = character ( ) , full = character ( ) )",
+    "body": "{    object [  hide ] -  \"hide\"    object [  dense ] -  \"dense\"    object [  pack ] -  \"pack\"    object [  squish ] -  \"squish\"    object [  full ] -  \"full\"  if (   missing (  labels ) )   labels -   names (  object )   new (  \"ucscTrackModes\" ,  object , labels =   as.character (  labels ) ) } ",
+    "filename": "ucsc.txt"
+  }
+}
+
+6.
+{
+  "old_function": {
+    "name": "import.wig",
+    "representation": "import.wig",
+    "signature": "ANY",
+    "parameters": "function ( con )",
+    "body": "{   import.ucsc (  con ,  \"wig\" ) } ",
+    "filename": "wig.txt"
+  },
+  "new_function": {
+    "name": "import.wig",
+    "representation": "import.wig",
+    "signature": "ANY",
+    "parameters": "function ( con , genome )",
+    "body": "{   import.ucsc (  con ,  \"wig\" ,  TRUE , genome =  genome ) } ",
+    "filename": "wig.txt"
+  }
+}
+
+7.
+{
+  "old_function": {
+    "name": "import.wig",
+    "representation": "import.wig",
+    "signature": "ANY",
+    "parameters": "function ( con )",
+    "body": "{   import.ucsc (  con ,  \"wig\" ,  TRUE ) } ",
+    "filename": "wig.txt"
+  },
+  "new_function": {
+    "name": "import.wig",
+    "representation": "import.wig",
+    "signature": "ANY",
+    "parameters": "function ( con , genome )",
+    "body": "{   import.ucsc (  con ,  \"wig\" ,  TRUE , genome =  genome ) } ",
+    "filename": "wig.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rtracklayer_release_2_3 rtracklayer_release_2_4
+
+{
+    "package": "rtracklayer",
+    "release_versions": "rtracklayer_release_2_3 rtracklayer_release_2_4",
+    "desc_release_old": "1.2.2",
+    "desc_release_new": "1.4.1",
+    "old_release_number": 1,
+    "new_release_number": 2,
+    "function_removals": 18,
+    "function_additions": 26,
+    "parameter_removals": 1,
+    "parameter_additions": 1,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 2,
+    "total_count": 20
+}
+
+##########
+Functions Removed
+##########
+
+chrid
+dataVals
+genomeSegment
+genomeSegment<-
+genomeSequence
+laySequence
+layTrack
+merge
+chrom<-
+trackData
+trackSet
+trackSets
+tracks
+tracks<-
+ucscTable
+*
+/
+c.genomeSegment
+
+
+##########
+Functions Added
+##########
+
+score
+ranges
+GenomicRanges
+GenomicData
+IRanges
+RangedDataList
+as.data.frame
+blocks
+browserSession<-
+sequence<-
+track<-
+track
+trackNames
+trackNames<-
+getTable
+tableNames
+trackName
+trackName<-
+tableName
+tableName<-
+ucscTableQuery
+range
+range<-
+score<-
+visible
+visible<-
+
+
+##########
+Removed Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "import.wig",
+    "representation": "import.wig",
+    "signature": "ANY",
+    "parameters": "function ( con , genome )",
+    "body": "{   import.ucsc (  con ,  \"wig\" ,  TRUE , genome =  genome ) } ",
+    "filename": "wig.txt"
+  },
+  "new_function": {
+    "name": "import.wig",
+    "representation": "import.wig",
+    "signature": "ANY",
+    "parameters": "function ( con )",
+    "body": "{   import.ucsc (  con ,  \"wig\" ) } ",
+    "filename": "wig.txt"
+  }
+}
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "import.wig",
+    "representation": "import.wig",
+    "signature": "ANY",
+    "parameters": "function ( con )",
+    "body": "{   import.ucsc (  con ,  \"wig\" ) } ",
+    "filename": "wig.txt"
+  },
+  "new_function": {
+    "name": "import.wig",
+    "representation": "import.wig",
+    "signature": "ANY",
+    "parameters": "function ( con , genome )",
+    "body": "{   import.ucsc (  con ,  \"wig\" ,  TRUE , genome =  genome ) } ",
+    "filename": "wig.txt"
+  }
+}
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "import.wig",
+    "representation": "import.wig",
+    "signature": "ANY",
+    "parameters": "function ( con )",
+    "body": "{   import.ucsc (  con ,  \"wig\" ) } ",
+    "filename": "wig.txt"
+  },
+  "new_function": {
+    "name": "import.wig",
+    "representation": "import.wig",
+    "signature": "ANY",
+    "parameters": "function ( con , genome )",
+    "body": "{   import.ucsc (  con ,  \"wig\" ,  TRUE , genome =  genome ) } ",
+    "filename": "wig.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "import.wig",
+    "representation": "import.wig",
+    "signature": "ANY",
+    "parameters": "function ( con , genome )",
+    "body": "{   import.ucsc (  con ,  \"wig\" ,  TRUE , genome =  genome ) } ",
+    "filename": "wig.txt"
+  },
+  "new_function": {
+    "name": "import.wig",
+    "representation": "import.wig",
+    "signature": "ANY",
+    "parameters": "function ( con )",
+    "body": "{   import.ucsc (  con ,  \"wig\" ) } ",
+    "filename": "wig.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rtracklayer_release_2_4 rtracklayer_release_2_5
+
+{
+    "package": "rtracklayer",
+    "release_versions": "rtracklayer_release_2_4 rtracklayer_release_2_5",
+    "desc_release_old": "1.4.1",
+    "desc_release_new": "1.6.0",
+    "old_release_number": 2,
+    "new_release_number": 3,
+    "function_removals": 0,
+    "function_additions": 6,
+    "parameter_removals": 1,
+    "parameter_additions": 1,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+ucscGenomes
+export.bed15
+export.bedGraph
+import.bed15
+import.bedGraph
+chrom<-
+
+
+##########
+Removed Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "ucscTableQuery",
+    "representation": "ucscTableQuery",
+    "signature": "UCSCSession",
+    "parameters": "function ( x , track , range = GenomicRanges ( ) , table = NULL )",
+    "body": "{  if (   !   is.null (  table ) undefined  !   isSingleString (  table ) )   stop (  \"'table' must be a single string\" )  if (  !   is (  range ,  \"RangesList\" ) )   stop (  \"'range' must be a 'RangesList'\" )   range -   mergeRange (   range (  x ) ,  range )   track -   normArgTrack (  x ,  track )   new (  \"UCSCTableQuery\" , session =  x , track =  track , range =  range , table =  table ) } ",
+    "filename": "ucsc.txt"
+  },
+  "new_function": {
+    "name": "ucscTableQuery",
+    "representation": "ucscTableQuery",
+    "signature": "UCSCSession",
+    "parameters": "function ( x , track = NULL , range = GenomicRanges ( ) , table = NULL , names = NULL , intersectTrack = NULL )",
+    "body": "{  if (   !   is.null (  table ) undefined  !   isSingleString (  table ) )   stop (  \"'table' must be a single string\" )  if (  !   is (  range ,  \"RangesList\" ) )   stop (  \"'range' must be a 'RangesList'\" )  if (  !   is (  names ,  \"characterORNULL\" ) )   stop (  \"'names' must be 'NULL' or a character vector\" ) ## only inherit the genome from the session   range -   mergeRange (   GenomicRanges ( genome =   genome (  x ) ) ,  range )   query -   new (  \"UCSCTableQuery\" , session =  x , range =  range , table =  table , NAMES =  names )  if (   !   is.null (  track ) ||  !   is.null (  intersectTrack ) )  {   trackids -   trackNames (  query )    query @ track -   normArgTrack (  track ,  trackids )    query @ intersectTrack -   normArgTrack (  intersectTrack ,  trackids ) }  query } ",
+    "filename": "ucsc.txt"
+  }
+}
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "import.wig",
+    "representation": "import.wig",
+    "signature": "ANY",
+    "parameters": "function ( con )",
+    "body": "{   import.ucsc (  con ,  \"wig\" ) } ",
+    "filename": "wig.txt"
+  },
+  "new_function": {
+    "name": "import.wig",
+    "representation": "import.wig",
+    "signature": "ANY",
+    "parameters": "function ( con , genome )",
+    "body": "{   import.ucsc (  con ,  \"wig\" ,  TRUE , genome =  genome ) } ",
+    "filename": "wig.txt"
+  }
+}
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "import.wig",
+    "representation": "import.wig",
+    "signature": "ANY",
+    "parameters": "function ( con )",
+    "body": "{   import.ucsc (  con ,  \"wig\" ) } ",
+    "filename": "wig.txt"
+  },
+  "new_function": {
+    "name": "import.wig",
+    "representation": "import.wig",
+    "signature": "ANY",
+    "parameters": "function ( con , genome )",
+    "body": "{   import.ucsc (  con ,  \"wig\" ,  TRUE , genome =  genome ) } ",
+    "filename": "wig.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rtracklayer_release_2_5 rtracklayer_release_2_6
+
+{
+    "package": "rtracklayer",
+    "release_versions": "rtracklayer_release_2_5 rtracklayer_release_2_6",
+    "desc_release_old": "1.6.0",
+    "desc_release_new": "1.8.1",
+    "old_release_number": 3,
+    "new_release_number": 4,
+    "function_removals": 0,
+    "function_additions": 4,
+    "parameter_removals": 0,
+    "parameter_additions": 4,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 5,
+    "total_count": 5
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+GenomicSelection
+export.bw
+import.bw
+BigWigSelection
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "export.bed",
+    "representation": "export.bed",
+    "signature": "ANY",
+    "parameters": "function ( object , con , variant = c ( \"base\" , \"bedGraph\" , \"bed15\" ) , color )",
+    "body": "{   cl -   class (  object )   track -   try (   as (  object ,  \"RangedData\" ) , silent =  TRUE )  if (    class (  track ) ==  \"try-error\" )  {   track -   try (   as (  object ,  \"RangedDataList\" ) , silent =  TRUE )  if (    class (  track ) ==  \"try-error\" )   stop (  \"cannot export object of class '\" ,  cl ,  \"'\" ) }   export.bed (  track , con =  con , variant =  variant , color =  color ) } ",
+    "filename": "bed.txt"
+  },
+  "new_function": {
+    "name": "export.bed",
+    "representation": "export.bed",
+    "signature": "ANY",
+    "parameters": "function ( object , con , variant = c ( \"base\" , \"bedGraph\" , \"bed15\" ) , color , append )",
+    "body": "{   cl -   class (  object )   track -   try (   as (  object ,  \"RangedData\" ) , silent =  TRUE )  if (    class (  track ) ==  \"try-error\" )  {   track -   try (   as (  object ,  \"RangedDataList\" ) , silent =  TRUE )  if (    class (  track ) ==  \"try-error\" )   stop (  \"cannot export object of class '\" ,  cl ,  \"'\" ) }   export.bed (  track , con =  con , variant =  variant , color =  color , append =  append ) } ",
+    "filename": "bed.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "export.bed",
+    "representation": "export.bed",
+    "signature": "c (  RangedData ,  characterORconnection )",
+    "parameters": "function ( object , con , variant = c ( \"base\" , \"bedGraph\" , \"bed15\" ) , color )",
+    "body": "{   variant -   match.arg (  variant )   name -   strand -   thickStart -   thickEnd -   color -  NULL   blockCount -   blockSizes -   blockStarts -  NULL   df -   data.frame (   chrom (  object ) ,    start (  object ) -  1 ,   end (  object ) )   score -   score (  object )  if (  !   is.null (  score ) )  {  if (   !   is.numeric (  score ) ||   any (   is.na (  score ) ) )   stop (  \"Scores must be non-NA numeric values\" )  if (    variant !=  \"bedGraph\" undefined   any (    score undefined  0 |   score undefined  1000 ) )   stop (  \"BED requires scores to fall within [0, 1000]\" ) }  if (   variant ==  \"bedGraph\" )  {  if (   is.null (  score ) ) ## bedGraph requires score   score -  0    df $ score -  score } else  {   blockSizes -   object $ blockSizes   blockStarts -   object $ blockStarts  if (    variant ==  \"bed15\" undefined   is.null (  blockSizes ) )   blockStarts -   blockSizes -  \"\" # bed15 must have all 15 cols  if (  !   is.null (  blockSizes ) )   blockCount -   length (    strsplit (  blockSizes ,  \",\" ) [[  1 ] ] )  if (   is.null (  color ) )   color -   object $ color  if (    is.null (  color ) undefined  !   is.null (  blockCount ) )   color -  \"0\" ## blocks require color else  if (  !   is.null (  color ) )  {   nacol -   is.na (  color )   colmat -   col2rgb (  color )   color -   paste (   colmat [  1 , ] ,   colmat [  2 , ] ,   colmat [  3 , ] , sep =  \",\" )    color [  nacol ] -  \"0\" }   thickStart -   object $ thickStart   thickEnd -   object $ thickEnd ## color requires thick ranges  if (    is.null (  thickStart ) undefined  !   is.null (  color ) )  {   thickStart -   start (  object )   thickEnd -   end (  object ) }   strand -   object $ strand  if (   !   is.null (  thickStart ) undefined   is.null (  strand ) )  {   strand -   rep (  NA ,   nrow (  object ) ) }  if (   !   is.null (  strand ) undefined   is.null (  score ) )   score -  0   name -   object $ name  if (   is.null (  name ) )   name -   rownames (  object )  if (   !   is.null (  score ) undefined   is.null (  name ) )   name -   rep (  NA ,   nrow (  object ) )    df $ name -  name    df $ score -  score    df $ strand -  strand    df $ thickStart -  thickStart    df $ thickEnd -  thickEnd    df $ color -  color    df $ blockCount -  blockCount    df $ blockSizes -  blockSizes    df $ blockStarts -  blockStarts  if (   variant ==  \"bed15\" )  {    df $ expCount -   object $ expCount    df $ expIds -   object $ expIds    df $ expScores -   object $ expScores } }   scipen -   getOption (  \"scipen\" )   options ( scipen =  100 ) # prevent use of scientific notation   on.exit (   options ( scipen =  scipen ) )   write.table (  df ,  con , sep =  \"\\t\" , col.names =  FALSE , row.names =  FALSE , quote =  FALSE , na =  \".\" ) } ",
+    "filename": "bed.txt"
+  },
+  "new_function": {
+    "name": "export.bed",
+    "representation": "export.bed",
+    "signature": "c (  RangedData ,  characterORconnection )",
+    "parameters": "function ( object , con , variant = c ( \"base\" , \"bedGraph\" , \"bed15\" ) , color , append )",
+    "body": "{   variant -   match.arg (  variant )   name -   strand -   thickStart -   thickEnd -   color -  NULL   blockCount -   blockSizes -   blockStarts -  NULL   df -   data.frame (   chrom (  object ) ,    start (  object ) -  1 ,   end (  object ) )   score -   score (  object )  if (  !   is.null (  score ) )  {  if (   !   is.numeric (  score ) ||   any (   is.na (  score ) ) )   stop (  \"Scores must be non-NA numeric values\" ) }  if (   variant ==  \"bedGraph\" )  {  if (   is.null (  score ) ) ## bedGraph requires score   score -  0    df $ score -  score } else  {   blockSizes -   object $ blockSizes   blockStarts -   object $ blockStarts  if (    variant ==  \"bed15\" undefined   is.null (  blockSizes ) )   blockStarts -   blockSizes -  \"\" # bed15 must have all 15 cols  if (   !   is.null (  blockSizes ) ||  !   is.null (  blockStarts ) )  {  if (   is.null (  blockSizes ) )   stop (  \"'blockStarts' specified without 'blockSizes'\" )  if (   is.null (  blockStarts ) )   stop (  \"'blockSizes' specified without 'blockStarts'\" )   lastBlock -  function ( x )   sub (  \".*,\" ,  \"\" ,  \"20,20\" )   lastSize -   lastBlock (  blockSizes )   lastStart -   lastBlock (  blockStarts )  if (    any (      df [[  2 ] ] +  lastSize +  lastStart !=   df [[  3 ] ] ) ||   any (    sub (  \",.*\" ,  \"\" ,  blockStarts ) !=  0 ) )   stop (  \"blocks must span entire feature\" )   blockCount -   length (    strsplit (  blockSizes ,  \",\" ) [[  1 ] ] ) }  if (   is.null (  color ) )   color -   object $ itemRgb  if (    is.null (  color ) undefined  !   is.null (  blockCount ) )   color -  \"0\" ## blocks require color else  if (  !   is.null (  color ) )  {   nacol -   is.na (  color )   colmat -   col2rgb (  color )   color -   paste (   colmat [  1 , ] ,   colmat [  2 , ] ,   colmat [  3 , ] , sep =  \",\" )    color [  nacol ] -  \"0\" }   thickStart -   object $ thickStart   thickEnd -   object $ thickEnd ## color requires thick ranges  if (    is.null (  thickStart ) undefined  !   is.null (  color ) )  {   thickStart -   start (  object )   thickEnd -   end (  object ) }   strand -   object $ strand  if (   !   is.null (  thickStart ) undefined   is.null (  strand ) )  {   strand -   rep (  NA ,   nrow (  object ) ) }  if (   !   is.null (  strand ) undefined   is.null (  score ) )   score -  0   name -   object $ name  if (   is.null (  name ) )   name -   rownames (  object )  if (   !   is.null (  score ) undefined   is.null (  name ) )   name -   rep (  NA ,   nrow (  object ) )    df $ name -  name    df $ score -  score    df $ strand -  strand    df $ thickStart -  thickStart    df $ thickEnd -  thickEnd    df $ itemRgb -  color    df $ blockCount -  blockCount    df $ blockSizes -  blockSizes    df $ blockStarts -  blockStarts  if (   variant ==  \"bed15\" )  {    df $ expCount -   object $ expCount    df $ expIds -   object $ expIds    df $ expScores -   object $ expScores } }   scipen -   getOption (  \"scipen\" )   options ( scipen =  100 ) # prevent use of scientific notation   on.exit (   options ( scipen =  scipen ) )   write.table (  df ,  con , sep =  \"\\t\" , col.names =  FALSE , row.names =  FALSE , quote =  FALSE , na =  \".\" , append =  append ) } ",
+    "filename": "bed.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "export.gff",
+    "representation": "export.gff",
+    "signature": "ANY",
+    "parameters": "function ( object , con , version , source )",
+    "body": "{   cl -   class (  object )   object -   try (   as (  object ,  \"RangedData\" ) , silent =  TRUE )  if (    class (  object ) ==  \"try-error\" )   stop (  \"cannot export object of class '\" ,  cl ,  \"'\" )   export.gff (  object , con =  con , version =  version , source =  source ) } ",
+    "filename": "gff.txt"
+  },
+  "new_function": {
+    "name": "export.gff",
+    "representation": "export.gff",
+    "signature": "ANY",
+    "parameters": "function ( object , con , version , source , append )",
+    "body": "{   cl -   class (  object )   object -   try (   as (  object ,  \"RangedData\" ) , silent =  TRUE )  if (    class (  object ) ==  \"try-error\" )   stop (  \"cannot export object of class '\" ,  cl ,  \"'\" )   export.gff (  object , con =  con , version =  version , source =  source , append =  append ) } ",
+    "filename": "gff.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "export.gff",
+    "representation": "export.gff",
+    "signature": "c (  UCSCData ,  characterORconnection )",
+    "parameters": "function ( object , con , version , source )",
+    "body": "{   gffComment (  con ,   as (   object @ trackLine ,  \"character\" ) )   callNextMethod ( ) } ",
+    "filename": "ucsc.txt"
+  },
+  "new_function": {
+    "name": "export.gff",
+    "representation": "export.gff",
+    "signature": "c (  UCSCData ,  characterORconnection )",
+    "parameters": "function ( object , con , version , source , append )",
+    "body": "{   gffComment (  con ,   as (   object @ trackLine ,  \"character\" ) )   callNextMethod ( ) } ",
+    "filename": "ucsc.txt"
+  }
+}
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "export.bed",
+    "representation": "export.bed",
+    "signature": "ANY",
+    "parameters": "function ( object , con , variant = c ( \"base\" , \"bedGraph\" , \"bed15\" ) , color )",
+    "body": "{   cl -   class (  object )   track -   try (   as (  object ,  \"RangedData\" ) , silent =  TRUE )  if (    class (  track ) ==  \"try-error\" )  {   track -   try (   as (  object ,  \"RangedDataList\" ) , silent =  TRUE )  if (    class (  track ) ==  \"try-error\" )   stop (  \"cannot export object of class '\" ,  cl ,  \"'\" ) }   export.bed (  track , con =  con , variant =  variant , color =  color ) } ",
+    "filename": "bed.txt"
+  },
+  "new_function": {
+    "name": "export.bed",
+    "representation": "export.bed",
+    "signature": "ANY",
+    "parameters": "function ( object , con , variant = c ( \"base\" , \"bedGraph\" , \"bed15\" ) , color , append )",
+    "body": "{   cl -   class (  object )   track -   try (   as (  object ,  \"RangedData\" ) , silent =  TRUE )  if (    class (  track ) ==  \"try-error\" )  {   track -   try (   as (  object ,  \"RangedDataList\" ) , silent =  TRUE )  if (    class (  track ) ==  \"try-error\" )   stop (  \"cannot export object of class '\" ,  cl ,  \"'\" ) }   export.bed (  track , con =  con , variant =  variant , color =  color , append =  append ) } ",
+    "filename": "bed.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "export.bed",
+    "representation": "export.bed",
+    "signature": "c (  RangedData ,  characterORconnection )",
+    "parameters": "function ( object , con , variant = c ( \"base\" , \"bedGraph\" , \"bed15\" ) , color )",
+    "body": "{   variant -   match.arg (  variant )   name -   strand -   thickStart -   thickEnd -   color -  NULL   blockCount -   blockSizes -   blockStarts -  NULL   df -   data.frame (   chrom (  object ) ,    start (  object ) -  1 ,   end (  object ) )   score -   score (  object )  if (  !   is.null (  score ) )  {  if (   !   is.numeric (  score ) ||   any (   is.na (  score ) ) )   stop (  \"Scores must be non-NA numeric values\" )  if (    variant !=  \"bedGraph\" undefined   any (    score undefined  0 |   score undefined  1000 ) )   stop (  \"BED requires scores to fall within [0, 1000]\" ) }  if (   variant ==  \"bedGraph\" )  {  if (   is.null (  score ) ) ## bedGraph requires score   score -  0    df $ score -  score } else  {   blockSizes -   object $ blockSizes   blockStarts -   object $ blockStarts  if (    variant ==  \"bed15\" undefined   is.null (  blockSizes ) )   blockStarts -   blockSizes -  \"\" # bed15 must have all 15 cols  if (  !   is.null (  blockSizes ) )   blockCount -   length (    strsplit (  blockSizes ,  \",\" ) [[  1 ] ] )  if (   is.null (  color ) )   color -   object $ color  if (    is.null (  color ) undefined  !   is.null (  blockCount ) )   color -  \"0\" ## blocks require color else  if (  !   is.null (  color ) )  {   nacol -   is.na (  color )   colmat -   col2rgb (  color )   color -   paste (   colmat [  1 , ] ,   colmat [  2 , ] ,   colmat [  3 , ] , sep =  \",\" )    color [  nacol ] -  \"0\" }   thickStart -   object $ thickStart   thickEnd -   object $ thickEnd ## color requires thick ranges  if (    is.null (  thickStart ) undefined  !   is.null (  color ) )  {   thickStart -   start (  object )   thickEnd -   end (  object ) }   strand -   object $ strand  if (   !   is.null (  thickStart ) undefined   is.null (  strand ) )  {   strand -   rep (  NA ,   nrow (  object ) ) }  if (   !   is.null (  strand ) undefined   is.null (  score ) )   score -  0   name -   object $ name  if (   is.null (  name ) )   name -   rownames (  object )  if (   !   is.null (  score ) undefined   is.null (  name ) )   name -   rep (  NA ,   nrow (  object ) )    df $ name -  name    df $ score -  score    df $ strand -  strand    df $ thickStart -  thickStart    df $ thickEnd -  thickEnd    df $ color -  color    df $ blockCount -  blockCount    df $ blockSizes -  blockSizes    df $ blockStarts -  blockStarts  if (   variant ==  \"bed15\" )  {    df $ expCount -   object $ expCount    df $ expIds -   object $ expIds    df $ expScores -   object $ expScores } }   scipen -   getOption (  \"scipen\" )   options ( scipen =  100 ) # prevent use of scientific notation   on.exit (   options ( scipen =  scipen ) )   write.table (  df ,  con , sep =  \"\\t\" , col.names =  FALSE , row.names =  FALSE , quote =  FALSE , na =  \".\" ) } ",
+    "filename": "bed.txt"
+  },
+  "new_function": {
+    "name": "export.bed",
+    "representation": "export.bed",
+    "signature": "c (  RangedData ,  characterORconnection )",
+    "parameters": "function ( object , con , variant = c ( \"base\" , \"bedGraph\" , \"bed15\" ) , color , append )",
+    "body": "{   variant -   match.arg (  variant )   name -   strand -   thickStart -   thickEnd -   color -  NULL   blockCount -   blockSizes -   blockStarts -  NULL   df -   data.frame (   chrom (  object ) ,    start (  object ) -  1 ,   end (  object ) )   score -   score (  object )  if (  !   is.null (  score ) )  {  if (   !   is.numeric (  score ) ||   any (   is.na (  score ) ) )   stop (  \"Scores must be non-NA numeric values\" ) }  if (   variant ==  \"bedGraph\" )  {  if (   is.null (  score ) ) ## bedGraph requires score   score -  0    df $ score -  score } else  {   blockSizes -   object $ blockSizes   blockStarts -   object $ blockStarts  if (    variant ==  \"bed15\" undefined   is.null (  blockSizes ) )   blockStarts -   blockSizes -  \"\" # bed15 must have all 15 cols  if (   !   is.null (  blockSizes ) ||  !   is.null (  blockStarts ) )  {  if (   is.null (  blockSizes ) )   stop (  \"'blockStarts' specified without 'blockSizes'\" )  if (   is.null (  blockStarts ) )   stop (  \"'blockSizes' specified without 'blockStarts'\" )   lastBlock -  function ( x )   sub (  \".*,\" ,  \"\" ,  \"20,20\" )   lastSize -   lastBlock (  blockSizes )   lastStart -   lastBlock (  blockStarts )  if (    any (      df [[  2 ] ] +  lastSize +  lastStart !=   df [[  3 ] ] ) ||   any (    sub (  \",.*\" ,  \"\" ,  blockStarts ) !=  0 ) )   stop (  \"blocks must span entire feature\" )   blockCount -   length (    strsplit (  blockSizes ,  \",\" ) [[  1 ] ] ) }  if (   is.null (  color ) )   color -   object $ itemRgb  if (    is.null (  color ) undefined  !   is.null (  blockCount ) )   color -  \"0\" ## blocks require color else  if (  !   is.null (  color ) )  {   nacol -   is.na (  color )   colmat -   col2rgb (  color )   color -   paste (   colmat [  1 , ] ,   colmat [  2 , ] ,   colmat [  3 , ] , sep =  \",\" )    color [  nacol ] -  \"0\" }   thickStart -   object $ thickStart   thickEnd -   object $ thickEnd ## color requires thick ranges  if (    is.null (  thickStart ) undefined  !   is.null (  color ) )  {   thickStart -   start (  object )   thickEnd -   end (  object ) }   strand -   object $ strand  if (   !   is.null (  thickStart ) undefined   is.null (  strand ) )  {   strand -   rep (  NA ,   nrow (  object ) ) }  if (   !   is.null (  strand ) undefined   is.null (  score ) )   score -  0   name -   object $ name  if (   is.null (  name ) )   name -   rownames (  object )  if (   !   is.null (  score ) undefined   is.null (  name ) )   name -   rep (  NA ,   nrow (  object ) )    df $ name -  name    df $ score -  score    df $ strand -  strand    df $ thickStart -  thickStart    df $ thickEnd -  thickEnd    df $ itemRgb -  color    df $ blockCount -  blockCount    df $ blockSizes -  blockSizes    df $ blockStarts -  blockStarts  if (   variant ==  \"bed15\" )  {    df $ expCount -   object $ expCount    df $ expIds -   object $ expIds    df $ expScores -   object $ expScores } }   scipen -   getOption (  \"scipen\" )   options ( scipen =  100 ) # prevent use of scientific notation   on.exit (   options ( scipen =  scipen ) )   write.table (  df ,  con , sep =  \"\\t\" , col.names =  FALSE , row.names =  FALSE , quote =  FALSE , na =  \".\" , append =  append ) } ",
+    "filename": "bed.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "export.gff",
+    "representation": "export.gff",
+    "signature": "ANY",
+    "parameters": "function ( object , con , version , source )",
+    "body": "{   cl -   class (  object )   object -   try (   as (  object ,  \"RangedData\" ) , silent =  TRUE )  if (    class (  object ) ==  \"try-error\" )   stop (  \"cannot export object of class '\" ,  cl ,  \"'\" )   export.gff (  object , con =  con , version =  version , source =  source ) } ",
+    "filename": "gff.txt"
+  },
+  "new_function": {
+    "name": "export.gff",
+    "representation": "export.gff",
+    "signature": "ANY",
+    "parameters": "function ( object , con , version , source , append )",
+    "body": "{   cl -   class (  object )   object -   try (   as (  object ,  \"RangedData\" ) , silent =  TRUE )  if (    class (  object ) ==  \"try-error\" )   stop (  \"cannot export object of class '\" ,  cl ,  \"'\" )   export.gff (  object , con =  con , version =  version , source =  source , append =  append ) } ",
+    "filename": "gff.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "export.gff",
+    "representation": "export.gff",
+    "signature": "c (  RangedData ,  characterORconnection )",
+    "parameters": "function ( object , con , version , source )",
+    "body": "{   version -   match.arg (  version )   gffComment (  con ,  \"gff-version\" ,  version )   sourceVersion -   try (   package.version (  source ) ,  TRUE )  if (  !   inherits (  sourceVersion ,  \"try-error\" ) )   gffComment (  con ,  \"source-version\" ,  source ,  sourceVersion )   gffComment (  con ,  \"date\" ,   format (   Sys.time ( ) ,  \"%Y-%m-%d\" ) )   seqname -   chrom (  object )  if (   is.null (   object $ ID ) )    object $ ID -   rownames (  object )  if (   version ==  \"3\" )   seqname -   urlEncode (  seqname ,  \"a-zA-Z0-9.:^*$@!+_?|-\" )  if (  !   is.null (   object $ source ) )   source -   object $ source  if (   version ==  \"3\" )   source -   urlEncode (  source ,  \"\\t\\n\\r;=% ,  FALSE )   feature -   object $ type  if (   is.null (  feature ) )   feature -  \"sequence\"   score -   score (  object )  if (   is.null (  score ) )  {  if (   version ==  \"1\" )   score -  0 else   score -  NA } else  {  if (  !  (   \"score\" %in%   colnames (  object ) ) )     colnames (  object ) [  1 ] -  \"score\" ## avoid outputting as attribute }   strand -   strand (  object )  if (   is.null (  strand ) )   strand -  NA   frame -   object $ phase  if (   is.null (  frame ) )   frame -  NA   table -   data.frame (  seqname ,  source ,  feature ,   start (  object ) ,   end (  object ) ,  score ,  strand ,  frame )   attrs -  NULL  if (   version ==  \"1\" )  {   attrs -   object $ group  if (   is.null (  attrs ) )   attrs -  seqname } else  {   builtin -   c (  \"type\" ,  \"strand\" ,  \"score\" ,  \"phase\" ,  \"source\" )   custom -  !  (    colnames (  object ) %in%  builtin )  if (   any (  custom ) )  {   attrs -   as.matrix (    as.data.frame (   unlist (   values (  object ) ) ) [ ,  custom ] )   tvsep -  \" \"   attrsVec -   sub (  \" *$\" ,  \"\" ,   sub (  \"^ *\" ,  \"\" ,   as.character (  attrs ) ) ) # trim  if (   version ==  \"3\" )  {   tvsep -  \"=\"   attrsVec -   urlEncode (  attrsVec ,  \"\\t\\n\\r;=% ,  FALSE ) }   attrs -   matrix (  attrsVec , ncol =   ncol (  attrs ) , dimnames =   dimnames (  attrs ) )   attrs -   apply (  attrs ,  1 ,  function ( row )  {   paste (    colnames (  attrs ) [  !   is.na (  row ) ] ,   row [  !   is.na (  row ) ] , sep =  tvsep , collapse =  \"; \" ) } )    attrs [    nchar (  attrs ) ==  0 ] -  NA } }   scipen -   getOption (  \"scipen\" )   options ( scipen =  100 ) # prevent use of scientific notation   on.exit (   options ( scipen =  scipen ) )  if (  !   is.null (  attrs ) )  { # write out the rows with attributes first   write.table (    cbind (  table ,  attrs ) [  !   is.na (  attrs ) , ] ,  con , sep =  \"\\t\" , na =  \".\" , quote =  FALSE , col.names =  FALSE , row.names =  FALSE )   table -   table [   is.na (  attrs ) , ] }   write.table (  table ,  con , sep =  \"\\t\" , na =  \".\" , quote =  FALSE , col.names =  FALSE , row.names =  FALSE ) } ",
+    "filename": "gff.txt"
+  },
+  "new_function": {
+    "name": "export.gff",
+    "representation": "export.gff",
+    "signature": "c (  RangedData ,  characterORconnection )",
+    "parameters": "function ( object , con , version = c ( \"1\" , \"2\" , \"3\" ) , source , append )",
+    "body": "{   version -   match.arg (  version )  if (  !  append )   cat (  \"\" , file =  con ) # clear any existing file   gffComment (  con ,  \"gff-version\" ,  version )   sourceVersion -   try (   package.version (  source ) ,  TRUE )  if (  !   inherits (  sourceVersion ,  \"try-error\" ) )   gffComment (  con ,  \"source-version\" ,  source ,  sourceVersion )   gffComment (  con ,  \"date\" ,   format (   Sys.time ( ) ,  \"%Y-%m-%d\" ) )   seqname -   chrom (  object )  if (   is.null (   object $ ID ) )    object $ ID -   rownames (  object )  if (   version ==  \"3\" )   seqname -   urlEncode (  seqname ,  \"a-zA-Z0-9.:^*$@!+_?|-\" )  if (  !   is.null (   object $ source ) )   source -   object $ source  if (   version ==  \"3\" )   source -   urlEncode (  source ,  \"\\t\\n\\r;=% ,  FALSE )   feature -   object $ type  if (   is.null (  feature ) )   feature -  \"sequence\"   score -   score (  object )  if (   is.null (  score ) )  {  if (   version ==  \"1\" )   score -  0 else   score -  NA } else  {  if (  !  (   \"score\" %in%   colnames (  object ) ) )     colnames (  object ) [  1 ] -  \"score\" ## avoid outputting as attribute }   strand -   strand (  object )  if (   is.null (  strand ) )   strand -  NA   frame -   object $ phase  if (   is.null (  frame ) )   frame -  NA   table -   data.frame (  seqname ,  source ,  feature ,   start (  object ) ,   end (  object ) ,  score ,  strand ,  frame )   attrs -  NULL  if (   version ==  \"1\" )  {   attrs -   object $ group  if (   is.null (  attrs ) )   attrs -  seqname } else  {   builtin -   c (  \"type\" ,  \"strand\" ,  \"score\" ,  \"phase\" ,  \"source\" )   custom -  !  (    colnames (  object ) %in%  builtin )  if (   any (  custom ) )  {   attrs -   as.matrix (    as.data.frame (   unlist (   values (  object ) ) ) [ ,  custom ] )   tvsep -  \" \"   attrsVec -   sub (  \" *$\" ,  \"\" ,   sub (  \"^ *\" ,  \"\" ,   as.character (  attrs ) ) ) # trim  if (   version ==  \"3\" )  {   tvsep -  \"=\"   attrsVec -   urlEncode (  attrsVec ,  \"\\t\\n\\r;=% ,  FALSE ) }   attrs -   matrix (  attrsVec , ncol =   ncol (  attrs ) , dimnames =   dimnames (  attrs ) )   attrs -   apply (  attrs ,  1 ,  function ( row )  {   paste (    colnames (  attrs ) [  !   is.na (  row ) ] ,   row [  !   is.na (  row ) ] , sep =  tvsep , collapse =  \"; \" ) } )    attrs [    nchar (  attrs ) ==  0 ] -  NA } }   scipen -   getOption (  \"scipen\" )   options ( scipen =  100 ) # prevent use of scientific notation   on.exit (   options ( scipen =  scipen ) )  if (  !   is.null (  attrs ) )  { # write out the rows with attributes first   write.table (    cbind (  table ,  attrs ) [  !   is.na (  attrs ) , ] ,  con , sep =  \"\\t\" , na =  \".\" , quote =  FALSE , col.names =  FALSE , row.names =  FALSE , append =  TRUE )   table -   table [   is.na (  attrs ) , ] }   write.table (  table ,  con , sep =  \"\\t\" , na =  \".\" , quote =  FALSE , col.names =  FALSE , row.names =  FALSE , append =  TRUE ) } ",
+    "filename": "gff.txt"
+  }
+}
+
+4.
+{
+  "old_function": {
+    "name": "export.gff",
+    "representation": "export.gff",
+    "signature": "c (  UCSCData ,  characterORconnection )",
+    "parameters": "function ( object , con , version , source )",
+    "body": "{   gffComment (  con ,   as (   object @ trackLine ,  \"character\" ) )   callNextMethod ( ) } ",
+    "filename": "ucsc.txt"
+  },
+  "new_function": {
+    "name": "export.gff",
+    "representation": "export.gff",
+    "signature": "c (  UCSCData ,  characterORconnection )",
+    "parameters": "function ( object , con , version , source , append )",
+    "body": "{   gffComment (  con ,   as (   object @ trackLine ,  \"character\" ) )   callNextMethod ( ) } ",
+    "filename": "ucsc.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rtracklayer_release_2_6 rtracklayer_release_2_7
+
+{
+    "package": "rtracklayer",
+    "release_versions": "rtracklayer_release_2_6 rtracklayer_release_2_7",
+    "desc_release_old": "1.8.1",
+    "desc_release_new": "1.10.6",
+    "old_release_number": 4,
+    "new_release_number": 5,
+    "function_removals": 1,
+    "function_additions": 8,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+RangedDataList
+
+
+##########
+Functions Added
+##########
+
+values
+space
+GRangesForUCSCGenome
+GRangesForBSGenome
+import.chain
+liftOver
+offset
+reversed
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rtracklayer_release_2_7 rtracklayer_release_2_8
+
+{
+    "package": "rtracklayer",
+    "release_versions": "rtracklayer_release_2_7 rtracklayer_release_2_8",
+    "desc_release_old": "1.10.6",
+    "desc_release_new": "1.12.5",
+    "old_release_number": 5,
+    "new_release_number": 6,
+    "function_removals": 0,
+    "function_additions": 3,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+ucscSchema
+nrow
+formatDescription
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rtracklayer_release_2_8 rtracklayer_release_2_9
+
+{
+    "package": "rtracklayer",
+    "release_versions": "rtracklayer_release_2_8 rtracklayer_release_2_9",
+    "desc_release_old": "1.12.5",
+    "desc_release_new": "1.14.4",
+    "old_release_number": 6,
+    "new_release_number": 7,
+    "function_removals": 2,
+    "function_additions": 20,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+GenomicRanges
+IRanges
+
+
+##########
+Functions Added
+##########
+
+width
+width<-
+BigWigFile
+summary
+seqinfo
+TwoBitFile
+path
+uri
+Quickload
+quickload
+QuickloadGenome
+organism
+releaseDate
+elementMetadata
+export.2bit
+import.2bit
+referenceSequence
+referenceSequence<-
+asBED
+seqinfo<-
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rtracklayer_release_2_9 rtracklayer_release_2_11
+
+{
+    "package": "rtracklayer",
+    "release_versions": "rtracklayer_release_2_9 rtracklayer_release_2_11",
+    "desc_release_old": "1.14.4",
+    "desc_release_new": "1.18.2",
+    "old_release_number": 7,
+    "new_release_number": 8,
+    "function_removals": 1,
+    "function_additions": 19,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+elementMetadata
+
+
+##########
+Functions Added
+##########
+
+mcols
+wigToBigWig
+SeqinfoForBSGenome
+SeqinfoForUCSCGenome
+resource
+GFFFile
+UCSCFile
+BEDFile
+WIGFile
+ChainFile
+FastaFile
+GFF1File
+GFF2File
+GFF3File
+BEDGraphFile
+BED15File
+GTFFile
+GVFFile
+asGFF
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "summary",
+    "representation": "summary",
+    "signature": "BigWigFile",
+    "parameters": "function ( object , ranges = as ( seqinfo ( object ) , \"GenomicRanges\" ) , size = 1L , type = c ( \"mean\" , \"min\" , \"max\" , \"coverage\" , \"sd\" ) , defaultValue = NA_real_ )",
+    "body": "{ ### FIXME: could do with \"GenomicRanges\" here, but ### coercions generally only exist for GRanges specifically   ranges -   as (  ranges ,  \"GRanges\" )  if (  !   is.numeric (  size ) )   stop (  \"'size' must be numeric\" )   size -   recycleIntegerArg (  size ,  \"size\" ,   length (  ranges ) )   type -   match.arg (  type )  if (   type ==  \"sd\" )   type -  \"std\"  if (  !   isSingleNumberOrNA (  defaultValue ) )   stop (  \"'defaultValue' must be a single number or NA\" )   summaryList -   .Call (  BWGFile_summary ,   path (  object ) ,   as.character (   seqnames (  ranges ) ) ,   ranges (  ranges ) ,  size ,  type ,   as.numeric (  defaultValue ) )    names (  summaryList ) -   names (  ranges )   RleList (  summaryList ) } ",
+    "filename": "bigWig.txt"
+  },
+  "new_function": {
+    "name": "summary",
+    "representation": "summary",
+    "signature": "BigWigFile",
+    "parameters": "function ( object , which = as ( seqinfo ( object ) , \"GenomicRanges\" ) , size = 1L , type = c ( \"mean\" , \"min\" , \"max\" , \"coverage\" , \"sd\" ) , defaultValue = NA_real_ )",
+    "body": "{ ### FIXME: could do with \"GenomicRanges\" here, but ### coercions generally only exist for GRanges specifically   which -   as (  which ,  \"GRanges\" )  if (  !   is.numeric (  size ) )   stop (  \"'size' must be numeric\" )   size -   recycleIntegerArg (  size ,  \"size\" ,   length (  which ) )   type -   match.arg (  type )  if (   type ==  \"sd\" )   type -  \"std\"  if (  !   isSingleNumberOrNA (  defaultValue ) )   stop (  \"'defaultValue' must be a single number or NA\" )   summaryList -   .Call (  BWGFile_summary ,   path.expand (   path (  object ) ) ,   as.character (   seqnames (  which ) ) ,   ranges (  which ) ,  size ,  type ,   as.numeric (  defaultValue ) )    names (  summaryList ) -   names (  which )   RleList (  summaryList ) } ",
+    "filename": "bigWig.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rtracklayer_release_2_11 rtracklayer_release_2_12
+
+{
+    "package": "rtracklayer",
+    "release_versions": "rtracklayer_release_2_11 rtracklayer_release_2_12",
+    "desc_release_old": "1.18.2",
+    "desc_release_new": "1.20.4",
+    "old_release_number": 8,
+    "new_release_number": 9,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rtracklayer_release_2_12 rtracklayer_release_2_13
+
+{
+    "package": "rtracklayer",
+    "release_versions": "rtracklayer_release_2_12 rtracklayer_release_2_13",
+    "desc_release_old": "1.20.4",
+    "desc_release_new": "1.22.7",
+    "old_release_number": 9,
+    "new_release_number": 10,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+split
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rtracklayer_release_2_13 rtracklayer_release_2_14
+
+{
+    "package": "rtracklayer",
+    "release_versions": "rtracklayer_release_2_13 rtracklayer_release_2_14",
+    "desc_release_old": "1.22.7",
+    "desc_release_new": "1.24.2",
+    "old_release_number": 10,
+    "new_release_number": 11,
+    "function_removals": 0,
+    "function_additions": 3,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+FileForFormat
+BigWigFileList
+getSeq
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rtracklayer_release_2_14 rtracklayer_release_3_1
+
+{
+    "package": "rtracklayer",
+    "release_versions": "rtracklayer_release_2_14 rtracklayer_release_3_1",
+    "desc_release_old": "1.24.2",
+    "desc_release_new": "1.28.10",
+    "old_release_number": 11,
+    "new_release_number": 12,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 1,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 2,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+exportToTabix
+
+
+##########
+Removed Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "ucscGenomes",
+    "representation": "ucscGenomes",
+    "parameters": "function ( )",
+    "body": "{   url -  \"http://genome.ucsc.edu/FAQ/FAQreleases\"   doc -   httpGet (  url )   table -    getNodeSet (  doc ,  \"//table[@class='descTbl']\" ) [[  1L ] ]   species -   sapply (   getNodeSet (  table ,  \"tr/td[1]\" ) ,  xmlValue )   dbs -   sapply (   getNodeSet (  table ,  \"tr/td[2]\" ) ,  xmlValue )   dates -   sapply (   getNodeSet (  table ,  \"tr/td[3]\" ) ,  xmlValue )   nms -   sapply (   getNodeSet (  table ,  \"tr/td[4]\" ) ,  xmlValue )   status -   sapply (   getNodeSet (  table ,  \"tr/td[5]\" ) ,  xmlValue )   .cleanTableCells -  function ( x )  {   x -   sub (  \"^ *\" ,  \"\" ,  x ) ## Some empty cells in the table of UCSC genome releases seem to contain ## invisible junk. This junk seems to vary from one platform to the other ## (not clear why, maybe some sort of local issue?). ## There must be a simplest way to get rid of this junk... ## TODO: Test this on Windows!   is_empty_cell -   x %in%   c (  \" ,  \"\\xc2\\xa0\" ,  \"\\xc3\\x82\\xc2\\xa0\" )    x [  is_empty_cell ] -  \"\"  x }   df -   data.frame ( db =   .cleanTableCells (  dbs ) , species =   .cleanTableCells (  species ) , date =   .cleanTableCells (  dates ) , name =   .cleanTableCells (  nms ) , status =   .cleanTableCells (  status ) , stringsAsFactors =  FALSE )   COLS -   c (  \"UCSC VERSION\" ,  \"SPECIES\" ,  \"RELEASE DATE\" ,  \"RELEASE NAME\" ,  \"STATUS\" )  if (  !   identical (   as.character (   df [  1L , ] ) ,  COLS ) )   stop (  \"table of UCSC genome releases (found at \" ,  url ,  \"#release1) \" ,  \"doesn't have expected columns \" ,   paste (  COLS , collapse =  \", \" ) )   df -   df [  -  1L , ]   df -   df [    df $ db !=  \"\" , ]   not_empty -    df $ species !=  \"\"    df $ species -   rep.int (    df $ species [  not_empty ] ,   diff (   which (   c (  not_empty ,  TRUE ) ) ) )   df -   df [    df $ status ==  \"Available\" ,  -  5L ]    rownames (  df ) -  NULL  df } ",
+    "filename": "ucsc.txt"
+  },
+  "new_function": {
+    "name": "ucscGenomes",
+    "representation": "ucscGenomes",
+    "parameters": "function ( organism = FALSE )",
+    "body": "{   url -  \"http://genome.ucsc.edu/FAQ/FAQreleases\"   doc -   httpGet (  url )   table -    getNodeSet (  doc ,  \"//table[@class='descTbl']\" ) [[  1L ] ]   species -   sapply (   getNodeSet (  table ,  \"tr/td[1]\" ) ,  xmlValue )   dbs -   sapply (   getNodeSet (  table ,  \"tr/td[2]\" ) ,  xmlValue )   dates -   sapply (   getNodeSet (  table ,  \"tr/td[3]\" ) ,  xmlValue )   nms -   sapply (   getNodeSet (  table ,  \"tr/td[4]\" ) ,  xmlValue )   status -   sapply (   getNodeSet (  table ,  \"tr/td[5]\" ) ,  xmlValue )   .cleanTableCells -  function ( x )  {   x -   sub (  \"^ *\" ,  \"\" ,  x ) ## Some empty cells in the table of UCSC genome releases seem to contain ## invisible junk. This junk seems to vary from one platform to the other ## (not clear why, maybe some sort of local issue?). ## There must be a simplest way to get rid of this junk... ## TODO: Test this on Windows!   is_empty_cell -   x %in%   c (  \" ,  \"\\xc2\\xa0\" ,  \"\\xc3\\x82\\xc2\\xa0\" )    x [  is_empty_cell ] -  \"\"  x }   df -   data.frame ( db =   .cleanTableCells (  dbs ) , species =   .cleanTableCells (  species ) , date =   .cleanTableCells (  dates ) , name =   .cleanTableCells (  nms ) , status =   .cleanTableCells (  status ) , stringsAsFactors =  FALSE )   COLS -   c (  \"UCSC VERSION\" ,  \"SPECIES\" ,  \"RELEASE DATE\" ,  \"RELEASE NAME\" ,  \"STATUS\" )  if (  !   identical (   as.character (   df [  1L , ] ) ,  COLS ) )   stop (  \"table of UCSC genome releases (found at \" ,  url ,  \"#release1) \" ,  \"doesn't have expected columns \" ,   paste (  COLS , collapse =  \", \" ) )   df -   df [  -  1L , ]   df -   df [    df $ db !=  \"\" , ]   not_empty -    df $ species !=  \"\"    df $ species -   rep.int (    df $ species [  not_empty ] ,   diff (   which (   c (  not_empty ,  TRUE ) ) ) )   df -   df [    df $ status ==  \"Available\" ,  -  5L ]  if (  organism )    df $ organism -   .getOrganism (   df $ db )    rownames (  df ) -  NULL  df } ",
+    "filename": "ucsc.txt"
+  }
+}
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "organism",
+    "representation": "organism",
+    "signature": "QuickloadGenome",
+    "parameters": "function ( x )",
+    "body": "{   gsub (  \"_\" ,  \" \" ,   sub (  \"(.*?)_.*?_[^_]*$\" ,  \"\\\\1\" ,   genome (  x ) ) ) } ",
+    "filename": "quickload.txt"
+  },
+  "new_function": {
+    "name": "organism",
+    "representation": "organism",
+    "signature": "QuickloadGenome",
+    "parameters": "function ( object )",
+    "body": "{   gsub (  \"_\" ,  \" \" ,   sub (  \"(.*?)_.*?_[^_]*$\" ,  \"\\\\1\" ,   genome (  object ) ) ) } ",
+    "filename": "quickload.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "ucscGenomes",
+    "representation": "ucscGenomes",
+    "parameters": "function ( )",
+    "body": "{   url -  \"http://genome.ucsc.edu/FAQ/FAQreleases\"   doc -   httpGet (  url )   table -    getNodeSet (  doc ,  \"//table[@class='descTbl']\" ) [[  1L ] ]   species -   sapply (   getNodeSet (  table ,  \"tr/td[1]\" ) ,  xmlValue )   dbs -   sapply (   getNodeSet (  table ,  \"tr/td[2]\" ) ,  xmlValue )   dates -   sapply (   getNodeSet (  table ,  \"tr/td[3]\" ) ,  xmlValue )   nms -   sapply (   getNodeSet (  table ,  \"tr/td[4]\" ) ,  xmlValue )   status -   sapply (   getNodeSet (  table ,  \"tr/td[5]\" ) ,  xmlValue )   .cleanTableCells -  function ( x )  {   x -   sub (  \"^ *\" ,  \"\" ,  x ) ## Some empty cells in the table of UCSC genome releases seem to contain ## invisible junk. This junk seems to vary from one platform to the other ## (not clear why, maybe some sort of local issue?). ## There must be a simplest way to get rid of this junk... ## TODO: Test this on Windows!   is_empty_cell -   x %in%   c (  \" ,  \"\\xc2\\xa0\" ,  \"\\xc3\\x82\\xc2\\xa0\" )    x [  is_empty_cell ] -  \"\"  x }   df -   data.frame ( db =   .cleanTableCells (  dbs ) , species =   .cleanTableCells (  species ) , date =   .cleanTableCells (  dates ) , name =   .cleanTableCells (  nms ) , status =   .cleanTableCells (  status ) , stringsAsFactors =  FALSE )   COLS -   c (  \"UCSC VERSION\" ,  \"SPECIES\" ,  \"RELEASE DATE\" ,  \"RELEASE NAME\" ,  \"STATUS\" )  if (  !   identical (   as.character (   df [  1L , ] ) ,  COLS ) )   stop (  \"table of UCSC genome releases (found at \" ,  url ,  \"#release1) \" ,  \"doesn't have expected columns \" ,   paste (  COLS , collapse =  \", \" ) )   df -   df [  -  1L , ]   df -   df [    df $ db !=  \"\" , ]   not_empty -    df $ species !=  \"\"    df $ species -   rep.int (    df $ species [  not_empty ] ,   diff (   which (   c (  not_empty ,  TRUE ) ) ) )   df -   df [    df $ status ==  \"Available\" ,  -  5L ]    rownames (  df ) -  NULL  df } ",
+    "filename": "ucsc.txt"
+  },
+  "new_function": {
+    "name": "ucscGenomes",
+    "representation": "ucscGenomes",
+    "parameters": "function ( organism = FALSE )",
+    "body": "{   url -  \"http://genome.ucsc.edu/FAQ/FAQreleases\"   doc -   httpGet (  url )   table -    getNodeSet (  doc ,  \"//table[@class='descTbl']\" ) [[  1L ] ]   species -   sapply (   getNodeSet (  table ,  \"tr/td[1]\" ) ,  xmlValue )   dbs -   sapply (   getNodeSet (  table ,  \"tr/td[2]\" ) ,  xmlValue )   dates -   sapply (   getNodeSet (  table ,  \"tr/td[3]\" ) ,  xmlValue )   nms -   sapply (   getNodeSet (  table ,  \"tr/td[4]\" ) ,  xmlValue )   status -   sapply (   getNodeSet (  table ,  \"tr/td[5]\" ) ,  xmlValue )   .cleanTableCells -  function ( x )  {   x -   sub (  \"^ *\" ,  \"\" ,  x ) ## Some empty cells in the table of UCSC genome releases seem to contain ## invisible junk. This junk seems to vary from one platform to the other ## (not clear why, maybe some sort of local issue?). ## There must be a simplest way to get rid of this junk... ## TODO: Test this on Windows!   is_empty_cell -   x %in%   c (  \" ,  \"\\xc2\\xa0\" ,  \"\\xc3\\x82\\xc2\\xa0\" )    x [  is_empty_cell ] -  \"\"  x }   df -   data.frame ( db =   .cleanTableCells (  dbs ) , species =   .cleanTableCells (  species ) , date =   .cleanTableCells (  dates ) , name =   .cleanTableCells (  nms ) , status =   .cleanTableCells (  status ) , stringsAsFactors =  FALSE )   COLS -   c (  \"UCSC VERSION\" ,  \"SPECIES\" ,  \"RELEASE DATE\" ,  \"RELEASE NAME\" ,  \"STATUS\" )  if (  !   identical (   as.character (   df [  1L , ] ) ,  COLS ) )   stop (  \"table of UCSC genome releases (found at \" ,  url ,  \"#release1) \" ,  \"doesn't have expected columns \" ,   paste (  COLS , collapse =  \", \" ) )   df -   df [  -  1L , ]   df -   df [    df $ db !=  \"\" , ]   not_empty -    df $ species !=  \"\"    df $ species -   rep.int (    df $ species [  not_empty ] ,   diff (   which (   c (  not_empty ,  TRUE ) ) ) )   df -   df [    df $ status ==  \"Available\" ,  -  5L ]  if (  organism )    df $ organism -   .getOrganism (   df $ db )    rownames (  df ) -  NULL  df } ",
+    "filename": "ucsc.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rtracklayer_release_3_1 rtracklayer_release_3_2
+
+{
+    "package": "rtracklayer",
+    "release_versions": "rtracklayer_release_3_1 rtracklayer_release_3_2",
+    "desc_release_old": "1.28.10",
+    "desc_release_new": "1.30.4",
+    "old_release_number": 12,
+    "new_release_number": 13,
+    "function_removals": 1,
+    "function_additions": 5,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 4,
+    "total_count": 5
+}
+
+##########
+Functions Removed
+##########
+
+sequence<-
+
+
+##########
+Functions Added
+##########
+
+readGFFPragmas
+sniffGFFVersion
+GFFcolnames
+readGFF
+readGFFAsGRanges
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "import",
+    "representation": "import",
+    "signature": "BEDFile",
+    "parameters": "function ( con , format , text , trackLine = TRUE , genome = NA , asRangedData = FALSE , colnames = NULL , which = NULL , seqinfo = NULL , extraCols = character ( ) )",
+    "body": "{  if (  !   missing (  format ) )   checkArgFormat (  con ,  format )   asRangedData -   normarg_asRangedData (  asRangedData ,  \"import\" )   file -  con   con -   queryForConnection (  con ,  which )  if (   attr (  con ,  \"usedWhich\" ) )   which -  NULL  if (   is.null (  seqinfo ) )   seqinfo -   attr (  con ,  \"seqinfo\" ) ## check for a track line   line -   scanTrackLine (  con )  if (   !   is.null (  line ) undefined  trackLine )  {   pushBack (  line ,  con )   ans -   import.ucsc (   initialize (  file , resource =  con ) , drop =  TRUE , trackLine =  FALSE , genome =  genome , asRangedData =  asRangedData , colnames =  colnames , which =  which , seqinfo =  seqinfo , extraCols =  extraCols )   return (  ans ) }  if (   is (  file ,  \"BEDGraphFile\" ) )  {   bedClasses -   c (  \"character\" ,  \"integer\" ,  \"integer\" ,  \"numeric\" )   bedNames -   c (  \"chrom\" ,  \"start\" ,  \"end\" ,  \"score\" ) } else  {   bedNames -   c (  \"chrom\" ,  \"start\" ,  \"end\" ,  \"name\" ,  \"score\" ,  \"strand\" ,  \"thickStart\" ,  \"thickEnd\" ,  \"itemRgb\" ,  \"blockCount\" ,  \"blockSizes\" ,  \"blockStarts\" )   bedClasses -   c (  \"character\" ,  \"integer\" ,  \"integer\" ,  \"character\" ,  \"numeric\" ,  \"character\" ,  \"integer\" ,  \"integer\" ,  \"character\" ,  \"integer\" ,  \"character\" ,  \"character\" ) }  if (   is (  file ,  \"BED15File\" ) )   bedNames -   c (  bedNames ,  \"expCount\" ,  \"expIds\" ,  \"expScores\" )   normArgColnames -  function ( validNames )  {  if (   is.null (  colnames ) )   colnames -  validNames else  {   colnames -   unique (   c (   head (  bedNames ,  3 ) ,   as.character (  colnames ) ) )  if (   \"thick\" %in%  colnames )   colnames -   c (   setdiff (  colnames ,  \"thick\" ) ,  \"thickStart\" ,  \"thickEnd\" )  if (   \"blocks\" %in%  colnames )   colnames -   c (   setdiff (  colnames ,  \"blocks\" ) ,  \"blockStarts\" ,  \"blockSizes\" ,  \"blockCount\" )   missingCols -   setdiff (  colnames ,  validNames )  if (   length (  missingCols ) )   stop (  \"Requested column(s) \" ,   paste (  \"'\" ,  missingCols ,  \"'\" , sep =  \"\" , collapse =  \", \" ) ,  \" are not valid columns or were not found in the file\" ) }  colnames } ## read a single line to get ncols up-front, ## and thus specify all col classes ## FIXME: reading in 'as.is' to save memory,   line -   readLines (  con ,  1 , warn =  FALSE ) ## UCSC seems to use '#' at beginning to indicate comment.  while (    length (  line ) undefined  (   !   nzchar (  line ) ||    substring (  line ,  1 ,  1 ) ==  \"#\" ) )  {   line -   readLines (  con ,  1 , warn =  FALSE ) }  if (   length (  line ) )  {   `tail -  function ( x , n , value )  if (   n !=  0 )   c (   head (  x ,  -  n ) ,  value ) else  x   pushBack (  line ,  con )   colsInFile -   seq_len (   length (    strsplit (  line ,  \"[\\t ]\" ) [[  1 ] ] ) )   presentNames -   bedNames [  colsInFile ]    tail (  presentNames ,   length (  extraCols ) ) -   names (  extraCols )   bedNames -  presentNames   presentClasses -   bedClasses [  colsInFile ]    tail (  presentClasses ,   length (  extraCols ) ) -   unname (  extraCols )   colnames -   normArgColnames (  presentNames )   bedClasses -   ifelse (   presentNames %in%  colnames ,  presentClasses ,  \"NULL\" )   bed -   DataFrame (   read.table (  con , colClasses =  bedClasses , as.is =  TRUE , na.strings =  \".\" , comment.char =  \"\" ) ) } else  {  if (   is.null (  colnames ) )   colnames -   character ( ) else   colnames -   normArgColnames (  bedNames )   keepCols -   bedNames %in%  colnames   bed -   DataFrame (   as.list (   sapply (   bedClasses [  keepCols ] ,  vector ) ) ) }    colnames (  bed ) -   bedNames [   bedNames %in%  colnames ]   bed -   bed [    substring (   bed $ chrom ,  1 ,  1 ) !=  \"#\" , ]  if (  !   is.null (   bed $ thickStart ) )  {   thickEnd -   bed $ thickEnd  if (   is.null (  thickEnd ) )   thickEnd -   bed $ end    bed $ thick -   IRanges (    bed $ thickStart +  1L ,  thickEnd )    bed $ thickStart -    bed $ thickEnd -  NULL }   color -   bed $ itemRgb  if (   is.character (  color ) )  { # could be NULL   spec -   color !=  \"0\"   cols -   unlist (   strsplit (   color [  spec ] ,  \",\" , fixed =  TRUE ) , use.names =  FALSE )   cols -   matrix (   as.integer (  cols ) ,  3 )   color -   rep (  NA ,   nrow (  bed ) )    color [  spec ] -   rgb (   cols [  1 , ] ,   cols [  2 , ] ,   cols [  3 , ] , max =  255 )    bed $ itemRgb -  color }   fromCSV -  function ( b )  {   as.integer (   unlist (   strsplit (  b ,  \",\" , fixed =  TRUE ) ) ) }  if (  !   is.null (   bed $ blockStarts ) )  {   blocks -   relist (   IRanges (    fromCSV (   bed $ blockStarts ) +  1L , width =   fromCSV (   bed $ blockSizes ) ) ,   PartitioningByWidth (   bed $ blockCount ) )    names (  blocks ) -  NULL    bed $ blockStarts -    bed $ blockSizes -    bed $ blockCount -  NULL    bed $ blocks -  blocks }   GenomicData (   IRanges (    bed $ start +  1L ,   bed $ end ) ,   bed [  -  (   1 :  3 ) ] , chrom =   bed $ chrom , genome =  genome , seqinfo =  seqinfo , asRangedData =  asRangedData , which =  which ) } ",
+    "filename": "bed.txt"
+  },
+  "new_function": {
+    "name": "import",
+    "representation": "import",
+    "signature": "BEDFile",
+    "parameters": "function ( con , format , text , trackLine = TRUE , genome = NA , colnames = NULL , which = NULL , seqinfo = NULL , extraCols = character ( ) )",
+    "body": "{  if (  !   missing (  format ) )   checkArgFormat (  con ,  format )   file -  con   con -   queryForConnection (  con ,  which )  if (   attr (  con ,  \"usedWhich\" ) )   which -  NULL  if (   is.null (  seqinfo ) )   seqinfo -   attr (  con ,  \"seqinfo\" ) ## check for a track line   line -   scanTrackLine (  con )  if (   !   is.null (  line ) undefined  trackLine )  {   pushBack (  line ,  con )   ans -   import.ucsc (   initialize (  file , resource =  con ) , drop =  TRUE , trackLine =  FALSE , genome =  genome , colnames =  colnames , which =  which , seqinfo =  seqinfo , extraCols =  extraCols )   return (  ans ) }  if (   is (  file ,  \"BEDGraphFile\" ) )  {   bedClasses -   c (  \"character\" ,  \"integer\" ,  \"integer\" ,  \"numeric\" )   bedNames -   c (  \"chrom\" ,  \"start\" ,  \"end\" ,  \"score\" ) } else  {   bedNames -   c (  \"chrom\" ,  \"start\" ,  \"end\" ,  \"name\" ,  \"score\" ,  \"strand\" ,  \"thickStart\" ,  \"thickEnd\" ,  \"itemRgb\" ,  \"blockCount\" ,  \"blockSizes\" ,  \"blockStarts\" )   bedClasses -   c (  \"character\" ,  \"integer\" ,  \"integer\" ,  \"character\" ,  \"numeric\" ,  \"character\" ,  \"integer\" ,  \"integer\" ,  \"character\" ,  \"integer\" ,  \"character\" ,  \"character\" ) }  if (   is (  file ,  \"BED15File\" ) )   bedNames -   c (  bedNames ,  \"expCount\" ,  \"expIds\" ,  \"expScores\" )   normArgColnames -  function ( validNames )  {  if (   is.null (  colnames ) )   colnames -  validNames else  {   colnames -   unique (   c (   head (  bedNames ,  3 ) ,   as.character (  colnames ) ) )  if (   \"thick\" %in%  colnames )   colnames -   c (   setdiff (  colnames ,  \"thick\" ) ,  \"thickStart\" ,  \"thickEnd\" )  if (   \"blocks\" %in%  colnames )   colnames -   c (   setdiff (  colnames ,  \"blocks\" ) ,  \"blockStarts\" ,  \"blockSizes\" ,  \"blockCount\" )   missingCols -   setdiff (  colnames ,  validNames )  if (   length (  missingCols ) )   stop (  \"Requested column(s) \" ,   paste (  \"'\" ,  missingCols ,  \"'\" , sep =  \"\" , collapse =  \", \" ) ,  \" are not valid columns or were not found in the file\" ) }  colnames } ## read a single line to get ncols up-front, ## and thus specify all col classes ## FIXME: reading in 'as.is' to save memory,   line -   readLines (  con ,  1 , warn =  FALSE ) ## UCSC seems to use '#' at beginning to indicate comment.  while (    length (  line ) undefined  (   !   nzchar (  line ) ||    substring (  line ,  1 ,  1 ) ==  \"#\" ) )  {   line -   readLines (  con ,  1 , warn =  FALSE ) }  if (   length (  line ) )  {   `tail -  function ( x , n , value )  if (   n !=  0 )   c (   head (  x ,  -  n ) ,  value ) else  x   pushBack (  line ,  con )   colsInFile -   seq_len (   length (    strsplit (  line ,  \"\\\\s+\" ) [[  1 ] ] ) )   presentNames -   bedNames [  colsInFile ]    tail (  presentNames ,   length (  extraCols ) ) -   names (  extraCols )   bedNames -  presentNames   presentClasses -   bedClasses [  colsInFile ]    tail (  presentClasses ,   length (  extraCols ) ) -   unname (  extraCols )   colnames -   normArgColnames (  presentNames )   bedClasses -   ifelse (   presentNames %in%  colnames ,  presentClasses ,  \"NULL\" )   bed -   DataFrame (   read.table (  con , colClasses =  bedClasses , as.is =  TRUE , na.strings =  \".\" , comment.char =  \"\" ) ) } else  {  if (   is.null (  colnames ) )   colnames -   character ( ) else   colnames -   normArgColnames (  bedNames )   keepCols -   bedNames %in%  colnames   bed -   DataFrame (   as.list (   sapply (   bedClasses [  keepCols ] ,  vector ) ) ) }    colnames (  bed ) -   bedNames [   bedNames %in%  colnames ]   bed -   bed [    substring (   bed $ chrom ,  1 ,  1 ) !=  \"#\" , ]  if (  !   is.null (   bed $ thickStart ) )  {   thickEnd -   bed $ thickEnd  if (   is.null (  thickEnd ) )   thickEnd -   bed $ end    bed $ thick -   IRanges (    bed $ thickStart +  1L ,  thickEnd )    bed $ thickStart -    bed $ thickEnd -  NULL }   color -   bed $ itemRgb  if (   is.character (  color ) )  { # could be NULL   spec -   color !=  \"0\"   cols -   unlist (   strsplit (   color [  spec ] ,  \",\" , fixed =  TRUE ) , use.names =  FALSE )   cols -   matrix (   as.integer (  cols ) ,  3 )   color -   rep (  NA ,   nrow (  bed ) )    color [  spec ] -   rgb (   cols [  1 , ] ,   cols [  2 , ] ,   cols [  3 , ] , max =  255 )    bed $ itemRgb -  color }   fromCSV -  function ( b )  {   as.integer (   unlist (   strsplit (  b ,  \",\" , fixed =  TRUE ) ) ) }  if (  !   is.null (   bed $ blockStarts ) )  {   blocks -   relist (   IRanges (    fromCSV (   bed $ blockStarts ) +  1L , width =   fromCSV (   bed $ blockSizes ) ) ,   PartitioningByWidth (   bed $ blockCount ) )    names (  blocks ) -  NULL    bed $ blockStarts -    bed $ blockSizes -    bed $ blockCount -  NULL    bed $ blocks -  blocks }   GenomicData (   IRanges (    bed $ start +  1L ,   bed $ end ) ,   bed [  -  (   1 :  3 ) ] , chrom =   bed $ chrom , genome =  genome , seqinfo =  seqinfo , which =  which ) } ",
+    "filename": "bed.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "import",
+    "representation": "import",
+    "signature": "BED15File",
+    "parameters": "function ( con , format , text , trackLine = NULL , genome = NA , asRangedData = FALSE , which = NULL )",
+    "body": "{  if (  !   missing (  format ) )   checkArgFormat (  con ,  format )   asRangedData -   normarg_asRangedData (  asRangedData ,  \"import\" )  if (   is.null (  trackLine ) )   return (   import.ucsc (  con ,  TRUE , genome =  genome , asRangedData =  asRangedData , which =  which ) )   bed -   callNextMethod ( )  if (  asRangedData )  {  if (  !   nrow (  bed ) )   return (  bed )   ids -    strsplit (    bed $ expIds [  1 ] ,  \",\" , fixed =  TRUE ) [[  1 ] ]   expNames -    trackLine @ expNames [    as.integer (  ids ) +  1L ]   scores -   unlist (   strsplit (   bed $ expScores ,  \",\" , fixed =  TRUE ) , use.names =  FALSE )   scores -   as.numeric (  scores )    scores [   scores ==  -  10000 ] -  NA # stupid UCSC convention   scores -   split (  scores ,   gl (   length (  expNames ) ,  1 ,   length (  scores ) ) )    names (  scores ) -  expNames   nonExpCols -   setdiff (   colnames (  bed ) ,   c (  \"expCount\" ,  \"expScores\" ,  \"expIds\" ) )   bed -   bed [ ,  nonExpCols ]  for  ( samp in   names (  scores ) )    bed [[  samp ] ] -   scores [[  samp ] ]  bed } else  {  if (  !   length (  bed ) )   return (  bed )   ids -    strsplit (     values (  bed ) $ expIds [  1 ] ,  \",\" , fixed =  TRUE ) [[  1 ] ]   expNames -    trackLine @ expNames [    as.integer (  ids ) +  1L ]   scores -   unlist (   strsplit (    values (  bed ) $ expScores ,  \",\" , fixed =  TRUE ) , use.names =  FALSE )   scores -   as.numeric (  scores )    scores [   scores ==  -  10000 ] -  NA # stupid UCSC convention   scores -   split (  scores ,   gl (   length (  expNames ) ,  1 ,   length (  scores ) ) )    names (  scores ) -  expNames   nonExpCols -   setdiff (   colnames (   values (  bed ) ) ,   c (  \"expCount\" ,  \"expScores\" ,  \"expIds\" ) )    values (  bed ) -    values (  bed ) [ ,  nonExpCols ]    values (  bed ) -   cbind (   values (  bed ) ,   do.call (  DataFrame ,  scores ) )  bed } } ",
+    "filename": "bed.txt"
+  },
+  "new_function": {
+    "name": "import",
+    "representation": "import",
+    "signature": "BED15File",
+    "parameters": "function ( con , format , text , trackLine = NULL , genome = NA , which = NULL )",
+    "body": "{  if (  !   missing (  format ) )   checkArgFormat (  con ,  format )  if (   is.null (  trackLine ) )   return (   import.ucsc (  con ,  TRUE , genome =  genome , which =  which ) )   bed -   callNextMethod ( )  if (  !   length (  bed ) )   return (  bed )   ids -    strsplit (     values (  bed ) $ expIds [  1 ] ,  \",\" , fixed =  TRUE ) [[  1 ] ]   expNames -    trackLine @ expNames [    as.integer (  ids ) +  1L ]   scores -   unlist (   strsplit (    values (  bed ) $ expScores ,  \",\" , fixed =  TRUE ) , use.names =  FALSE )   scores -   as.numeric (  scores )    scores [   scores ==  -  10000 ] -  NA # stupid UCSC convention   scores -   split (  scores ,   gl (   length (  expNames ) ,  1 ,   length (  scores ) ) )    names (  scores ) -  expNames   nonExpCols -   setdiff (   colnames (   values (  bed ) ) ,   c (  \"expCount\" ,  \"expScores\" ,  \"expIds\" ) )    values (  bed ) -    values (  bed ) [ ,  nonExpCols ]    values (  bed ) -   cbind (   values (  bed ) ,   do.call (  DataFrame ,  scores ) )  bed } ",
+    "filename": "bed.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "import",
+    "representation": "import",
+    "signature": "GFFFile",
+    "parameters": "function ( con , format , text , version = c ( \"\" , \"1\" , \"2\" , \"3\" ) , genome = NA , asRangedData = FALSE , colnames = NULL , which = NULL , feature.type = NULL )",
+    "body": "{  if (  !   missing (  format ) )   checkArgFormat (  con ,  format )  if (  !   missing (  version ) )   con -   asGFFVersion (  con ,   match.arg (  version ) )   asRangedData -   normarg_asRangedData (  asRangedData ,  \"import\" ) ## download the file first if it's remote  if (   is.character (   resource (  con ) ) )  {   uri -   .parseURI (   resource (  con ) )  if (    uri $ scheme %in%   c (  \"ftp\" ,  \"http\" ) )  {   destfile -   tempfile ( )   download.file (   resource (  con ) ,  destfile )    con @ resource -  destfile } }   sniffed -   sniffGFFVersion (   resource (  con ) )   version -   gffFileVersion (  con )  if (  !   length (  version ) )  {  if (   is.null (  sniffed ) )   sniffed -  \"1\"   con -   asGFFVersion (  con ,  sniffed ) }  if (     length (  version ) undefined  !   is.null (  sniffed ) undefined  !   identical (  sniffed ,  version ) )   warning (  \"gff-version directive indicates version is \" ,  sniffed ,  \", not \" ,  version )  if (   is.na (  genome ) )   genome -   genome (  con ) ### FIXME: a queryForLines() function would be more efficient   file -  con   con -   queryForResource (  con ,  which )   lines -   readLines (  con , warn =  FALSE ) # unfortunately, not a table   lines -   lines [   nzchar (  lines ) ] ## strip comments   notComments -   which (    substr (  lines , start =  1L , stop =  1L ) !=  \"#\" )   lines -   lines [  notComments ] ### TODO: handle ontologies (store in RangedData) ## strip FASTA sequence   fastaHeaders -   which (    substr (  lines , start =  1L , stop =  1L ) ==  \" )  if (   length (  fastaHeaders ) )   lines -   head (  lines ,    fastaHeaders [  1 ] -  1 ) ## construct table   fields -   c (  \"seqname\" ,  \"source\" ,  \"type\" ,  \"start\" ,  \"end\" ,  \"score\" ,  \"strand\" ,  \"phase\" ,  \"attributes\" )   linesSplit -   strsplit (  lines ,  \"\\t\" , fixed =  TRUE )   fieldCounts -   elementLengths (  linesSplit )  if (    any (   fieldCounts undefined   length (  fields ) ) ||   any (   fieldCounts undefined  (    length (  fields ) -  1 ) ) )   stop (  \"GFF files must have \" ,   length (  fields ) ,  \" tab-separated columns\" )   haveAttr -   fieldCounts ==   length (  fields )   data -   unlist (   linesSplit [  haveAttr ] , use.names =  FALSE )  if (   is.null (  data ) )   data -   character (  0 )   haveAttrMat -   matrix (  data , ncol =   length (  fields ) , byrow =  TRUE )   data -   unlist (   linesSplit [  !  haveAttr ] , use.names =  FALSE )  if (   is.null (  data ) )   data -   character (  0 )   noAttrMat -   matrix (  data , ncol =    length (  fields ) -  1L , byrow =  TRUE )   noAttrMat -   cbind (  noAttrMat ,   rep.int (  \"\" ,   nrow (  noAttrMat ) ) )   table -   rbind (  noAttrMat ,  haveAttrMat )    colnames (  table ) -  fields  if (  !   is.null (  feature.type ) )   table -   table [    table [ ,  \"type\" ] %in%  feature.type , , drop =  FALSE ] ## handle missings    table [   table ==  \".\" ] -  NA_character_   attrCol -   table [ ,  \"attributes\" ]  if (   is (  file ,  \"GFF3File\" ) )  {   table -   table [ ,   setdiff (   colnames (  table ) ,  \"attributes\" ) , drop =  FALSE ]    table [    table [ ,  \"strand\" ] ==  \"?\" ,  \"strand\" ] -  NA_character_   is_not_NA -  !   is.na (  table )    table [  is_not_NA ] -   urlDecode (   table [  is_not_NA ] ) }   extraCols -   c (  \"source\" ,  \"type\" ,  \"score\" ,  \"strand\" ,  \"phase\" )  if (  !   is.null (  colnames ) )   extraCols -   intersect (  extraCols ,  colnames )   xd -   as (   table [ ,  extraCols , drop =  FALSE ] ,  \"DataFrame\" )  if (  !   is.null (   xd $ phase ) )    xd $ phase -   as.integer (   as.character (   xd $ phase ) )  if (  !   is.null (   xd $ score ) )   suppressWarnings (    xd $ score -   as.numeric (   as.character (   xd $ score ) ) )  if (    is.null (  colnames ) ||   length (   setdiff (  colnames ,  extraCols ) ) )  {   attrList -   .parse_attrCol (  attrCol ,  file ,  colnames )   xd -   DataFrame (  xd ,  attrList ) }   end -   as.integer (   table [ ,  \"end\" ] )   GenomicData (   IRanges (   as.integer (   table [ ,  \"start\" ] ) ,  end ) ,  xd , chrom =   table [ ,  \"seqname\" ] , genome =  genome , seqinfo =   attr (  con ,  \"seqinfo\" ) , asRangedData =  asRangedData , which =  if (   attr (  con ,  \"usedWhich\" ) )  NULL else  which ) } ",
+    "filename": "gff.txt"
+  },
+  "new_function": {
+    "name": "import",
+    "representation": "import",
+    "signature": "GFFFile",
+    "parameters": "function ( con , format , text , version = c ( \"\" , \"1\" , \"2\" , \"3\" ) , genome = NA , colnames = NULL , which = NULL , feature.type = NULL , sequenceRegionsAsSeqinfo = FALSE )",
+    "body": "{  if (  !   missing (  format ) )   checkArgFormat (  con ,  format )  if (  !   missing (  version ) )   con -   asGFFVersion (  con ,   match.arg (  version ) )   stopifnot (   isTRUEorFALSE (  sequenceRegionsAsSeqinfo ) ) ## download the file first if it's remote  if (   is.character (   resource (  con ) ) )  {   uri -   .parseURI (   resource (  con ) )  if (    uri $ scheme %in%   c (  \"ftp\" ,  \"http\" ) )  {   destfile -   tempfile ( )   download.file (   resource (  con ) ,  destfile )    con @ resource -  destfile } }   sniffed -   .sniffGFFVersion (   resource (  con ) )   version -   gffFileVersion (  con )  if (  !   length (  version ) )  {  if (   is.null (  sniffed ) )   sniffed -  \"1\"   con -   asGFFVersion (  con ,  sniffed ) }  if (     length (  version ) undefined  !   is.null (  sniffed ) undefined  !   identical (  sniffed ,  version ) )   warning (  \"gff-version directive indicates version is \" ,  sniffed ,  \", not \" ,  version )  if (   is.na (  genome ) )  {   genome -   genome (  con )  if (   is.null (  genome ) )   genome -  NA } ### FIXME: a queryForLines() function would be more efficient ## Temporarily disable use of Tabix Index. ## TODO: Restore use of Tabix Index! #con   con -   queryForResource (  con )   ans -   readGFFAsGRanges (  con , version =  version , colnames =  colnames , filter =   list ( type =  feature.type ) , genome =  genome , sequenceRegionsAsSeqinfo =  sequenceRegionsAsSeqinfo , speciesAsMetadata =  TRUE )  if (   !   attr (  con ,  \"usedWhich\" ) undefined  !   is.null (  which ) )   ans -   subsetByOverlaps (  ans ,  which )  ans } ",
+    "filename": "gff.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "track",
+    "representation": "track",
+    "signature": "UCSCTableQuery",
+    "parameters": "function ( object , asRangedData = FALSE )",
+    "body": "{   asRangedData -   normarg_asRangedData (  asRangedData ,  \"track\" )   tables -   tableNames (  object )   table -   tableName (  object )  if (   !   is.null (  table ) undefined  !  (   table %in%  tables ) )   stop (  \"Unknown table: '\" ,  table ,  \"'. Valid table names: \" ,  tables )   formats -   c (  \"wigData\" ,  \"wigBed\" ,  \"bed\" ) ## attempt to automatically determine the table  if (  !   is.null (  table ) )   tables -  table  for  ( table in  tables )  {    object @ table -  table   outputs -   ucscTableOutputs (  object )  if (   any (   formats %in%  outputs ) )  break }  if (  !   any (   formats %in%  outputs ) )   stop (  \"No supported output types\" )  if (   \"wigData\" %in%  outputs )  { # track stored as wig   format -  \"wig\"   output -  \"wigData\" } else  {   format -   output -  \"bed\"  if (   \"wigBed\" %in%  outputs )   output -  \"wigBed\" }    outputType (  object ) -  output   output -   ucscExport (  object )  if (   outputTruncated (  output ) )   stop (  \"Output is incomplete: \" ,  \"track may have more than 100,000 elements. \" ,  \"Try downloading the data via the UCSC FTP site.\" )   import ( text =  output , format =  format , asRangedData =  asRangedData , seqinfo =   seqinfo (   range (  object ) ) ) } ",
+    "filename": "ucsc.txt"
+  },
+  "new_function": {
+    "name": "track",
+    "representation": "track",
+    "signature": "UCSCTableQuery",
+    "parameters": "function ( object )",
+    "body": "{   tables -   tableNames (  object )   table -   tableName (  object )  if (   !   is.null (  table ) undefined  !  (   table %in%  tables ) )   stop (  \"Unknown table: '\" ,  table ,  \"'. Valid table names: \" ,  tables )   formats -   c (  \"wigData\" ,  \"wigBed\" ,  \"bed\" ) ## attempt to automatically determine the table  if (  !   is.null (  table ) )   tables -  table  for  ( table in  tables )  {    object @ table -  table   outputs -   ucscTableOutputs (  object )  if (   any (   formats %in%  outputs ) )  break }  if (  !   any (   formats %in%  outputs ) )   stop (  \"No supported output types\" )  if (   \"wigData\" %in%  outputs )  { # track stored as wig   format -  \"wig\"   output -  \"wigData\" } else  {   format -   output -  \"bed\"  if (   \"wigBed\" %in%  outputs )   output -  \"wigBed\" }    outputType (  object ) -  output   output -   ucscExport (  object )  if (   outputTruncated (  output ) )   stop (  \"Output is incomplete: \" ,  \"track may have more than 100,000 elements. \" ,  \"Try downloading the data via the UCSC FTP site.\" )   import ( text =  output , format =  format , seqinfo =   seqinfo (   range (  object ) ) ) } ",
+    "filename": "ucsc.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rtracklayer_release_3_2 rtracklayer_release_3_3
+
+{
+    "package": "rtracklayer",
+    "release_versions": "rtracklayer_release_3_2 rtracklayer_release_3_3",
+    "desc_release_old": "1.30.4",
+    "desc_release_new": "1.32.2",
+    "old_release_number": 13,
+    "new_release_number": 14,
+    "function_removals": 0,
+    "function_additions": 2,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+cleanupBigWigCache
+BEDPEFile
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rtracklayer_release_3_3 rtracklayer_release_3_4
+
+{
+    "package": "rtracklayer",
+    "release_versions": "rtracklayer_release_3_3 rtracklayer_release_3_4",
+    "desc_release_old": "1.32.2",
+    "desc_release_new": "1.34.2",
+    "old_release_number": 14,
+    "new_release_number": 15,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rtracklayer_release_3_4 rtracklayer_release_3_5
+
+{
+    "package": "rtracklayer",
+    "release_versions": "rtracklayer_release_3_4 rtracklayer_release_3_5",
+    "desc_release_old": "1.34.2",
+    "desc_release_new": "1.36.6",
+    "old_release_number": 15,
+    "new_release_number": 16,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rtracklayer_release_3_5 rtracklayer_release_3_6
+
+{
+    "package": "rtracklayer",
+    "release_versions": "rtracklayer_release_3_5 rtracklayer_release_3_6",
+    "desc_release_old": "1.36.6",
+    "desc_release_new": "1.38.3",
+    "old_release_number": 16,
+    "new_release_number": 17,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rtracklayer_release_3_6 rtracklayer_release_3_7
+
+{
+    "package": "rtracklayer",
+    "release_versions": "rtracklayer_release_3_6 rtracklayer_release_3_7",
+    "desc_release_old": "1.38.3",
+    "desc_release_new": "1.40.6",
+    "old_release_number": 17,
+    "new_release_number": 18,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rtracklayer_release_3_7 rtracklayer_release_3_8
+
+{
+    "package": "rtracklayer",
+    "release_versions": "rtracklayer_release_3_7 rtracklayer_release_3_8",
+    "desc_release_old": "1.40.6",
+    "desc_release_new": "1.42.2",
+    "old_release_number": 18,
+    "new_release_number": 19,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+viewURL
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rtracklayer_release_3_8 rtracklayer_release_3_9
+
+{
+    "package": "rtracklayer",
+    "release_versions": "rtracklayer_release_3_8 rtracklayer_release_3_9",
+    "desc_release_old": "1.42.2",
+    "desc_release_new": "1.44.4",
+    "old_release_number": 19,
+    "new_release_number": 20,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rtracklayer_release_3_9 rtracklayer_release_3_11
+
+{
+    "package": "rtracklayer",
+    "release_versions": "rtracklayer_release_3_9 rtracklayer_release_3_11",
+    "desc_release_old": "1.44.4",
+    "desc_release_new": "1.48.0",
+    "old_release_number": 20,
+    "new_release_number": 21,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+fileFormat
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rtracklayer_release_3_11 rtracklayer_release_3_12
+
+{
+    "package": "rtracklayer",
+    "release_versions": "rtracklayer_release_3_11 rtracklayer_release_3_12",
+    "desc_release_old": "1.48.0",
+    "desc_release_new": "1.50.0",
+    "old_release_number": 21,
+    "new_release_number": 22,
+    "function_removals": 0,
+    "function_additions": 31,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+BigBedSelection
+Genome
+TrackHub
+trackhub
+TrackHubGenome
+Track
+TrackContainer
+cleanupBigBedCache
+BigBedFile
+export.bb
+import.bb
+hub
+hub<-
+shortLabel
+shortLabel<-
+longLabel
+longLabel<-
+genomesFile
+genomesFile<-
+email
+email<-
+descriptionUrl
+descriptionUrl<-
+genomeField
+genomeField<-
+getTracks
+writeTrackHub
+trackField
+trackField<-
+genomeInfo
+genomeInfo<-
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rtracklayer_release_3_12 rtracklayer_release_3_13
+
+{
+    "package": "rtracklayer",
+    "release_versions": "rtracklayer_release_3_12 rtracklayer_release_3_13",
+    "desc_release_old": "1.50.0",
+    "desc_release_new": "1.52.1",
+    "old_release_number": 22,
+    "new_release_number": 23,
+    "function_removals": 1,
+    "function_additions": 3,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+formatDescription
+
+
+##########
+Functions Added
+##########
+
+ucscTables
+hubUrl
+hubUrl<-
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "getTable",
+    "representation": "getTable",
+    "signature": "UCSCTableQuery",
+    "parameters": "function ( object , check = TRUE )",
+    "body": "{    outputType (  object ) -  \"primaryTable\"  if (   is.null (   tableName (  object ) ) )  { # must specify a table name    tableName (  object , check =  FALSE ) -   firstTableName (  object )  if (   is.null (   tableName (  object ) ) )   stop (  \"No valid table found\" ) } else  if (   check undefined  !    outputType (  object ) %in%   ucscTableOutputs (  object ) )   stop (  \"tabular output format not available\" )   output -   ucscExport (  object ) ## since '#' is not treated as a comment, we discard the ## error message, leaving only the header  if (   grepl (  \"\\\\n# No results\" ,  output ) )   output -   gsub (  \"\\\\n.*\" ,  \"\" ,  output )   f -   file ( )   writeLines (  output ,  f )   tab -   read.table (  f , sep =  \"\\t\" , header =  TRUE , comment.char =  \"\" , quote =  \"\" ) ## strip off the '#' =     colnames (  tab ) [  1L ] -   substring (    colnames (  tab ) [  1L ] ,  3L )   close (  f )  tab } ",
+    "filename": "ucsc.txt"
+  },
+  "new_function": {
+    "name": "getTable",
+    "representation": "getTable",
+    "signature": "UCSCTableQuery",
+    "parameters": "function ( object )",
+    "body": "{   stopIfTableEmpty (  object )   tableName -   tableName (  object )   genome -   object @ genome   query -   list ( genome =  genome , track =  tableName )  if (    length (   object @ range ) ==  1L )  {   start -   start (   object @ range )   end -   end (   object @ range )   seqname -   as.vector (   seqnames (   object @ range ) )   query -   c (  query , chrom =  seqname , start =  start , end =  end ) }  if (   isTrackHub (  object ) )  {   th -   TrackHub (   object @ hubUrl )   thg -   TrackHubGenome (  th ,  genome )  if (    length (   object @ range ) ==  1L )  {   which -   GRanges (  seqname ,   IRanges (  start ,  end ) )   track -   track (  thg ,  tableName , which =  which ) } else   track -   track (  thg ,  tableName )   as.data.frame (  track ) } else  {   url -   RestUri (   paste0 (   object @ url ,  \"hubApi\" ) )   response -   read (    url $ getData $ track ,  query )   output -   parseResponse (  response ,  tableName )   NAMES -   names (  object )  if (  !   is.null (  NAMES ) )  { # filter by NAMES  if (   is.null (   output $ name ) )   output -   output [    output $ frag %in%  NAMES , ] # as in some tables `frag` field is used instead of `name` else   output -   output [    output $ name %in%  NAMES , ]    rownames (  output ) -   seq ( length =   nrow (  output ) ) }  output } } ",
+    "filename": "ucsc.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rtracklayer_release_3_13 rtracklayer_release_3_14
+
+{
+    "package": "rtracklayer",
+    "release_versions": "rtracklayer_release_3_13 rtracklayer_release_3_14",
+    "desc_release_old": "1.52.1",
+    "desc_release_new": "1.54.0",
+    "old_release_number": 23,
+    "new_release_number": 24,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rtracklayer_release_3_14 rtracklayer_master
+
+{
+    "package": "rtracklayer",
+    "release_versions": "rtracklayer_release_3_14 rtracklayer_master",
+    "desc_release_old": "1.54.0",
+    "desc_release_new": "1.55.3",
+    "old_release_number": 24,
+    "new_release_number": 25,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+

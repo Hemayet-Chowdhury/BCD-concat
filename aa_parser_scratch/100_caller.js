@@ -18,13 +18,14 @@ total_object["parameter_additions"] = 0;
 total_object["parameter_renames"] = 0;
 total_object["def_name_renames"] = 0;
 total_object["parameter_default_changes"] = 0;
-
+total_object["parameter_overall_changes"] = 0;
+total_object["total_count"] = 0;
 await client.connect();
 const database = client.db("myNewDB");
-const collection = database.collection("trial_sketch");
+const collection = database.collection("alpha");
 const error_writer = fs.createWriteStream("./errors/" + "error_log.txt");
 
-let directory_100 = "./test_final_2";
+let directory_100 = "./download_final_100";
 let all_parent_folders = await readdir(directory_100);
 
 for (let parent_folder of all_parent_folders) {
@@ -34,14 +35,14 @@ for (let parent_folder of all_parent_folders) {
     return version_name.slice(-4) != ".zip";
   });
   filtered_versions.sort(sort_array_by_branch);
+  let package_name = parent_folder;
+  const log_writer = fs.createWriteStream(
+    "./main_logs/" + package_name + "_output_log.txt"
+  );
   for (let i = 0; i < filtered_versions.length - 1; i++) {
-    let package_name = parent_folder;
     let old_version = package_folder + "/" + filtered_versions[i];
     let new_version = package_folder + "/" + filtered_versions[i + 1];
     let old_library_release_number = i;
-    const log_writer = fs.createWriteStream(
-      "./test_logs/" + package_name + "_output_log.txt"
-    );
     try {
       let compare_2_libraries = new Compare_2_libraries(
         package_name,
@@ -59,14 +60,16 @@ for (let parent_folder of all_parent_folders) {
       total_object.parameter_renames += result_object.parameter_renames;
       total_object.parameter_default_changes +=
         result_object.parameter_default_changes;
-
+      total_object.parameter_overall_changes +=
+        result_object.parameter_overall_changes;
+      total_object.total_count += result_object.total_count;
       console.log(result_object);
     } catch (error) {
       console.log(error);
       error_writer.write(
         package_name + "\n" + old_version + "\n" + new_version
       );
-      error_writer.write(error);
+      error_writer.write(error.toString());
     }
   }
 }

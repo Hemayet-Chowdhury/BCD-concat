@@ -1,0 +1,1160 @@
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  variantannotation_release_2_9 variantannotation_release_2_11
+
+{
+    "package": "VariantAnnotation",
+    "release_versions": "variantannotation_release_2_9 variantannotation_release_2_11",
+    "desc_release_old": "1.0.5",
+    "desc_release_new": "1.4.12",
+    "old_release_number": 0,
+    "new_release_number": 1,
+    "function_removals": 2,
+    "function_additions": 66,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+globalToLocal
+c
+
+
+##########
+Functions Added
+##########
+
+VCF
+VCFHeader
+vcfWhich
+vcfWhich<-
+vcfFixed
+vcfFixed<-
+vcfInfo
+vcfInfo<-
+vcfGeno
+vcfGeno<-
+vcfTrimEmpty
+vcfTrimEmpty<-
+VAFilterResult
+dbSNPFilter
+regionFilter
+compose
+duplicateRSID
+CodingVariants
+IntronVariants
+FiveUTRVariants
+ThreeUTRVariants
+IntergenicVariants
+SpliceSiteVariants
+PromoterVariants
+AllVariants
+upstream
+upstream<-
+downstream
+downstream<-
+scanVcf
+scanVcfHeader
+ScanVcfParam
+readVcfLongForm
+writeVcf
+refLocsToLocalLocs
+summarizeVariants
+fixed
+fixed<-
+ref
+ref<-
+alt
+alt<-
+qual
+qual<-
+filt
+filt<-
+info
+info<-
+geno
+geno<-
+strand
+strand<-
+[
+[<-
+genome
+seqlevels
+renameSeqlevels
+keepSeqlevels
+reference
+samples
+header
+meta
+vaFilter
+name
+stats
+Logic
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  variantannotation_release_2_11 variantannotation_release_2_12
+
+{
+    "package": "VariantAnnotation",
+    "release_versions": "variantannotation_release_2_11 variantannotation_release_2_12",
+    "desc_release_old": "1.4.12",
+    "desc_release_new": "1.6.8",
+    "old_release_number": 1,
+    "new_release_number": 2,
+    "function_removals": 9,
+    "function_additions": 9,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 9
+}
+
+##########
+Functions Removed
+##########
+
+VAFilterResult
+dbSNPFilter
+regionFilter
+compose
+vaFilter
+name
+stats
+Logic
+show
+
+
+##########
+Functions Added
+##########
+
+probabilityToSnpMatrix
+GLtoGP
+filterVcf
+expand
+genotypeToSnpMatrix
+snpSummary
+cbind
+rbind
+mcols<-
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  variantannotation_release_2_12 variantannotation_release_2_13
+
+{
+    "package": "VariantAnnotation",
+    "release_versions": "variantannotation_release_2_12 variantannotation_release_2_13",
+    "desc_release_old": "1.6.8",
+    "desc_release_new": "1.8.13",
+    "old_release_number": 2,
+    "new_release_number": 3,
+    "function_removals": 3,
+    "function_additions": 32,
+    "parameter_removals": 1,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 3,
+    "total_count": 6
+}
+
+##########
+Functions Removed
+##########
+
+renameSeqlevels
+keepSeqlevels
+cols
+
+
+##########
+Functions Added
+##########
+
+vcfSamples
+vcfSamples<-
+promoter
+promoter<-
+intergenic
+intergenic<-
+VRanges
+VRangesList
+asVCF
+softFilter
+resetFilter
+totalDepth
+altDepth
+refDepth
+sampleNames
+sampleNames<-
+altFraction
+softFilterMatrix
+softFilterMatrix<-
+hardFilters
+hardFilters<-
+called
+stackSamples
+altDepth<-
+refDepth<-
+totalDepth<-
+isIndel
+readInfo
+readGeno
+readGT
+tabulate
+columns
+
+
+##########
+Removed Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "IntergenicVariants",
+    "representation": "IntergenicVariants",
+    "parameters": "function ( )",
+    "body": "new ( \"IntergenicVariants\" )",
+    "filename": "methods-VariantType-class.txt"
+  },
+  "new_function": {
+    "name": "IntergenicVariants",
+    "representation": "IntergenicVariants",
+    "parameters": "function ( upstream = 1e+06L , downstream = 1e+06L )",
+    "body": "{   upstream -   .checkArgs (  upstream ,  \"upstream\" )   downstream -   .checkArgs (  downstream ,  \"downstream\" )   new (  \"IntergenicVariants\" , upstream =  upstream , downstream =  downstream ) } ",
+    "filename": "methods-VariantType-class.txt"
+  }
+}
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "IntergenicVariants",
+    "representation": "IntergenicVariants",
+    "parameters": "function ( )",
+    "body": "new ( \"IntergenicVariants\" )",
+    "filename": "methods-VariantType-class.txt"
+  },
+  "new_function": {
+    "name": "IntergenicVariants",
+    "representation": "IntergenicVariants",
+    "parameters": "function ( upstream = 1e+06L , downstream = 1e+06L )",
+    "body": "{   upstream -   .checkArgs (  upstream ,  \"upstream\" )   downstream -   .checkArgs (  downstream ,  \"downstream\" )   new (  \"IntergenicVariants\" , upstream =  upstream , downstream =  downstream ) } ",
+    "filename": "methods-VariantType-class.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "AllVariants",
+    "representation": "AllVariants",
+    "parameters": "function ( upstream = 2000L , downstream = 200L )",
+    "body": "{  if (  !   isSingleNumber (  upstream ) )   stop (  \"'upstream' must be a single integer\" )  if (  !   is.integer (  upstream ) )   upstream -   as.integer (  upstream )  if (  !   isSingleNumber (  downstream ) )   stop (  \"'downstream' must be a single integer\" )  if (  !   is.integer (  downstream ) )   downstream -   as.integer (  downstream )   new (  \"AllVariants\" , upstream =  upstream , downstream =  downstream ) } ",
+    "filename": "methods-VariantType-class.txt"
+  },
+  "new_function": {
+    "name": "AllVariants",
+    "representation": "AllVariants",
+    "parameters": "function ( promoter = PromoterVariants ( ) , intergenic = IntergenicVariants ( ) )",
+    "body": "{   new (  \"AllVariants\" , promoter =  promoter , intergenic =  intergenic ) } ",
+    "filename": "methods-VariantType-class.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "samples",
+    "representation": "samples",
+    "signature": "VCFHeader",
+    "parameters": "function ( x )",
+    "body": "{   slot (  x ,  \"samples\" ) } ",
+    "filename": "methods-VCFHeader-class.txt"
+  },
+  "new_function": {
+    "name": "samples",
+    "representation": "samples",
+    "signature": "VCFHeader",
+    "parameters": "function ( object )",
+    "body": "{   slot (  object ,  \"samples\" ) } ",
+    "filename": "methods-VCFHeader-class.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  variantannotation_release_2_13 variantannotation_release_2_14
+
+{
+    "package": "VariantAnnotation",
+    "release_versions": "variantannotation_release_2_13 variantannotation_release_2_14",
+    "desc_release_old": "1.8.13",
+    "desc_release_new": "1.10.5",
+    "old_release_number": 3,
+    "new_release_number": 4,
+    "function_removals": 2,
+    "function_additions": 11,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+readVcfLongForm
+MatrixToSnpMatrix
+
+
+##########
+Functions Added
+##########
+
+header<-
+meta<-
+restrictToSNV
+VRangesScanVcfParam
+readVcfAsVRanges
+isSNV
+isInsertion
+isDeletion
+isTransition
+isSubstitution
+keytypes
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  variantannotation_release_2_14 variantannotation_release_3_1
+
+{
+    "package": "VariantAnnotation",
+    "release_versions": "variantannotation_release_2_14 variantannotation_release_3_1",
+    "desc_release_old": "1.10.5",
+    "desc_release_new": "1.14.13",
+    "old_release_number": 4,
+    "new_release_number": 5,
+    "function_removals": 0,
+    "function_additions": 6,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+genotypeCodesToNucleotides
+isDelins
+VcfFile
+VcfFileList
+makeVRangesFromGRanges
+seqinfo
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  variantannotation_release_3_1 variantannotation_release_3_2
+
+{
+    "package": "VariantAnnotation",
+    "release_versions": "variantannotation_release_3_1 variantannotation_release_3_2",
+    "desc_release_old": "1.14.13",
+    "desc_release_new": "1.16.4",
+    "old_release_number": 5,
+    "new_release_number": 6,
+    "function_removals": 1,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+refLocsToLocalLocs
+
+
+##########
+Functions Added
+##########
+
+getSeq
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  variantannotation_release_3_2 variantannotation_release_3_3
+
+{
+    "package": "VariantAnnotation",
+    "release_versions": "variantannotation_release_3_2 variantannotation_release_3_3",
+    "desc_release_old": "1.16.4",
+    "desc_release_new": "1.18.7",
+    "old_release_number": 6,
+    "new_release_number": 7,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+PLtoGP
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  variantannotation_release_3_3 variantannotation_release_3_4
+
+{
+    "package": "VariantAnnotation",
+    "release_versions": "variantannotation_release_3_3 variantannotation_release_3_4",
+    "desc_release_old": "1.18.7",
+    "desc_release_new": "1.20.3",
+    "old_release_number": 7,
+    "new_release_number": 8,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+import
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  variantannotation_release_3_4 variantannotation_release_3_5
+
+{
+    "package": "VariantAnnotation",
+    "release_versions": "variantannotation_release_3_4 variantannotation_release_3_5",
+    "desc_release_old": "1.20.3",
+    "desc_release_new": "1.22.3",
+    "old_release_number": 8,
+    "new_release_number": 9,
+    "function_removals": 0,
+    "function_additions": 3,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+idType
+idType<-
+indexVcf
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  variantannotation_release_3_5 variantannotation_release_3_6
+
+{
+    "package": "VariantAnnotation",
+    "release_versions": "variantannotation_release_3_5 variantannotation_release_3_6",
+    "desc_release_old": "1.22.3",
+    "desc_release_new": "1.24.5",
+    "old_release_number": 9,
+    "new_release_number": 10,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+subset
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  variantannotation_release_3_6 variantannotation_release_3_7
+
+{
+    "package": "VariantAnnotation",
+    "release_versions": "variantannotation_release_3_6 variantannotation_release_3_7",
+    "desc_release_old": "1.24.5",
+    "desc_release_new": "1.26.1",
+    "old_release_number": 10,
+    "new_release_number": 11,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  variantannotation_release_3_7 variantannotation_release_3_8
+
+{
+    "package": "VariantAnnotation",
+    "release_versions": "variantannotation_release_3_7 variantannotation_release_3_8",
+    "desc_release_old": "1.26.1",
+    "desc_release_new": "1.28.13",
+    "old_release_number": 11,
+    "new_release_number": 12,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+vcfFields
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  variantannotation_release_3_8 variantannotation_release_3_9
+
+{
+    "package": "VariantAnnotation",
+    "release_versions": "variantannotation_release_3_8 variantannotation_release_3_9",
+    "desc_release_old": "1.28.13",
+    "desc_release_new": "1.30.1",
+    "old_release_number": 12,
+    "new_release_number": 13,
+    "function_removals": 1,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+restrictToSNV
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  variantannotation_release_3_9 variantannotation_release_3_11
+
+{
+    "package": "VariantAnnotation",
+    "release_versions": "variantannotation_release_3_9 variantannotation_release_3_11",
+    "desc_release_old": "1.30.1",
+    "desc_release_new": "1.34.0",
+    "old_release_number": 13,
+    "new_release_number": 14,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  variantannotation_release_3_11 variantannotation_release_3_12
+
+{
+    "package": "VariantAnnotation",
+    "release_versions": "variantannotation_release_3_11 variantannotation_release_3_12",
+    "desc_release_old": "1.34.0",
+    "desc_release_new": "1.36.0",
+    "old_release_number": 14,
+    "new_release_number": 15,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  variantannotation_release_3_12 variantannotation_release_3_13
+
+{
+    "package": "VariantAnnotation",
+    "release_versions": "variantannotation_release_3_12 variantannotation_release_3_13",
+    "desc_release_old": "1.36.0",
+    "desc_release_new": "1.38.0",
+    "old_release_number": 15,
+    "new_release_number": 16,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  variantannotation_release_3_13 variantannotation_release_3_14
+
+{
+    "package": "VariantAnnotation",
+    "release_versions": "variantannotation_release_3_13 variantannotation_release_3_14",
+    "desc_release_old": "1.38.0",
+    "desc_release_new": "1.40.0",
+    "old_release_number": 16,
+    "new_release_number": 17,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  variantannotation_release_3_14 variantannotation_master
+
+{
+    "package": "VariantAnnotation",
+    "release_versions": "variantannotation_release_3_14 variantannotation_master",
+    "desc_release_old": "1.40.0",
+    "desc_release_new": "1.41.3",
+    "old_release_number": 17,
+    "new_release_number": 18,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+

@@ -1,0 +1,1375 @@
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rhdf5_release_2_11 rhdf5_release_2_12
+
+{
+    "package": "rhdf5",
+    "release_versions": "rhdf5_release_2_11 rhdf5_release_2_12",
+    "desc_release_old": "2.2.0",
+    "desc_release_new": "2.4.0",
+    "old_release_number": 15,
+    "new_release_number": 16,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 1,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "H5Dread",
+    "representation": "H5Dread",
+    "parameters": "function ( h5dataset , h5spaceFile = NULL , h5spaceMem = NULL , buf = NULL , compoundAsDataFrame = TRUE )",
+    "body": "{   h5checktype (  h5dataset ,  \"dataset\" )   h5checktypeOrNULL (  h5spaceFile ,  \"dataspace\" )   h5checktypeOrNULL (  h5spaceMem ,  \"dataspace\" )  if (   is.null (  h5spaceMem ) )  {   sidMem -  NULL } else  {   sidMem -   h5spaceMem @ ID }  if (   is.null (  h5spaceFile ) )  {   sidFile -  NULL } else  {   sidFile -   h5spaceFile @ ID }   .Call (  \"_H5Dread\" ,   h5dataset @ ID ,  sidFile ,  sidMem ,  buf ,  compoundAsDataFrame , PACKAGE =  'rhdf5' ) } ",
+    "filename": "H5D.txt"
+  },
+  "new_function": {
+    "name": "H5Dread",
+    "representation": "H5Dread",
+    "parameters": "function ( h5dataset , h5spaceFile = NULL , h5spaceMem = NULL , buf = NULL , compoundAsDataFrame = TRUE , bit64conversion )",
+    "body": "{   h5checktype (  h5dataset ,  \"dataset\" )   h5checktypeOrNULL (  h5spaceFile ,  \"dataspace\" )   h5checktypeOrNULL (  h5spaceMem ,  \"dataspace\" )  if (   is.null (  h5spaceMem ) )  {   sidMem -  NULL } else  {   sidMem -   h5spaceMem @ ID }  if (   is.null (  h5spaceFile ) )  {   sidFile -  NULL } else  {   sidFile -   h5spaceFile @ ID }  if (   missing (  bit64conversion ) )  {   bit64conv =  0L } else  {   bit64conv =   switch (  bit64conversion , int =  1L , double =  2L , bit64 =  3L , default =  0L ) }  if (   bit64conv ==  3L )  {  if (  !   require (  bit64 , quietly =  TRUE ) )  {   stop (  \"You have to install the package 'bit64' before you can use the option bit64conversion='bit64'\" ) } }   .Call (  \"_H5Dread\" ,   h5dataset @ ID ,  sidFile ,  sidMem ,  buf ,  compoundAsDataFrame ,  bit64conv , PACKAGE =  'rhdf5' ) } ",
+    "filename": "H5D.txt"
+  }
+}
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "H5Dread",
+    "representation": "H5Dread",
+    "parameters": "function ( h5dataset , h5spaceFile = NULL , h5spaceMem = NULL , buf = NULL , compoundAsDataFrame = TRUE )",
+    "body": "{   h5checktype (  h5dataset ,  \"dataset\" )   h5checktypeOrNULL (  h5spaceFile ,  \"dataspace\" )   h5checktypeOrNULL (  h5spaceMem ,  \"dataspace\" )  if (   is.null (  h5spaceMem ) )  {   sidMem -  NULL } else  {   sidMem -   h5spaceMem @ ID }  if (   is.null (  h5spaceFile ) )  {   sidFile -  NULL } else  {   sidFile -   h5spaceFile @ ID }   .Call (  \"_H5Dread\" ,   h5dataset @ ID ,  sidFile ,  sidMem ,  buf ,  compoundAsDataFrame , PACKAGE =  'rhdf5' ) } ",
+    "filename": "H5D.txt"
+  },
+  "new_function": {
+    "name": "H5Dread",
+    "representation": "H5Dread",
+    "parameters": "function ( h5dataset , h5spaceFile = NULL , h5spaceMem = NULL , buf = NULL , compoundAsDataFrame = TRUE , bit64conversion )",
+    "body": "{   h5checktype (  h5dataset ,  \"dataset\" )   h5checktypeOrNULL (  h5spaceFile ,  \"dataspace\" )   h5checktypeOrNULL (  h5spaceMem ,  \"dataspace\" )  if (   is.null (  h5spaceMem ) )  {   sidMem -  NULL } else  {   sidMem -   h5spaceMem @ ID }  if (   is.null (  h5spaceFile ) )  {   sidFile -  NULL } else  {   sidFile -   h5spaceFile @ ID }  if (   missing (  bit64conversion ) )  {   bit64conv =  0L } else  {   bit64conv =   switch (  bit64conversion , int =  1L , double =  2L , bit64 =  3L , default =  0L ) }  if (   bit64conv ==  3L )  {  if (  !   require (  bit64 , quietly =  TRUE ) )  {   stop (  \"You have to install the package 'bit64' before you can use the option bit64conversion='bit64'\" ) } }   .Call (  \"_H5Dread\" ,   h5dataset @ ID ,  sidFile ,  sidMem ,  buf ,  compoundAsDataFrame ,  bit64conv , PACKAGE =  'rhdf5' ) } ",
+    "filename": "H5D.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rhdf5_release_2_12 rhdf5_release_2_13
+
+{
+    "package": "rhdf5",
+    "release_versions": "rhdf5_release_2_12 rhdf5_release_2_13",
+    "desc_release_old": "2.4.0",
+    "desc_release_new": "2.6.0",
+    "old_release_number": 16,
+    "new_release_number": 17,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rhdf5_release_2_13 rhdf5_release_2_14
+
+{
+    "package": "rhdf5",
+    "release_versions": "rhdf5_release_2_13 rhdf5_release_2_14",
+    "desc_release_old": "2.6.0",
+    "desc_release_new": "2.8.0",
+    "old_release_number": 17,
+    "new_release_number": 18,
+    "function_removals": 0,
+    "function_additions": 6,
+    "parameter_removals": 0,
+    "parameter_additions": 1,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+H5open
+H5close
+H5garbage_collect
+H5get_libversion
+H5Dset_extent
+h5version
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "H5Screate_simple",
+    "representation": "H5Screate_simple",
+    "parameters": "function ( dims , maxdims = dims )",
+    "body": "{   sid -   .Call (  \"_H5Screate_simple\" ,   as.integer (  dims ) ,   as.integer (  maxdims ) , PACKAGE =  'rhdf5' )  if (   sid undefined  0 )  {   h5space =   new (  \"H5IdComponent\" , ID =  sid ) } else  {   message (  \"HDF5: unable to create simple data space\" )   h5space =  FALSE }   invisible (  h5space ) } ",
+    "filename": "H5S.txt"
+  },
+  "new_function": {
+    "name": "H5Screate_simple",
+    "representation": "H5Screate_simple",
+    "parameters": "function ( dims , maxdims )",
+    "body": "{  if (   missing (  maxdims ) )  {   maxdims =  dims }   dims -   as.integer (   rev (  dims ) )   maxdims -   as.integer (   rev (  maxdims ) )   sid -   .Call (  \"_H5Screate_simple\" ,  dims ,  maxdims , PACKAGE =  'rhdf5' )  if (   sid undefined  0 )  {   h5space =   new (  \"H5IdComponent\" , ID =  sid ) } else  {   message (  \"HDF5: unable to create simple data space\" )   h5space =  FALSE }   invisible (  h5space ) } ",
+    "filename": "H5S.txt"
+  }
+}
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "H5Screate_simple",
+    "representation": "H5Screate_simple",
+    "parameters": "function ( dims , maxdims = dims )",
+    "body": "{   sid -   .Call (  \"_H5Screate_simple\" ,   as.integer (  dims ) ,   as.integer (  maxdims ) , PACKAGE =  'rhdf5' )  if (   sid undefined  0 )  {   h5space =   new (  \"H5IdComponent\" , ID =  sid ) } else  {   message (  \"HDF5: unable to create simple data space\" )   h5space =  FALSE }   invisible (  h5space ) } ",
+    "filename": "H5S.txt"
+  },
+  "new_function": {
+    "name": "H5Screate_simple",
+    "representation": "H5Screate_simple",
+    "parameters": "function ( dims , maxdims )",
+    "body": "{  if (   missing (  maxdims ) )  {   maxdims =  dims }   dims -   as.integer (   rev (  dims ) )   maxdims -   as.integer (   rev (  maxdims ) )   sid -   .Call (  \"_H5Screate_simple\" ,  dims ,  maxdims , PACKAGE =  'rhdf5' )  if (   sid undefined  0 )  {   h5space =   new (  \"H5IdComponent\" , ID =  sid ) } else  {   message (  \"HDF5: unable to create simple data space\" )   h5space =  FALSE }   invisible (  h5space ) } ",
+    "filename": "H5S.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rhdf5_release_2_14 rhdf5_release_3_1
+
+{
+    "package": "rhdf5",
+    "release_versions": "rhdf5_release_2_14 rhdf5_release_3_1",
+    "desc_release_old": "2.8.0",
+    "desc_release_new": "2.12.0",
+    "old_release_number": 18,
+    "new_release_number": 19,
+    "function_removals": 0,
+    "function_additions": 29,
+    "parameter_removals": 0,
+    "parameter_additions": 1,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 2,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+H5Fis_hdf5
+H5Fget_filesize
+H5Fget_name
+H5Lcreate_external
+H5Sset_extent_simple
+H5Pcreate
+H5Pget_class
+H5Pcopy
+H5Pclose
+H5Pclose_class
+H5Pset_char_encoding
+H5Pget_char_encoding
+H5Pset_create_intermediate_group
+H5Pget_create_intermediate_group
+H5Pset_layout
+H5Pget_layout
+H5Pset_chunk
+H5Pget_chunk
+H5Pset_deflate
+H5Pset_fill_value
+H5Pfill_value_defined
+H5Pset_fill_time
+H5Pget_fill_time
+H5Pset_alloc_time
+H5Pget_alloc_time
+H5Pset_chunk_cache
+H5Pequal
+h5readAttributes
+h5set_extent
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "h5createDataset",
+    "representation": "h5createDataset",
+    "parameters": "function ( file , dataset , dims , maxdims = dims , storage.mode = \"double\" , H5type = NULL , size = NULL , chunk = dims , level = 6 , showWarnings = TRUE )",
+    "body": "{   loc =   h5checktypeOrOpenLoc (  file )   res -  FALSE  if (   is.character (  dataset ) )  {  if (   H5Lexists (   loc $ H5Identifier ,  dataset ) )  {   message (  \"Can not create dataset. Object with name '\" ,  dataset ,  \"' already exists.\" ) } else  {  if (    is.numeric (  dims ) undefined   is.numeric (  maxdims ) )  {  if (    length (  maxdims ) !=   length (  dims ) )  {   stop (  '\"maxdims\" has to have the same rank as \"dims\".' ) }  if (    any (   maxdims !=  dims ) undefined   is.null (  chunk ) )  {   stop (  'If \"maxdims\" is different from \"dims\", chunking is required.' ) }  if (   any (   maxdims undefined  dims ) )  {   stop (  'All elements of \"maxdims\" have to be equal or larger than \"dims\".' ) }  if (   any (   dims undefined  0 ) )  {   stop (  'All elements of \"dims\" must be non-negative.' ) }  if (   (   level undefined  0 ) undefined  (    length (  chunk ) undefined  0 ) )  {  if (    showWarnings undefined  (    prod (  dims ) undefined  1000000L ) undefined  (   all (   dims ==  chunk ) ) )  {   warning (  \"You created a large dataset with compression and chunking. The chunk size is equal to the dataset dimensions. If you want to read subsets of the dataset, you should test smaller chunk sizes to improve read times. Turn off this warning with showWarnings=FALSE.\" ) } }   sid -   H5Screate_simple (  dims ,  maxdims )  if (  !   is (  sid ,  \"H5IdComponent\" ) )  {   message (  \"Can not create dataset. 'dims' or 'maxdims' argument invalid.\" ) } else  {  if (   is.null (  H5type ) )  {  if (   is.character (  storage.mode ) )  {   tid -   switch (   storage.mode [  1 ] , double =    h5constants $ H5T [  \"H5T_NATIVE_DOUBLE\" ] , integer =    h5constants $ H5T [  \"H5T_NATIVE_INT32\" ] , logical =    h5constants $ H5T [  \"H5T_NATIVE_INT32\" ] , character =  {   tid -   H5Tcopy (  \"H5T_C_S1\" )  if (  !   is.numeric (  size ) )  {   stop (  \"parameter '\" ,  size ,  \"' has to be defined for storage.mode character.\" ) }   H5Tset_size (  tid ,  size )  tid } ,  {   stop (  \"datatype \" ,  storage.mode ,  \" not yet implemented. Try 'double', 'integer', or 'character'.\" ) } ) } else  {   stop (  \"Can not create dataset. 'storage.mode' has to be a character.\" ) } } else  {   tid -   h5checkConstants (  \"H5T\" ,  H5type ) }  if (  !   is.numeric (  tid ) )  {   message (  \"Can not create dataset. H5type unknown. Check h5const('H5T') for valid types.\" ) } else  {  if (   (   level undefined  0 ) undefined  (   is.null (  chunk ) ) )  {   warning (  \"Compression (level ) }   did -   H5Dcreate (   loc $ H5Identifier ,  dataset ,  tid ,  sid ,  chunk ,  level )  if (   is (  did ,  \"H5IdComponent\" ) )  {  if (    storage.mode [  1 ] ==  \"logical\" )  {   x =  \"logical\"   h5writeAttribute ( attr =  x , h5obj =  did , name =  \"storage.mode\" ) }   H5Dclose (  did )   res -  TRUE } }   H5Sclose (  sid ) } } else  {   message (  \"Can not create dataset. 'dims' and 'maxdims' have to be numeric.\" ) } } }   h5closeitLoc (  loc )  res } ",
+    "filename": "h5create.txt"
+  },
+  "new_function": {
+    "name": "h5createDataset",
+    "representation": "h5createDataset",
+    "parameters": "function ( file , dataset , dims , maxdims = dims , storage.mode = \"double\" , H5type = NULL , size = NULL , chunk = dims , level = 6 , fillValue , showWarnings = TRUE )",
+    "body": "{   loc =   h5checktypeOrOpenLoc (  file )   res -  FALSE  if (   is.character (  dataset ) )  {  if (   H5Lexists (   loc $ H5Identifier ,  dataset ) )  {   message (  \"Can not create dataset. Object with name '\" ,  dataset ,  \"' already exists.\" ) } else  {  if (    is.numeric (  dims ) undefined   is.numeric (  maxdims ) )  {  if (    length (  maxdims ) !=   length (  dims ) )  {   stop (  '\"maxdims\" has to have the same rank as \"dims\".' ) }  if (    any (   maxdims !=  dims ) undefined   is.null (  chunk ) )  {   stop (  'If \"maxdims\" is different from \"dims\", chunking is required.' ) }  if (   any (   maxdims undefined  dims ) )  {   stop (  'All elements of \"maxdims\" have to be equal or larger than \"dims\".' ) }  if (   any (   dims undefined  0 ) )  {   stop (  'All elements of \"dims\" must be non-negative.' ) }  if (   (   level undefined  0 ) undefined  (   is.null (  chunk ) ) )  {   warning (  \"Compression (level ) }  if (    length (  chunk ) undefined  0 )  {    chunk [   which (   chunk ==  0 ) ] =  1 }   dcpl =  NULL  if (   (   level undefined  0 ) undefined  (    length (  chunk ) undefined  0 ) )  {  if (    showWarnings undefined  (    prod (  dims ) undefined  1000000L ) undefined  (   all (   dims ==  chunk ) ) )  {   warning (  \"You created a large dataset with compression and chunking. The chunk size is equal to the dataset dimensions. If you want to read subsets of the dataset, you should test smaller chunk sizes to improve read times. Turn off this warning with showWarnings=FALSE.\" ) }  if (   is.null (  dcpl ) )  {   dcpl =   H5Pcreate (  \"H5P_DATASET_CREATE\" ) }   H5Pset_fill_time (  dcpl ,  \"H5D_FILL_TIME_ALLOC\" )   H5Pset_chunk (  dcpl ,  chunk )  if (   level undefined  0 )  {   H5Pset_deflate (  dcpl ,  level ) } }  if (  !   missing (  fillValue ) )  {  if (   is.null (  dcpl ) )  {   dcpl =   H5Pcreate (  \"H5P_DATASET_CREATE\" ) }   H5Pset_fill_value (  dcpl ,  fillValue ) }   sid -   H5Screate_simple (  dims ,  maxdims )  if (  !   is (  sid ,  \"H5IdComponent\" ) )  {   message (  \"Can not create dataset. 'dims' or 'maxdims' argument invalid.\" ) } else  {  if (   is.null (  H5type ) )  {  if (   is.character (  storage.mode ) )  {   tid -   switch (   storage.mode [  1 ] , double =    h5constants $ H5T [  \"H5T_NATIVE_DOUBLE\" ] , integer =    h5constants $ H5T [  \"H5T_NATIVE_INT32\" ] , logical =    h5constants $ H5T [  \"H5T_NATIVE_INT32\" ] , character =  {   tid -   H5Tcopy (  \"H5T_C_S1\" )  if (  !   is.numeric (  size ) )  {   stop (  \"parameter 'size' has to be defined for storage.mode character.\" ) }   H5Tset_size (  tid ,  size )  tid } ,  {   stop (  \"datatype \" ,  storage.mode ,  \" not yet implemented. Try 'double', 'integer', or 'character'.\" ) } ) } else  {   stop (  \"Can not create dataset. 'storage.mode' has to be a character.\" ) } } else  {   tid -   h5checkConstants (  \"H5T\" ,  H5type ) }  if (  !   is.numeric (  tid ) )  {   message (  \"Can not create dataset. H5type unknown. Check h5const('H5T') for valid types.\" ) } else  {   did -   H5Dcreate (   loc $ H5Identifier ,  dataset ,  tid ,  sid , dcpl =  dcpl )  if (   is (  did ,  \"H5IdComponent\" ) )  {  if (    storage.mode [  1 ] ==  \"logical\" )  {   x =  \"logical\"   h5writeAttribute ( attr =  x , h5obj =  did , name =  \"storage.mode\" ) }   H5Dclose (  did )   res -  TRUE } }   H5Sclose (  sid ) }  if (  !   is.null (  dcpl ) )  {   H5Pclose (  dcpl ) } } else  {   message (  \"Can not create dataset. 'dims' and 'maxdims' have to be numeric.\" ) } } }   h5closeitLoc (  loc )  res } ",
+    "filename": "h5create.txt"
+  }
+}
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "h5createDataset",
+    "representation": "h5createDataset",
+    "parameters": "function ( file , dataset , dims , maxdims = dims , storage.mode = \"double\" , H5type = NULL , size = NULL , chunk = dims , level = 6 , showWarnings = TRUE )",
+    "body": "{   loc =   h5checktypeOrOpenLoc (  file )   res -  FALSE  if (   is.character (  dataset ) )  {  if (   H5Lexists (   loc $ H5Identifier ,  dataset ) )  {   message (  \"Can not create dataset. Object with name '\" ,  dataset ,  \"' already exists.\" ) } else  {  if (    is.numeric (  dims ) undefined   is.numeric (  maxdims ) )  {  if (    length (  maxdims ) !=   length (  dims ) )  {   stop (  '\"maxdims\" has to have the same rank as \"dims\".' ) }  if (    any (   maxdims !=  dims ) undefined   is.null (  chunk ) )  {   stop (  'If \"maxdims\" is different from \"dims\", chunking is required.' ) }  if (   any (   maxdims undefined  dims ) )  {   stop (  'All elements of \"maxdims\" have to be equal or larger than \"dims\".' ) }  if (   any (   dims undefined  0 ) )  {   stop (  'All elements of \"dims\" must be non-negative.' ) }  if (   (   level undefined  0 ) undefined  (    length (  chunk ) undefined  0 ) )  {  if (    showWarnings undefined  (    prod (  dims ) undefined  1000000L ) undefined  (   all (   dims ==  chunk ) ) )  {   warning (  \"You created a large dataset with compression and chunking. The chunk size is equal to the dataset dimensions. If you want to read subsets of the dataset, you should test smaller chunk sizes to improve read times. Turn off this warning with showWarnings=FALSE.\" ) } }   sid -   H5Screate_simple (  dims ,  maxdims )  if (  !   is (  sid ,  \"H5IdComponent\" ) )  {   message (  \"Can not create dataset. 'dims' or 'maxdims' argument invalid.\" ) } else  {  if (   is.null (  H5type ) )  {  if (   is.character (  storage.mode ) )  {   tid -   switch (   storage.mode [  1 ] , double =    h5constants $ H5T [  \"H5T_NATIVE_DOUBLE\" ] , integer =    h5constants $ H5T [  \"H5T_NATIVE_INT32\" ] , logical =    h5constants $ H5T [  \"H5T_NATIVE_INT32\" ] , character =  {   tid -   H5Tcopy (  \"H5T_C_S1\" )  if (  !   is.numeric (  size ) )  {   stop (  \"parameter '\" ,  size ,  \"' has to be defined for storage.mode character.\" ) }   H5Tset_size (  tid ,  size )  tid } ,  {   stop (  \"datatype \" ,  storage.mode ,  \" not yet implemented. Try 'double', 'integer', or 'character'.\" ) } ) } else  {   stop (  \"Can not create dataset. 'storage.mode' has to be a character.\" ) } } else  {   tid -   h5checkConstants (  \"H5T\" ,  H5type ) }  if (  !   is.numeric (  tid ) )  {   message (  \"Can not create dataset. H5type unknown. Check h5const('H5T') for valid types.\" ) } else  {  if (   (   level undefined  0 ) undefined  (   is.null (  chunk ) ) )  {   warning (  \"Compression (level ) }   did -   H5Dcreate (   loc $ H5Identifier ,  dataset ,  tid ,  sid ,  chunk ,  level )  if (   is (  did ,  \"H5IdComponent\" ) )  {  if (    storage.mode [  1 ] ==  \"logical\" )  {   x =  \"logical\"   h5writeAttribute ( attr =  x , h5obj =  did , name =  \"storage.mode\" ) }   H5Dclose (  did )   res -  TRUE } }   H5Sclose (  sid ) } } else  {   message (  \"Can not create dataset. 'dims' and 'maxdims' have to be numeric.\" ) } } }   h5closeitLoc (  loc )  res } ",
+    "filename": "h5create.txt"
+  },
+  "new_function": {
+    "name": "h5createDataset",
+    "representation": "h5createDataset",
+    "parameters": "function ( file , dataset , dims , maxdims = dims , storage.mode = \"double\" , H5type = NULL , size = NULL , chunk = dims , level = 6 , fillValue , showWarnings = TRUE )",
+    "body": "{   loc =   h5checktypeOrOpenLoc (  file )   res -  FALSE  if (   is.character (  dataset ) )  {  if (   H5Lexists (   loc $ H5Identifier ,  dataset ) )  {   message (  \"Can not create dataset. Object with name '\" ,  dataset ,  \"' already exists.\" ) } else  {  if (    is.numeric (  dims ) undefined   is.numeric (  maxdims ) )  {  if (    length (  maxdims ) !=   length (  dims ) )  {   stop (  '\"maxdims\" has to have the same rank as \"dims\".' ) }  if (    any (   maxdims !=  dims ) undefined   is.null (  chunk ) )  {   stop (  'If \"maxdims\" is different from \"dims\", chunking is required.' ) }  if (   any (   maxdims undefined  dims ) )  {   stop (  'All elements of \"maxdims\" have to be equal or larger than \"dims\".' ) }  if (   any (   dims undefined  0 ) )  {   stop (  'All elements of \"dims\" must be non-negative.' ) }  if (   (   level undefined  0 ) undefined  (   is.null (  chunk ) ) )  {   warning (  \"Compression (level ) }  if (    length (  chunk ) undefined  0 )  {    chunk [   which (   chunk ==  0 ) ] =  1 }   dcpl =  NULL  if (   (   level undefined  0 ) undefined  (    length (  chunk ) undefined  0 ) )  {  if (    showWarnings undefined  (    prod (  dims ) undefined  1000000L ) undefined  (   all (   dims ==  chunk ) ) )  {   warning (  \"You created a large dataset with compression and chunking. The chunk size is equal to the dataset dimensions. If you want to read subsets of the dataset, you should test smaller chunk sizes to improve read times. Turn off this warning with showWarnings=FALSE.\" ) }  if (   is.null (  dcpl ) )  {   dcpl =   H5Pcreate (  \"H5P_DATASET_CREATE\" ) }   H5Pset_fill_time (  dcpl ,  \"H5D_FILL_TIME_ALLOC\" )   H5Pset_chunk (  dcpl ,  chunk )  if (   level undefined  0 )  {   H5Pset_deflate (  dcpl ,  level ) } }  if (  !   missing (  fillValue ) )  {  if (   is.null (  dcpl ) )  {   dcpl =   H5Pcreate (  \"H5P_DATASET_CREATE\" ) }   H5Pset_fill_value (  dcpl ,  fillValue ) }   sid -   H5Screate_simple (  dims ,  maxdims )  if (  !   is (  sid ,  \"H5IdComponent\" ) )  {   message (  \"Can not create dataset. 'dims' or 'maxdims' argument invalid.\" ) } else  {  if (   is.null (  H5type ) )  {  if (   is.character (  storage.mode ) )  {   tid -   switch (   storage.mode [  1 ] , double =    h5constants $ H5T [  \"H5T_NATIVE_DOUBLE\" ] , integer =    h5constants $ H5T [  \"H5T_NATIVE_INT32\" ] , logical =    h5constants $ H5T [  \"H5T_NATIVE_INT32\" ] , character =  {   tid -   H5Tcopy (  \"H5T_C_S1\" )  if (  !   is.numeric (  size ) )  {   stop (  \"parameter 'size' has to be defined for storage.mode character.\" ) }   H5Tset_size (  tid ,  size )  tid } ,  {   stop (  \"datatype \" ,  storage.mode ,  \" not yet implemented. Try 'double', 'integer', or 'character'.\" ) } ) } else  {   stop (  \"Can not create dataset. 'storage.mode' has to be a character.\" ) } } else  {   tid -   h5checkConstants (  \"H5T\" ,  H5type ) }  if (  !   is.numeric (  tid ) )  {   message (  \"Can not create dataset. H5type unknown. Check h5const('H5T') for valid types.\" ) } else  {   did -   H5Dcreate (   loc $ H5Identifier ,  dataset ,  tid ,  sid , dcpl =  dcpl )  if (   is (  did ,  \"H5IdComponent\" ) )  {  if (    storage.mode [  1 ] ==  \"logical\" )  {   x =  \"logical\"   h5writeAttribute ( attr =  x , h5obj =  did , name =  \"storage.mode\" ) }   H5Dclose (  did )   res -  TRUE } }   H5Sclose (  sid ) }  if (  !   is.null (  dcpl ) )  {   H5Pclose (  dcpl ) } } else  {   message (  \"Can not create dataset. 'dims' and 'maxdims' have to be numeric.\" ) } } }   h5closeitLoc (  loc )  res } ",
+    "filename": "h5create.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "H5Dcreate",
+    "representation": "H5Dcreate",
+    "parameters": "function ( h5loc , name , dtype_id , h5space , internal1 = NULL , internal2 = 6 )",
+    "body": "{   h5checktype (  h5loc ,  \"loc\" )  if (     length (  name ) !=  1 ||  !   is.character (  name ) )   stop (  \"'name' must be a character string of length 1\" )  if (  !   is.integer (  dtype_id ) )  {   dtype_id -   h5checkConstants (  \"H5T\" ,  dtype_id ) }   h5checktype (  h5space ,  \"dataspace\" )   chunk =  internal1   level =  internal2  if (  !   is.null (  chunk ) )  {   chunk =   rev (   as.integer (  chunk ) ) }  if (  !   is.null (  level ) )  {   level =   as.integer (  level ) }   did -   .Call (  \"_H5Dcreate\" ,   h5loc @ ID ,  name ,  dtype_id ,   h5space @ ID ,  chunk ,  level , PACKAGE =  'rhdf5' )  if (   did undefined  0 )  {   h5dataset =   new (  \"H5IdComponent\" , ID =  did ) } else  {   message (  \"HDF5: unable to create dataset\" )   h5dataset =  FALSE }   invisible (  h5dataset ) } ",
+    "filename": "H5D.txt"
+  },
+  "new_function": {
+    "name": "H5Dcreate",
+    "representation": "H5Dcreate",
+    "parameters": "function ( h5loc , name , dtype_id , h5space , lcpl = NULL , dcpl = NULL , dapl = NULL )",
+    "body": "{   h5checktype (  h5loc ,  \"loc\" )  if (     length (  name ) !=  1 ||  !   is.character (  name ) )   stop (  \"'name' must be a character string of length 1\" )  if (  !   is.integer (  dtype_id ) )  {   dtype_id -   h5checkConstants (  \"H5T\" ,  dtype_id ) }   h5checktype (  h5space ,  \"dataspace\" )   lcpl =   h5checktypeAndPLC (  lcpl ,  \"H5P_LINK_CREATE\" , allowNULL =  TRUE )   dcpl =   h5checktypeAndPLC (  dcpl ,  \"H5P_DATASET_CREATE\" , allowNULL =  TRUE )   dapl =   h5checktypeAndPLC (  dapl ,  \"H5P_DATASET_ACCESS\" , allowNULL =  TRUE )   did -   .Call (  \"_H5Dcreate\" ,   h5loc @ ID ,  name ,  dtype_id ,   h5space @ ID ,   lcpl @ ID ,   dcpl @ ID ,   dapl @ ID , PACKAGE =  'rhdf5' )  if (   did undefined  0 )  {   h5dataset =   new (  \"H5IdComponent\" , ID =  did ) } else  {   message (  \"HDF5: unable to create dataset\" )   h5dataset =  FALSE }   invisible (  h5dataset ) } ",
+    "filename": "H5D.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rhdf5_release_3_1 rhdf5_release_3_2
+
+{
+    "package": "rhdf5",
+    "release_versions": "rhdf5_release_3_1 rhdf5_release_3_2",
+    "desc_release_old": "2.12.0",
+    "desc_release_new": "2.14.0",
+    "old_release_number": 19,
+    "new_release_number": 20,
+    "function_removals": 0,
+    "function_additions": 2,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+H5Dget_storage_size
+h5errorHandling
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rhdf5_release_3_2 rhdf5_release_3_3
+
+{
+    "package": "rhdf5",
+    "release_versions": "rhdf5_release_3_2 rhdf5_release_3_3",
+    "desc_release_old": "2.14.0",
+    "desc_release_new": "2.16.0",
+    "old_release_number": 20,
+    "new_release_number": 21,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+H5Dget_create_plist
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rhdf5_release_3_3 rhdf5_release_3_4
+
+{
+    "package": "rhdf5",
+    "release_versions": "rhdf5_release_3_3 rhdf5_release_3_4",
+    "desc_release_old": "2.16.0",
+    "desc_release_new": "2.18.0",
+    "old_release_number": 21,
+    "new_release_number": 22,
+    "function_removals": 0,
+    "function_additions": 4,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+H5Fget_create_plist
+H5Fget_access_plist
+H5Pset_libver_bounds
+H5Pget_libver_bounds
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rhdf5_release_3_4 rhdf5_release_3_5
+
+{
+    "package": "rhdf5",
+    "release_versions": "rhdf5_release_3_4 rhdf5_release_3_5",
+    "desc_release_old": "2.18.0",
+    "desc_release_new": "2.20.0",
+    "old_release_number": 22,
+    "new_release_number": 23,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rhdf5_release_3_5 rhdf5_release_3_6
+
+{
+    "package": "rhdf5",
+    "release_versions": "rhdf5_release_3_5 rhdf5_release_3_6",
+    "desc_release_old": "2.20.0",
+    "desc_release_new": "2.22.0",
+    "old_release_number": 23,
+    "new_release_number": 24,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rhdf5_release_3_6 rhdf5_release_3_7
+
+{
+    "package": "rhdf5",
+    "release_versions": "rhdf5_release_3_6 rhdf5_release_3_7",
+    "desc_release_old": "2.22.0",
+    "desc_release_new": "2.24.0",
+    "old_release_number": 24,
+    "new_release_number": 25,
+    "function_removals": 0,
+    "function_additions": 4,
+    "parameter_removals": 1,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+H5Ldelete
+H5Sunlimited
+h5delete
+h5closeAll
+
+
+##########
+Removed Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "h5validObjects",
+    "representation": "h5validObjects",
+    "parameters": "function ( )",
+    "body": "{   ids -   .Call (  \"_h5validObjects\" , PACKAGE =  'rhdf5' )   res -   list ( )  for  ( i in   seq_len (   length (  ids ) ) )  {    res [[  i ] ] -   new (  \"H5IdComponent\" , ID =   ids [  i ] ) }  res } ",
+    "filename": "Rhdf5.txt"
+  },
+  "new_function": {
+    "name": "h5validObjects",
+    "representation": "h5validObjects",
+    "parameters": "function ( native = FALSE )",
+    "body": "{   ids -   .Call (  \"_h5validObjects\" , PACKAGE =  'rhdf5' )   res -   list ( )  for  ( i in   seq_len (   length (  ids ) ) )  {    res [[  i ] ] -   new (  \"H5IdComponent\" , ID =   ids [  i ] , native =  native ) }  res } ",
+    "filename": "Rhdf5.txt"
+  }
+}
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "h5validObjects",
+    "representation": "h5validObjects",
+    "parameters": "function ( )",
+    "body": "{   ids -   .Call (  \"_h5validObjects\" , PACKAGE =  'rhdf5' )   res -   list ( )  for  ( i in   seq_len (   length (  ids ) ) )  {    res [[  i ] ] -   new (  \"H5IdComponent\" , ID =   ids [  i ] ) }  res } ",
+    "filename": "Rhdf5.txt"
+  },
+  "new_function": {
+    "name": "h5validObjects",
+    "representation": "h5validObjects",
+    "parameters": "function ( native = FALSE )",
+    "body": "{   ids -   .Call (  \"_h5validObjects\" , PACKAGE =  'rhdf5' )   res -   list ( )  for  ( i in   seq_len (   length (  ids ) ) )  {    res [[  i ] ] -   new (  \"H5IdComponent\" , ID =   ids [  i ] , native =  native ) }  res } ",
+    "filename": "Rhdf5.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rhdf5_release_3_7 rhdf5_release_3_8
+
+{
+    "package": "rhdf5",
+    "release_versions": "rhdf5_release_3_7 rhdf5_release_3_8",
+    "desc_release_old": "2.24.0",
+    "desc_release_new": "2.26.2",
+    "old_release_number": 25,
+    "new_release_number": 26,
+    "function_removals": 0,
+    "function_additions": 4,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+h5testFileLocking
+h5disableFileLocking
+h5enableFileLocking
+h5writeAttribute.default
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rhdf5_release_3_8 rhdf5_release_3_9
+
+{
+    "package": "rhdf5",
+    "release_versions": "rhdf5_release_3_8 rhdf5_release_3_9",
+    "desc_release_old": "2.26.2",
+    "desc_release_new": "2.28.1",
+    "old_release_number": 26,
+    "new_release_number": 27,
+    "function_removals": 0,
+    "function_additions": 2,
+    "parameter_removals": 0,
+    "parameter_additions": 2,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 2,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+H5Pall_filters_avail
+H5Pget_nfilters
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "h5createDataset",
+    "representation": "h5createDataset",
+    "parameters": "function ( file , dataset , dims , maxdims = dims , storage.mode = \"double\" , H5type = NULL , size = NULL , chunk = dims , level = 6 , fillValue , showWarnings = TRUE , native = FALSE )",
+    "body": "{   loc =   h5checktypeOrOpenLoc (  file , native =  native )   on.exit (   h5closeitLoc (  loc ) )   dims -   as.numeric (  dims )   maxdims -   as.numeric (  maxdims )   res -  FALSE  if (   is.character (  dataset ) )  {  if (   H5Lexists (   loc $ H5Identifier ,  dataset ) )  {   message (  \"Can not create dataset. Object with name '\" ,  dataset ,  \"' already exists.\" ) } else  {  if (    is.numeric (  dims ) undefined   is.numeric (  maxdims ) )  {  if (    length (  maxdims ) !=   length (  dims ) )  {   stop (  '\"maxdims\" has to have the same rank as \"dims\".' ) }  if (    any (   maxdims !=  dims ) undefined   is.null (  chunk ) )  {   stop (  'If \"maxdims\" is different from \"dims\", chunking is required.' ) }  if (   any (    maxdims !=   H5Sunlimited ( ) undefined   maxdims undefined  dims ) )  {   stop (  'All non-extensible elements of \"maxdims\" have to be equal or larger than \"dims\".' ) }  if (   any (   dims undefined  0 ) )  {   stop (  'All elements of \"dims\" must be non-negative.' ) }  if (   (   level undefined  0 ) undefined  (   is.null (  chunk ) ) )  {   warning (  \"Compression (level ) }  if (    length (  chunk ) undefined  0 )  {    chunk [   which (   chunk ==  0 ) ] =  1 }   dcpl =  NULL  if (    length (  chunk ) undefined  0 )  {  if (    showWarnings undefined  (    prod (  dims ) undefined  1000000L ) undefined  (   all (   dims ==  chunk ) ) )  {   warning (  \"You created a large dataset with compression and chunking. The chunk size is equal to the dataset dimensions. If you want to read subsets of the dataset, you should test smaller chunk sizes to improve read times. Turn off this warning with showWarnings=FALSE.\" ) }  if (   is.null (  dcpl ) )  {    dcpl =   H5Pcreate (  \"H5P_DATASET_CREATE\" ) ;   on.exit (   H5Pclose (  dcpl ) , add =  TRUE ) }   H5Pset_fill_time (  dcpl ,  \"H5D_FILL_TIME_ALLOC\" )   H5Pset_chunk (  dcpl ,  chunk )  if (   level undefined  0 )  {   H5Pset_deflate (  dcpl ,  level ) } }  if (  !   missing (  fillValue ) )  {  if (   is.null (  dcpl ) )  {   dcpl =   H5Pcreate (  \"H5P_DATASET_CREATE\" )   on.exit (   H5Pclose (  dcpl ) , add =  TRUE ) }   H5Pset_fill_value (  dcpl ,  fillValue ) }   sid -   H5Screate_simple (  dims ,  maxdims )  if (  !   is (  sid ,  \"H5IdComponent\" ) )  {   message (  \"Can not create dataset. 'dims' or 'maxdims' argument invalid.\" ) } else  {   on.exit (   H5Sclose (  sid ) , add =  TRUE )  if (   is.null (  H5type ) )  {  if (   is.character (  storage.mode ) )  {   tid -   switch (   storage.mode [  1 ] , double =    h5constants $ H5T [  \"H5T_NATIVE_DOUBLE\" ] , integer =    h5constants $ H5T [  \"H5T_NATIVE_INT32\" ] , integer64 =    h5constants $ H5T [  \"H5T_NATIVE_INT64\" ] , logical =    h5constants $ H5T [  \"H5T_NATIVE_INT32\" ] , character =  {   tid -   H5Tcopy (  \"H5T_C_S1\" )  if (  !   is.numeric (  size ) )  {   stop (  \"parameter 'size' has to be defined for storage.mode character.\" ) }   H5Tset_size (  tid ,  size )  tid } ,  {   stop (  \"datatype \" ,  storage.mode ,  \" not yet implemented.\\n\" ,  \"Try 'logical', 'double', 'integer', 'integer64' or 'character'.\" ) } ) } else  {   stop (  \"Can not create dataset. 'storage.mode' has to be a character.\" ) } } else  {   tid -   h5checkConstants (  \"H5T\" ,  H5type ) }  if (   is.na (  tid ) )  {   message (  \"Can not create dataset. H5type unknown. Check h5const('H5T') for valid types.\" ) } else  {   did -   H5Dcreate (   loc $ H5Identifier ,  dataset ,  tid ,  sid , dcpl =  dcpl )  if (   is (  did ,  \"H5IdComponent\" ) )  {  if (    storage.mode [  1 ] ==  \"logical\" )  {   x =  \"logical\"   h5writeAttribute ( attr =  x , h5obj =  did , name =  \"storage.mode\" ) }   H5Dclose (  did )   res -  TRUE } } } } else  {   message (  \"Can not create dataset. 'dims' and 'maxdims' have to be numeric.\" ) } } }  res } ",
+    "filename": "h5create.txt"
+  },
+  "new_function": {
+    "name": "h5createDataset",
+    "representation": "h5createDataset",
+    "parameters": "function ( file , dataset , dims , maxdims = dims , storage.mode = \"double\" , H5type = NULL , size = NULL , chunk = dims , level = 6 , fillValue , showWarnings , native = FALSE )",
+    "body": "{  if (  !   missing (  showWarnings ) )  {   message (  \"The 'showWarnings' argument has been deprecated and will be removed.\\n\" ,  \"Use suppressMessages() and suppressWarnings() to limit messages printed to screen\" ) }   loc =   h5checktypeOrOpenLoc (  file , native =  native )   on.exit (   h5closeitLoc (  loc ) )   dims -   as.numeric (  dims )   maxdims -   as.numeric (  maxdims )   res -  FALSE  if (   is.character (  dataset ) )  {  if (   H5Lexists (   loc $ H5Identifier ,  dataset ) )  {   message (  \"Can not create dataset. Object with name '\" ,  dataset ,  \"' already exists.\" ) } else  {  if (    any (   is.na (  dims ) ) |   any (   is.na (  maxdims ) ) )  {   message (  \"Can not create dataset. 'dims' and 'maxdims' have to be numeric.\" ) } else  {  if (    length (  maxdims ) !=   length (  dims ) )  {   stop (  '\"maxdims\" has to have the same rank as \"dims\".' ) }  if (    any (   maxdims !=  dims ) undefined   is.null (  chunk ) )  {   stop (  'If \"maxdims\" is different from \"dims\", chunking is required.' ) }  if (   any (    maxdims !=   H5Sunlimited ( ) undefined   maxdims undefined  dims ) )  {   stop (  'All non-extensible elements of \"maxdims\" have to be equal or larger than \"dims\".' ) }  if (   any (   dims undefined  0 ) )  {   stop (  'All elements of \"dims\" must be non-negative.' ) }  if (   (   level undefined  0 ) undefined  (   is.null (  chunk ) ) )  {   warning (  \"Compression (level ) }  if (    length (  chunk ) undefined  0 )  {    chunk [   which (   chunk ==  0 ) ] =  1 } ## determine data type   tid -   .setDataType (  H5type ,  storage.mode ,  size ) ## create dataset property list   dcpl -   .createDCPL (  chunk ,  dims ,  level ,  fillValue , dtype =  tid )   on.exit (   H5Pclose (  dcpl ) , add =  TRUE ) ## create dataspace   sid -   H5Screate_simple (  dims ,  maxdims )   on.exit (   H5Sclose (  sid ) , add =  TRUE )   did -   H5Dcreate (   loc $ H5Identifier ,  dataset ,  tid ,  sid , dcpl =  dcpl )  if (   is (  did ,  \"H5IdComponent\" ) )  {  if (    storage.mode [  1 ] ==  \"logical\" )  {   x =  \"logical\"   h5writeAttribute ( attr =  x , h5obj =  did , name =  \"storage.mode\" ) }   H5Dclose (  did )   res -  TRUE } } } }  res } ",
+    "filename": "h5create.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "h5writeDataset.data.frame",
+    "representation": "h5writeDataset.data.frame",
+    "parameters": "function ( obj , h5loc , name , level = 7 , DataFrameAsCompound = TRUE )",
+    "body": "{  if (  DataFrameAsCompound )  {  if (   H5Lexists (  h5loc ,  name ) )  {   stop (  \"Cannot write data.frame. Object already exists. Subsetting for compound datatype not supported.\" ) }  if (  !   is.null (  level ) )  {   level =   as.integer (  level ) }   .Call (  \"_h5writeDataFrame\" ,  obj ,   h5loc @ ID ,  name ,  level , PACKAGE =  'rhdf5' )   res -  0 } else  {   a -   attr (  obj ,  \"names\" )  if (   is.null (  a ) )  {    attr (  obj ,  \"names\" ) =   sprintf (  \"col%d\" ,   seq_len (   ncol (  obj ) ) ) } else  {  if (   any (   duplicated (  a ) ) )  {    a [   duplicated (  a ) ] =    sprintf (  \"col%d\" ,   seq_len (   ncol (  obj ) ) ) [   duplicated (  a ) ]    attr (  obj ,  \"names\" ) =  a } } ## we can't write out factors, so convert any to character   colClass -   sapply (  obj ,  is.factor )  if (   any (  colClass ) )  {    obj [ ,   which (  colClass ) ] -   as.character (   obj [ ,   which (  colClass ) ] ) }   res -   h5writeDataset.list ( obj =  obj , h5loc =  h5loc , name =  name , level =  level ) }   invisible (  res ) } ",
+    "filename": "h5write.txt"
+  },
+  "new_function": {
+    "name": "h5writeDataset.data.frame",
+    "representation": "h5writeDataset.data.frame",
+    "parameters": "function ( obj , h5loc , name , level = 7 , chunk , DataFrameAsCompound = TRUE )",
+    "body": "{  if (  DataFrameAsCompound )  {  if (   H5Lexists (  h5loc ,  name ) )  {   stop (  \"Cannot write data.frame. Object already exists. Subsetting for compound datatype not supported.\" ) }  if (  !   is.null (  level ) )  {   level =   as.integer (  level )  if (   missing (  chunk ) )   chunk -   nrow (  obj ) }   did -   .Call (  \"_h5createDataFrame\" ,  obj ,   h5loc @ ID ,  name ,  level ,   as.integer (  chunk ) , PACKAGE =  'rhdf5' )   .Call (  \"_h5writeDataFrame\" ,  obj ,  did , PACKAGE =  'rhdf5' )   .Call (  \"_H5Dclose\" ,  did , PACKAGE =  'rhdf5' )   res -  0 } else  {   a -   attr (  obj ,  \"names\" )  if (   is.null (  a ) )  {    attr (  obj ,  \"names\" ) =   sprintf (  \"col%d\" ,   seq_len (   ncol (  obj ) ) ) } else  {  if (   any (   duplicated (  a ) ) )  {    a [   duplicated (  a ) ] =    sprintf (  \"col%d\" ,   seq_len (   ncol (  obj ) ) ) [   duplicated (  a ) ]    attr (  obj ,  \"names\" ) =  a } } ## we can't write out factors, so convert any to character   colClass -   sapply (  obj ,  is.factor )  if (   any (  colClass ) )  {    obj [ ,   which (  colClass ) ] -   as.character (   obj [ ,   which (  colClass ) ] ) }   res -   h5writeDataset.list ( obj =  obj , h5loc =  h5loc , name =  name , level =  level ) }   invisible (  res ) } ",
+    "filename": "h5write.txt"
+  }
+}
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "h5createDataset",
+    "representation": "h5createDataset",
+    "parameters": "function ( file , dataset , dims , maxdims = dims , storage.mode = \"double\" , H5type = NULL , size = NULL , chunk = dims , level = 6 , fillValue , showWarnings = TRUE , native = FALSE )",
+    "body": "{   loc =   h5checktypeOrOpenLoc (  file , native =  native )   on.exit (   h5closeitLoc (  loc ) )   dims -   as.numeric (  dims )   maxdims -   as.numeric (  maxdims )   res -  FALSE  if (   is.character (  dataset ) )  {  if (   H5Lexists (   loc $ H5Identifier ,  dataset ) )  {   message (  \"Can not create dataset. Object with name '\" ,  dataset ,  \"' already exists.\" ) } else  {  if (    is.numeric (  dims ) undefined   is.numeric (  maxdims ) )  {  if (    length (  maxdims ) !=   length (  dims ) )  {   stop (  '\"maxdims\" has to have the same rank as \"dims\".' ) }  if (    any (   maxdims !=  dims ) undefined   is.null (  chunk ) )  {   stop (  'If \"maxdims\" is different from \"dims\", chunking is required.' ) }  if (   any (    maxdims !=   H5Sunlimited ( ) undefined   maxdims undefined  dims ) )  {   stop (  'All non-extensible elements of \"maxdims\" have to be equal or larger than \"dims\".' ) }  if (   any (   dims undefined  0 ) )  {   stop (  'All elements of \"dims\" must be non-negative.' ) }  if (   (   level undefined  0 ) undefined  (   is.null (  chunk ) ) )  {   warning (  \"Compression (level ) }  if (    length (  chunk ) undefined  0 )  {    chunk [   which (   chunk ==  0 ) ] =  1 }   dcpl =  NULL  if (    length (  chunk ) undefined  0 )  {  if (    showWarnings undefined  (    prod (  dims ) undefined  1000000L ) undefined  (   all (   dims ==  chunk ) ) )  {   warning (  \"You created a large dataset with compression and chunking. The chunk size is equal to the dataset dimensions. If you want to read subsets of the dataset, you should test smaller chunk sizes to improve read times. Turn off this warning with showWarnings=FALSE.\" ) }  if (   is.null (  dcpl ) )  {    dcpl =   H5Pcreate (  \"H5P_DATASET_CREATE\" ) ;   on.exit (   H5Pclose (  dcpl ) , add =  TRUE ) }   H5Pset_fill_time (  dcpl ,  \"H5D_FILL_TIME_ALLOC\" )   H5Pset_chunk (  dcpl ,  chunk )  if (   level undefined  0 )  {   H5Pset_deflate (  dcpl ,  level ) } }  if (  !   missing (  fillValue ) )  {  if (   is.null (  dcpl ) )  {   dcpl =   H5Pcreate (  \"H5P_DATASET_CREATE\" )   on.exit (   H5Pclose (  dcpl ) , add =  TRUE ) }   H5Pset_fill_value (  dcpl ,  fillValue ) }   sid -   H5Screate_simple (  dims ,  maxdims )  if (  !   is (  sid ,  \"H5IdComponent\" ) )  {   message (  \"Can not create dataset. 'dims' or 'maxdims' argument invalid.\" ) } else  {   on.exit (   H5Sclose (  sid ) , add =  TRUE )  if (   is.null (  H5type ) )  {  if (   is.character (  storage.mode ) )  {   tid -   switch (   storage.mode [  1 ] , double =    h5constants $ H5T [  \"H5T_NATIVE_DOUBLE\" ] , integer =    h5constants $ H5T [  \"H5T_NATIVE_INT32\" ] , integer64 =    h5constants $ H5T [  \"H5T_NATIVE_INT64\" ] , logical =    h5constants $ H5T [  \"H5T_NATIVE_INT32\" ] , character =  {   tid -   H5Tcopy (  \"H5T_C_S1\" )  if (  !   is.numeric (  size ) )  {   stop (  \"parameter 'size' has to be defined for storage.mode character.\" ) }   H5Tset_size (  tid ,  size )  tid } ,  {   stop (  \"datatype \" ,  storage.mode ,  \" not yet implemented.\\n\" ,  \"Try 'logical', 'double', 'integer', 'integer64' or 'character'.\" ) } ) } else  {   stop (  \"Can not create dataset. 'storage.mode' has to be a character.\" ) } } else  {   tid -   h5checkConstants (  \"H5T\" ,  H5type ) }  if (   is.na (  tid ) )  {   message (  \"Can not create dataset. H5type unknown. Check h5const('H5T') for valid types.\" ) } else  {   did -   H5Dcreate (   loc $ H5Identifier ,  dataset ,  tid ,  sid , dcpl =  dcpl )  if (   is (  did ,  \"H5IdComponent\" ) )  {  if (    storage.mode [  1 ] ==  \"logical\" )  {   x =  \"logical\"   h5writeAttribute ( attr =  x , h5obj =  did , name =  \"storage.mode\" ) }   H5Dclose (  did )   res -  TRUE } } } } else  {   message (  \"Can not create dataset. 'dims' and 'maxdims' have to be numeric.\" ) } } }  res } ",
+    "filename": "h5create.txt"
+  },
+  "new_function": {
+    "name": "h5createDataset",
+    "representation": "h5createDataset",
+    "parameters": "function ( file , dataset , dims , maxdims = dims , storage.mode = \"double\" , H5type = NULL , size = NULL , chunk = dims , level = 6 , fillValue , showWarnings , native = FALSE )",
+    "body": "{  if (  !   missing (  showWarnings ) )  {   message (  \"The 'showWarnings' argument has been deprecated and will be removed.\\n\" ,  \"Use suppressMessages() and suppressWarnings() to limit messages printed to screen\" ) }   loc =   h5checktypeOrOpenLoc (  file , native =  native )   on.exit (   h5closeitLoc (  loc ) )   dims -   as.numeric (  dims )   maxdims -   as.numeric (  maxdims )   res -  FALSE  if (   is.character (  dataset ) )  {  if (   H5Lexists (   loc $ H5Identifier ,  dataset ) )  {   message (  \"Can not create dataset. Object with name '\" ,  dataset ,  \"' already exists.\" ) } else  {  if (    any (   is.na (  dims ) ) |   any (   is.na (  maxdims ) ) )  {   message (  \"Can not create dataset. 'dims' and 'maxdims' have to be numeric.\" ) } else  {  if (    length (  maxdims ) !=   length (  dims ) )  {   stop (  '\"maxdims\" has to have the same rank as \"dims\".' ) }  if (    any (   maxdims !=  dims ) undefined   is.null (  chunk ) )  {   stop (  'If \"maxdims\" is different from \"dims\", chunking is required.' ) }  if (   any (    maxdims !=   H5Sunlimited ( ) undefined   maxdims undefined  dims ) )  {   stop (  'All non-extensible elements of \"maxdims\" have to be equal or larger than \"dims\".' ) }  if (   any (   dims undefined  0 ) )  {   stop (  'All elements of \"dims\" must be non-negative.' ) }  if (   (   level undefined  0 ) undefined  (   is.null (  chunk ) ) )  {   warning (  \"Compression (level ) }  if (    length (  chunk ) undefined  0 )  {    chunk [   which (   chunk ==  0 ) ] =  1 } ## determine data type   tid -   .setDataType (  H5type ,  storage.mode ,  size ) ## create dataset property list   dcpl -   .createDCPL (  chunk ,  dims ,  level ,  fillValue , dtype =  tid )   on.exit (   H5Pclose (  dcpl ) , add =  TRUE ) ## create dataspace   sid -   H5Screate_simple (  dims ,  maxdims )   on.exit (   H5Sclose (  sid ) , add =  TRUE )   did -   H5Dcreate (   loc $ H5Identifier ,  dataset ,  tid ,  sid , dcpl =  dcpl )  if (   is (  did ,  \"H5IdComponent\" ) )  {  if (    storage.mode [  1 ] ==  \"logical\" )  {   x =  \"logical\"   h5writeAttribute ( attr =  x , h5obj =  did , name =  \"storage.mode\" ) }   H5Dclose (  did )   res -  TRUE } } } }  res } ",
+    "filename": "h5create.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "h5writeDataset.data.frame",
+    "representation": "h5writeDataset.data.frame",
+    "parameters": "function ( obj , h5loc , name , level = 7 , DataFrameAsCompound = TRUE )",
+    "body": "{  if (  DataFrameAsCompound )  {  if (   H5Lexists (  h5loc ,  name ) )  {   stop (  \"Cannot write data.frame. Object already exists. Subsetting for compound datatype not supported.\" ) }  if (  !   is.null (  level ) )  {   level =   as.integer (  level ) }   .Call (  \"_h5writeDataFrame\" ,  obj ,   h5loc @ ID ,  name ,  level , PACKAGE =  'rhdf5' )   res -  0 } else  {   a -   attr (  obj ,  \"names\" )  if (   is.null (  a ) )  {    attr (  obj ,  \"names\" ) =   sprintf (  \"col%d\" ,   seq_len (   ncol (  obj ) ) ) } else  {  if (   any (   duplicated (  a ) ) )  {    a [   duplicated (  a ) ] =    sprintf (  \"col%d\" ,   seq_len (   ncol (  obj ) ) ) [   duplicated (  a ) ]    attr (  obj ,  \"names\" ) =  a } } ## we can't write out factors, so convert any to character   colClass -   sapply (  obj ,  is.factor )  if (   any (  colClass ) )  {    obj [ ,   which (  colClass ) ] -   as.character (   obj [ ,   which (  colClass ) ] ) }   res -   h5writeDataset.list ( obj =  obj , h5loc =  h5loc , name =  name , level =  level ) }   invisible (  res ) } ",
+    "filename": "h5write.txt"
+  },
+  "new_function": {
+    "name": "h5writeDataset.data.frame",
+    "representation": "h5writeDataset.data.frame",
+    "parameters": "function ( obj , h5loc , name , level = 7 , chunk , DataFrameAsCompound = TRUE )",
+    "body": "{  if (  DataFrameAsCompound )  {  if (   H5Lexists (  h5loc ,  name ) )  {   stop (  \"Cannot write data.frame. Object already exists. Subsetting for compound datatype not supported.\" ) }  if (  !   is.null (  level ) )  {   level =   as.integer (  level )  if (   missing (  chunk ) )   chunk -   nrow (  obj ) }   did -   .Call (  \"_h5createDataFrame\" ,  obj ,   h5loc @ ID ,  name ,  level ,   as.integer (  chunk ) , PACKAGE =  'rhdf5' )   .Call (  \"_h5writeDataFrame\" ,  obj ,  did , PACKAGE =  'rhdf5' )   .Call (  \"_H5Dclose\" ,  did , PACKAGE =  'rhdf5' )   res -  0 } else  {   a -   attr (  obj ,  \"names\" )  if (   is.null (  a ) )  {    attr (  obj ,  \"names\" ) =   sprintf (  \"col%d\" ,   seq_len (   ncol (  obj ) ) ) } else  {  if (   any (   duplicated (  a ) ) )  {    a [   duplicated (  a ) ] =    sprintf (  \"col%d\" ,   seq_len (   ncol (  obj ) ) ) [   duplicated (  a ) ]    attr (  obj ,  \"names\" ) =  a } } ## we can't write out factors, so convert any to character   colClass -   sapply (  obj ,  is.factor )  if (   any (  colClass ) )  {    obj [ ,   which (  colClass ) ] -   as.character (   obj [ ,   which (  colClass ) ] ) }   res -   h5writeDataset.list ( obj =  obj , h5loc =  h5loc , name =  name , level =  level ) }   invisible (  res ) } ",
+    "filename": "h5write.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rhdf5_release_3_9 rhdf5_release_3_11
+
+{
+    "package": "rhdf5",
+    "release_versions": "rhdf5_release_3_9 rhdf5_release_3_11",
+    "desc_release_old": "2.28.1",
+    "desc_release_new": "2.32.4",
+    "old_release_number": 27,
+    "new_release_number": 28,
+    "function_removals": 0,
+    "function_additions": 7,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+H5Lmove
+H5Lcopy
+H5Tget_size
+H5Tset_strpad
+H5Tget_strpad
+H5Pset_obj_track_times
+H5Pget_obj_track_times
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rhdf5_release_3_11 rhdf5_release_3_12
+
+{
+    "package": "rhdf5",
+    "release_versions": "rhdf5_release_3_11 rhdf5_release_3_12",
+    "desc_release_old": "2.32.4",
+    "desc_release_new": "2.34.0",
+    "old_release_number": 28,
+    "new_release_number": 29,
+    "function_removals": 0,
+    "function_additions": 5,
+    "parameter_removals": 1,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 3,
+    "total_count": 3
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+H5Pset_fapl_ros3
+H5Pset_shuffle
+H5Pset_szip
+H5Pset_bzip2
+H5Pset_blosc
+
+
+##########
+Removed Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "h5createDataset",
+    "representation": "h5createDataset",
+    "parameters": "function ( file , dataset , dims , maxdims = dims , storage.mode = \"double\" , H5type = NULL , size = NULL , chunk = dims , level = 6 , fillValue , showWarnings , native = FALSE )",
+    "body": "{  if (  !   missing (  showWarnings ) )  {   message (  \"The 'showWarnings' argument has been deprecated and will be removed.\\n\" ,  \"Use suppressMessages() and suppressWarnings() to limit messages printed to screen\" ) }   loc =   h5checktypeOrOpenLoc (  file , native =  native )   on.exit (   h5closeitLoc (  loc ) )   dims -   as.numeric (  dims )   maxdims -   as.numeric (  maxdims )   res -  FALSE  if (   is.character (  dataset ) )  {  if (   H5Lexists (   loc $ H5Identifier ,  dataset ) )  {   message (  \"Can not create dataset. Object with name '\" ,  dataset ,  \"' already exists.\" ) } else  {  if (    any (   is.na (  dims ) ) |   any (   is.na (  maxdims ) ) )  {   message (  \"Can not create dataset. 'dims' and 'maxdims' have to be numeric.\" ) } else  {  if (    length (  maxdims ) !=   length (  dims ) )  {   stop (  '\"maxdims\" has to have the same rank as \"dims\".' ) }  if (    any (   maxdims !=  dims ) undefined   is.null (  chunk ) )  {   stop (  'If \"maxdims\" is different from \"dims\", chunking is required.' ) }  if (   any (    maxdims !=   H5Sunlimited ( ) undefined   maxdims undefined  dims ) )  {   stop (  'All non-extensible elements of \"maxdims\" have to be equal or larger than \"dims\".' ) }  if (   any (   dims undefined  0 ) )  {   stop (  'All elements of \"dims\" must be non-negative.' ) }  if (   (   level undefined  0 ) undefined  (   is.null (  chunk ) ) )  {   warning (  \"Compression (level ) }  if (    length (  chunk ) undefined  0 )  {    chunk [   which (   chunk ==  0 ) ] =  1 } ## determine data type   tid -   .setDataType (  H5type ,  storage.mode ,  size ) ## dataset creation property list   dcpl -   .createDCPL (  chunk ,  dims ,  level ,  fillValue , dtype =  tid )   on.exit (   H5Pclose (  dcpl ) , add =  TRUE ) ## create dataspace   sid -   H5Screate_simple (  dims ,  maxdims )   on.exit (   H5Sclose (  sid ) , add =  TRUE )   did -   H5Dcreate (   loc $ H5Identifier ,  dataset ,  tid ,  sid , dcpl =  dcpl )  if (   is (  did ,  \"H5IdComponent\" ) )  {  if (    storage.mode [  1 ] ==  \"logical\" )  {   x =  \"logical\"   h5writeAttribute ( attr =  x , h5obj =  did , name =  \"storage.mode\" ) }   H5Dclose (  did )   res -  TRUE } } } }  res } ",
+    "filename": "h5create.txt"
+  },
+  "new_function": {
+    "name": "h5createDataset",
+    "representation": "h5createDataset",
+    "parameters": "function ( file , dataset , dims , maxdims = dims , storage.mode = \"double\" , H5type = NULL , size = NULL , chunk = dims , fillValue , level = 6 , filter = \"gzip\" , shuffle = TRUE , native = FALSE )",
+    "body": "{   loc =   h5checktypeOrOpenLoc (  file , native =  native )   on.exit (   h5closeitLoc (  loc ) )   dims -   as.numeric (  dims )   maxdims -   as.numeric (  maxdims )   res -  FALSE  if (   is.character (  dataset ) )  {  if (   H5Lexists (   loc $ H5Identifier ,  dataset ) )  {   message (  \"Can not create dataset. Object with name '\" ,  dataset ,  \"' already exists.\" ) } else  {  if (    any (   is.na (  dims ) ) |   any (   is.na (  maxdims ) ) )  {   message (  \"Can not create dataset. 'dims' and 'maxdims' have to be numeric.\" ) } else  {  if (    length (  maxdims ) !=   length (  dims ) )  {   stop (  '\"maxdims\" has to have the same rank as \"dims\".' ) }  if (    any (   maxdims !=  dims ) undefined   is.null (  chunk ) )  {   stop (  'If \"maxdims\" is different from \"dims\", chunking is required.' ) }  if (   any (    maxdims !=   H5Sunlimited ( ) undefined   maxdims undefined  dims ) )  {   stop (  'All non-extensible elements of \"maxdims\" have to be equal or larger than \"dims\".' ) }  if (   any (   dims undefined  0 ) )  {   stop (  'All elements of \"dims\" must be non-negative.' ) }  if (   (   level undefined  0 ) undefined  (   is.null (  chunk ) ) )  {   warning (  \"Compression (level ) }  if (    length (  chunk ) undefined  0 )  {    chunk [   which (   chunk ==  0 ) ] =  1 } ## determine data type   tid -   .setDataType (  H5type ,  storage.mode ,  size )   dcpl -   .createDCPL (  chunk ,  dims ,  level ,  fillValue , dtype =  tid , filter =  filter , shuffle =  shuffle )   on.exit (   H5Pclose (  dcpl ) , add =  TRUE ) ## create dataspace   sid -   H5Screate_simple (  dims ,  maxdims )   on.exit (   H5Sclose (  sid ) , add =  TRUE )   did -   H5Dcreate (   loc $ H5Identifier ,  dataset ,  tid ,  sid , dcpl =  dcpl )  if (   is (  did ,  \"H5IdComponent\" ) )  {  if (    storage.mode [  1 ] ==  \"logical\" )  {   x =  \"logical\"   h5writeAttribute ( attr =  x , h5obj =  did , name =  \"storage.mode\" ) }   H5Dclose (  did )   res -  TRUE } } } }  res } ",
+    "filename": "h5create.txt"
+  }
+}
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "h5createDataset",
+    "representation": "h5createDataset",
+    "parameters": "function ( file , dataset , dims , maxdims = dims , storage.mode = \"double\" , H5type = NULL , size = NULL , chunk = dims , level = 6 , fillValue , showWarnings , native = FALSE )",
+    "body": "{  if (  !   missing (  showWarnings ) )  {   message (  \"The 'showWarnings' argument has been deprecated and will be removed.\\n\" ,  \"Use suppressMessages() and suppressWarnings() to limit messages printed to screen\" ) }   loc =   h5checktypeOrOpenLoc (  file , native =  native )   on.exit (   h5closeitLoc (  loc ) )   dims -   as.numeric (  dims )   maxdims -   as.numeric (  maxdims )   res -  FALSE  if (   is.character (  dataset ) )  {  if (   H5Lexists (   loc $ H5Identifier ,  dataset ) )  {   message (  \"Can not create dataset. Object with name '\" ,  dataset ,  \"' already exists.\" ) } else  {  if (    any (   is.na (  dims ) ) |   any (   is.na (  maxdims ) ) )  {   message (  \"Can not create dataset. 'dims' and 'maxdims' have to be numeric.\" ) } else  {  if (    length (  maxdims ) !=   length (  dims ) )  {   stop (  '\"maxdims\" has to have the same rank as \"dims\".' ) }  if (    any (   maxdims !=  dims ) undefined   is.null (  chunk ) )  {   stop (  'If \"maxdims\" is different from \"dims\", chunking is required.' ) }  if (   any (    maxdims !=   H5Sunlimited ( ) undefined   maxdims undefined  dims ) )  {   stop (  'All non-extensible elements of \"maxdims\" have to be equal or larger than \"dims\".' ) }  if (   any (   dims undefined  0 ) )  {   stop (  'All elements of \"dims\" must be non-negative.' ) }  if (   (   level undefined  0 ) undefined  (   is.null (  chunk ) ) )  {   warning (  \"Compression (level ) }  if (    length (  chunk ) undefined  0 )  {    chunk [   which (   chunk ==  0 ) ] =  1 } ## determine data type   tid -   .setDataType (  H5type ,  storage.mode ,  size ) ## dataset creation property list   dcpl -   .createDCPL (  chunk ,  dims ,  level ,  fillValue , dtype =  tid )   on.exit (   H5Pclose (  dcpl ) , add =  TRUE ) ## create dataspace   sid -   H5Screate_simple (  dims ,  maxdims )   on.exit (   H5Sclose (  sid ) , add =  TRUE )   did -   H5Dcreate (   loc $ H5Identifier ,  dataset ,  tid ,  sid , dcpl =  dcpl )  if (   is (  did ,  \"H5IdComponent\" ) )  {  if (    storage.mode [  1 ] ==  \"logical\" )  {   x =  \"logical\"   h5writeAttribute ( attr =  x , h5obj =  did , name =  \"storage.mode\" ) }   H5Dclose (  did )   res -  TRUE } } } }  res } ",
+    "filename": "h5create.txt"
+  },
+  "new_function": {
+    "name": "h5createDataset",
+    "representation": "h5createDataset",
+    "parameters": "function ( file , dataset , dims , maxdims = dims , storage.mode = \"double\" , H5type = NULL , size = NULL , chunk = dims , fillValue , level = 6 , filter = \"gzip\" , shuffle = TRUE , native = FALSE )",
+    "body": "{   loc =   h5checktypeOrOpenLoc (  file , native =  native )   on.exit (   h5closeitLoc (  loc ) )   dims -   as.numeric (  dims )   maxdims -   as.numeric (  maxdims )   res -  FALSE  if (   is.character (  dataset ) )  {  if (   H5Lexists (   loc $ H5Identifier ,  dataset ) )  {   message (  \"Can not create dataset. Object with name '\" ,  dataset ,  \"' already exists.\" ) } else  {  if (    any (   is.na (  dims ) ) |   any (   is.na (  maxdims ) ) )  {   message (  \"Can not create dataset. 'dims' and 'maxdims' have to be numeric.\" ) } else  {  if (    length (  maxdims ) !=   length (  dims ) )  {   stop (  '\"maxdims\" has to have the same rank as \"dims\".' ) }  if (    any (   maxdims !=  dims ) undefined   is.null (  chunk ) )  {   stop (  'If \"maxdims\" is different from \"dims\", chunking is required.' ) }  if (   any (    maxdims !=   H5Sunlimited ( ) undefined   maxdims undefined  dims ) )  {   stop (  'All non-extensible elements of \"maxdims\" have to be equal or larger than \"dims\".' ) }  if (   any (   dims undefined  0 ) )  {   stop (  'All elements of \"dims\" must be non-negative.' ) }  if (   (   level undefined  0 ) undefined  (   is.null (  chunk ) ) )  {   warning (  \"Compression (level ) }  if (    length (  chunk ) undefined  0 )  {    chunk [   which (   chunk ==  0 ) ] =  1 } ## determine data type   tid -   .setDataType (  H5type ,  storage.mode ,  size )   dcpl -   .createDCPL (  chunk ,  dims ,  level ,  fillValue , dtype =  tid , filter =  filter , shuffle =  shuffle )   on.exit (   H5Pclose (  dcpl ) , add =  TRUE ) ## create dataspace   sid -   H5Screate_simple (  dims ,  maxdims )   on.exit (   H5Sclose (  sid ) , add =  TRUE )   did -   H5Dcreate (   loc $ H5Identifier ,  dataset ,  tid ,  sid , dcpl =  dcpl )  if (   is (  did ,  \"H5IdComponent\" ) )  {  if (    storage.mode [  1 ] ==  \"logical\" )  {   x =  \"logical\"   h5writeAttribute ( attr =  x , h5obj =  did , name =  \"storage.mode\" ) }   H5Dclose (  did )   res -  TRUE } } } }  res } ",
+    "filename": "h5create.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "H5Fopen",
+    "representation": "H5Fopen",
+    "parameters": "function ( name , flags = h5default ( \"H5F_ACC_RD\" ) , native = FALSE )",
+    "body": "{  if (     length (  name ) !=  1 ||  !   is.character (  name ) )   stop (  \"'name' must be a character string of length 1\" )   name =   normalizePath (  name , mustWork =  FALSE )   flags -   h5checkConstants (  \"H5F_ACC_RD\" ,  flags )   fid -   .Call (  \"_H5Fopen\" ,  name ,  flags , PACKAGE =  'rhdf5' )  if (   fid undefined  0 )  {   h5file =   new (  \"H5IdComponent\" , ID =  fid , native =  native ) } else  {   message (  \"HDF5: unable to open file\" )   h5file =  FALSE }   invisible (  h5file ) } ",
+    "filename": "H5F.txt"
+  },
+  "new_function": {
+    "name": "H5Fopen",
+    "representation": "H5Fopen",
+    "parameters": "function ( name , flags = h5default ( \"H5F_ACC_RD\" ) , fapl = NULL , native = FALSE )",
+    "body": "{  if (     length (  name ) !=  1 ||  !   is.character (  name ) )  {   stop (  \"'name' must be a character string of length 1\" ) }   name -   normalizePath (  name , mustWork =  FALSE )   flags -   h5checkConstants (  \"H5F_ACC_RD\" ,  flags )  if (   is.null (  fapl ) )  { ## create a new file access property list   fapl -   H5Pcreate (  \"H5P_FILE_ACCESS\" )   on.exit (   H5Pclose (  fapl ) ) } else  {   fapl -   h5checktypeAndPLC (  fapl ,  \"H5P_FILE_ACCESS\" , allowNULL =  FALSE ) }   fid -   .Call (  \"_H5Fopen\" ,  name ,  flags ,   fapl @ ID , PACKAGE =  'rhdf5' )  if (   fid undefined  0 )  {   h5file =   new (  \"H5IdComponent\" , ID =  fid , native =  native ) } else  {   message (  \"HDF5: unable to open file\" )   h5file =  FALSE }   invisible (  h5file ) } ",
+    "filename": "H5F.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "h5ls",
+    "representation": "h5ls",
+    "parameters": "function ( file , recursive = TRUE , all = FALSE , datasetinfo = TRUE , index_type = h5default ( \"H5_INDEX\" ) , order = h5default ( \"H5_ITER\" ) , native = FALSE )",
+    "body": "{   loc =   h5checktypeOrOpenLoc (  file , readonly =  TRUE , native =  native )   on.exit (   h5closeitLoc (  loc ) )  if (     length (  datasetinfo ) !=  1 ||  !   is.logical (  datasetinfo ) )   stop (  \"'datasetinfo' must be a logical of length 1\" )   index_type -   h5checkConstants (  \"H5_INDEX\" ,  index_type )   order -   h5checkConstants (  \"H5_ITER\" ,  order )  if (   is.logical (  recursive ) )  {  if (  recursive )  {   depth =  -  1L } else  {   depth =  1L } } else  if (    is.numeric (  recursive ) |   is.integer (  recursive ) )  {   depth =   as.integer (  recursive )  if (    length (  recursive ) undefined  1 )  {   warning (  \"'recursive' must be of length 1.  Only using first value.\" ) } else  if (   recursive ==  0 )  {   stop (  \"value 0 for 'recursive' is undefined, either a positive integer or negative (maximum recursion)\" ) } } else  {   stop (  \"'recursive' must be number or a logical\" ) }   di -   ifelse (  datasetinfo ,  1L ,  0L )   L -   .Call (  \"_h5ls\" ,    loc $ H5Identifier @ ID ,  depth ,  di ,  index_type ,  order ,    loc $ H5Identifier @ native , PACKAGE =  'rhdf5' )   h5lsConvertToDataframe (  L , all =  all , native =    loc $ H5Identifier @ native ) } ",
+    "filename": "h5ls.txt"
+  },
+  "new_function": {
+    "name": "h5ls",
+    "representation": "h5ls",
+    "parameters": "function ( file , recursive = TRUE , all = FALSE , datasetinfo = TRUE , index_type = h5default ( \"H5_INDEX\" ) , order = h5default ( \"H5_ITER\" ) , s3 = FALSE , s3credentials = NULL , native = FALSE )",
+    "body": "{  if (   isTRUE (  s3 ) )  {   fapl -   H5Pcreate (  \"H5P_FILE_ACCESS\" )   on.exit (   H5Pclose (  fapl ) )   H5Pset_fapl_ros3 (  fapl ,  s3credentials )   loc -   h5checktypeOrOpenLocS3 (  file , readonly =  TRUE , fapl =  fapl , native =  native ) } else  {   loc -   h5checktypeOrOpenLoc (  file , readonly =  TRUE , fapl =  NULL , native =  native ) }   on.exit (   h5closeitLoc (  loc ) , add =  TRUE )  if (     length (  datasetinfo ) !=  1 ||  !   is.logical (  datasetinfo ) )   stop (  \"'datasetinfo' must be a logical of length 1\" )   index_type -   h5checkConstants (  \"H5_INDEX\" ,  index_type )   order -   h5checkConstants (  \"H5_ITER\" ,  order )  if (   is.logical (  recursive ) )  {  if (  recursive )  {   depth =  -  1L } else  {   depth =  1L } } else  if (    is.numeric (  recursive ) |   is.integer (  recursive ) )  {   depth =   as.integer (  recursive )  if (    length (  recursive ) undefined  1 )  {   warning (  \"'recursive' must be of length 1.  Only using first value.\" ) } else  if (   recursive ==  0 )  {   stop (  \"value 0 for 'recursive' is undefined, either a positive integer or negative (maximum recursion)\" ) } } else  {   stop (  \"'recursive' must be number or a logical\" ) }   di -   ifelse (  datasetinfo ,  1L ,  0L )   L -   .Call (  \"_h5ls\" ,    loc $ H5Identifier @ ID ,  depth ,  di ,  index_type ,  order ,    loc $ H5Identifier @ native , PACKAGE =  'rhdf5' )   h5lsConvertToDataframe (  L , all =  all , native =    loc $ H5Identifier @ native ) } ",
+    "filename": "h5ls.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rhdf5_release_3_12 rhdf5_release_3_13
+
+{
+    "package": "rhdf5",
+    "release_versions": "rhdf5_release_3_12 rhdf5_release_3_13",
+    "desc_release_old": "2.34.0",
+    "desc_release_new": "2.36.0",
+    "old_release_number": 29,
+    "new_release_number": 30,
+    "function_removals": 0,
+    "function_additions": 9,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 2,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+H5Sget_select_npoints
+H5Sselect_all
+H5Sselect_none
+H5Sselect_valid
+H5Scombine_hyperslab
+H5Scombine_select
+H5Tset_cset
+H5Tget_cset
+H5Pset_lzf
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "h5createAttribute",
+    "representation": "h5createAttribute",
+    "parameters": "function ( obj , attr , dims , maxdims = dims , file , storage.mode = \"double\" , H5type = NULL , size = NULL , native = FALSE )",
+    "body": "{   obj =   h5checktypeOrOpenObj (  obj ,  file , native =  native )   on.exit (   h5closeitObj (  obj ) )   res -  FALSE  if (    is.numeric (  dims ) undefined   is.numeric (  maxdims ) )  {   sid -   H5Screate_simple (  dims ,  maxdims )  if (  !   is (  sid ,  \"H5IdComponent\" ) )  {   message (  \"Can not create attribute. 'dims' or 'maxdims' argument invalid.\" ) } else  {   on.exit (   H5Sclose (  sid ) , add =  TRUE )  if (   is.null (  H5type ) )  {  if (   is.character (  storage.mode ) )  {   tid -   switch (   storage.mode [  1 ] , double =    h5constants $ H5T [  \"H5T_IEEE_F64LE\" ] , integer =    h5constants $ H5T [  \"H5T_STD_I32LE\" ] , character =  {   tid -   H5Tcopy (  \"H5T_C_S1\" )  if (  !   is.numeric (  size ) )  {   stop (  \"parameter 'size' has to be defined for storage.mode character.\" ) }   H5Tset_size (  tid ,  size )  tid } ,  {   stop (  \"datatype \" ,  storage.mode ,  \" not yet implemented. Try 'double', 'integer', or 'character'.\" ) } ) } else  {   stop (  \"Can not create dataset. 'storage.mode' has to be a character.\" ) } } else  {   tid -   h5checkConstants (  \"H5T\" ,  H5type ) }  if (  !   grepl ( pattern =  \"^[[:digit:]]+$\" ,  tid ) )  {   message (  \"Can not create attribute. H5type unknown. Check h5const('H5T') for valid types.\" ) } else  {  if (   H5Aexists (   obj $ H5Identifier ,  attr ) )  {   message (  \"Can not create attribute. Attribute with name '\" ,  attr ,  \"' already exists.\" ) } else  {   aid -   H5Acreate (   obj $ H5Identifier ,  attr ,  tid ,  sid )  if (   is (  aid ,  \"H5IdComponent\" ) )  {   H5Aclose (  aid )   res -  TRUE } } } } } else  {   stop (  \"Can not create attribute. 'dims' and 'maxdims' have to be numeric.\" ) }  res } ",
+    "filename": "h5create.txt"
+  },
+  "new_function": {
+    "name": "h5createAttribute",
+    "representation": "h5createAttribute",
+    "parameters": "function ( obj , attr , dims , maxdims = dims , file , storage.mode = \"double\" , H5type = NULL , size = NULL , cset = c ( \"ASCII\" , \"UTF8\" ) , native = FALSE )",
+    "body": "{   obj =   h5checktypeOrOpenObj (  obj ,  file , native =  native )   on.exit (   h5closeitObj (  obj ) )   res -  FALSE  if (   is.null (  dims ) )  {   sid -   H5Screate ( ) } else  if (    is.numeric (  dims ) undefined   is.numeric (  maxdims ) )  {   sid -   H5Screate_simple (  dims ,  maxdims )  if (  !   is (  sid ,  \"H5IdComponent\" ) )  {   message (  \"Can not create attribute. 'dims' or 'maxdims' argument invalid.\" ) } } else  {   stop (  \"Can not create attribute. 'dims' and 'maxdims' have to be numeric.\" ) }   on.exit (   H5Sclose (  sid ) , add =  TRUE )  if (   is.null (  H5type ) )  {  if (   is.character (  storage.mode ) )  {   tid -   switch (   storage.mode [  1 ] , double =    h5constants $ H5T [  \"H5T_IEEE_F64LE\" ] , integer =    h5constants $ H5T [  \"H5T_STD_I32LE\" ] , character =  {   tid -   H5Tcopy (  \"H5T_C_S1\" )   H5Tset_cset (  tid ,   match.arg (  cset ) )  if (   !   is.null (  size ) undefined  !   is.numeric (  size ) )  {   stop (  \"'size' should be NULL or a number when 'storage.mode=\\\"character\\\"'\" ) }   H5Tset_size (  tid ,  size ) # NULL = variable.  tid } ,  {   stop (  \"datatype \" ,  storage.mode ,  \" not yet implemented. Try 'double', 'integer', or 'character'.\" ) } ) } else  {   stop (  \"Can not create dataset. 'storage.mode' has to be a character.\" ) } } else  {   tid -   h5checkConstants (  \"H5T\" ,  H5type ) }  if (  !   grepl ( pattern =  \"^[[:digit:]]+$\" ,  tid ) )  {   message (  \"Can not create attribute. H5type unknown. Check h5const('H5T') for valid types.\" ) } else  {  if (   H5Aexists (   obj $ H5Identifier ,  attr ) )  {   message (  \"Can not create attribute. Attribute with name '\" ,  attr ,  \"' already exists.\" ) } else  {   aid -   H5Acreate (   obj $ H5Identifier ,  attr ,  tid ,  sid )  if (   is (  aid ,  \"H5IdComponent\" ) )  {   H5Aclose (  aid )   res -  TRUE } } }  res } ",
+    "filename": "h5create.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "h5writeAttribute.array",
+    "representation": "h5writeAttribute.array",
+    "parameters": "function ( attr , h5obj , name , size = NULL )",
+    "body": "{  if (   is.null (   dim (  attr ) ) )  {    dim (  attr ) =   length (  attr ) }  if (   H5Aexists (  h5obj ,  name ) )  {   H5Adelete (  h5obj ,  name ) }   size =  NULL  if (    storage.mode (  attr ) ==  \"character\" )  {   size =    max (   nchar (  attr ) ) +  1 }   h5createAttribute (  h5obj ,  name , dims =   dim (  attr ) , storage.mode =   storage.mode (  attr ) , size =  size )   h5attr -   H5Aopen (  h5obj ,  name )   DimMem -   dim (  attr )   h5spaceMem -   H5Screate_simple (  DimMem ,  NULL )   try (  {   res -   H5Awrite (  h5attr ,  attr ) } )   try (  {   H5Sclose (  h5spaceMem ) } )   try (  {   H5Aclose (  h5attr ) } )   invisible (  res ) } ",
+    "filename": "h5writeAttr.txt"
+  },
+  "new_function": {
+    "name": "h5writeAttribute.array",
+    "representation": "h5writeAttribute.array",
+    "parameters": "function ( attr , h5obj , name , cset = c ( \"ASCII\" , \"UTF8\" ) , variableLengthString = FALSE , asScalar = FALSE )",
+    "body": "{  if (  asScalar )  {  if (    length (  attr ) !=  1L )  {   stop (  \"cannot use 'asScalar=TRUE' when 'length(attr) ) }   dims -  NULL } else  {   dims -   dim (  attr )  if (   is.null (  dims ) )  {   dims -   length (  attr ) } }   size -  NULL  if (     storage.mode (  attr ) ==  \"character\" undefined  !  variableLengthString )  {   size -    max (   nchar (  attr ) ) +  1 }  if (   H5Aexists (  h5obj ,  name ) )  {   H5Adelete (  h5obj ,  name ) }   h5createAttribute (  h5obj ,  name , dims =  dims , storage.mode =   storage.mode (  attr ) , size =  size , cset =   match.arg (  cset ) )   h5attr -   H5Aopen (  h5obj ,  name )   DimMem -   dim (  attr )   h5spaceMem -   H5Screate_simple (  DimMem ,  NULL )   try (  {   res -   H5Awrite (  h5attr ,  attr ) } )   try (  {   H5Sclose (  h5spaceMem ) } )   try (  {   H5Aclose (  h5attr ) } )   invisible (  res ) } ",
+    "filename": "h5writeAttr.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  rhdf5_release_3_13 rhdf5_release_3_14
+
+{
+    "package": "rhdf5",
+    "release_versions": "rhdf5_release_3_13 rhdf5_release_3_14",
+    "desc_release_old": "2.36.0",
+    "desc_release_new": "2.38.1",
+    "old_release_number": 30,
+    "new_release_number": 31,
+    "function_removals": 11,
+    "function_additions": 27,
+    "parameter_removals": 1,
+    "parameter_additions": 1,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 3,
+    "total_count": 14
+}
+
+##########
+Functions Removed
+##########
+
+H5Pclose_class
+H5Pset_char_encoding
+H5Pget_char_encoding
+H5Pset_create_intermediate_group
+H5Pget_create_intermediate_group
+H5Pset_alloc_time
+H5Pget_alloc_time
+H5Pall_filters_avail
+H5Pget_nfilters
+H5Pequal
+h5writeAttribute.array
+
+
+##########
+Functions Added
+##########
+
+H5Dchunk_dims
+H5Olink
+H5Pget_istore_k
+H5Pget_shared_mesg_index
+H5Pget_shared_mesg_nindexes
+H5Pget_shared_mesg_phase_change
+H5Pget_sizes
+H5Pget_sym_k
+H5Pget_userblock
+H5Pget_version
+H5Pset_istore_k
+H5Pset_shared_mesg_index
+H5Pset_shared_mesg_nindexes
+H5Pset_shared_mesg_phase_change
+H5Pset_sizes
+H5Pset_sym_k
+H5Pset_userblock
+H5Tis_variable_str
+H5Zfilter_avail
+h5deleteAttribute
+$
+$<-
+&
+[
+[<-
+show
+h5writeDataset.raw
+
+
+##########
+Removed Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "H5Scombine_select",
+    "representation": "H5Scombine_select",
+    "parameters": "function ( h5space1 , op , h5space2 )",
+    "body": "{   h5checktype (  h5space1 ,  \"dataspace\" )   h5checktype (  h5space2 ,  \"dataspace\" )   op -   h5checkConstants (  \"H5S_SELECT\" ,  op )   sid -   .Call (  \"_H5Scombine_select\" ,   h5space1 @ ID ,  op ,   h5space2 @ ID )  if (   sid undefined  0 )  {   h5spacenew =   new (  \"H5IdComponent\" , ID =  sid , native =   h5space1 @ native ) } else  {   message (  \"HDF5: unable to copy data space\" )   h5spacenew =  FALSE }   invisible (  h5spacenew ) } ",
+    "filename": "H5S.txt"
+  },
+  "new_function": {
+    "name": "H5Scombine_select",
+    "representation": "H5Scombine_select",
+    "parameters": "function ( h5space1 , op = h5default ( \"H5S_SELECT\" ) , h5space2 )",
+    "body": "{   h5checktype (  h5space1 ,  \"dataspace\" )   h5checktype (  h5space2 ,  \"dataspace\" )   op -   h5checkConstants (  \"H5S_SELECT\" ,  op )   sid -   .Call (  \"_H5Scombine_select\" ,   h5space1 @ ID ,  op ,   h5space2 @ ID )  if (   sid undefined  0 )  {   h5spacenew =   new (  \"H5IdComponent\" , ID =  sid , native =   h5space1 @ native ) } else  {   message (  \"HDF5: unable to copy data space\" )   h5spacenew =  FALSE }   invisible (  h5spacenew ) } ",
+    "filename": "H5S.txt"
+  }
+}
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "H5Aread",
+    "representation": "H5Aread",
+    "parameters": "function ( h5attribute , buf = NULL )",
+    "body": "{   h5checktype (  h5attribute ,  \"attribute\" )   invisible (   .Call (  \"_H5Aread\" ,   h5attribute @ ID ,  buf , PACKAGE =  'rhdf5' ) ) } ",
+    "filename": "H5A.txt"
+  },
+  "new_function": {
+    "name": "H5Aread",
+    "representation": "H5Aread",
+    "parameters": "function ( h5attribute , buf = NULL , bit64conversion )",
+    "body": "{   h5checktype (  h5attribute ,  \"attribute\" )  if (   missing (  bit64conversion ) )  {   bit64conv =  0L } else  {   bit64conv =   switch (  bit64conversion , int =  0L , double =  1L , bit64 =  2L , default =  0L ) }  if (    bit64conv ==  2L undefined  !   requireNamespace (  \"bit64\" , quietly =  TRUE ) )  {   stop (  \"install package 'bit64' before using bit64conversion='bit64'\" ) }   return (   .Call (  \"_H5Aread\" ,   h5attribute @ ID ,  buf ,  bit64conv , PACKAGE =  'rhdf5' ) ) } ",
+    "filename": "H5A.txt"
+  }
+}
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "H5Aread",
+    "representation": "H5Aread",
+    "parameters": "function ( h5attribute , buf = NULL )",
+    "body": "{   h5checktype (  h5attribute ,  \"attribute\" )   invisible (   .Call (  \"_H5Aread\" ,   h5attribute @ ID ,  buf , PACKAGE =  'rhdf5' ) ) } ",
+    "filename": "H5A.txt"
+  },
+  "new_function": {
+    "name": "H5Aread",
+    "representation": "H5Aread",
+    "parameters": "function ( h5attribute , buf = NULL , bit64conversion )",
+    "body": "{   h5checktype (  h5attribute ,  \"attribute\" )  if (   missing (  bit64conversion ) )  {   bit64conv =  0L } else  {   bit64conv =   switch (  bit64conversion , int =  0L , double =  1L , bit64 =  2L , default =  0L ) }  if (    bit64conv ==  2L undefined  !   requireNamespace (  \"bit64\" , quietly =  TRUE ) )  {   stop (  \"install package 'bit64' before using bit64conversion='bit64'\" ) }   return (   .Call (  \"_H5Aread\" ,   h5attribute @ ID ,  buf ,  bit64conv , PACKAGE =  'rhdf5' ) ) } ",
+    "filename": "H5A.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "h5createDataset",
+    "representation": "h5createDataset",
+    "parameters": "function ( file , dataset , dims , maxdims = dims , storage.mode = \"double\" , H5type = NULL , size = NULL , chunk = dims , fillValue , level = 6 , filter = \"gzip\" , shuffle = TRUE , native = FALSE )",
+    "body": "{   loc =   h5checktypeOrOpenLoc (  file , native =  native )   on.exit (   h5closeitLoc (  loc ) )   dims -   as.numeric (  dims )   maxdims -   as.numeric (  maxdims )   res -  FALSE  if (   is.character (  dataset ) )  {  if (   H5Lexists (   loc $ H5Identifier ,  dataset ) )  {   message (  \"Can not create dataset. Object with name '\" ,  dataset ,  \"' already exists.\" ) } else  {  if (    any (   is.na (  dims ) ) |   any (   is.na (  maxdims ) ) )  {   message (  \"Can not create dataset. 'dims' and 'maxdims' have to be numeric.\" ) } else  {  if (    length (  maxdims ) !=   length (  dims ) )  {   stop (  '\"maxdims\" has to have the same rank as \"dims\".' ) }  if (    any (   maxdims !=  dims ) undefined   is.null (  chunk ) )  {   stop (  'If \"maxdims\" is different from \"dims\", chunking is required.' ) }  if (   any (    maxdims !=   H5Sunlimited ( ) undefined   maxdims undefined  dims ) )  {   stop (  'All non-extensible elements of \"maxdims\" have to be equal or larger than \"dims\".' ) }  if (   any (   dims undefined  0 ) )  {   stop (  'All elements of \"dims\" must be non-negative.' ) }  if (   (   level undefined  0 ) undefined  (   is.null (  chunk ) ) )  {   warning (  \"Compression (level ) }  if (    length (  chunk ) undefined  0 )  {    chunk [   which (   chunk ==  0 ) ] =  1 } ## determine data type   tid -   .setDataType (  H5type ,  storage.mode ,  size )   dcpl -   .createDCPL (  chunk ,  dims ,  level ,  fillValue , dtype =  tid , filter =  filter , shuffle =  shuffle )   on.exit (   H5Pclose (  dcpl ) , add =  TRUE ) ## create dataspace   sid -   H5Screate_simple (  dims ,  maxdims )   on.exit (   H5Sclose (  sid ) , add =  TRUE )   did -   H5Dcreate (   loc $ H5Identifier ,  dataset ,  tid ,  sid , dcpl =  dcpl )  if (   is (  did ,  \"H5IdComponent\" ) )  {  if (    storage.mode [  1 ] ==  \"logical\" )  {   x =  \"logical\"   h5writeAttribute ( attr =  x , h5obj =  did , name =  \"storage.mode\" ) }   H5Dclose (  did )   res -  TRUE } } } }  res } ",
+    "filename": "h5create.txt"
+  },
+  "new_function": {
+    "name": "h5createDataset",
+    "representation": "h5createDataset",
+    "parameters": "function ( file , dataset , dims , maxdims = dims , storage.mode = \"double\" , H5type = NULL , size = NULL , encoding = c ( \"ASCII\" , \"UTF-8\" ) , chunk = dims , fillValue , level = 6 , filter = \"gzip\" , shuffle = TRUE , native = FALSE )",
+    "body": "{   loc =   h5checktypeOrOpenLoc (  file , native =  native )   on.exit (   h5closeitLoc (  loc ) )   dims -   as.numeric (  dims )   maxdims -   as.numeric (  maxdims )   res -  FALSE  if (  !   is.character (  dataset ) )  {   stop (  '\"dataset\" argument must be a character vector of length one.' ) }  if (   H5Lexists (   loc $ H5Identifier ,  dataset ) )  {   message (  \"Can not create dataset. Object with name '\" ,  dataset ,  \"' already exists.\" ) }   chunk -   .checkArgs_createDataset ( dims =  dims , maxdims =  maxdims , chunk =  chunk )  if (   (   level undefined  0 ) undefined  (   is.null (  chunk ) ) )  {   warning (  \"Compression (level ) }  if (    length (  chunk ) undefined  0 )  {    chunk [   which (   chunk ==  0 ) ] =  1 } ## determine data type   tid -   .setDataType (  H5type ,  storage.mode ,  size , encoding =   match.arg (  encoding ) )   dcpl -   .createDCPL (  chunk ,  dims ,  level ,  fillValue , dtype =  tid , filter =  filter , shuffle =  shuffle )   on.exit (   H5Pclose (  dcpl ) , add =  TRUE ) ## create dataspace   sid -   H5Screate_simple (  dims ,  maxdims )   on.exit (   H5Sclose (  sid ) , add =  TRUE )   did -   H5Dcreate (   loc $ H5Identifier ,  dataset ,  tid ,  sid , dcpl =  dcpl )  if (   is (  did ,  \"H5IdComponent\" ) )  {  if (    storage.mode [  1 ] ==  \"logical\" )  {   x =  \"logical\"   h5writeAttribute ( attr =  x , h5obj =  did , name =  \"storage.mode\" ) }   H5Dclose (  did )   res -  TRUE }  res } ",
+    "filename": "h5create.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "h5writeDataset.array",
+    "representation": "h5writeDataset.array",
+    "parameters": "function ( obj , h5loc , name , index = NULL , start = NULL , stride = NULL , block = NULL , count = NULL , size = NULL , level = 6 )",
+    "body": "{   exists -   try (  {   H5Lexists (  h5loc ,  name ) } )  if (  !  exists )  {  if (   is.null (  size ) )  {  if (    storage.mode (  obj ) ==  \"character\" )  {  if (    length (  obj ) undefined  0 )  {   size -   max (   nchar (  obj ) , na.rm =  TRUE ) ## if any NA, the minimum string length is 2  if (    any (   is.na (  obj ) ) undefined   size undefined  2 )  {   size -  2 } ## empty string gives size 0, and errors  if (   size ==  0 )  {   size -  1 } } else  {   size -  1 } }  if (   is.null (   dim (  obj ) ) )  {   dim -   length (  obj ) } else  {   dim -   dim (  obj )  if (   h5loc @ native )   dim -   rev (  dim ) }   h5createDataset (  h5loc ,  name ,  dim , storage.mode =   storage.mode (  obj ) , size =  size , chunk =  dim , level =  level ) } }   h5dataset -   H5Dopen (  h5loc ,  name )   on.exit (   H5Dclose (  h5dataset ) )   h5writeDatasetHelper ( obj =  obj , h5dataset =  h5dataset , index =  index , start =  start , stride =  stride , block =  block , count =  count )   h5writeAttribute (  1L ,  h5dataset , name =  \"rhdf5-NA.OK\" )  if (     storage.mode (  obj ) ==  \"character\" undefined   any (   is.na (  obj ) ) )  {   h5writeAttribute (  1L ,  h5dataset , name =  \"as.na\" )  if (   any (   obj ==  \"NA\" , na.rm =  TRUE ) )  {   warning (  \"Both NA_character_ and the string 'NA' detected.\\n\" ,  \"These will all be coerced to NA_character_ when read using h5read()\" ) } }   invisible (  NULL ) } ",
+    "filename": "h5write.txt"
+  },
+  "new_function": {
+    "name": "h5writeDataset.array",
+    "representation": "h5writeDataset.array",
+    "parameters": "function ( obj , h5loc , name , index = NULL , start = NULL , stride = NULL , block = NULL , count = NULL , size = NULL , variableLengthString = FALSE , encoding = c ( \"ASCII\" , \"UTF-8\" ) , level = 6 )",
+    "body": "{   exists -   try (  {   H5Lexists (  h5loc ,  name ) } )  if (  !  exists )  {  if (      storage.mode (  obj ) ==  \"character\" undefined  !  variableLengthString undefined   is.null (  size ) )  {  if (    length (  obj ) undefined  0 )  {   size -   max (   nchar (  obj ) , na.rm =  TRUE ) ## if any NA, the minimum string length is 2  if (    any (   is.na (  obj ) ) undefined   size undefined  2 )  {   size -  2 } ## empty string gives size 0, and errors  if (   size ==  0 )  {   size -  1 } } else  {   size -  1 } }  if (   is.null (   dim (  obj ) ) )  {   dim -   length (  obj ) } else  {   dim -   dim (  obj )  if (   h5loc @ native )   dim -   rev (  dim ) }   h5createDataset (  h5loc ,  name ,  dim , storage.mode =   storage.mode (  obj ) , size =  size , encoding =   match.arg (  encoding ) , chunk =  dim , level =  level ) }   h5dataset -   H5Dopen (  h5loc ,  name )   on.exit (   H5Dclose (  h5dataset ) )   h5writeDatasetHelper ( obj =  obj , h5dataset =  h5dataset , index =  index , start =  start , stride =  stride , block =  block , count =  count )   h5writeAttribute (  1L ,  h5dataset , name =  \"rhdf5-NA.OK\" )  if (     storage.mode (  obj ) ==  \"character\" undefined   any (   is.na (  obj ) ) )  {   h5writeAttribute (  1L ,  h5dataset , name =  \"as.na\" )  if (   any (   obj ==  \"NA\" , na.rm =  TRUE ) )  {   warning (  \"Both NA_character_ and the string 'NA' detected.\\n\" ,  \"These will all be coerced to NA_character_ when read using h5read()\" ) } }   invisible (  NULL ) } ",
+    "filename": "h5write.txt"
+  }
+}
+

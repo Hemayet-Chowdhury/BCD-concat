@@ -1,0 +1,1755 @@
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicalignments_release_2_14 genomicalignments_release_3_1
+
+{
+    "package": "GenomicAlignments",
+    "release_versions": "genomicalignments_release_2_14 genomicalignments_release_3_1",
+    "desc_release_old": "1.0.6",
+    "desc_release_new": "1.4.2",
+    "old_release_number": 0,
+    "new_release_number": 1,
+    "function_removals": 21,
+    "function_additions": 10,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 12,
+    "total_count": 33
+}
+
+##########
+Functions Removed
+##########
+
+splitCigar
+cigarToIRanges
+cigarToIRangesListByAlignment
+cigarToIRangesListByRName
+cigarToWidth
+cigarToQWidth
+cigarToCigarTable
+summarizeCigarTable
+makeGAlignmentsListFromFeatureFragments
+GappedAlignments
+GappedAlignmentPairs
+makeGappedAlignmentPairs
+readBamGappedAlignments
+readBamGappedAlignmentPairs
+readBamGAlignmentsList
+readBamGappedReads
+Lngap
+Rngap
+introns
+ngap
+map
+
+
+##########
+Functions Added
+##########
+
+GappedReads
+alphabetFrequencyFromBam
+mapToAlignments
+pmapToAlignments
+mapFromAlignments
+pmapFromAlignments
+start
+end
+width
+mapCoords
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GAlignments ,  Vector )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" ) , ignore.strand = FALSE )",
+    "body": "{   findOverlaps (   grglist (  query ) ,  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GAlignments ,  Vector )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{   findOverlaps (   grglist (  query ) ,  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  Vector ,  GAlignments )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" ) , ignore.strand = FALSE )",
+    "body": "{   findOverlaps (  query ,   grglist (  subject ) , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  Vector ,  GAlignments )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{   findOverlaps (  query ,   grglist (  subject ) , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GAlignments ,  GAlignments )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" ) , ignore.strand = FALSE )",
+    "body": "{   findOverlaps (   grglist (  query ) ,   grglist (  subject ) , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GAlignments ,  GAlignments )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{   findOverlaps (   grglist (  query ) ,   grglist (  subject ) , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GAlignmentPairs ,  Vector )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" ) , ignore.strand = FALSE )",
+    "body": "{   findOverlaps (   grglist (  query ) ,  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GAlignmentPairs ,  Vector )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{   findOverlaps (   grglist (  query ) ,  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+4.
+{
+  "old_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  Vector ,  GAlignmentPairs )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" ) , ignore.strand = FALSE )",
+    "body": "{   findOverlaps (  query ,   grglist (  subject ) , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  Vector ,  GAlignmentPairs )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{   findOverlaps (  query ,   grglist (  subject ) , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+5.
+{
+  "old_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GAlignmentPairs ,  GAlignmentPairs )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" ) , ignore.strand = FALSE )",
+    "body": "{   findOverlaps (   grglist (  query ) ,   grglist (  subject ) , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GAlignmentPairs ,  GAlignmentPairs )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{   findOverlaps (   grglist (  query ) ,   grglist (  subject ) , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+6.
+{
+  "old_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GAlignmentsList ,  Vector )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" ) , ignore.strand = FALSE )",
+    "body": "{   hits -   findOverlaps (   grglist (   unlist (  query , use.names =  FALSE ) ) ,  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , ignore.strand =  ignore.strand )   remapHits (  hits , query.map =   factor (   togroup (  query ) ) ) } ",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GAlignmentsList ,  Vector )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{   hits -   findOverlaps (   grglist (   unlist (  query , use.names =  FALSE ) ) ,  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand )   remapHits (  hits , query.map =   factor (   togroup (  query ) ) ) } ",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+7.
+{
+  "old_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  Vector ,  GAlignmentsList )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" ) , ignore.strand = FALSE )",
+    "body": "{   hits -   findOverlaps (  query ,   grglist (   unlist (  subject , use.names =  FALSE ) ) , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , ignore.strand =  ignore.strand )   remapHits (  hits , subject.map =   factor (   togroup (  subject ) ) ) } ",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  Vector ,  GAlignmentsList )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{   hits -   findOverlaps (  query ,   grglist (   unlist (  subject , use.names =  FALSE ) ) , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand )   remapHits (  hits , subject.map =   factor (   togroup (  subject ) ) ) } ",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+8.
+{
+  "old_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GAlignmentsList ,  GAlignmentsList )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" ) , ignore.strand = FALSE )",
+    "body": "{   hits -   findOverlaps (   grglist (   unlist (  query , use.names =  FALSE ) ) ,   grglist (   unlist (  subject , use.names =  FALSE ) ) , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , ignore.strand =  ignore.strand )   remapHits (  hits , subject.map =   factor (   togroup (  subject ) ) , query.map =   factor (   togroup (  query ) ) ) } ",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GAlignmentsList ,  GAlignmentsList )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{   hits -   findOverlaps (   grglist (   unlist (  query , use.names =  FALSE ) ) ,   grglist (   unlist (  subject , use.names =  FALSE ) ) , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand )   remapHits (  hits , subject.map =   factor (   togroup (  subject ) ) , query.map =   factor (   togroup (  query ) ) ) } ",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+9.
+{
+  "old_function": {
+    "name": "Union",
+    "representation": "Union",
+    "parameters": "function ( features , reads , ignore.strand = FALSE , inter.feature = TRUE )",
+    "body": "{   ov -   findOverlaps (  features ,  reads , ignore.strand =  ignore.strand )  if (  inter.feature )  { ## Remove ambigous reads.   reads_to_keep -   which (    countSubjectHits (  ov ) ==  1L )   ov -   ov [    subjectHits (  ov ) %in%  reads_to_keep ] }   countQueryHits (  ov ) } ",
+    "filename": "summarizeOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "Union",
+    "representation": "Union",
+    "parameters": "function ( features , reads , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE , inter.feature = TRUE )",
+    "body": "{   ov -   findOverlaps (  features ,  reads , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand )  if (  inter.feature )  { ## Remove ambigous reads.   reads_to_keep -   which (    countSubjectHits (  ov ) ==  1L )   ov -   ov [    subjectHits (  ov ) %in%  reads_to_keep ] }   countQueryHits (  ov ) } ",
+    "filename": "summarizeOverlaps-methods.txt"
+  }
+}
+
+10.
+{
+  "old_function": {
+    "name": "IntersectionStrict",
+    "representation": "IntersectionStrict",
+    "parameters": "function ( features , reads , ignore.strand = FALSE , inter.feature = TRUE )",
+    "body": "{   ov -   findOverlaps (  reads ,  features , type =  \"within\" , ignore.strand =  ignore.strand )  if (  inter.feature )  { ## Remove ambigous reads.   reads_to_keep -   which (    countQueryHits (  ov ) ==  1L )   ov -   ov [    queryHits (  ov ) %in%  reads_to_keep ] }   countSubjectHits (  ov ) } ",
+    "filename": "summarizeOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "IntersectionStrict",
+    "representation": "IntersectionStrict",
+    "parameters": "function ( features , reads , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE , inter.feature = TRUE )",
+    "body": "{   ov -   findOverlaps (  reads ,  features , type =  \"within\" , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand )  if (  inter.feature )  { ## Remove ambigous reads.   reads_to_keep -   which (    countQueryHits (  ov ) ==  1L )   ov -   ov [    queryHits (  ov ) %in%  reads_to_keep ] }   countSubjectHits (  ov ) } ",
+    "filename": "summarizeOverlaps-methods.txt"
+  }
+}
+
+11.
+{
+  "old_function": {
+    "name": "IntersectionNotEmpty",
+    "representation": "IntersectionNotEmpty",
+    "parameters": "function ( features , reads , ignore.strand = FALSE , inter.feature = TRUE )",
+    "body": "{   features -   .removeSharedRegions (  features , ignore.strand =  ignore.strand )   Union (  features ,  reads , ignore.strand =  ignore.strand , inter.feature =  inter.feature ) } ",
+    "filename": "summarizeOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "IntersectionNotEmpty",
+    "representation": "IntersectionNotEmpty",
+    "parameters": "function ( features , reads , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE , inter.feature = TRUE )",
+    "body": "{   algorithm -   match.arg (  algorithm )   features -   .removeSharedRegions (  features , algorithm =  algorithm , ignore.strand =  ignore.strand )   Union (  features ,  reads , algorithm =  algorithm , ignore.strand =  ignore.strand , inter.feature =  inter.feature ) } ",
+    "filename": "summarizeOverlaps-methods.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicalignments_release_3_1 genomicalignments_release_3_2
+
+{
+    "package": "GenomicAlignments",
+    "release_versions": "genomicalignments_release_3_1 genomicalignments_release_3_2",
+    "desc_release_old": "1.4.2",
+    "desc_release_new": "1.6.3",
+    "old_release_number": 1,
+    "new_release_number": 2,
+    "function_removals": 0,
+    "function_additions": 2,
+    "parameter_removals": 1,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 3,
+    "total_count": 3
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+strandMode
+strandMode<-
+
+
+##########
+Removed Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "GAlignmentPairs",
+    "representation": "GAlignmentPairs",
+    "parameters": "function ( first , last , isProperPair , names = NULL )",
+    "body": "{   new2 (  \"GAlignmentPairs\" , NAMES =  names , first =  first , last =  last , isProperPair =  isProperPair , elementMetadata =   new (  \"DataFrame\" , nrows =   length (  first ) ) , check =  TRUE ) } ",
+    "filename": "GAlignmentPairs-class.txt"
+  },
+  "new_function": {
+    "name": "GAlignmentPairs",
+    "representation": "GAlignmentPairs",
+    "parameters": "function ( first , last , strandMode = 1L , isProperPair = TRUE , names = NULL )",
+    "body": "{  if (  !  (    is (  first ,  \"GAlignments\" ) undefined   is (  last ,  \"GAlignments\" ) ) )   stop (  \"'first' and 'last' must be GAlignments objects\" )  if (    length (  first ) !=   length (  last ) )   stop (  \"'first' and 'last' must have the same length\" )   strandMode -   .normarg_strandMode_replace_value (  strandMode )  if (   identical (  isProperPair ,  TRUE ) )   isProperPair -   rep.int (  isProperPair ,   length (  first ) )   new2 (  \"GAlignmentPairs\" , strandMode =  strandMode , NAMES =  names , first =  first , last =  last , isProperPair =  isProperPair , elementMetadata =   new (  \"DataFrame\" , nrows =   length (  first ) ) , check =  TRUE ) } ",
+    "filename": "GAlignmentPairs-class.txt"
+  }
+}
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "first",
+    "representation": "first",
+    "signature": "GAlignmentPairs",
+    "parameters": "function ( x , invert.strand = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  invert.strand ) )   stop (  \"'invert.strand' must be TRUE or FALSE\" )   ans -   setNames (   x @ first ,   names (  x ) )  if (  invert.strand )   ans -   invertRleStrand (  ans )  ans } ",
+    "filename": "GAlignmentPairs-class.txt"
+  },
+  "new_function": {
+    "name": "first",
+    "representation": "first",
+    "signature": "GAlignmentPairs",
+    "parameters": "function ( x , real.strand = FALSE , invert.strand = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  real.strand ) )   stop (  \"'real.strand' must be TRUE or FALSE\" )  if (  !   identical (  invert.strand ,  FALSE ) )  {   msg -   c (  \"Using the 'invert.strand' argument when calling \" ,  \"first() on a GAlignmentPairs object is deprecated.\" )   .Deprecated ( msg =   wmsg (  msg ) )  if (  !   isTRUEorFALSE (  invert.strand ) )   stop (  \"'invert.strand' must be TRUE or FALSE\" )  if (   real.strand undefined  invert.strand )   stop (   wmsg (  \"one of 'real.strand' or 'invert.strand' can \" ,  \"be set to TRUE but not both\" ) ) }   ans -   setNames (   x @ first ,   names (  x ) )  if (  invert.strand )   return (   invertRleStrand (  ans ) )  if (  real.strand )  {  if (    strandMode (  x ) ==  0L )  {    strand (  ans ) -  \"*\" } else  if (    strandMode (  x ) ==  2L )  {   ans -   invertRleStrand (  ans ) } }  ans } ",
+    "filename": "GAlignmentPairs-class.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "last",
+    "representation": "last",
+    "signature": "GAlignmentPairs",
+    "parameters": "function ( x , invert.strand = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  invert.strand ) )   stop (  \"'invert.strand' must be TRUE or FALSE\" )   ans -   setNames (   x @ last ,   names (  x ) )  if (  invert.strand )   ans -   invertRleStrand (  ans )  ans } ",
+    "filename": "GAlignmentPairs-class.txt"
+  },
+  "new_function": {
+    "name": "last",
+    "representation": "last",
+    "signature": "GAlignmentPairs",
+    "parameters": "function ( x , real.strand = FALSE , invert.strand = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  real.strand ) )   stop (  \"'real.strand' must be TRUE or FALSE\" )  if (  !   identical (  invert.strand ,  FALSE ) )  {   msg -   c (  \"Using the 'invert.strand' argument when calling \" ,  \"last() on a GAlignmentPairs object is deprecated.\" )   .Deprecated ( msg =   wmsg (  msg ) )  if (  !   isTRUEorFALSE (  invert.strand ) )   stop (  \"'invert.strand' must be TRUE or FALSE\" )  if (   real.strand undefined  invert.strand )   stop (   wmsg (  \"one of 'real.strand' or 'invert.strand' can \" ,  \"be set to TRUE but not both\" ) ) }   ans -   setNames (   x @ last ,   names (  x ) )  if (  invert.strand )   return (   invertRleStrand (  ans ) )  if (  real.strand )  {  if (    strandMode (  x ) ==  0L )  {    strand (  ans ) -  \"*\" } else  if (    strandMode (  x ) ==  1L )  {   ans -   invertRleStrand (  ans ) } }  ans } ",
+    "filename": "GAlignmentPairs-class.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "GAlignmentPairs",
+    "representation": "GAlignmentPairs",
+    "parameters": "function ( first , last , isProperPair , names = NULL )",
+    "body": "{   new2 (  \"GAlignmentPairs\" , NAMES =  names , first =  first , last =  last , isProperPair =  isProperPair , elementMetadata =   new (  \"DataFrame\" , nrows =   length (  first ) ) , check =  TRUE ) } ",
+    "filename": "GAlignmentPairs-class.txt"
+  },
+  "new_function": {
+    "name": "GAlignmentPairs",
+    "representation": "GAlignmentPairs",
+    "parameters": "function ( first , last , strandMode = 1L , isProperPair = TRUE , names = NULL )",
+    "body": "{  if (  !  (    is (  first ,  \"GAlignments\" ) undefined   is (  last ,  \"GAlignments\" ) ) )   stop (  \"'first' and 'last' must be GAlignments objects\" )  if (    length (  first ) !=   length (  last ) )   stop (  \"'first' and 'last' must have the same length\" )   strandMode -   .normarg_strandMode_replace_value (  strandMode )  if (   identical (  isProperPair ,  TRUE ) )   isProperPair -   rep.int (  isProperPair ,   length (  first ) )   new2 (  \"GAlignmentPairs\" , strandMode =  strandMode , NAMES =  names , first =  first , last =  last , isProperPair =  isProperPair , elementMetadata =   new (  \"DataFrame\" , nrows =   length (  first ) ) , check =  TRUE ) } ",
+    "filename": "GAlignmentPairs-class.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicalignments_release_3_2 genomicalignments_release_3_3
+
+{
+    "package": "GenomicAlignments",
+    "release_versions": "genomicalignments_release_3_2 genomicalignments_release_3_3",
+    "desc_release_old": "1.6.3",
+    "desc_release_new": "1.8.4",
+    "old_release_number": 2,
+    "new_release_number": 3,
+    "function_removals": 8,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 23,
+    "total_count": 31
+}
+
+##########
+Functions Removed
+##########
+
+readGAlignmentsFromBam
+readGAlignmentPairsFromBam
+readGAlignmentsListFromBam
+readGappedReadsFromBam
+countOverlaps
+overlapsAny
+subsetByOverlaps
+mapCoords
+
+
+##########
+Functions Added
+##########
+
+second
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "countCompatibleOverlaps",
+    "representation": "countCompatibleOverlaps",
+    "parameters": "function ( query , subject , algorithm = c ( \"nclist\" , \"intervaltree\" ) )",
+    "body": "{   compatov -   findCompatibleOverlaps (  query ,  subject , algorithm =   match.arg (  algorithm ) )   tabulate (   queryHits (  compatov ) , nbins =   queryLength (  compatov ) ) } ",
+    "filename": "findCompatibleOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "countCompatibleOverlaps",
+    "representation": "countCompatibleOverlaps",
+    "parameters": "function ( query , subject )",
+    "body": "{   compatov -   findCompatibleOverlaps (  query ,  subject )   tabulate (   queryHits (  compatov ) , nbins =   queryLength (  compatov ) ) } ",
+    "filename": "findCompatibleOverlaps-methods.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GAlignments ,  Vector )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{   findOverlaps (   grglist (  query ) ,  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GAlignments ,  Vector )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , ignore.strand = FALSE )",
+    "body": "{   findOverlaps (   grglist (  query ) ,  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  Vector ,  GAlignments )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{   findOverlaps (  query ,   grglist (  subject ) , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  Vector ,  GAlignments )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , ignore.strand = FALSE )",
+    "body": "{   findOverlaps (  query ,   grglist (  subject ) , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GAlignments ,  GAlignments )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{   findOverlaps (   grglist (  query ) ,   grglist (  subject ) , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GAlignments ,  GAlignments )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , ignore.strand = FALSE )",
+    "body": "{   findOverlaps (   grglist (  query ) ,   grglist (  subject ) , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+4.
+{
+  "old_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GAlignmentPairs ,  Vector )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{   findOverlaps (   grglist (  query ) ,  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GAlignmentPairs ,  Vector )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , ignore.strand = FALSE )",
+    "body": "{   findOverlaps (   grglist (  query ) ,  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+5.
+{
+  "old_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  Vector ,  GAlignmentPairs )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{   findOverlaps (  query ,   grglist (  subject ) , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  Vector ,  GAlignmentPairs )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , ignore.strand = FALSE )",
+    "body": "{   findOverlaps (  query ,   grglist (  subject ) , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+6.
+{
+  "old_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GAlignmentPairs ,  GAlignmentPairs )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{   findOverlaps (   grglist (  query ) ,   grglist (  subject ) , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GAlignmentPairs ,  GAlignmentPairs )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , ignore.strand = FALSE )",
+    "body": "{   findOverlaps (   grglist (  query ) ,   grglist (  subject ) , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , ignore.strand =  ignore.strand ) } ",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+7.
+{
+  "old_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GAlignmentsList ,  Vector )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{   hits -   findOverlaps (   grglist (   unlist (  query , use.names =  FALSE ) ) ,  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand )   remapHits (  hits , query.map =   factor (   togroup (  query ) ) ) } ",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GAlignmentsList ,  Vector )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , ignore.strand = FALSE )",
+    "body": "{   hits -   findOverlaps (   grglist (   unlist (  query , use.names =  FALSE ) ) ,  subject , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , ignore.strand =  ignore.strand ) ## TODO: Replace 'factor(togroup(PartitioningByWidth(...)))' with ## 'as.factor(PartitioningByWidth(...))' when \"as.factor\" method for ## ManyToOneGrouping objects becomes available.   query_map -   factor (   togroup (   PartitioningByWidth (  query ) ) )   remapHits (  hits , Lnodes.remapping =  query_map ) } ",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+8.
+{
+  "old_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  Vector ,  GAlignmentsList )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{   hits -   findOverlaps (  query ,   grglist (   unlist (  subject , use.names =  FALSE ) ) , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand )   remapHits (  hits , subject.map =   factor (   togroup (  subject ) ) ) } ",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  Vector ,  GAlignmentsList )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , ignore.strand = FALSE )",
+    "body": "{   hits -   findOverlaps (  query ,   grglist (   unlist (  subject , use.names =  FALSE ) ) , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , ignore.strand =  ignore.strand ) ## TODO: Replace 'factor(togroup(PartitioningByWidth(...)))' with ## 'as.factor(PartitioningByWidth(...))' when \"as.factor\" method for ## ManyToOneGrouping objects becomes available.   subject_map -   factor (   togroup (   PartitioningByWidth (  subject ) ) )   remapHits (  hits , Rnodes.remapping =  subject_map ) } ",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+9.
+{
+  "old_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GAlignmentsList ,  GAlignmentsList )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE )",
+    "body": "{   hits -   findOverlaps (   grglist (   unlist (  query , use.names =  FALSE ) ) ,   grglist (   unlist (  subject , use.names =  FALSE ) ) , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand )   remapHits (  hits , subject.map =   factor (   togroup (  subject ) ) , query.map =   factor (   togroup (  query ) ) ) } ",
+    "filename": "findOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findOverlaps",
+    "representation": "findOverlaps",
+    "signature": "c (  GAlignmentsList ,  GAlignmentsList )",
+    "parameters": "function ( query , subject , maxgap = 0L , minoverlap = 1L , type = c ( \"any\" , \"start\" , \"end\" , \"within\" ) , select = c ( \"all\" , \"first\" , \"last\" , \"arbitrary\" ) , ignore.strand = FALSE )",
+    "body": "{   hits -   findOverlaps (   grglist (   unlist (  query , use.names =  FALSE ) ) ,   grglist (   unlist (  subject , use.names =  FALSE ) ) , maxgap =  maxgap , minoverlap =  minoverlap , type =   match.arg (  type ) , select =   match.arg (  select ) , ignore.strand =  ignore.strand ) ## TODO: Replace 'factor(togroup(PartitioningByWidth(...)))' with ## 'as.factor(PartitioningByWidth(...))' when \"as.factor\" method for ## ManyToOneGrouping objects becomes available.   query_map -   factor (   togroup (   PartitioningByWidth (  query ) ) )   subject_map -   factor (   togroup (   PartitioningByWidth (  subject ) ) )   remapHits (  hits , Lnodes.remapping =  query_map , Rnodes.remapping =  subject_map ) } ",
+    "filename": "findOverlaps-methods.txt"
+  }
+}
+
+10.
+{
+  "old_function": {
+    "name": "grglist",
+    "representation": "grglist",
+    "signature": "GAlignmentPairs",
+    "parameters": "function ( x , use.mcols = FALSE , order.as.in.query = FALSE , drop.D.ranges = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  use.mcols ) )   stop (  \"'use.mcols' must be TRUE or FALSE\" )  if (  !   identical (  order.as.in.query ,  FALSE ) )  {   msg -   c (  \"Starting with BioC 3.2, the \\\"grglist\\\" method for \" ,  \"GAlignmentPairs objects *always* returns the ranges \" ,  \"\\\"ordered as in query\\\". Therefore the \" ,  \"'order.as.in.query' argument is now ignored (and \" ,  \"deprecated).\" )   .Deprecated ( msg =   wmsg (  msg ) ) }   x_mcols -   mcols (  x )  if (   use.mcols undefined   \"query.break\" %in%   colnames (  x_mcols ) )   stop (  \"'mcols(x)' cannot have reserved column \\\"query.break\\\"\" )   x_first -   x @ first   x_last -   x @ last  if (    strandMode (  x ) ==  1L )  {   x_last -   invertRleStrand (   x @ last )   x_unlisted -   c (  x_first ,  x_last ) } else  if (    strandMode (  x ) ==  2L )  {   x_first -   invertRleStrand (   x @ first )   x_unlisted -   c (  x_last ,  x_first ) } ## Not the same as doing 'unlist(x, use.names=FALSE)'.   collate_subscript -   S4Vectors ::: make_XYZxyz_to_XxYyZz_subscript (   length (  x ) )   x_unlisted -   x_unlisted [  collate_subscript ]   grl -   grglist (  x_unlisted , order.as.in.query =  TRUE , drop.D.ranges =  drop.D.ranges )   ans -   shrinkByHalf (  grl )    names (  ans ) -   names (  x )   ans_mcols -   DataFrame ( query.break =    mcols (  ans ) $ nelt1 )  if (  use.mcols )   ans_mcols -   cbind (  ans_mcols ,  x_mcols )    mcols (  ans ) -  ans_mcols  ans } ",
+    "filename": "GAlignmentPairs-class.txt"
+  },
+  "new_function": {
+    "name": "grglist",
+    "representation": "grglist",
+    "signature": "GAlignmentPairs",
+    "parameters": "function ( x , use.names = TRUE , use.mcols = FALSE , order.as.in.query = FALSE , drop.D.ranges = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  use.names ) )   stop (  \"'use.names' must be TRUE or FALSE\" )  if (  !   isTRUEorFALSE (  use.mcols ) )   stop (  \"'use.mcols' must be TRUE or FALSE\" )  if (  !   identical (  order.as.in.query ,  FALSE ) )  {   msg -   c (  \"Starting with BioC 3.2, the \\\"grglist\\\" method for \" ,  \"GAlignmentPairs objects *always* returns the ranges \" ,  \"\\\"ordered as in query\\\". Therefore the \" ,  \"'order.as.in.query' argument is now ignored (and \" ,  \"defunct).\" )   .Defunct ( msg =   wmsg (  msg ) ) }   x_mcols -   mcols (  x )  if (   use.mcols undefined   \"query.break\" %in%   colnames (  x_mcols ) )   stop (  \"'mcols(x)' cannot have reserved column \\\"query.break\\\"\" )   x_first -   x @ first   x_last -   x @ last  if (    strandMode (  x ) ==  1L )  {   x_last -   invertStrand (   x @ last )   x_unlisted -   c (  x_first ,  x_last ) } else  if (    strandMode (  x ) ==  2L )  {   x_first -   invertStrand (   x @ first )   x_unlisted -   c (  x_last ,  x_first ) } ## Not the same as doing 'unlist(x, use.names=FALSE)'.   collate_subscript -   S4Vectors ::: make_XYZxyz_to_XxYyZz_subscript (   length (  x ) )   x_unlisted -   x_unlisted [  collate_subscript ]   grl -   grglist (  x_unlisted , order.as.in.query =  TRUE , drop.D.ranges =  drop.D.ranges )   ans -   shrinkByHalf (  grl )  if (  use.names )    names (  ans ) -   names (  x )   ans_mcols -   DataFrame ( query.break =    mcols (  ans ) $ nelt1 )  if (  use.mcols )   ans_mcols -   cbind (  ans_mcols ,  x_mcols )    mcols (  ans ) -  ans_mcols  ans } ",
+    "filename": "GAlignmentPairs-class.txt"
+  }
+}
+
+11.
+{
+  "old_function": {
+    "name": "grglist",
+    "representation": "grglist",
+    "signature": "GAlignments",
+    "parameters": "function ( x , use.mcols = FALSE , order.as.in.query = FALSE , drop.D.ranges = FALSE )",
+    "body": "{   rgl -   rglist (  x , use.mcols =  use.mcols , order.as.in.query =  order.as.in.query , drop.D.ranges =  drop.D.ranges )   .CompressedIRangesListToGRangesList (  rgl ,   seqnames (  x ) ,   strand (  x ) ,   seqinfo (  x ) ) } ",
+    "filename": "GAlignments-class.txt"
+  },
+  "new_function": {
+    "name": "grglist",
+    "representation": "grglist",
+    "signature": "GAlignments",
+    "parameters": "function ( x , use.names = TRUE , use.mcols = FALSE , order.as.in.query = FALSE , drop.D.ranges = FALSE )",
+    "body": "{   rgl -   rglist (  x , use.names =  use.names , use.mcols =  use.mcols , order.as.in.query =  order.as.in.query , drop.D.ranges =  drop.D.ranges )   .CompressedIRangesListToGRangesList (  rgl ,   seqnames (  x ) ,   strand (  x ) ,   seqinfo (  x ) ) } ",
+    "filename": "GAlignments-class.txt"
+  }
+}
+
+12.
+{
+  "old_function": {
+    "name": "grglist",
+    "representation": "grglist",
+    "signature": "GAlignmentsList",
+    "parameters": "function ( x , use.mcols = FALSE , order.as.in.query = FALSE , drop.D.ranges = FALSE , ignore.strand = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  use.mcols ) )   stop (  \"'use.mcols' must be TRUE or FALSE\" )  if (  !   identical (  order.as.in.query ,  FALSE ) )  {   msg -   c (  \"Starting with BioC 3.2, the 'order.as.in.query' \" ,  \"argument of the \\\"grglist\\\" method for \" ,  \"GAlignmentsList objects is deprecated and ignored.\" )   .Deprecated ( msg =   wmsg (  msg ) ) }  if (  !   isTRUEorFALSE (  ignore.strand ) )   stop (  \"'ignore.strand' must be TRUE or FALSE\" )  if (  ignore.strand )    strand (   x @ unlistData ) -  \"*\"   unlisted_x -   unlist (  x , use.names =  FALSE )   grl -   grglist (  unlisted_x , drop.D.ranges =  drop.D.ranges )   ans -   IRanges ::: regroupBySupergroup (  grl ,  x )  if (  use.mcols )    mcols (  ans ) -   mcols (  x )  ans } ",
+    "filename": "GAlignmentsList-class.txt"
+  },
+  "new_function": {
+    "name": "grglist",
+    "representation": "grglist",
+    "signature": "GAlignmentsList",
+    "parameters": "function ( x , use.names = TRUE , use.mcols = FALSE , order.as.in.query = FALSE , drop.D.ranges = FALSE , ignore.strand = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  use.names ) )   stop (  \"'use.names' must be TRUE or FALSE\" )  if (  !   isTRUEorFALSE (  use.mcols ) )   stop (  \"'use.mcols' must be TRUE or FALSE\" )  if (  !   identical (  order.as.in.query ,  FALSE ) )  {   msg -   c (  \"the 'order.as.in.query' argument of the \\\"grglist\\\" \" ,  \"method for GAlignmentsList objects is defunct\" )   .Defunct ( msg =   wmsg (  msg ) ) }  if (  !   isTRUEorFALSE (  ignore.strand ) )   stop (  \"'ignore.strand' must be TRUE or FALSE\" )  if (  ignore.strand )    strand (   x @ unlistData ) -  \"*\"   unlisted_x -   unlist (  x , use.names =  FALSE )   grl -   grglist (  unlisted_x , drop.D.ranges =  drop.D.ranges )   ans -   IRanges ::: regroupBySupergroup (  grl ,  x )  if (  !  use.names )    names (  ans ) -  NULL  if (  use.mcols )    mcols (  ans ) -   mcols (  x )  ans } ",
+    "filename": "GAlignmentsList-class.txt"
+  }
+}
+
+13.
+{
+  "old_function": {
+    "name": "granges",
+    "representation": "granges",
+    "signature": "GAlignmentPairs",
+    "parameters": "function ( x , use.mcols = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  use.mcols ) )   stop (  \"'use.mcols' must be TRUE or FALSE\" )   rg -   range (   grglist (  x ) )  if (  !   all (    elementLengths (  rg ) ==  1L ) )   stop (  \"For some pairs in 'x', the first and last alignments \" ,  \"are not aligned to the same chromosome and strand. \" ,  \"Cannot extract a single range for them.\" )   ans -   unlist (  rg )  if (  use.mcols )    mcols (  ans ) -   mcols (  x )  ans } ",
+    "filename": "GAlignmentPairs-class.txt"
+  },
+  "new_function": {
+    "name": "granges",
+    "representation": "granges",
+    "signature": "GAlignmentPairs",
+    "parameters": "function ( x , use.names = TRUE , use.mcols = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  use.mcols ) )   stop (  \"'use.mcols' must be TRUE or FALSE\" )   ans -   GRanges (   seqnames (  x ) ,   ranges (  x , use.names =  use.names ) ,   strand (  x ) , seqinfo =   seqinfo (  x ) )  if (  use.mcols )    mcols (  ans ) -   mcols (  x )  ans } ",
+    "filename": "GAlignmentPairs-class.txt"
+  }
+}
+
+14.
+{
+  "old_function": {
+    "name": "granges",
+    "representation": "granges",
+    "signature": "GAlignments",
+    "parameters": "function ( x , use.mcols = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  use.mcols ) )   stop (  \"'use.mcols' must be TRUE or FALSE\" )   ans -   .GAlignmentsToGRanges (   seqnames (  x ) ,   start (  x ) ,   width (  x ) ,   strand (  x ) ,   seqinfo (  x ) ,   names (  x ) )  if (  use.mcols )    mcols (  ans ) -   mcols (  x )  ans } ",
+    "filename": "GAlignments-class.txt"
+  },
+  "new_function": {
+    "name": "granges",
+    "representation": "granges",
+    "signature": "GAlignments",
+    "parameters": "function ( x , use.names = TRUE , use.mcols = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  use.mcols ) )   stop (  \"'use.mcols' must be TRUE or FALSE\" )   ans -   GRanges (   seqnames (  x ) ,   ranges (  x , use.names =  use.names ) ,   strand (  x ) , seqinfo =   seqinfo (  x ) )  if (  use.mcols )    mcols (  ans ) -   mcols (  x )  ans } ",
+    "filename": "GAlignments-class.txt"
+  }
+}
+
+15.
+{
+  "old_function": {
+    "name": "granges",
+    "representation": "granges",
+    "signature": "GAlignmentsList",
+    "parameters": "function ( x , use.mcols = FALSE , ignore.strand = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  use.mcols ) )   stop (  \"'use.mcols' must be TRUE or FALSE\" )  if (  ignore.strand )    strand (   x @ unlistData ) -  \"*\"   msg -   paste0 (  \"For some list elements in 'x', the ranges are \" ,  \"not aligned to the same chromosome and strand. \" ,  \"Cannot extract a single range for them. \" ,  \"As a consequence, the returned GRanges object \" ,  \"is not parallel to 'x'.\" )   rg -   range (   grglist (  x , ignore.strand =  ignore.strand ) )   is_one_to_one -   all (    elementLengths (  rg ) ==  1L )  if (   !  is_one_to_one undefined   all (    width (   x @ partitioning ) undefined  0 ) )  {  if (  ignore.strand )   warning (  msg ) else   warning (   paste0 (  msg ,  \" Consider using 'ignore.strand=TRUE'.\" ) ) }   ans -   unlist (  rg )  if (   is_one_to_one undefined  use.mcols )    mcols (  ans ) -   mcols (  x )  ans } ",
+    "filename": "GAlignmentsList-class.txt"
+  },
+  "new_function": {
+    "name": "granges",
+    "representation": "granges",
+    "signature": "GAlignmentsList",
+    "parameters": "function ( x , use.names = TRUE , use.mcols = FALSE , ignore.strand = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  use.mcols ) )   stop (  \"'use.mcols' must be TRUE or FALSE\" )  if (  ignore.strand )    strand (   x @ unlistData ) -  \"*\"   msg -   paste0 (  \"For some list elements in 'x', the ranges are \" ,  \"not on the same chromosome and strand. \" ,  \"Cannot extract a single range for them. \" ,  \"As a consequence, the returned GRanges object \" ,  \"is not parallel to 'x'.\" )   rg -   range (   grglist (  x , ignore.strand =  ignore.strand ) )   is_one_to_one -   all (    elementNROWS (  rg ) ==  1L )  if (   !  is_one_to_one undefined   all (    width (   x @ partitioning ) undefined  0 ) )  {  if (  ignore.strand )   warning (  msg ) else   warning (   paste0 (  msg ,  \" Consider using 'ignore.strand=TRUE'.\" ) ) }   ans -   unlist (  rg , use.names =  use.names )  if (   is_one_to_one undefined  use.mcols )    mcols (  ans ) -   mcols (  x )  ans } ",
+    "filename": "GAlignmentsList-class.txt"
+  }
+}
+
+16.
+{
+  "old_function": {
+    "name": "rglist",
+    "representation": "rglist",
+    "signature": "GAlignments",
+    "parameters": "function ( x , use.mcols = FALSE , order.as.in.query = FALSE , drop.D.ranges = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  use.mcols ) )   stop (  \"'use.mcols' must be TRUE or FALSE\" )  if (  !   isTRUEorFALSE (  order.as.in.query ) )   stop (  \"'reorder.ranges.from5to3' must be TRUE or FALSE\" )   ans -   extractAlignmentRangesOnReference (   x @ cigar ,   x @ start , drop.D.ranges =  drop.D.ranges )  if (  order.as.in.query )   ans -   revElements (  ans ,    strand (  x ) ==  \"-\" )    names (  ans ) -   names (  x )  if (  use.mcols )    mcols (  ans ) -   mcols (  x )  ans } ",
+    "filename": "GAlignments-class.txt"
+  },
+  "new_function": {
+    "name": "rglist",
+    "representation": "rglist",
+    "signature": "GAlignments",
+    "parameters": "function ( x , use.names = TRUE , use.mcols = FALSE , order.as.in.query = FALSE , drop.D.ranges = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  use.names ) )   stop (  \"'use.names' must be TRUE or FALSE\" )  if (  !   isTRUEorFALSE (  use.mcols ) )   stop (  \"'use.mcols' must be TRUE or FALSE\" )  if (  !   isTRUEorFALSE (  order.as.in.query ) )   stop (  \"'order.as.in.query' must be TRUE or FALSE\" )   ans -   extractAlignmentRangesOnReference (   x @ cigar ,   x @ start , drop.D.ranges =  drop.D.ranges )  if (  order.as.in.query )   ans -   revElements (  ans ,    strand (  x ) ==  \"-\" )  if (  use.names )    names (  ans ) -   names (  x )  if (  use.mcols )    mcols (  ans ) -   mcols (  x )  ans } ",
+    "filename": "GAlignments-class.txt"
+  }
+}
+
+17.
+{
+  "old_function": {
+    "name": "rglist",
+    "representation": "rglist",
+    "signature": "GAlignmentsList",
+    "parameters": "function ( x , use.mcols = FALSE , order.as.in.query = FALSE , drop.D.ranges = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  use.mcols ) )   stop (  \"'use.mcols' must be TRUE or FALSE\" )  if (  !   identical (  order.as.in.query ,  FALSE ) )  {   msg -   c (  \"Starting with BioC 3.2, the 'order.as.in.query' \" ,  \"argument of the \\\"rglist\\\" method for \" ,  \"GAlignmentsList objects is deprecated and ignored.\" )   .Deprecated ( msg =   wmsg (  msg ) ) }   unlisted_x -   unlist (  x , use.names =  FALSE )   rgl -   rglist (  unlisted_x , drop.D.ranges =  drop.D.ranges )   ans -   IRanges ::: regroupBySupergroup (  rgl ,  x )  if (  use.mcols )    mcols (  ans ) -   mcols (  x )  ans } ",
+    "filename": "GAlignmentsList-class.txt"
+  },
+  "new_function": {
+    "name": "rglist",
+    "representation": "rglist",
+    "signature": "GAlignmentsList",
+    "parameters": "function ( x , use.names = TRUE , use.mcols = FALSE , order.as.in.query = FALSE , drop.D.ranges = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  use.names ) )   stop (  \"'use.names' must be TRUE or FALSE\" )  if (  !   isTRUEorFALSE (  use.mcols ) )   stop (  \"'use.mcols' must be TRUE or FALSE\" )  if (  !   identical (  order.as.in.query ,  FALSE ) )  {   msg -   c (  \"the 'order.as.in.query' argument of the \\\"rglist\\\" \" ,  \"method for GAlignmentsList objects is defunct\" )   .Defunct ( msg =   wmsg (  msg ) ) }   unlisted_x -   unlist (  x , use.names =  FALSE )   rgl -   rglist (  unlisted_x , drop.D.ranges =  drop.D.ranges )   ans -   IRanges ::: regroupBySupergroup (  rgl ,  x )  if (  !  use.names )    names (  ans ) -  NULL  if (  use.mcols )    mcols (  ans ) -   mcols (  x )  ans } ",
+    "filename": "GAlignmentsList-class.txt"
+  }
+}
+
+18.
+{
+  "old_function": {
+    "name": "Union",
+    "representation": "Union",
+    "parameters": "function ( features , reads , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE , inter.feature = TRUE )",
+    "body": "{   ov -   findOverlaps (  features ,  reads , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand )  if (  inter.feature )  { ## Remove ambigous reads.   reads_to_keep -   which (    countSubjectHits (  ov ) ==  1L )   ov -   ov [    subjectHits (  ov ) %in%  reads_to_keep ] }   countQueryHits (  ov ) } ",
+    "filename": "summarizeOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "Union",
+    "representation": "Union",
+    "parameters": "function ( features , reads , ignore.strand = FALSE , inter.feature = TRUE )",
+    "body": "{   ov -   findOverlaps (  features ,  reads , ignore.strand =  ignore.strand )  if (  inter.feature )  { ## Remove ambigous reads.   reads_to_keep -   which (    countSubjectHits (  ov ) ==  1L )   ov -   ov [    subjectHits (  ov ) %in%  reads_to_keep ] }   countQueryHits (  ov ) } ",
+    "filename": "summarizeOverlaps-methods.txt"
+  }
+}
+
+19.
+{
+  "old_function": {
+    "name": "IntersectionStrict",
+    "representation": "IntersectionStrict",
+    "parameters": "function ( features , reads , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE , inter.feature = TRUE )",
+    "body": "{   ov -   findOverlaps (  reads ,  features , type =  \"within\" , algorithm =   match.arg (  algorithm ) , ignore.strand =  ignore.strand )  if (  inter.feature )  { ## Remove ambigous reads.   reads_to_keep -   which (    countQueryHits (  ov ) ==  1L )   ov -   ov [    queryHits (  ov ) %in%  reads_to_keep ] }   countSubjectHits (  ov ) } ",
+    "filename": "summarizeOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "IntersectionStrict",
+    "representation": "IntersectionStrict",
+    "parameters": "function ( features , reads , ignore.strand = FALSE , inter.feature = TRUE )",
+    "body": "{   ov -   findOverlaps (  reads ,  features , type =  \"within\" , ignore.strand =  ignore.strand )  if (  inter.feature )  { ## Remove ambigous reads.   reads_to_keep -   which (    countQueryHits (  ov ) ==  1L )   ov -   ov [    queryHits (  ov ) %in%  reads_to_keep ] }   countSubjectHits (  ov ) } ",
+    "filename": "summarizeOverlaps-methods.txt"
+  }
+}
+
+20.
+{
+  "old_function": {
+    "name": "IntersectionNotEmpty",
+    "representation": "IntersectionNotEmpty",
+    "parameters": "function ( features , reads , algorithm = c ( \"nclist\" , \"intervaltree\" ) , ignore.strand = FALSE , inter.feature = TRUE )",
+    "body": "{   algorithm -   match.arg (  algorithm )   features -   .removeSharedRegions (  features , algorithm =  algorithm , ignore.strand =  ignore.strand )   Union (  features ,  reads , algorithm =  algorithm , ignore.strand =  ignore.strand , inter.feature =  inter.feature ) } ",
+    "filename": "summarizeOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "IntersectionNotEmpty",
+    "representation": "IntersectionNotEmpty",
+    "parameters": "function ( features , reads , ignore.strand = FALSE , inter.feature = TRUE )",
+    "body": "{   features -   .removeSharedRegions (  features , ignore.strand =  ignore.strand )   Union (  features ,  reads , ignore.strand =  ignore.strand , inter.feature =  inter.feature ) } ",
+    "filename": "summarizeOverlaps-methods.txt"
+  }
+}
+
+21.
+{
+  "old_function": {
+    "name": "findCompatibleOverlaps",
+    "representation": "findCompatibleOverlaps",
+    "signature": "c (  GAlignments ,  GRangesList )",
+    "parameters": "function ( query , subject , algorithm = c ( \"nclist\" , \"intervaltree\" ) )",
+    "body": "{ ## Starting with BioC 3.2, the 'order.as.in.query' argument is not ## supported anymore for GAlignmentPairs objects.  if (   is (  query ,  \"GAlignmentPairs\" ) )   grl -   grglist (  query ) else   grl -   grglist (  query , order.as.in.query =  TRUE ) ## TODO: Use 'type=\"within\"' when it's supported for circular ## sequences like the mitochondrial chromosome.   ov -   findOverlaps (  grl ,  subject , algorithm =   match.arg (  algorithm ) , ignore.strand =  TRUE )   ovenc -   encodeOverlaps (  grl ,  subject , hits =  ov , flip.query.if.wrong.strand =  TRUE )   ov_is_compat -   isCompatibleWithSplicing (  ovenc )   ov [  ov_is_compat ] } ",
+    "replacementFunction": ".GAlignmentsORGAlignmentPairs.findCompatibleOverlaps",
+    "filename": "findCompatibleOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findCompatibleOverlaps",
+    "representation": "findCompatibleOverlaps",
+    "signature": "c (  GAlignments ,  GRangesList )",
+    "parameters": "function ( query , subject )",
+    "body": "{ ## Starting with BioC 3.2, the 'order.as.in.query' argument is not ## supported anymore for GAlignmentPairs objects.  if (   is (  query ,  \"GAlignmentPairs\" ) )   grl -   grglist (  query ) else   grl -   grglist (  query , order.as.in.query =  TRUE ) ## TODO: Use 'type=\"within\"' when it's supported for circular ## sequences like the mitochondrial chromosome.   ov -   findOverlaps (  grl ,  subject , ignore.strand =  TRUE )   ovenc -   encodeOverlaps (  grl ,  subject , hits =  ov , flip.query.if.wrong.strand =  TRUE )   ov_is_compat -   isCompatibleWithSplicing (  ovenc )   ov [  ov_is_compat ] } ",
+    "replacementFunction": ".GAlignmentsORGAlignmentPairs.findCompatibleOverlaps",
+    "filename": "findCompatibleOverlaps-methods.txt"
+  }
+}
+
+22.
+{
+  "old_function": {
+    "name": "findCompatibleOverlaps",
+    "representation": "findCompatibleOverlaps",
+    "signature": "c (  GAlignmentPairs ,  GRangesList )",
+    "parameters": "function ( query , subject , algorithm = c ( \"nclist\" , \"intervaltree\" ) )",
+    "body": "{ ## Starting with BioC 3.2, the 'order.as.in.query' argument is not ## supported anymore for GAlignmentPairs objects.  if (   is (  query ,  \"GAlignmentPairs\" ) )   grl -   grglist (  query ) else   grl -   grglist (  query , order.as.in.query =  TRUE ) ## TODO: Use 'type=\"within\"' when it's supported for circular ## sequences like the mitochondrial chromosome.   ov -   findOverlaps (  grl ,  subject , algorithm =   match.arg (  algorithm ) , ignore.strand =  TRUE )   ovenc -   encodeOverlaps (  grl ,  subject , hits =  ov , flip.query.if.wrong.strand =  TRUE )   ov_is_compat -   isCompatibleWithSplicing (  ovenc )   ov [  ov_is_compat ] } ",
+    "replacementFunction": ".GAlignmentsORGAlignmentPairs.findCompatibleOverlaps",
+    "filename": "findCompatibleOverlaps-methods.txt"
+  },
+  "new_function": {
+    "name": "findCompatibleOverlaps",
+    "representation": "findCompatibleOverlaps",
+    "signature": "c (  GAlignmentPairs ,  GRangesList )",
+    "parameters": "function ( query , subject )",
+    "body": "{ ## Starting with BioC 3.2, the 'order.as.in.query' argument is not ## supported anymore for GAlignmentPairs objects.  if (   is (  query ,  \"GAlignmentPairs\" ) )   grl -   grglist (  query ) else   grl -   grglist (  query , order.as.in.query =  TRUE ) ## TODO: Use 'type=\"within\"' when it's supported for circular ## sequences like the mitochondrial chromosome.   ov -   findOverlaps (  grl ,  subject , ignore.strand =  TRUE )   ovenc -   encodeOverlaps (  grl ,  subject , hits =  ov , flip.query.if.wrong.strand =  TRUE )   ov_is_compat -   isCompatibleWithSplicing (  ovenc )   ov [  ov_is_compat ] } ",
+    "replacementFunction": ".GAlignmentsORGAlignmentPairs.findCompatibleOverlaps",
+    "filename": "findCompatibleOverlaps-methods.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicalignments_release_3_3 genomicalignments_release_3_4
+
+{
+    "package": "GenomicAlignments",
+    "release_versions": "genomicalignments_release_3_3 genomicalignments_release_3_4",
+    "desc_release_old": "1.8.4",
+    "desc_release_new": "1.10.1",
+    "old_release_number": 3,
+    "new_release_number": 4,
+    "function_removals": 2,
+    "function_additions": 2,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 5,
+    "total_count": 7
+}
+
+##########
+Functions Removed
+##########
+
+left
+right
+
+
+##########
+Functions Added
+##########
+
+strand
+invertStrand
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "first",
+    "representation": "first",
+    "signature": "GAlignmentPairs",
+    "parameters": "function ( x , real.strand = FALSE , invert.strand = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  real.strand ) )   stop (  \"'real.strand' must be TRUE or FALSE\" )  if (  !   identical (  invert.strand ,  FALSE ) )  {   msg -   c (  \"Using the 'invert.strand' argument when calling \" ,  \"first() on a GAlignmentPairs object is defunct.\" )   .Defunct ( msg =   wmsg (  msg ) ) }   ans -   setNames (   x @ first ,   names (  x ) )  if (  invert.strand )   return (   invertStrand (  ans ) )  if (  real.strand )  {  if (    strandMode (  x ) ==  0L )  {    strand (  ans ) -  \"*\" } else  if (    strandMode (  x ) ==  2L )  {   ans -   invertStrand (  ans ) } }  ans } ",
+    "filename": "GAlignmentPairs-class.txt"
+  },
+  "new_function": {
+    "name": "first",
+    "representation": "first",
+    "signature": "GAlignmentPairs",
+    "parameters": "function ( x , real.strand = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  real.strand ) )   stop (  \"'real.strand' must be TRUE or FALSE\" )   ans -   setNames (   x @ first ,   names (  x ) )  if (   real.strand undefined    strandMode (  x ) !=  1L )    strand (  ans ) -   .first_strand (  x , real.strand =  TRUE )  ans } ",
+    "filename": "GAlignmentPairs-class.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "second",
+    "representation": "second",
+    "signature": "GAlignmentPairs",
+    "parameters": "function ( x , real.strand = FALSE , invert.strand = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  real.strand ) )   stop (  \"'real.strand' must be TRUE or FALSE\" )  if (  !   identical (  invert.strand ,  FALSE ) )  {   msg -   c (  \"Using the 'invert.strand' argument when calling \" ,  \"last() on a GAlignmentPairs object is defunct.\" )   .Defunct ( msg =   wmsg (  msg ) ) }   ans -   setNames (   x @ last ,   names (  x ) )  if (  invert.strand )   return (   invertStrand (  ans ) )  if (  real.strand )  {  if (    strandMode (  x ) ==  0L )  {    strand (  ans ) -  \"*\" } else  if (    strandMode (  x ) ==  1L )  {   ans -   invertStrand (  ans ) } }  ans } ",
+    "filename": "GAlignmentPairs-class.txt"
+  },
+  "new_function": {
+    "name": "second",
+    "representation": "second",
+    "signature": "GAlignmentPairs",
+    "parameters": "function ( x , real.strand = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  real.strand ) )   stop (  \"'real.strand' must be TRUE or FALSE\" )   ans -   setNames (   x @ last ,   names (  x ) )  if (   real.strand undefined    strandMode (  x ) !=  2L )    strand (  ans ) -   .last_strand (  x , real.strand =  TRUE )  ans } ",
+    "filename": "GAlignmentPairs-class.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "grglist",
+    "representation": "grglist",
+    "signature": "GAlignmentPairs",
+    "parameters": "function ( x , use.names = TRUE , use.mcols = FALSE , order.as.in.query = FALSE , drop.D.ranges = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  use.names ) )   stop (  \"'use.names' must be TRUE or FALSE\" )  if (  !   isTRUEorFALSE (  use.mcols ) )   stop (  \"'use.mcols' must be TRUE or FALSE\" )  if (  !   identical (  order.as.in.query ,  FALSE ) )  {   msg -   c (  \"Starting with BioC 3.2, the \\\"grglist\\\" method for \" ,  \"GAlignmentPairs objects *always* returns the ranges \" ,  \"\\\"ordered as in query\\\". Therefore the \" ,  \"'order.as.in.query' argument is now ignored (and \" ,  \"defunct).\" )   .Defunct ( msg =   wmsg (  msg ) ) }   x_mcols -   mcols (  x )  if (   use.mcols undefined   \"query.break\" %in%   colnames (  x_mcols ) )   stop (  \"'mcols(x)' cannot have reserved column \\\"query.break\\\"\" )   x_first -   x @ first   x_last -   x @ last  if (    strandMode (  x ) ==  1L )  {   x_last -   invertStrand (   x @ last )   x_unlisted -   c (  x_first ,  x_last ) } else  if (    strandMode (  x ) ==  2L )  {   x_first -   invertStrand (   x @ first )   x_unlisted -   c (  x_last ,  x_first ) } ## Not the same as doing 'unlist(x, use.names=FALSE)'.   collate_subscript -   S4Vectors ::: make_XYZxyz_to_XxYyZz_subscript (   length (  x ) )   x_unlisted -   x_unlisted [  collate_subscript ]   grl -   grglist (  x_unlisted , order.as.in.query =  TRUE , drop.D.ranges =  drop.D.ranges )   ans -   shrinkByHalf (  grl )  if (  use.names )    names (  ans ) -   names (  x )   ans_mcols -   DataFrame ( query.break =    mcols (  ans ) $ nelt1 )  if (  use.mcols )   ans_mcols -   cbind (  ans_mcols ,  x_mcols )    mcols (  ans ) -  ans_mcols  ans } ",
+    "filename": "GAlignmentPairs-class.txt"
+  },
+  "new_function": {
+    "name": "grglist",
+    "representation": "grglist",
+    "signature": "GAlignmentPairs",
+    "parameters": "function ( x , use.names = TRUE , use.mcols = FALSE , drop.D.ranges = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  use.names ) )   stop (  \"'use.names' must be TRUE or FALSE\" )  if (  !   isTRUEorFALSE (  use.mcols ) )   stop (  \"'use.mcols' must be TRUE or FALSE\" )   x_mcols -   mcols (  x )  if (   use.mcols undefined   \"query.break\" %in%   colnames (  x_mcols ) )   stop (  \"'mcols(x)' cannot have reserved column \\\"query.break\\\"\" )   x_first -   x @ first   x_last -   x @ last  if (    strandMode (  x ) ==  1L )  {   x_last -   invertStrand (   x @ last )   x_unlisted -   c (  x_first ,  x_last ) } else  if (    strandMode (  x ) ==  2L )  {   x_first -   invertStrand (   x @ first )   x_unlisted -   c (  x_last ,  x_first ) } ## Not the same as doing 'unlist(x, use.names=FALSE)'.   collate_subscript -   S4Vectors ::: make_XYZxyz_to_XxYyZz_subscript (   length (  x ) )   x_unlisted -   x_unlisted [  collate_subscript ]   grl -   grglist (  x_unlisted , order.as.in.query =  TRUE , drop.D.ranges =  drop.D.ranges )   ans -   shrinkByHalf (  grl )  if (  use.names )    names (  ans ) -   names (  x )   ans_mcols -   DataFrame ( query.break =    mcols (  ans ) $ nelt1 )  if (  use.mcols )   ans_mcols -   cbind (  ans_mcols ,  x_mcols )    mcols (  ans ) -  ans_mcols  ans } ",
+    "filename": "GAlignmentPairs-class.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "grglist",
+    "representation": "grglist",
+    "signature": "GAlignmentsList",
+    "parameters": "function ( x , use.names = TRUE , use.mcols = FALSE , order.as.in.query = FALSE , drop.D.ranges = FALSE , ignore.strand = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  use.names ) )   stop (  \"'use.names' must be TRUE or FALSE\" )  if (  !   isTRUEorFALSE (  use.mcols ) )   stop (  \"'use.mcols' must be TRUE or FALSE\" )  if (  !   identical (  order.as.in.query ,  FALSE ) )  {   msg -   c (  \"the 'order.as.in.query' argument of the \\\"grglist\\\" \" ,  \"method for GAlignmentsList objects is defunct\" )   .Defunct ( msg =   wmsg (  msg ) ) }  if (  !   isTRUEorFALSE (  ignore.strand ) )   stop (  \"'ignore.strand' must be TRUE or FALSE\" )  if (  ignore.strand )    strand (   x @ unlistData ) -  \"*\"   unlisted_x -   unlist (  x , use.names =  FALSE )   grl -   grglist (  unlisted_x , drop.D.ranges =  drop.D.ranges )   ans -   IRanges ::: regroupBySupergroup (  grl ,  x )  if (  !  use.names )    names (  ans ) -  NULL  if (  use.mcols )    mcols (  ans ) -   mcols (  x )  ans } ",
+    "filename": "GAlignmentsList-class.txt"
+  },
+  "new_function": {
+    "name": "grglist",
+    "representation": "grglist",
+    "signature": "GAlignmentsList",
+    "parameters": "function ( x , use.names = TRUE , use.mcols = FALSE , drop.D.ranges = FALSE , ignore.strand = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  use.names ) )   stop (  \"'use.names' must be TRUE or FALSE\" )  if (  !   isTRUEorFALSE (  use.mcols ) )   stop (  \"'use.mcols' must be TRUE or FALSE\" )  if (  !   isTRUEorFALSE (  ignore.strand ) )   stop (  \"'ignore.strand' must be TRUE or FALSE\" )  if (  ignore.strand )    strand (   x @ unlistData ) -  \"*\"   unlisted_x -   unlist (  x , use.names =  FALSE )   grl -   grglist (  unlisted_x , drop.D.ranges =  drop.D.ranges )   ans -   IRanges ::: regroupBySupergroup (  grl ,  x )  if (  !  use.names )    names (  ans ) -  NULL  if (  use.mcols )    mcols (  ans ) -   mcols (  x )  ans } ",
+    "filename": "GAlignmentsList-class.txt"
+  }
+}
+
+4.
+{
+  "old_function": {
+    "name": "rglist",
+    "representation": "rglist",
+    "signature": "GAlignmentsList",
+    "parameters": "function ( x , use.names = TRUE , use.mcols = FALSE , order.as.in.query = FALSE , drop.D.ranges = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  use.names ) )   stop (  \"'use.names' must be TRUE or FALSE\" )  if (  !   isTRUEorFALSE (  use.mcols ) )   stop (  \"'use.mcols' must be TRUE or FALSE\" )  if (  !   identical (  order.as.in.query ,  FALSE ) )  {   msg -   c (  \"the 'order.as.in.query' argument of the \\\"rglist\\\" \" ,  \"method for GAlignmentsList objects is defunct\" )   .Defunct ( msg =   wmsg (  msg ) ) }   unlisted_x -   unlist (  x , use.names =  FALSE )   rgl -   rglist (  unlisted_x , drop.D.ranges =  drop.D.ranges )   ans -   IRanges ::: regroupBySupergroup (  rgl ,  x )  if (  !  use.names )    names (  ans ) -  NULL  if (  use.mcols )    mcols (  ans ) -   mcols (  x )  ans } ",
+    "filename": "GAlignmentsList-class.txt"
+  },
+  "new_function": {
+    "name": "rglist",
+    "representation": "rglist",
+    "signature": "GAlignmentsList",
+    "parameters": "function ( x , use.names = TRUE , use.mcols = FALSE , drop.D.ranges = FALSE )",
+    "body": "{  if (  !   isTRUEorFALSE (  use.names ) )   stop (  \"'use.names' must be TRUE or FALSE\" )  if (  !   isTRUEorFALSE (  use.mcols ) )   stop (  \"'use.mcols' must be TRUE or FALSE\" )   unlisted_x -   unlist (  x , use.names =  FALSE )   rgl -   rglist (  unlisted_x , drop.D.ranges =  drop.D.ranges )   ans -   IRanges ::: regroupBySupergroup (  rgl ,  x )  if (  !  use.names )    names (  ans ) -  NULL  if (  use.mcols )    mcols (  ans ) -   mcols (  x )  ans } ",
+    "filename": "GAlignmentsList-class.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicalignments_release_3_4 genomicalignments_release_3_5
+
+{
+    "package": "GenomicAlignments",
+    "release_versions": "genomicalignments_release_3_4 genomicalignments_release_3_5",
+    "desc_release_old": "1.10.1",
+    "desc_release_new": "1.12.2",
+    "old_release_number": 4,
+    "new_release_number": 5,
+    "function_removals": 1,
+    "function_additions": 7,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 2,
+    "total_count": 3
+}
+
+##########
+Functions Removed
+##########
+
+findMateAlignment2
+
+
+##########
+Functions Added
+##########
+
+encodingHalves
+is.unsorted
+order
+sort
+rank
+parallelSlotNames
+pcompare
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "seqinfo",
+    "representation": "seqinfo<-",
+    "signature": "GAlignmentPairs",
+    "parameters": "function ( x , new2old = NULL , force = FALSE , value )",
+    "body": "{  if (  !   is (  value ,  \"Seqinfo\" ) )   stop (  \"the supplied 'seqinfo' must be a Seqinfo object\" )   dangling_seqlevels -   GenomeInfoDb ::: getDanglingSeqlevels (  x , new2old =  new2old , force =  force ,   seqlevels (  value ) )  if (    length (  dangling_seqlevels ) !=  0L )  {   dropme_in_first -    seqnames (   x @ first ) %in%  dangling_seqlevels   dropme_in_last -    seqnames (   x @ last ) %in%  dangling_seqlevels   dropme -   dropme_in_first |  dropme_in_last   x -   x [  !  dropme ] }    seqinfo (   x @ first , new2old =  new2old ) -  value    seqinfo (   x @ last , new2old =  new2old ) -  value  x } ",
+    "filename": "GAlignmentPairs-class.txt"
+  },
+  "new_function": {
+    "name": "seqinfo",
+    "representation": "seqinfo<-",
+    "signature": "GAlignmentPairs",
+    "parameters": "function ( x , new2old = NULL , force = FALSE , pruning.mode = c ( \"error\" , \"coarse\" , \"fine\" , \"tidy\" ) , value )",
+    "body": "{  if (  !   is (  value ,  \"Seqinfo\" ) )   stop (  \"the supplied 'seqinfo' must be a Seqinfo object\" )   dangling_seqlevels -   GenomeInfoDb ::: getDanglingSeqlevels (  x , new2old =  new2old , force =  force , pruning.mode =  pruning.mode ,   seqlevels (  value ) )  if (    length (  dangling_seqlevels ) !=  0L )  {   dropme_in_first -    seqnames (   x @ first ) %in%  dangling_seqlevels   dropme_in_last -    seqnames (   x @ last ) %in%  dangling_seqlevels   dropme -   dropme_in_first |  dropme_in_last   x -   x [  !  dropme ] }    seqinfo (   x @ first , new2old =  new2old ) -  value    seqinfo (   x @ last , new2old =  new2old ) -  value  x } ",
+    "filename": "GAlignmentPairs-class.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "seqinfo",
+    "representation": "seqinfo<-",
+    "signature": "GAlignments",
+    "parameters": "function ( x , new2old = NULL , force = FALSE , value )",
+    "body": "{  if (  !   is (  value ,  \"Seqinfo\" ) )   stop (  \"the supplied 'seqinfo' must be a Seqinfo object\" )   dangling_seqlevels -   GenomeInfoDb ::: getDanglingSeqlevels (  x , new2old =  new2old , force =  force ,   seqlevels (  value ) )  if (    length (  dangling_seqlevels ) !=  0L )   x -   x [  !  (    seqnames (  x ) %in%  dangling_seqlevels ) ]   old_seqinfo -   seqinfo (  x )    x @ seqnames -   GenomeInfoDb ::: makeNewSeqnames (  x ,  new2old ,   seqlevels (  value ) )    x @ seqinfo -  value   geom_has_changed -   GenomeInfoDb ::: sequenceGeometryHasChanged (   seqinfo (  x ) ,  old_seqinfo , new2old =  new2old )  if (   any (  geom_has_changed , na.rm =  TRUE ) )   validObject (  x )  x } ",
+    "filename": "GAlignments-class.txt"
+  },
+  "new_function": {
+    "name": "seqinfo",
+    "representation": "seqinfo<-",
+    "signature": "GAlignments",
+    "parameters": "function ( x , new2old = NULL , force = FALSE , pruning.mode = c ( \"error\" , \"coarse\" , \"fine\" , \"tidy\" ) , value )",
+    "body": "{   pruning.mode -   match.arg (  pruning.mode )  if (   pruning.mode ==  \"fine\" )   stop (   wmsg (  \"\\\"fine\\\" pruning mode not supported on \" ,   class (  x ) ,  \" objects\" ) )  if (  !   is (  value ,  \"Seqinfo\" ) )   stop (  \"the supplied 'seqinfo' must be a Seqinfo object\" )   dangling_seqlevels -   GenomeInfoDb ::: getDanglingSeqlevels (  x , new2old =  new2old , force =  force , pruning.mode =  pruning.mode ,   seqlevels (  value ) )  if (    length (  dangling_seqlevels ) !=  0L )  { ## Prune 'x'.   non_dangling_range -  !  (    seqnames (  x ) %in%  dangling_seqlevels )   x -   x [  non_dangling_range ] }   old_seqinfo -   seqinfo (  x )    x @ seqnames -   GenomeInfoDb ::: makeNewSeqnames (  x ,  new2old ,   seqlevels (  value ) )    x @ seqinfo -  value   geom_has_changed -   GenomeInfoDb ::: sequenceGeometryHasChanged (   seqinfo (  x ) ,  old_seqinfo , new2old =  new2old )  if (   any (  geom_has_changed , na.rm =  TRUE ) )   validObject (  x )  x } ",
+    "replacementFunction": "set_GAlignments_seqinfo",
+    "filename": "GAlignments-class.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicalignments_release_3_5 genomicalignments_release_3_6
+
+{
+    "package": "GenomicAlignments",
+    "release_versions": "genomicalignments_release_3_5 genomicalignments_release_3_6",
+    "desc_release_old": "1.12.2",
+    "desc_release_new": "1.14.2",
+    "old_release_number": 5,
+    "new_release_number": 6,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 2,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+ranges
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "seqinfo",
+    "representation": "seqinfo<-",
+    "signature": "GAlignmentPairs",
+    "parameters": "function ( x , new2old = NULL , force = FALSE , pruning.mode = c ( \"error\" , \"coarse\" , \"fine\" , \"tidy\" ) , value )",
+    "body": "{  if (  !   is (  value ,  \"Seqinfo\" ) )   stop (  \"the supplied 'seqinfo' must be a Seqinfo object\" )   dangling_seqlevels -   GenomeInfoDb ::: getDanglingSeqlevels (  x , new2old =  new2old , force =  force , pruning.mode =  pruning.mode ,   seqlevels (  value ) )  if (    length (  dangling_seqlevels ) !=  0L )  {   dropme_in_first -    seqnames (   x @ first ) %in%  dangling_seqlevels   dropme_in_last -    seqnames (   x @ last ) %in%  dangling_seqlevels   dropme -   dropme_in_first |  dropme_in_last   x -   x [  !  dropme ] }    seqinfo (   x @ first , new2old =  new2old ) -  value    seqinfo (   x @ last , new2old =  new2old ) -  value  x } ",
+    "filename": "GAlignmentPairs-class.txt"
+  },
+  "new_function": {
+    "name": "seqinfo",
+    "representation": "seqinfo<-",
+    "signature": "GAlignmentPairs",
+    "parameters": "function ( x , new2old = NULL , pruning.mode = c ( \"error\" , \"coarse\" , \"fine\" , \"tidy\" ) , value )",
+    "body": "{  if (  !   is (  value ,  \"Seqinfo\" ) )   stop (  \"the supplied 'seqinfo' must be a Seqinfo object\" )   dangling_seqlevels -   GenomeInfoDb ::: getDanglingSeqlevels (  x , new2old =  new2old , pruning.mode =  pruning.mode ,   seqlevels (  value ) )  if (    length (  dangling_seqlevels ) !=  0L )  {   dropme_in_first -    seqnames (   x @ first ) %in%  dangling_seqlevels   dropme_in_last -    seqnames (   x @ last ) %in%  dangling_seqlevels   dropme -   dropme_in_first |  dropme_in_last   x -   x [  !  dropme ] }    seqinfo (   x @ first , new2old =  new2old ) -  value    seqinfo (   x @ last , new2old =  new2old ) -  value  x } ",
+    "filename": "GAlignmentPairs-class.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "seqinfo",
+    "representation": "seqinfo<-",
+    "signature": "GAlignments",
+    "parameters": "function ( x , new2old = NULL , force = FALSE , pruning.mode = c ( \"error\" , \"coarse\" , \"fine\" , \"tidy\" ) , value )",
+    "body": "{   pruning.mode -   match.arg (  pruning.mode )  if (   pruning.mode ==  \"fine\" )   stop (   wmsg (  \"\\\"fine\\\" pruning mode not supported on \" ,   class (  x ) ,  \" objects\" ) )  if (  !   is (  value ,  \"Seqinfo\" ) )   stop (  \"the supplied 'seqinfo' must be a Seqinfo object\" )   dangling_seqlevels -   GenomeInfoDb ::: getDanglingSeqlevels (  x , new2old =  new2old , force =  force , pruning.mode =  pruning.mode ,   seqlevels (  value ) )  if (    length (  dangling_seqlevels ) !=  0L )  { ## Prune 'x'.   non_dangling_range -  !  (    seqnames (  x ) %in%  dangling_seqlevels )   x -   x [  non_dangling_range ] }   old_seqinfo -   seqinfo (  x )    x @ seqnames -   GenomeInfoDb ::: makeNewSeqnames (  x ,  new2old ,   seqlevels (  value ) )    x @ seqinfo -  value   geom_has_changed -   GenomeInfoDb ::: sequenceGeometryHasChanged (   seqinfo (  x ) ,  old_seqinfo , new2old =  new2old )  if (   any (  geom_has_changed , na.rm =  TRUE ) )   validObject (  x )  x } ",
+    "replacementFunction": "set_GAlignments_seqinfo",
+    "filename": "GAlignments-class.txt"
+  },
+  "new_function": {
+    "name": "seqinfo",
+    "representation": "seqinfo<-",
+    "signature": "GAlignments",
+    "parameters": "function ( x , new2old = NULL , pruning.mode = c ( \"error\" , \"coarse\" , \"fine\" , \"tidy\" ) , value )",
+    "body": "{   pruning.mode -   match.arg (  pruning.mode )  if (   pruning.mode ==  \"fine\" )   stop (   wmsg (  \"\\\"fine\\\" pruning mode not supported on \" ,   class (  x ) ,  \" objects\" ) )  if (  !   is (  value ,  \"Seqinfo\" ) )   stop (  \"the supplied 'seqinfo' must be a Seqinfo object\" )   dangling_seqlevels -   GenomeInfoDb ::: getDanglingSeqlevels (  x , new2old =  new2old , pruning.mode =  pruning.mode ,   seqlevels (  value ) )  if (    length (  dangling_seqlevels ) !=  0L )  { ## Prune 'x'.   non_dangling_range -  !  (    seqnames (  x ) %in%  dangling_seqlevels )   x -   x [  non_dangling_range ] }   old_seqinfo -   seqinfo (  x )    x @ seqnames -   GenomeInfoDb ::: makeNewSeqnames (  x ,  new2old ,   seqlevels (  value ) )    x @ seqinfo -  value   geom_has_changed -   GenomeInfoDb ::: sequenceGeometryHasChanged (   seqinfo (  x ) ,  old_seqinfo , new2old =  new2old )  if (   any (  geom_has_changed , na.rm =  TRUE ) )   validObject (  x )  x } ",
+    "replacementFunction": "set_GAlignments_seqinfo",
+    "filename": "GAlignments-class.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicalignments_release_3_6 genomicalignments_release_3_7
+
+{
+    "package": "GenomicAlignments",
+    "release_versions": "genomicalignments_release_3_6 genomicalignments_release_3_7",
+    "desc_release_old": "1.14.2",
+    "desc_release_new": "1.16.0",
+    "old_release_number": 6,
+    "new_release_number": 7,
+    "function_removals": 0,
+    "function_additions": 15,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+length
+names
+names<-
+[[
+show
+coerce
+unlist
+levels
+update
+as.data.frame
+strand<-
+updateObject
+concatenateObjects
+elementMetadata<-
+windows
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicalignments_release_3_7 genomicalignments_release_3_8
+
+{
+    "package": "GenomicAlignments",
+    "release_versions": "genomicalignments_release_3_7 genomicalignments_release_3_8",
+    "desc_release_old": "1.16.0",
+    "desc_release_new": "1.18.1",
+    "old_release_number": 7,
+    "new_release_number": 8,
+    "function_removals": 1,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+concatenateObjects
+
+
+##########
+Functions Added
+##########
+
+bindROWS
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicalignments_release_3_8 genomicalignments_release_3_9
+
+{
+    "package": "GenomicAlignments",
+    "release_versions": "genomicalignments_release_3_8 genomicalignments_release_3_9",
+    "desc_release_old": "1.18.1",
+    "desc_release_new": "1.20.1",
+    "old_release_number": 8,
+    "new_release_number": 9,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+getListElement
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicalignments_release_3_9 genomicalignments_release_3_11
+
+{
+    "package": "GenomicAlignments",
+    "release_versions": "genomicalignments_release_3_9 genomicalignments_release_3_11",
+    "desc_release_old": "1.20.1",
+    "desc_release_new": "1.24.0",
+    "old_release_number": 9,
+    "new_release_number": 10,
+    "function_removals": 1,
+    "function_additions": 2,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+parallelSlotNames
+
+
+##########
+Functions Added
+##########
+
+stackStringsFromGAlignments
+vertical_slot_names
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicalignments_release_3_11 genomicalignments_release_3_12
+
+{
+    "package": "GenomicAlignments",
+    "release_versions": "genomicalignments_release_3_11 genomicalignments_release_3_12",
+    "desc_release_old": "1.24.0",
+    "desc_release_new": "1.26.0",
+    "old_release_number": 10,
+    "new_release_number": 11,
+    "function_removals": 1,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+vertical_slot_names
+
+
+##########
+Functions Added
+##########
+
+parallel_slot_names
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicalignments_release_3_12 genomicalignments_release_3_13
+
+{
+    "package": "GenomicAlignments",
+    "release_versions": "genomicalignments_release_3_12 genomicalignments_release_3_13",
+    "desc_release_old": "1.26.0",
+    "desc_release_new": "1.28.0",
+    "old_release_number": 11,
+    "new_release_number": 12,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicalignments_release_3_13 genomicalignments_release_3_14
+
+{
+    "package": "GenomicAlignments",
+    "release_versions": "genomicalignments_release_3_13 genomicalignments_release_3_14",
+    "desc_release_old": "1.28.0",
+    "desc_release_new": "1.30.0",
+    "old_release_number": 12,
+    "new_release_number": 13,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  genomicalignments_release_3_14 genomicalignments_master
+
+{
+    "package": "GenomicAlignments",
+    "release_versions": "genomicalignments_release_3_14 genomicalignments_master",
+    "desc_release_old": "1.30.0",
+    "desc_release_new": "1.31.2",
+    "old_release_number": 13,
+    "new_release_number": 14,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+

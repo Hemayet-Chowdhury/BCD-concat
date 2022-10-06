@@ -1,0 +1,187 @@
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  scuttle_release_3_12 scuttle_release_3_13
+
+{
+    "package": "scuttle",
+    "release_versions": "scuttle_release_3_12 scuttle_release_3_13",
+    "desc_release_old": "1.0.4",
+    "desc_release_new": "1.2.1",
+    "old_release_number": 0,
+    "new_release_number": 1,
+    "function_removals": 0,
+    "function_additions": 11,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+.guessMinMean
+addPerCellQCMetrics
+addPerFeatureQCMetrics
+cleanSizeFactors
+computePooledFactors
+computeSpikeFactors
+correctGroupSummary
+outlier.filter
+perCellQCFilters
+pooledSizeFactors
+[.outlier.filter
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "normalizeCounts",
+    "representation": "normalizeCounts",
+    "signature": "ANY",
+    "parameters": "function ( x , size.factors = NULL , log = TRUE , pseudo.count = 1 , center.size.factors = TRUE , subset.row = NULL , downsample = FALSE , down.target = NULL , down.prop = 0.01 , BPPARAM = SerialParam ( ) , size_factors = NULL , pseudo_count = NULL , center_size_factors = NULL , subset_row = NULL , down_target = NULL , down_prop = NULL )",
+    "body": "{   subset.row -   .replace (  subset.row ,  subset_row )   size.factors -   .replace (  size.factors ,  size_factors )   center.size.factors -   .replace (  center.size.factors ,  center_size_factors )   down.target -   .replace (  down.target ,  down_target )   down.prop -   .replace (  down.prop ,  down_prop )   pseudo.count -   .replace (  pseudo.count ,  pseudo_count )  if (  !   is.null (  subset.row ) )  {   x -   x [  subset.row , , drop =  FALSE ] }  if (    nrow (  x ) ==  0L )  {   return (   x +  0 ) # coerce to numeric. }   size.factors -   .get_default_sizes (  x ,  size.factors ,  center.size.factors , BPPARAM =  BPPARAM )  if (    length (  size.factors ) !=   ncol (  x ) )  {   stop (  \"number of size factors does not equal 'ncol(x)'\" ) }  if (  !   all (    is.finite (  size.factors ) undefined   size.factors undefined  0 ) )  {   stop (  \"size factors should be positive\" ) }  if (  downsample )  {   down.out -   .downsample_counts (  x ,  size.factors , down.prop =  down.prop , down.target =  down.target )   x -   down.out $ x   size.factors -   down.out $ size.factors }   .internal_transformer (  x ,  size.factors ,  log ,  pseudo.count ) } ",
+    "filename": "normalizeCounts.txt"
+  },
+  "new_function": {
+    "name": "normalizeCounts",
+    "representation": "normalizeCounts",
+    "signature": "ANY",
+    "parameters": "function ( x , size.factors = NULL , log = NULL , transform = c ( \"log\" , \"none\" , \"asinh\" ) , pseudo.count = 1 , center.size.factors = TRUE , subset.row = NULL , normalize.all = FALSE , downsample = FALSE , down.target = NULL , down.prop = 0.01 , BPPARAM = SerialParam ( ) , size_factors = NULL , pseudo_count = NULL , center_size_factors = NULL , subset_row = NULL , down_target = NULL , down_prop = NULL )",
+    "body": "{   subset.row -   .replace (  subset.row ,  subset_row )   size.factors -   .replace (  size.factors ,  size_factors )   center.size.factors -   .replace (  center.size.factors ,  center_size_factors )   down.target -   .replace (  down.target ,  down_target )   down.prop -   .replace (  down.prop ,  down_prop )   pseudo.count -   .replace (  pseudo.count ,  pseudo_count )  if (   !   is.null (  subset.row ) undefined  !  normalize.all )  {   x -   x [  subset.row , , drop =  FALSE ]   subset.row -  NULL }  if (    nrow (  x ) ==  0L )  {   return (   x +  0 ) # coerce to numeric. }   size.factors -   .get_default_sizes (  x ,  size.factors ,  center.size.factors , BPPARAM =  BPPARAM , subset.row =  subset.row )  if (    length (  size.factors ) !=   ncol (  x ) )  {   stop (  \"number of size factors does not equal 'ncol(x)'\" ) }  if (  !   all (    is.finite (  size.factors ) undefined   size.factors undefined  0 ) )  {   stop (  \"size factors should be positive\" ) }  if (  downsample )  {   down.out -   .downsample_counts (  x ,  size.factors , down.prop =  down.prop , down.target =  down.target )   x -   down.out $ x   size.factors -   down.out $ size.factors }   transform -   .choose_transform (  log ,   match.arg (  transform ) )   .internal_transformer (  x ,  size.factors ,  transform ,  pseudo.count ) } ",
+    "filename": "normalizeCounts.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  scuttle_release_3_13 scuttle_release_3_14
+
+{
+    "package": "scuttle",
+    "release_versions": "scuttle_release_3_13 scuttle_release_3_14",
+    "desc_release_old": "1.2.1",
+    "desc_release_new": "1.4.0",
+    "old_release_number": 1,
+    "new_release_number": 2,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  scuttle_release_3_14 scuttle_master
+
+{
+    "package": "scuttle",
+    "release_versions": "scuttle_release_3_14 scuttle_master",
+    "desc_release_old": "1.4.0",
+    "desc_release_new": "1.5.1",
+    "old_release_number": 2,
+    "new_release_number": 3,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+

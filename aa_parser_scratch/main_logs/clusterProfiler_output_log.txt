@@ -1,0 +1,1578 @@
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  clusterprofiler_release_2_8 clusterprofiler_release_2_9
+
+{
+    "package": "clusterProfiler",
+    "release_versions": "clusterprofiler_release_2_8 clusterprofiler_release_2_9",
+    "desc_release_old": "1.0.6",
+    "desc_release_new": "1.2.1",
+    "old_release_number": 0,
+    "new_release_number": 1,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  clusterprofiler_release_2_9 clusterprofiler_release_2_11
+
+{
+    "package": "clusterProfiler",
+    "release_versions": "clusterprofiler_release_2_9 clusterprofiler_release_2_11",
+    "desc_release_old": "1.2.1",
+    "desc_release_new": "1.6.0",
+    "old_release_number": 1,
+    "new_release_number": 2,
+    "function_removals": 1,
+    "function_additions": 18,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+show
+
+
+##########
+Functions Added
+##########
+
+Gff2GeneTable
+buildGOmap
+ALLEXTID.BP
+ALLEXTID.CC
+ALLEXTID.KEGG
+ALLEXTID.MF
+EXTID2TERMID.BP
+EXTID2TERMID.CC
+EXTID2TERMID.KEGG
+EXTID2TERMID.MF
+TERM2NAME.BP
+TERM2NAME.CC
+TERM2NAME.KEGG
+TERM2NAME.MF
+TERMID2EXTID.BP
+TERMID2EXTID.CC
+TERMID2EXTID.KEGG
+TERMID2EXTID.MF
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  clusterprofiler_release_2_11 clusterprofiler_release_2_12
+
+{
+    "package": "clusterProfiler",
+    "release_versions": "clusterprofiler_release_2_11 clusterprofiler_release_2_12",
+    "desc_release_old": "1.6.0",
+    "desc_release_new": "1.8.0",
+    "old_release_number": 2,
+    "new_release_number": 3,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  clusterprofiler_release_2_12 clusterprofiler_release_2_13
+
+{
+    "package": "clusterProfiler",
+    "release_versions": "clusterprofiler_release_2_12 clusterprofiler_release_2_13",
+    "desc_release_old": "1.8.0",
+    "desc_release_new": "1.10.1",
+    "old_release_number": 3,
+    "new_release_number": 4,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 4,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 4,
+    "total_count": 4
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "enrichGO",
+    "representation": "enrichGO",
+    "parameters": "function ( gene , organism = \"human\" , ont = \"MF\" , pvalueCutoff = 0.05 , qvalueCutoff = 0.05 , readable = FALSE )",
+    "body": "{   enrich.internal (  gene , organism =  organism , pvalueCutoff =  pvalueCutoff , qvalueCutoff =  qvalueCutoff , ont =  ont , readable =  readable ) } ",
+    "filename": "enrichGO.txt"
+  },
+  "new_function": {
+    "name": "enrichGO",
+    "representation": "enrichGO",
+    "parameters": "function ( gene , organism = \"human\" , ont = \"MF\" , pvalueCutoff = 0.05 , pAdjustMethod = \"BH\" , universe , qvalueCutoff = 0.2 , minGSSize = 5 , readable = FALSE )",
+    "body": "{   enrich.internal (  gene , organism =  organism , pvalueCutoff =  pvalueCutoff , pAdjustMethod =  pAdjustMethod , ont =  ont , universe =  universe , qvalueCutoff =  qvalueCutoff , minGSSize =  minGSSize , readable =  readable ) } ",
+    "filename": "enrichGO.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "TERM2NAME.MF",
+    "representation": "TERM2NAME.MF",
+    "parameters": "function ( term )",
+    "body": "{   TERM2NAME.GO (  term ) } ",
+    "filename": "enrichGO.txt"
+  },
+  "new_function": {
+    "name": "TERM2NAME.MF",
+    "representation": "TERM2NAME.MF",
+    "parameters": "function ( term , organism )",
+    "body": "{   TERM2NAME.GO (  term ,  organism ) } ",
+    "filename": "enrichGO.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "TERM2NAME.BP",
+    "representation": "TERM2NAME.BP",
+    "parameters": "function ( term )",
+    "body": "{   TERM2NAME.GO (  term ) } ",
+    "filename": "enrichGO.txt"
+  },
+  "new_function": {
+    "name": "TERM2NAME.BP",
+    "representation": "TERM2NAME.BP",
+    "parameters": "function ( term , organism )",
+    "body": "{   TERM2NAME.GO (  term ,  organism ) } ",
+    "filename": "enrichGO.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "TERM2NAME.CC",
+    "representation": "TERM2NAME.CC",
+    "parameters": "function ( term )",
+    "body": "{   TERM2NAME.GO (  term ) } ",
+    "filename": "enrichGO.txt"
+  },
+  "new_function": {
+    "name": "TERM2NAME.CC",
+    "representation": "TERM2NAME.CC",
+    "parameters": "function ( term , organism )",
+    "body": "{   TERM2NAME.GO (  term ,  organism ) } ",
+    "filename": "enrichGO.txt"
+  }
+}
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "enrichGO",
+    "representation": "enrichGO",
+    "parameters": "function ( gene , organism = \"human\" , ont = \"MF\" , pvalueCutoff = 0.05 , qvalueCutoff = 0.05 , readable = FALSE )",
+    "body": "{   enrich.internal (  gene , organism =  organism , pvalueCutoff =  pvalueCutoff , qvalueCutoff =  qvalueCutoff , ont =  ont , readable =  readable ) } ",
+    "filename": "enrichGO.txt"
+  },
+  "new_function": {
+    "name": "enrichGO",
+    "representation": "enrichGO",
+    "parameters": "function ( gene , organism = \"human\" , ont = \"MF\" , pvalueCutoff = 0.05 , pAdjustMethod = \"BH\" , universe , qvalueCutoff = 0.2 , minGSSize = 5 , readable = FALSE )",
+    "body": "{   enrich.internal (  gene , organism =  organism , pvalueCutoff =  pvalueCutoff , pAdjustMethod =  pAdjustMethod , ont =  ont , universe =  universe , qvalueCutoff =  qvalueCutoff , minGSSize =  minGSSize , readable =  readable ) } ",
+    "filename": "enrichGO.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "TERM2NAME.MF",
+    "representation": "TERM2NAME.MF",
+    "parameters": "function ( term )",
+    "body": "{   TERM2NAME.GO (  term ) } ",
+    "filename": "enrichGO.txt"
+  },
+  "new_function": {
+    "name": "TERM2NAME.MF",
+    "representation": "TERM2NAME.MF",
+    "parameters": "function ( term , organism )",
+    "body": "{   TERM2NAME.GO (  term ,  organism ) } ",
+    "filename": "enrichGO.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "TERM2NAME.BP",
+    "representation": "TERM2NAME.BP",
+    "parameters": "function ( term )",
+    "body": "{   TERM2NAME.GO (  term ) } ",
+    "filename": "enrichGO.txt"
+  },
+  "new_function": {
+    "name": "TERM2NAME.BP",
+    "representation": "TERM2NAME.BP",
+    "parameters": "function ( term , organism )",
+    "body": "{   TERM2NAME.GO (  term ,  organism ) } ",
+    "filename": "enrichGO.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "TERM2NAME.CC",
+    "representation": "TERM2NAME.CC",
+    "parameters": "function ( term )",
+    "body": "{   TERM2NAME.GO (  term ) } ",
+    "filename": "enrichGO.txt"
+  },
+  "new_function": {
+    "name": "TERM2NAME.CC",
+    "representation": "TERM2NAME.CC",
+    "parameters": "function ( term , organism )",
+    "body": "{   TERM2NAME.GO (  term ,  organism ) } ",
+    "filename": "enrichGO.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  clusterprofiler_release_2_13 clusterprofiler_release_2_14
+
+{
+    "package": "clusterProfiler",
+    "release_versions": "clusterprofiler_release_2_13 clusterprofiler_release_2_14",
+    "desc_release_old": "1.10.1",
+    "desc_release_new": "1.12.0",
+    "old_release_number": 4,
+    "new_release_number": 5,
+    "function_removals": 1,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+summary
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  clusterprofiler_release_2_14 clusterprofiler_release_3_1
+
+{
+    "package": "clusterProfiler",
+    "release_versions": "clusterprofiler_release_2_14 clusterprofiler_release_3_1",
+    "desc_release_old": "1.12.0",
+    "desc_release_new": "2.2.7",
+    "old_release_number": 5,
+    "new_release_number": 6,
+    "function_removals": 0,
+    "function_additions": 16,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+GSEA
+bitr
+cnetplot
+enrichDAVID
+enrichMap
+enricher
+gseGO
+gseKEGG
+gseaplot
+idType
+getGeneSet.BP
+getGeneSet.CC
+getGeneSet.GO
+getGeneSet.KEGG
+getGeneSet.MF
+getGeneSet.USER_DEFINED
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  clusterprofiler_release_3_1 clusterprofiler_release_3_2
+
+{
+    "package": "clusterProfiler",
+    "release_versions": "clusterprofiler_release_3_1 clusterprofiler_release_3_2",
+    "desc_release_old": "2.2.7",
+    "desc_release_new": "2.4.3",
+    "old_release_number": 6,
+    "new_release_number": 7,
+    "function_removals": 0,
+    "function_additions": 5,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+dropGO
+merge_result
+plotGOgraph
+dotplot
+fortify.compareClusterResult
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  clusterprofiler_release_3_2 clusterprofiler_release_3_3
+
+{
+    "package": "clusterProfiler",
+    "release_versions": "clusterprofiler_release_3_2 clusterprofiler_release_3_3",
+    "desc_release_old": "2.4.3",
+    "desc_release_new": "3.0.5",
+    "old_release_number": 7,
+    "new_release_number": 8,
+    "function_removals": 25,
+    "function_additions": 9,
+    "parameter_removals": 0,
+    "parameter_additions": 3,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 8,
+    "total_count": 33
+}
+
+##########
+Functions Removed
+##########
+
+cnetplot
+enrichMap
+gseaplot
+ALLEXTID.BP
+ALLEXTID.CC
+ALLEXTID.KEGG
+ALLEXTID.MF
+EXTID2TERMID.BP
+EXTID2TERMID.CC
+EXTID2TERMID.KEGG
+EXTID2TERMID.MF
+TERM2NAME.BP
+TERM2NAME.CC
+TERM2NAME.KEGG
+TERM2NAME.MF
+TERMID2EXTID.BP
+TERMID2EXTID.CC
+TERMID2EXTID.KEGG
+TERMID2EXTID.MF
+getGeneSet.BP
+getGeneSet.CC
+getGeneSet.GO
+getGeneSet.KEGG
+getGeneSet.MF
+getGeneSet.USER_DEFINED
+
+
+##########
+Functions Added
+##########
+
+bitr_kegg
+enrichMKEGG
+go2ont
+go2term
+gofilter
+gseMKEGG
+read.gmt
+search_kegg_organism
+simplify
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "enrichDAVID",
+    "representation": "enrichDAVID",
+    "parameters": "function ( gene , idType = \"ENTREZ_GENE_ID\" , listType = \"Gene\" , minGSSize = 5 , annotation = \"GOTERM_BP_ALL\" , pvalueCutoff = 0.05 , pAdjustMethod = \"BH\" , qvalueCutoff = 0.2 , species = NA , david.user = \"clusterProfiler@hku.hk\" )",
+    "body": "{   Count -   List.Total -   Pop.Hits -   Pop.Total -  NULL   pAdjustMethod -   match.arg (  pAdjustMethod ,   c (  \"bonferroni\" ,  \"BH\" ) )   idType -   match.arg (  idType ,   c (  \"AFFYMETRIX_3PRIME_IVT_ID\" ,  \"AFFYMETRIX_EXON_GENE_ID\" ,  \"AFFYMETRIX_SNP_ID\" ,  \"AGILENT_CHIP_ID\" ,  \"AGILENT_ID\" ,  \"AGILENT_OLIGO_ID\" ,  \"ENSEMBL_GENE_ID\" ,  \"ENSEMBL_TRANSCRIPT_ID\" ,  \"ENTREZ_GENE_ID\" ,  \"GENOMIC_GI_ACCESSION\" ,  \"GENPEPT_ACCESSION\" ,  \"ILLUMINA_ID\" ,  \"IPI_ID\" ,  \"MGI_ID\" ,  \"OFFICIAL_GENE_SYMBOL\" ,  \"PFAM_ID\" ,  \"PIR_ID\" ,  \"PROTEIN_GI_ACCESSION\" ,  \"REFSEQ_GENOMIC\" ,  \"REFSEQ_MRNA\" ,  \"REFSEQ_PROTEIN\" ,  \"REFSEQ_RNA\" ,  \"RGD_ID\" ,  \"SGD_ID\" ,  \"TAIR_ID\" ,  \"UCSC_GENE_ID\" ,  \"UNIGENE\" ,  \"UNIPROT_ACCESSION\" ,  \"UNIPROT_ID\" ,  \"UNIREF100_ID\" ,  \"WORMBASE_GENE_ID\" ,  \"WORMPEP_ID\" ,  \"ZFIN_ID\" ) )   david.pkg -  \"RDAVIDWebService\"   pkgs -    installed.packages ( ) [ ,  1 ]  if (  !   david.pkg %in%  pkgs )  {   stop (  \"You should have RDAVIDWebService package installed before using enrichDAVID...\" ) }   require (  david.pkg , character.only =  TRUE )   DAVIDWebService -   eval (   parse ( text =  \"DAVIDWebService\" ) )   addList -   eval (   parse ( text =  \"addList\" ) )   setAnnotationCategories -   eval (   parse ( text =  \"setAnnotationCategories\" ) )   getFunctionalAnnotationChart -   eval (   parse ( text =  \"getFunctionalAnnotationChart\" ) )   getSpecieNames -   eval (   parse ( text =  \"getSpecieNames\" ) )   david -    DAVIDWebService $ new ( email =  david.user )   david.res -   addList (  david ,  gene , idType =  idType , listName =  \"clusterProfiler\" , listType =  listType )  if (    david.res $ inDavid ==  0 )  {   stop (  \"All id can not be mapped. Please check 'idType' parameter...\" ) }   setAnnotationCategories (  david ,  annotation )   x -   getFunctionalAnnotationChart (  david , threshold =  1 , count =  minGSSize )  if (    length (   x @ .Data ) ==  0 )  {   warning (  \"No significant enrichment found...\" )   return (  NULL ) }   term -   x $ Term  if (    length (   grep (  \"~\" ,   term [  1 ] ) ) ==  0 )  {   sep -  \":\" } else  {   sep -  \"~\" }   term.list -   sapply (  term ,  function ( y )   strsplit (  y , split =  sep ) )   term.df -   do.call (  \"rbind\" ,  term.list )   ID -   term.df [ ,  1 ]   Description -   term.df [ ,  2 ]   GeneRatio -   with (  x ,   paste (  Count ,  List.Total , sep =  \"/\" ) )   BgRatio -   with (  x ,   paste (  Pop.Hits ,  Pop.Total , sep =  \"/\" ) )   Over -   data.frame ( ID =  ID , Description =  Description , GeneRatio =  GeneRatio , BgRatio =  BgRatio , pvalue =   x $ PValue )    row.names (  Over ) -  ID  if (   pAdjustMethod ==  \"bonferroni\" )  {    Over $ p.adjust -   x $ Bonferroni } else  {    Over $ p.adjust -   x $ Benjamini }   qobj -   tryCatch (   qvalue ( p =   Over $ pvalue , lambda =  0.05 , pi0.method =  \"bootstrap\" ) , error =  function ( e )  NULL )  if (    class (  qobj ) ==  \"qvalue\" )  {   qvalues -   qobj $ qvalues } else  {   qvalues -  NA }    Over $ qvalue -  qvalues    Over $ geneID -   gsub (  \",\\\\s*\" ,  \"/\" ,   x $ Genes )    Over $ Count -   x $ Count   Over -   Over [    Over $ pvalue =  pvalueCutoff , ]   Over -   Over [    Over $ p.adjust =  pvalueCutoff , ]  if (  !   any (   is.na (   Over $ qvalue ) ) )  {   Over -   Over [    Over $ qvalue =  qvalueCutoff , ] }   org -   getSpecieNames (  david )   org -   gsub (  \"\\\\(.*\\\\)\" ,  \"\" ,  org )   gc -   strsplit (   Over $ geneID ,  \"/\" )    names (  gc ) -   Over $ ID   new (  \"enrichResult\" , result =  Over , pvalueCutoff =  pvalueCutoff , pAdjustMethod =  pAdjustMethod , organism =  org , ontology =   as.character (    x $ Category [  1 ] ) , gene =   as.character (  gene ) , geneInCategory =  gc ) } ",
+    "filename": "enrichDAVID.txt"
+  },
+  "new_function": {
+    "name": "enrichDAVID",
+    "representation": "enrichDAVID",
+    "parameters": "function ( gene , idType = \"ENTREZ_GENE_ID\" , listType = \"Gene\" , minGSSize = 10 , maxGSSize = 500 , annotation = \"GOTERM_BP_FAT\" , pvalueCutoff = 0.05 , pAdjustMethod = \"BH\" , qvalueCutoff = 0.2 , species = NA , david.user )",
+    "body": "{   Count -   List.Total -   Pop.Hits -   Pop.Total -  NULL   pAdjustMethod -   match.arg (  pAdjustMethod ,   c (  \"bonferroni\" ,  \"BH\" ) )   idType -   match.arg (  idType ,   c (  \"AFFYMETRIX_3PRIME_IVT_ID\" ,  \"AFFYMETRIX_EXON_GENE_ID\" ,  \"AFFYMETRIX_SNP_ID\" ,  \"AGILENT_CHIP_ID\" ,  \"AGILENT_ID\" ,  \"AGILENT_OLIGO_ID\" ,  \"ENSEMBL_GENE_ID\" ,  \"ENSEMBL_TRANSCRIPT_ID\" ,  \"ENTREZ_GENE_ID\" ,  \"GENOMIC_GI_ACCESSION\" ,  \"GENPEPT_ACCESSION\" ,  \"ILLUMINA_ID\" ,  \"IPI_ID\" ,  \"MGI_ID\" ,  \"OFFICIAL_GENE_SYMBOL\" ,  \"PFAM_ID\" ,  \"PIR_ID\" ,  \"PROTEIN_GI_ACCESSION\" ,  \"REFSEQ_GENOMIC\" ,  \"REFSEQ_MRNA\" ,  \"REFSEQ_PROTEIN\" ,  \"REFSEQ_RNA\" ,  \"RGD_ID\" ,  \"SGD_ID\" ,  \"TAIR_ID\" ,  \"UCSC_GENE_ID\" ,  \"UNIGENE\" ,  \"UNIPROT_ACCESSION\" ,  \"UNIPROT_ID\" ,  \"UNIREF100_ID\" ,  \"WORMBASE_GENE_ID\" ,  \"WORMPEP_ID\" ,  \"ZFIN_ID\" ) )   david.pkg -  \"RDAVIDWebService\"   pkgs -    installed.packages ( ) [ ,  1 ]  if (  !   david.pkg %in%  pkgs )  {   stop (  \"You should have RDAVIDWebService package installed before using enrichDAVID...\" ) }   require (  david.pkg , character.only =  TRUE )   DAVIDWebService -   eval (   parse ( text =  \"DAVIDWebService\" ) )   addList -   eval (   parse ( text =  \"addList\" ) )   setAnnotationCategories -   eval (   parse ( text =  \"setAnnotationCategories\" ) )   getFunctionalAnnotationChart -   eval (   parse ( text =  \"getFunctionalAnnotationChart\" ) )   getSpecieNames -   eval (   parse ( text =  \"getSpecieNames\" ) )   david -    DAVIDWebService $ new ( email =  david.user , url =  \"https://david.ncifcrf.gov/webservice/services/DAVIDWebService.DAVIDWebServiceHttpSoap12Endpoint/\" )   david.res -   addList (  david ,  gene , idType =  idType , listName =  \"clusterProfiler\" , listType =  listType )  if (    david.res $ inDavid ==  0 )  {   stop (  \"All id can not be mapped. Please check 'idType' parameter...\" ) }   setAnnotationCategories (  david ,  annotation )   x -   getFunctionalAnnotationChart (  david , threshold =  1 , count =  minGSSize )  if (    length (   x @ .Data ) ==  0 )  {   warning (  \"No significant enrichment found...\" )   return (  NULL ) }   term -   x $ Term  if (    length (   grep (  \"~\" ,   term [  1 ] ) ) ==  0 )  {   sep -  \":\" } else  {   sep -  \"~\" }   term.list -   sapply (  term ,  function ( y )   strsplit (  y , split =  sep ) )   term.df -   do.call (  \"rbind\" ,  term.list )   ID -   term.df [ ,  1 ]   Description -   term.df [ ,  2 ]   GeneRatio -   with (  x ,   paste (  Count ,  List.Total , sep =  \"/\" ) )   BgRatio -   with (  x ,   paste (  Pop.Hits ,  Pop.Total , sep =  \"/\" ) )   Over -   data.frame ( ID =  ID , Description =  Description , GeneRatio =  GeneRatio , BgRatio =  BgRatio , pvalue =   x $ PValue , stringsAsFactors =  FALSE )    row.names (  Over ) -  ID  if (   pAdjustMethod ==  \"bonferroni\" )  {    Over $ p.adjust -   x $ Bonferroni } else  {    Over $ p.adjust -   x $ Benjamini }   qobj -   tryCatch (   qvalue ( p =   Over $ pvalue , lambda =  0.05 , pi0.method =  \"bootstrap\" ) , error =  function ( e )  NULL )  if (    class (  qobj ) ==  \"qvalue\" )  {   qvalues -   qobj $ qvalues } else  {   qvalues -  NA }    Over $ qvalue -  qvalues    Over $ geneID -   gsub (  \",\\\\s*\" ,  \"/\" ,   x $ Genes )    Over $ Count -   x $ Count   Over -   Over [    Over $ pvalue =  pvalueCutoff , ]   Over -   Over [    Over $ p.adjust =  pvalueCutoff , ]  if (  !   any (   is.na (   Over $ qvalue ) ) )  {   Over -   Over [    Over $ qvalue =  qvalueCutoff , ] }   org -   getSpecieNames (  david )   org -   gsub (  \"\\\\(.*\\\\)\" ,  \"\" ,  org )   gc -   strsplit (   Over $ geneID ,  \"/\" )    names (  gc ) -   Over $ ID  if (   !   is.na (  maxGSSize ) ||  !   is.null (  maxGSSize ) )  {   idx -    x $ Pop.Hits =  maxGSSize   Over -   Over [  idx , ] }   new (  \"enrichResult\" , result =  Over , pvalueCutoff =  pvalueCutoff , pAdjustMethod =  pAdjustMethod , organism =  org , ontology =  annotation , ## as.character(x$Category[1]), gene =   as.character (  gene ) , geneInCategory =  gc , keytype =  idType ) } ",
+    "filename": "enrichDAVID.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "enrichGO",
+    "representation": "enrichGO",
+    "parameters": "function ( gene , organism = \"human\" , ont = \"MF\" , pvalueCutoff = 0.05 , pAdjustMethod = \"BH\" , universe , qvalueCutoff = 0.2 , minGSSize = 5 , readable = FALSE )",
+    "body": "{   enrich.internal (  gene , organism =  organism , pvalueCutoff =  pvalueCutoff , pAdjustMethod =  pAdjustMethod , ont =  ont , universe =  universe , qvalueCutoff =  qvalueCutoff , minGSSize =  minGSSize , readable =  readable ) } ",
+    "filename": "enrichGO.txt"
+  },
+  "new_function": {
+    "name": "enrichGO",
+    "representation": "enrichGO",
+    "parameters": "function ( gene , OrgDb , keytype = \"ENTREZID\" , ont = \"MF\" , pvalueCutoff = 0.05 , pAdjustMethod = \"BH\" , universe , qvalueCutoff = 0.2 , minGSSize = 10 , maxGSSize = 500 , readable = FALSE )",
+    "body": "{   ont %  toupper   ont -   match.arg (  ont ,   c (  \"BP\" ,  \"CC\" ,  \"MF\" ,  \"ALL\" ) )   GO_DATA -   get_GO_data (  OrgDb ,  ont ,  keytype )   res -   enricher_internal (  gene , pvalueCutoff =  pvalueCutoff , pAdjustMethod =  pAdjustMethod , universe =  universe , qvalueCutoff =  qvalueCutoff , minGSSize =  minGSSize , maxGSSize =  maxGSSize , USER_DATA =  GO_DATA )  if (   is.null (  res ) )   return (  res )    res @ keytype -  keytype    res @ organism -   get_organism (  OrgDb )  if (  readable )  {   res -   setReadable (  res ,  OrgDb ) }    res @ ontology -  ont  if (   ont ==  \"ALL\" )  {   res -   add_GO_Ontology (  res ,  GO_DATA ) }   return (  res ) } ",
+    "filename": "enrichGO.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "gseGO",
+    "representation": "gseGO",
+    "parameters": "function ( geneList , ont = \"BP\" , organism = \"human\" , exponent = 1 , nPerm = 1000 , minGSSize = 10 , pvalueCutoff = 0.05 , pAdjustMethod = \"BH\" , verbose = TRUE )",
+    "body": "{   gseAnalyzer ( geneList =  geneList , setType =  ont , organism =  organism , exponent =  exponent , nPerm =  nPerm , minGSSize =  minGSSize , pvalueCutoff =  pvalueCutoff , pAdjustMethod =  pAdjustMethod , verbose =  verbose ) } ",
+    "filename": "gseAnalyzer.txt"
+  },
+  "new_function": {
+    "name": "gseGO",
+    "representation": "gseGO",
+    "parameters": "function ( geneList , ont = \"BP\" , OrgDb , keytype = \"ENTREZID\" , exponent = 1 , nPerm = 1000 , minGSSize = 10 , maxGSSize = 500 , pvalueCutoff = 0.05 , pAdjustMethod = \"BH\" , verbose = TRUE , seed = FALSE )",
+    "body": "{   ont %  toupper   ont -   match.arg (  ont ,   c (  \"BP\" ,  \"CC\" ,  \"MF\" ,  \"ALL\" ) )   GO_DATA -   get_GO_data (  OrgDb ,  ont ,  keytype )   res -   GSEA_internal ( geneList =  geneList , exponent =  exponent , nPerm =  nPerm , minGSSize =  minGSSize , maxGSSize =  maxGSSize , pvalueCutoff =  pvalueCutoff , pAdjustMethod =  pAdjustMethod , verbose =  verbose , USER_DATA =  GO_DATA , seed =  seed )  if (   is.null (  res ) )   return (  res )    res @ organism -   get_organism (  OrgDb )    res @ setType -  ont    res @ keytype -  keytype  if (   ont ==  \"ALL\" )  {   res -   add_GO_Ontology (  res ,  GO_DATA ) }   return (  res ) } ",
+    "filename": "gseAnalyzer.txt"
+  }
+}
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "idType",
+    "representation": "idType",
+    "parameters": "function ( annoDb = \"org.Hs.eg.db\" )",
+    "body": "{   db -   get_db_obj (  annoDb )   keytypes (  db ) } ",
+    "filename": "bitr.txt"
+  },
+  "new_function": {
+    "name": "idType",
+    "representation": "idType",
+    "parameters": "function ( OrgDb = \"org.Hs.eg.db\" )",
+    "body": "{   db -   load_OrgDb (  OrgDb )   keytypes (  db ) } ",
+    "filename": "bitr.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "bitr",
+    "representation": "bitr",
+    "parameters": "function ( geneID , fromType , toType , annoDb , drop = TRUE )",
+    "body": "{   idTypes -   idType (  annoDb )   msg -   paste0 (  \"should be one of \" ,   paste (  idTypes , collapse =  \", \" ) ,  \".\" )  if (  !   fromType %in%  idTypes )  {   stop (  \"'fromType' \" ,  msg ) }  if (  !   all (   toType %in%  idTypes ) )  {   stop (  \"'toType' \" ,  msg ) }    geneID %  as.character %  unique   db -   get_db_obj (  annoDb )   res -   suppressWarnings (   select (  db , keys =  geneID , keytype =  fromType , columns =   c (  fromType ,  toType ) ) )   ii -   which (   is.na (   res [ ,  2 ] ) )  if (   length (  ii ) )  {   n -     res [  ii ,  1 ] %  unique %  length  if (  n )  {   warning (   paste0 (   round (    n /   length (  geneID ) *  100 ,  2 ) ,  \"%\" ) ,  \" of input gene IDs are fail to map...\" ) }  if (  drop )  {   res -   res [  -  ii , ] } }   return (  res ) } ",
+    "filename": "bitr.txt"
+  },
+  "new_function": {
+    "name": "bitr",
+    "representation": "bitr",
+    "parameters": "function ( geneID , fromType , toType , OrgDb , drop = TRUE )",
+    "body": "{   idTypes -   idType (  OrgDb )   msg -   paste0 (  \"should be one of \" ,   paste (  idTypes , collapse =  \", \" ) ,  \".\" )  if (  !   fromType %in%  idTypes )  {   stop (  \"'fromType' \" ,  msg ) }  if (  !   all (   toType %in%  idTypes ) )  {   stop (  \"'toType' \" ,  msg ) }    geneID %  as.character %  unique   db -   load_OrgDb (  OrgDb )   res -   suppressWarnings (   select (  db , keys =  geneID , keytype =  fromType , columns =   c (  fromType ,  toType ) ) )   ii -   which (   is.na (   res [ ,  2 ] ) )  if (   length (  ii ) )  {   n -     res [  ii ,  1 ] %  unique %  length  if (  n )  {   warning (   paste0 (   round (    n /   length (  geneID ) *  100 ,  2 ) ,  \"%\" ) ,  \" of input gene IDs are fail to map...\" ) }  if (  drop )  {   res -   res [  -  ii , ] } }   return (  res ) } ",
+    "filename": "bitr.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "enrichDAVID",
+    "representation": "enrichDAVID",
+    "parameters": "function ( gene , idType = \"ENTREZ_GENE_ID\" , listType = \"Gene\" , minGSSize = 5 , annotation = \"GOTERM_BP_ALL\" , pvalueCutoff = 0.05 , pAdjustMethod = \"BH\" , qvalueCutoff = 0.2 , species = NA , david.user = \"clusterProfiler@hku.hk\" )",
+    "body": "{   Count -   List.Total -   Pop.Hits -   Pop.Total -  NULL   pAdjustMethod -   match.arg (  pAdjustMethod ,   c (  \"bonferroni\" ,  \"BH\" ) )   idType -   match.arg (  idType ,   c (  \"AFFYMETRIX_3PRIME_IVT_ID\" ,  \"AFFYMETRIX_EXON_GENE_ID\" ,  \"AFFYMETRIX_SNP_ID\" ,  \"AGILENT_CHIP_ID\" ,  \"AGILENT_ID\" ,  \"AGILENT_OLIGO_ID\" ,  \"ENSEMBL_GENE_ID\" ,  \"ENSEMBL_TRANSCRIPT_ID\" ,  \"ENTREZ_GENE_ID\" ,  \"GENOMIC_GI_ACCESSION\" ,  \"GENPEPT_ACCESSION\" ,  \"ILLUMINA_ID\" ,  \"IPI_ID\" ,  \"MGI_ID\" ,  \"OFFICIAL_GENE_SYMBOL\" ,  \"PFAM_ID\" ,  \"PIR_ID\" ,  \"PROTEIN_GI_ACCESSION\" ,  \"REFSEQ_GENOMIC\" ,  \"REFSEQ_MRNA\" ,  \"REFSEQ_PROTEIN\" ,  \"REFSEQ_RNA\" ,  \"RGD_ID\" ,  \"SGD_ID\" ,  \"TAIR_ID\" ,  \"UCSC_GENE_ID\" ,  \"UNIGENE\" ,  \"UNIPROT_ACCESSION\" ,  \"UNIPROT_ID\" ,  \"UNIREF100_ID\" ,  \"WORMBASE_GENE_ID\" ,  \"WORMPEP_ID\" ,  \"ZFIN_ID\" ) )   david.pkg -  \"RDAVIDWebService\"   pkgs -    installed.packages ( ) [ ,  1 ]  if (  !   david.pkg %in%  pkgs )  {   stop (  \"You should have RDAVIDWebService package installed before using enrichDAVID...\" ) }   require (  david.pkg , character.only =  TRUE )   DAVIDWebService -   eval (   parse ( text =  \"DAVIDWebService\" ) )   addList -   eval (   parse ( text =  \"addList\" ) )   setAnnotationCategories -   eval (   parse ( text =  \"setAnnotationCategories\" ) )   getFunctionalAnnotationChart -   eval (   parse ( text =  \"getFunctionalAnnotationChart\" ) )   getSpecieNames -   eval (   parse ( text =  \"getSpecieNames\" ) )   david -    DAVIDWebService $ new ( email =  david.user )   david.res -   addList (  david ,  gene , idType =  idType , listName =  \"clusterProfiler\" , listType =  listType )  if (    david.res $ inDavid ==  0 )  {   stop (  \"All id can not be mapped. Please check 'idType' parameter...\" ) }   setAnnotationCategories (  david ,  annotation )   x -   getFunctionalAnnotationChart (  david , threshold =  1 , count =  minGSSize )  if (    length (   x @ .Data ) ==  0 )  {   warning (  \"No significant enrichment found...\" )   return (  NULL ) }   term -   x $ Term  if (    length (   grep (  \"~\" ,   term [  1 ] ) ) ==  0 )  {   sep -  \":\" } else  {   sep -  \"~\" }   term.list -   sapply (  term ,  function ( y )   strsplit (  y , split =  sep ) )   term.df -   do.call (  \"rbind\" ,  term.list )   ID -   term.df [ ,  1 ]   Description -   term.df [ ,  2 ]   GeneRatio -   with (  x ,   paste (  Count ,  List.Total , sep =  \"/\" ) )   BgRatio -   with (  x ,   paste (  Pop.Hits ,  Pop.Total , sep =  \"/\" ) )   Over -   data.frame ( ID =  ID , Description =  Description , GeneRatio =  GeneRatio , BgRatio =  BgRatio , pvalue =   x $ PValue )    row.names (  Over ) -  ID  if (   pAdjustMethod ==  \"bonferroni\" )  {    Over $ p.adjust -   x $ Bonferroni } else  {    Over $ p.adjust -   x $ Benjamini }   qobj -   tryCatch (   qvalue ( p =   Over $ pvalue , lambda =  0.05 , pi0.method =  \"bootstrap\" ) , error =  function ( e )  NULL )  if (    class (  qobj ) ==  \"qvalue\" )  {   qvalues -   qobj $ qvalues } else  {   qvalues -  NA }    Over $ qvalue -  qvalues    Over $ geneID -   gsub (  \",\\\\s*\" ,  \"/\" ,   x $ Genes )    Over $ Count -   x $ Count   Over -   Over [    Over $ pvalue =  pvalueCutoff , ]   Over -   Over [    Over $ p.adjust =  pvalueCutoff , ]  if (  !   any (   is.na (   Over $ qvalue ) ) )  {   Over -   Over [    Over $ qvalue =  qvalueCutoff , ] }   org -   getSpecieNames (  david )   org -   gsub (  \"\\\\(.*\\\\)\" ,  \"\" ,  org )   gc -   strsplit (   Over $ geneID ,  \"/\" )    names (  gc ) -   Over $ ID   new (  \"enrichResult\" , result =  Over , pvalueCutoff =  pvalueCutoff , pAdjustMethod =  pAdjustMethod , organism =  org , ontology =   as.character (    x $ Category [  1 ] ) , gene =   as.character (  gene ) , geneInCategory =  gc ) } ",
+    "filename": "enrichDAVID.txt"
+  },
+  "new_function": {
+    "name": "enrichDAVID",
+    "representation": "enrichDAVID",
+    "parameters": "function ( gene , idType = \"ENTREZ_GENE_ID\" , listType = \"Gene\" , minGSSize = 10 , maxGSSize = 500 , annotation = \"GOTERM_BP_FAT\" , pvalueCutoff = 0.05 , pAdjustMethod = \"BH\" , qvalueCutoff = 0.2 , species = NA , david.user )",
+    "body": "{   Count -   List.Total -   Pop.Hits -   Pop.Total -  NULL   pAdjustMethod -   match.arg (  pAdjustMethod ,   c (  \"bonferroni\" ,  \"BH\" ) )   idType -   match.arg (  idType ,   c (  \"AFFYMETRIX_3PRIME_IVT_ID\" ,  \"AFFYMETRIX_EXON_GENE_ID\" ,  \"AFFYMETRIX_SNP_ID\" ,  \"AGILENT_CHIP_ID\" ,  \"AGILENT_ID\" ,  \"AGILENT_OLIGO_ID\" ,  \"ENSEMBL_GENE_ID\" ,  \"ENSEMBL_TRANSCRIPT_ID\" ,  \"ENTREZ_GENE_ID\" ,  \"GENOMIC_GI_ACCESSION\" ,  \"GENPEPT_ACCESSION\" ,  \"ILLUMINA_ID\" ,  \"IPI_ID\" ,  \"MGI_ID\" ,  \"OFFICIAL_GENE_SYMBOL\" ,  \"PFAM_ID\" ,  \"PIR_ID\" ,  \"PROTEIN_GI_ACCESSION\" ,  \"REFSEQ_GENOMIC\" ,  \"REFSEQ_MRNA\" ,  \"REFSEQ_PROTEIN\" ,  \"REFSEQ_RNA\" ,  \"RGD_ID\" ,  \"SGD_ID\" ,  \"TAIR_ID\" ,  \"UCSC_GENE_ID\" ,  \"UNIGENE\" ,  \"UNIPROT_ACCESSION\" ,  \"UNIPROT_ID\" ,  \"UNIREF100_ID\" ,  \"WORMBASE_GENE_ID\" ,  \"WORMPEP_ID\" ,  \"ZFIN_ID\" ) )   david.pkg -  \"RDAVIDWebService\"   pkgs -    installed.packages ( ) [ ,  1 ]  if (  !   david.pkg %in%  pkgs )  {   stop (  \"You should have RDAVIDWebService package installed before using enrichDAVID...\" ) }   require (  david.pkg , character.only =  TRUE )   DAVIDWebService -   eval (   parse ( text =  \"DAVIDWebService\" ) )   addList -   eval (   parse ( text =  \"addList\" ) )   setAnnotationCategories -   eval (   parse ( text =  \"setAnnotationCategories\" ) )   getFunctionalAnnotationChart -   eval (   parse ( text =  \"getFunctionalAnnotationChart\" ) )   getSpecieNames -   eval (   parse ( text =  \"getSpecieNames\" ) )   david -    DAVIDWebService $ new ( email =  david.user , url =  \"https://david.ncifcrf.gov/webservice/services/DAVIDWebService.DAVIDWebServiceHttpSoap12Endpoint/\" )   david.res -   addList (  david ,  gene , idType =  idType , listName =  \"clusterProfiler\" , listType =  listType )  if (    david.res $ inDavid ==  0 )  {   stop (  \"All id can not be mapped. Please check 'idType' parameter...\" ) }   setAnnotationCategories (  david ,  annotation )   x -   getFunctionalAnnotationChart (  david , threshold =  1 , count =  minGSSize )  if (    length (   x @ .Data ) ==  0 )  {   warning (  \"No significant enrichment found...\" )   return (  NULL ) }   term -   x $ Term  if (    length (   grep (  \"~\" ,   term [  1 ] ) ) ==  0 )  {   sep -  \":\" } else  {   sep -  \"~\" }   term.list -   sapply (  term ,  function ( y )   strsplit (  y , split =  sep ) )   term.df -   do.call (  \"rbind\" ,  term.list )   ID -   term.df [ ,  1 ]   Description -   term.df [ ,  2 ]   GeneRatio -   with (  x ,   paste (  Count ,  List.Total , sep =  \"/\" ) )   BgRatio -   with (  x ,   paste (  Pop.Hits ,  Pop.Total , sep =  \"/\" ) )   Over -   data.frame ( ID =  ID , Description =  Description , GeneRatio =  GeneRatio , BgRatio =  BgRatio , pvalue =   x $ PValue , stringsAsFactors =  FALSE )    row.names (  Over ) -  ID  if (   pAdjustMethod ==  \"bonferroni\" )  {    Over $ p.adjust -   x $ Bonferroni } else  {    Over $ p.adjust -   x $ Benjamini }   qobj -   tryCatch (   qvalue ( p =   Over $ pvalue , lambda =  0.05 , pi0.method =  \"bootstrap\" ) , error =  function ( e )  NULL )  if (    class (  qobj ) ==  \"qvalue\" )  {   qvalues -   qobj $ qvalues } else  {   qvalues -  NA }    Over $ qvalue -  qvalues    Over $ geneID -   gsub (  \",\\\\s*\" ,  \"/\" ,   x $ Genes )    Over $ Count -   x $ Count   Over -   Over [    Over $ pvalue =  pvalueCutoff , ]   Over -   Over [    Over $ p.adjust =  pvalueCutoff , ]  if (  !   any (   is.na (   Over $ qvalue ) ) )  {   Over -   Over [    Over $ qvalue =  qvalueCutoff , ] }   org -   getSpecieNames (  david )   org -   gsub (  \"\\\\(.*\\\\)\" ,  \"\" ,  org )   gc -   strsplit (   Over $ geneID ,  \"/\" )    names (  gc ) -   Over $ ID  if (   !   is.na (  maxGSSize ) ||  !   is.null (  maxGSSize ) )  {   idx -    x $ Pop.Hits =  maxGSSize   Over -   Over [  idx , ] }   new (  \"enrichResult\" , result =  Over , pvalueCutoff =  pvalueCutoff , pAdjustMethod =  pAdjustMethod , organism =  org , ontology =  annotation , ## as.character(x$Category[1]), gene =   as.character (  gene ) , geneInCategory =  gc , keytype =  idType ) } ",
+    "filename": "enrichDAVID.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "enricher",
+    "representation": "enricher",
+    "parameters": "function ( gene , pvalueCutoff = 0.05 , pAdjustMethod = \"BH\" , universe , minGSSize = 5 , qvalueCutoff = 0.2 , TERM2GENE , TERM2NAME = NA )",
+    "body": "{   USER_DATA -   build_Anno (  TERM2GENE ,  TERM2NAME )   enrich.internal ( gene =  gene , organism =  \"UNKNOWN\" , pvalueCutoff =  pvalueCutoff , pAdjustMethod =  pAdjustMethod , ont =  \"USER_DEFINED\" , universe =  universe , minGSSize =  minGSSize , qvalueCutoff =  qvalueCutoff , readable =  FALSE , USER_DATA =  USER_DATA ) } ",
+    "filename": "enricher.txt"
+  },
+  "new_function": {
+    "name": "enricher",
+    "representation": "enricher",
+    "parameters": "function ( gene , pvalueCutoff = 0.05 , pAdjustMethod = \"BH\" , universe , minGSSize = 10 , maxGSSize = 500 , qvalueCutoff = 0.2 , TERM2GENE , TERM2NAME = NA )",
+    "body": "{   USER_DATA -   build_Anno (  TERM2GENE ,  TERM2NAME )   enricher_internal ( gene =  gene , pvalueCutoff =  pvalueCutoff , pAdjustMethod =  pAdjustMethod , universe =  universe , minGSSize =  minGSSize , maxGSSize =  maxGSSize , qvalueCutoff =  qvalueCutoff , USER_DATA =  USER_DATA ) } ",
+    "filename": "enricher.txt"
+  }
+}
+
+4.
+{
+  "old_function": {
+    "name": "GSEA",
+    "representation": "GSEA",
+    "parameters": "function ( geneList , exponent = 1 , nPerm = 1000 , minGSSize = 10 , pvalueCutoff = 0.05 , pAdjustMethod = \"BH\" , TERM2GENE , TERM2NAME = NA , verbose = TRUE )",
+    "body": "{  if (  verbose )   cat (  \"preparing geneSet collections...\\n\" )   organism =  \"UNKNOWN\"   setType -  \"USER_DEFINED\"    class (  setType ) -  setType   USER_DATA -   build_Anno (  TERM2GENE ,  TERM2NAME )   geneSets -   getGeneSet (  setType ,  organism , USER_DATA =  USER_DATA )   gsea ( geneList =  geneList , geneSets =  geneSets , setType =  setType , organism =  organism , exponent =  exponent , nPerm =  nPerm , minGSSize =  minGSSize , pvalueCutoff =  pvalueCutoff , pAdjustMethod =  pAdjustMethod , verbose =  verbose , USER_DATA =  USER_DATA ) } ",
+    "filename": "enricher.txt"
+  },
+  "new_function": {
+    "name": "GSEA",
+    "representation": "GSEA",
+    "parameters": "function ( geneList , exponent = 1 , nPerm = 1000 , minGSSize = 10 , maxGSSize = 500 , pvalueCutoff = 0.05 , pAdjustMethod = \"BH\" , TERM2GENE , TERM2NAME = NA , verbose = TRUE , seed = FALSE )",
+    "body": "{   USER_DATA -   build_Anno (  TERM2GENE ,  TERM2NAME )   GSEA_internal ( geneList =  geneList , exponent =  exponent , nPerm =  nPerm , minGSSize =  minGSSize , maxGSSize =  maxGSSize , pvalueCutoff =  pvalueCutoff , pAdjustMethod =  pAdjustMethod , verbose =  verbose , USER_DATA =  USER_DATA , seed =  seed ) } ",
+    "filename": "enricher.txt"
+  }
+}
+
+5.
+{
+  "old_function": {
+    "name": "enrichGO",
+    "representation": "enrichGO",
+    "parameters": "function ( gene , organism = \"human\" , ont = \"MF\" , pvalueCutoff = 0.05 , pAdjustMethod = \"BH\" , universe , qvalueCutoff = 0.2 , minGSSize = 5 , readable = FALSE )",
+    "body": "{   enrich.internal (  gene , organism =  organism , pvalueCutoff =  pvalueCutoff , pAdjustMethod =  pAdjustMethod , ont =  ont , universe =  universe , qvalueCutoff =  qvalueCutoff , minGSSize =  minGSSize , readable =  readable ) } ",
+    "filename": "enrichGO.txt"
+  },
+  "new_function": {
+    "name": "enrichGO",
+    "representation": "enrichGO",
+    "parameters": "function ( gene , OrgDb , keytype = \"ENTREZID\" , ont = \"MF\" , pvalueCutoff = 0.05 , pAdjustMethod = \"BH\" , universe , qvalueCutoff = 0.2 , minGSSize = 10 , maxGSSize = 500 , readable = FALSE )",
+    "body": "{   ont %  toupper   ont -   match.arg (  ont ,   c (  \"BP\" ,  \"CC\" ,  \"MF\" ,  \"ALL\" ) )   GO_DATA -   get_GO_data (  OrgDb ,  ont ,  keytype )   res -   enricher_internal (  gene , pvalueCutoff =  pvalueCutoff , pAdjustMethod =  pAdjustMethod , universe =  universe , qvalueCutoff =  qvalueCutoff , minGSSize =  minGSSize , maxGSSize =  maxGSSize , USER_DATA =  GO_DATA )  if (   is.null (  res ) )   return (  res )    res @ keytype -  keytype    res @ organism -   get_organism (  OrgDb )  if (  readable )  {   res -   setReadable (  res ,  OrgDb ) }    res @ ontology -  ont  if (   ont ==  \"ALL\" )  {   res -   add_GO_Ontology (  res ,  GO_DATA ) }   return (  res ) } ",
+    "filename": "enrichGO.txt"
+  }
+}
+
+6.
+{
+  "old_function": {
+    "name": "gseGO",
+    "representation": "gseGO",
+    "parameters": "function ( geneList , ont = \"BP\" , organism = \"human\" , exponent = 1 , nPerm = 1000 , minGSSize = 10 , pvalueCutoff = 0.05 , pAdjustMethod = \"BH\" , verbose = TRUE )",
+    "body": "{   gseAnalyzer ( geneList =  geneList , setType =  ont , organism =  organism , exponent =  exponent , nPerm =  nPerm , minGSSize =  minGSSize , pvalueCutoff =  pvalueCutoff , pAdjustMethod =  pAdjustMethod , verbose =  verbose ) } ",
+    "filename": "gseAnalyzer.txt"
+  },
+  "new_function": {
+    "name": "gseGO",
+    "representation": "gseGO",
+    "parameters": "function ( geneList , ont = \"BP\" , OrgDb , keytype = \"ENTREZID\" , exponent = 1 , nPerm = 1000 , minGSSize = 10 , maxGSSize = 500 , pvalueCutoff = 0.05 , pAdjustMethod = \"BH\" , verbose = TRUE , seed = FALSE )",
+    "body": "{   ont %  toupper   ont -   match.arg (  ont ,   c (  \"BP\" ,  \"CC\" ,  \"MF\" ,  \"ALL\" ) )   GO_DATA -   get_GO_data (  OrgDb ,  ont ,  keytype )   res -   GSEA_internal ( geneList =  geneList , exponent =  exponent , nPerm =  nPerm , minGSSize =  minGSSize , maxGSSize =  maxGSSize , pvalueCutoff =  pvalueCutoff , pAdjustMethod =  pAdjustMethod , verbose =  verbose , USER_DATA =  GO_DATA , seed =  seed )  if (   is.null (  res ) )   return (  res )    res @ organism -   get_organism (  OrgDb )    res @ setType -  ont    res @ keytype -  keytype  if (   ont ==  \"ALL\" )  {   res -   add_GO_Ontology (  res ,  GO_DATA ) }   return (  res ) } ",
+    "filename": "gseAnalyzer.txt"
+  }
+}
+
+7.
+{
+  "old_function": {
+    "name": "gseKEGG",
+    "representation": "gseKEGG",
+    "parameters": "function ( geneList , organism = \"human\" , exponent = 1 , nPerm = 1000 , minGSSize = 10 , pvalueCutoff = 0.05 , pAdjustMethod = \"BH\" , use_internal_data = FALSE , verbose = TRUE )",
+    "body": "{   gseAnalyzer ( geneList =  geneList , setType =  \"KEGG\" , organism =  organism , exponent =  exponent , nPerm =  nPerm , minGSSize =  minGSSize , pvalueCutoff =  pvalueCutoff , pAdjustMethod =  pAdjustMethod , use_internal_data =  use_internal_data , verbose =  verbose ) } ",
+    "filename": "gseAnalyzer.txt"
+  },
+  "new_function": {
+    "name": "gseKEGG",
+    "representation": "gseKEGG",
+    "parameters": "function ( geneList , organism = 'hsa' , keyType = 'kegg' , exponent = 1 , nPerm = 1000 , minGSSize = 10 , maxGSSize = 500 , pvalueCutoff = 0.05 , pAdjustMethod = \"BH\" , verbose = TRUE , use_internal_data = FALSE , seed = FALSE )",
+    "body": "{   species -   organismMapper (  organism )  if (  use_internal_data )  {   KEGG_DATA -   get_data_from_KEGG_db (  species ) } else  {   KEGG_DATA -   download.KEGG (  species ,  \"KEGG\" ,  keyType ) }   res -   GSEA_internal ( geneList =  geneList , exponent =  exponent , nPerm =  nPerm , minGSSize =  minGSSize , maxGSSize =  maxGSSize , pvalueCutoff =  pvalueCutoff , pAdjustMethod =  pAdjustMethod , verbose =  verbose , USER_DATA =  KEGG_DATA , seed =  seed )  if (   is.null (  res ) )   return (  res )    res @ organism -  species    res @ setType -  \"KEGG\"    res @ keytype -  \"UNKNOWN\"   return (  res ) } ",
+    "filename": "gseAnalyzer.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  clusterprofiler_release_3_3 clusterprofiler_release_3_4
+
+{
+    "package": "clusterProfiler",
+    "release_versions": "clusterprofiler_release_3_3 clusterprofiler_release_3_4",
+    "desc_release_old": "3.0.5",
+    "desc_release_new": "3.2.14",
+    "old_release_number": 8,
+    "new_release_number": 9,
+    "function_removals": 0,
+    "function_additions": 10,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+browseKEGG
+download_KEGG
+[.compareClusterResult
+[[.compareClusterResult
+as.data.frame.compareClusterResult
+dim.compareClusterResult
+geneID.groupGOResult
+geneInCategory.groupGOResult
+head.compareClusterResult
+tail.compareClusterResult
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "fortify.compareClusterResult",
+    "representation": "fortify.compareClusterResult",
+    "parameters": "function ( model , data , showCategory = 5 , by = \"geneRatio\" , includeAll = TRUE )",
+    "body": "{   clProf.df -   summary (  model ) ## get top 5 (default) categories of each gene cluster.  if (   is.null (  showCategory ) )  {   result -  clProf.df } else  {   Cluster -  NULL # to satisfy codetools   result -   ddply ( .data =  clProf.df , .variables =   . (  Cluster ) , .fun =  function ( df , N )  {  if (    length (   df $ Count ) undefined  N )  {  if (   any (    colnames (  df ) ==  \"pvalue\" ) )  {   idx -    order (   df $ pvalue , decreasing =  FALSE ) [   1 :  N ] } else  { ## for groupGO   idx -    order (   df $ Count , decreasing =  T ) [   1 :  N ] }   return (   df [  idx , ] ) } else  {   return (  df ) } } , N =  showCategory ) }   ID -  NULL  if (   includeAll ==  TRUE )  {   result =   subset (  clProf.df ,   ID %in%   result $ ID ) } ## remove zero count    result $ Description -   as.character (   result $ Description ) ## un-factor   GOlevel -   result [ ,   c (  \"ID\" ,  \"Description\" ) ] ## GO ID and Term   GOlevel -   unique (  GOlevel )   result -   result [    result $ Count !=  0 , ]    result $ Description -   factor (   result $ Description , levels =   rev (   GOlevel [ ,  2 ] ) )  if (   by ==  \"rowPercentage\" )  {   Description -   Count -  NULL # to satisfy codetools   result -   ddply (  result ,   . (  Description ) ,  transform , Percentage =   Count /   sum (  Count ) , Total =   sum (  Count ) ) ## label GO Description with gene counts.   x -   mdply (   result [ ,   c (  \"Description\" ,  \"Total\" ) ] ,  paste , sep =  \" (\" )   y -   sapply (   x [ ,  3 ] ,  paste ,  \")\" , sep =  \"\" )    result $ Description -  y ## restore the original order of GO Description   xx -   result [ ,   c (  2 ,  3 ) ]   xx -   unique (  xx )    rownames (  xx ) -   xx [ ,  1 ]   Termlevel -   xx [   as.character (   GOlevel [ ,  1 ] ) ,  2 ] ##drop the *Total* column   result -   result [ ,    colnames (  result ) !=  \"Total\" ]    result $ Description -   factor (   result $ Description , levels =   rev (  Termlevel ) ) } else  if (   by ==  \"count\" )  { ## nothing } else  if (   by ==  \"geneRatio\" )  {   gsize -   as.numeric (   sub (  \"/\\\\d+$\" ,  \"\" ,   as.character (   result $ GeneRatio ) ) )   gcsize -   as.numeric (   sub (  \"^\\\\d+/\" ,  \"\" ,   as.character (   result $ GeneRatio ) ) )    result $ GeneRatio =   gsize /  gcsize    result $ Cluster -   paste (   as.character (   result $ Cluster ) ,  \"\\n\" ,  \"(\" ,  gcsize ,  \")\" , sep =  \"\" ) } else  { ## nothing }   return (  result ) } ",
+    "filename": "dotplot.txt"
+  },
+  "new_function": {
+    "name": "fortify.compareClusterResult",
+    "representation": "fortify.compareClusterResult",
+    "parameters": "function ( model , data , showCategory = 5 , by = \"geneRatio\" , category = NULL , includeAll = TRUE )",
+    "body": "{   clProf.df -   as.data.frame (  model ) ## get top 5 (default) categories of each gene cluster.  if (   is.null (  showCategory ) )  {   result -  clProf.df } else  {   Cluster -  NULL # to satisfy codetools   topN -  function ( res , showCategory )  {   ddply ( .data =  res , .variables =   . (  Cluster ) , .fun =  function ( df , N )  {  if (    length (   df $ Count ) undefined  N )  {  if (   any (    colnames (  df ) ==  \"pvalue\" ) )  {   idx -    order (   df $ pvalue , decreasing =  FALSE ) [   1 :  N ] } else  { ## for groupGO   idx -    order (   df $ Count , decreasing =  T ) [   1 :  N ] }   return (   df [  idx , ] ) } else  {   return (  df ) } } , N =  showCategory ) }  if (   is.null (  category ) )  {   result -   topN (  clProf.df ,  showCategory ) } else  {   lres -   split (  clProf.df ,   as.character (   clProf.df [ ,  category ] ) )   lres -   lapply (  lres ,  topN , showCategory =  showCategory )   result -   do.call (  'rbind' ,  lres ) } }   ID -  NULL  if (   includeAll ==  TRUE )  {   result =   subset (  clProf.df ,   ID %in%   result $ ID ) } ## remove zero count    result $ Description -   as.character (   result $ Description ) ## un-factor   GOlevel -   result [ ,   c (  \"ID\" ,  \"Description\" ) ] ## GO ID and Term   GOlevel -   unique (  GOlevel )   result -   result [    result $ Count !=  0 , ]    result $ Description -   factor (   result $ Description , levels =   rev (   GOlevel [ ,  2 ] ) )  if (   by ==  \"rowPercentage\" )  {   Description -   Count -  NULL # to satisfy codetools   result -   ddply (  result ,   . (  Description ) ,  transform , Percentage =   Count /   sum (  Count ) , Total =   sum (  Count ) ) ## label GO Description with gene counts.   x -   mdply (   result [ ,   c (  \"Description\" ,  \"Total\" ) ] ,  paste , sep =  \" (\" )   y -   sapply (   x [ ,  3 ] ,  paste ,  \")\" , sep =  \"\" )    result $ Description -  y ## restore the original order of GO Description   xx -   result [ ,   c (  2 ,  3 ) ]   xx -   unique (  xx )    rownames (  xx ) -   xx [ ,  1 ]   Termlevel -   xx [   as.character (   GOlevel [ ,  1 ] ) ,  2 ] ##drop the *Total* column   result -   result [ ,    colnames (  result ) !=  \"Total\" ]    result $ Description -   factor (   result $ Description , levels =   rev (  Termlevel ) ) } else  if (   by ==  \"count\" )  { ## nothing } else  if (   by ==  \"geneRatio\" )  {   gsize -   as.numeric (   sub (  \"/\\\\d+$\" ,  \"\" ,   as.character (   result $ GeneRatio ) ) )   gcsize -   as.numeric (   sub (  \"^\\\\d+/\" ,  \"\" ,   as.character (   result $ GeneRatio ) ) )    result $ GeneRatio =   gsize /  gcsize    result $ Cluster -   paste (   as.character (   result $ Cluster ) ,  \"\\n\" ,  \"(\" ,  gcsize ,  \")\" , sep =  \"\" ) } else  { ## nothing }   return (  result ) } ",
+    "filename": "dotplot.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  clusterprofiler_release_3_4 clusterprofiler_release_3_5
+
+{
+    "package": "clusterProfiler",
+    "release_versions": "clusterprofiler_release_3_4 clusterprofiler_release_3_5",
+    "desc_release_old": "3.2.14",
+    "desc_release_new": "3.4.4",
+    "old_release_number": 9,
+    "new_release_number": 10,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 2,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "fortify.compareClusterResult",
+    "representation": "fortify.compareClusterResult",
+    "parameters": "function ( model , data , showCategory = 5 , by = \"geneRatio\" , category = NULL , includeAll = TRUE )",
+    "body": "{   clProf.df -   as.data.frame (  model ) ## get top 5 (default) categories of each gene cluster.  if (   is.null (  showCategory ) )  {   result -  clProf.df } else  {   Cluster -  NULL # to satisfy codetools   topN -  function ( res , showCategory )  {   ddply ( .data =  res , .variables =   . (  Cluster ) , .fun =  function ( df , N )  {  if (    length (   df $ Count ) undefined  N )  {  if (   any (    colnames (  df ) ==  \"pvalue\" ) )  {   idx -    order (   df $ pvalue , decreasing =  FALSE ) [   1 :  N ] } else  { ## for groupGO   idx -    order (   df $ Count , decreasing =  T ) [   1 :  N ] }   return (   df [  idx , ] ) } else  {   return (  df ) } } , N =  showCategory ) }  if (   is.null (  category ) )  {   result -   topN (  clProf.df ,  showCategory ) } else  {   lres -   split (  clProf.df ,   as.character (   clProf.df [ ,  category ] ) )   lres -   lapply (  lres ,  topN , showCategory =  showCategory )   result -   do.call (  'rbind' ,  lres ) } }   ID -  NULL  if (   includeAll ==  TRUE )  {   result =   subset (  clProf.df ,   ID %in%   result $ ID ) } ## remove zero count    result $ Description -   as.character (   result $ Description ) ## un-factor   GOlevel -   result [ ,   c (  \"ID\" ,  \"Description\" ) ] ## GO ID and Term   GOlevel -   unique (  GOlevel )   result -   result [    result $ Count !=  0 , ]    result $ Description -   factor (   result $ Description , levels =   rev (   GOlevel [ ,  2 ] ) )  if (   by ==  \"rowPercentage\" )  {   Description -   Count -  NULL # to satisfy codetools   result -   ddply (  result ,   . (  Description ) ,  transform , Percentage =   Count /   sum (  Count ) , Total =   sum (  Count ) ) ## label GO Description with gene counts.   x -   mdply (   result [ ,   c (  \"Description\" ,  \"Total\" ) ] ,  paste , sep =  \" (\" )   y -   sapply (   x [ ,  3 ] ,  paste ,  \")\" , sep =  \"\" )    result $ Description -  y ## restore the original order of GO Description   xx -   result [ ,   c (  2 ,  3 ) ]   xx -   unique (  xx )    rownames (  xx ) -   xx [ ,  1 ]   Termlevel -   xx [   as.character (   GOlevel [ ,  1 ] ) ,  2 ] ##drop the *Total* column   result -   result [ ,    colnames (  result ) !=  \"Total\" ]    result $ Description -   factor (   result $ Description , levels =   rev (  Termlevel ) ) } else  if (   by ==  \"count\" )  { ## nothing } else  if (   by ==  \"geneRatio\" )  {   gsize -   as.numeric (   sub (  \"/\\\\d+$\" ,  \"\" ,   as.character (   result $ GeneRatio ) ) )   gcsize -   as.numeric (   sub (  \"^\\\\d+/\" ,  \"\" ,   as.character (   result $ GeneRatio ) ) )    result $ GeneRatio =   gsize /  gcsize    result $ Cluster -   paste (   as.character (   result $ Cluster ) ,  \"\\n\" ,  \"(\" ,  gcsize ,  \")\" , sep =  \"\" ) } else  { ## nothing }   return (  result ) } ",
+    "filename": "dotplot.txt"
+  },
+  "new_function": {
+    "name": "fortify.compareClusterResult",
+    "representation": "fortify.compareClusterResult",
+    "parameters": "function ( model , data , showCategory = 5 , by = \"geneRatio\" , split = NULL , includeAll = TRUE )",
+    "body": "{   clProf.df -   as.data.frame (  model ) ## get top 5 (default) categories of each gene cluster.  if (   is.null (  showCategory ) )  {   result -  clProf.df } else  {   Cluster -  NULL # to satisfy codetools   topN -  function ( res , showCategory )  {   ddply ( .data =  res , .variables =   . (  Cluster ) , .fun =  function ( df , N )  {  if (    length (   df $ Count ) undefined  N )  {  if (   any (    colnames (  df ) ==  \"pvalue\" ) )  {   idx -    order (   df $ pvalue , decreasing =  FALSE ) [   1 :  N ] } else  { ## for groupGO   idx -    order (   df $ Count , decreasing =  T ) [   1 :  N ] }   return (   df [  idx , ] ) } else  {   return (  df ) } } , N =  showCategory ) }  if (   is.null (  split ) )  {   result -   topN (  clProf.df ,  showCategory ) } else  {   lres -   split (  clProf.df ,   as.character (   clProf.df [ ,  split ] ) )   lres -   lapply (  lres ,  topN , showCategory =  showCategory )   result -   do.call (  'rbind' ,  lres ) } }   ID -  NULL  if (   includeAll ==  TRUE )  {   result =   subset (  clProf.df ,   ID %in%   result $ ID ) } ## remove zero count    result $ Description -   as.character (   result $ Description ) ## un-factor   GOlevel -   result [ ,   c (  \"ID\" ,  \"Description\" ) ] ## GO ID and Term   GOlevel -   unique (  GOlevel )   result -   result [    result $ Count !=  0 , ]    result $ Description -   factor (   result $ Description , levels =   rev (   GOlevel [ ,  2 ] ) )  if (   by ==  \"rowPercentage\" )  {   Description -   Count -  NULL # to satisfy codetools   result -   ddply (  result ,   . (  Description ) ,  transform , Percentage =   Count /   sum (  Count ) , Total =   sum (  Count ) ) ## label GO Description with gene counts.   x -   mdply (   result [ ,   c (  \"Description\" ,  \"Total\" ) ] ,  paste , sep =  \" (\" )   y -   sapply (   x [ ,  3 ] ,  paste ,  \")\" , sep =  \"\" )    result $ Description -  y ## restore the original order of GO Description   xx -   result [ ,   c (  2 ,  3 ) ]   xx -   unique (  xx )    rownames (  xx ) -   xx [ ,  1 ]   Termlevel -   xx [   as.character (   GOlevel [ ,  1 ] ) ,  2 ] ##drop the *Total* column   result -   result [ ,    colnames (  result ) !=  \"Total\" ]    result $ Description -   factor (   result $ Description , levels =   rev (  Termlevel ) ) } else  if (   by ==  \"count\" )  { ## nothing } else  if (   by ==  \"geneRatio\" )  {   gsize -   as.numeric (   sub (  \"/\\\\d+$\" ,  \"\" ,   as.character (   result $ GeneRatio ) ) )   gcsize -   as.numeric (   sub (  \"^\\\\d+/\" ,  \"\" ,   as.character (   result $ GeneRatio ) ) )    result $ GeneRatio =   gsize /  gcsize ## result$Cluster   cluster -   paste (   as.character (   result $ Cluster ) ,  \"\\n\" ,  \"(\" ,  gcsize ,  \")\" , sep =  \"\" )   lv -    unique (  cluster ) [   order (   as.numeric (   unique (   result $ Cluster ) ) ) ]    result $ Cluster -   factor (  cluster , levels =  lv ) } else  { ## nothing }   return (  result ) } ",
+    "filename": "dotplot.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "gseGO",
+    "representation": "gseGO",
+    "parameters": "function ( geneList , ont = \"BP\" , OrgDb , keytype = \"ENTREZID\" , exponent = 1 , nPerm = 1000 , minGSSize = 10 , maxGSSize = 500 , pvalueCutoff = 0.05 , pAdjustMethod = \"BH\" , verbose = TRUE , seed = FALSE , by = 'fgsea' )",
+    "body": "{   ont %  toupper   ont -   match.arg (  ont ,   c (  \"BP\" ,  \"CC\" ,  \"MF\" ,  \"ALL\" ) )   GO_DATA -   get_GO_data (  OrgDb ,  ont ,  keytype )   res -   GSEA_internal ( geneList =  geneList , exponent =  exponent , nPerm =  nPerm , minGSSize =  minGSSize , maxGSSize =  maxGSSize , pvalueCutoff =  pvalueCutoff , pAdjustMethod =  pAdjustMethod , verbose =  verbose , USER_DATA =  GO_DATA , seed =  seed , by =  by )  if (   is.null (  res ) )   return (  res )    res @ organism -   get_organism (  OrgDb )    res @ setType -  ont    res @ keytype -  keytype  if (   ont ==  \"ALL\" )  {   res -   add_GO_Ontology (  res ,  GO_DATA ) }   return (  res ) } ",
+    "filename": "gseAnalyzer.txt"
+  },
+  "new_function": {
+    "name": "gseGO",
+    "representation": "gseGO",
+    "parameters": "function ( geneList , ont = \"BP\" , OrgDb , keyType = \"ENTREZID\" , exponent = 1 , nPerm = 1000 , minGSSize = 10 , maxGSSize = 500 , pvalueCutoff = 0.05 , pAdjustMethod = \"BH\" , verbose = TRUE , seed = FALSE , by = 'fgsea' )",
+    "body": "{   ont %  toupper   ont -   match.arg (  ont ,   c (  \"BP\" ,  \"CC\" ,  \"MF\" ,  \"ALL\" ) )   GO_DATA -   get_GO_data (  OrgDb ,  ont ,  keyType )   res -   GSEA_internal ( geneList =  geneList , exponent =  exponent , nPerm =  nPerm , minGSSize =  minGSSize , maxGSSize =  maxGSSize , pvalueCutoff =  pvalueCutoff , pAdjustMethod =  pAdjustMethod , verbose =  verbose , USER_DATA =  GO_DATA , seed =  seed , by =  by )  if (   is.null (  res ) )   return (  res )    res @ organism -   get_organism (  OrgDb )    res @ setType -  ont    res @ keytype -  keyType  if (   ont ==  \"ALL\" )  {   res -   add_GO_Ontology (  res ,  GO_DATA ) }   return (  res ) } ",
+    "filename": "gseAnalyzer.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  clusterprofiler_release_3_5 clusterprofiler_release_3_6
+
+{
+    "package": "clusterProfiler",
+    "release_versions": "clusterprofiler_release_3_5 clusterprofiler_release_3_6",
+    "desc_release_old": "3.4.4",
+    "desc_release_new": "3.6.0",
+    "old_release_number": 10,
+    "new_release_number": 11,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 1,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 2,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+ko2name
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "enrichDAVID",
+    "representation": "enrichDAVID",
+    "parameters": "function ( gene , idType = \"ENTREZ_GENE_ID\" , listType = \"Gene\" , minGSSize = 10 , maxGSSize = 500 , annotation = \"GOTERM_BP_FAT\" , pvalueCutoff = 0.05 , pAdjustMethod = \"BH\" , qvalueCutoff = 0.2 , species = NA , david.user )",
+    "body": "{   Count -   List.Total -   Pop.Hits -   Pop.Total -  NULL   pAdjustMethod -   match.arg (  pAdjustMethod ,   c (  \"bonferroni\" ,  \"BH\" ) )   david.pkg -  \"RDAVIDWebService\"   pkgs -    installed.packages ( ) [ ,  1 ]  if (  !   david.pkg %in%  pkgs )  {   stop (  \"You should have RDAVIDWebService package installed before using enrichDAVID...\" ) }   require (  david.pkg , character.only =  TRUE )   DAVIDWebService -   eval (   parse ( text =  \"DAVIDWebService\" ) )   addList -   eval (   parse ( text =  \"addList\" ) )   setAnnotationCategories -   eval (   parse ( text =  \"setAnnotationCategories\" ) )   getFunctionalAnnotationChart -   eval (   parse ( text =  \"getFunctionalAnnotationChart\" ) )   getSpecieNames -   eval (   parse ( text =  \"getSpecieNames\" ) )   getIdTypes -   eval (   parse ( text =  \"getIdTypes\" ) )   david -    DAVIDWebService $ new ( email =  david.user , url =  \"https://david.ncifcrf.gov/webservice/services/DAVIDWebService.DAVIDWebServiceHttpSoap12Endpoint/\" ) ## addList will throw error if idType is not match. ## use match.arg to check before addList make it more readable   idType -   match.arg (  idType ,   getIdTypes (  david ) ) ##     getIdTypes(david) ##  [1] \"AFFYMETRIX_3PRIME_IVT_ID\" \"AFFYMETRIX_EXON_ID\" ##  [3] \"AGILENT_CHIP_ID\"          \"AGILENT_ID\" ##  [5] \"AGILENT_OLIGO_ID\"         \"APHIDBASE_ID\" ##  [7] \"BEEBASE_ID\"               \"BEETLEBASE_ID\" ##  [9] \"BGD_ID\"                   \"CGNC_ID\" ## [11] \"CRYPTODB_ID\"              \"DICTYBASE_ID\" ## [13] \"ENSEMBL_GENE_ID\"          \"ENSEMBL_TRANSCRIPT_ID\" ## [15] \"ENTREZ_GENE_ID\"           \"FLYBASE_GENE_ID\" ## [17] \"GENBANK_ACCESSION\"        \"GENOMIC_GI_ACCESSION\" ## [19] \"GENPEPT_ACCESSION\"        \"LOCUS_TAG\" ## [21] \"MGI_ID\"                   \"MIRBASE_ID\" ## [23] \"MRNA_GI_ACCESSION\"        \"NASONIABASE_ID\" ## [25] \"PROTEIN_GI_ACCESSION\"     \"PSEUDOCAP_ID\" ## [27] \"REFSEQ_MRNA\"              \"REFSEQ_PROTEIN\" ## [29] \"RGD_ID\"                   \"SGD_ID\" ## [31] \"TAIR_ID\"                  \"UNIGENE\" ## [33] \"UNIPROT_ACCESSION\"        \"UNIPROT_ID\" ## [35] \"VECTORBASE_ID\"            \"WORMBASE_GENE_ID\" ## [37] \"XENBASE_ID\"               \"ZFIN_ID\"   david.res -   addList (  david ,  gene , idType =  idType , listName =  \"clusterProfiler\" , listType =  listType )  if (    david.res $ inDavid ==  0 )  {   stop (  \"All id can not be mapped. Please check 'idType' parameter...\" ) }   setAnnotationCategories (  david ,  annotation )   x -   getFunctionalAnnotationChart (  david , threshold =  1 , count =  minGSSize )  if (    length (   x @ .Data ) ==  0 )  {   warning (  \"No significant enrichment found...\" )   return (  NULL ) }   term -   x $ Term  if (    length (   grep (  \"~\" ,   term [  1 ] ) ) ==  0 )  {   sep -  \":\" } else  {   sep -  \"~\" }   term.list -   sapply (  term ,  function ( y )   strsplit (  y , split =  sep ) )   term.df -   do.call (  \"rbind\" ,  term.list )   ID -   term.df [ ,  1 ]   Description -   term.df [ ,  2 ]   GeneRatio -   with (  x ,   paste (  Count ,  List.Total , sep =  \"/\" ) )   BgRatio -   with (  x ,   paste (  Pop.Hits ,  Pop.Total , sep =  \"/\" ) )   Over -   data.frame ( ID =  ID , Description =  Description , GeneRatio =  GeneRatio , BgRatio =  BgRatio , pvalue =   x $ PValue , stringsAsFactors =  FALSE )    row.names (  Over ) -  ID  if (   pAdjustMethod ==  \"bonferroni\" )  {    Over $ p.adjust -   x $ Bonferroni } else  {    Over $ p.adjust -   x $ Benjamini }   qobj -   tryCatch (   qvalue ( p =   Over $ pvalue , lambda =  0.05 , pi0.method =  \"bootstrap\" ) , error =  function ( e )  NULL )  if (    class (  qobj ) ==  \"qvalue\" )  {   qvalues -   qobj $ qvalues } else  {   qvalues -  NA }    Over $ qvalue -  qvalues    Over $ geneID -   gsub (  \",\\\\s*\" ,  \"/\" ,   x $ Genes )    Over $ Count -   x $ Count   Over -   Over [    Over $ pvalue =  pvalueCutoff , ]   Over -   Over [    Over $ p.adjust =  pvalueCutoff , ]  if (  !   any (   is.na (   Over $ qvalue ) ) )  {   Over -   Over [    Over $ qvalue =  qvalueCutoff , ] }   org -   getSpecieNames (  david )   org -   gsub (  \"\\\\(.*\\\\)\" ,  \"\" ,  org ) ## gc ## names(gc)  if (   !   is.na (  maxGSSize ) undefined  !   is.null (  maxGSSize ) )  {   idx -    as.numeric (   sub (  \"/\\\\d+\" ,  \"\" ,   Over $ BgRatio ) ) =  maxGSSize   Over -   Over [  idx , ] }   new (  \"enrichResult\" , result =  Over , pvalueCutoff =  pvalueCutoff , pAdjustMethod =  pAdjustMethod , organism =  org , ontology =  annotation , ## as.character(x$Category[1]), gene =   as.character (  gene ) , keytype =  idType ) } ",
+    "filename": "enrichDAVID.txt"
+  },
+  "new_function": {
+    "name": "enrichDAVID",
+    "representation": "enrichDAVID",
+    "parameters": "function ( gene , idType = \"ENTREZ_GENE_ID\" , universe , minGSSize = 10 , maxGSSize = 500 , annotation = \"GOTERM_BP_FAT\" , pvalueCutoff = 0.05 , pAdjustMethod = \"BH\" , qvalueCutoff = 0.2 , species = NA , david.user )",
+    "body": "{   Count -   List.Total -   Pop.Hits -   Pop.Total -  NULL   pAdjustMethod -   match.arg (  pAdjustMethod ,   c (  \"bonferroni\" ,  \"BH\" ) )   david.pkg -  \"RDAVIDWebService\"   pkgs -    installed.packages ( ) [ ,  1 ]  if (  !   david.pkg %in%  pkgs )  {   stop (  \"You should have RDAVIDWebService package installed before using enrichDAVID...\" ) }   require (  david.pkg , character.only =  TRUE )   DAVIDWebService -   eval (   parse ( text =  \"DAVIDWebService\" ) )   addList -   eval (   parse ( text =  \"addList\" ) )   setAnnotationCategories -   eval (   parse ( text =  \"setAnnotationCategories\" ) )   getFunctionalAnnotationChart -   eval (   parse ( text =  \"getFunctionalAnnotationChart\" ) )   getSpecieNames -   eval (   parse ( text =  \"getSpecieNames\" ) )   getIdTypes -   eval (   parse ( text =  \"getIdTypes\" ) )   david -    DAVIDWebService $ new ( email =  david.user , url =  \"https://david.ncifcrf.gov/webservice/services/DAVIDWebService.DAVIDWebServiceHttpSoap12Endpoint/\" ) ## addList will throw error if idType is not match. ## use match.arg to check before addList make it more readable   idType -   match.arg (  idType ,   getIdTypes (  david ) ) ##     getIdTypes(david) ##  [1] \"AFFYMETRIX_3PRIME_IVT_ID\" \"AFFYMETRIX_EXON_ID\" ##  [3] \"AGILENT_CHIP_ID\"          \"AGILENT_ID\" ##  [5] \"AGILENT_OLIGO_ID\"         \"APHIDBASE_ID\" ##  [7] \"BEEBASE_ID\"               \"BEETLEBASE_ID\" ##  [9] \"BGD_ID\"                   \"CGNC_ID\" ## [11] \"CRYPTODB_ID\"              \"DICTYBASE_ID\" ## [13] \"ENSEMBL_GENE_ID\"          \"ENSEMBL_TRANSCRIPT_ID\" ## [15] \"ENTREZ_GENE_ID\"           \"FLYBASE_GENE_ID\" ## [17] \"GENBANK_ACCESSION\"        \"GENOMIC_GI_ACCESSION\" ## [19] \"GENPEPT_ACCESSION\"        \"LOCUS_TAG\" ## [21] \"MGI_ID\"                   \"MIRBASE_ID\" ## [23] \"MRNA_GI_ACCESSION\"        \"NASONIABASE_ID\" ## [25] \"PROTEIN_GI_ACCESSION\"     \"PSEUDOCAP_ID\" ## [27] \"REFSEQ_MRNA\"              \"REFSEQ_PROTEIN\" ## [29] \"RGD_ID\"                   \"SGD_ID\" ## [31] \"TAIR_ID\"                  \"UNIGENE\" ## [33] \"UNIPROT_ACCESSION\"        \"UNIPROT_ID\" ## [35] \"VECTORBASE_ID\"            \"WORMBASE_GENE_ID\" ## [37] \"XENBASE_ID\"               \"ZFIN_ID\"   david.res -   addList (  david ,  gene , idType =  idType , listName =  \"clusterProfiler\" , listType =  \"Gene\" )  if (    david.res $ inDavid ==  0 )  {   stop (  \"All id can not be mapped. Please check 'idType' parameter...\" ) }  if (  !   missing (  universe ) )  {   david.res -   addList (  david ,  universe , idType =  idType , listName =  \"universe\" , listType =  \"Background\" ) }   setAnnotationCategories (  david ,  annotation )   x -   getFunctionalAnnotationChart (  david , threshold =  1 , count =  minGSSize )  if (    length (   x @ .Data ) ==  0 )  {   warning (  \"No significant enrichment found...\" )   return (  NULL ) }   term -   x $ Term  if (    length (   grep (  \"~\" ,   term [  1 ] ) ) ==  0 )  {   sep -  \":\" } else  {   sep -  \"~\" }   term.list -   sapply (  term ,  function ( y )   strsplit (  y , split =  sep ) )   term.df -   do.call (  \"rbind\" ,  term.list )   ID -   term.df [ ,  1 ]   Description -   term.df [ ,  2 ]   GeneRatio -   with (  x ,   paste (  Count ,  List.Total , sep =  \"/\" ) )   BgRatio -   with (  x ,   paste (  Pop.Hits ,  Pop.Total , sep =  \"/\" ) )   Over -   data.frame ( ID =  ID , Description =  Description , GeneRatio =  GeneRatio , BgRatio =  BgRatio , pvalue =   x $ PValue , stringsAsFactors =  FALSE )    row.names (  Over ) -  ID  if (   pAdjustMethod ==  \"bonferroni\" )  {    Over $ p.adjust -   x $ Bonferroni } else  {    Over $ p.adjust -   x $ Benjamini }   qobj -   tryCatch (   qvalue ( p =   Over $ pvalue , lambda =  0.05 , pi0.method =  \"bootstrap\" ) , error =  function ( e )  NULL )  if (    class (  qobj ) ==  \"qvalue\" )  {   qvalues -   qobj $ qvalues } else  {   qvalues -  NA }    Over $ qvalue -  qvalues    Over $ geneID -   gsub (  \",\\\\s*\" ,  \"/\" ,   x $ Genes )    Over $ Count -   x $ Count   Over -   Over [    Over $ pvalue =  pvalueCutoff , ]   Over -   Over [    Over $ p.adjust =  pvalueCutoff , ]  if (  !   any (   is.na (   Over $ qvalue ) ) )  {   Over -   Over [    Over $ qvalue =  qvalueCutoff , ] }   org -   getSpecieNames (  david )   org -   gsub (  \"\\\\(.*\\\\)\" ,  \"\" ,  org ) ## gc ## names(gc)  if (   !   is.na (  maxGSSize ) undefined  !   is.null (  maxGSSize ) )  {   idx -    as.numeric (   sub (  \"/\\\\d+\" ,  \"\" ,   Over $ BgRatio ) ) =  maxGSSize   Over -   Over [  idx , ] }   new (  \"enrichResult\" , result =  Over , pvalueCutoff =  pvalueCutoff , pAdjustMethod =  pAdjustMethod , organism =  org , ontology =  annotation , ## as.character(x$Category[1]), gene =   as.character (  gene ) , keytype =  idType ) } ",
+    "filename": "enrichDAVID.txt"
+  }
+}
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "enrichDAVID",
+    "representation": "enrichDAVID",
+    "parameters": "function ( gene , idType = \"ENTREZ_GENE_ID\" , listType = \"Gene\" , minGSSize = 10 , maxGSSize = 500 , annotation = \"GOTERM_BP_FAT\" , pvalueCutoff = 0.05 , pAdjustMethod = \"BH\" , qvalueCutoff = 0.2 , species = NA , david.user )",
+    "body": "{   Count -   List.Total -   Pop.Hits -   Pop.Total -  NULL   pAdjustMethod -   match.arg (  pAdjustMethod ,   c (  \"bonferroni\" ,  \"BH\" ) )   david.pkg -  \"RDAVIDWebService\"   pkgs -    installed.packages ( ) [ ,  1 ]  if (  !   david.pkg %in%  pkgs )  {   stop (  \"You should have RDAVIDWebService package installed before using enrichDAVID...\" ) }   require (  david.pkg , character.only =  TRUE )   DAVIDWebService -   eval (   parse ( text =  \"DAVIDWebService\" ) )   addList -   eval (   parse ( text =  \"addList\" ) )   setAnnotationCategories -   eval (   parse ( text =  \"setAnnotationCategories\" ) )   getFunctionalAnnotationChart -   eval (   parse ( text =  \"getFunctionalAnnotationChart\" ) )   getSpecieNames -   eval (   parse ( text =  \"getSpecieNames\" ) )   getIdTypes -   eval (   parse ( text =  \"getIdTypes\" ) )   david -    DAVIDWebService $ new ( email =  david.user , url =  \"https://david.ncifcrf.gov/webservice/services/DAVIDWebService.DAVIDWebServiceHttpSoap12Endpoint/\" ) ## addList will throw error if idType is not match. ## use match.arg to check before addList make it more readable   idType -   match.arg (  idType ,   getIdTypes (  david ) ) ##     getIdTypes(david) ##  [1] \"AFFYMETRIX_3PRIME_IVT_ID\" \"AFFYMETRIX_EXON_ID\" ##  [3] \"AGILENT_CHIP_ID\"          \"AGILENT_ID\" ##  [5] \"AGILENT_OLIGO_ID\"         \"APHIDBASE_ID\" ##  [7] \"BEEBASE_ID\"               \"BEETLEBASE_ID\" ##  [9] \"BGD_ID\"                   \"CGNC_ID\" ## [11] \"CRYPTODB_ID\"              \"DICTYBASE_ID\" ## [13] \"ENSEMBL_GENE_ID\"          \"ENSEMBL_TRANSCRIPT_ID\" ## [15] \"ENTREZ_GENE_ID\"           \"FLYBASE_GENE_ID\" ## [17] \"GENBANK_ACCESSION\"        \"GENOMIC_GI_ACCESSION\" ## [19] \"GENPEPT_ACCESSION\"        \"LOCUS_TAG\" ## [21] \"MGI_ID\"                   \"MIRBASE_ID\" ## [23] \"MRNA_GI_ACCESSION\"        \"NASONIABASE_ID\" ## [25] \"PROTEIN_GI_ACCESSION\"     \"PSEUDOCAP_ID\" ## [27] \"REFSEQ_MRNA\"              \"REFSEQ_PROTEIN\" ## [29] \"RGD_ID\"                   \"SGD_ID\" ## [31] \"TAIR_ID\"                  \"UNIGENE\" ## [33] \"UNIPROT_ACCESSION\"        \"UNIPROT_ID\" ## [35] \"VECTORBASE_ID\"            \"WORMBASE_GENE_ID\" ## [37] \"XENBASE_ID\"               \"ZFIN_ID\"   david.res -   addList (  david ,  gene , idType =  idType , listName =  \"clusterProfiler\" , listType =  listType )  if (    david.res $ inDavid ==  0 )  {   stop (  \"All id can not be mapped. Please check 'idType' parameter...\" ) }   setAnnotationCategories (  david ,  annotation )   x -   getFunctionalAnnotationChart (  david , threshold =  1 , count =  minGSSize )  if (    length (   x @ .Data ) ==  0 )  {   warning (  \"No significant enrichment found...\" )   return (  NULL ) }   term -   x $ Term  if (    length (   grep (  \"~\" ,   term [  1 ] ) ) ==  0 )  {   sep -  \":\" } else  {   sep -  \"~\" }   term.list -   sapply (  term ,  function ( y )   strsplit (  y , split =  sep ) )   term.df -   do.call (  \"rbind\" ,  term.list )   ID -   term.df [ ,  1 ]   Description -   term.df [ ,  2 ]   GeneRatio -   with (  x ,   paste (  Count ,  List.Total , sep =  \"/\" ) )   BgRatio -   with (  x ,   paste (  Pop.Hits ,  Pop.Total , sep =  \"/\" ) )   Over -   data.frame ( ID =  ID , Description =  Description , GeneRatio =  GeneRatio , BgRatio =  BgRatio , pvalue =   x $ PValue , stringsAsFactors =  FALSE )    row.names (  Over ) -  ID  if (   pAdjustMethod ==  \"bonferroni\" )  {    Over $ p.adjust -   x $ Bonferroni } else  {    Over $ p.adjust -   x $ Benjamini }   qobj -   tryCatch (   qvalue ( p =   Over $ pvalue , lambda =  0.05 , pi0.method =  \"bootstrap\" ) , error =  function ( e )  NULL )  if (    class (  qobj ) ==  \"qvalue\" )  {   qvalues -   qobj $ qvalues } else  {   qvalues -  NA }    Over $ qvalue -  qvalues    Over $ geneID -   gsub (  \",\\\\s*\" ,  \"/\" ,   x $ Genes )    Over $ Count -   x $ Count   Over -   Over [    Over $ pvalue =  pvalueCutoff , ]   Over -   Over [    Over $ p.adjust =  pvalueCutoff , ]  if (  !   any (   is.na (   Over $ qvalue ) ) )  {   Over -   Over [    Over $ qvalue =  qvalueCutoff , ] }   org -   getSpecieNames (  david )   org -   gsub (  \"\\\\(.*\\\\)\" ,  \"\" ,  org ) ## gc ## names(gc)  if (   !   is.na (  maxGSSize ) undefined  !   is.null (  maxGSSize ) )  {   idx -    as.numeric (   sub (  \"/\\\\d+\" ,  \"\" ,   Over $ BgRatio ) ) =  maxGSSize   Over -   Over [  idx , ] }   new (  \"enrichResult\" , result =  Over , pvalueCutoff =  pvalueCutoff , pAdjustMethod =  pAdjustMethod , organism =  org , ontology =  annotation , ## as.character(x$Category[1]), gene =   as.character (  gene ) , keytype =  idType ) } ",
+    "filename": "enrichDAVID.txt"
+  },
+  "new_function": {
+    "name": "enrichDAVID",
+    "representation": "enrichDAVID",
+    "parameters": "function ( gene , idType = \"ENTREZ_GENE_ID\" , universe , minGSSize = 10 , maxGSSize = 500 , annotation = \"GOTERM_BP_FAT\" , pvalueCutoff = 0.05 , pAdjustMethod = \"BH\" , qvalueCutoff = 0.2 , species = NA , david.user )",
+    "body": "{   Count -   List.Total -   Pop.Hits -   Pop.Total -  NULL   pAdjustMethod -   match.arg (  pAdjustMethod ,   c (  \"bonferroni\" ,  \"BH\" ) )   david.pkg -  \"RDAVIDWebService\"   pkgs -    installed.packages ( ) [ ,  1 ]  if (  !   david.pkg %in%  pkgs )  {   stop (  \"You should have RDAVIDWebService package installed before using enrichDAVID...\" ) }   require (  david.pkg , character.only =  TRUE )   DAVIDWebService -   eval (   parse ( text =  \"DAVIDWebService\" ) )   addList -   eval (   parse ( text =  \"addList\" ) )   setAnnotationCategories -   eval (   parse ( text =  \"setAnnotationCategories\" ) )   getFunctionalAnnotationChart -   eval (   parse ( text =  \"getFunctionalAnnotationChart\" ) )   getSpecieNames -   eval (   parse ( text =  \"getSpecieNames\" ) )   getIdTypes -   eval (   parse ( text =  \"getIdTypes\" ) )   david -    DAVIDWebService $ new ( email =  david.user , url =  \"https://david.ncifcrf.gov/webservice/services/DAVIDWebService.DAVIDWebServiceHttpSoap12Endpoint/\" ) ## addList will throw error if idType is not match. ## use match.arg to check before addList make it more readable   idType -   match.arg (  idType ,   getIdTypes (  david ) ) ##     getIdTypes(david) ##  [1] \"AFFYMETRIX_3PRIME_IVT_ID\" \"AFFYMETRIX_EXON_ID\" ##  [3] \"AGILENT_CHIP_ID\"          \"AGILENT_ID\" ##  [5] \"AGILENT_OLIGO_ID\"         \"APHIDBASE_ID\" ##  [7] \"BEEBASE_ID\"               \"BEETLEBASE_ID\" ##  [9] \"BGD_ID\"                   \"CGNC_ID\" ## [11] \"CRYPTODB_ID\"              \"DICTYBASE_ID\" ## [13] \"ENSEMBL_GENE_ID\"          \"ENSEMBL_TRANSCRIPT_ID\" ## [15] \"ENTREZ_GENE_ID\"           \"FLYBASE_GENE_ID\" ## [17] \"GENBANK_ACCESSION\"        \"GENOMIC_GI_ACCESSION\" ## [19] \"GENPEPT_ACCESSION\"        \"LOCUS_TAG\" ## [21] \"MGI_ID\"                   \"MIRBASE_ID\" ## [23] \"MRNA_GI_ACCESSION\"        \"NASONIABASE_ID\" ## [25] \"PROTEIN_GI_ACCESSION\"     \"PSEUDOCAP_ID\" ## [27] \"REFSEQ_MRNA\"              \"REFSEQ_PROTEIN\" ## [29] \"RGD_ID\"                   \"SGD_ID\" ## [31] \"TAIR_ID\"                  \"UNIGENE\" ## [33] \"UNIPROT_ACCESSION\"        \"UNIPROT_ID\" ## [35] \"VECTORBASE_ID\"            \"WORMBASE_GENE_ID\" ## [37] \"XENBASE_ID\"               \"ZFIN_ID\"   david.res -   addList (  david ,  gene , idType =  idType , listName =  \"clusterProfiler\" , listType =  \"Gene\" )  if (    david.res $ inDavid ==  0 )  {   stop (  \"All id can not be mapped. Please check 'idType' parameter...\" ) }  if (  !   missing (  universe ) )  {   david.res -   addList (  david ,  universe , idType =  idType , listName =  \"universe\" , listType =  \"Background\" ) }   setAnnotationCategories (  david ,  annotation )   x -   getFunctionalAnnotationChart (  david , threshold =  1 , count =  minGSSize )  if (    length (   x @ .Data ) ==  0 )  {   warning (  \"No significant enrichment found...\" )   return (  NULL ) }   term -   x $ Term  if (    length (   grep (  \"~\" ,   term [  1 ] ) ) ==  0 )  {   sep -  \":\" } else  {   sep -  \"~\" }   term.list -   sapply (  term ,  function ( y )   strsplit (  y , split =  sep ) )   term.df -   do.call (  \"rbind\" ,  term.list )   ID -   term.df [ ,  1 ]   Description -   term.df [ ,  2 ]   GeneRatio -   with (  x ,   paste (  Count ,  List.Total , sep =  \"/\" ) )   BgRatio -   with (  x ,   paste (  Pop.Hits ,  Pop.Total , sep =  \"/\" ) )   Over -   data.frame ( ID =  ID , Description =  Description , GeneRatio =  GeneRatio , BgRatio =  BgRatio , pvalue =   x $ PValue , stringsAsFactors =  FALSE )    row.names (  Over ) -  ID  if (   pAdjustMethod ==  \"bonferroni\" )  {    Over $ p.adjust -   x $ Bonferroni } else  {    Over $ p.adjust -   x $ Benjamini }   qobj -   tryCatch (   qvalue ( p =   Over $ pvalue , lambda =  0.05 , pi0.method =  \"bootstrap\" ) , error =  function ( e )  NULL )  if (    class (  qobj ) ==  \"qvalue\" )  {   qvalues -   qobj $ qvalues } else  {   qvalues -  NA }    Over $ qvalue -  qvalues    Over $ geneID -   gsub (  \",\\\\s*\" ,  \"/\" ,   x $ Genes )    Over $ Count -   x $ Count   Over -   Over [    Over $ pvalue =  pvalueCutoff , ]   Over -   Over [    Over $ p.adjust =  pvalueCutoff , ]  if (  !   any (   is.na (   Over $ qvalue ) ) )  {   Over -   Over [    Over $ qvalue =  qvalueCutoff , ] }   org -   getSpecieNames (  david )   org -   gsub (  \"\\\\(.*\\\\)\" ,  \"\" ,  org ) ## gc ## names(gc)  if (   !   is.na (  maxGSSize ) undefined  !   is.null (  maxGSSize ) )  {   idx -    as.numeric (   sub (  \"/\\\\d+\" ,  \"\" ,   Over $ BgRatio ) ) =  maxGSSize   Over -   Over [  idx , ] }   new (  \"enrichResult\" , result =  Over , pvalueCutoff =  pvalueCutoff , pAdjustMethod =  pAdjustMethod , organism =  org , ontology =  annotation , ## as.character(x$Category[1]), gene =   as.character (  gene ) , keytype =  idType ) } ",
+    "filename": "enrichDAVID.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "enrichGO",
+    "representation": "enrichGO",
+    "parameters": "function ( gene , OrgDb , keytype = \"ENTREZID\" , ont = \"MF\" , pvalueCutoff = 0.05 , pAdjustMethod = \"BH\" , universe , qvalueCutoff = 0.2 , minGSSize = 10 , maxGSSize = 500 , readable = FALSE , pool = FALSE )",
+    "body": "{   ont %  toupper   ont -   match.arg (  ont ,   c (  \"BP\" ,  \"CC\" ,  \"MF\" ,  \"ALL\" ) )   GO_DATA -   get_GO_data (  OrgDb ,  ont ,  keytype )  if (   missing (  universe ) )   universe -  NULL  if (    ont ==  \"ALL\" undefined  !  pool )  {   lres -   lapply (   c (  \"BP\" ,  \"CC\" ,  \"MF\" ) ,  function ( ont )   suppressMessages (   enrichGO (  gene ,  OrgDb ,  keytype ,  ont ,  pvalueCutoff ,  pAdjustMethod ,  universe ,  qvalueCutoff ,  minGSSize ,  maxGSSize ) ) )   lres -   lres [  !   sapply (  lres ,  is.null ) ]  if (    length (  lres ) ==  0 )   return (  NULL )   df -   do.call (  'rbind' ,   lapply (  lres ,  as.data.frame ) )   geneSets -    lres [[  1 ] ] @ geneSets  if (    length (  lres ) undefined  1 )  {  for  ( i in   2 :   length (  lres ) )  {   geneSets -   append (  geneSets ,    lres [[  i ] ] @ geneSets ) } }   res -   lres [[  1 ] ]    res @ result -  df    res @ geneSets -  geneSets } else  {   res -   enricher_internal (  gene , pvalueCutoff =  pvalueCutoff , pAdjustMethod =  pAdjustMethod , universe =  universe , qvalueCutoff =  qvalueCutoff , minGSSize =  minGSSize , maxGSSize =  maxGSSize , USER_DATA =  GO_DATA )  if (   is.null (  res ) )   return (  res ) }    res @ keytype -  keytype    res @ organism -   get_organism (  OrgDb )  if (  readable )  {   res -   setReadable (  res ,  OrgDb ) }    res @ ontology -  ont  if (   ont ==  \"ALL\" )  {   res -   add_GO_Ontology (  res ,  GO_DATA ) }   return (  res ) } ",
+    "filename": "enrichGO.txt"
+  },
+  "new_function": {
+    "name": "enrichGO",
+    "representation": "enrichGO",
+    "parameters": "function ( gene , OrgDb , keyType = \"ENTREZID\" , ont = \"MF\" , pvalueCutoff = 0.05 , pAdjustMethod = \"BH\" , universe , qvalueCutoff = 0.2 , minGSSize = 10 , maxGSSize = 500 , readable = FALSE , pool = FALSE )",
+    "body": "{   ont %  toupper   ont -   match.arg (  ont ,   c (  \"BP\" ,  \"CC\" ,  \"MF\" ,  \"ALL\" ) )   GO_DATA -   get_GO_data (  OrgDb ,  ont ,  keyType )  if (   missing (  universe ) )   universe -  NULL  if (    ont ==  \"ALL\" undefined  !  pool )  {   lres -   lapply (   c (  \"BP\" ,  \"CC\" ,  \"MF\" ) ,  function ( ont )   suppressMessages (   enrichGO (  gene ,  OrgDb ,  keyType ,  ont ,  pvalueCutoff ,  pAdjustMethod ,  universe ,  qvalueCutoff ,  minGSSize ,  maxGSSize ) ) )   lres -   lres [  !   sapply (  lres ,  is.null ) ]  if (    length (  lres ) ==  0 )   return (  NULL )   df -   do.call (  'rbind' ,   lapply (  lres ,  as.data.frame ) )   geneSets -    lres [[  1 ] ] @ geneSets  if (    length (  lres ) undefined  1 )  {  for  ( i in   2 :   length (  lres ) )  {   geneSets -   append (  geneSets ,    lres [[  i ] ] @ geneSets ) } }   res -   lres [[  1 ] ]    res @ result -  df    res @ geneSets -  geneSets } else  {   res -   enricher_internal (  gene , pvalueCutoff =  pvalueCutoff , pAdjustMethod =  pAdjustMethod , universe =  universe , qvalueCutoff =  qvalueCutoff , minGSSize =  minGSSize , maxGSSize =  maxGSSize , USER_DATA =  GO_DATA )  if (   is.null (  res ) )   return (  res ) }    res @ keytype -  keyType    res @ organism -   get_organism (  OrgDb )  if (  readable )  {   res -   setReadable (  res ,  OrgDb ) }    res @ ontology -  ont  if (   ont ==  \"ALL\" )  {   res -   add_GO_Ontology (  res ,  GO_DATA ) }   return (  res ) } ",
+    "filename": "enrichGO.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  clusterprofiler_release_3_6 clusterprofiler_release_3_7
+
+{
+    "package": "clusterProfiler",
+    "release_versions": "clusterprofiler_release_3_6 clusterprofiler_release_3_7",
+    "desc_release_old": "3.6.0",
+    "desc_release_new": "3.8.1",
+    "old_release_number": 11,
+    "new_release_number": 12,
+    "function_removals": 1,
+    "function_additions": 10,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+plot
+
+
+##########
+Functions Added
+##########
+
+cnetplot
+emapplot
+geneID
+geneInCategory
+goplot
+gseaplot
+heatplot
+ridgeplot
+uniprot_get
+as.data.frame.groupGOResult
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  clusterprofiler_release_3_7 clusterprofiler_release_3_8
+
+{
+    "package": "clusterProfiler",
+    "release_versions": "clusterprofiler_release_3_7 clusterprofiler_release_3_8",
+    "desc_release_old": "3.8.1",
+    "desc_release_new": "3.10.1",
+    "old_release_number": 12,
+    "new_release_number": 13,
+    "function_removals": 0,
+    "function_additions": 2,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+gsfilter
+setReadable
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  clusterprofiler_release_3_8 clusterprofiler_release_3_9
+
+{
+    "package": "clusterProfiler",
+    "release_versions": "clusterprofiler_release_3_8 clusterprofiler_release_3_9",
+    "desc_release_old": "3.10.1",
+    "desc_release_new": "3.12.0",
+    "old_release_number": 13,
+    "new_release_number": 14,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  clusterprofiler_release_3_9 clusterprofiler_release_3_11
+
+{
+    "package": "clusterProfiler",
+    "release_versions": "clusterprofiler_release_3_9 clusterprofiler_release_3_11",
+    "desc_release_old": "3.12.0",
+    "desc_release_new": "3.16.1",
+    "old_release_number": 14,
+    "new_release_number": 15,
+    "function_removals": 1,
+    "function_additions": 35,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+fortify.compareClusterResult
+
+
+##########
+Functions Added
+##########
+
+%<>%
+%>%
+arrange
+filter
+group_by
+mutate
+n
+rename
+select
+slice
+summarise
+arrange.compareClusterResult
+arrange.enrichResult
+arrange.gseaResult
+filter.compareClusterResult
+filter.enrichResult
+filter.gseaResult
+group_by.compareClusterResult
+group_by.enrichResult
+group_by.gseaResult
+mutate.compareClusterResult
+mutate.enrichResult
+mutate.gseaResult
+rename.compareClusterResult
+rename.enrichResult
+rename.gseaResult
+select.compareClusterResult
+select.enrichResult
+select.gseaResult
+slice.compareClusterResult
+slice.enrichResult
+slice.gseaResult
+summarise.compareClusterResult
+summarise.enrichResult
+summarise.gseaResult
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  clusterprofiler_release_3_11 clusterprofiler_release_3_12
+
+{
+    "package": "clusterProfiler",
+    "release_versions": "clusterprofiler_release_3_11 clusterprofiler_release_3_12",
+    "desc_release_old": "3.16.1",
+    "desc_release_new": "3.18.1",
+    "old_release_number": 15,
+    "new_release_number": 16,
+    "function_removals": 0,
+    "function_additions": 4,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+enrichWP
+get_wp_organisms
+gseWP
+read.gmt.wp
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  clusterprofiler_release_3_12 clusterprofiler_release_3_13
+
+{
+    "package": "clusterProfiler",
+    "release_versions": "clusterprofiler_release_3_12 clusterprofiler_release_3_13",
+    "desc_release_old": "3.18.1",
+    "desc_release_new": "4.0.5",
+    "old_release_number": 16,
+    "new_release_number": 17,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  clusterprofiler_release_3_13 clusterprofiler_release_3_14
+
+{
+    "package": "clusterProfiler",
+    "release_versions": "clusterprofiler_release_3_13 clusterprofiler_release_3_14",
+    "desc_release_old": "4.0.5",
+    "desc_release_new": "4.2.2",
+    "old_release_number": 17,
+    "new_release_number": 18,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  clusterprofiler_release_3_14 clusterprofiler_master
+
+{
+    "package": "clusterProfiler",
+    "release_versions": "clusterprofiler_release_3_14 clusterprofiler_master",
+    "desc_release_old": "4.2.2",
+    "desc_release_new": "4.3.3",
+    "old_release_number": 18,
+    "new_release_number": 19,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+parse_gff
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+

@@ -1,0 +1,1063 @@
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  dose_release_2_13 dose_release_2_14
+
+{
+    "package": "DOSE",
+    "release_versions": "dose_release_2_13 dose_release_2_14",
+    "desc_release_old": "2.0.0",
+    "desc_release_new": "2.2.1",
+    "old_release_number": 3,
+    "new_release_number": 4,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 1,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "geneSim",
+    "representation": "geneSim",
+    "parameters": "function ( geneID1 , geneID2 , measure = \"Wang\" , combine = \"BMA\" )",
+    "body": "{   DOID1 -   lapply (  geneID1 ,  gene2DO )   DOID2 -   lapply (  geneID2 ,  gene2DO )   m -   length (  geneID1 )   n -   length (  geneID2 )   scores -   matrix (  NA , nrow =  m , ncol =  n )    rownames (  scores ) -  geneID1    colnames (  scores ) -  geneID2  for  ( i in   1 :  m )  {  for  ( j in   1 :  n )  {  if (    any (  !   is.na (   DOID1 [[  i ] ] ) ) undefined   any (  !   is.na (   DOID2 [[  j ] ] ) ) )  {   s -   doSim (   DOID1 [[  i ] ] ,   DOID2 [[  j ] ] ,  measure )    scores [  i ,  j ] =   combineScores (  s ,  combine ) } } }  if (     nrow (  scores ) ==  1 undefined    ncol (  scores ) ==  1 )   scores =   as.numeric (  scores )   return (  scores ) } ",
+    "filename": "geneSim.txt"
+  },
+  "new_function": {
+    "name": "geneSim",
+    "representation": "geneSim",
+    "parameters": "function ( geneID1 , geneID2 = NULL , measure = \"Wang\" , combine = \"BMA\" )",
+    "body": "{   DOID1 -   lapply (  geneID1 ,  gene2DO )  if (   is.null (  geneID2 ) )  {   geneID2 -  geneID1   DOID2 -  DOID1 } else  {   DOID2 -   lapply (  geneID2 ,  gene2DO ) }   m -   length (  geneID1 )   n -   length (  geneID2 )   scores -   matrix (  NA , nrow =  m , ncol =  n )    rownames (  scores ) -  geneID1    colnames (  scores ) -  geneID2  for  ( i in   1 :  m )  {  if (   all (   geneID1 ==  geneID2 ) )  {   nn -  i   flag -  TRUE } else  {   flag -  FALSE   nn -  n }  for  ( j in   1 :  nn )  {  if (    any (  !   is.na (   DOID1 [[  i ] ] ) ) undefined   any (  !   is.na (   DOID2 [[  j ] ] ) ) )  {   s -   doSim (   DOID1 [[  i ] ] ,   DOID2 [[  j ] ] ,  measure )    scores [  i ,  j ] =   combineScores (  s ,  combine )  if (    flag ==  TRUE undefined   j !=  i )  {    scores [  j ,  i ] -   scores [  i ,  j ] } } } }  if (     nrow (  scores ) ==  1 undefined    ncol (  scores ) ==  1 )   scores =   as.numeric (  scores )   return (  scores ) } ",
+    "filename": "geneSim.txt"
+  }
+}
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  dose_release_2_14 dose_release_3_1
+
+{
+    "package": "DOSE",
+    "release_versions": "dose_release_2_14 dose_release_3_1",
+    "desc_release_old": "2.2.1",
+    "desc_release_new": "2.6.6",
+    "old_release_number": 4,
+    "new_release_number": 5,
+    "function_removals": 0,
+    "function_additions": 19,
+    "parameter_removals": 0,
+    "parameter_additions": 1,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+clusterSim
+dotplot
+enrichMap
+enrichNCG
+mclusterSim
+ALLEXTID.DOLite
+ALLEXTID.NCG
+ALLEXTID.USER_DEFINED
+EXTID2TERMID.DOLite
+EXTID2TERMID.NCG
+EXTID2TERMID.USER_DEFINED
+TERM2NAME.DOLite
+TERM2NAME.NCG
+TERM2NAME.USER_DEFINED
+TERMID2EXTID.DOLite
+TERMID2EXTID.NCG
+TERMID2EXTID.USER_DEFINED
+getGeneSet.DOLite
+getGeneSet.NCG
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "scaleNodeColor",
+    "representation": "scaleNodeColor",
+    "parameters": "function ( g , foldChange , node.idx = NULL , DE.foldChange = FALSE )",
+    "body": "{   col.scale -   get.col.scale (  foldChange ,  DE.foldChange )  if (   is.null (  node.idx ) )  {   node.idx -   1 :   length (   V (  g ) ) }   gn -     V (  g ) [  node.idx ] $ name      V (  g ) [  node.idx ] $ color -   col.scale [  gn ]       V (  g ) [  node.idx ] $ color [   is.na (     V (  g ) [  node.idx ] $ color ) ] =  \"#B3B3B3\"   return (  g ) } ",
+    "filename": "cnetplot.txt"
+  },
+  "new_function": {
+    "name": "scaleNodeColor",
+    "representation": "scaleNodeColor",
+    "parameters": "function ( g , foldChange , node.idx = NULL , DE.foldChange )",
+    "body": "{  if (   is.null (  node.idx ) )  {   node.idx -   1 :   length (   V (  g ) ) }   gn -     V (  g ) [  node.idx ] $ name  if (    missing (  DE.foldChange ) ||   is.null (  DE.foldChange ) )  {  if (    length (  foldChange ) undefined   2 *   length (  gn ) )  {   DE.foldChange =  FALSE } else  {   DE.foldChange =  TRUE } }   col.scale -   get.col.scale (  foldChange ,  DE.foldChange )      V (  g ) [  node.idx ] $ color -   col.scale [  gn ]       V (  g ) [  node.idx ] $ color [   is.na (     V (  g ) [  node.idx ] $ color ) ] =  \"#B3B3B3\"   return (  g ) } ",
+    "filename": "cnetplot.txt"
+  }
+}
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "scaleNodeColor",
+    "representation": "scaleNodeColor",
+    "parameters": "function ( g , foldChange , node.idx = NULL , DE.foldChange = FALSE )",
+    "body": "{   col.scale -   get.col.scale (  foldChange ,  DE.foldChange )  if (   is.null (  node.idx ) )  {   node.idx -   1 :   length (   V (  g ) ) }   gn -     V (  g ) [  node.idx ] $ name      V (  g ) [  node.idx ] $ color -   col.scale [  gn ]       V (  g ) [  node.idx ] $ color [   is.na (     V (  g ) [  node.idx ] $ color ) ] =  \"#B3B3B3\"   return (  g ) } ",
+    "filename": "cnetplot.txt"
+  },
+  "new_function": {
+    "name": "scaleNodeColor",
+    "representation": "scaleNodeColor",
+    "parameters": "function ( g , foldChange , node.idx = NULL , DE.foldChange )",
+    "body": "{  if (   is.null (  node.idx ) )  {   node.idx -   1 :   length (   V (  g ) ) }   gn -     V (  g ) [  node.idx ] $ name  if (    missing (  DE.foldChange ) ||   is.null (  DE.foldChange ) )  {  if (    length (  foldChange ) undefined   2 *   length (  gn ) )  {   DE.foldChange =  FALSE } else  {   DE.foldChange =  TRUE } }   col.scale -   get.col.scale (  foldChange ,  DE.foldChange )      V (  g ) [  node.idx ] $ color -   col.scale [  gn ]       V (  g ) [  node.idx ] $ color [   is.na (     V (  g ) [  node.idx ] $ color ) ] =  \"#B3B3B3\"   return (  g ) } ",
+    "filename": "cnetplot.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  dose_release_3_1 dose_release_3_2
+
+{
+    "package": "DOSE",
+    "release_versions": "dose_release_3_1 dose_release_3_2",
+    "desc_release_old": "2.6.6",
+    "desc_release_new": "2.8.3",
+    "old_release_number": 5,
+    "new_release_number": 6,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  dose_release_3_2 dose_release_3_3
+
+{
+    "package": "DOSE",
+    "release_versions": "dose_release_3_2 dose_release_3_3",
+    "desc_release_old": "2.8.3",
+    "desc_release_new": "2.10.7",
+    "old_release_number": 6,
+    "new_release_number": 7,
+    "function_removals": 28,
+    "function_additions": 7,
+    "parameter_removals": 0,
+    "parameter_additions": 1,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 3,
+    "total_count": 31
+}
+
+##########
+Functions Removed
+##########
+
+ALLEXTID
+EXTID2TERMID
+TERM2NAME
+TERMID2EXTID
+enrich.internal
+getALLEG
+getGeneSet
+gseAnalyzer
+gsea
+ALLEXTID.DO
+ALLEXTID.DOLite
+ALLEXTID.NCG
+ALLEXTID.USER_DEFINED
+EXTID2TERMID.DO
+EXTID2TERMID.DOLite
+EXTID2TERMID.NCG
+EXTID2TERMID.USER_DEFINED
+TERM2NAME.DO
+TERM2NAME.DOLite
+TERM2NAME.NCG
+TERM2NAME.USER_DEFINED
+TERMID2EXTID.DO
+TERMID2EXTID.DOLite
+TERMID2EXTID.NCG
+TERMID2EXTID.USER_DEFINED
+getGeneSet.DO
+getGeneSet.DOLite
+getGeneSet.NCG
+
+
+##########
+Functions Added
+##########
+
+GSEA_internal
+enricher_internal
+gseDO
+gseNCG
+gsfilter
+load_OrgDb
+upsetplot
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "setReadable",
+    "representation": "setReadable",
+    "parameters": "function ( x )",
+    "body": "{  if (  !  (     class (  x ) !=  \"enrichResult\" ||    class (  x ) !=  \"groupGOResult\" ) )   stop (  \"input should be an 'enrichResult' object...\" )  if (    x @ readable ==  FALSE )  {   organism =   x @ organism   gc -   x @ geneInCategory   genes -   x @ gene   gn -   EXTID2NAME (  genes , organism =  organism ) ##gc   gc -   lapply (  gc ,  function ( i )   gn [  i ] )    x @ geneInCategory -  gc   res -   x @ result   gc -   gc [   as.character (   res $ ID ) ]   geneID -   sapply (  gc ,  function ( i )   paste (  i , collapse =  \"/\" ) )    res $ geneID -   unlist (  geneID )    x @ result -  res    x @ readable -  TRUE }   return (  x ) } ",
+    "filename": "enrichResult.txt"
+  },
+  "new_function": {
+    "name": "setReadable",
+    "representation": "setReadable",
+    "parameters": "function ( x , OrgDb , keytype = \"auto\" )",
+    "body": "{  if (  !  (     class (  x ) !=  \"enrichResult\" ||    class (  x ) !=  \"groupGOResult\" ) )   stop (  \"input should be an 'enrichResult' object...\" )  if (   keytype ==  \"auto\" )  {   keytype -   x @ keytype }  if (    x @ readable ==  FALSE )  {   gc -   x @ geneInCategory   genes -   x @ gene   gn -   EXTID2NAME (  OrgDb ,  genes ,  keytype )    x @ gene2Symbol -  gn   gc -   lapply (  gc ,  function ( i )   gn [  i ] )    x @ geneInCategory -  gc   res -   x @ result   gc -   gc [   as.character (   res $ ID ) ]   geneID -   sapply (  gc ,  function ( i )   paste (  i , collapse =  \"/\" ) )    res $ geneID -   unlist (  geneID )    x @ result -  res    x @ keytype -  keytype    x @ readable -  TRUE }   return (  x ) } ",
+    "filename": "enrichResult.txt"
+  }
+}
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "enrichDO",
+    "representation": "enrichDO",
+    "parameters": "function ( gene , ont = \"DO\" , pvalueCutoff = 0.05 , pAdjustMethod = \"BH\" , universe , minGSSize = 5 , qvalueCutoff = 0.2 , readable = FALSE )",
+    "body": "{   enrich.internal (  gene , organism =  \"human\" , pvalueCutoff =  pvalueCutoff , pAdjustMethod =  pAdjustMethod , ont =  ont , universe =  universe , minGSSize =  minGSSize , qvalueCutoff =  qvalueCutoff , readable =  readable ) } ",
+    "filename": "enrichDO.txt"
+  },
+  "new_function": {
+    "name": "enrichDO",
+    "representation": "enrichDO",
+    "parameters": "function ( gene , ont = \"DO\" , pvalueCutoff = 0.05 , pAdjustMethod = \"BH\" , universe , minGSSize = 10 , maxGSSize = 500 , qvalueCutoff = 0.2 , readable = FALSE )",
+    "body": "{   res -   enricher_internal (  gene , pvalueCutoff =  pvalueCutoff , pAdjustMethod =  pAdjustMethod , universe =  universe , minGSSize =  minGSSize , maxGSSize =  maxGSSize , qvalueCutoff =  qvalueCutoff , USER_DATA =   get_DO_data (  ont ) )  if (   is.null (  res ) )   return (  res )    res @ organism -  \"Homo sapiens\"    res @ keytype -  \"ENTREZID\"    res @ ontology -  ont  if (  readable )  {   res -   setReadable (  res ,  'org.Hs.eg.db' ) }   return (  res ) } ",
+    "filename": "enrichDO.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "enrichNCG",
+    "representation": "enrichNCG",
+    "parameters": "function ( gene , pvalueCutoff = 0.05 , pAdjustMethod = \"BH\" , universe , minGSSize = 5 , qvalueCutoff = 0.2 , readable = FALSE )",
+    "body": "{   NCG_DOSE_Env -   get_NCG_data ( )   enrich.internal ( gene =  gene , organism =  \"human\" , pvalueCutoff =  pvalueCutoff , pAdjustMethod =  pAdjustMethod , ont =  \"NCG\" , universe =  universe , minGSSize =  minGSSize , qvalueCutoff =  qvalueCutoff , readable =  readable , USER_DATA =  NCG_DOSE_Env ) } ",
+    "filename": "enrichNCG.txt"
+  },
+  "new_function": {
+    "name": "enrichNCG",
+    "representation": "enrichNCG",
+    "parameters": "function ( gene , pvalueCutoff = 0.05 , pAdjustMethod = \"BH\" , universe , minGSSize = 10 , maxGSSize = 500 , qvalueCutoff = 0.2 , readable = FALSE )",
+    "body": "{   NCG_DOSE_Env -   get_NCG_data ( )   res -   enricher_internal ( gene =  gene , pvalueCutoff =  pvalueCutoff , pAdjustMethod =  pAdjustMethod , universe =  universe , minGSSize =  minGSSize , maxGSSize =  maxGSSize , qvalueCutoff =  qvalueCutoff , USER_DATA =  NCG_DOSE_Env )  if (   is.null (  res ) )   return (  res )    res @ organism -  \"Homo sapiens\"    res @ keytype -  \"ENTREZID\"    res @ ontology -  \"NCG\"  if (  readable )  {   res -   setReadable (  res ,  'org.Hs.eg.db' ) }   return (  res ) } ",
+    "filename": "enrichNCG.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "setReadable",
+    "representation": "setReadable",
+    "parameters": "function ( x )",
+    "body": "{  if (  !  (     class (  x ) !=  \"enrichResult\" ||    class (  x ) !=  \"groupGOResult\" ) )   stop (  \"input should be an 'enrichResult' object...\" )  if (    x @ readable ==  FALSE )  {   organism =   x @ organism   gc -   x @ geneInCategory   genes -   x @ gene   gn -   EXTID2NAME (  genes , organism =  organism ) ##gc   gc -   lapply (  gc ,  function ( i )   gn [  i ] )    x @ geneInCategory -  gc   res -   x @ result   gc -   gc [   as.character (   res $ ID ) ]   geneID -   sapply (  gc ,  function ( i )   paste (  i , collapse =  \"/\" ) )    res $ geneID -   unlist (  geneID )    x @ result -  res    x @ readable -  TRUE }   return (  x ) } ",
+    "filename": "enrichResult.txt"
+  },
+  "new_function": {
+    "name": "setReadable",
+    "representation": "setReadable",
+    "parameters": "function ( x , OrgDb , keytype = \"auto\" )",
+    "body": "{  if (  !  (     class (  x ) !=  \"enrichResult\" ||    class (  x ) !=  \"groupGOResult\" ) )   stop (  \"input should be an 'enrichResult' object...\" )  if (   keytype ==  \"auto\" )  {   keytype -   x @ keytype }  if (    x @ readable ==  FALSE )  {   gc -   x @ geneInCategory   genes -   x @ gene   gn -   EXTID2NAME (  OrgDb ,  genes ,  keytype )    x @ gene2Symbol -  gn   gc -   lapply (  gc ,  function ( i )   gn [  i ] )    x @ geneInCategory -  gc   res -   x @ result   gc -   gc [   as.character (   res $ ID ) ]   geneID -   sapply (  gc ,  function ( i )   paste (  i , collapse =  \"/\" ) )    res $ geneID -   unlist (  geneID )    x @ result -  res    x @ keytype -  keytype    x @ readable -  TRUE }   return (  x ) } ",
+    "filename": "enrichResult.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  dose_release_3_3 dose_release_3_4
+
+{
+    "package": "DOSE",
+    "release_versions": "dose_release_3_3 dose_release_3_4",
+    "desc_release_old": "2.10.7",
+    "desc_release_new": "3.0.10",
+    "old_release_number": 7,
+    "new_release_number": 8,
+    "function_removals": 3,
+    "function_additions": 24,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 4
+}
+
+##########
+Functions Removed
+##########
+
+GSEA_internal
+enricher_internal
+load_OrgDb
+
+
+##########
+Functions Added
+##########
+
+enrichDGN
+enrichDGNv
+gene2DO
+geneID
+geneInCategory
+gseDGN
+$.enrichResult
+$.gseaResult
+[.enrichResult
+[.gseaResult
+[[.enrichResult
+[[.gseaResult
+as.data.frame.enrichResult
+as.data.frame.gseaResult
+dim.enrichResult
+dim.gseaResult
+geneID.enrichResult
+geneID.gseaResult
+geneInCategory.enrichResult
+geneInCategory.gseaResult
+head.enrichResult
+head.gseaResult
+tail.enrichResult
+tail.gseaResult
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "dotplot",
+    "representation": "dotplot",
+    "signature": "signature ( object =  enrichResult )",
+    "parameters": "function ( object , x = \"geneRatio\" , colorBy = \"p.adjust\" , showCategory = 10 , font.size = 12 , title = \"\" )",
+    "body": "{   dotplot.enrichResult (  object ,  x ,  colorBy ,  showCategory ,  font.size ,  title ) } ",
+    "filename": "enrichResult.txt"
+  },
+  "new_function": {
+    "name": "dotplot",
+    "representation": "dotplot",
+    "signature": "signature ( object =  enrichResult )",
+    "parameters": "function ( object , x = \"geneRatio\" , colorBy = \"p.adjust\" , showCategory = 10 , category = NULL , font.size = 12 , title = \"\" )",
+    "body": "{   dotplot.enrichResult (  object ,  x ,  colorBy ,  showCategory ,  category ,  font.size ,  title ) } ",
+    "filename": "enrichResult.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  dose_release_3_4 dose_release_3_5
+
+{
+    "package": "DOSE",
+    "release_versions": "dose_release_3_4 dose_release_3_5",
+    "desc_release_old": "3.0.10",
+    "desc_release_new": "3.2.0",
+    "old_release_number": 8,
+    "new_release_number": 9,
+    "function_removals": 1,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+fortify.gseaResult
+
+
+##########
+Functions Added
+##########
+
+facet_grid
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "dotplot",
+    "representation": "dotplot",
+    "signature": "signature ( object =  enrichResult )",
+    "parameters": "function ( object , x = \"geneRatio\" , colorBy = \"p.adjust\" , showCategory = 10 , category = NULL , font.size = 12 , title = \"\" )",
+    "body": "{   dotplot.enrichResult (  object ,  x ,  colorBy ,  showCategory ,  category ,  font.size ,  title ) } ",
+    "filename": "enrichResult.txt"
+  },
+  "new_function": {
+    "name": "dotplot",
+    "representation": "dotplot",
+    "signature": "signature ( object =  enrichResult )",
+    "parameters": "function ( object , x = \"geneRatio\" , colorBy = \"p.adjust\" , showCategory = 10 , split = NULL , font.size = 12 , title = \"\" )",
+    "body": "{   dotplot_internal (  object ,  x ,  colorBy ,  showCategory ,  split ,  font.size ,  title ) } ",
+    "filename": "enrichResult.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  dose_release_3_5 dose_release_3_6
+
+{
+    "package": "DOSE",
+    "release_versions": "dose_release_3_5 dose_release_3_6",
+    "desc_release_old": "3.2.0",
+    "desc_release_new": "3.4.0",
+    "old_release_number": 9,
+    "new_release_number": 10,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+ridgeplot
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  dose_release_3_6 dose_release_3_7
+
+{
+    "package": "DOSE",
+    "release_versions": "dose_release_3_6 dose_release_3_7",
+    "desc_release_old": "3.4.0",
+    "desc_release_new": "3.6.1",
+    "old_release_number": 10,
+    "new_release_number": 11,
+    "function_removals": 10,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 10
+}
+
+##########
+Functions Removed
+##########
+
+cnetplot
+dotplot
+gseaplot
+netplot
+ridgeplot
+scaleNodeColor
+setting.graph.attributes
+upsetplot
+plot
+barplot.enrichResult
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  dose_release_3_7 dose_release_3_8
+
+{
+    "package": "DOSE",
+    "release_versions": "dose_release_3_7 dose_release_3_8",
+    "desc_release_old": "3.6.1",
+    "desc_release_new": "3.8.2",
+    "old_release_number": 11,
+    "new_release_number": 12,
+    "function_removals": 1,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+enrichMap
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  dose_release_3_8 dose_release_3_9
+
+{
+    "package": "DOSE",
+    "release_versions": "dose_release_3_8 dose_release_3_9",
+    "desc_release_old": "3.8.2",
+    "desc_release_new": "3.10.2",
+    "old_release_number": 12,
+    "new_release_number": 13,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 1,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+parse_ratio
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "setReadable",
+    "representation": "setReadable",
+    "parameters": "function ( x , OrgDb , keytype = \"auto\" , keyType = \"auto\" )",
+    "body": "{  if (   !   missing (  keytype ) undefined  !   is.null (  keytype ) )  {   warning (  \"`keytype` is deprecated. Please use `keyType` instead\" , call. =  FALSE )   keyType =  keytype }   OrgDb -   load_OrgDb (  OrgDb )  if (  !   'SYMBOL' %in%   columns (  OrgDb ) )  {   warning (  \"Fail to convert input geneID to SYMBOL since no SYMBOL information available in the provided OrgDb...\" ) }  if (  !  (     is (  x ,  \"enrichResult\" ) ||   is (  x ,  \"groupGOResult\" ) ||   is (  x ,  \"gseaResult\" ) ) )   stop (  \"input should be an 'enrichResult' or 'gseaResult' object...\" )   isGSEA -  FALSE  if (   is (  x ,  'gseaResult' ) )   isGSEA -  TRUE  if (   keyType ==  \"auto\" )  {   keyType -   x @ keytype  if (   keyType ==  'UNKNOWN' )  {   stop (  \"can't determine keyType automatically; need to set 'keyType' explicitly...\" ) } }  if (   x @ readable )   return (  x )   gc -   geneInCategory (  x )  if (  isGSEA )  {   genes -   names (   x @ geneList ) } else  {   genes -   x @ gene }   gn -   EXTID2NAME (  OrgDb ,  genes ,  keyType )   gc -   lapply (  gc ,  function ( i )   gn [  i ] )   res -   x @ result   gc -   gc [   as.character (   res $ ID ) ]   geneID -   sapply (  gc ,  paste0 , collapse =  \"/\" )  if (  isGSEA )  {    res $ core_enrichment -   unlist (  geneID ) } else  {    res $ geneID -   unlist (  geneID ) }    x @ gene2Symbol -  gn    x @ result -  res    x @ keytype -  keyType    x @ readable -  TRUE   return (  x ) } ",
+    "filename": "setReadable.txt"
+  },
+  "new_function": {
+    "name": "setReadable",
+    "representation": "setReadable",
+    "parameters": "function ( x , OrgDb , keyType = \"auto\" )",
+    "body": "{   OrgDb -   load_OrgDb (  OrgDb )  if (  !   'SYMBOL' %in%   columns (  OrgDb ) )  {   warning (  \"Fail to convert input geneID to SYMBOL since no SYMBOL information available in the provided OrgDb...\" ) }  if (  !  (     is (  x ,  \"enrichResult\" ) ||   is (  x ,  \"groupGOResult\" ) ||   is (  x ,  \"gseaResult\" ) ) )   stop (  \"input should be an 'enrichResult' or 'gseaResult' object...\" )   isGSEA -  FALSE  if (   is (  x ,  'gseaResult' ) )   isGSEA -  TRUE  if (   keyType ==  \"auto\" )  {   keyType -   x @ keytype  if (   keyType ==  'UNKNOWN' )  {   stop (  \"can't determine keyType automatically; need to set 'keyType' explicitly...\" ) } }  if (   x @ readable )   return (  x )   gc -   geneInCategory (  x )  if (  isGSEA )  {   genes -   names (   x @ geneList ) } else  {   genes -   x @ gene }   gn -   EXTID2NAME (  OrgDb ,  genes ,  keyType )   gc -   lapply (  gc ,  function ( i )   gn [  i ] )   res -   x @ result   gc -   gc [   as.character (   res $ ID ) ]   geneID -   sapply (  gc ,  paste0 , collapse =  \"/\" )  if (  isGSEA )  {    res $ core_enrichment -   unlist (  geneID ) } else  {    res $ geneID -   unlist (  geneID ) }    x @ gene2Symbol -  gn    x @ result -  res    x @ keytype -  keyType    x @ readable -  TRUE   return (  x ) } ",
+    "filename": "setReadable.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  dose_release_3_9 dose_release_3_11
+
+{
+    "package": "DOSE",
+    "release_versions": "dose_release_3_9 dose_release_3_11",
+    "desc_release_old": "3.10.2",
+    "desc_release_new": "3.14.0",
+    "old_release_number": 13,
+    "new_release_number": 14,
+    "function_removals": 1,
+    "function_additions": 2,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+fortify.enrichResult
+
+
+##########
+Functions Added
+##########
+
+geneID.compareClusterResult
+geneInCategory.compareClusterResult
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  dose_release_3_11 dose_release_3_12
+
+{
+    "package": "DOSE",
+    "release_versions": "dose_release_3_11 dose_release_3_12",
+    "desc_release_old": "3.14.0",
+    "desc_release_new": "3.16.0",
+    "old_release_number": 14,
+    "new_release_number": 15,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  dose_release_3_12 dose_release_3_13
+
+{
+    "package": "DOSE",
+    "release_versions": "dose_release_3_12 dose_release_3_13",
+    "desc_release_old": "3.16.0",
+    "desc_release_new": "3.18.3",
+    "old_release_number": 15,
+    "new_release_number": 16,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  dose_release_3_13 dose_release_3_14
+
+{
+    "package": "DOSE",
+    "release_versions": "dose_release_3_13 dose_release_3_14",
+    "desc_release_old": "3.18.3",
+    "desc_release_new": "3.20.1",
+    "old_release_number": 16,
+    "new_release_number": 17,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  dose_release_3_14 dose_master
+
+{
+    "package": "DOSE",
+    "release_versions": "dose_release_3_14 dose_master",
+    "desc_release_old": "3.20.1",
+    "desc_release_new": "3.21.2",
+    "old_release_number": 17,
+    "new_release_number": 18,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+

@@ -1,0 +1,519 @@
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocfilecache_release_3_5 biocfilecache_release_3_6
+
+{
+    "package": "BiocFileCache",
+    "release_versions": "biocfilecache_release_3_5 biocfilecache_release_3_6",
+    "desc_release_old": "1.0.1",
+    "desc_release_new": "1.2.3",
+    "old_release_number": 0,
+    "new_release_number": 1,
+    "function_removals": 0,
+    "function_additions": 5,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+bfcmeta<-
+bfcmeta
+bfcmetalist
+bfcmetaremove
+bfcquerycols
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocfilecache_release_3_6 biocfilecache_release_3_7
+
+{
+    "package": "BiocFileCache",
+    "release_versions": "biocfilecache_release_3_6 biocfilecache_release_3_7",
+    "desc_release_old": "1.2.3",
+    "desc_release_new": "1.4.0",
+    "old_release_number": 1,
+    "new_release_number": 2,
+    "function_removals": 0,
+    "function_additions": 3,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+exportbfc
+importbfc
+makeBiocFileCacheFromDataFrame
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocfilecache_release_3_7 biocfilecache_release_3_8
+
+{
+    "package": "BiocFileCache",
+    "release_versions": "biocfilecache_release_3_7 biocfilecache_release_3_8",
+    "desc_release_old": "1.4.0",
+    "desc_release_new": "1.6.0",
+    "old_release_number": 2,
+    "new_release_number": 3,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 2,
+    "total_count": 2
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "bfcpath",
+    "representation": "bfcpath",
+    "signature": "missing",
+    "parameters": "function ( x , rid )",
+    "body": "{   bfcpath ( x =   BiocFileCache ( ) , rid =  rid ) } ",
+    "filename": "BiocFileCache-class.txt"
+  },
+  "new_function": {
+    "name": "bfcpath",
+    "representation": "bfcpath",
+    "signature": "missing",
+    "parameters": "function ( x , rids )",
+    "body": "{   bfcpath ( x =   BiocFileCache ( ) , rids =  rids ) } ",
+    "filename": "BiocFileCache-class.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "bfcpath",
+    "representation": "bfcpath",
+    "signature": "BiocFileCacheBase",
+    "parameters": "function ( x , rid )",
+    "body": "{   stopifnot (  !   missing (  rid ) ,    length (  rid ) undefined  0L ,   all (   rid %in%   bfcrid (  x ) ) )   .sql_set_time (  x ,  rid )   path -   .sql_get_rpath (  x ,  rid )   is_web -    .sql_get_rtype (  x ,  rid ) ==  \"web\"   fpath -   .sql_get_fpath (  x ,   rid [  is_web ] )    names (  fpath ) -   rep (  \"fpath\" ,   length (  fpath ) )   c (  path ,  fpath ) } ",
+    "filename": "BiocFileCache-class.txt"
+  },
+  "new_function": {
+    "name": "bfcpath",
+    "representation": "bfcpath",
+    "signature": "BiocFileCacheBase",
+    "parameters": "function ( x , rids )",
+    "body": "{  if (   missing (  rids ) )   rids -   bfcrid (  x )   stopifnot (    length (  rids ) undefined  0L ,   all (   rids %in%   bfcrid (  x ) ) )   .sql_set_time (  x ,  rids )   path -   .sql_get_rpath (  x ,  rids )  path } ",
+    "filename": "BiocFileCache-class.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocfilecache_release_3_8 biocfilecache_release_3_9
+
+{
+    "package": "BiocFileCache",
+    "release_versions": "biocfilecache_release_3_8 biocfilecache_release_3_9",
+    "desc_release_old": "1.6.0",
+    "desc_release_new": "1.8.0",
+    "old_release_number": 3,
+    "new_release_number": 4,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocfilecache_release_3_9 biocfilecache_release_3_11
+
+{
+    "package": "BiocFileCache",
+    "release_versions": "biocfilecache_release_3_9 biocfilecache_release_3_11",
+    "desc_release_old": "1.8.0",
+    "desc_release_new": "1.12.1",
+    "old_release_number": 4,
+    "new_release_number": 5,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+makeCachedActiveBinding
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocfilecache_release_3_11 biocfilecache_release_3_12
+
+{
+    "package": "BiocFileCache",
+    "release_versions": "biocfilecache_release_3_11 biocfilecache_release_3_12",
+    "desc_release_old": "1.12.1",
+    "desc_release_new": "1.14.0",
+    "old_release_number": 5,
+    "new_release_number": 6,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocfilecache_release_3_12 biocfilecache_release_3_13
+
+{
+    "package": "BiocFileCache",
+    "release_versions": "biocfilecache_release_3_12 biocfilecache_release_3_13",
+    "desc_release_old": "1.14.0",
+    "desc_release_new": "2.0.0",
+    "old_release_number": 6,
+    "new_release_number": 7,
+    "function_removals": 0,
+    "function_additions": 2,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+getBFCOption
+setBFCOption
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocfilecache_release_3_13 biocfilecache_release_3_14
+
+{
+    "package": "BiocFileCache",
+    "release_versions": "biocfilecache_release_3_13 biocfilecache_release_3_14",
+    "desc_release_old": "2.0.0",
+    "desc_release_new": "2.2.1",
+    "old_release_number": 7,
+    "new_release_number": 8,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocfilecache_release_3_14 biocfilecache_master
+
+{
+    "package": "BiocFileCache",
+    "release_versions": "biocfilecache_release_3_14 biocfilecache_master",
+    "desc_release_old": "2.2.1",
+    "desc_release_new": "2.3.4",
+    "old_release_number": 8,
+    "new_release_number": 9,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+

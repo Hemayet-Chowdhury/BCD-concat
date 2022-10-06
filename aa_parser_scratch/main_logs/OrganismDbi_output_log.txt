@@ -1,0 +1,1058 @@
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  organismdbi_release_2_11 organismdbi_release_2_12
+
+{
+    "package": "OrganismDbi",
+    "release_versions": "organismdbi_release_2_11 organismdbi_release_2_12",
+    "desc_release_old": "1.0.3",
+    "desc_release_new": "1.2.0",
+    "old_release_number": 0,
+    "new_release_number": 1,
+    "function_removals": 0,
+    "function_additions": 8,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+transcripts
+exons
+cds
+transcriptsBy
+exonsBy
+cdsBy
+columns
+metadata
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  organismdbi_release_2_12 organismdbi_release_2_13
+
+{
+    "package": "OrganismDbi",
+    "release_versions": "organismdbi_release_2_12 organismdbi_release_2_13",
+    "desc_release_old": "1.2.0",
+    "desc_release_new": "1.4.0",
+    "old_release_number": 1,
+    "new_release_number": 2,
+    "function_removals": 1,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+cols
+
+
+##########
+Functions Added
+##########
+
+seqinfo
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  organismdbi_release_2_13 organismdbi_release_2_14
+
+{
+    "package": "OrganismDbi",
+    "release_versions": "organismdbi_release_2_13 organismdbi_release_2_14",
+    "desc_release_old": "1.4.0",
+    "desc_release_new": "1.6.0",
+    "old_release_number": 2,
+    "new_release_number": 3,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 3,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+genes
+
+
+##########
+Removed Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "transcriptsBy",
+    "representation": "transcriptsBy",
+    "signature": "OrganismDb",
+    "parameters": "function ( x , by , columns )",
+    "body": "{   .transcriptsBy (  x ,  by ,  columns ) } ",
+    "filename": "methods-transcripts.txt"
+  },
+  "new_function": {
+    "name": "transcriptsBy",
+    "representation": "transcriptsBy",
+    "signature": "OrganismDb",
+    "parameters": "function ( x , by = \"gene\" , columns = character ( ) )",
+    "body": "{  if (     missing (  by ) ||  !   any (   by %in%   c (  \"gene\" ,  \"exon\" ,  \"cds\" ) ) ||    length (  by ) !=  1 )  {   stop (  \"You must provide a valid argument for by\" ) }   .transcriptsBy (  x ,  by ,  columns ) } ",
+    "filename": "methods-transcripts.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "exonsBy",
+    "representation": "exonsBy",
+    "signature": "OrganismDb",
+    "parameters": "function ( x , by , columns )",
+    "body": "{   .exonsBy (  x ,  by ,  columns ) } ",
+    "filename": "methods-transcripts.txt"
+  },
+  "new_function": {
+    "name": "exonsBy",
+    "representation": "exonsBy",
+    "signature": "OrganismDb",
+    "parameters": "function ( x , by = \"tx\" , columns = character ( ) )",
+    "body": "{  if (     missing (  by ) ||  !   any (   by %in%   c (  \"tx\" ,  \"gene\" ) ) ||    length (  by ) !=  1 )  {   stop (  \"You must provide a valid argument for by\" ) }   .exonsBy (  x ,  by ,  columns ) } ",
+    "filename": "methods-transcripts.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "cdsBy",
+    "representation": "cdsBy",
+    "signature": "OrganismDb",
+    "parameters": "function ( x , by , columns )",
+    "body": "{   .cdsBy (  x ,  by ,  columns ) } ",
+    "filename": "methods-transcripts.txt"
+  },
+  "new_function": {
+    "name": "cdsBy",
+    "representation": "cdsBy",
+    "signature": "OrganismDb",
+    "parameters": "function ( x , by = \"tx\" , columns = character ( ) )",
+    "body": "{  if (     missing (  by ) ||  !   any (   by %in%   c (  \"tx\" ,  \"gene\" ) ) ||    length (  by ) !=  1 )  {   stop (  \"You must provide a valid argument for by\" ) }   .cdsBy (  x ,  by ,  columns ) } ",
+    "filename": "methods-transcripts.txt"
+  }
+}
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  organismdbi_release_2_14 organismdbi_release_3_1
+
+{
+    "package": "OrganismDbi",
+    "release_versions": "organismdbi_release_2_14 organismdbi_release_3_1",
+    "desc_release_old": "1.6.0",
+    "desc_release_new": "1.10.0",
+    "old_release_number": 3,
+    "new_release_number": 4,
+    "function_removals": 1,
+    "function_additions": 17,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+makeOrganismPackage
+
+
+##########
+Functions Added
+##########
+
+dbconn
+dbfile
+getTxDbIfAvailable
+promoters
+disjointExons
+microRNAs
+tRNAs
+intronsByTranscript
+fiveUTRsByTranscript
+threeUTRsByTranscript
+extractUpstreamSeqs
+isActiveSeq
+isActiveSeq<-
+asBED
+asGFF
+distance
+mapToTranscripts
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  organismdbi_release_3_1 organismdbi_release_3_2
+
+{
+    "package": "OrganismDbi",
+    "release_versions": "organismdbi_release_3_1 organismdbi_release_3_2",
+    "desc_release_old": "1.10.0",
+    "desc_release_new": "1.12.1",
+    "old_release_number": 4,
+    "new_release_number": 5,
+    "function_removals": 0,
+    "function_additions": 4,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+mapIds
+taxonomyId
+selectByRanges
+selectRangesById
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  organismdbi_release_3_2 organismdbi_release_3_3
+
+{
+    "package": "OrganismDbi",
+    "release_versions": "organismdbi_release_3_2 organismdbi_release_3_3",
+    "desc_release_old": "1.12.1",
+    "desc_release_new": "1.14.1",
+    "old_release_number": 5,
+    "new_release_number": 6,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 4,
+    "total_count": 4
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "transcripts",
+    "representation": "transcripts",
+    "signature": "MultiDb",
+    "parameters": "function ( x , vals = NULL , columns = c ( \"TXID\" , \"TXNAME\" ) )",
+    "body": "{   .transcripts (  x ,  vals ,  columns ) } ",
+    "filename": "methods-transcripts.txt"
+  },
+  "new_function": {
+    "name": "transcripts",
+    "representation": "transcripts",
+    "signature": "MultiDb",
+    "parameters": "function ( x , columns = c ( \"TXID\" , \"TXNAME\" ) , filter = NULL )",
+    "body": "{   .transcripts (  x ,  columns ,  filter ) } ",
+    "filename": "methods-transcripts.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "exons",
+    "representation": "exons",
+    "signature": "MultiDb",
+    "parameters": "function ( x , vals = NULL , columns = \"EXONID\" )",
+    "body": "{   .exons (  x ,  vals ,  columns ) } ",
+    "filename": "methods-transcripts.txt"
+  },
+  "new_function": {
+    "name": "exons",
+    "representation": "exons",
+    "signature": "MultiDb",
+    "parameters": "function ( x , columns = \"EXONID\" , filter = NULL )",
+    "body": "{   .exons (  x ,  columns ,  filter ) } ",
+    "filename": "methods-transcripts.txt"
+  }
+}
+
+2.
+{
+  "old_function": {
+    "name": "cds",
+    "representation": "cds",
+    "signature": "MultiDb",
+    "parameters": "function ( x , vals = NULL , columns = \"CDSID\" )",
+    "body": "{   .cds (  x ,  vals ,  columns ) } ",
+    "filename": "methods-transcripts.txt"
+  },
+  "new_function": {
+    "name": "cds",
+    "representation": "cds",
+    "signature": "MultiDb",
+    "parameters": "function ( x , columns = \"CDSID\" , filter = NULL )",
+    "body": "{   .cds (  x ,  columns ,  filter ) } ",
+    "filename": "methods-transcripts.txt"
+  }
+}
+
+3.
+{
+  "old_function": {
+    "name": "genes",
+    "representation": "genes",
+    "signature": "MultiDb",
+    "parameters": "function ( x , vals = NULL , columns = \"GENEID\" )",
+    "body": "{   .genes (  x ,  vals ,  columns ) } ",
+    "filename": "methods-transcripts.txt"
+  },
+  "new_function": {
+    "name": "genes",
+    "representation": "genes",
+    "signature": "MultiDb",
+    "parameters": "function ( x , columns = \"GENEID\" , filter = NULL )",
+    "body": "{   .genes (  x ,  columns ,  filter ) } ",
+    "filename": "methods-transcripts.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  organismdbi_release_3_3 organismdbi_release_3_4
+
+{
+    "package": "OrganismDbi",
+    "release_versions": "organismdbi_release_3_3 organismdbi_release_3_4",
+    "desc_release_old": "1.14.1",
+    "desc_release_new": "1.16.0",
+    "old_release_number": 6,
+    "new_release_number": 7,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  organismdbi_release_3_4 organismdbi_release_3_5
+
+{
+    "package": "OrganismDbi",
+    "release_versions": "organismdbi_release_3_4 organismdbi_release_3_5",
+    "desc_release_old": "1.16.0",
+    "desc_release_new": "1.18.1",
+    "old_release_number": 7,
+    "new_release_number": 8,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  organismdbi_release_3_5 organismdbi_release_3_6
+
+{
+    "package": "OrganismDbi",
+    "release_versions": "organismdbi_release_3_5 organismdbi_release_3_6",
+    "desc_release_old": "1.18.1",
+    "desc_release_new": "1.20.0",
+    "old_release_number": 8,
+    "new_release_number": 9,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  organismdbi_release_3_6 organismdbi_release_3_7
+
+{
+    "package": "OrganismDbi",
+    "release_versions": "organismdbi_release_3_6 organismdbi_release_3_7",
+    "desc_release_old": "1.20.0",
+    "desc_release_new": "1.22.0",
+    "old_release_number": 9,
+    "new_release_number": 10,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  organismdbi_release_3_7 organismdbi_release_3_8
+
+{
+    "package": "OrganismDbi",
+    "release_versions": "organismdbi_release_3_7 organismdbi_release_3_8",
+    "desc_release_old": "1.22.0",
+    "desc_release_new": "1.24.0",
+    "old_release_number": 10,
+    "new_release_number": 11,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  organismdbi_release_3_8 organismdbi_release_3_9
+
+{
+    "package": "OrganismDbi",
+    "release_versions": "organismdbi_release_3_8 organismdbi_release_3_9",
+    "desc_release_old": "1.24.0",
+    "desc_release_new": "1.26.0",
+    "old_release_number": 11,
+    "new_release_number": 12,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  organismdbi_release_3_9 organismdbi_release_3_11
+
+{
+    "package": "OrganismDbi",
+    "release_versions": "organismdbi_release_3_9 organismdbi_release_3_11",
+    "desc_release_old": "1.26.0",
+    "desc_release_new": "1.30.0",
+    "old_release_number": 12,
+    "new_release_number": 13,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  organismdbi_release_3_11 organismdbi_release_3_12
+
+{
+    "package": "OrganismDbi",
+    "release_versions": "organismdbi_release_3_11 organismdbi_release_3_12",
+    "desc_release_old": "1.30.0",
+    "desc_release_new": "1.32.0",
+    "old_release_number": 13,
+    "new_release_number": 14,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  organismdbi_release_3_12 organismdbi_release_3_13
+
+{
+    "package": "OrganismDbi",
+    "release_versions": "organismdbi_release_3_12 organismdbi_release_3_13",
+    "desc_release_old": "1.32.0",
+    "desc_release_new": "1.34.0",
+    "old_release_number": 14,
+    "new_release_number": 15,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  organismdbi_release_3_13 organismdbi_release_3_14
+
+{
+    "package": "OrganismDbi",
+    "release_versions": "organismdbi_release_3_13 organismdbi_release_3_14",
+    "desc_release_old": "1.34.0",
+    "desc_release_new": "1.36.0",
+    "old_release_number": 15,
+    "new_release_number": 16,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  organismdbi_release_3_14 organismdbi_master
+
+{
+    "package": "OrganismDbi",
+    "release_versions": "organismdbi_release_3_14 organismdbi_master",
+    "desc_release_old": "1.36.0",
+    "desc_release_new": "1.37.2",
+    "old_release_number": 16,
+    "new_release_number": 17,
+    "function_removals": 1,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 1
+}
+
+##########
+Functions Removed
+##########
+
+disjointExons
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+

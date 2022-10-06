@@ -1,0 +1,864 @@
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocstyle_release_2_13 biocstyle_release_2_14
+
+{
+    "package": "BiocStyle",
+    "release_versions": "biocstyle_release_2_13 biocstyle_release_2_14",
+    "desc_release_old": "1.0.0",
+    "desc_release_new": "1.2.0",
+    "old_release_number": 0,
+    "new_release_number": 1,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocstyle_release_2_14 biocstyle_release_3_1
+
+{
+    "package": "BiocStyle",
+    "release_versions": "biocstyle_release_2_14 biocstyle_release_3_1",
+    "desc_release_old": "1.2.0",
+    "desc_release_new": "1.6.0",
+    "old_release_number": 1,
+    "new_release_number": 2,
+    "function_removals": 0,
+    "function_additions": 9,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+markdown
+Biocpkg
+Biocannopkg
+Biocexptpkg
+CRANpkg
+Rpackage
+Githubpkg
+html_document
+pdf_document
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocstyle_release_3_1 biocstyle_release_3_2
+
+{
+    "package": "BiocStyle",
+    "release_versions": "biocstyle_release_3_1 biocstyle_release_3_2",
+    "desc_release_old": "1.6.0",
+    "desc_release_new": "1.8.0",
+    "old_release_number": 2,
+    "new_release_number": 3,
+    "function_removals": 0,
+    "function_additions": 3,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+doc_date
+pkg_ver
+output_format
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocstyle_release_3_2 biocstyle_release_3_3
+
+{
+    "package": "BiocStyle",
+    "release_versions": "biocstyle_release_3_2 biocstyle_release_3_3",
+    "desc_release_old": "1.8.0",
+    "desc_release_new": "2.0.3",
+    "old_release_number": 3,
+    "new_release_number": 4,
+    "function_removals": 1,
+    "function_additions": 5,
+    "parameter_removals": 0,
+    "parameter_additions": 1,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 2,
+    "total_count": 3
+}
+
+##########
+Functions Removed
+##########
+
+output_format
+
+
+##########
+Functions Added
+##########
+
+md_document
+latex2
+html_document2
+pdf_document2
+output
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+0.
+{
+  "old_function": {
+    "name": "Githubpkg",
+    "representation": "Githubpkg",
+    "parameters": "function ( pkg )",
+    "body": "{   github -  \"https://github.com\"   pkg =    strsplit (  pkg , split =  \"/\" , fixed =  TRUE ) [[  1 ] ]   Rpackage (   sprintf (  '[%s](%s/%s/%s)' ,   pkg [  2 ] ,  github ,   pkg [  1 ] ,   pkg [  2 ] ) ) } ",
+    "filename": "markdown.txt"
+  },
+  "new_function": {
+    "name": "Githubpkg",
+    "representation": "Githubpkg",
+    "parameters": "function ( repo , pkg )",
+    "body": "{   github -  \"https://github.com\" ## extract package name  if (   missing (  pkg ) )  {   names =    strsplit (  repo , split =  \"/\" , fixed =  TRUE ) [[  1L ] ]   pkg =   names [   length (  names ) ] }   Rpackage (   sprintf (  '[%s](%s/%s)' ,  pkg ,  github ,  repo ) ) } ",
+    "filename": "markdown.txt"
+  }
+}
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+0.
+{
+  "old_function": {
+    "name": "Githubpkg",
+    "representation": "Githubpkg",
+    "parameters": "function ( pkg )",
+    "body": "{   github -  \"https://github.com\"   pkg =    strsplit (  pkg , split =  \"/\" , fixed =  TRUE ) [[  1 ] ]   Rpackage (   sprintf (  '[%s](%s/%s/%s)' ,   pkg [  2 ] ,  github ,   pkg [  1 ] ,   pkg [  2 ] ) ) } ",
+    "filename": "markdown.txt"
+  },
+  "new_function": {
+    "name": "Githubpkg",
+    "representation": "Githubpkg",
+    "parameters": "function ( repo , pkg )",
+    "body": "{   github -  \"https://github.com\" ## extract package name  if (   missing (  pkg ) )  {   names =    strsplit (  repo , split =  \"/\" , fixed =  TRUE ) [[  1L ] ]   pkg =   names [   length (  names ) ] }   Rpackage (   sprintf (  '[%s](%s/%s)' ,  pkg ,  github ,  repo ) ) } ",
+    "filename": "markdown.txt"
+  }
+}
+
+1.
+{
+  "old_function": {
+    "name": "pkg_ver",
+    "representation": "pkg_ver",
+    "parameters": "function ( name )",
+    "body": "{   paste (  name ,   packageVersion (  name ) ) } ",
+    "filename": "markdown.txt"
+  },
+  "new_function": {
+    "name": "pkg_ver",
+    "representation": "pkg_ver",
+    "parameters": "function ( pkg )",
+    "body": "{   paste (  pkg ,   packageVersion (  pkg ) ) } ",
+    "filename": "markdown.txt"
+  }
+}
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocstyle_release_3_3 biocstyle_release_3_4
+
+{
+    "package": "BiocStyle",
+    "release_versions": "biocstyle_release_3_3 biocstyle_release_3_4",
+    "desc_release_old": "2.0.3",
+    "desc_release_new": "2.2.1",
+    "old_release_number": 4,
+    "new_release_number": 5,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocstyle_release_3_4 biocstyle_release_3_5
+
+{
+    "package": "BiocStyle",
+    "release_versions": "biocstyle_release_3_4 biocstyle_release_3_5",
+    "desc_release_old": "2.2.1",
+    "desc_release_new": "2.4.1",
+    "old_release_number": 5,
+    "new_release_number": 6,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocstyle_release_3_5 biocstyle_release_3_6
+
+{
+    "package": "BiocStyle",
+    "release_versions": "biocstyle_release_3_5 biocstyle_release_3_6",
+    "desc_release_old": "2.4.1",
+    "desc_release_new": "2.6.1",
+    "old_release_number": 6,
+    "new_release_number": 7,
+    "function_removals": 0,
+    "function_additions": 3,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+latex_old
+html_document_old
+pdf_document_old
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocstyle_release_3_6 biocstyle_release_3_7
+
+{
+    "package": "BiocStyle",
+    "release_versions": "biocstyle_release_3_6 biocstyle_release_3_7",
+    "desc_release_old": "2.6.1",
+    "desc_release_new": "2.8.2",
+    "old_release_number": 7,
+    "new_release_number": 8,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocstyle_release_3_7 biocstyle_release_3_8
+
+{
+    "package": "BiocStyle",
+    "release_versions": "biocstyle_release_3_7 biocstyle_release_3_8",
+    "desc_release_old": "2.8.2",
+    "desc_release_new": "2.10.0",
+    "old_release_number": 8,
+    "new_release_number": 9,
+    "function_removals": 6,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 6
+}
+
+##########
+Functions Removed
+##########
+
+html_document2
+html_document_old
+latex2
+latex_old
+pdf_document2
+pdf_document_old
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocstyle_release_3_8 biocstyle_release_3_9
+
+{
+    "package": "BiocStyle",
+    "release_versions": "biocstyle_release_3_8 biocstyle_release_3_9",
+    "desc_release_old": "2.10.0",
+    "desc_release_new": "2.12.0",
+    "old_release_number": 9,
+    "new_release_number": 10,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocstyle_release_3_9 biocstyle_release_3_11
+
+{
+    "package": "BiocStyle",
+    "release_versions": "biocstyle_release_3_9 biocstyle_release_3_11",
+    "desc_release_old": "2.12.0",
+    "desc_release_new": "2.16.1",
+    "old_release_number": 10,
+    "new_release_number": 11,
+    "function_removals": 0,
+    "function_additions": 2,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+use_vignette_html
+use_vignette_pdf
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocstyle_release_3_11 biocstyle_release_3_12
+
+{
+    "package": "BiocStyle",
+    "release_versions": "biocstyle_release_3_11 biocstyle_release_3_12",
+    "desc_release_old": "2.16.1",
+    "desc_release_new": "2.18.1",
+    "old_release_number": 11,
+    "new_release_number": 12,
+    "function_removals": 0,
+    "function_additions": 1,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+Biocbook
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocstyle_release_3_12 biocstyle_release_3_13
+
+{
+    "package": "BiocStyle",
+    "release_versions": "biocstyle_release_3_12 biocstyle_release_3_13",
+    "desc_release_old": "2.18.1",
+    "desc_release_new": "2.20.2",
+    "old_release_number": 12,
+    "new_release_number": 13,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocstyle_release_3_13 biocstyle_release_3_14
+
+{
+    "package": "BiocStyle",
+    "release_versions": "biocstyle_release_3_13 biocstyle_release_3_14",
+    "desc_release_old": "2.20.2",
+    "desc_release_new": "2.22.0",
+    "old_release_number": 13,
+    "new_release_number": 14,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
+
+###############################
+###############################
+###############################
+###############################
+Checking Versions:  biocstyle_release_3_14 biocstyle_master
+
+{
+    "package": "BiocStyle",
+    "release_versions": "biocstyle_release_3_14 biocstyle_master",
+    "desc_release_old": "2.22.0",
+    "desc_release_new": "2.23.1",
+    "old_release_number": 14,
+    "new_release_number": 15,
+    "function_removals": 0,
+    "function_additions": 0,
+    "parameter_removals": 0,
+    "parameter_additions": 0,
+    "parameter_renames": 0,
+    "parameter_default_changes": 0,
+    "parameter_overall_changes": 0,
+    "total_count": 0
+}
+
+##########
+Functions Removed
+##########
+
+
+
+##########
+Functions Added
+##########
+
+
+
+##########
+Removed Non Default Parameters
+##########
+
+
+
+##########
+Added Non Default Parameters
+##########
+
+
+
+##########
+All Parameter Breaking Changes
+##########
+
